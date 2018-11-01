@@ -61,6 +61,12 @@
     		</dependency>
     		<dependency>
     			<groupId>tecolotl</groupId>
+    			<artifactId>tecolotl-alumno</artifactId>
+    			<version>${project.version}</version>
+    			<type>ejb</type>
+    		</dependency>
+    		<dependency>
+    			<groupId>tecolotl</groupId>
     			<artifactId>tecolotl-web</artifactId>
     			<version>${project.version}</version>
     			<type>war</type>
@@ -109,5 +115,6 @@
     	<module>tecolotl-ear</module>
     	<module>tecolotl-web</module>
     	<module>tecolotl-nucleo</module>
+    	<module>tecolotl-alumno</module>
     </modules>
 </project>

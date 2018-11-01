@@ -14,6 +14,13 @@
 	<name>tecolotl-web</name>
 
 	<dependencies>
+	
+		<dependency>
+			<groupId>tecolotl</groupId>
+			<artifactId>tecolotl-alumno</artifactId>
+			<version>0.1</version>
+		</dependency>
+	
 		<!-- Import the JAX-RS API, we use provided scope as the API is included 
 			in JBoss WildFly -->
 		<dependency>
