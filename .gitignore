@@ -25,7 +25,7 @@ hs_err_pid*
 #archivos de eclipse
 .classpath
 .project
-.settings/**
+*.settings
 
 #intellij
 .idea/**
@@ -34,3 +34,4 @@ ingles.iml
 #maven target
 target
 .metadata
+/bin/
