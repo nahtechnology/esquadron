@@ -26,6 +26,11 @@
 			<artifactId>tecolotl-nucleo</artifactId>
 			<type>ejb</type>
 		</dependency>
+		<dependency>
+			<groupId>tecolotl</groupId>
+			<artifactId>tecolotl-alumno</artifactId>
+			<type>ejb</type>
+		</dependency>
 	</dependencies>
 
 	<build>
