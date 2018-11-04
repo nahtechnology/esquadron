@@ -10,7 +10,7 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="alumno")
+@Table(name="alumno", schema="alumno")
 @NamedQuery(name="AlumnoEntidad.findAll", query="SELECT a FROM AlumnoEntidad a")
 public class AlumnoEntidad implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -47,7 +47,7 @@ public class AlumnoEntidad implements Serializable {
 	private String nombre;
 
 	//bi-directional many-to-one association to GradoEscolarEntidad
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="grado_escolar")
 	private GradoEscolarEntidad gradoEscolarBean;
 

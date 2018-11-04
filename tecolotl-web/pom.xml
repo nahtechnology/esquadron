@@ -18,7 +18,8 @@
 		<dependency>
 			<groupId>tecolotl</groupId>
 			<artifactId>tecolotl-alumno</artifactId>
-			<version>0.1</version>
+			<type>ejb</type>
+			<scope>provided</scope>
 		</dependency>
 	
 		<!-- Import the JAX-RS API, we use provided scope as the API is included 

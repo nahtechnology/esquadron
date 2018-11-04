@@ -10,7 +10,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="grado_escolar")
+@Table(name="grado_escolar", schema="alumno")
 @NamedQuery(name="GradoEscolarEntidad.findAll", query="SELECT g FROM GradoEscolarEntidad g")
 public class GradoEscolarEntidad implements Serializable {
 	private static final long serialVersionUID = 1L;
