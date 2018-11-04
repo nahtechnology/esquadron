@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Alumno</title>
+	<ui:remove>
+		Mas Datos CSS o configuracion
+		<h:outputStylesheet/>
+	</ui:remove>
+</h:head>
+<h:body>
+	<div class="header">
+		<ui:include src="header.xhtml"/>
+	</div>
+	<div class="contenido">
+		<ui:insert name="contenido"/>
+	</div>
+	<div class="footer">
+		<ui:include src="footer.xhtml"/>
+	</div>
+</h:body>
+</html>
