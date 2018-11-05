@@ -29,7 +29,7 @@ hs_err_pid*
 
 #intellij
 .idea/**
-ingles.iml
+*.iml
 
 #maven target
 target
