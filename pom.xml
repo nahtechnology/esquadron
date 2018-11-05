@@ -6,7 +6,7 @@
     <artifactId>tecolotl</artifactId>
     <packaging>pom</packaging>
     <version>0.1</version>
-    <name>Tecolotl</name>
+    <name>tecolotl</name>
     
     <licenses>
     	<license>
