@@ -10,7 +10,7 @@
 <h:body>
 	<ui:composition template="/template/template.html">
 		<ui:define name="contenido">
-			<h:dataTable value="#{alumnoControl.lista}" var="alumno" border="1">
+			<h:dataTable value="#{alumnoControl.lista}" var="alumno" border="1" styleClass="striped centered responsive-table">
 				<f:facet name="header">
 				    <h:outputText value="Alumnos" />
 				</f:facet>
