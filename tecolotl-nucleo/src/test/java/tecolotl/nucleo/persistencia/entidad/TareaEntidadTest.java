@@ -1,27 +1,23 @@
 package tecolotl.nucleo.persistencia.entidad;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.transaction.api.annotation.TransactionMode;
-import org.jboss.arquillian.transaction.api.annotation.Transactional;
-import org.jboss.shrinkwrap.api.Archive;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import tecolotl.nucleo.persistence.enumeracion.NivelLenguajeEnumeracion;
+import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-import java.util.List;
-import java.util.logging.Logger;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import static org.junit.Assert.*;
+import tecolotl.nucleo.persistence.enumeracion.NivelLenguajeEnumeracion;
 
 @RunWith(Arquillian.class)
 public class TareaEntidadTest {
@@ -42,17 +38,23 @@ public class TareaEntidadTest {
 
     @Test
     public void busca() {
-        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("Tarea.busca", TareaEntidad.class);
+        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("tarea.busca", TareaEntidad.class);
         List<TareaEntidad> listaTarea = typedQuery.getResultList();
         Assert.assertNotNull(listaTarea);
-        logger.info(String.valueOf(listaTarea.size()));
         Assert.assertFalse("Lista vacia", listaTarea.isEmpty());
     }
-
+    
     @Test
-    @Transactional(TransactionMode.ROLLBACK)
-    public void crear() {
-
+    public void buscaId() {
+    	TareaEntidad tareaEntidad = entityManager.find(TareaEntidad.class, 1);
+    	Assert.assertNotNull("Sin tarea", tareaEntidad);
+    	Assert.assertNotNull("Pregunta detonadora", tareaEntidad.getPreguntaDetonadora());
+    	Assert.assertTrue("tiempo menor a cero", tareaEntidad.getTiempo() > 0);
+    	Assert.assertTrue("puntaje a cero", tareaEntidad.getPuntaje() > 0);
+    	Assert.assertNotNull("Sin nivel de lenguaje", tareaEntidad.getNivelLenguaje());
+    	logger.info(tareaEntidad.getNivelLenguaje().name());
+    	Assert.assertNotNull("Sin video", tareaEntidad.getVideo());
+    	Assert.assertNotNull("Sin transcripcion", tareaEntidad.getTranscripcion());
     }
-
+	
 }

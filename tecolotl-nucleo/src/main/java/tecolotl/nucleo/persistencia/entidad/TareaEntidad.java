@@ -3,11 +3,16 @@ package tecolotl.nucleo.persistencia.entidad;
 import tecolotl.nucleo.persistence.enumeracion.NivelLenguajeEnumeracion;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tarea", schema = "nucleo")
 @NamedQueries({
-        @NamedQuery(name = "Tarea.busca", query = "FROM TareaEntidad")
+        @NamedQuery(name = "tarea.busca", query = "SELECT t FROM TareaEntidad t"),
+        @NamedQuery(name = "tarea.buscaId", query = "SELECT t FROM TareaEntidad t WHERE t.id = :id")
 })
 public class TareaEntidad {
 
@@ -15,15 +20,24 @@ public class TareaEntidad {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Min(20)
+    @Max(100)
     private int puntaje;
 
+    @Min(20)
+    @Max(100)
     private int tiempo;
 
+    @NotNull
+    @Size(min=10, max=100)
     @Column(name = "pregunta_detonadora")
     private String preguntaDetonadora;
 
+    @NotNull
+    @Size(min=20)
     private String video;
 
+    @NotNull
     private String transcripcion;
 
     @Enumerated(EnumType.STRING)
