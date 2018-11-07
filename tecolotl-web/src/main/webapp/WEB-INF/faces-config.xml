@@ -4,12 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd"
     version="2.3">
+    
+    <application>
+    	<resource-bundle>
+    		<base-name>lenguaje.comun</base-name>
+    		<var>mensaje</var>
+    	</resource-bundle>
+    </application>
 
 	<navigation-rule>
 		<from-view-id>/index.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>alumnos</from-outcome>
 			<to-view-id>/alumnos.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>dashbord</from-outcome>
+			<to-view-id>/dashbord.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 

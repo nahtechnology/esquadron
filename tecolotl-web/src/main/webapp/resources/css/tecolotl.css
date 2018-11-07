@@ -1,3 +1,9 @@
+@font-face {
+  font-family: escuadron;
+  src: url("../resources/css/byt.ttf");
+}
+
+
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -1628,7 +1634,12 @@ html {
  * Remove the margin in all browsers (opinionated).
  */
 body {
-  margin: 0; }
+  background-image:url("../resources/img/universo.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  margin: 0;
+  }
 
 /**
  * Add the correct display in IE 9-.
@@ -1647,7 +1658,9 @@ section {
  */
 h1 {
   font-size: 2em;
-  margin: 0.67em 0; }
+  margin: 0.67em 0;
+  font-family: escuadron;
+   }
 
 /* Grouping content
    ========================================================================== */
