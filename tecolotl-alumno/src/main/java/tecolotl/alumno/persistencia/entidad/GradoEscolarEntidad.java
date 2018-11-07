@@ -2,6 +2,11 @@ package tecolotl.alumno.persistencia.entidad;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.util.List;
 
 
@@ -18,9 +23,12 @@ public class GradoEscolarEntidad implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
+	@NotNull
+	@Max(6)
+	@Min(1)
 	private Integer grado;
-
+	@NotNull
+	@Size(min= 1, max = 1)
 	private String grupo;
 
 	//bi-directional many-to-one association to AlumnoEntidad

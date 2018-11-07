@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tarea", schema = "nucleo")
 @NamedQueries({
-        @NamedQuery(name = "Tarea.busca", query = "FROM TareaEntidad")
+        @NamedQuery(name = "Tarea.busca", query = "SELECT t FROM TareaEntidad t")
 })
 public class TareaEntidad {
 

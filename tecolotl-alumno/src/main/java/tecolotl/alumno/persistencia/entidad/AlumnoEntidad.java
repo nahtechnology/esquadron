@@ -2,6 +2,9 @@ package tecolotl.alumno.persistencia.entidad;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 import java.util.Date;
 
 
@@ -18,35 +21,44 @@ public class AlumnoEntidad implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-
+	@Size(min= 2, max = 70)
 	@Column(name="apellido_materno")
 	private String apellidoMaterno;
-
+	@NotNull
+	@Size(min= 2, max = 50)
 	@Column(name="apellido_paterno")
 	private String apellidoPaterno;
-
+	@NotNull
+	@Size(min= 1, max = 15)
 	private String apodo;
-
+	@NotNull
+	@Size(min= 1, max = 15)
 	private String contrasenia;
-
+	@NotNull
+	@Size(min= 1, max = 15)
 	@Column(name="contrasenia_padre_familia")
 	private String contraseniaPadreFamilia;
-
+	@Size(min= 7, max = 100)
 	@Column(name="correo_electronico")
 	private String correoElectronico;
-
+	@NotNull
+	@Size(min= 7, max = 100)
 	@Column(name="correo_padre_familia")
 	private String correoPadreFamilia;
-
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
-
+	@NotNull
+	@Size(min= 2, max = 2)
 	@Column(name="nivel_ingles")
 	private String nivelIngles;
-
+	@NotNull
+	@Size(min= 0, max = 3)
 	private String nombre;
 
 	//bi-directional many-to-one association to GradoEscolarEntidad
+	@NotNull
+	@Size(min= 0, max = 3)
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="grado_escolar")
 	private GradoEscolarEntidad gradoEscolarBean;
