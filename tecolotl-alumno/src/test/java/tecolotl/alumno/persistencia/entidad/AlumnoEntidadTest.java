@@ -59,6 +59,13 @@ public class AlumnoEntidadTest {
 	    	Assert.assertNotNull("Sin Correo Electronico Padre", alumnoEntidad.getCorreoPadreFamilia());
 	    	Assert.assertNotNull("Sin Contraseña de Padre", alumnoEntidad.getContraseniaPadreFamilia());	
 	    }
+	    
+	    public void login() {
+	    	TypedQuery<AlumnoEntidad> typedQuery = entityManager.createQuery("AlumnoEntidad.buscarId", AlumnoEntidad.class);
+	         typedQuery.setParameter("nombre", "juan");
+	         typedQuery.setParameter("password", "1234");
+	    	
+	    }
 	    public void crear() {
 
 	    }

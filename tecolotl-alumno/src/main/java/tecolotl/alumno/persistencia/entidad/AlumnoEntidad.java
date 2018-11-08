@@ -14,7 +14,10 @@ import java.util.Date;
  */
 @Entity
 @Table(name="alumno", schema="alumno")
-@NamedQuery(name="AlumnoEntidad.findAll", query="SELECT a FROM AlumnoEntidad a")
+@NamedNativeQueries({
+	@NamedNativeQuery(name="AlumnoEntidad.findAll", query="SELECT a FROM AlumnoEntidad a"),
+	@NamedNativeQuery(name = "AlumnoEntidad.buscarId", query= "SELECT t FROM AlumnoEntidad t WHERE t.nombre = :nombre AND t.contrasenia = :password")
+})
 public class AlumnoEntidad implements Serializable {
 	private static final long serialVersionUID = 1L;
 
