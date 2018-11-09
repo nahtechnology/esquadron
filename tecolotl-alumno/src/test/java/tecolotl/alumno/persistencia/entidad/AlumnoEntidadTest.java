@@ -41,6 +41,7 @@ public class AlumnoEntidadTest {
 	        logger.info(String.valueOf(listaTarea.size()));
 	        Assert.assertFalse("Lista vacia", listaTarea.isEmpty());
 	    }
+	    
 	    @Test
 	    public void buscarId() {
 	    	
@@ -60,11 +61,13 @@ public class AlumnoEntidadTest {
 	    	Assert.assertNotNull("Sin Contraseña de Padre", alumnoEntidad.getContraseniaPadreFamilia());	
 	    }
 	    
+	    @Test
 	    public void login() {
-	    	TypedQuery<AlumnoEntidad> typedQuery = entityManager.createQuery("AlumnoEntidad.buscarId", AlumnoEntidad.class);
-	         typedQuery.setParameter("nombre", "juan");
-	         typedQuery.setParameter("password", "1234");
-	    	
+	    	TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscarId", AlumnoEntidad.class);
+	         typedQuery.setParameter("nombre", "ESMERALDA");
+	         typedQuery.setParameter("password", "ESMERALDA");
+	         List<AlumnoEntidad> listaAlumnos = typedQuery.getResultList();
+	         Assert.assertNotNull("No se encontro Alumno",listaAlumnos );
 	    }
 	    public void crear() {
 

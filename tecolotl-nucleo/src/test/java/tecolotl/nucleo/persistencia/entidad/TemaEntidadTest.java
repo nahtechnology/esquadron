@@ -31,7 +31,7 @@ public class TemaEntidadTest {
 	@Test
 	public void crea() {
 		TemaEntidad temaEntidad = new TemaEntidad("Habits and routines", "Habitos y rutinas para los niños");
-		
+		entityManager.persist(temaEntidad);
 	}
 
 }

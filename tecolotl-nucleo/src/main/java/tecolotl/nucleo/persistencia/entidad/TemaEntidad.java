@@ -13,7 +13,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="tema" ,schema = "nucleo")
 @NamedQueries({
-	@NamedQuery(name="TemaEntidad.find", query="SELECT t FROM TemaEntidad t")
+	@NamedQuery(name="TemaEntidad.find", query="SELECT t FROM TemaEntidad t"),
+	@NamedQuery(name = "TemaEntidad.buscaId", query = "SELECT t FROM TemaEntidad t WHERE t.nombre  = :id")
 })
 public class TemaEntidad implements Serializable {
 	private static final long serialVersionUID = 1L;
