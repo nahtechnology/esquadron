@@ -43,13 +43,17 @@ public class AlumnoSesionBean {
 		 alumnoEntidad.setNacimiento(nacimiento);
 		 alumnoEntidad.setCorreoPadreFamilia(correo_padre_familia);
 		 alumnoEntidad.setContraseniaPadreFamilia(contraseniapadrefamilia);
-		 
-		 
-		 entityManager.persist(alumnoEntidad);
-		
-		
-		
-		
-		
+		 entityManager.persist(alumnoEntidad);	
 	}
+    public AlumnoEntidad buscar (int id) {
+    	AlumnoEntidad alumnoEntidad = entityManager.find(AlumnoEntidad.class, id);
+    	return alumnoEntidad;
+    	
+    }
+    
+    public void actualizar(String nombre, int id) {
+    	AlumnoEntidad alumnoEntidad = entityManager.find(AlumnoEntidad.class, id);
+    	alumnoEntidad.setNombre(nombre);
+    	
+    }
 }

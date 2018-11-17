@@ -10,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -18,12 +17,10 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 
-import org.junit.runner.RunWith;
 import tecolotl.alumno.persistencia.entidad.AlumnoEntidad;
 import tecolotl.alumno.persistencia.entidad.AlumnoEntidadTest;
 import tecolotl.alumno.persistencia.entidad.GradoEscolarEntidad;
 
-@RunWith(Arquillian.class)
 public class AlumnoSesionBeanTest {
 	private Logger logger = Logger.getLogger(getClass().getName());
 	
