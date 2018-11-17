@@ -4,9 +4,11 @@
 		<jta-data-source>java:jboss/datasources/esquadronDesarrolloDS</jta-data-source>
 		<class>tecolotl.alumno.persistencia.entidad.AlumnoEntidad</class>
 		<class>tecolotl.alumno.persistencia.entidad.GradoEscolarEntidad</class>
+        <class>tecolotl.alumno.persistencia.entidad.TareaVideoEntidadPK</class>
+		<class>tecolotl.alumno.persistencia.entidad.TareaVideoEntidad</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.show_sql" value="true"/>
-		</properties>
+        </properties>
 	</persistence-unit>
 </persistence>

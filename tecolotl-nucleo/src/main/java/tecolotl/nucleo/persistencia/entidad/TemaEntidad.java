@@ -1,65 +1,65 @@
 package tecolotl.nucleo.persistencia.entidad;
 
-import java.io.Serializable;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
-
-/**
- * The persistent class for the tema database table.
- * 
- */
 @Entity
-@Table(name="tema" ,schema = "nucleo")
-@NamedQueries({
-	@NamedQuery(name="TemaEntidad.find", query="SELECT t FROM TemaEntidad t"),
-	@NamedQuery(name = "TemaEntidad.buscaId", query = "SELECT t FROM TemaEntidad t WHERE t.nombre  = :id")
-})
-public class TemaEntidad implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
-	public TemaEntidad() {
-	}
-	
-	public TemaEntidad(String descripcion, String nombre) {
-		this.descripcion = descripcion;
-		this.nombre = nombre;
-	}
+@Table(name = "tema", schema = "nucleo", catalog = "afjbrhmu")
+@NamedQuery(name = "TemaEntidad.busca", query = "SELECT t FROM TemaEntidad t")
+public class TemaEntidad {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer id;
+    private int id;
+    private String nombre;
+    private String descripcion;
 
-	@NotNull
-	@Size(min=20)
-	private String descripcion;
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
 
-	@NotNull
-	private String nombre;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public Integer getId() {
-		return this.id;
-	}
+    @Basic
+    @Column(name = "nombre")
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getDescripcion() {
-		return this.descripcion;
-	}
+    @Basic
+    @Column(name = "descripcion")
+    public String getDescripcion() {
+        return descripcion;
+    }
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 
-	public String getNombre() {
-		return this.nombre;
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+        TemaEntidad that = (TemaEntidad) o;
 
+        if (id != that.id) return false;
+        if (nombre != null ? !nombre.equals(that.nombre) : that.nombre != null) return false;
+        if (descripcion != null ? !descripcion.equals(that.descripcion) : that.descripcion != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (nombre != null ? nombre.hashCode() : 0);
+        result = 31 * result + (descripcion != null ? descripcion.hashCode() : 0);
+        return result;
+    }
 }

@@ -40,7 +40,6 @@ public class AlumnoSesionBean {
 		 alumnoEntidad.setApodo(apodo);
 		 alumnoEntidad.setCorreoElectronico(correoelectronico);
 		 alumnoEntidad.setContrasenia(contrasenia);
-		 alumnoEntidad.setNivelIngles(nivelingles);
 		 alumnoEntidad.setNacimiento(nacimiento);
 		 alumnoEntidad.setCorreoPadreFamilia(correo_padre_familia);
 		 alumnoEntidad.setContraseniaPadreFamilia(contraseniapadrefamilia);

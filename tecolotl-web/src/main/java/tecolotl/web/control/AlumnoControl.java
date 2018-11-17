@@ -16,7 +16,7 @@ public class AlumnoControl {
 
 	@Inject
 	private AlumnoSesionBean alumnoSesionBean;
-	
+
 	private List<AlumnoEntidad> lista;
 	
 	@PostConstruct

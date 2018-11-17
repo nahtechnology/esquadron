@@ -6,6 +6,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -13,7 +15,7 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="alumno", schema="alumno")
+@Table(name="alumno", schema="alumno", catalog = "afjbrhmu")
 @NamedQueries({
 	@NamedQuery(name="AlumnoEntidad.findAll", query="SELECT a FROM AlumnoEntidad a"),
 	@NamedQuery(name = "AlumnoEntidad.buscarId", query= "SELECT t FROM AlumnoEntidad t WHERE t.nombre=:nombre AND t.contrasenia=:password")
@@ -24,47 +26,54 @@ public class AlumnoEntidad implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+
 	@Size(min= 2, max = 70)
 	@Column(name="apellido_materno")
 	private String apellidoMaterno;
+
 	@NotNull
 	@Size(min= 2, max = 50)
 	@Column(name="apellido_paterno")
 	private String apellidoPaterno;
+
 	@NotNull
 	@Size(min= 1, max = 15)
 	private String apodo;
+
 	@NotNull
 	@Size(min= 1, max = 15)
 	private String contrasenia;
+
 	@NotNull
 	@Size(min= 1, max = 15)
 	@Column(name="contrasenia_padre_familia")
 	private String contraseniaPadreFamilia;
+
 	@Size(min= 7, max = 100)
 	@Column(name="correo_electronico")
 	private String correoElectronico;
+
 	@NotNull
 	@Size(min= 7, max = 100)
 	@Column(name="correo_padre_familia")
 	private String correoPadreFamilia;
+
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date nacimiento;
-	@NotNull
-	@Size(min= 2, max = 2)
-	@Column(name="nivel_ingles")
-	private String nivelIngles;
+
 	@NotNull
 	@Size(min= 0, max = 3)
 	private String nombre;
 
-	//bi-directional many-to-one association to GradoEscolarEntidad
 	@NotNull
 	@Size(min= 0, max = 3)
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="grado_escolar")
 	private GradoEscolarEntidad gradoEscolarBean;
+
+	@OneToMany(mappedBy = "alumno")
+	private Set<TareaVideoEntidad> tareasVideo;
 
 	public AlumnoEntidad() {
 	}
@@ -141,14 +150,6 @@ public class AlumnoEntidad implements Serializable {
 		this.nacimiento = nacimiento;
 	}
 
-	public String getNivelIngles() {
-		return this.nivelIngles;
-	}
-
-	public void setNivelIngles(String nivelIngles) {
-		this.nivelIngles = nivelIngles;
-	}
-
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -165,4 +166,11 @@ public class AlumnoEntidad implements Serializable {
 		this.gradoEscolarBean = gradoEscolarBean;
 	}
 
+	public Set<TareaVideoEntidad> getTareasVideo() {
+		return tareasVideo;
+	}
+
+	public void setTareasVideo(Set<TareaVideoEntidad> tareasVideo) {
+		this.tareasVideo = tareasVideo;
+	}
 }

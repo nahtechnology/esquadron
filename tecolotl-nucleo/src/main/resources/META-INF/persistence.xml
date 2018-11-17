@@ -3,10 +3,13 @@
 	<persistence-unit name="tecolotl-nucleo">
 		<jta-data-source>java:jboss/datasources/esquadronDesarrolloDS</jta-data-source>
 		<class>tecolotl.nucleo.persistencia.entidad.TemaEntidad</class>
-		<properties>
+        <class>tecolotl.nucleo.persistencia.entidad.ActividadEntidad</class>
+        <class>tecolotl.nucleo.persistencia.entidad.VideoEntidad</class>
+        <class>tecolotl.nucleo.persistencia.entidad.LenguajeEntidad</class>
+        <class>tecolotl.nucleo.persistencia.entidad.NivelLenguajeEntidad</class>
+        <properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-			<property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
 			<property name="hibernate.show_sql" value="true"/>
-		</properties>
+        </properties>
 	</persistence-unit>
 </persistence>
