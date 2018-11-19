@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  User: Antonio Francisco Alonso Valerdi
+  Date: 17/11/2018
+  Time: 4:16 PM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Registro</title>
+    <h:outputStylesheet library="css" name="login.css"/>
+    <h:outputStylesheet library="css" name="uikit.css"/>
+</h:head>
+
+<h:body>
+    <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
+            <h:form>
+                <fieldset class="uk-fieldset">
+                    <legend class="uk-legend">
+                        Logo<h:graphicImage/>
+                    </legend>
+                    <div class="uk-margin uk-child-width-1-1\@s">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: user"/>
+                            <h:inputText styleClass="uk-input" value="#{loginControl.apodo}"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin uk-child-width-1-1\@s">
+                        <div class="uk-inline">
+                            <span class="uk-form-icon" uk-icon="icon: lock"/>
+                            <h:inputSecret styleClass="uk-input" value="#{loginControl.contrasenia}"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin uk-child-width-1-1\@s">
+                        <h:selectOneMenu styleClass="uk-select" value="#{loginControl.tipo}">
+                            <f:selectItem itemValue="1" itemLabel="#{mensaje['student']}"/>
+                            <f:selectItem itemValue="2" itemLabel="#{mensaje['teacher']}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="uk-margin">
+                        <div class="uk-child-width-1-1\@s">
+                            <h:commandButton styleClass="uk-button uk-border-uk-button-primary" value="#{mensaje['button.accept']}"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </h:form>
+        </div>
+    </div>
+    <h:outputScript library="js" name="uikit.js"/>
+    <h:outputScript library="js" name="uikit-icons.js"/>
+</h:body>
+
+</html>
