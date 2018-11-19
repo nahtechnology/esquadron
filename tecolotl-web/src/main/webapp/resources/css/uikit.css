@@ -25,6 +25,7 @@ html {
  */
 body {
   margin: 0;
+  
 }
 /* Links
  ========================================================================== */
@@ -1308,7 +1309,7 @@ button.uk-icon:not(:disabled) {
  * Remove the inheritance of text transform in Firefox.
  */
 .uk-select {
-  text-transform: none;
+  text-transform:none;
 }
 /*
  * 1. Change font properties to `inherit` in all browsers

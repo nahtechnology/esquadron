@@ -13,8 +13,10 @@
 
 <h:head>
     <title>Registro</title>
-    <h:outputStylesheet library="css" name="login.css"/>
-    <h:outputStylesheet library="css" name="uikit.css"/>
+   
+   <h:outputStylesheet library="css" name="uikit.css"  />
+   <h:outputStylesheet library="css" name="login.css" />
+    
 </h:head>
 
 <h:body>
@@ -23,7 +25,7 @@
             <h:form>
                 <fieldset class="uk-fieldset">
                     <legend class="uk-legend">
-                        Logo<h:graphicImage/>
+                        <h:graphicImage value="resources/img/Favicon_64.png" />
                     </legend>
                     <div class="uk-margin uk-child-width-1-1\@s">
                         <div class="uk-inline">
@@ -38,14 +40,14 @@
                         </div>
                     </div>
                     <div class="uk-margin uk-child-width-1-1\@s">
-                        <h:selectOneMenu styleClass="uk-select" value="#{loginControl.tipo}">
+                        <h:selectOneMenu styleClass="uk-select fuente" value="#{loginControl.tipo}" >
                             <f:selectItem itemValue="1" itemLabel="#{mensaje['student']}"/>
                             <f:selectItem itemValue="2" itemLabel="#{mensaje['teacher']}"/>
                         </h:selectOneMenu>
                     </div>
                     <div class="uk-margin">
                         <div class="uk-child-width-1-1\@s">
-                            <h:commandButton styleClass="uk-button uk-border-uk-button-primary" value="#{mensaje['button.accept']}"/>
+                            <h:commandButton styleClass="uk-button uk-border-rounded  uk-button-primary" value="#{mensaje['button.accept']}"/>
                         </div>
                     </div>
                 </fieldset>
