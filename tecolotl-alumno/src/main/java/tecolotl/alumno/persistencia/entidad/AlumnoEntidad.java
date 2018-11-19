@@ -18,7 +18,8 @@ import java.util.Set;
 @Table(name="alumno", schema="alumno", catalog = "afjbrhmu")
 @NamedQueries({
 	@NamedQuery(name="AlumnoEntidad.findAll", query="SELECT a FROM AlumnoEntidad a"),
-	@NamedQuery(name = "AlumnoEntidad.buscarId", query= "SELECT t FROM AlumnoEntidad t WHERE t.nombre=:nombre AND t.contrasenia=:password")
+	@NamedQuery(name = "AlumnoEntidad.buscarId", query= "SELECT t FROM AlumnoEntidad t WHERE t.nombre=:nombre AND t.contrasenia=:password"),
+	@NamedQuery(name = "AlumnoEntidad.buscaContrasenia", query = "SELECT a FROM AlumnoEntidad a WHERE a.apodo=:apodo AND a.contrasenia=:contrasenia")
 })
 public class AlumnoEntidad implements Serializable {
 	private static final long serialVersionUID = 1L;

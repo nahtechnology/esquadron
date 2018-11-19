@@ -14,23 +14,6 @@ import tecolotl.alumno.sesion.AlumnoSesionBean;
 @Named
 public class AlumnoControl {
 
-	@Inject
-	private AlumnoSesionBean alumnoSesionBean;
 
-	private List<AlumnoEntidad> lista;
-	
-	@PostConstruct
-	public void init() {
-		lista = alumnoSesionBean.bucar();
-	}
-
-	public List<AlumnoEntidad> getLista() {
-		return lista;
-	}
-
-	public void setLista(List<AlumnoEntidad> lista) {
-		this.lista = lista;
-	}
-	
 	
 }
