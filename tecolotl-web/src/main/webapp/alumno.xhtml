@@ -8,7 +8,48 @@
 
     <ui:composition template="template/template.xhtml">
         <ui:define name="contenido">
-            Texto
+        
+        <h:body>
+        
+            		<div class="uk-container">
+						  <div class="uk-grid uk-card uk-card-default uk-grid-collapse uk-box-shadow-medium expo uk-border-rounded" data-uk-grid="">
+						    <div class="uk-card-media-left uk-cover-container uk-border-rounded uk-width-1-2@s"><img src="https://source.unsplash.com/jEqyV_rumuU" alt="jEqyV_rumuU" uk-cover=""/>
+						      <canvas width="600" height="400"></canvas>
+						    </div>
+						    <div class="uk-border-rounded uk-width-2-5@s">
+						      <div class="uk-card-body uk-border-rounded">
+						        <ul class="uk-subnav uk-subnav-pill" uk-switcher="">
+						          <li><a href="#">spin</a></li>
+						          <li><a href="#">sanguinaciae </a></li>
+						          <li><a href="#">METHOD</a></li>
+						          <li><a href="http://tapas.io">CSS GRID</a></li>
+						        </ul>
+						        <ul class="uk-switcher uk-margin">
+						          <li>Spin Mangel sumbit elit.<br/>Magna Aliqu@.</li>
+						          <li>Sanguinaciae diei est veneriam veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+						          <li>Method is just a function.</li>
+						          <li> CSS grid is defined by LINES  |  lop-lop, lollipop preslice</li>
+						        </ul>
+						      </div>
+						    </div>
+						  </div>
+						</div>
+						
+				<script >
+						var switcherElement = $('.uk-subnav');
+						$('.uk-subnav li').on('mouseover', function(e){
+						  var i = $(this).index();
+						  UIkit.switcher(switcherElement).show(i);
+						  e.preventDefault();
+						});	
+
+  				</script>
+						
+				</h:body>
+						
+						
+		
+				
         </ui:define>
     </ui:composition>
 
