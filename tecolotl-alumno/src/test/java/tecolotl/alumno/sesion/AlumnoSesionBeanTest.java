@@ -1,28 +1,19 @@
 package tecolotl.alumno.sesion;
 
 import java.util.Date;
-import java.util.List;
-import java.util.logging.Logger;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
 import org.junit.Test;
 
 import tecolotl.alumno.persistencia.entidad.AlumnoEntidad;
-import tecolotl.alumno.persistencia.entidad.AlumnoEntidadTest;
-import tecolotl.alumno.persistencia.entidad.GradoEscolarEntidad;
 
 public class AlumnoSesionBeanTest {
-	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	@Deployment
 	public static Archive<?> createDeployment() {

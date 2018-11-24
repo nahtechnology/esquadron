@@ -5,7 +5,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,8 +15,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class TemaEntidadTest {

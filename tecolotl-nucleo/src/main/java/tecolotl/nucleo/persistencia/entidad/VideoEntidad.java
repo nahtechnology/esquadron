@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "video", schema = "nucleo", catalog = "afjbrhmu")
+@Table(name = "video", schema = "nucleo")
 @NamedQuery(name = "VideoEntidad.busca", query = "SELECT v FROM VideoEntidad v")
 @IdClass(VideoEntidadPK.class)
 public class VideoEntidad extends ActividadEntidad{
