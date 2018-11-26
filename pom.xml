@@ -116,5 +116,6 @@
     	<module>tecolotl-web</module>
     	<module>tecolotl-nucleo</module>
     	<module>tecolotl-alumno</module>
+        <module>tecolotl-administracion</module>
     </modules>
 </project>
