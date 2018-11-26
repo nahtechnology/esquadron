@@ -64,9 +64,9 @@ public class AlumnoEntidadTest {
 
     @Test
     public void login() {
-        TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscarId", AlumnoEntidad.class);
-        typedQuery.setParameter("nombre", "ESMERALDA");
-        typedQuery.setParameter("password", "ESMERALDA");
+        TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscaContrasenia", AlumnoEntidad.class);
+        typedQuery.setParameter("apodo", "ESMERALDA");
+        typedQuery.setParameter("contrasenia", "ESMERALDA");
         List<AlumnoEntidad> listaAlumnos = typedQuery.getResultList();
         Assert.assertNotNull("No se encontro Alumno", listaAlumnos);
     }
