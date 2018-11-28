@@ -13,11 +13,16 @@ import javax.validation.constraints.Size;
 @Table(name = "motivo_bloqueo", schema ="administracion")
 @NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m")
 public class MotivoBloqueoEntidad {
-
-	private short id;
-	private String descripcion;
 	
 	@Id
+	private short id;
+	@Basic
+	@Column(name = "descripcion")
+	@NotNull
+	@Size(min = 3, max = 20)
+	private String descripcion;
+	
+	
 	public short getId() {
 		return id;
 	}
@@ -26,10 +31,6 @@ public class MotivoBloqueoEntidad {
 		this.id = id;
 	}
 	
-	@Basic
-	@Column(name = "descripcion")
-	@NotNull
-	@Size(min = 3, max = 20)
 	public String getDescripcion() {
 		return descripcion;
 	}
