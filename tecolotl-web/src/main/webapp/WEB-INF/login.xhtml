@@ -9,7 +9,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>Registro</title>
@@ -20,12 +21,13 @@
 </h:head>
 
 <h:body>
+    <ui:remove>
     <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
         <div class="uk-card uk-card-default uk-card-hover uk-card-body">
             <h:form>
                 <fieldset class="uk-fieldset">
                     <legend class="uk-legend">
-                        <h:graphicImage styleClass="uk-align-center" value="resources/img/Favicon_64.png" />
+                        <h:graphicImage styleClass="uk-align-center" value="../resources/img/Favicon_64.png" />
                     </legend>
                     <div class="uk-margin uk-child-width-1-1\@s">
                         <div class="uk-inline">
@@ -54,6 +56,12 @@
             </h:form>
         </div>
     </div>
+    </ui:remove>
+    <form method="POST" action="j_security_check">
+        <input type="text" name="j_username"/>
+        <input type="password" name="j_password"/>
+        <input type="submit" value="enviar"/>
+    </form>
     <h:outputScript library="js" name="uikit.js"/>
     <h:outputScript library="js" name="uikit-icons.js"/>
 </h:body>
