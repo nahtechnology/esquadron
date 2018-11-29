@@ -1,13 +1,25 @@
 package tecolotl.alumno.persistencia.entidad;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.util.Date;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -18,7 +30,6 @@ import java.util.Set;
 @Table(name="alumno", schema="alumno", catalog = "afjbrhmu")
 @NamedQueries({
 	@NamedQuery(name="AlumnoEntidad.findAll", query="SELECT a FROM AlumnoEntidad a"),
-	@NamedQuery(name = "AlumnoEntidad.buscarId", query= "SELECT t FROM AlumnoEntidad t WHERE t.nombre=:nombre AND t.contrasenia=:password"),
 	@NamedQuery(name = "AlumnoEntidad.buscaContrasenia", query = "SELECT a FROM AlumnoEntidad a WHERE a.apodo=:apodo AND a.contrasenia=:contrasenia")
 })
 public class AlumnoEntidad implements Serializable {

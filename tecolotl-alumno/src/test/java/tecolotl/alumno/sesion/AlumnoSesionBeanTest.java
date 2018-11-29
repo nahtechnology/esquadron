@@ -31,14 +31,31 @@ public class AlumnoSesionBeanTest {
                 .addPackage(AlumnoEntidad.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-	}   
+	} 
+    @PersistenceContext()
+    private EntityManager entityManager;
 	@Inject
 	private AlumnoSesionBean alumnoSesionBean;
+
 
 	@Test
 	public void insertar() {
 		Date date = new Date();
 		alumnoSesionBean.insertar(5 ,"Guillermo", "Cuahuey","Estrada", "Memo", "cu.es.guillermo@nahtechnology.com", "pass", "a1", date , "guillermo@gamil.com", "pass");
 	}
+	
+	@Test
+	public void buscar() {
+		Assert.assertTrue("Se no se ncontro el Alumno", alumnoSesionBean.busca("ESMERALDA", "ESMERALDA"));
+	}
+    @Test
+    public void buscarContrasenia() {
+    	TypedQuery<AlumnoEntidad> typedQuery = entityManager.createQuery("AlumnoEntidad.buscaContrasenia", AlumnoEntidad.class);
+    	typedQuery.setParameter("apodo", "ESMERALDA");
+    	typedQuery.setParameter("contrasenia", "contrasenia");
+    	List<AlumnoEntidad> listaalumnos = typedQuery.getResultList();
+    	Assert.assertNotNull("No encontro Alumno", listaalumnos );
+    	
+    }
 
 }

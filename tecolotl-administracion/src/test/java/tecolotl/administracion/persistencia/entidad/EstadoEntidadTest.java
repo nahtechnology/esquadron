@@ -1,10 +1,11 @@
-package tecolotl.nucleo.persistencia.entidad;
+package tecolotl.administracion.persistencia.entidad;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,13 +17,15 @@ import javax.persistence.TypedQuery;
 
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 @RunWith(Arquillian.class)
-public class TemaEntidadTest {
+public class EstadoEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClass(LenguajeEntidad.class)
+                .addClass(EstadoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -32,14 +35,14 @@ public class TemaEntidadTest {
 
     @Test
     public void busca() {
-        TypedQuery<LenguajeEntidad> typedQuery = entityManager.createNamedQuery("LenguajeEntidad.busca", LenguajeEntidad.class);
-        List<LenguajeEntidad> lenguajeEntidadList = typedQuery.getResultList();
-        Assert.assertNotNull(lenguajeEntidadList);
-        Assert.assertFalse(lenguajeEntidadList.isEmpty());
-        for (LenguajeEntidad lenguajeEntidad : lenguajeEntidadList) {
-            Assert.assertNotNull(lenguajeEntidad.getNombre());
-            Assert.assertNotNull(lenguajeEntidad.getDescripcion());
-            Assert.assertTrue(lenguajeEntidad.getId() > 0);
+        TypedQuery<EstadoEntidad> typedQuery = entityManager.createNamedQuery("EstadoEntidad.busca", EstadoEntidad.class);
+        List<EstadoEntidad> estadoLista = typedQuery.getResultList();
+        Assert.assertNotNull(estadoLista);
+        Assert.assertFalse(estadoLista.isEmpty());
+        for (EstadoEntidad estadoEntidad : estadoLista) {
+            Assert.assertNotNull(estadoEntidad.getId());
+            Assert.assertNotNull(estadoEntidad.getNombre());
         }
     }
+
 }

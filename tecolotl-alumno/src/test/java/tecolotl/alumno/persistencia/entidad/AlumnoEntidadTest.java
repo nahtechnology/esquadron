@@ -1,7 +1,6 @@
 package tecolotl.alumno.persistencia.entidad;
 
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
@@ -9,13 +8,10 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.container.test.api.OperateOnDeployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.EnterpriseArchive;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,9 +64,9 @@ public class AlumnoEntidadTest {
 
     @Test
     public void login() {
-        TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscarId", AlumnoEntidad.class);
-        typedQuery.setParameter("nombre", "ESMERALDA");
-        typedQuery.setParameter("password", "ESMERALDA");
+        TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscaContrasenia", AlumnoEntidad.class);
+        typedQuery.setParameter("apodo", "ESMERALDA");
+        typedQuery.setParameter("contrasenia", "ESMERALDA");
         List<AlumnoEntidad> listaAlumnos = typedQuery.getResultList();
         Assert.assertNotNull("No se encontro Alumno", listaAlumnos);
     }

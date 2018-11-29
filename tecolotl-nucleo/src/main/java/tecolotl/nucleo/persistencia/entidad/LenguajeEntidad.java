@@ -3,7 +3,7 @@ package tecolotl.nucleo.persistencia.entidad;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "lenguaje", schema = "nucleo", catalog = "afjbrhmu")
+@Table(name = "lenguaje", schema = "nucleo")
 @NamedQuery(name = "LenguajeEntidad.busca", query = "SELECT l FROM LenguajeEntidad l")
 public class LenguajeEntidad {
 

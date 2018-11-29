@@ -22,7 +22,20 @@ public class AlumnoSesionBean {
 
 	@PersistenceContext
     private EntityManager entityManager;
-	
+	/**
+	 * Despues de que se validar datos se agrega un nuevo alumno con todos los parametros relacionados a el.
+	 * @param gradoEscolar grupo al que pertenece el alumno
+	 * @param nombre nombre(s) del alumno
+	 * @param apellidopaterno Apellido paterno del Alumno
+	 * @param apellidomaterno Apellido Materno de Alumno es es opcional
+	 * @param apodo Nombre opcional del Alumno
+	 * @param correoelectronico Correo electronico del Alumno
+	 * @param contrasenia Contraseña del alumno de su cuenta
+	 * @param nivelingles Rango de ingles segun el estandar cambridge que tiene el alumno
+	 * @param nacimiento Fecha de nacimiento del alumno
+	 * @param correo_padre_familia correo electronico del padre o tutor del alumno
+	 * @param contraseniapadrefamilia Contraseña para el acceso de reportes del Padre o tutor del alumno.
+	 */
 	public void insertar (int gradoEscolar, String nombre, String apellidopaterno, String apellidomaterno, String apodo, String correoelectronico, String contrasenia,String nivelingles, Date nacimiento,String correo_padre_familia,String contraseniapadrefamilia) {
 		AlumnoEntidad alumnoEntidad = new AlumnoEntidad();
 		GradoEscolarEntidad gradoEscolarEntidad = new GradoEscolarEntidad();
@@ -39,11 +52,20 @@ public class AlumnoSesionBean {
 		 alumnoEntidad.setContraseniaPadreFamilia(contraseniapadrefamilia);
 		 entityManager.persist(alumnoEntidad);	
 	}
+	/**
+	 * Busca a un alumno por medio del ID al encontrarlo regresa los valores que estan relacionados con el.
+	 * @param id ID esta asignado a un alumno.
+	 * @return retorna un objeto con los valores relacionados al ID
+	 */
     public AlumnoEntidad buscar (int id) {
     	AlumnoEntidad alumnoEntidad = entityManager.find(AlumnoEntidad.class, id);
     	return alumnoEntidad;
     }
-    
+    /**
+     * Actualiza el nombre de un alumno, se realiza una busqueda por id y sobre escribe el nombre.
+     * @param nombre es el nuevo nombre que se le asignara a un alumno.
+     * @param id Id con el que se identifica a un alumno
+     */
     public void actualizar(String nombre, int id) {
     	AlumnoEntidad alumnoEntidad = entityManager.find(AlumnoEntidad.class, id);
     	alumnoEntidad.setNombre(nombre);

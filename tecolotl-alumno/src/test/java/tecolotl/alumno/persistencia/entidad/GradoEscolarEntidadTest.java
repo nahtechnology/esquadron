@@ -45,9 +45,5 @@ public class GradoEscolarEntidadTest {
         logger.info(String.valueOf(listaTarea.size()));
         Assert.assertFalse("Lista vacia", listaTarea.isEmpty());
     }
-    
-    public void crear() {
-
-    }
 	
 }

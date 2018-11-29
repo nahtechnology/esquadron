@@ -1,12 +1,14 @@
 package tecolotl.nucleo.persistencia.entidad;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
 import java.io.Serializable;
 
 public class VideoEntidadPK implements Serializable {
 
-    private short idNivelLenguaje;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private short idNivelLenguaje;
     private short idLenguaje;
     private int id;
 

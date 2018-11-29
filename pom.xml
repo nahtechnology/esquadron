@@ -67,26 +67,32 @@
     		</dependency>
     		<dependency>
     			<groupId>tecolotl</groupId>
+    			<artifactId>tecolotl-administracion</artifactId>
+    			<version>${project.version}</version>
+    			<type>ejb</type>
+    		</dependency>
+    		<dependency>
+    			<groupId>tecolotl</groupId>
     			<artifactId>tecolotl-web</artifactId>
     			<version>${project.version}</version>
     			<type>war</type>
     			<scope>compile</scope>
     		</dependency>
 	    	<dependency>
-	                <groupId>org.wildfly.bom</groupId>
-	                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
-	                <version>${version.jboss.bom}</version>
-	                <type>pom</type>
-	                <scope>import</scope>
-	            </dependency>
-	
-	            <dependency>
-	                <groupId>org.wildfly.bom</groupId>
-	                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
-	                <version>${version.jboss.bom}</version>
-	                <type>pom</type>
-	                <scope>import</scope>
-	            </dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-tools</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>jboss-javaee-7.0-with-hibernate</artifactId>
+                <version>${version.jboss.bom}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
     	</dependencies>
     </dependencyManagement>
     
@@ -116,5 +122,6 @@
     	<module>tecolotl-web</module>
     	<module>tecolotl-nucleo</module>
     	<module>tecolotl-alumno</module>
+        <module>tecolotl-administracion</module>
     </modules>
 </project>

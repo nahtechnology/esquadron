@@ -4,7 +4,6 @@ import tecolotl.nucleo.persistencia.entidad.VideoEntidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
@@ -12,7 +11,11 @@ import java.util.Date;
 //@IdClass(TareaVideoEntidadPK.class)
 public class TareaVideoEntidad implements Serializable {
 
-    private AlumnoEntidad alumno;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private AlumnoEntidad alumno;
     private VideoEntidad video;
     private Date asignacion;
 
