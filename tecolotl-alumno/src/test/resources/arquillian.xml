@@ -6,7 +6,7 @@
     <defaultProtocol type="Servlet 3.0"/>
     <container qualifier="jbossas-managed" default="true">
         <configuration>
-            <property name="jbossHome">192.168.1.103:8080</property>
+            <property name="jbossHome">/home/mauricio/Documentos/Linux/Documentos/Java/wildfly-14.0.0.Final</property>
         </configuration>
     </container>
 </arquillian>
