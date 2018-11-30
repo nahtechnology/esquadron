@@ -23,7 +23,7 @@ public class EscuelaEntidadTest {
 	 @Deployment
 	    public static Archive<?> createDeployment() {
 	        return ShrinkWrap.create(WebArchive.class, "test.war")
-	                .addClass(EscuelaEntidad.class)
+	                .addPackage(EscuelaEntidad.class.getPackage())
 	                .addAsResource("META-INF/persistence.xml")
 	                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	    }
@@ -41,8 +41,8 @@ public class EscuelaEntidadTest {
 				Assert.assertNotNull(motivoBloqueoEntidad.getClaveCentroTrabajo());
 				Assert.assertNotNull(motivoBloqueoEntidad.getDomicilio());
 				Assert.assertNotNull(motivoBloqueoEntidad.getNombre());
-				Assert.assertNotNull(motivoBloqueoEntidad.getMotivoBloqueoEntidad().getId());
-				Assert.assertNotNull(motivoBloqueoEntidad.getMunicipioEntidad().getId());
+				Assert.assertNotNull(motivoBloqueoEntidad.getMotivoBloqueoEntidad());
+				Assert.assertNotNull(motivoBloqueoEntidad.getColoniaEntidad());
 				
 			}
 		}

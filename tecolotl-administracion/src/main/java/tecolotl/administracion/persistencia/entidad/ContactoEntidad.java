@@ -10,11 +10,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "contacto", schema = "administracion")
-@NamedQuery(name = "Contacto.busca", query = "SELECT m FROM Contacto m")
-public class ContactoEntidad {
+@NamedQuery(name = "ContactoEntidad.busca", query = "SELECT m FROM ContactoEntidad m")
+public class ContactoEntidad implements Serializable {
 	
     @Id
     @ManyToOne

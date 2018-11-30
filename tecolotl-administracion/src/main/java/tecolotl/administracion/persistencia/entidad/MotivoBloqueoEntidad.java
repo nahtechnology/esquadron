@@ -16,13 +16,13 @@ public class MotivoBloqueoEntidad {
 	
 	@Id
 	private short id;
+
 	@Basic
 	@Column(name = "descripcion")
 	@NotNull
 	@Size(min = 3, max = 20)
 	private String descripcion;
-	
-	
+
 	public short getId() {
 		return id;
 	}

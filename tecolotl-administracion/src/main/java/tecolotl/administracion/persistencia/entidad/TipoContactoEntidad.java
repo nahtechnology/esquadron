@@ -17,6 +17,7 @@ public class TipoContactoEntidad {
 
 	@Id
 	private int id;
+
     @Basic
     @Column(name = "descripcion")
     @NotNull

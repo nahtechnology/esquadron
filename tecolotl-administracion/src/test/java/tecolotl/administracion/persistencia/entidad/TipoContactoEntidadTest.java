@@ -24,9 +24,9 @@ public class TipoContactoEntidadTest {
 	 @Deployment
 	    public static Archive<?> createDeployment() {
 	        return ShrinkWrap.create(WebArchive.class, "test.war")
-	                .addClass(TipoContactoEntidad.class)
-	                .addAsResource("META-INF/persistence.xml")
-	                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+				.addClass(TipoContactoEntidad.class)
+				.addAsResource("META-INF/persistence.xml")
+				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	    }
 		 
 		@PersistenceContext
@@ -40,7 +40,6 @@ public class TipoContactoEntidadTest {
 			Assert.assertFalse(tipoContactoEntidadLista.isEmpty());
 			for (TipoContactoEntidad tipoContactoEntidad: tipoContactoEntidadLista) {
 				Assert.assertNotNull(tipoContactoEntidad.getDescripcion());
-				Assert.assertNotNull(tipoContactoEntidad.getId());
 			}
 		}
 	}

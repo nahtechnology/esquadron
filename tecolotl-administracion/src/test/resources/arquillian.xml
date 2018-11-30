@@ -7,7 +7,7 @@
     <container qualifier="remoto" default="true">
         <configuration>
             <property name="managementPort">9990</property>
-            <property name="managementAddress">192.168.1.103</property>
+            <property name="managementAddress">localhost</property>
             <property name="username">antonio</property>
             <property name="password">1234</property>
         </configuration>
