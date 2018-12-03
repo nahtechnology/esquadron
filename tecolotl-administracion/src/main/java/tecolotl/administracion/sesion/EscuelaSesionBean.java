@@ -26,7 +26,7 @@ public class EscuelaSesionBean {
 	private EntityManager entityManager;
 
 	/**
-	 * Busca las escuelas, recupera de forma completa, eb caso de no existir elemento la colección estará vacia
+	 * Busca las escuelas, recupera de forma completa, en caso de no existir elemento la colección estará vacia
 	 * @return Colección de {@link EscuelaDto}
 	 * @see EscuelaDto
 	 *
@@ -53,7 +53,6 @@ public class EscuelaSesionBean {
 		}
 		TypedQuery<ColoniaEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaCodigoPostal", ColoniaEntidad.class);
 		typedQuery.setParameter("codigoPostal", codigoPostal);
-		List<ColoniaDto> coloniaDtoList = new ArrayList<>();
 		return new ColoniaDto(typedQuery.getResultList());
 	}
 	

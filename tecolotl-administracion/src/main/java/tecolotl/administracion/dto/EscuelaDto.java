@@ -8,7 +8,7 @@ public class EscuelaDto {
     private String nombre;
     private boolean estatus;
     private int licencias;
-    private int diasrestantes;
+    private int diasRestantes;
 
     public EscuelaDto() {
         this.claveCentroTrabajo = claveCentroTrabajo;
@@ -56,11 +56,11 @@ public class EscuelaDto {
         this.licencias = licencias;
     }
 
-    public int getDiasrestantes() {
-        return diasrestantes;
+    public int getDiasRestantes() {
+        return diasRestantes;
     }
 
-    public void setDiasrestantes(int diasrestantes) {
-        this.diasrestantes = diasrestantes;
+    public void setDiasRestantes(int diasRestantes) {
+        this.diasRestantes = diasRestantes;
     }
 }

@@ -5,7 +5,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Administracion"/>
-</f:view>
+
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="contenido2">
+            <h:dataTable id="tablaEscuela" value="#{escuelaControlador.obtener()}" var="escuela" styleClass="uk-table">
+                <h:column>
+                    <f:facet name="header">CCT</f:facet>
+                    #{escuela.claveCentroTrabajo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    #{escuela.nombre}
+                </h:column>
+            </h:dataTable>
+        </ui:define>
+    </ui:composition>
+
 </html>

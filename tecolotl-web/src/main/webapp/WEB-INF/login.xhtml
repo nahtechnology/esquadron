@@ -21,10 +21,9 @@
 </h:head>
 
 <h:body>
-    <ui:remove>
     <div class="uk-height-1-1 uk-flex uk-flex-center uk-flex-middle">
-        <div class="uk-card uk-card-default uk-card-hover uk-card-body">
-            <h:form>
+        <div class="uk-card uk-card-default uk-card-hover uk-card-body uk-border-rounded">
+            <form method="POST" action="j_security_check">
                 <fieldset class="uk-fieldset">
                     <legend class="uk-legend">
                         <h:graphicImage styleClass="uk-align-center" value="../resources/img/Favicon_64.png" />
@@ -32,36 +31,24 @@
                     <div class="uk-margin uk-child-width-1-1\@s">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: user"/>
-                            <h:inputText styleClass="uk-input" value="#{loginControl.apodo}"/>
+                            <input type="text" class="uk-input" name="j_username"/>
                         </div>
                     </div>
                     <div class="uk-margin uk-child-width-1-1\@s">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: lock"/>
-                            <h:inputSecret styleClass="uk-input" value="#{loginControl.contrasenia}"/>
+                            <input type="password" name="j_password" class="uk-input"/>
                         </div>
-                    </div>
-                    <div class="uk-margin uk-child-width-1-1\@s">
-                        <h:selectOneMenu styleClass="uk-select fuente" value="#{loginControl.tipo}" >
-                            <f:selectItem itemValue="1" itemLabel="#{mensaje['student']}"/>
-                            <f:selectItem itemValue="2" itemLabel="#{mensaje['teacher']}"/>
-                        </h:selectOneMenu>
                     </div>
                     <div class="uk-margin">
                         <div class="uk-child-width-1-1\@s">
-                            <h:commandButton styleClass="uk-button uk-border-rounded  uk-button-primary" value="#{mensaje['button.accept']}"/>
+                            <input type="submit" value="enviar" class="uk-button uk-border-rounded  uk-button-primary"/>
                         </div>
                     </div>
                 </fieldset>
-            </h:form>
+            </form>
         </div>
     </div>
-    </ui:remove>
-    <form method="POST" action="j_security_check">
-        <input type="text" name="j_username"/>
-        <input type="password" name="j_password"/>
-        <input type="submit" value="enviar"/>
-    </form>
     <h:outputScript library="js" name="uikit.js"/>
     <h:outputScript library="js" name="uikit-icons.js"/>
 </h:body>
