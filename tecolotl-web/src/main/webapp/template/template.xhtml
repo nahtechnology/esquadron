@@ -9,10 +9,12 @@
 <h:head>
 	<ui:include src="header.xhtml"/>
 </h:head>
-<h:body styleClass="lescuadron uk-offcanvas-content">
-	<ui:include src="navbar.xhtml"/>
-	<div class="uk-container">
-		<ui:insert name="contenido2"/>
+<h:body styleClass="lescuadron" >
+	<div class="uk-offcanvas-content">
+		<ui:include src="navbar.xhtml"/>
+		
+			<ui:insert name="contenido2"/>
+		
 	</div>
 	<ui:include src="footer.xhtml"/>
 </h:body>
