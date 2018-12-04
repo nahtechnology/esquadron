@@ -55,6 +55,7 @@ public class EscuelaSesionBeanTest {
 			Assert.assertNotNull(codigoPostal.getNombre());
 		}
 	}
+
     @Test
 	public void insertar() {
 		escuelaSesionBean.insertar("21DBA0004Z", 227805, "Escuela Secundaria Tenica no.32","5 poniente 512");

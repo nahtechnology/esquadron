@@ -11,6 +11,7 @@ import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
 
 /**
@@ -58,11 +59,14 @@ public class EscuelaSesionBean {
 	public void insertar (String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
 		EscuelaEntidad  escuelaEntidad= new EscuelaEntidad();
 		ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
+		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
 		escuelaEntidad.setClaveCentroTrabajo(claveCentroTrabajo);
 		coloniaEntidad.setId(colonia);
 		escuelaEntidad.setNombre(nombre);
 		escuelaEntidad.setDomicilio(domicilio);
-
-		 entityManager.persist(escuelaEntidad);	
+		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
+		motivoBloqueoEntidad.setId((short)0);
+		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
+		entityManager.persist(escuelaEntidad);
 	}
 }

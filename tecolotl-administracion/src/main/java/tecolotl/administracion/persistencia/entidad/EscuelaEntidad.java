@@ -19,7 +19,6 @@ public class EscuelaEntidad {
 	@JoinColumn(name="id_colonia", referencedColumnName = "id")
     private ColoniaEntidad coloniaEntidad;
 
-	@NotNull
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_motivo_bloqueo", referencedColumnName = "id")
     private MotivoBloqueoEntidad motivoBloqueoEntidad;
