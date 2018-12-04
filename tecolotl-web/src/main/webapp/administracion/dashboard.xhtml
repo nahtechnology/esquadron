@@ -8,16 +8,18 @@
 
     <ui:composition template="/template/template.xhtml">
         <ui:define name="contenido2">
-            <h:dataTable id="tablaEscuela" value="#{escuelaControlador.obtener()}" var="escuela" styleClass="uk-table">
-                <h:column>
-                    <f:facet name="header">CCT</f:facet>
-                    #{escuela.claveCentroTrabajo}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Nombre</f:facet>
-                    #{escuela.nombre}
-                </h:column>
-            </h:dataTable>
+           <div id="content" data-uk-height-viewport="expand: true">
+	            <h:dataTable id="tablaEscuela" value="#{escuelaControlador.obtener()}" var="escuela" styleClass="uk-table">
+	                <h:column>
+	                    <f:facet name="header">CCT</f:facet>
+	                    #{escuela.claveCentroTrabajo}
+	                </h:column>
+	                <h:column>
+	                    <f:facet name="header">Nombre</f:facet>
+	                    #{escuela.nombre}
+	                </h:column>
+	            </h:dataTable>
+           </div> 
         </ui:define>
     </ui:composition>
 

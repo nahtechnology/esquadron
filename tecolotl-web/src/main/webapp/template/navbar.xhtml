@@ -6,15 +6,15 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<header id="top-head" class="uk-position-fixed">
+<header id="top-head" class="uk-position-fixed " >
       <div class="uk-container uk-container-expand uk-background-primary">
         <!-- navbar de la pagina -->
         <nav class="uk-navbar uk-light" data-uk-navbar="mode:click; duration: 250">
 
 
-          <div class="uk-navbar-left">
+          <div class="uk-navbar-left lescuadron">
             <div class="uk-navbar-item uk-hidden@m ">
-              <a class="uk-logo" href="#"><img class="custom-logo" src="resources/img/esquadron.svg" alt=""/></a>
+              <a class="uk-logo" href="#"> <h:graphicImage library="img" name="white_escuadron.svg" /></a>
             </div>
           </div>
 
@@ -43,9 +43,10 @@
       </div>
     </header>
 <!-- menu del lado izquierdo -->
-    <aside id="left-col" class="uk-light uk-visible@m">
+    <aside id="left-col" class="uk-light uk-visible@m lescuadron">
       <div class="left-logo uk-flex uk-flex-middle">
-        <img class="custom-logo" src="resources/img/esquadron.svg" alt=""/>
+       <h:graphicImage library="img" name="white_escuadron.svg" styleClass="uk-margin-small-right"></h:graphicImage>
+       <span>scuadron</span>
       </div>
       <div class="left-content-box  content-box-dark">
         <img src="resources/img/avatar.svg" alt="" class="uk-border-circle profile-img"/>
