@@ -18,8 +18,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import tecolotl.alumno.persistencia.entidad.AlumnoEntidad;
-import tecolotl.alumno.persistencia.entidad.AlumnoEntidadTest;
-import tecolotl.alumno.persistencia.entidad.GradoEscolarEntidad;
+
 
 public class AlumnoSesionBeanTest {
 	private Logger logger = Logger.getLogger(getClass().getName());

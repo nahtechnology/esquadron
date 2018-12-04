@@ -10,11 +10,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
-
 import java.util.Collection;
 
 @RunWith(Arquillian.class)
@@ -56,6 +54,10 @@ public class EscuelaSesionBeanTest {
 			Assert.assertNotNull(codigoPostal.getCodigoPostal());
 			Assert.assertNotNull(codigoPostal.getNombre());
 		}
+	}
+    @Test
+	public void insertar() {
+		escuelaSesionBean.insertar("21DBA0004Z", 227805, "Escuela Secundaria Tenica no.32","5 poniente 512");
 	}
 }
 

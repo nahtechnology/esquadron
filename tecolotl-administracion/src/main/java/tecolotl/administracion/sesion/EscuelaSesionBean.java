@@ -3,16 +3,15 @@ package tecolotl.administracion.sesion;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+
 
 /**
  * Servicios para el manejo de las escuelas
@@ -56,4 +55,14 @@ public class EscuelaSesionBean {
 		return new ColoniaDto(typedQuery.getResultList());
 	}
 	
+	public void insertar (String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+		EscuelaEntidad  escuelaEntidad= new EscuelaEntidad();
+		ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
+		escuelaEntidad.setClaveCentroTrabajo(claveCentroTrabajo);
+		coloniaEntidad.setId(colonia);
+		escuelaEntidad.setNombre(nombre);
+		escuelaEntidad.setDomicilio(domicilio);
+
+		 entityManager.persist(escuelaEntidad);	
+	}
 }
