@@ -1,13 +1,15 @@
 .uk-logo > img {
-width: 40px;
+width: 50px;
 height: auto;
 
 }
 
 .left-logo > img{
-  width: 40px;
+  width: 50px;
   height: auto;
 }
- .left-logo > span{
-  font-size:28px;
- }
+
+.margen10{
+  margin-right: 3px;
+}
+

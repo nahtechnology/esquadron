@@ -7,10 +7,8 @@
 	font-family:escuadron;
 }
 
-.margen{
-	padding-left: 10px;
-}
-
-.barra{
-	margin-bottom:15px; 
+.letra-logo{
+font-size: 27px;
+position: relative;
+top: 10px;
 }
