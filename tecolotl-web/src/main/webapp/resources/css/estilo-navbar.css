@@ -24,4 +24,7 @@ height: auto;
 	font-size: 15px !important;
 } 
 
+ .puntero:hover{
+  cursor: pointer;
  
+ }
