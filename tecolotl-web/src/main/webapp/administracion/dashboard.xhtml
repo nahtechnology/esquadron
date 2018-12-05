@@ -14,12 +14,20 @@
 	            value="#{escuelaControlador.obtener()}" 
 	            var="escuela" 
 	            styleClass="uk-table uk-table-hover uk-table-striped "
-	            headerClass="uk-background-primary uk-dark  "
+	            headerClass="uk-background-primary uk-dark "
+	            footerClass="uk-background-primary"
 	            >
 	                <h:column >
 	                    <f:facet   name="header">CCT</f:facet>
 	                    #{escuela.claveCentroTrabajo}
-						<f:facet name="footer">CCT</f:facet>
+						<f:facet name="footer">
+						<ul class="uk-pagination">
+						  <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
+								    
+						</ul>
+						</f:facet>
+						
+								
 	                </h:column>
 	                <h:column>
 	                    <f:facet name="header">Nombre</f:facet>
@@ -41,6 +49,17 @@
 					<h:column>
 						<f:facet name="header">Dias Restantes</f:facet>
 						#{escuela.diasRestantes}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Opciones</f:facet>
+					 <span class="uk-icon-button" uk-icon="more-vertical"/>
+					    <f:facet name="footer">
+					    <ul class="uk-pagination">
+						  <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
+								    
+						</ul>
+					    </f:facet>
+					    
 					</h:column>
 	            </h:dataTable>
 			   </div>
