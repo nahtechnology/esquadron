@@ -13,3 +13,12 @@ height: auto;
   margin-right: 3px;
 }
 
+.logo-admin > img{
+	width: 80px;
+	height: auto;
+}
+
+.uk-background-primary{
+	color: white !important;
+	font-weight: bold;
+} 

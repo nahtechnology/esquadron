@@ -10,9 +10,14 @@
         <ui:define name="contenido2">
            <div id="content" data-uk-height-viewport="expand: true">
 			   <div class="uk-padding">
-	            <h:dataTable id="tablaEscuela" value="#{escuelaControlador.obtener()}" var="escuela" styleClass="uk-table">
-	                <h:column>
-	                    <f:facet name="header">CCT</f:facet>
+	            <h:dataTable id="tablaEscuela" 
+	            value="#{escuelaControlador.obtener()}" 
+	            var="escuela" 
+	            styleClass="uk-table uk-table-hover uk-table-striped "
+	            headerClass="uk-background-primary uk-dark  "
+	            >
+	                <h:column >
+	                    <f:facet   name="header">CCT</f:facet>
 	                    #{escuela.claveCentroTrabajo}
 						<f:facet name="footer">CCT</f:facet>
 	                </h:column>
