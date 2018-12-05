@@ -60,6 +60,14 @@ public class EscuelaSesionBeanTest {
 	public void insertar() {
 		escuelaSesionBean.insertar("21DBA0004Z", 227805, "Escuela Secundaria Tenica no.32","5 poniente 512");
 	}
+    @Test
+	public void actualizar() {
+		escuelaSesionBean.actualizar("21DBA0004Z", 227805, "CAmbio Escuela Secundaria Tenica no.32","Cambio 5 poniente 512");
+	}
+    @Test
+	public void bloqueo() {
+		escuelaSesionBean.bloqueo("21DBA0004Z",2);
+	}
 }
 
 

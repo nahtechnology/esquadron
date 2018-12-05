@@ -23,10 +23,12 @@ public class GradoEscolarEntidad implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
+	
 	@NotNull
 	@Max(6)
 	@Min(1)
 	private Integer grado;
+	
 	@NotNull
 	@Size(min= 1, max = 1)
 	private String grupo;
