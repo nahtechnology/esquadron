@@ -16,6 +16,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
 
+
 /**
  * Servicios para el manejo de las escuelas
  * @author Antonio Francisco Alonso Valerdi
@@ -84,5 +85,20 @@ public class EscuelaSesionBean {
 		motivoBloqueoEntidad.setId((short)0);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 		entityManager.persist(escuelaEntidad);
+	}
+	
+    public void actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+    	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
+    	ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
+		coloniaEntidad.setId(colonia);
+		escuelaEntidad.setNombre(nombre);
+		escuelaEntidad.setDomicilio(domicilio);
+		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
+    }
+	public void bloqueo (String claveCentroTrabajo, int motivoBloqueo) {
+		EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
+		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
+		motivoBloqueoEntidad.setId((short) motivoBloqueo);
+		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 	}
 }
