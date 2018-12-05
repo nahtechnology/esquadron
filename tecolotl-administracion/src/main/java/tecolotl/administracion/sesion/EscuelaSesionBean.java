@@ -3,6 +3,8 @@ package tecolotl.administracion.sesion;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,6 +24,8 @@ import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
  */
 @Stateless
 public class EscuelaSesionBean {
+
+	private Logger logger = Logger.getLogger(getClass().getName());
 	
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -35,10 +39,10 @@ public class EscuelaSesionBean {
 	public Collection<EscuelaDto> busca() {
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
 		List<EscuelaDto> escuelaDtoList = new ArrayList<>();
-		for (EscuelaEntidad escuelaEntidad :
-				typedQuery.getResultList()) {
+		for (EscuelaEntidad escuelaEntidad : typedQuery.getResultList()) {
 			escuelaDtoList.add(new EscuelaDto(escuelaEntidad));
 		}
+		logger.fine("Elementos encontrado:".concat(String.valueOf(escuelaDtoList.size())));
 		return escuelaDtoList;
 	}
 
@@ -49,15 +53,27 @@ public class EscuelaSesionBean {
 	 * @return Un objeto con los datos al que pertenece el código postal
 	 */
 	public ColoniaDto busca(String codigoPostal) {
+		logger.info("Codigo Postal:".concat(codigoPostal));
 		if (codigoPostal == null) {
 			return null;
 		}
 		TypedQuery<ColoniaEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaCodigoPostal", ColoniaEntidad.class);
 		typedQuery.setParameter("codigoPostal", codigoPostal);
-		return new ColoniaDto(typedQuery.getResultList());
+		if (logger.isLoggable(Level.FINE)) {
+			ColoniaDto coloniaDto = new ColoniaDto();
+			logger.fine(coloniaDto.toString());
+			return coloniaDto;
+		} else {
+			return new ColoniaDto(typedQuery.getResultList());
+		}
 	}
 	
 	public void insertar (String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+		if (logger.isLoggable(Level.FINE)) {
+			logger.fine("claveCentroTrabajo:".concat(claveCentroTrabajo));
+			logger.fine("colonia".concat(String.valueOf(colonia)));
+			logger.fine("domicilio".concat(domicilio));
+		}
 		EscuelaEntidad  escuelaEntidad= new EscuelaEntidad();
 		ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
 		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();

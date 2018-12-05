@@ -4332,22 +4332,22 @@ ul.uk-nav-sub {
   /* 1 */
   display: block;
   /* 2 */
-  color: #999;
+  color: white;
   transition: color 0.1s ease-in-out;
 }
 /* Hover + Focus */
 .uk-pagination > * > :hover,
 .uk-pagination > * > :focus {
-  color: #666;
+  color: black;
   text-decoration: none;
 }
 /* Active */
 .uk-pagination > .uk-active > * {
-  color: #666;
+  color: black;
 }
 /* Disabled */
 .uk-pagination > .uk-disabled > * {
-  color: #999;
+  color: white;
 }
 /* ========================================================================
    Component: Tab
