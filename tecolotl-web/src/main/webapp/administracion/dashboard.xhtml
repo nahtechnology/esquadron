@@ -2,78 +2,102 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/template/template.xhtml">
         <ui:define name="contenido2">
            <div id="content" data-uk-height-viewport="expand: true">
 			   <div class="uk-padding">
-	            <h:dataTable id="tablaEscuela" 
-	            value="#{escuelaControlador.obtener()}" 
-	            var="escuela" 
-	            styleClass="uk-table uk-table-hover uk-table-striped "
-	            headerClass="uk-background-primary uk-dark "
-	            footerClass="uk-background-primary"
-	            >
-	                <h:column >
-	                    <f:facet   name="header">CCT</f:facet>
-	                    #{escuela.claveCentroTrabajo}
-						<f:facet name="footer">
-						<ul class="uk-pagination">
-						  <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
-								    
-						</ul>
-						</f:facet>
-						
-								
-	                </h:column>
-	                <h:column>
-	                    <f:facet name="header">Nombre</f:facet>
-	                    #{escuela.nombre}
-	                </h:column>
-					<h:column>
-						<f:facet name="header">Estatus</f:facet>
-						<h:outputLabel rendered="#{escuela.estatus}">
-							<span class="uk-icon-button" uk-icon="check"/>
-						</h:outputLabel>
-						<h:outputLabel rendered="#{not escuela.estatus}">
-							<span class="uk-icon-button" uk-icon="close"/>
-						</h:outputLabel>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Licencias</f:facet>
-						#{escuela.licencias}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Dias Restantes</f:facet>
-						#{escuela.diasRestantes}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Opciones</f:facet>
-					 <span class="uk-icon-button puntero" uk-icon="more-vertical"/>
-					    <f:facet name="footer">
-					    <ul class="uk-pagination">
-						  <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
-								    
-						</ul>
-					    </f:facet>
-					    
-					</h:column>
-	            </h:dataTable>
-	            
-			            <div class="uk-button-group">
-						        <button class="uk-button uk-button-primary">Agregar &nbsp; <span uk-icon="icon:  plus-circle" ></span></button>
-						        
-						        
-					   </div>
+					<h:dataTable id="tablaEscuela"
+					value="#{escuelaControlador.escuelas}"
+					var="escuela"
+					styleClass="uk-table uk-table-hover uk-table-striped "
+					headerClass="uk-background-primary uk-dark "
+					footerClass="uk-background-primary">
+						<h:column >
+							<f:facet   name="header">CCT</f:facet>
+							#{escuela.claveCentroTrabajo}
+							<f:facet name="footer">
+							<ul class="uk-pagination">
+							  <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
+							</ul>
+							</f:facet>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							#{escuela.nombre}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Estatus</f:facet>
+							<h:outputLabel rendered="#{escuela.estatus}">
+								<span class="uk-icon-button" uk-icon="check"/>
+							</h:outputLabel>
+							<h:outputLabel rendered="#{not escuela.estatus}">
+								<span class="uk-icon-button" uk-icon="close"/>
+							</h:outputLabel>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Licencias</f:facet>
+							#{escuela.licencias}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Dias Restantes</f:facet>
+							#{escuela.diasRestantes}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Opciones</f:facet>
+						 <span class="uk-icon-button puntero" uk-icon="more-vertical"/>
+							<f:facet name="footer">
+							<ul class="uk-pagination">
+							  <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
+							</ul>
+							</f:facet>
+						</h:column>
+					</h:dataTable>
+					<div class="uk-flex uk-flex-right">
+						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-nuevo"><h:outputText value="#{mensaje['button.add']}"/></button>
+					</div>
 			   </div>
-			   
-				    
-
-           </div>
-            <h:outputScript library="js" name="tabla.js"/>
+			   <div id="modal-nuevo"  uk-modal="">
+				   <button class="uk-modal-close-default" type="button" uk-close=""></button>
+				   <div class="uk-modal-header">
+					   <h:form id="formulario-nuevo">
+						   <h5 class="uk-modal-title uk-text-capitalize uk-text-center"><h:outputText value="#{mensaje['scchool.add.title']}"/></h5>
+						   <div class="uk-modal-body">
+							   <div class="uk-grid-small" uk-grid="">
+								   <div class="uk-width-1-5@m">
+									   <h:inputText styleClass="uk-input" pt:placeholder="Clave Centro trabajo"/>
+								   </div>
+								   <div class="uk-width-expand@m">
+									   <h:inputText styleClass="uk-input" pt:placeholder="Nombre"/>
+								   </div>
+								   <div class="uk-child-width-1-5@m">
+									   <h:inputText styleClass="uk-input" pt:placeholder="Código Postal"/>
+								   </div>
+								   <div class="uk-child-width-1-5@m">
+									   <button type="button">Buscar</button>
+								   </div>
+								   <div class="uk-child-width-1-5@m">
+									   <input type="text" readonly="readonly" placeholder="Estado"/>
+								   </div>
+								   <div class="uk-child-width-1-5@m">
+									   <input type="text" readonly="readonly" placeholder="Municipio"/>
+								   </div>
+							   </div>
+						   </div>
+						   <div class="uk-modal-footer">
+							   <div class="uk-flex uk-flex-right">
+								   <h:commandButton id="cancelar" styleClass="uk-button uk-button-primary uk-border-rounded uk-margin-right" value="#{mensaje['button.cancel']}" />
+								   <h:commandButton id="aceptar" styleClass="uk-button uk-button-default uk-border-rounded" value="#{mensaje['button.accept']}"/>
+							   </div>
+						   </div>
+					   </h:form>
+				   </div>
+			   </div>
+		   	</div>
+			<h:outputScript library="js" name="tabla.js"/>
         </ui:define>
     </ui:composition>
 
