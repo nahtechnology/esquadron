@@ -42,8 +42,8 @@ public class EscuelaSesionBean {
 		}
 		List<Object[]> resutado = entityManager.createQuery("SELECT l.idEscuela, COUNT (l.idEscuela), MAX(l.inicio) FROM LicenciaEntidad l GROUP BY l.idEscuela").getResultList();
 		for (Object[] objects : resutado) {
-			EscuelaDto escuelaDto = escuelaDtoMap.get(objects[1]);
-			escuelaDto.setLicencias((Integer)objects[2]);
+			EscuelaDto escuelaDto = escuelaDtoMap.get(objects[0]);
+			escuelaDto.setLicencias(((Long)objects[1]).intValue());
 		}
 		return escuelaDtoMap.values();
 	}
