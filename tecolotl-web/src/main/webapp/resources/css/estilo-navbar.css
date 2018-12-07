@@ -28,3 +28,13 @@ height: auto;
   cursor: pointer;
  
  }
+ 
+ .links {
+ text-decoration: none;
+ color:white;
+ }
+ 
+ a.links > span:hover{
+ color:black;
+ }
+ 

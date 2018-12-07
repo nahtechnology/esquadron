@@ -9,65 +9,69 @@
     <ui:composition template="/template/template.xhtml">
         <ui:define name="contenido2">
            <div id="content" data-uk-height-viewport="expand: true">
-			   <div class="uk-padding">
-	            <h:dataTable id="tablaEscuela" 
-	            value="#{escuelaControlador.obtener()}" 
-	            var="escuela" 
-	            styleClass="uk-table uk-table-hover uk-table-striped "
-	            headerClass="uk-background-primary uk-dark "
-	            footerClass="uk-background-primary"
-	            >
-	                <h:column >
-	                    <f:facet   name="header">CCT</f:facet>
-	                    #{escuela.claveCentroTrabajo}
-						<f:facet name="footer">
-						<ul class="uk-pagination">
-						  <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
-								    
-						</ul>
-						</f:facet>
+			   <div class="uk-padding ">
+			   						
+			   						<div class="uk-overflow-auto">
+								            <h:dataTable id="tablaEscuela" 
+								            value="#{escuelaControlador.obtener()}" 
+								            var="escuela" 
+								            styleClass="uk-table uk-table-hover uk-table-striped "
+								            headerClass="uk-background-primary uk-dark "
+								            footerClass="uk-background-primary"
+								            >
+								                <h:column >
+								                    <f:facet   name="header">CCT</f:facet>
+								                    #{escuela.claveCentroTrabajo}
+													<f:facet name="footer">
+													
+													</f:facet>
+													
+															
+								                </h:column>
+								                <h:column>
+								                    <f:facet name="header"> <h:commandLink onclick="ordenarTabla(0)" styleClass="links uk-link-heading"><span>Nombre</span></h:commandLink><span uk-icon="icon:  triangle-up" ></span></f:facet>
+								                    #{escuela.nombre}
+								                </h:column>
+												<h:column>
+													<f:facet name="header">Estatus</f:facet>
+													<h:outputLabel rendered="#{escuela.estatus}">
+														<span class="uk-icon-button" uk-icon="check"/>
+													</h:outputLabel>
+													<h:outputLabel rendered="#{not escuela.estatus}">
+														<span class="uk-icon-button" uk-icon="close"/>
+													</h:outputLabel>
+												</h:column>
+												<h:column>
+													<f:facet name="header">Licencias</f:facet>
+													#{escuela.licencias}
+												</h:column>
+												<h:column>
+													<f:facet name="header">Dias Restantes</f:facet>
+													#{escuela.diasRestantes}
+												</h:column>
+												<h:column>
+													<f:facet name="header">Opciones</f:facet>
+												 <span class="uk-icon-button puntero" uk-icon="more-vertical"/>
+												    
+												    
+												</h:column>
+								            </h:dataTable>
+								            
+								     </div>
+						<div class="uk-background-primary">
+							<ul class="uk-pagination">
+							    <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
+							    <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
+							</ul>						
 						
-								
-	                </h:column>
-	                <h:column>
-	                    <f:facet name="header">Nombre</f:facet>
-	                    #{escuela.nombre}
-	                </h:column>
-					<h:column>
-						<f:facet name="header">Estatus</f:facet>
-						<h:outputLabel rendered="#{escuela.estatus}">
-							<span class="uk-icon-button" uk-icon="check"/>
-						</h:outputLabel>
-						<h:outputLabel rendered="#{not escuela.estatus}">
-							<span class="uk-icon-button" uk-icon="close"/>
-						</h:outputLabel>
-					</h:column>
-					<h:column>
-						<f:facet name="header">Licencias</f:facet>
-						#{escuela.licencias}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Dias Restantes</f:facet>
-						#{escuela.diasRestantes}
-					</h:column>
-					<h:column>
-						<f:facet name="header">Opciones</f:facet>
-					 <span class="uk-icon-button puntero" uk-icon="more-vertical"/>
-					    <f:facet name="footer">
-					    <ul class="uk-pagination">
-						  <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
-								    
-						</ul>
-					    </f:facet>
-					    
-					</h:column>
-	            </h:dataTable>
+						</div>
 	            
-			            <div class="uk-button-group">
+			            <div class="uk-button-group uk-margin">
 						        <button class="uk-button uk-button-primary">Agregar &nbsp; <span uk-icon="icon:  plus-circle" ></span></button>
 						        
 						        
 					   </div>
+					   
 			   </div>
 			   
 				    
