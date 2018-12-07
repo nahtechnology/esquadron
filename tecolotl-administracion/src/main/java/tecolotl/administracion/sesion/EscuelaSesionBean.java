@@ -35,6 +35,7 @@ public class EscuelaSesionBean {
 	 *
 	 */
 	public Collection<EscuelaDto> busca() {
+		Date actual= new Date();
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
 		Map<String, EscuelaDto> escuelaDtoMap = new HashMap<>();
 		for (EscuelaEntidad escuelaEntidad : typedQuery.getResultList()) {
@@ -44,6 +45,9 @@ public class EscuelaSesionBean {
 		for (Object[] objects : resutado) {
 			EscuelaDto escuelaDto = escuelaDtoMap.get(objects[0]);
 			escuelaDto.setLicencias(((Long)objects[1]).intValue());
+			Date inicio = (Date) objects[2];
+			int difference =  (int) (actual.getTime()-inicio.getTime());
+			escuelaDto.setDiasRestantes(Math.abs(difference));
 		}
 		return escuelaDtoMap.values();
 	}
