@@ -1,8 +1,6 @@
 package tecolotl.administracion.sesion;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -38,12 +36,16 @@ public class EscuelaSesionBean {
 	 */
 	public Collection<EscuelaDto> busca() {
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
-		List<EscuelaDto> escuelaDtoList = new ArrayList<>();
+		Map<String, EscuelaDto> escuelaDtoMap = new HashMap<>();
 		for (EscuelaEntidad escuelaEntidad : typedQuery.getResultList()) {
-			escuelaDtoList.add(new EscuelaDto(escuelaEntidad));
+			escuelaDtoMap.put(escuelaEntidad.getClaveCentroTrabajo(), new EscuelaDto(escuelaEntidad));
 		}
-		logger.fine("Elementos encontrado:".concat(String.valueOf(escuelaDtoList.size())));
-		return escuelaDtoList;
+		List<Object[]> resutado = entityManager.createQuery("SELECT l.idEscuela, COUNT (l.idEscuela), MAX(l.inicio) FROM LicenciaEntidad l GROUP BY l.idEscuela").getResultList();
+		for (Object[] objects : resutado) {
+			EscuelaDto escuelaDto = escuelaDtoMap.get(objects[1]);
+			escuelaDto.setLicencias((Integer)objects[2]);
+		}
+		return escuelaDtoMap.values();
 	}
 
 	/**
@@ -60,7 +62,7 @@ public class EscuelaSesionBean {
 		TypedQuery<ColoniaEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaCodigoPostal", ColoniaEntidad.class);
 		typedQuery.setParameter("codigoPostal", codigoPostal);
 		if (logger.isLoggable(Level.FINE)) {
-			ColoniaDto coloniaDto = new ColoniaDto();
+			ColoniaDto coloniaDto = new ColoniaDto(typedQuery.getResultList());
 			logger.fine(coloniaDto.toString());
 			return coloniaDto;
 		} else {

@@ -2,6 +2,8 @@ package tecolotl.administracion.dto;
 
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 
+import java.util.Objects;
+
 public class EscuelaDto {
 
     private String claveCentroTrabajo;
@@ -62,5 +64,18 @@ public class EscuelaDto {
 
     public void setDiasRestantes(int diasRestantes) {
         this.diasRestantes = diasRestantes;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EscuelaDto that = (EscuelaDto) o;
+        return claveCentroTrabajo.equals(that.claveCentroTrabajo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(claveCentroTrabajo);
     }
 }
