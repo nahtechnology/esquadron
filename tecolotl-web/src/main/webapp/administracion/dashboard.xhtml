@@ -10,6 +10,7 @@
         <ui:define name="contenido2">
            <div id="content" data-uk-height-viewport="expand: true">
 			   <div class="uk-padding">
+			    <div class="uk-overflow-auto">
 					<h:dataTable id="tablaEscuela"
 					value="#{escuelaControlador.escuelas}"
 					var="escuela"
@@ -20,13 +21,11 @@
 							<f:facet   name="header">CCT</f:facet>
 							#{escuela.claveCentroTrabajo}
 							<f:facet name="footer">
-							<ul class="uk-pagination">
-							  <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
-							</ul>
+							
 							</f:facet>
 						</h:column>
 						<h:column>
-							<f:facet name="header">Nombre</f:facet>
+							<f:facet name="header"><h:commandLink onclick="ordenarTabla(0)" styleClass="links"> <span>Nombre</span></h:commandLink> </f:facet>
 							#{escuela.nombre}
 						</h:column>
 						<h:column>
@@ -49,14 +48,19 @@
 						<h:column>
 							<f:facet name="header">Opciones</f:facet>
 						 <span class="uk-icon-button puntero" uk-icon="more-vertical"/>
-							<f:facet name="footer">
-							<ul class="uk-pagination">
-							  <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
-							</ul>
-							</f:facet>
+							
 						</h:column>
 					</h:dataTable>
-					<div class="uk-flex uk-flex-right">
+				  </div>
+				  <div class="uk-background-primary espacio">
+				       <ul class="uk-pagination">
+						    <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
+						    <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
+						</ul>
+				  
+				  </div>
+				  
+					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-nuevo"><h:outputText value="#{mensaje['button.add']}"/></button>
 					</div>
 			   </div>
@@ -87,7 +91,7 @@
 								   </div>
 							   </div>
 						   </div>
-						   <div class="uk-modal-footer">
+						   <div class="uk-modal-footer ">
 							   <div class="uk-flex uk-flex-right">
 								   <h:commandButton id="cancelar" styleClass="uk-button uk-button-primary uk-border-rounded uk-margin-right" value="#{mensaje['button.cancel']}" />
 								   <h:commandButton id="aceptar" styleClass="uk-button uk-button-default uk-border-rounded" value="#{mensaje['button.accept']}"/>
