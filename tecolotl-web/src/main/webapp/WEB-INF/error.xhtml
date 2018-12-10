@@ -37,7 +37,8 @@
                     <div class="uk-margin uk-child-width-1-1\@s">
                         <div class="uk-inline">
                             <span class="uk-form-icon" uk-icon="icon: lock"/>
-                            <input type="password" name="j_password" class="uk-input" maxlength="15" />
+                            <input type="password" name="j_password" class="uk-input" maxlength="15" id="Mypass"/>
+                             <h:commandLink onclick="verPassword()" ><h:graphicImage styleClass="icono2" library="img" name="ojo.svg" /></h:commandLink>
                         </div>
                     </div>
                     <div class="uk-margin uk-child-width-1-1@s">
@@ -56,6 +57,7 @@
     </div>
     <h:outputScript library="js" name="uikit.js"/>
     <h:outputScript library="js" name="uikit-icons.js"/>
+    <h:outputScript library="js" name="login.js" />
 </h:body>
 
 </html>
