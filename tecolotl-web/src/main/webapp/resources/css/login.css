@@ -31,3 +31,14 @@ body{
 	height: auto;
 	
 }
+.icono{
+ position: absolute;
+  top: 12px;
+  bottom: 0;
+  left: 210px;
+  /* 2 */
+  width: 26px;
+  /* 3 */
+
+ 
+}
