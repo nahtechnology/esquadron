@@ -29,13 +29,15 @@ public class EscuelaSesionBean {
 	private EntityManager entityManager;
 
 	/**
-	 * Busca las escuelas, recupera de forma completa, en caso de no existir elemento la colección estará vacia
+	 * Busca las escuelas, recupera de forma completa, en caso de no existir elemento la colección estará vacia.
+	 * Calcula el total de las licencias por cada escuela. Cuenta los días restantes partiendo de la de hoy más un año
+	 * para calcular los dias, en caso de que ya halla pasado la fecha siempre regresará 0
 	 * @return Colección de {@link EscuelaDto}
 	 * @see EscuelaDto
 	 *
 	 */
 	public Collection<EscuelaDto> busca() {
-		Date actual= new Date();
+		Calendar calendarFechaHoy = Calendar.getInstance(); int diasTotales = 0;
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
 		Map<String, EscuelaDto> escuelaDtoMap = new HashMap<>();
 		for (EscuelaEntidad escuelaEntidad : typedQuery.getResultList()) {
@@ -45,9 +47,23 @@ public class EscuelaSesionBean {
 		for (Object[] objects : resutado) {
 			EscuelaDto escuelaDto = escuelaDtoMap.get(objects[0]);
 			escuelaDto.setLicencias(((Long)objects[1]).intValue());
-			Date inicio = (Date) objects[2];
-			int difference =  (int) (actual.getTime()-inicio.getTime());
-			escuelaDto.setDiasRestantes(Math.abs(difference));
+			Calendar calendarServidor = Calendar.getInstance();
+			calendarServidor.setTime((Date) objects[2]);
+			calendarServidor.add(Calendar.YEAR, 1);
+			if (calendarFechaHoy.compareTo(calendarServidor) < 0) {
+				escuelaDto.setDiasRestantes(0);
+			} else {
+				diasTotales += calendarFechaHoy.getMaximum(Calendar.DAY_OF_YEAR) - calendarFechaHoy.get(Calendar.DAY_OF_YEAR);
+				for (int anio = calendarFechaHoy.get(Calendar.YEAR) + 1; anio < calendarServidor.get(Calendar.YEAR); anio++) {
+					logger.finer("año a calcular:".concat(String.valueOf(anio)));
+					Calendar calendar = Calendar.getInstance();
+					calendar.set(Calendar.YEAR, anio);
+					diasTotales += calendar.getMaximum(Calendar.DAY_OF_YEAR);
+				}
+				diasTotales += calendarServidor.get(Calendar.DAY_OF_YEAR);
+				escuelaDto.setDiasRestantes(diasTotales);
+				diasTotales = 0;
+			}
 		}
 		return escuelaDtoMap.values();
 	}
@@ -73,7 +89,14 @@ public class EscuelaSesionBean {
 			return new ColoniaDto(typedQuery.getResultList());
 		}
 	}
-	
+
+	/**
+	 * Crea una nueva escuela
+	 * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+	 * @param colonia identificador a la cual perterece la escuela
+	 * @param nombre Combre de la escuela
+	 * @param domicilio Calle y número donde se encuentra la escuela
+	 */
 	public void insertar (String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
 		if (logger.isLoggable(Level.FINE)) {
 			logger.fine("claveCentroTrabajo:".concat(claveCentroTrabajo));
@@ -92,7 +115,14 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 		entityManager.persist(escuelaEntidad);
 	}
-	
+
+	/**
+	 *
+	 * @param claveCentroTrabajo
+	 * @param colonia
+	 * @param nombre
+	 * @param domicilio
+	 */
     public void actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
     	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
     	ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
@@ -107,4 +137,5 @@ public class EscuelaSesionBean {
 		motivoBloqueoEntidad.setId((short) motivoBloqueo);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 	}
+
 }

@@ -77,24 +77,35 @@
 								   <div class="uk-width-4-5@m">
 									   <h:inputText styleClass="uk-input" pt:placeholder="Nombre"/>
 								   </div>
-								   <div class="uk-width-1-5@m">
-									   <h:inputText styleClass="uk-input" pt:placeholder="Código Postal"/>
+								   <!-- Busqueda de la dirección -->
+								   <h:inputText styleClass="uk-width-1-6@l uk-input" id="input-codigo-postal" pt:placeholder="Código Postal" value="#{direccionControlador.codigoPostal}">
+								   </h:inputText>
+								   <div class="uk-width-1-6@l">
+									   <h:commandButton id="boton-direccion" value="Buscar" styleClass="uk-button uk-button-secondary uk-border-rounded">
+										   <f:ajax event="click" execute="input-codigo-postal" listener="#{direccionControlador.busca()}" render="formulario-nuevo"/>
+									   </h:commandButton>
 								   </div>
-								   <div class="uk-width-1-5@m">
-									   <button type="button" class="uk-button uk-button-secondary uk-border-rounded">Buscar</button>
+								   <div class="uk-width-1-6@m">
+								   	<h:selectOneMenu styleClass="uk-select">
+										<f:selectItems value="#{direccionControlador.codigoPostalList}" var="#{codigoPostalLocal}" itemValue="#{codigoPostalLocal.CodigoPostal.id}" itemLabel="#{codigoPostalLocal.CodigoPostal.nombre}"/>
+									</h:selectOneMenu>
+							       </div>
+								   <div class="uk-width-1-6@m">
+									   <h:inputText styleClass="uk-input" value="#{direccionControlador.municipio}" readonly="true" pt:placeholder="Municipio"/>
 								   </div>
-								   <div class="uk-width-1-5@m">
-									   <input type="text" class="uk-input" readonly="readonly" placeholder="Estado"/>
+								   <div class="uk-width-1-6@m">
+									   <h:inputText styleClass="uk-input" value="#{direccionControlador.estado}" readonly="true" pt:placeholder="Estado"/>
 								   </div>
-								   <div class="uk-width-1-5@m">
-									   <input type="text" class="uk-input" readonly="readonly" placeholder="Municipio"/>
+								   <div class="uk-width-1-1@s">
+									   <h:message for="formulario-nuevo:input-codigo-postal" errorStyle="color: red"/>
 								   </div>
+								   <!--	numero exterior -->
 							   </div>
 						   </div>
 						   <div class="uk-modal-footer ">
 							   <div class="uk-flex uk-flex-right">
-								   <h:commandButton id="cancelar" styleClass="uk-button uk-button-primary uk-border-rounded uk-margin-right" value="#{mensaje['button.cancel']}" />
-								   <h:commandButton id="aceptar" styleClass="uk-button uk-button-default uk-border-rounded" value="#{mensaje['button.accept']}"/>
+								   <h:commandButton id="cancelar" styleClass="uk-button uk-button-default uk-border-rounded uk-margin-right" value="#{mensaje['button.cancel']}" />
+								   <h:commandButton id="aceptar" styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}"/>
 							   </div>
 						   </div>
 					   </h:form>
