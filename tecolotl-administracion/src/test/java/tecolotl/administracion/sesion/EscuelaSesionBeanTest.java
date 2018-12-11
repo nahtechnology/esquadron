@@ -68,6 +68,11 @@ public class EscuelaSesionBeanTest {
 	public void bloqueo() {
 		escuelaSesionBean.bloqueo("21DBA0004Z",2);
 	}
+    
+    @Test
+   	public void buscarDuplicado() {
+   		escuelaSesionBean.buscaDuplicado("21DBA0004Z");
+   	}
 }
 
 

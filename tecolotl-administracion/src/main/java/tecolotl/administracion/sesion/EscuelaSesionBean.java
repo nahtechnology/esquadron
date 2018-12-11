@@ -89,6 +89,19 @@ public class EscuelaSesionBean {
 			return new ColoniaDto(typedQuery.getResultList());
 		}
 	}
+	
+	
+		public boolean buscaDuplicado(String claveCentroTrabajo) {
+		logger.info("Clave Centro de TRabajo:".concat(claveCentroTrabajo));
+		if (claveCentroTrabajo == null) {
+			return false;
+		}
+		TypedQuery<Boolean> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaExistencia", Boolean.class);
+		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		return  typedQuery.getSingleResult();
+	
+	}
+	
 
 	/**
 	 * Crea una nueva escuela
