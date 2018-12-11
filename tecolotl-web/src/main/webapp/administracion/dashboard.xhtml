@@ -14,7 +14,7 @@
 					<h:dataTable id="tablaEscuela"
 					value="#{escuelaControlador.escuelas}"
 					var="escuela"
-					styleClass="uk-table uk-table-hover uk-table-striped "
+					styleClass="limite uk-table uk-table-hover uk-table-striped "
 					headerClass="uk-background-primary uk-dark">
 						<h:column >
 							<f:facet name="header">CCT</f:facet>
@@ -43,9 +43,9 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Opciones</f:facet>
-							<div class="uk-inline">
+							<div class=" uk-inline">
 								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"></button>
-								<div uk-dropdown="mode: click">
+								<div uk-dropdown="boundary:.limite; mode: click" >
 									<ul class="uk-nav uk-dropdown-nav">
 										<li><a href="#">Detalle</a></li>
 										<li><a href="#">Editar</a></li>
