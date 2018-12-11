@@ -61,12 +61,12 @@
          inkscape:connector-curvature="0"
          id="path4136"
          d="m -200.32143,74.072547 c -119.17252,0.50727 -261.25898,97.210783 -280.20312,176.023433 -18.4556,76.78021 171.71191,204.01368 295.94921,190.79102 C -83.139869,430.09115 87.62463,353.14146 89.09654,260.09598 90.53311,169.285 -67.957739,76.879097 -194.66518,74.123327 c -1.8795,-0.04088 -3.76462,-0.05883 -5.65625,-0.05078 z M -202.28627,121.012 A 133.34962,133.34962 0 0 1 -68.936659,254.36161 133.34962,133.34962 0 0 1 -202.28627,387.71122 133.34962,133.34962 0 0 1 -335.63588,254.36161 133.34962,133.34962 0 0 1 -202.28627,121.012 Z"
-         style="opacity:1;fill:#b3b3b3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
       <path
          inkscape:connector-curvature="0"
          id="path4270-3"
          d="m -201.28516,153.58427 a 101.92105,101.92105 0 0 0 -49.90625,13.19531 41.921051,41.921051 0 0 1 1.47657,-0.0527 41.921051,41.921051 0 0 1 41.92187,41.92188 41.921051,41.921051 0 0 1 -41.92187,41.91992 41.921051,41.921051 0 0 1 -41.91993,-41.91992 41.921051,41.921051 0 0 1 0.008,-0.15234 101.92105,101.92105 0 0 0 -11.58008,47.00781 101.92105,101.92105 0 0 0 101.92187,101.92187 101.92105,101.92105 0 0 0 101.91993,-101.92187 101.92105,101.92105 0 0 0 -101.91993,-101.91992 z"
-         style="opacity:1;fill:#b3b3b3;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.87199998;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:2.87199998;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
     </g>
   </g>
 </svg>
