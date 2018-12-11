@@ -9,7 +9,10 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "escuela", schema = "administracion")
-@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre")
+@NamedQueries({
+	@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e"),
+	@NamedQuery(name = "EscuelaEntidad.buscaExistencia", query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo")
+})
 public class EscuelaEntidad {
 
     private String claveCentroTrabajo;
