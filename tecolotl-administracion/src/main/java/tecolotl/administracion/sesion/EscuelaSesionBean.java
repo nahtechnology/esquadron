@@ -50,7 +50,7 @@ public class EscuelaSesionBean {
 			Calendar calendarServidor = Calendar.getInstance();
 			calendarServidor.setTime((Date) objects[2]);
 			calendarServidor.add(Calendar.YEAR, 1);
-			if (calendarFechaHoy.compareTo(calendarServidor) < 0) {
+			if (calendarFechaHoy.compareTo(calendarServidor) > 0) {
 				escuelaDto.setDiasRestantes(0);
 			} else {
 				diasTotales += calendarFechaHoy.getMaximum(Calendar.DAY_OF_YEAR) - calendarFechaHoy.get(Calendar.DAY_OF_YEAR);
@@ -129,13 +129,6 @@ public class EscuelaSesionBean {
 		entityManager.persist(escuelaEntidad);
 	}
 
-	/**
-	 *
-	 * @param claveCentroTrabajo
-	 * @param colonia
-	 * @param nombre
-	 * @param domicilio
-	 */
     public void actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
     	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
     	ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
