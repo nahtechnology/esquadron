@@ -71,35 +71,47 @@
 						   <h5 class="uk-modal-title uk-text-capitalize uk-text-center"><h:outputText value="#{mensaje['scchool.add.title']}"/></h5>
 						   <div class="uk-modal-body">
 							   <div class="uk-grid-small" uk-grid="">
-								   <div class="uk-width-1-5@m">
+								   <div class="uk-width-1-1@s uk-width-1-3@m">
 									   <h:inputText styleClass="uk-input" pt:placeholder="Clave Centro trabajo"/>
 								   </div>
-								   <div class="uk-width-4-5@m">
+								   <div class="uk-width-1-1@s uk-width-2-3@m">
 									   <h:inputText styleClass="uk-input" pt:placeholder="Nombre"/>
 								   </div>
 								   <!-- Busqueda de la dirección -->
-								   <h:inputText styleClass="uk-width-1-6@l uk-input" id="input-codigo-postal" pt:placeholder="Código Postal" value="#{direccionControlador.codigoPostal}">
-								   </h:inputText>
-								   <div class="uk-width-1-6@l">
+								   <div class="uk-width-1-1@s uk-width-1-3@m">
+    								   <h:inputText styleClass="uk-input" id="input-codigo-postal" pt:placeholder="Código Postal" value="#{direccionControlador.codigoPostal}" required="true">
+    								   		<f:validateLength minimum="4" maximum="5"/>
+    								   </h:inputText>
+								   </div>
+								   <div class="uk-width-1-1@s uk-width-1-3@m">
 									   <h:commandButton id="boton-direccion" value="Buscar" styleClass="uk-button uk-button-secondary uk-border-rounded">
-										   <f:ajax event="click" execute="input-codigo-postal" listener="#{direccionControlador.busca()}" render="formulario-nuevo"/>
+										   <f:ajax event="click" execute="formulario-nuevo:input-codigo-postal" listener="#{direccionControlador.busca()}" render="formulario-nuevo"/>
 									   </h:commandButton>
 								   </div>
-								   <div class="uk-width-1-6@m">
+								   <div class="uk-width-1-1@s uk-width-1-3@m">
 								   	<h:selectOneMenu styleClass="uk-select">
 										<f:selectItems value="#{direccionControlador.codigoPostalList}" var="#{codigoPostalLocal}" itemValue="#{codigoPostalLocal.CodigoPostal.id}" itemLabel="#{codigoPostalLocal.CodigoPostal.nombre}"/>
 									</h:selectOneMenu>
 							       </div>
-								   <div class="uk-width-1-6@m">
+								   <div class="uk-width-1-1@s uk-width-1-2@m">
 									   <h:inputText styleClass="uk-input" value="#{direccionControlador.municipio}" readonly="true" pt:placeholder="Municipio"/>
 								   </div>
-								   <div class="uk-width-1-6@m">
+								   <div class="uk-width-1-1@s uk-width-1-2@m">
 									   <h:inputText styleClass="uk-input" value="#{direccionControlador.estado}" readonly="true" pt:placeholder="Estado"/>
 								   </div>
-								   <div class="uk-width-1-1@s">
-									   <h:message for="formulario-nuevo:input-codigo-postal" errorStyle="color: red"/>
+								   <div class="uk-width-1-1@s uk-width-2-3@m">
+									   <h:inputText styleClass="uk-input" pt:placeholder="Calle"/>
 								   </div>
 								   <!--	numero exterior -->
+								   <div class="uk-width-1-1@s uk-width-1-6@m">
+									   <h:inputText styleClass="uk-input" pt:placeholder="Número Ext."/>
+								   </div>
+								   <div class="uk-width-1-1@s uk-width-1-6@m">
+									   <h:inputText styleClass="uk-input" pt:placeholder="Número Int."/>
+								   </div>
+								   <div class="uk-width-1-1@s">
+								   	<h:messages styleClass="uk-list uk-alert-danger uk-alert"/>
+								   </div>
 							   </div>
 						   </div>
 						   <div class="uk-modal-footer ">
