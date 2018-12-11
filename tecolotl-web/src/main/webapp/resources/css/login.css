@@ -31,3 +31,25 @@ body{
 	height: auto;
 	
 }
+.icono{
+ 
+ position: absolute;
+  top: 12px;
+  bottom: 0;
+  left: 200px;
+  /* 2 */
+  width: 26px;
+  /* 3 */
+}
+
+.icono2{
+ position: absolute;
+  top: 12px;
+  bottom: 0;
+  left: 250px;
+  /* 2 */
+  width: 26px;
+  /* 3 */
+
+ 
+}

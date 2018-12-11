@@ -15,17 +15,13 @@
 					value="#{escuelaControlador.escuelas}"
 					var="escuela"
 					styleClass="uk-table uk-table-hover uk-table-striped "
-					headerClass="uk-background-primary uk-dark "
-					footerClass="uk-background-primary">
+					headerClass="uk-background-primary uk-dark">
 						<h:column >
-							<f:facet   name="header">CCT</f:facet>
+							<f:facet name="header">CCT</f:facet>
 							#{escuela.claveCentroTrabajo}
-							<f:facet name="footer">
-							
-							</f:facet>
 						</h:column>
 						<h:column>
-							<f:facet name="header"><h:commandLink onclick="ordenarTabla(0)" styleClass="links"> <span>Nombre</span></h:commandLink> </f:facet>
+							<f:facet name="header">Nombre</f:facet>
 							#{escuela.nombre}
 						</h:column>
 						<h:column>
@@ -47,19 +43,29 @@
 						</h:column>
 						<h:column>
 							<f:facet name="header">Opciones</f:facet>
-						 <span class="uk-icon-button puntero" uk-icon="more-vertical"/>
-							
+							<div class="uk-inline">
+								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"></button>
+								<div uk-dropdown="mode: click">
+									<ul class="uk-nav uk-dropdown-nav">
+										<li><a href="#">Detalle</a></li>
+										<li><a href="#">Editar</a></li>
+										<li><a href="#">Eliminar</a></li>
+									</ul>
+								</div>
+							</div>
 						</h:column>
 					</h:dataTable>
-				  </div>
-				  <div class="uk-background-primary espacio">
-				       <ul class="uk-pagination">
-						    <li><a href="#"><span class="uk-margin-small-right" uk-pagination-previous=""></span> Previous</a></li>
-						    <li class="uk-margin-auto-left"><a href="#">Next <span class="uk-margin-small-left" uk-pagination-next=""></span></a></li>
-						</ul>
-				  
-				  </div>
-				  
+				  	</div>
+				   <ul class="uk-pagination uk-flex-center uk-margin-medium-top" uk-margin="">
+					   <li><a href="#"><span uk-pagination-previous=""></span></a></li>
+					   <li><a href="#">1</a></li>
+					   <li class="uk-disabled"><span>...</span></li>
+					   <li><a href="#">5</a></li>
+					   <li><a href="#">6</a></li>
+					   <li class="uk-active"><span>7</span></li>
+					   <li><a href="#">8</a></li>
+					   <li><a href="#"><span uk-pagination-next=""></span></a></li>
+				   </ul>
 					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-nuevo"><h:outputText value="#{mensaje['button.add']}"/></button>
 					</div>
