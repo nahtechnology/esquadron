@@ -31,24 +31,41 @@ body{
 	height: auto;
 	
 }
-.icono{
+.centrar{
  
- position: absolute;
-  top: 12px;
-  bottom: 0;
-  left: 200px;
-  /* 2 */
-  width: 26px;
-  /* 3 */
+ margin-right: 10px;
+ display: inline-block;
+  /* 4 */
+
+}
+
+.icono{
+width: 30px;
+  height: 30px;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.margen10{
+	margin-top: 12px;
+	
 }
 
 .icono2{
- position: absolute;
-  top: 12px;
+  position: absolute;
+  top: 5px;
   bottom: 0;
-  left: 250px;
+  left: 0;
   /* 2 */
-  width: 26px;
+  width: 40px;
+  /* 3 */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* 4 */
+  color: #999;
   /* 3 */
 
  
