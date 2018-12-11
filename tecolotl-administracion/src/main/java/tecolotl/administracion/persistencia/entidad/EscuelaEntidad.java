@@ -9,7 +9,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "escuela", schema = "administracion")
-@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e")
+@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre")
 public class EscuelaEntidad {
 
     private String claveCentroTrabajo;
