@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDto;
@@ -89,17 +90,21 @@ public class EscuelaSesionBean {
 			return new ColoniaDto(typedQuery.getResultList());
 		}
 	}
-	
-	
-		public boolean buscaDuplicado(String claveCentroTrabajo) {
+
+	/**
+	 * Valida que no exista una escuela. Busca una escuela por medio de clave detrabajo, esto se realiza para evitar que se duplique escuela.
+	 * @param claveCentroTrabajo Las escuelas cuentan con una clave de trabajo unica.
+	 * @return
+	 */
+	public boolean buscaDuplicado(String claveCentroTrabajo) {
 		logger.info("Clave Centro de TRabajo:".concat(claveCentroTrabajo));
 		if (claveCentroTrabajo == null) {
 			return false;
 		}
-		TypedQuery<Boolean> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaExistencia", Boolean.class);
-		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
-		return  typedQuery.getSingleResult();
-	
+		Query query = entityManager.createNamedQuery("EscuelaEntidad.buscaExistencia");
+		query.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		Integer existe = ((Long)query.getSingleResult()).intValue();
+		return  existe != 0;
 	}
 	
 
@@ -131,7 +136,7 @@ public class EscuelaSesionBean {
 
     public void actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
     	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
-    	ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
+    	ColoniaEntidad coloniaEntidad= new ColoniaEntidad();
 		coloniaEntidad.setId(colonia);
 		escuelaEntidad.setNombre(nombre);
 		escuelaEntidad.setDomicilio(domicilio);
