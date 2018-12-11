@@ -103,7 +103,7 @@ public class EscuelaSesionBean {
 		}
 		Query query = entityManager.createNamedQuery("EscuelaEntidad.buscaExistencia");
 		query.setParameter("claveCentroTrabajo", claveCentroTrabajo);
-		Integer existe = ((Long)query.getSingleResult()).intValue();
+        Long existe = (Long)query.getSingleResult();
 		return  existe != 0;
 	}
 	
@@ -134,13 +134,17 @@ public class EscuelaSesionBean {
 		entityManager.persist(escuelaEntidad);
 	}
 
-    public void actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+    public EscuelaEntidad actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+	    if (claveCentroTrabajo == null) {
+	        return null;
+        }
     	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
     	ColoniaEntidad coloniaEntidad= new ColoniaEntidad();
 		coloniaEntidad.setId(colonia);
 		escuelaEntidad.setNombre(nombre);
 		escuelaEntidad.setDomicilio(domicilio);
 		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
+		return escuelaEntidad;
     }
 	public void bloqueo (String claveCentroTrabajo, int motivoBloqueo) {
 		EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
