@@ -10,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDto;
+import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
@@ -166,4 +167,12 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 	}
 
+	public List<MotivoBloqueoDto> motivoBloque() {
+		TypedQuery<MotivoBloqueoEntidad>  typedQuery = entityManager.createNamedQuery("MotivoBloqueoEntidad.busca", MotivoBloqueoEntidad.class);
+		List<MotivoBloqueoDto> motivoBloqueoDtoLista = new ArrayList<>();
+		for (MotivoBloqueoEntidad motivoBloqueoEntidad : typedQuery.getResultList()) {
+			motivoBloqueoDtoLista.add(new MotivoBloqueoDto(motivoBloqueoEntidad));
+		}
+		return motivoBloqueoDtoLista;
+	}
 }
