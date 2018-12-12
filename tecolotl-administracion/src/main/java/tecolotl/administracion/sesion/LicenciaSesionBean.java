@@ -19,10 +19,10 @@ public class LicenciaSesionBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	/**
+	/**Se crea una nueva licencia asociada a una escuela, igresando la escuela y fecha donde empieza a correr la licencia
 	 *
- 	 * @param idEscuela
-	 * @param fechaInicio
+ 	 * @param idEscuela Referencia de Escuela
+	 * @param fechaInicio Punto de referencia donde inicia la vigencia de Licencia.
 	 */
 	public void insertar (String idEscuela,Date fechaInicio) {
 		LicenciaEntidad licenciaEntidad = new LicenciaEntidad();
