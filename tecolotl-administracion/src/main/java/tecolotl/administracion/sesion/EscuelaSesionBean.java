@@ -110,9 +110,9 @@ public class EscuelaSesionBean {
 
 	/**
 	 * Crea una nueva escuela
-	 * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+	 * @param claveCentroTrabajo Identificador unico  de la escuela
 	 * @param colonia identificador a la cual perterece la escuela
-	 * @param nombre Combre de la escuela
+	 * @param nombre Nombre de la escuela
 	 * @param domicilio Calle y número donde se encuentra la escuela
 	 */
 	public void insertar (String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
@@ -135,10 +135,10 @@ public class EscuelaSesionBean {
 	}
 	/**
 	 * Realiza cambios a una escuela existente, los cambios que se pueden realizar son en su clave de trabajo, colonia,nombre de escuela
-	 * @param claveCentroTrabajo
-	 * @param colonia
-	 * @param nombre
-	 * @param domicilio
+	 * @param claveCentroTrabajo Identificador unico  de la escuela
+	 * @param colonia identificador a la cual perterece la escuela
+	 * @param nombre Nombre de la escuela
+	 * @param domicilio Calle y número donde se encuentra la escuela
 	 */
  
 
@@ -154,6 +154,11 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
 		return escuelaEntidad;
     }
+    /**
+     * Modifica el estatus de una escuela, se realiza una busqueda por medio de la clave de trabajo
+     * @param claveCentroTrabajo Identificador unico  de la escuela
+     * @param motivoBloqueo numero que hace referencia el  bloquear/desbloquear a una escuela (por ejemplo por falta de pago, sanción). 
+     */
 	public void bloqueo (String claveCentroTrabajo, int motivoBloqueo) {
 		EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
 		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();

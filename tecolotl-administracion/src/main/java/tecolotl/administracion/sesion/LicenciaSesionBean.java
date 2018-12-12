@@ -19,7 +19,7 @@ public class LicenciaSesionBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	/**
+	/**Se crea una nueva licencia 
 	 *
  	 * @param idEscuela
 	 * @param fechaInicio
@@ -33,4 +33,4 @@ public class LicenciaSesionBean {
 	}
 	
 
-}
+}s
