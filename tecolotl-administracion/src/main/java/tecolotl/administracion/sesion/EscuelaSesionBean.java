@@ -128,13 +128,19 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 		entityManager.persist(escuelaEntidad);
 	}
-
-    public void actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+	/**
+	 * Realiza cambios a una escuela existente, los cambios que se pueden realizar son en su clave de trabajo, colonia,nombre de escuela
+	 * @param claveCentroTrabajo
+	 * @param colonia
+	 * @param nombre
+	 * @param domicilio
+	 */
+    public void actualizar(String claveCentroTrabajo, int colonia, String nombreEscuela,String domicilioEscuela) {
     	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
     	ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
 		coloniaEntidad.setId(colonia);
-		escuelaEntidad.setNombre(nombre);
-		escuelaEntidad.setDomicilio(domicilio);
+		escuelaEntidad.setNombre(nombreEscuela);
+		escuelaEntidad.setDomicilio(domicilioEscuela);
 		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
     }
 	public void bloqueo (String claveCentroTrabajo, int motivoBloqueo) {
