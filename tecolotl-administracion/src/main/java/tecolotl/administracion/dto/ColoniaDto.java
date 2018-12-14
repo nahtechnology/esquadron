@@ -12,30 +12,15 @@ import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
  */
 public class ColoniaDto {
 
-	/**
-	 * 
-	 */
 	private String estado;
-	
-	/**
-	 * 
-	 */
 	private String municipio;
-	
-	/**
-	 * 
-	 */
 	private List<CodigoPostal> listaCodigoPostal;
 	
 	public ColoniaDto() {
 	
 	}
 
-	/**
-	 * 
-	 * @param listaColonias
-	 */
-	public ColoniaDto(List<ColoniaEntidad> listaColonias) {		
+	public ColoniaDto(List<ColoniaEntidad> listaColonias) {
 		estado = listaColonias.get(0).getMunicipio().getEstado().getNombre();
 		municipio = listaColonias.get(0).getMunicipio().getNombre();
 		listaCodigoPostal = new ArrayList<>();
@@ -68,58 +53,5 @@ public class ColoniaDto {
 		this.listaCodigoPostal = listaCodigoPostal;
 	}
 
-	/**
-	 * 
-	 * @author antonio
-	 *
-	 */
-	public class CodigoPostal {
-		
-		/**
-		 * 
-		 */
-		private int id;
-		
-		/**
-		 * 
-		 */
-		private String nombre;		
-		
-		/**
-		 * 
-		 */
-		private String codigoPostal;
-		
-		
-		public CodigoPostal() {
-		}
-		
-		public CodigoPostal(ColoniaEntidad coloniaEntidad) {
-			this.id = coloniaEntidad.getId();
-			this.nombre = coloniaEntidad.getNombre();
-			this.codigoPostal = coloniaEntidad.getCodigoPostal();
-		}
-		
-		
-		public String getNombre() {
-			return nombre;
-		}
-		public void setNombre(String nombre) {
-			this.nombre = nombre;
-		}
-		public String getCodigoPostal() {
-			return codigoPostal;
-		}
-		public void setCodigoPostal(String codigoPostal) {
-			this.codigoPostal = codigoPostal;
-		}
 
-		public int getId() {
-			return id;
-		}
-		public void setId(int id) {
-			this.id = id;
-		}		
-		
-	}
 }

@@ -11,6 +11,8 @@ public class EscuelaDto {
     private boolean estatus;
     private int licencias;
     private int diasRestantes;
+    private String numeroExterior;
+    private String numeroInterior;
 
     public EscuelaDto() {
         this.claveCentroTrabajo = claveCentroTrabajo;
@@ -64,6 +66,22 @@ public class EscuelaDto {
 
     public void setDiasRestantes(int diasRestantes) {
         this.diasRestantes = diasRestantes;
+    }
+
+    public String getNumeroExterior() {
+        return numeroExterior;
+    }
+
+    public void setNumeroExterior(String numeroExterior) {
+        this.numeroExterior = numeroExterior;
+    }
+
+    public String getNumeroInterior() {
+        return numeroInterior;
+    }
+
+    public void setNumeroInterior(String numeroInterior) {
+        this.numeroInterior = numeroInterior;
     }
 
     @Override

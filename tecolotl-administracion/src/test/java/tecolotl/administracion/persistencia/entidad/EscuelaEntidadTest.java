@@ -20,30 +20,30 @@ import org.junit.runner.RunWith;
 
 public class EscuelaEntidadTest {
 
-	 @Deployment
-	    public static Archive<?> createDeployment() {
-	        return ShrinkWrap.create(WebArchive.class, "test.war")
-	                .addPackage(EscuelaEntidad.class.getPackage())
-	                .addAsResource("META-INF/persistence.xml")
-	                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
-	    }
-		 
-		@PersistenceContext
-		private EntityManager entityManager;
-		
-		@Test
-		public void busca() {
-			TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
-			List<EscuelaEntidad> escuelaEntidadLista = typedQuery.getResultList();
-			Assert.assertNotNull(escuelaEntidadLista);
-			Assert.assertFalse(escuelaEntidadLista.isEmpty());
-			for (EscuelaEntidad motivoBloqueoEntidad : escuelaEntidadLista) {
-				Assert.assertNotNull(motivoBloqueoEntidad.getClaveCentroTrabajo());
-				Assert.assertNotNull(motivoBloqueoEntidad.getDomicilio());
-				Assert.assertNotNull(motivoBloqueoEntidad.getNombre());
-				Assert.assertNotNull(motivoBloqueoEntidad.getMotivoBloqueoEntidad());
-				Assert.assertNotNull(motivoBloqueoEntidad.getColoniaEntidad());
-				
-			}
+ 	@Deployment
+	public static Archive<?> createDeployment() {
+		return ShrinkWrap.create(WebArchive.class, "test.war")
+				.addPackage(EscuelaEntidad.class.getPackage())
+				.addAsResource("META-INF/persistence.xml")
+				.addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+	}
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Test
+	public void busca() {
+		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
+		List<EscuelaEntidad> escuelaEntidadLista = typedQuery.getResultList();
+		Assert.assertNotNull(escuelaEntidadLista);
+		Assert.assertFalse(escuelaEntidadLista.isEmpty());
+		for (EscuelaEntidad escuelaEntidad : escuelaEntidadLista) {
+			Assert.assertNotNull(escuelaEntidad.getClaveCentroTrabajo());
+			Assert.assertNotNull(escuelaEntidad.getDomicilio());
+			Assert.assertNotNull(escuelaEntidad.getNombre());
+			Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad());
+			Assert.assertNotNull(escuelaEntidad.getColoniaEntidad());
+			Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
 		}
 	}
+}

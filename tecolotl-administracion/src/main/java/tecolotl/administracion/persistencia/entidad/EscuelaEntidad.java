@@ -20,6 +20,8 @@ public class EscuelaEntidad {
     private MotivoBloqueoEntidad motivoBloqueoEntidad;
     private String nombre;
 	private String domicilio;
+	private String numeroInterior;
+	private String numeroExterior;
 	private List<LicenciaEntidad> licencia;
 	private String numExterior;
 	private String numInterior;
@@ -82,6 +84,29 @@ public class EscuelaEntidad {
 
 	public void setDomicilio(String domicilio) {
 		this.domicilio = domicilio;
+	}
+
+	@Basic
+	@Column(name = "numero_interior")
+	@NotNull
+	@Size(max = 15, min = 1)
+	public String getNumeroInterior() {
+		return numeroInterior;
+	}
+
+	public void setNumeroInterior(String numeroInterior) {
+		this.numeroInterior = numeroInterior;
+	}
+
+	@Basic
+	@Column(name = "numero_exterior")
+	@Size(max = 15, min = 1)
+	public String getNumeroExterior() {
+		return numeroExterior;
+	}
+
+	public void setNumeroExterior(String numeroExterior) {
+		this.numeroExterior = numeroExterior;
 	}
 
 	@OneToMany(mappedBy = "escuela")
