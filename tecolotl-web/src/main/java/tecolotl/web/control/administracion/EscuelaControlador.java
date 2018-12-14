@@ -5,17 +5,18 @@ import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.web.modelo.administracion.EscuelaModelo;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 @Named
-@RequestScoped
-public class EscuelaControlador {
+@ViewScoped
+public class EscuelaControlador implements Serializable {
+
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
@@ -30,10 +31,10 @@ public class EscuelaControlador {
     }
 
     public void inserta() {
-        if (escuelaModelo.getClaveCentroTrabajo() != "111") {
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El nombre es incorrecto", "El nombre es incorrecto");
-            throw new ValidatorException(facesMessage);
-        }
+        logger.info(escuelaModelo.getClaveCentroTrabajo());
+        escuelaSesionBean.insertar(escuelaModelo.getClaveCentroTrabajo(),
+                escuelaModelo.getIdColonia(), escuelaModelo.getNombre(), escuelaModelo.getCalle(),
+                escuelaModelo.getNumeroInterior(), escuelaModelo.getNumeroExterior());
     }
 
     public Collection<EscuelaDto> getEscuelas() {

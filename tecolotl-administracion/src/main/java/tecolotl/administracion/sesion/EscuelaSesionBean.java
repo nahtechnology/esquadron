@@ -98,7 +98,7 @@ public class EscuelaSesionBean {
 	 * @return
 	 */
 	public boolean buscaDuplicado(String claveCentroTrabajo) {
-		logger.info("Clave Centro de TRabajo:".concat(claveCentroTrabajo));
+		logger.fine("Clave Centro de Trabajo:".concat(claveCentroTrabajo));
 		if (claveCentroTrabajo == null) {
 			return false;
 		}
@@ -116,7 +116,7 @@ public class EscuelaSesionBean {
 	 * @param nombre Nombre de la escuela
 	 * @param domicilio Calle y número donde se encuentra la escuela
 	 */
-	public void insertar (String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
+	public void insertar (String claveCentroTrabajo, int colonia, String nombre, String domicilio, String numeroInterior, String numeroExterior) {
 		if (logger.isLoggable(Level.FINE)) {
 			logger.fine("claveCentroTrabajo:".concat(claveCentroTrabajo));
 			logger.fine("colonia".concat(String.valueOf(colonia)));
@@ -130,6 +130,8 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setNombre(nombre);
 		escuelaEntidad.setDomicilio(domicilio);
 		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
+		escuelaEntidad.setNumeroInterior(numeroInterior);
+		escuelaEntidad.setNumeroExterior(numeroExterior);
 		motivoBloqueoEntidad.setId((short)0);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 		entityManager.persist(escuelaEntidad);

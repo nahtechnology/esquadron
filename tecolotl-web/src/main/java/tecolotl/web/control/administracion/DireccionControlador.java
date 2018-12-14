@@ -1,5 +1,6 @@
 package tecolotl.web.control.administracion;
 
+import tecolotl.administracion.dto.CodigoPostal;
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 
@@ -23,7 +24,7 @@ public class DireccionControlador {
 
     private String estado;
     private String municipio;
-    private List<ColoniaDto.CodigoPostal> codigoPostalList;
+    private List<CodigoPostal> codigoPostalList;
 
     public void busca() {
         ColoniaDto coloniaDto = escuelaSesionBean.busca(codigoPostal);
@@ -48,7 +49,7 @@ public class DireccionControlador {
         this.municipio = municipio;
     }
 
-    public List<ColoniaDto.CodigoPostal> getCodigoPostalList() {
+    public List<CodigoPostal> getCodigoPostalList() {
         return codigoPostalList;
     }
 
@@ -60,7 +61,7 @@ public class DireccionControlador {
         this.codigoPostal = codigoPostal;
     }
 
-    public void setCodigoPostalList(List<ColoniaDto.CodigoPostal> codigoPostalList) {
+    public void setCodigoPostalList(List<CodigoPostal> codigoPostalList) {
         this.codigoPostalList = codigoPostalList;
     }
 }

@@ -10,6 +10,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.dto.CodigoPostal;
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
@@ -50,15 +51,14 @@ public class EscuelaSesionBeanTest {
     	Assert.assertNotNull(coloniaDto.getEstado());
     	Assert.assertNotNull(coloniaDto.getMunicipio());
     	Assert.assertFalse(coloniaDto.getListaCodigoPostal().isEmpty());
-    	for (ColoniaDto.CodigoPostal codigoPostal : coloniaDto.getListaCodigoPostal()) {
-			Assert.assertNotNull(codigoPostal.getCodigoPostal());
+    	for (CodigoPostal codigoPostal : coloniaDto.getListaCodigoPostal()) {
 			Assert.assertNotNull(codigoPostal.getNombre());
 		}
 	}
 
     @Test
 	public void insertar() {
-		escuelaSesionBean.insertar("21DBA0004Z", 227805, "Escuela Secundaria Tenica no.32","5 poniente 512");
+		escuelaSesionBean.insertar("21DBA0004Z", 227805, "Escuela Secundaria Tenica no.32","5 poniente 512" , "1234", null);
 	}
     @Test
 	public void actualizar() {
