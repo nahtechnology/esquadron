@@ -10,15 +10,113 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="/template/template.xhtml">
-    <ui:define name="contenido2">
-        <div id="content" data-uk-height-viewport="expand: true">
-            <h:outputLabel value="Nombre"/>
-            <h:inputText value="2 de Octubre" readonly="true"/>
-        </div>
-    </ui:define>
+	<ui:define name="contenido2">
+		<div id="content" data-uk-height-viewport="expand: true">
+			<div class="uk-padding">
+				<div class="uk-overflow-auto">
+					<h:form class="uk-form-stacked">
+						<div class="uk-grid-small" uk-grid="">						
+							<div class="uk-width-1-1@s uk-width-1-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.cct']}" for="input-cct" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="21PPR0930Z" disabled="true"
+										id="input-cct" label="#{mensaje['school.cct']}">
+									</h:inputText>
+								</div>
+							</div>							
+							<div class="uk-width-1-1@s uk-width-4-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.name']}" for="input-nombre" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="Escuela Benito Juarez Garcia de Oaxaca" disabled="true"
+										id="input-nombre" label="#{mensaje['school.name']}">
+									</h:inputText>
+								</div>
+							</div>							
+							<div class="uk-width-1-1@s uk-width-1-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.postalcode']}" for="input-cp" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="7200" disabled="true"
+										id="input-cp" label="#{mensaje['school.postalcode']}">
+									</h:inputText>
+								</div>
+							</div>														
+							<div class="uk-width-1-1@s uk-width-4-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.colony']}" for="input-colonia" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="Tlaxcalantongo de Venustiano Carranza" disabled="true"
+										id="input-colonia" label="#{mensaje['school.colony']}">
+									</h:inputText>
+								</div>
+							</div>										
+							<div class="uk-width-1-1@s uk-width-3-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.city']}" for="input-municipio" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="Sultepec de Pedro Ascencio de Alquisiras" disabled="true"
+										id="input-municipio" label="#{mensaje['school.city']}">
+									</h:inputText>
+								</div>
+							</div>							
+							<div class="uk-width-1-1@s uk-width-2-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.town']}" for="input-estado" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="Baja California Sur" disabled="true"
+										id="input-estado" label="#{mensaje['school.town']}">
+									</h:inputText>
+								</div>
+							</div>										
+							<div class="uk-width-1-1@s uk-width-3-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.street']}" for="input-calle" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="Vicente Guerrero" disabled="true"
+										id="input-calle" label="#{mensaje['school.street']}">
+									</h:inputText>
+								</div>
+							</div>	
+							<div class="uk-width-1-1@s uk-width-1-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.street.num.int']}" for="input-numero_int" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="5" disabled="true"
+										id="input-numero_int" label="#{mensaje['school.street.num.int']}">
+									</h:inputText>
+								</div>
+							</div>						
+							<div class="uk-width-1-1@s uk-width-1-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.street.num.ext']}" for="input-numero_ext" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value=" " disabled="true"
+										id="input-numero_ext" label="#{mensaje['school.street.num.ext']}">
+									</h:inputText>
+								</div>
+							</div>														
+							
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+	</ui:define>
 </ui:composition>
 
 </html>
