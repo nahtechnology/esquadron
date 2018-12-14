@@ -23,8 +23,6 @@ public class EscuelaEntidad {
 	private String numeroInterior;
 	private String numeroExterior;
 	private List<LicenciaEntidad> licencia;
-	private String numExterior;
-	private String numInterior;
 
 	public EscuelaEntidad() {
 	}
@@ -112,22 +110,6 @@ public class EscuelaEntidad {
 	@OneToMany(mappedBy = "escuela")
 	public List<LicenciaEntidad> getLicencia() {
 		return licencia;
-	}
-
-	public String getNumExterior() {
-		return numExterior;
-	}
-
-	public void setNumExterior(String numExterior) {
-		this.numExterior = numExterior;
-	}
-
-	public String getNumInterior() {
-		return numInterior;
-	}
-
-	public void setNumInterior(String numInterior) {
-		this.numInterior = numInterior;
 	}
 
 	public void setLicencia(List<LicenciaEntidad> licencia) {

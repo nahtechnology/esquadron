@@ -118,9 +118,12 @@
 										   </h:inputText>
 									   </div>
 								   </div>
-								   <div class="uk-width-1-1@s uk-width-1-6@m">
-									   <h:commandButton id="boton-direccion" value="Buscar" styleClass="uk-button uk-button-secondary uk-border-rounded">
-										   <f:ajax event="click" execute="formulario-nuevo:input-codigo-postal" listener="#{direccionControlador.busca()}" render="formulario-nuevo"/>
+								   <div class="uk-width-1-1@s uk-width-1-6@m uk-inline">
+									   <h:commandButton id="boton-direccion" value="Buscar" styleClass="uk-button uk-button-secondary uk-border-rounded uk-position-bottom-center">
+										   <f:ajax event="click"
+												   execute="formulario-nuevo:input-codigo-postal"
+												   listener="#{direccionControlador.busca()}"
+												   render="select-colonia input-municipio input-estado" onevent="limpiarSelector"/>
 									   </h:commandButton>
 								   </div>
 								   <div class="uk-width-1-1@s uk-width-1-2@m">
@@ -131,7 +134,7 @@
 															 value="#{escuelaControlador.escuelaModelo.idColonia}"
 															 label="#{mensaje['school.colony']}">
 												<f:selectItems value="#{direccionControlador.codigoPostalList}"
-															   var="#{n}"
+															   var="n"
 															   itemValue="#{n.id}"
 															   itemLabel="#{n.nombre}"
 															   itemDescription="#{n.nombre}"/>
@@ -205,7 +208,7 @@
 							   <div class="uk-flex uk-flex-right">
 								   <button class="uk-modal-close uk-button uk-button-default uk-border-rounded uk-margin-right"><h:outputText value="#{mensaje['button.cancel']}"/></button>
 								   <h:commandButton id="aceptar" styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
-									   <f:ajax execute="@form" event="click" listener="#{escuelaControlador.inserta()}" render="formulario-nuevo" onevent="cierraModal"/>
+									   <f:ajax execute="@form" event="click" listener="#{escuelaControlador.inserta()}" onevent="cierraModal"/>
 								   </h:commandButton>
 							   </div>
 						   </div>
@@ -215,16 +218,19 @@
 		   	</div>
 			<script type="text/javascript">
 				document.addEventListener("DOMContentLoaded", function (evt) {
-					document.querySelectorAll('')
+					limpiarSelector("undefined");
 				});
-				function limpiarSelector(selector) {
-
+				function limpiarSelector(informacion) {
+					if (informacion === "undefined") {
+						document.getElementById('formulario-nuevo:select-colonia').removeAttribute('size');
+					} else {
+						if (informacion.status == 'success') {
+							document.getElementById('formulario-nuevo:select-colonia').removeAttribute('size');
+						}
+					}
 				}
 				function cierraModal(informacion) {
-					console.log(informacion);
-					if (informacion === "success") {
-						UIkit.modal('.uk-modal').hide();
-					}
+					console.log("event:"+informacion.event+" estauts"+informacion.status+" type"+informacion.type);
 				}
 			</script>
         </ui:define>
