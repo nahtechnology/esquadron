@@ -50,7 +50,7 @@
 										<li><a href="#" > <span uk-icon="icon: cog" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Detalle</span> </a></li>
 										<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar</span></a></li>
 										<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar</span></a></li>
-										<li><a href="#modal-nuevo"  uk-toggle><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
+										<li><a href="#modal-bloqueo"  uk-toggle=""><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
 									</ul>
 								</div>
 							</div>
@@ -219,11 +219,35 @@
 			   <div id="modal-bloqueo"   uk-modal="" >
 			     <button class="uk-modal-close-default" type="button" uk-close=""></button>
 			   	 <div class="uk-modal-dialog uk-modal-body">
-			        <h2 class="uk-modal-title">Headline</h2>
-			        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			        <h2 class="uk-modal-title">Razón de bloqueo</h2>
+			       <!--  <div class="uk-width-1-1@s uk-width-1-2@m"> --> 
+						  <h:outputLabel for="select-colonia" value="#{mensaje['school.blockreason.title']}" styleClass="uk-form-label uk-text-capitalize"/>
+							   <div class="uk-form-controls">
+									<h:selectOneMenu styleClass="uk-select"
+													 id="select-motivo"
+													 value="#{motivoBloqueoControlador.motivoBloqueoLista}"
+												
+													 label="#{mensaje['school.blockreason.title']}">
+									<f:selectItems value="#{direccionControlador.codigoPostalList}"
+													   var="n"
+													   itemValue="#{n.id}"
+													   itemLabel="#{n.nombre}"
+													   itemDescription="#{n.nombre}"/>
+									<f:validateRequired/>
+									</h:selectOneMenu>
+							   </div>
+						<!--  </div>--> 
+			        
+			        
+			        
+			        
+			        
+			        
 			        <p class="uk-text-right">
-			            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-			            <button class="uk-button uk-button-primary" type="button">Save</button>
+			            <button class="uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
+			           <h:commandButton id="aceptar" styleClass="uk-button uk-button-primary uk-border-rounded uk-margin-left" value="#{mensaje['button.accept']}">
+									   <f:ajax execute="@form" event="click" listener="#{escuelaControlador.inserta()}" onevent="cierraModal"/>
+					   </h:commandButton>
 			        </p>
 			    </div>
 			   	 
