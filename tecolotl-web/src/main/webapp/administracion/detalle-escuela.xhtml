@@ -11,7 +11,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/template/template.xhtml">
 	<ui:define name="contenido2">
@@ -35,7 +36,7 @@
 									value="#{mensaje['school.name']}" for="input-nombre" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="Escuela Benito Juarez Garcia de Oaxaca" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.nombre}" disabled="true"
 										id="input-nombre" label="#{mensaje['school.name']}">
 									</h:inputText>
 								</div>
@@ -45,7 +46,7 @@
 									value="#{mensaje['school.postalcode']}" for="input-cp" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="7200" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.codigoPostal}" disabled="true"
 										id="input-cp" label="#{mensaje['school.postalcode']}">
 									</h:inputText>
 								</div>
@@ -55,7 +56,7 @@
 									value="#{mensaje['school.colony']}" for="input-colonia" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="Tlaxcalantongo de Venustiano Carranza" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.colonia}" disabled="true"
 										id="input-colonia" label="#{mensaje['school.colony']}">
 									</h:inputText>
 								</div>
@@ -65,7 +66,7 @@
 									value="#{mensaje['school.city']}" for="input-municipio" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="Sultepec de Pedro Ascencio de Alquisiras" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.municipio}" disabled="true"
 										id="input-municipio" label="#{mensaje['school.city']}">
 									</h:inputText>
 								</div>
@@ -75,7 +76,7 @@
 									value="#{mensaje['school.town']}" for="input-estado" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="Baja California Sur" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.estado}" disabled="true"
 										id="input-estado" label="#{mensaje['school.town']}">
 									</h:inputText>
 								</div>
@@ -85,7 +86,7 @@
 									value="#{mensaje['school.street']}" for="input-calle" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="Vicente Guerrero" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.calle}" disabled="true"
 										id="input-calle" label="#{mensaje['school.street']}">
 									</h:inputText>
 								</div>
@@ -95,7 +96,7 @@
 									value="#{mensaje['school.street.num.int']}" for="input-numero_int" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="5" disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.numeroInterior}" disabled="true"
 										id="input-numero_int" label="#{mensaje['school.street.num.int']}">
 									</h:inputText>
 								</div>
@@ -105,14 +106,47 @@
 									value="#{mensaje['school.street.num.ext']}" for="input-numero_ext" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value=" " disabled="true"
+										value="#{escuelaControlador.escuelaDetalleDto.numeroExterior}" disabled="true"
 										id="input-numero_ext" label="#{mensaje['school.street.num.ext']}">
 									</h:inputText>
 								</div>
-							</div>														
+							</div>
+
 							
 						</div>
 					</h:form>
+					
+					<h:dataTable id="tabla-escuela-detalle" 
+										 value="#{escuelaControlador.escuelaDetalleDto.licenciaDtoList}"
+										 var="licencia"
+										 styleClass="limite uk-table uk-table-hover uk-table-striped"
+										 headerClass="uk-background-primary uk-dark">
+								<h:column>
+									<f:facet name="header">Identificador</f:facet>
+									<h:outputText value="rutr05343"/>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Nombre</f:facet>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Tipo de Contacto</f:facet>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Teléfono</f:facet>
+								</h:column>
+								<h:column>
+									<f:facet name="header">Correo</f:facet>
+								</h:column>
+					  </h:dataTable>
+							
+							<div class="uk-section uk-section-secondary uk-light">
+								<div class="uk-grid-match uk-child-width-1-1@m">
+								<h3 class="uk-text-bold uk-text-warning uk-flex uk-flex-center">No hay datos</h3>
+								</div>
+								
+							</div>
+					
+					
 				</div>
 			</div>
 		</div>
