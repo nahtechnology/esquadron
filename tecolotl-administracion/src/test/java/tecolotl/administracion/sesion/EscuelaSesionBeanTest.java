@@ -32,6 +32,8 @@ public class EscuelaSesionBeanTest {
 	@Inject
 	private EscuelaSesionBean escuelaSesionBean;
 
+
+
     @Test
     public void buscaEscuelas() {
 		Collection<EscuelaDto> escuelaDtoCollection = escuelaSesionBean.busca();
@@ -44,17 +46,6 @@ public class EscuelaSesionBeanTest {
 		}
     }
 
-    @Test
-    public void buscaColonia() {
-    	ColoniaDto coloniaDto = escuelaSesionBean.busca("72000");
-    	Assert.assertNotNull(coloniaDto);
-    	Assert.assertNotNull(coloniaDto.getEstado());
-    	Assert.assertNotNull(coloniaDto.getMunicipio());
-    	Assert.assertFalse(coloniaDto.getListaCodigoPostal().isEmpty());
-    	for (CodigoPostal codigoPostal : coloniaDto.getListaCodigoPostal()) {
-			Assert.assertNotNull(codigoPostal.getNombre());
-		}
-	}
 
     @Test
 	public void insertar() {

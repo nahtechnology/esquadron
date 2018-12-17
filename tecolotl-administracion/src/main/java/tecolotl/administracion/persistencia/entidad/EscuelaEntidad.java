@@ -11,7 +11,12 @@ import java.util.Objects;
 @Table(name = "escuela", schema = "administracion")
 @NamedQueries({
 	@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e"),
-	@NamedQuery(name = "EscuelaEntidad.buscaExistencia", query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo")
+	@NamedQuery(
+			name = "EscuelaEntidad.buscaExistencia",
+			query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"),
+	@NamedQuery(
+			name = "EscuelaEntidad.buscaDesatalle",
+			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad c LEFT JOIN FETCH e.motivoBloqueoEntidad m LEFT JOIN FETCH e.licencia WHERE e.claveCentroTrabajo = :claveCentroTrabajo")
 })
 public class EscuelaEntidad {
 
@@ -42,7 +47,7 @@ public class EscuelaEntidad {
 	}
 
 	@NotNull
-	@ManyToOne(fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_colonia", referencedColumnName = "id")
 	public ColoniaEntidad getColoniaEntidad() {
 		return coloniaEntidad;
@@ -52,7 +57,7 @@ public class EscuelaEntidad {
 		this.coloniaEntidad = coloniaEntidad;
 	}
 
-	@OneToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_motivo_bloqueo", referencedColumnName = "id")
 	public MotivoBloqueoEntidad getMotivoBloqueoEntidad() {
 		return motivoBloqueoEntidad;
@@ -107,7 +112,7 @@ public class EscuelaEntidad {
 		this.numeroExterior = numeroExterior;
 	}
 
-	@OneToMany(mappedBy = "escuela")
+	@OneToMany(mappedBy = "escuela", fetch = FetchType.LAZY)
 	public List<LicenciaEntidad> getLicencia() {
 		return licencia;
 	}

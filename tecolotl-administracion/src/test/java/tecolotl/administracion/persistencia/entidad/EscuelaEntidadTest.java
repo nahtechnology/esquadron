@@ -46,4 +46,29 @@ public class EscuelaEntidadTest {
 			Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
 		}
 	}
+
+	@Test
+	public void buscaDetalle() {
+		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaDesatalle", EscuelaEntidad.class);
+		typedQuery.setParameter("claveCentroTrabajo", "21DBA0034X");
+		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
+		Assert.assertNotNull(escuelaEntidad);
+		Assert.assertNotNull(escuelaEntidad.getClaveCentroTrabajo());
+		Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
+		Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad());
+		Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad().getDescripcion());
+		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad());
+		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getNombre());
+		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getMunicipio());
+		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getMunicipio().getEstado());
+		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getMunicipio().getEstado().getNombre());
+		Assert.assertNotNull(escuelaEntidad.getDomicilio());
+		List<LicenciaEntidad> licenciaEntidadLista = escuelaEntidad.getLicencia();
+		Assert.assertNotNull(licenciaEntidadLista);
+		Assert.assertFalse(licenciaEntidadLista.isEmpty());
+		for (LicenciaEntidad licenciaEntidad : licenciaEntidadLista) {
+			Assert.assertNotNull(licenciaEntidad);
+			Assert.assertNotNull(licenciaEntidad.getInicio());
+		}
+	}
 }

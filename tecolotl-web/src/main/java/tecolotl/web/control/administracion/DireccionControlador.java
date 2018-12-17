@@ -2,6 +2,7 @@ package tecolotl.web.control.administracion;
 
 import tecolotl.administracion.dto.CodigoPostal;
 import tecolotl.administracion.dto.ColoniaDto;
+import tecolotl.administracion.sesion.ColoniaSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,18 +17,15 @@ import java.util.List;
 public class DireccionControlador {
 
     @Inject
-    private EscuelaSesionBean escuelaSesionBean;
+    private ColoniaSesionBean coloniaSesionBean;
 
-    @NotNull
-    @Size(min = 5, max = 6)
     private String codigoPostal;
-
     private String estado;
     private String municipio;
     private List<CodigoPostal> codigoPostalList;
 
     public void busca() {
-        ColoniaDto coloniaDto = escuelaSesionBean.busca(codigoPostal);
+        ColoniaDto coloniaDto = coloniaSesionBean.busca(codigoPostal);
         estado = coloniaDto.getEstado();
         municipio = coloniaDto.getMunicipio();
         codigoPostalList = coloniaDto.getListaCodigoPostal();

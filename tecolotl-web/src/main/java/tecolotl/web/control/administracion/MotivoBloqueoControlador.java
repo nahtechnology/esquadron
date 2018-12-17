@@ -9,18 +9,19 @@ import javax.inject.Named;
 
 import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 
 @Named
 @RequestScoped
 public class MotivoBloqueoControlador {
 
 	@Inject
-	private EscuelaSesionBean escuelaSesionBean;
+	private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 	private List<MotivoBloqueoDto> motivoBloqueoLista;
 
 	@PostConstruct
 	public void init() {
-		motivoBloqueoLista = escuelaSesionBean.motivoBloque();
+		motivoBloqueoLista = motivoBloqueoSesionBean.motivoBloque();
 	}
 
 	public List<MotivoBloqueoDto> getMotivoBloqueoLista() {

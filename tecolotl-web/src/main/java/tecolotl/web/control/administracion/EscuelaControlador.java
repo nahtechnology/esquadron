@@ -1,5 +1,6 @@
 package tecolotl.web.control.administracion;
 
+import tecolotl.administracion.dto.EscuelaDetalleDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.web.modelo.administracion.EscuelaModelo;
@@ -23,6 +24,7 @@ public class EscuelaControlador implements Serializable {
 
     private Collection<EscuelaDto> escuelas;
     private EscuelaModelo escuelaModelo;
+    private EscuelaDetalleDto escuelaDetalleDto;
 
     @PostConstruct
     public void init() {
@@ -33,8 +35,12 @@ public class EscuelaControlador implements Serializable {
     public void inserta() {
         logger.info(escuelaModelo.getClaveCentroTrabajo());
         escuelaSesionBean.insertar(escuelaModelo.getClaveCentroTrabajo(),
-                escuelaModelo.getIdColonia(), escuelaModelo.getNombre(), escuelaModelo.getCalle(),
+                Integer.parseInt(escuelaModelo.getIdColonia()), escuelaModelo.getNombre(), escuelaModelo.getCalle(),
                 escuelaModelo.getNumeroInterior(), escuelaModelo.getNumeroExterior());
+    }
+
+    public void busca(String claveCentroTrabajo) {
+        escuelaDetalleDto = escuelaSesionBean.busca(claveCentroTrabajo);
     }
 
     public Collection<EscuelaDto> getEscuelas() {

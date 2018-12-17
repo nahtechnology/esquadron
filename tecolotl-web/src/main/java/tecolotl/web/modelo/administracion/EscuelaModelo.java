@@ -1,10 +1,12 @@
 package tecolotl.web.modelo.administracion;
 
+import java.util.Objects;
+
 public class EscuelaModelo {
 
     private String claveCentroTrabajo;
     private String nombre;
-    private int idColonia;
+    private String idColonia;
     private String calle;
     private String numeroInterior;
     private String numeroExterior;
@@ -17,11 +19,11 @@ public class EscuelaModelo {
         this.calle = calle;
     }
 
-    public int getIdColonia() {
+    public String getIdColonia() {
         return idColonia;
     }
 
-    public void setIdColonia(int idColonia) {
+    public void setIdColonia(String idColonia) {
         this.idColonia = idColonia;
     }
 
@@ -55,5 +57,19 @@ public class EscuelaModelo {
 
     public void setNumeroExterior(String numeroExterior) {
         this.numeroExterior = numeroExterior;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EscuelaModelo that = (EscuelaModelo) o;
+        return claveCentroTrabajo.equals(that.claveCentroTrabajo) &&
+                idColonia.equals(that.idColonia);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(claveCentroTrabajo, idColonia);
     }
 }
