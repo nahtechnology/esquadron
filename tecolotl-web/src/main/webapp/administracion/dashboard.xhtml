@@ -48,11 +48,12 @@
 								<div uk-dropdown="boundary:.limite; mode: click" >
 									<ul class="uk-nav uk-dropdown-nav">
 										<h:form>
-											<h:commandLink value="Detalle" actionListener=""/>
+										<ui:remove>
+											<h:commandLink value="Detalle" actionListener=""/></ui:remove>
 											<li><a href="#" > <span uk-icon="icon: cog" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Detalle</span> </a></li>
 											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar</span></a></li>
 											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar</span></a></li>
-											<li><a href="#modal-bloqueo"  uk-toggle=""><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
+											<li><a href="#"  uk-toggle="target: #modal-bloqueo"><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
 										</h:form>
 									</ul>
 								</div>
@@ -214,18 +215,20 @@
 			   	 <div class="uk-modal-dialog uk-modal-body">
 			        <h2 class="uk-modal-title">Razón de bloqueo</h2>
 			       <!--  <div class="uk-width-1-1@s uk-width-1-2@m"> --> 
-						  <h:outputLabel for="select-colonia" value="#{mensaje['school.blockreason.title']}" styleClass="uk-form-label uk-text-capitalize"/>
+						  <h:outputLabel for="select-motivo" value="#{mensaje['school.blockreason.title']}" styleClass="uk-form-label uk-text-capitalize"/>
 							   <div class="uk-form-controls">
 									<h:selectOneMenu styleClass="uk-select"
 													 id="select-motivo"
-													 value="#{motivoBloqueoControlador.motivoBloqueoLista}"
-												
+													 value="#{escuelaControlador.escuelaDetalleDto.motivoBlqueo}"
 													 label="#{mensaje['school.blockreason.title']}">
-									<f:selectItems value="#{direccionControlador.codigoPostalList}"
-													   var="n"
-													   itemValue="#{n.id}"
-													   itemLabel="#{n.nombre}"
-													   itemDescription="#{n.nombre}"/>
+										<f:selectItems 
+										value="#{motivoBloqueoControlador.motivoBloqueoLista}"
+										var="bloqueo"
+										itemLabel="#{bloqueo.descripcion}"
+										itemValue="#{bloqueo.id}"
+										
+										
+										/>
 									<f:validateRequired/>
 									</h:selectOneMenu>
 							   </div>
