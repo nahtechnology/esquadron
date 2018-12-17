@@ -12,7 +12,6 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "tipo_contacto", schema = "administracion")
 @NamedQuery(name = "TipoContactoEntidad.busca", query = "SELECT m FROM TipoContactoEntidad m")
-
 public class TipoContactoEntidad {
 
 	@Id
