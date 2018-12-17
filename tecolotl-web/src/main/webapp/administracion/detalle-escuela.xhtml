@@ -137,6 +137,33 @@
 								<h:column>
 									<f:facet name="header">Correo</f:facet>
 								</h:column>
+								<h:column>
+								 <f:facet name="header">Opciones</f:facet>
+									<div class="uk-inline">
+										<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button">   </button>
+										<div uk-dropdown="boundary:.limite; mode: click">
+											<ul class="uk-nav uk-dropdown-nav">
+											
+												<h:form>
+													<ui:remove>
+														<h:commandLink value="Detalle" actionListener=""/></ui:remove>
+														<li><a href="#" > <span uk-icon="icon: cog" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Agregar contacto</span> </a></li>
+														<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar contacto</span></a></li>
+														<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar contacto</span></a></li>
+														<li><a href="#"  uk-toggle="target: #modal-bloqueo"><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
+												</h:form>
+											
+											</ul>
+								
+										 </div>
+									
+									
+									
+									</div>
+									
+									
+								
+								</h:column>
 					  </h:dataTable>
 							
 							<div class="uk-section uk-section-secondary uk-light">
