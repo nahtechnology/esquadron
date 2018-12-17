@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 
 @Named
@@ -24,7 +25,8 @@ public class EscuelaControlador implements Serializable {
 
     private Collection<EscuelaDto> escuelas;
     private EscuelaModelo escuelaModelo;
-    private EscuelaDetalleDto escuelaDetalleDto;
+    private int motivoBloqueo;
+    private String claveCentroTrabajo;
 
     @PostConstruct
     public void init() {
@@ -39,13 +41,12 @@ public class EscuelaControlador implements Serializable {
                 escuelaModelo.getNumeroInterior(), escuelaModelo.getNumeroExterior());
     }
 
-    public String detalle(String claveCentroTrabajo) {
-        escuelaDetalleDto = escuelaSesionBean.busca(claveCentroTrabajo);
-        return "/administracion/detalle-escuela.xhtml";
-    }
-
-    public void busca(String claveCentroTrabajo) {
-        escuelaDetalleDto = escuelaSesionBean.busca(claveCentroTrabajo);
+    public void bloquear(String claveCentroTrabajo) {
+        EscuelaDetalleDto escuelaDetalleDto = new EscuelaDetalleDto(claveCentroTrabajo);
+        int escuelaActualiar = ((List<EscuelaDto>)escuelas).indexOf(escuelaDetalleDto);
+        EscuelaDto escuelaDto = ((List<EscuelaDto>) escuelas).get(escuelaActualiar);
+        escuelaDto.setEstatus(motivoBloqueo == 0);
+        escuelaSesionBean.bloqueo(claveCentroTrabajo, motivoBloqueo);
     }
 
     public Collection<EscuelaDto> getEscuelas() {
@@ -64,11 +65,19 @@ public class EscuelaControlador implements Serializable {
         this.escuelaModelo = escuelaModelo;
     }
 
-    public EscuelaDetalleDto getEscuelaDetalleDto() {
-        return escuelaDetalleDto;
+    public int getMotivoBloqueo() {
+        return motivoBloqueo;
     }
 
-    public void setEscuelaDetalleDto(EscuelaDetalleDto escuelaDetalleDto) {
-        this.escuelaDetalleDto = escuelaDetalleDto;
+    public void setMotivoBloqueo(int motivoBloqueo) {
+        this.motivoBloqueo = motivoBloqueo;
+    }
+
+    public String getClaveCentroTrabajo() {
+        return claveCentroTrabajo;
+    }
+
+    public void setClaveCentroTrabajo(String claveCentroTrabajo) {
+        this.claveCentroTrabajo = claveCentroTrabajo;
     }
 }

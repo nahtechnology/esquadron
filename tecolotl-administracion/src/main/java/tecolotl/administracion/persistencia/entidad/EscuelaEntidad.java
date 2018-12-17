@@ -16,7 +16,7 @@ import java.util.Objects;
 			query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"),
 	@NamedQuery(
 			name = "EscuelaEntidad.buscaDesatalle",
-			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad c LEFT JOIN FETCH e.motivoBloqueoEntidad m LEFT JOIN FETCH e.licencia WHERE e.claveCentroTrabajo = :claveCentroTrabajo")
+			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad c LEFT JOIN FETCH e.motivoBloqueoEntidad m LEFT JOIN FETCH e.licencia LEFT JOIN FETCH  e.contacto WHERE e.claveCentroTrabajo = :claveCentroTrabajo")
 })
 public class EscuelaEntidad {
 
@@ -28,6 +28,7 @@ public class EscuelaEntidad {
 	private String numeroInterior;
 	private String numeroExterior;
 	private List<LicenciaEntidad> licencia;
+	private List<ContactoEntidad> contacto;
 
 	public EscuelaEntidad() {
 	}
@@ -119,6 +120,15 @@ public class EscuelaEntidad {
 
 	public void setLicencia(List<LicenciaEntidad> licencia) {
 		this.licencia = licencia;
+	}
+
+	@OneToMany(mappedBy = "escuelaEntidad")
+	public List<ContactoEntidad> getContacto() {
+		return contacto;
+	}
+
+	public void setContacto(List<ContactoEntidad> contacto) {
+		this.contacto = contacto;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package tecolotl.administracion.dto;
 
+import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.LicenciaEntidad;
 
@@ -17,6 +18,7 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
     private String estado;
     private String motivoBlqueo;
     private List<LicenciaDto> licenciaDtoList;
+    private List<ContactoDto> contactoDtoList;
 
     public EscuelaDetalleDto() {
     }
@@ -39,6 +41,10 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
         licenciaDtoList = new ArrayList<>();
         for (LicenciaEntidad licenciaEntidad : escuelaEntidad.getLicencia()) {
             licenciaDtoList.add(new LicenciaDto(licenciaEntidad));
+        }
+        contactoDtoList = new ArrayList<>();
+        for (ContactoEntidad contactoEntidad : escuelaEntidad.getContacto()) {
+            contactoDtoList.add(new ContactoDto(contactoEntidad));
         }
     }
 
@@ -112,5 +118,30 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
 
     public void setLicenciaDtoList(List<LicenciaDto> licenciaDtoList) {
         this.licenciaDtoList = licenciaDtoList;
+    }
+
+    public List<ContactoDto> getContactoDtoList() {
+        return contactoDtoList;
+    }
+
+    public void setContactoDtoList(List<ContactoDto> contactoDtoList) {
+        this.contactoDtoList = contactoDtoList;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("EscuelaDetalleDto{");
+        sb.append("numeroExterior='").append(numeroExterior).append('\'');
+        sb.append(", numeroInterior='").append(numeroInterior).append('\'');
+        sb.append(", calle='").append(calle).append('\'');
+        sb.append(", codigoPostal='").append(codigoPostal).append('\'');
+        sb.append(", colonia='").append(colonia).append('\'');
+        sb.append(", municipio='").append(municipio).append('\'');
+        sb.append(", estado='").append(estado).append('\'');
+        sb.append(", motivoBlqueo='").append(motivoBlqueo).append('\'');
+        sb.append(", licenciaDtoList=").append(licenciaDtoList);
+        sb.append(" super:").append(super.toString());
+        sb.append('}');
+        return sb.toString();
     }
 }

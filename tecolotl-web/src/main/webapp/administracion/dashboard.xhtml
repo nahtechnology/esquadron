@@ -11,7 +11,8 @@
            <div id="content" data-uk-height-viewport="expand: true">
 			   <div class="uk-padding">
 			    <div class="uk-overflow-auto">
-					<h:dataTable id="tablaEscuela"
+
+					<h:dataTable id="tabla-escuela" rendered="#{not empty escuelaControlador.escuelas}"
 					value="#{escuelaControlador.escuelas}"
 					var="escuela"
 					styleClass="limite uk-table uk-table-hover uk-table-striped "
@@ -48,18 +49,25 @@
 								<div uk-dropdown="boundary:.limite; mode: click" >
 									<ul class="uk-nav uk-dropdown-nav">
 										<h:form>
-										<ui:remove>
-											<h:commandLink value="Detalle" actionListener=""/></ui:remove>
-											<li><a href="#" > <span uk-icon="icon: cog" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Detalle</span> </a></li>
+											<li>
+                                                <h:commandLink value="Detalle" styleClass="uk-text-middle" action="detalle-escuela">
+                                                    <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
+                                                    <f:param name="claveCentroTrabajo" value="#{escuela.claveCentroTrabajo}"/>
+                                                </h:commandLink>
+                                            </li>
 											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar</span></a></li>
 											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar</span></a></li>
 											<li><a href="#"  uk-toggle="target: #modal-bloqueo"><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
+                                            <li><h:commandLink value="Bloquear" actionListener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo)}"/> </li>
 										</h:form>
 									</ul>
 								</div>
 							</div>
 						</h:column>
 					</h:dataTable>
+                    <h:panelGroup rendered="#{empty escuelaControlador.escuelas}">
+                        No hay datos
+                    </h:panelGroup>
 				  	</div>
 					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-nuevo"><h:outputText value="#{mensaje['button.add']}"/></button>
@@ -213,50 +221,33 @@
 			   <div id="modal-bloqueo"   uk-modal="" >
 			     <button class="uk-modal-close-default" type="button" uk-close=""></button>
 			   	 <div class="uk-modal-dialog uk-modal-body">
-			        <h2 class="uk-modal-title">Razón de bloqueo</h2>
+			        <h:form id="formulario-motivo-bloqueo">
+                     <h2 class="uk-modal-title">Razón de bloqueo</h2>
 			       <!--  <div class="uk-width-1-1@s uk-width-1-2@m"> --> 
 						  <h:outputLabel for="select-motivo" value="#{mensaje['school.blockreason.title']}" styleClass="uk-form-label uk-text-capitalize"/>
 							   <div class="uk-form-controls">
 									<h:selectOneMenu styleClass="uk-select"
 													 id="select-motivo"
-													 value="#{escuelaControlador.escuelaDetalleDto.motivoBlqueo}"
+													 value="#{escuelaControlador.motivoBloqueo}"
 													 label="#{mensaje['school.blockreason.title']}">
-										<f:selectItems 
-										value="#{motivoBloqueoControlador.motivoBloqueoLista}"
-										var="bloqueo"
-										itemLabel="#{bloqueo.descripcion}"
-										itemValue="#{bloqueo.id}"
-										
-										
-										/>
+										<f:selectItems
+                                            value="#{motivoBloqueoControlador.motivoBloqueoLista}"
+                                            var="bloqueo"
+                                            itemLabel="#{bloqueo.descripcion}"
+                                            itemValue="#{bloqueo.id}"/>
 									<f:validateRequired/>
 									</h:selectOneMenu>
 							   </div>
-						<!--  </div>--> 
-			        
-			        
-			        
-			        
-			        
-			        
-			        <p class="uk-text-right">
-			            <button class="uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
-			           <h:commandButton id="aceptar" styleClass="uk-button uk-button-primary uk-border-rounded uk-margin-left" value="#{mensaje['button.accept']}">
-									   <f:ajax execute="@form" event="click" listener="#{escuelaControlador.inserta()}" onevent="cierraModal"/>
-					   </h:commandButton>
-			        </p>
+                        <p class="uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
+                           <h:commandButton id="aceptar" styleClass="uk-button uk-button-primary uk-border-rounded uk-margin-left" value="#{mensaje['button.accept']}">
+                                           <f:ajax execute="formulario-motivo-bloqueo" event="click" listener="#{escuelaControlador.bloquear()}" onevent="cierraModal" render=":tabla-escuela"/>
+                           </h:commandButton>
+                        </p>
+                    </h:form>
 			    </div>
-			   	 
 			   </div>
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
-			   
+
 		   	</div>
 			<script type="text/javascript">
 				document.addEventListener("DOMContentLoaded", function (evt) {

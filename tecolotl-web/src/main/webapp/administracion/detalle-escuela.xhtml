@@ -86,18 +86,18 @@
 									value="#{mensaje['school.street']}" for="input-calle" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.calle}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.calle}" disabled="true"
 										id="input-calle" label="#{mensaje['school.street']}">
 									</h:inputText>
 								</div>
 							</div>	
 							<div class="uk-width-1-1@s uk-width-1-5@m">
 								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
-									value="#{mensaje['school.street.num.int']}" for="input-numero_int" />
+									value="#{mensaje['school.street.num.int']}" for="input-numero-interior" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.numeroInterior}" disabled="true"
-										id="input-numero_int" label="#{mensaje['school.street.num.int']}">
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.numeroInterior}" disabled="true"
+										id="input-numero-interior" label="#{mensaje['school.street.num.int']}">
 									</h:inputText>
 								</div>
 							</div>						
@@ -106,17 +106,16 @@
 									value="#{mensaje['school.street.num.ext']}" for="input-numero_ext" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.numeroExterior}" disabled="true"
+										value=" " disabled="true"
 										id="input-numero_ext" label="#{mensaje['school.street.num.ext']}">
 									</h:inputText>
 								</div>
-							</div>
-
+							</div>														
 							
 						</div>
 					</h:form>
-					
-					<h:dataTable id="tabla-escuela-detalle" 
+
+					<h:dataTable id="tabla-escuela-detalle"
 										 value="#{escuelaControlador.escuelaDetalleDto.licenciaDtoList}"
 										 var="licencia"
 										 styleClass="limite uk-table uk-table-hover uk-table-striped"
@@ -165,15 +164,15 @@
 								
 								</h:column>
 					  </h:dataTable>
-							
+
 							<div class="uk-section uk-section-secondary uk-light">
 								<div class="uk-grid-match uk-child-width-1-1@m">
 								<h3 class="uk-text-bold uk-text-warning uk-flex uk-flex-center">No hay datos</h3>
 								</div>
-								
+
 							</div>
-					
-					
+
+
 				</div>
 			</div>
 		</div>
