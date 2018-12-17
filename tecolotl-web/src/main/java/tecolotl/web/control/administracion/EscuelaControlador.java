@@ -39,6 +39,11 @@ public class EscuelaControlador implements Serializable {
                 escuelaModelo.getNumeroInterior(), escuelaModelo.getNumeroExterior());
     }
 
+    public String detalle(String claveCentroTrabajo) {
+        escuelaDetalleDto = escuelaSesionBean.busca(claveCentroTrabajo);
+        return "/administracion/detalle-escuela.xhtml";
+    }
+
     public void busca(String claveCentroTrabajo) {
         escuelaDetalleDto = escuelaSesionBean.busca(claveCentroTrabajo);
     }
@@ -57,5 +62,13 @@ public class EscuelaControlador implements Serializable {
 
     public void setEscuelaModelo(EscuelaModelo escuelaModelo) {
         this.escuelaModelo = escuelaModelo;
+    }
+
+    public EscuelaDetalleDto getEscuelaDetalleDto() {
+        return escuelaDetalleDto;
+    }
+
+    public void setEscuelaDetalleDto(EscuelaDetalleDto escuelaDetalleDto) {
+        this.escuelaDetalleDto = escuelaDetalleDto;
     }
 }
