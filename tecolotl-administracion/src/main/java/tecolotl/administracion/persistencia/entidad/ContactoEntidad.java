@@ -7,7 +7,10 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "contacto", schema = "administracion")
-@NamedQuery(name = "ContactoEntidad.busca", query = "SELECT m FROM ContactoEntidad m")
+@NamedQueries({
+		@NamedQuery(name = "ContactoEntidad.busca", query = "SELECT m FROM ContactoEntidad m"),
+		@NamedQuery(name = "ContactoEntidad.buscaCCT", query = "SELECT  m FROM ContactoEntidad m WHERE m.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
+})
 public class ContactoEntidad implements Serializable {
 	
     @Id

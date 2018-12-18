@@ -3,6 +3,7 @@ package tecolotl.administracion.sesion;
 import tecolotl.administracion.dto.EscuelaDetalleDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
+import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
@@ -160,6 +161,8 @@ public class EscuelaSesionBean {
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaDesatalle", EscuelaEntidad.class);
 		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
 		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
+		List<ContactoEntidad> contactoEntidadList = entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class).getResultList();
+		escuelaEntidad.setContacto(contactoEntidadList);
 		return new EscuelaDetalleDto(escuelaEntidad);
 	}
 
