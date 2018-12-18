@@ -26,7 +26,7 @@
 									value="#{mensaje['school.cct']}" for="input-cct" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.claveCentroTrabajo}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.claveCentroTrabajo}" disabled="true"
 										id="input-cct" label="#{mensaje['school.cct']}">
 									</h:inputText>
 								</div>
@@ -36,7 +36,7 @@
 									value="#{mensaje['school.name']}" for="input-nombre" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.nombre}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.nombre}" disabled="true"
 										id="input-nombre" label="#{mensaje['school.name']}">
 									</h:inputText>
 								</div>
@@ -46,7 +46,7 @@
 									value="#{mensaje['school.postalcode']}" for="input-cp" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.codigoPostal}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.codigoPostal}" disabled="true"
 										id="input-cp" label="#{mensaje['school.postalcode']}">
 									</h:inputText>
 								</div>
@@ -56,7 +56,7 @@
 									value="#{mensaje['school.colony']}" for="input-colonia" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.colonia}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.colonia}" disabled="true"
 										id="input-colonia" label="#{mensaje['school.colony']}">
 									</h:inputText>
 								</div>
@@ -66,7 +66,7 @@
 									value="#{mensaje['school.city']}" for="input-municipio" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.municipio}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.municipio}" disabled="true"
 										id="input-municipio" label="#{mensaje['school.city']}">
 									</h:inputText>
 								</div>
@@ -76,7 +76,7 @@
 									value="#{mensaje['school.town']}" for="input-estado" />
 								<div class="uk-form-controls">
 									<h:inputText styleClass="uk-input"
-										value="#{escuelaControlador.escuelaDetalleDto.estado}" disabled="true"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.estado}" disabled="true"
 										id="input-estado" label="#{mensaje['school.town']}">
 									</h:inputText>
 								</div>
@@ -116,7 +116,7 @@
 					</h:form>
 
 					<h:dataTable id="tabla-escuela-detalle"
-										 value="#{escuelaControlador.escuelaDetalleDto.licenciaDtoList}"
+										 value="#{escuelaDetalleControlador.escuelaDetalleDto.licenciaDtoList}"
 										 var="licencia"
 										 styleClass="limite uk-table uk-table-hover uk-table-striped"
 										 headerClass="uk-background-primary uk-dark">

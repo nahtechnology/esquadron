@@ -26,7 +26,6 @@ public class EscuelaControlador implements Serializable {
     private Collection<EscuelaDto> escuelas;
     private EscuelaModelo escuelaModelo;
     private int motivoBloqueo;
-    private String claveCentroTrabajo;
 
     @PostConstruct
     public void init() {
@@ -73,11 +72,4 @@ public class EscuelaControlador implements Serializable {
         this.motivoBloqueo = motivoBloqueo;
     }
 
-    public String getClaveCentroTrabajo() {
-        return claveCentroTrabajo;
-    }
-
-    public void setClaveCentroTrabajo(String claveCentroTrabajo) {
-        this.claveCentroTrabajo = claveCentroTrabajo;
-    }
 }

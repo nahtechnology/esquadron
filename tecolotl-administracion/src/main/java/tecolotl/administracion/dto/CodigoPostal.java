@@ -2,15 +2,16 @@ package tecolotl.administracion.dto;
 
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class CodigoPostal {
+public class CodigoPostal implements Serializable {
 
     private String nombre;
-    private int id;
+    private String id;
 
     public CodigoPostal(ColoniaEntidad coloniaEntidad) {
-        id = coloniaEntidad.getId();
+        id = String.valueOf(coloniaEntidad.getId());
         nombre = coloniaEntidad.getNombre();
     }
 
@@ -22,11 +23,11 @@ public class CodigoPostal {
         this.nombre = nombre;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

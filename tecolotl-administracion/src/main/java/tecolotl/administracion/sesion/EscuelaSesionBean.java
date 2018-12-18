@@ -150,7 +150,7 @@ public class EscuelaSesionBean {
 	}
 
 	/**
-	 * Busca una escuela una escuela por id clave centro de trabajo y muestra todos los detalles
+	 * Busca una escuela por id clave centro de trabajo y muestra todos los detalles
 	 * @param claveCentroTrabajo Llave primaria de la escuela
 	 * @return Objecto con los detalles de la escuela
 	 */
@@ -161,7 +161,9 @@ public class EscuelaSesionBean {
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaDesatalle", EscuelaEntidad.class);
 		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
 		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
-		List<ContactoEntidad> contactoEntidadList = entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class).getResultList();
+		TypedQuery<ContactoEntidad> contactoEntidadTypedQuery =entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class);
+		contactoEntidadTypedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		List<ContactoEntidad> contactoEntidadList = contactoEntidadTypedQuery.getResultList();
 		escuelaEntidad.setContacto(contactoEntidadList);
 		return new EscuelaDetalleDto(escuelaEntidad);
 	}

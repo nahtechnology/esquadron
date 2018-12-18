@@ -92,7 +92,6 @@ public class EscuelaEntidad {
 
 	@Basic
 	@Column(name = "numero_interior")
-	@NotNull
 	@Size(max = 15, min = 1)
 	public String getNumeroInterior() {
 		return numeroInterior;
@@ -104,6 +103,7 @@ public class EscuelaEntidad {
 
 	@Basic
 	@Column(name = "numero_exterior")
+	@NotNull
 	@Size(max = 15, min = 1)
 	public String getNumeroExterior() {
 		return numeroExterior;

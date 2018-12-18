@@ -3,13 +3,10 @@ package tecolotl.web.control.administracion;
 import tecolotl.administracion.dto.CodigoPostal;
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.sesion.ColoniaSesionBean;
-import tecolotl.administracion.sesion.EscuelaSesionBean;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 
 @Named

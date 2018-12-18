@@ -1,5 +1,7 @@
 package tecolotl.web.modelo.administracion;
 
+import tecolotl.administracion.dto.CodigoPostal;
+
 import java.util.Objects;
 
 public class EscuelaModelo {

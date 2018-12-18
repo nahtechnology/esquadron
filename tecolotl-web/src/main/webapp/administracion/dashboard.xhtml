@@ -136,11 +136,11 @@
 															 id="select-colonia"
 															 value="#{escuelaControlador.escuelaModelo.idColonia}"
 															 label="#{mensaje['school.colony']}">
+                                                <f:ajax/>
 												<f:selectItems value="#{direccionControlador.codigoPostalList}"
 															   var="colonia"
 															   itemValue="#{colonia.id}"
-															   itemLabel="#{colonia.nombre}"
-															   itemDescription="#{colonia.nombre}"/>
+															   itemLabel="#{colonia.nombre}"/>
 												<f:validateRequired/>
 											</h:selectOneMenu>
 									   </div>
@@ -210,7 +210,7 @@
 						   <div class="uk-modal-footer ">
 							   <div class="uk-flex uk-flex-right">
 								   <button class="uk-modal-close uk-button uk-button-default uk-border-rounded uk-margin-right"><h:outputText value="#{mensaje['button.cancel']}"/></button>
-								   <h:commandButton id="aceptar" styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
+								   <h:commandButton id="boton-aceptar" styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
 									   <f:ajax execute="@form" event="click" listener="#{escuelaControlador.inserta()}" render="mensajes-error"/>
 								   </h:commandButton>
 							   </div>
