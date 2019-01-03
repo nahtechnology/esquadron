@@ -168,4 +168,12 @@ public class EscuelaSesionBean {
 		return new EscuelaDetalleDto(escuelaEntidad);
 	}
 
+	/**
+	 * Elimina una escuela
+	 * @param claveCentroTrabajo Identificador para la escuela
+	 */
+	public void elimina(String claveCentroTrabajo) {
+		entityManager.remove(entityManager.find(EscuelaEntidad.class, claveCentroTrabajo));
+	}
+
 }

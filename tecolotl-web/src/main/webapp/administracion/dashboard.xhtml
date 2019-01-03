@@ -50,13 +50,20 @@
 									<ul class="uk-nav uk-dropdown-nav">
 										<h:form>
 											<li>
-                                                <h:commandLink value="Detalle" styleClass="uk-text-middle" action="detalle-escuela">
+                                                <h:link outcome="detalle-escuela">
                                                     <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
+													<span class="uk-text-middle">Detalle</span>
                                                     <f:param name="claveCentroTrabajo" value="#{escuela.claveCentroTrabajo}"/>
-                                                </h:commandLink>
+                                                </h:link>
                                             </li>
 											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar</span></a></li>
-											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar</span></a></li>
+											<li>
+												<h:commandLink onclick="borrarEscuela()">
+													<span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>
+													<span class="uk-text-middle">Eliminar</span>
+													<f:ajax event="click" listener="#{escuelaControlador.eliminar(escuela.claveCentroTrabajo)}" render="tabla-escuela"/>
+												</h:commandLink>
+											</li>
 											<li><a href="#"  uk-toggle="target: #modal-bloqueo"><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
                                             <li><h:commandLink value="Bloquear" actionListener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo)}"/> </li>
 										</h:form>
@@ -114,7 +121,7 @@
 										   <h:inputText styleClass="uk-input"
 														id="input-codigo-postal"
 														pt:placeholder="#{mensaje['school.postalcode']}"
-														value="#{direccionControlador.codigoPostal}"
+														value="#{escuelaControlador.escuelaModelo.codigoPostal}"
 														label="#{mensaje['school.postalcode']}">
 												<f:validateLength minimum="4" maximum="5"/>
 											   <f:validateRequired/>
@@ -125,8 +132,8 @@
 									   <h:commandButton id="boton-direccion" value="#{mensaje['button.search']}" styleClass="uk-button uk-button-secondary uk-border-rounded uk-position-bottom-center">
 										   <f:ajax event="click"
 												   execute="formulario-nuevo:input-codigo-postal"
-												   listener="#{direccionControlador.busca()}"
-												   render="formulario-nuevo:select-colonia input-municipio input-estado mensajes-error" onevent="limpiarSelector"/>
+												   listener="#{escuelaControlador.buscaColinas()}"
+												   render="select-colonia input-municipio input-estado mensajes-error" onevent="limpiarSelector"/>
 									   </h:commandButton>
 								   </div>
 								   <div class="uk-width-1-1@s uk-width-1-2@m">
@@ -136,8 +143,8 @@
 															 id="select-colonia"
 															 value="#{escuelaControlador.escuelaModelo.idColonia}"
 															 label="#{mensaje['school.colony']}">
-                                                <f:ajax/>
-												<f:selectItems value="#{direccionControlador.codigoPostalList}"
+												<f:selectItem itemLabel="Seleccione la colonia..." itemDisabled="true" itemValue="0"/>
+												<f:selectItems value="#{escuelaControlador.escuelaModelo.codigoPostalList}"
 															   var="colonia"
 															   itemValue="#{colonia.id}"
 															   itemLabel="#{colonia.nombre}"/>
@@ -150,7 +157,7 @@
 									   <div class="uk-form-controls">
 										   <h:inputText styleClass="uk-input"
 														id="input-municipio"
-														value="#{direccionControlador.municipio}"
+														value="#{escuelaControlador.escuelaModelo.municipio}"
 														readonly="true"
 														pt:placeholder="#{mensaje['school.city']}"/>
 									   </div>
@@ -159,7 +166,7 @@
 									   <h:outputLabel id="label-estado" for="input-estado" value="#{mensaje['school.town']}" styleClass="uk-text-capitalize uk-form-label"/>
 									   <h:inputText styleClass="uk-input"
 													id="input-estado"
-													value="#{direccionControlador.estado}"
+													value="#{escuelaControlador.escuelaModelo.estado}"
 													readonly="true"
 													pt:placeholder="#{mensaje['school.town']}"/>
 								   </div>
@@ -178,12 +185,12 @@
 								   </div>
 								   <!--	numero exterior -->
 								   <div class="uk-width-1-1@s uk-width-1-6@m">
-									   <h:outputLabel id="label-numero-exterior" value="#{mensaje['school.street.num.int']}" styleClass="uk-text-capitalize uk-form-label"/>
+									   <h:outputLabel id="label-numero-exterior" value="#{mensaje['school.street.num.ext']}" styleClass="uk-text-capitalize uk-form-label"/>
 									   <div class="uk-form-controls">
 										   <h:inputText styleClass="uk-input"
 														id="input-numero-interior"
-														pt:placeholder="#{mensaje['school.street.num.int']}"
-														value="#{escuelaControlador.escuelaModelo.numeroInterior}"
+														pt:placeholder="#{mensaje['school.street.num.ext']}"
+														value="#{escuelaControlador.escuelaModelo.numeroExterior}"
 														label="#{mensaje['school.street.num.int']}">
 											   <f:validateRequired/>
 											   <f:validateLength minimum="1" maximum="15"/>
@@ -191,12 +198,12 @@
 									   </div>
 								   </div>
 								   <div class="uk-width-1-1@s uk-width-1-6@m">
-									   <h:outputLabel id="label-nummero-exterior" value="#{mensaje['school.street.num.ext']}" styleClass="uk-form-label uk-text-capitalize"/>
+									   <h:outputLabel id="label-nummero-exterior" value="#{mensaje['school.street.num.int']}" styleClass="uk-form-label uk-text-capitalize"/>
 									   <div class="uk-form-controls">
 										   <h:inputText styleClass="uk-input"
 														id="input-numero-exterior"
-														pt:placeholder="#{mensaje['school.street.num.ext']}"
-														value="#{escuelaControlador.escuelaModelo.numeroExterior}"
+														pt:placeholder="#{mensaje['school.street.num.int']}"
+														value="#{escuelaControlador.escuelaModelo.numeroInterior}"
 														label="#{mensaje['school.street.num.ext']}">
 											   <f:validateLength maximum="15"/>
 										   </h:inputText>
@@ -264,6 +271,13 @@
 				}
 				function cierraModal(informacion) {
 					console.log("event:"+informacion.event+" estauts"+informacion.status+" type"+informacion.type);
+				}
+				function borrarEscuela() {
+					UIkit.modal.confirm('UIkit confirm!').then(function () {
+						return true;
+					}, function () {
+						return false;
+					});
 				}
 			</script>
         </ui:define>

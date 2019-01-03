@@ -2,6 +2,7 @@ package tecolotl.web.modelo.administracion;
 
 import tecolotl.administracion.dto.CodigoPostal;
 
+import java.util.List;
 import java.util.Objects;
 
 public class EscuelaModelo {
@@ -12,6 +13,10 @@ public class EscuelaModelo {
     private String calle;
     private String numeroInterior;
     private String numeroExterior;
+    private String codigoPostal;
+    private String estado;
+    private String municipio;
+    private List<CodigoPostal> codigoPostalList;
 
     public String getCalle() {
         return calle;
@@ -61,17 +66,35 @@ public class EscuelaModelo {
         this.numeroExterior = numeroExterior;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EscuelaModelo that = (EscuelaModelo) o;
-        return claveCentroTrabajo.equals(that.claveCentroTrabajo) &&
-                idColonia.equals(that.idColonia);
+    public String getCodigoPostal() {
+        return codigoPostal;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(claveCentroTrabajo, idColonia);
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
+    }
+
+    public List<CodigoPostal> getCodigoPostalList() {
+        return codigoPostalList;
+    }
+
+    public void setCodigoPostalList(List<CodigoPostal> codigoPostalList) {
+        this.codigoPostalList = codigoPostalList;
     }
 }
