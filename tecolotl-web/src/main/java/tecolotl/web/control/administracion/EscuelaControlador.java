@@ -3,8 +3,10 @@ package tecolotl.web.control.administracion;
 import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaDetalleDto;
 import tecolotl.administracion.dto.EscuelaDto;
+import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.sesion.ColoniaSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.web.modelo.administracion.EscuelaModelo;
 
 import javax.annotation.PostConstruct;
@@ -28,7 +30,11 @@ public class EscuelaControlador implements Serializable {
     @Inject
     private ColoniaSesionBean coloniaSesionBean;
 
+    @Inject
+    private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
+
     private Collection<EscuelaDto> escuelas;
+    private List<MotivoBloqueoDto> motivos;
     private EscuelaModelo escuelaModelo;
     private int motivoBloqueo;
 
@@ -36,6 +42,7 @@ public class EscuelaControlador implements Serializable {
     public void init() {
         escuelas = escuelaSesionBean.busca();
         escuelaModelo = new EscuelaModelo();
+        motivos = motivoBloqueoSesionBean.motivoBloque();
     }
 
     public void inserta() {
@@ -47,10 +54,6 @@ public class EscuelaControlador implements Serializable {
     }
 
     public void bloquear(String claveCentroTrabajo) {
-        EscuelaDetalleDto escuelaDetalleDto = new EscuelaDetalleDto(claveCentroTrabajo);
-        int escuelaActualiar = ((List<EscuelaDto>)escuelas).indexOf(escuelaDetalleDto);
-        EscuelaDto escuelaDto = ((List<EscuelaDto>) escuelas).get(escuelaActualiar);
-        escuelaDto.setEstatus(motivoBloqueo == 0);
         escuelaSesionBean.bloqueo(claveCentroTrabajo, motivoBloqueo);
     }
 
@@ -89,4 +92,11 @@ public class EscuelaControlador implements Serializable {
         this.motivoBloqueo = motivoBloqueo;
     }
 
+    public List<MotivoBloqueoDto> getMotivos() {
+        return motivos;
+    }
+
+    public void setMotivos(List<MotivoBloqueoDto> motivos) {
+        this.motivos = motivos;
+    }
 }
