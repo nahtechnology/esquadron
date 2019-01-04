@@ -915,14 +915,14 @@ a.uk-link-reset:hover,
 .uk-table-hover > tr:hover,
 .uk-table-hover tbody tr:hover {
  /* background: #ffd;*/
- background-color: rgba(12,153,184,0.3);
+ background-color: rgba(30,135,240,0.1);
 }
 /* Active state
  ========================================================================== */
 .uk-table > tr.uk-active,
 .uk-table tbody tr.uk-active {
   /*background: #ffd;*/
-   background-color: rgba(12,153,184,0.3);
+   background-color: rgba(30,135,240,0.1);
 }
 /* Size modifier
  ========================================================================== */

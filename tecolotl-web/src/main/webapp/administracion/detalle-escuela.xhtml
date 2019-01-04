@@ -19,6 +19,8 @@
 		<div id="content" data-uk-height-viewport="expand: true">
 			<div class="uk-padding">
 				<div class="uk-overflow-auto">
+
+					<h1 class="uk-heading-line uk-text-center"><span>Detalles de la escuela</span></h1>
 					<h:form class="uk-form-stacked">
 						<div class="uk-grid-small" uk-grid="">						
 							<div class="uk-width-1-1@s uk-width-1-5@m">
@@ -91,6 +93,18 @@
 									</h:inputText>
 								</div>
 							</div>	
+												
+							<div class="uk-width-1-1@s uk-width-1-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+									value="#{mensaje['school.street.num.ext']}" for="input-numero-ext" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+										value="#{escuelaDetalleControlador.escuelaDetalleDto.numeroExterior} " disabled="true"
+										id="input-numero-ext" label="#{mensaje['school.street.num.ext']}">
+									</h:inputText>
+								</div>
+							</div>	
+							
 							<div class="uk-width-1-1@s uk-width-1-5@m">
 								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
 									value="#{mensaje['school.street.num.int']}" for="input-numero-interior" />
@@ -100,56 +114,44 @@
 										id="input-numero-interior" label="#{mensaje['school.street.num.int']}">
 									</h:inputText>
 								</div>
-							</div>						
-							<div class="uk-width-1-1@s uk-width-1-5@m">
-								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
-									value="#{mensaje['school.street.num.ext']}" for="input-numero_ext" />
-								<div class="uk-form-controls">
-									<h:inputText styleClass="uk-input"
-										value=" " disabled="true"
-										id="input-numero_ext" label="#{mensaje['school.street.num.ext']}">
-									</h:inputText>
-								</div>
 							</div>														
 							
 						</div>
 					</h:form>
 
+					<h2 class="uk-heading-line uk-text-center"><span>Contactos de la escuela</span></h2>
+
 					<h:dataTable id="tabla-escuela-detalle"
-										 value="#{escuelaDetalleControlador.escuelaDetalleDto.licenciaDtoList}"
-										 var="licencia"
-										 styleClass="limite uk-table uk-table-hover uk-table-striped"
+										 value="#{escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"
+										 var="contacto"
+										 styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped"
 										 headerClass="uk-background-primary uk-dark">
-								<h:column>
-									<f:facet name="header">Identificador</f:facet>
-									<h:outputText value="rutr05343"/>
-								</h:column>
+								
 								<h:column>
 									<f:facet name="header">Nombre</f:facet>
+									#{contacto.nombre}
 								</h:column>
 								<h:column>
-									<f:facet name="header">Tipo de Contacto</f:facet>
+									<f:facet name="header">Tipo</f:facet>
+									#{contacto.tipo}
 								</h:column>
 								<h:column>
 									<f:facet name="header">Teléfono</f:facet>
+									#{contacto.telefono}
 								</h:column>
-								<h:column>
-									<f:facet name="header">Correo</f:facet>
-								</h:column>
+								
 								<h:column>
 								 <f:facet name="header">Opciones</f:facet>
 									<div class="uk-inline">
-										<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button">   </button>
+										<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
 										<div uk-dropdown="boundary:.limite; mode: click">
 											<ul class="uk-nav uk-dropdown-nav">
 											
 												<h:form>
 													<ui:remove>
 														<h:commandLink value="Detalle" actionListener=""/></ui:remove>
-														<li><a href="#" > <span uk-icon="icon: cog" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Agregar contacto</span> </a></li>
 														<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar contacto</span></a></li>
 														<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar contacto</span></a></li>
-														<li><a href="#"  uk-toggle="target: #modal-bloqueo"><span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Bloquear</span></a></li>
 												</h:form>
 											
 											</ul>
@@ -165,13 +167,59 @@
 								</h:column>
 					  </h:dataTable>
 
+					  <h:panelGroup rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}" >
+
 							<div class="uk-section uk-section-secondary uk-light">
 								<div class="uk-grid-match uk-child-width-1-1@m">
 								<h3 class="uk-text-bold uk-text-warning uk-flex uk-flex-center">No hay datos</h3>
 								</div>
 
 							</div>
+						</h:panelGroup>
 
+					<div class="uk-flex uk-flex-right uk-margin">
+						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-contacto"><h:outputText value="#{mensaje['button.add']}"/></button>
+					</div>
+
+
+
+
+					<div id="modal-contacto"  uk-modal="">
+
+					   	<div class="uk-modal-dialog">
+								<button class="uk-modal-close-default" type="button" uk-close=""></button>
+								<div class="uk-modal-header">
+									<h2 class="uk-modal-title uk-text-center">Nuevo contacto</h2>
+								</div>
+								<div class="uk-modal-body">
+									<h:form >
+
+										<div class="uk-grid-small" uk-grid="">
+											<div class="uk-width-1-3@s">
+												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.cct']}" for="input-cct" />
+											</div>
+											<div class="uk-width-1-3@s">
+												<input class="uk-input" type="text" placeholder="25"/>
+											</div>
+											<div class="uk-width-1-3@s">
+												<input class="uk-input" type="text" placeholder="25"/>
+											</div>
+										</div>
+
+									</h:form>
+
+
+								</div>
+
+								<div class="uk-modal-footer uk-text-right">
+									<button class="uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
+									<button class="uk-button uk-button-primary" type="button"><h:outputText value="#{mensaje['button.accept']}"/></button>
+								</div>
+
+						</div>
+
+
+					</div>
 
 				</div>
 			</div>

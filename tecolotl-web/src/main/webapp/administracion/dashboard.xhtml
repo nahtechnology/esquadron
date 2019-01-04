@@ -15,7 +15,7 @@
 					<h:dataTable id="tabla-escuela" rendered="#{not empty escuelaControlador.escuelas}"
 					value="#{escuelaControlador.escuelas}"
 					var="escuela"
-					styleClass="limite uk-table uk-table-hover uk-table-striped "
+					styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped "
 					headerClass="uk-background-primary uk-dark">
 						<h:column >
 							<f:facet name="header">CCT</f:facet>
@@ -278,9 +278,13 @@
 					}, function () {
 						return false;
 					});
+					
+					
+					
+					
 				}
 			</script>
         </ui:define>
-    </ui:composition>carcasa moto g4
+    </ui:composition>
 
 </html>
