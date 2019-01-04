@@ -114,8 +114,19 @@
 										id="input-numero-interior" label="#{mensaje['school.street.num.int']}">
 									</h:inputText>
 								</div>
-							</div>														
-							
+							</div>
+
+							<div class="uk-width-1-1@s uk-width-1-5@m">
+								<h:outputLabel styleClass="uk-text-capitalize uk-form-label"
+											   value="#{mensaje['school.blockreason.title']}" for="razon-bloqueo" />
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+												 value="#{escuelaDetalleControlador.escuelaDetalleDto.motivoBlqueo}" disabled="true"
+												 id="razon-bloqueo" label="#{mensaje['school.blockreason.title']}">
+									</h:inputText>
+								</div>
+							</div>
+
 						</div>
 					</h:form>
 
@@ -167,12 +178,14 @@
 								</h:column>
 					  </h:dataTable>
 
-					  <h:panelGroup rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}" >
+					  <h:panelGroup styleClass="gochi" rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}" >
 
-							<div class="uk-section uk-section-secondary uk-light">
-								<div class="uk-grid-match uk-child-width-1-1@m">
-								<h3 class="uk-text-bold uk-text-warning uk-flex uk-flex-center">No hay datos</h3>
-								</div>
+							<div class="uk-section-small uk-section-default uk-light uk-flex uk-flex-center  ">
+
+
+								<img class="" data-src="../resources/img/vacio.svg" alt="" width="180px" height="180px" uk-img=""/>
+
+
 
 							</div>
 						</h:panelGroup>
