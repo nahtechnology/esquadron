@@ -132,53 +132,61 @@
 
 					<h2 class="uk-heading-line uk-text-center"><span>Contactos de la escuela</span></h2>
 
-					<h:dataTable id="tabla-escuela-detalle"
-										 value="#{escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"
-										 var="contacto"
-										 styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped"
-										 headerClass="uk-background-primary uk-dark">
-								
-								<h:column>
-									<f:facet name="header">Nombre</f:facet>
-									#{contacto.nombre}
-								</h:column>
-								<h:column>
-									<f:facet name="header">Tipo</f:facet>
-									#{contacto.tipo}
-								</h:column>
-								<h:column>
-									<f:facet name="header">Teléfono</f:facet>
-									#{contacto.telefono}
-								</h:column>
-								
-								<h:column>
-								 <f:facet name="header">Opciones</f:facet>
-									<div class="uk-inline">
-										<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
-										<div uk-dropdown="boundary:.limite; mode: click">
-											<ul class="uk-nav uk-dropdown-nav">
-											
-												<h:form>
-													<ui:remove>
-														<h:commandLink value="Detalle" actionListener=""/></ui:remove>
-														<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar contacto</span></a></li>
-														<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar contacto</span></a></li>
-												</h:form>
-											
-											</ul>
-								
-										 </div>
-									
-									
-									
-									</div>
-									
-									
-								
-								</h:column>
-					  </h:dataTable>
 
-					  <h:panelGroup styleClass="gochi" rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}" >
+					<h:dataTable id="tabla-escuela-detalle"
+								 value="#{escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"
+								 var="contacto"
+								 styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped"
+								 headerClass="uk-background-primary uk-dark"
+								 rendered="#{not empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}">
+
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							#{contacto.nombre}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Tipo</f:facet>
+							#{contacto.tipo}
+						</h:column>
+						<h:column>
+							<f:facet name="header">Teléfono</f:facet>
+							#{contacto.telefono}
+						</h:column>
+
+						<h:column>
+							<f:facet name="header">Opciones</f:facet>
+							<div class="uk-inline">
+								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
+								<div uk-dropdown="boundary:.limite; mode: click">
+									<ul class="uk-nav uk-dropdown-nav">
+
+										<h:form>
+											<ui:remove>
+												<h:commandLink value="Detalle" actionListener=""/></ui:remove>
+											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar contacto</span></a></li>
+											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar contacto</span></a></li>
+										</h:form>
+
+									</ul>
+
+								</div>
+
+
+
+							</div>
+
+						</h:column>
+					</h:dataTable>
+
+					<h:panelGrid
+							id="tabla-escuela-detalle2"
+							value="#{escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"
+							styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped"
+							headerClass="uk-background-primary uk-dark"
+							rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}">
+
+						<f:facet name="header"> <h:outputText value=" "/></f:facet>
+						<h:panelGroup>
 
 							<div class="uk-section-small uk-section-default uk-light uk-flex uk-flex-center  ">
 
@@ -189,6 +197,13 @@
 
 							</div>
 						</h:panelGroup>
+
+					</h:panelGrid>
+
+
+
+
+
 
 					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-contacto"><h:outputText value="#{mensaje['button.add']}"/></button>
