@@ -19,4 +19,9 @@ a.links > span:hover{
    color: white !important;
    font-weight: bold !important;
    font-size: 15px !important;
-} 
+}
+
+.b-tabla{
+
+    border-radius: 15px;
+}

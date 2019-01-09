@@ -138,8 +138,7 @@
 								 var="contacto"
 								 styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped"
 								 headerClass="uk-background-primary uk-dark"
-								 rendered="#{not empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}">
-
+								 rendered="#{not empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"	>
 						<h:column>
 							<f:facet name="header">Nombre</f:facet>
 							#{contacto.nombre}
@@ -178,32 +177,31 @@
 						</h:column>
 					</h:dataTable>
 
-					<h:panelGrid
-							id="tabla-escuela-detalle2"
-							value="#{escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"
-							styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped"
-							headerClass="uk-background-primary uk-dark"
-							rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}">
+					<h:panelGroup rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}">
+						 <table class="uk-table uk-table-middle uk-table-hover uk-table-striped  ">
+							 <thead class=" limite" >
+							 <tr class=" uk-border-rounded">
+							 	<th class="uk-background-primary uk-dark ">Nombre</th>
+							 	<th class="uk-background-primary uk-dark">Tipo</th>
+							 	<th class="uk-background-primary uk-dark">Teléfono</th>
+							 	<th class="uk-background-primary uk-dark ">Opciones</th>
+							 </tr>
 
-						<f:facet name="header"> <h:outputText value=" "/></f:facet>
-						<h:panelGroup>
+							 </thead>
 
-							<div class="uk-section-small uk-section-default uk-light uk-flex uk-flex-center  ">
-
-
-								<img class="" data-src="../resources/img/vacio.svg" alt="" width="180px" height="180px" uk-img=""/>
-
-
-
-							</div>
-						</h:panelGroup>
-
-					</h:panelGrid>
+							 <tbody>
+							   <tr>
+								   <td colspan="5" align="center"><h:graphicImage library="img" name="vacio.svg" height="250px" width="250px" /></td>
+							   </tr>
+							 </tbody>
 
 
 
 
+						 </table>
 
+
+					</h:panelGroup>
 
 					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-contacto"><h:outputText value="#{mensaje['button.add']}"/></button>
