@@ -95,8 +95,9 @@ public class EscuelaSesionBean {
 	 * @param colonia identificador a la cual perterece la escuela
 	 * @param nombre Nombre de la escuela
 	 * @param domicilio Calle y número donde se encuentra la escuela
+	 * @return {@link EscuelaDto} con los datos de la nueva escuela
 	 */
-	public void insertar (String claveCentroTrabajo, int colonia, String nombre, String domicilio, String numeroInterior, String numeroExterior) {
+	public EscuelaDto insertar (String claveCentroTrabajo, int colonia, String nombre, String domicilio, String numeroInterior, String numeroExterior) {
 		if (logger.isLoggable(Level.FINE)) {
 			logger.fine("claveCentroTrabajo:".concat(claveCentroTrabajo));
 			logger.fine("colonia".concat(String.valueOf(colonia)));
@@ -115,6 +116,7 @@ public class EscuelaSesionBean {
 		motivoBloqueoEntidad.setId((short)0);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 		entityManager.persist(escuelaEntidad);
+		return new EscuelaDto(escuelaEntidad);
 	}
 	/**
 	 * Realiza cambios a una escuela existente, los cambios que se pueden realizar son en su clave de trabajo, colonia,nombre de escuela
@@ -143,7 +145,7 @@ public class EscuelaSesionBean {
      * @param motivoBloqueo numero que hace referencia el  bloquear/desbloquear a una escuela (por ejemplo por falta de pago, sanción). 
      */
 	public void bloqueo (String claveCentroTrabajo, int motivoBloqueo) {
-		EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
+		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
 		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
 		motivoBloqueoEntidad.setId((short) motivoBloqueo);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
@@ -171,9 +173,12 @@ public class EscuelaSesionBean {
 	/**
 	 * Elimina una escuela
 	 * @param claveCentroTrabajo Identificador para la escuela
+	 * @return {@link EscuelaDto} eliminado
 	 */
-	public void elimina(String claveCentroTrabajo) {
-		entityManager.remove(entityManager.find(EscuelaEntidad.class, claveCentroTrabajo));
+	public EscuelaDto elimina(String claveCentroTrabajo) {
+		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
+		entityManager.remove(escuelaEntidad);
+		return new EscuelaDto(escuelaEntidad);
 	}
 
 }
