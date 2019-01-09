@@ -19,10 +19,6 @@
           </div>
 
           <div class="uk-navbar-center">
-
-
-
-            <!-- ******************input de busqueda******************** -->
              <div class="uk-navbar-item  uk-visible@s ">
               <form action="dashboard.html" class="uk-search uk-search-default">
                 <span data-uk-search-icon=""></span>
@@ -77,33 +73,22 @@
           <li class="uk-nav-header">dashboard</li>
 
           <!-- <li><a href="#"><span data-uk-icon="icon: album" class="uk-margin-small-right"></span></a></li> -->
-          <li><a href="#"><span data-uk-icon="icon: list" class="uk-margin-small-right"></span>Escuelas</a></li>
+          <li>
+            <h:link outcome="/administracion/dashboard.xhtml">
+              <span data-uk-icon="icon: table" class="uk-margin-small-right"></span>
+              <h:outputText value="#{mensaje['school.label']}" styleClass="uk-text-capitalize"/>
+            </h:link>
+          </li>
           <!-- <li><a href="#"><span data-uk-icon="icon: lifesaver" class="uk-margin-small-right"></span>Tips</a></li> -->
           <li class="uk-parent">
-            <a href="#"><span data-uk-icon="icon: comments" class="uk-margin-small-right"></span>Reportes</a>
+            <a href="#"><span data-uk-icon="icon: database" class="uk-margin-small-right"></span><h:outputText value="#{mensaje['catalog.label']}"/></a>
             <ul class="uk-nav-sub">
-              <li><a href="#">Sub item</a></li>
-              <li><a href="#">Sub item</a></li>
+              <li><h:link value="#{mensaje['catalog.blockingreason']}" styleClass="uk-text-capitalize" /></li>
+              <li><h:link styleClass="uk-text-capitalize" value="#{mensaje['catalog.colony']}"/></li>
+              <li><h:link styleClass="uk-text-capitalize" value="#{mensaje['catalog.contact']}"/></li>
             </ul>
           </li>
         </ul>
-        <div class="left-content-box uk-margin-top">
-
-            <h5>Daily Reports</h5>
-            <div>
-              <span class="uk-text-small">Escuelas Proximas a caducar <small>(+50)</small></span>
-              <progress class="uk-progress" value="50" max="100"></progress>
-            </div>
-            <div>
-              <span class="uk-text-small">Total de licencias vendidas <small>(+78)</small></span>
-              <progress class="uk-progress success" value="78" max="100"></progress>
-            </div>
-            <!-- <div>
-              <span class="uk-text-small">Feedback <small>(-12)</small></span>
-              <progress class="uk-progress warning" value="12" max="100"></progress>
-            </div> -->
-
-        </div>
       </div>
       <h:form id="formulario-submenu">
         <div class="bar-bottom">

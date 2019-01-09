@@ -1,6 +1,7 @@
 package tecolotl.web.modelo.administracion;
 
 import tecolotl.administracion.dto.CodigoPostal;
+import tecolotl.administracion.dto.EscuelaDetalleDto;
 
 import java.util.List;
 import java.util.Objects;
@@ -16,6 +17,21 @@ public class EscuelaModelo {
     private String codigoPostal;
     private String estado;
     private String municipio;
+
+    public EscuelaModelo() {
+    }
+
+    public EscuelaModelo(EscuelaDetalleDto escuelaDetalleDto) {
+        claveCentroTrabajo = escuelaDetalleDto.getClaveCentroTrabajo();
+        nombre = escuelaDetalleDto.getNombre();
+        calle = escuelaDetalleDto.getCalle();
+        numeroInterior = escuelaDetalleDto.getNumeroInterior();
+        numeroExterior = escuelaDetalleDto.getNumeroExterior();
+        codigoPostal = escuelaDetalleDto.getCodigoPostal();
+        estado = escuelaDetalleDto.getEstado();
+        municipio = escuelaDetalleDto.getMunicipio();
+    }
+
     private List<CodigoPostal> codigoPostalList;
 
     public String getCalle() {

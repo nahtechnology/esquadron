@@ -14,8 +14,9 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 import java.util.logging.Logger;
 
 @Named
@@ -33,32 +34,46 @@ public class EscuelaControlador implements Serializable {
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 
-    private Collection<EscuelaDto> escuelas;
+    private Set<EscuelaDto> escuelas;
     private List<MotivoBloqueoDto> motivos;
     private EscuelaModelo escuelaModelo;
     private int motivoBloqueo;
 
     @PostConstruct
     public void init() {
-        escuelas = escuelaSesionBean.busca();
+        escuelas = new TreeSet<>(escuelaSesionBean.busca());
         escuelaModelo = new EscuelaModelo();
         motivos = motivoBloqueoSesionBean.motivoBloque();
     }
 
     public void inserta() {
         logger.info(escuelaModelo.getClaveCentroTrabajo());
-        escuelaSesionBean.insertar(escuelaModelo.getClaveCentroTrabajo(),
+        EscuelaDto escuelaDto = escuelaSesionBean.insertar(escuelaModelo.getClaveCentroTrabajo(),
                 Integer.parseInt(escuelaModelo.getIdColonia()), escuelaModelo.getNombre(), escuelaModelo.getCalle(),
                 escuelaModelo.getNumeroInterior(), escuelaModelo.getNumeroExterior());
+        escuelas.add(escuelaDto);
         escuelaModelo = new EscuelaModelo();
     }
 
-    public void bloquear(String claveCentroTrabajo) {
-        escuelaSesionBean.bloqueo(claveCentroTrabajo, motivoBloqueo);
+    public void bloquear(String claveCentroTrabajo , boolean activo) {
+        EscuelaDto escuelaDto = ((TreeSet<EscuelaDto>)escuelas).floor(new EscuelaDto(claveCentroTrabajo));
+        if (activo) {
+            escuelaSesionBean.bloqueo(claveCentroTrabajo, motivoBloqueo);
+            escuelaDto.setEstatus(false);
+        } else {
+            escuelaSesionBean.bloqueo(claveCentroTrabajo, 0);
+            escuelaDto.setEstatus(true);
+        }
+    }
+
+    public void actualiza(String claveCentroTrabajo) {
+        EscuelaDetalleDto escuelaDetalleDto = escuelaSesionBean.busca(claveCentroTrabajo);
+        escuelaModelo = new EscuelaModelo(escuelaDetalleDto);
     }
 
     public void eliminar(String claveCentroTrabajo) {
-        escuelaSesionBean.elimina(claveCentroTrabajo);
+        EscuelaDto escuelaDto = escuelaSesionBean.elimina(claveCentroTrabajo);
+        escuelas.remove(escuelaDto);
     }
 
     public void buscaColinas() {
@@ -68,11 +83,11 @@ public class EscuelaControlador implements Serializable {
         escuelaModelo.setCodigoPostalList(coloniaDto.getListaCodigoPostal());
     }
 
-    public Collection<EscuelaDto> getEscuelas() {
+    public Set<EscuelaDto> getEscuelas() {
         return escuelas;
     }
 
-    public void setEscuelas(Collection<EscuelaDto> escuelas) {
+    public void setEscuelas(Set<EscuelaDto> escuelas) {
         this.escuelas = escuelas;
     }
 

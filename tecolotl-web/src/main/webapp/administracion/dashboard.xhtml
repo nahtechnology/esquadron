@@ -11,12 +11,11 @@
            <div id="content" data-uk-height-viewport="expand: true">
 			   <div class="uk-padding">
 			    <div class="uk-overflow-auto">
-
 					<h:dataTable id="tabla-escuela" rendered="#{not empty escuelaControlador.escuelas}"
-					value="#{escuelaControlador.escuelas}"
-					var="escuela"
-					styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped "
-					headerClass="uk-background-primary uk-dark">
+                                value="#{escuelaControlador.escuelas}"
+                                var="escuela"
+                                styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped "
+                                headerClass="uk-background-primary uk-dark">
 						<h:column >
 							<f:facet name="header"><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.cct']}"/></span></f:facet>
 							#{escuela.claveCentroTrabajo}
@@ -31,7 +30,7 @@
 								<span class="uk-icon-button" uk-icon="check"/>
 							</h:outputLabel>
 							<h:outputLabel rendered="#{not escuela.estatus}">
-								<span class="uk-icon-button" uk-icon="close"/>
+								<span class="uk-icon-button" uk-icon="ban"/>
 							</h:outputLabel>
 						</h:column>
 						<h:column>
@@ -48,32 +47,44 @@
 								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"></button>
 								<div uk-dropdown="boundary:.limite; mode: click" >
 									<ul class="uk-nav uk-dropdown-nav">
-										<h:form>
-											<li>
-                                                <h:link outcome="detalle-escuela">
-                                                    <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
-													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.detail']}"/></span>
-                                                    <f:param name="claveCentroTrabajo" value="#{escuela.claveCentroTrabajo}"/>
-                                                </h:link>
-                                            </li>
-											<li>
-												<a href="#">
-													<span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
-													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
-												</a>
-											</li>
-											<li>
-												<a href="#" uk-toggle="target: #modal-eliminar#{escuela.claveCentroTrabajo}">
-													<span uk-icon="icon:  trash" class="uk-margin-small-right uk-icon" ></span>
-													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.remove']}"/></span>
-												</a>
-											</li>
+										<h:form id="formulario-menu">
+										<li>
+											<h:link outcome="detalle-escuela">
+												<span uk-icon="icon: info" class="uk-margin-small-right uk-icon" ></span>
+												<span class="uk-text-middle"><h:outputText value="#{mensaje['button.detail']}"/></span>
+												<f:param name="claveCentroTrabajo" value="#{escuela.claveCentroTrabajo}"/>
+											</h:link>
+										</li>
+										<li>
+											<h:commandLink pt:uk-toggle="target: #modal-nuevo">
+												<span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
+												<span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
+												<f:ajax listener="#{escuelaControlador.actualiza(escuela.claveCentroTrabajo)}" render="formulario-nuevo"/>
+											</h:commandLink>
+										</li>
+										<li>
+											<a href="#" uk-toggle="target: #modal-eliminar#{escuela.claveCentroTrabajo}">
+												<span uk-icon="icon:  trash" class="uk-margin-small-right uk-icon" ></span>
+												<span class="uk-text-middle"><h:outputText value="#{mensaje['button.remove']}"/></span>
+											</a>
+										</li>
+										<h:outputLabel rendered="#{escuela.estatus}">
 											<li>
 												<a href="#"  uk-toggle="target: #modal-bloqueo#{escuela.claveCentroTrabajo}">
 													<span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>
 													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.block']}"/></span>
 												</a>
 											</li>
+										</h:outputLabel>
+										<h:outputLabel rendered="#{not escuela.estatus}">
+											<li>
+												<h:commandLink>
+													<span uk-icon="icon:  check" class="uk-margin-small-right uk-icon" ></span>
+													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.active']}"/></span>
+													<f:ajax listener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo, false)}" onevent="actualiza"/>
+												</h:commandLink>
+											</li>
+										</h:outputLabel>
 										</h:form>
 									</ul>
 								</div>
@@ -83,7 +94,7 @@
 							<div id="modal-eliminar#{escuela.claveCentroTrabajo}" uk-modal="">
 								<div class="uk-modal-dialog">
 									<div class="uk-modal-header">
-										<h3 class="uk-modal-title">
+										<h3 class="uk-modal-title uk-text-capitalize uk-text-center uk-text-danger">
 											<h:outputFormat value="#{mensaje['school.remove.title']}">
 												<f:param value="#{escuela.claveCentroTrabajo}"/>
 											</h:outputFormat>
@@ -96,20 +107,24 @@
 											</h:outputFormat>
 										</p>
 									</div>
-									<div class="uk-modal-footer uk-text-right">
-										<h:form id="formulario-borrar">
-											<button class="uk-button uk-button-default uk-modal-close uk-border-rounded uk-margin-right" type="button">#{mensaje['button.cancel']}</button>
-											<h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-border-rounded" value="#{mensaje['button.remove']}">
-												<f:ajax event="click" listener="#{escuelaControlador.eliminar(escuela.claveCentroTrabajo)}" render=":tabla-escuela"/>
+									<div class="uk-modal-footer uk-flex uk-flex-right">
+										<button class="uk-button uk-button-default uk-modal-close uk-border-rounded uk-margin-right" type="button">#{mensaje['button.cancel']}</button>
+                                        <h:form id="formulario-eliminar-#{escuela.claveCentroTrabajo}">
+											<h:commandButton
+													styleClass="uk-button uk-button-danger uk-modal-close uk-border-rounded"
+													value="#{mensaje['button.remove']}">
+												<f:ajax listener="#{escuelaControlador.eliminar(escuela.claveCentroTrabajo)}" onevent="actualiza"/>
 											</h:commandButton>
-										</h:form>
+                                        </h:form>
 									</div>
 								</div>
 							</div>
 							<div id="modal-bloqueo#{escuela.claveCentroTrabajo}" uk-modal="" >
-								<div class="uk-modal-dialog uk-modal-body">
-									<h:form id="formulario-motivo-bloqueo">
-										<h2 class="uk-modal-title">Razón de bloqueo</h2>
+								<div class="uk-modal-dialog">
+									<div class="uk-modal-header">
+										<h3 class="uk-modal-title uk-text-capitalize uk-text-center"><h:outputLabel value="#{mensaje['school.blockreason.title']}"/></h3>
+									</div>
+									<div class="uk-modal-body">
 										<h:outputLabel for="select-motivo" value="#{mensaje['school.blockreason.title']}" styleClass="uk-form-label uk-text-capitalize"/>
 										<div class="uk-form-controls">
 											<h:selectOneMenu styleClass="uk-select"
@@ -124,23 +139,30 @@
 												<f:validateRequired/>
 											</h:selectOneMenu>
 										</div>
-										<p class="uk-text-right">
-											<button class="uk-border-rounded uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
+									</div>
+									<div class="uk-modal-footer uk-flex uk-flex-right">
+										<button class="uk-border-rounded uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
+										<h:form id="formulario-bloquear">
 											<h:commandButton id="aceptar" styleClass="uk-modal-close uk-button uk-button-primary uk-border-rounded uk-margin-left" value="#{mensaje['button.accept']}">
-												<f:ajax execute="formulario-motivo-bloqueo" event="click" listener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo)}"  render=":tabla-escuela"/>
+												<f:ajax execute="formulario-motivo-bloqueo" listener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo, true)}" onevent="actualiza"/>
 											</h:commandButton>
-										</p>
-									</h:form>
+										</h:form>
+									</div>
 								</div>
 							</div>
 						</h:column>
 					</h:dataTable>
-                    <h:panelGroup rendered="#{empty escuelaControlador.escuelas}">
+                    <h:panelGroup id="panel-escuela-vacia" rendered="#{empty escuelaControlador.escuelas}">
                         No hay datos
                     </h:panelGroup>
 				  	</div>
 					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-nuevo"><h:outputText value="#{mensaje['button.add']}"/></button>
+                        <f:ajax render="tabla-escuela">
+                            <h:form id="formulario-actualiza">
+                                <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" style="display: none;" id="boton-actualizar" value="Actualizar"/>
+                            </h:form>
+                        </f:ajax>
 					</div>
 			   </div>
 			   <div id="modal-nuevo"  uk-modal="">
@@ -300,6 +322,11 @@
 						if (informacion.status == 'success') {
 							document.getElementById('formulario-nuevo:select-colonia').removeAttribute('size');
 						}
+					}
+				}
+				function actualiza(data) {
+					if (data.status === 'success') {
+						document.getElementById('formulario-actualiza:boton-actualizar').click();
 					}
 				}
 			</script>

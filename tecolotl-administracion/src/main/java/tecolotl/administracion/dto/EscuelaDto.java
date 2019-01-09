@@ -4,18 +4,21 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 
 import java.util.Objects;
 
-public class EscuelaDto extends EscuelaBaseDto{
+public class EscuelaDto extends EscuelaBaseDto implements Comparable<EscuelaDto>{
 
     private boolean estatus;
     private int licencias;
     private int diasRestantes;
+
+    public EscuelaDto(String claveCentroTrabajo) {
+        super(claveCentroTrabajo);
+    }
 
     public EscuelaDto(EscuelaEntidad escuelaEntidad) {
         setClaveCentroTrabajo(escuelaEntidad.getClaveCentroTrabajo());
         setNombre(escuelaEntidad.getNombre());
         estatus = escuelaEntidad.getMotivoBloqueoEntidad().getId() == 0;
     }
-
 
     public boolean isEstatus() {
         return estatus;
@@ -53,5 +56,10 @@ public class EscuelaDto extends EscuelaBaseDto{
     @Override
     public int hashCode() {
         return Objects.hash(getClaveCentroTrabajo());
+    }
+
+    @Override
+    public int compareTo(EscuelaDto o) {
+        return getClaveCentroTrabajo().compareTo(o.getClaveCentroTrabajo());
     }
 }
