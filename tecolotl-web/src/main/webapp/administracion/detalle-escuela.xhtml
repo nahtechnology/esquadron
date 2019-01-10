@@ -20,7 +20,7 @@
 			<div class="uk-padding">
 				<div class="uk-overflow-auto">
 
-					<h1 class="uk-heading-line uk-text-center"><span>Detalles de la escuela</span></h1>
+					<h1 class="uk-heading-line uk-text-center"><span>#{mensaje['school-details.heading']}</span></h1>
 					<h:form class="uk-form-stacked">
 						<div class="uk-grid-small" uk-grid="">						
 							<div class="uk-width-1-1@s uk-width-1-5@m">
@@ -130,7 +130,7 @@
 						</div>
 					</h:form>
 
-					<h2 class="uk-heading-line uk-text-center"><span>Contactos de la escuela</span></h2>
+					<h2 class="uk-heading-line uk-text-center"><span>#{mensaje['school-details.contact']}</span></h2>
 
 
 					<h:dataTable id="tabla-escuela-detalle"
@@ -140,20 +140,20 @@
 								 headerClass="uk-background-primary uk-dark"
 								 rendered="#{not empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}"	>
 						<h:column>
-							<f:facet name="header">Nombre</f:facet>
+							<f:facet name="header" >#{mensaje['school-details.table.name']}</f:facet>
 							#{contacto.nombre}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Tipo</f:facet>
+							<f:facet name="header">#{mensaje['school-details.table.type']}</f:facet>
 							#{contacto.tipo}
 						</h:column>
 						<h:column>
-							<f:facet name="header">Teléfono</f:facet>
+							<f:facet name="header">#{mensaje['school-details.table.phone']}</f:facet>
 							#{contacto.telefono}
 						</h:column>
 
 						<h:column>
-							<f:facet name="header">Opciones</f:facet>
+							<f:facet name="header">#{mensaje['school-details.table.option']}</f:facet>
 							<div class="uk-inline">
 								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
 								<div uk-dropdown="boundary:.limite; mode: click">
@@ -162,8 +162,8 @@
 										<h:form>
 											<ui:remove>
 												<h:commandLink value="Detalle" actionListener=""/></ui:remove>
-											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Editar contacto</span></a></li>
-											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">Eliminar contacto</span></a></li>
+											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">#{mensaje['school-details.table.option.edit']}</span></a></li>
+											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">#{mensaje['school-details.table.option.delete']}</span></a></li>
 										</h:form>
 
 									</ul>
@@ -181,10 +181,10 @@
 						 <table class="uk-table uk-table-middle uk-table-hover uk-table-striped  ">
 							 <thead class=" limite" >
 							 <tr class=" uk-border-rounded">
-							 	<th class="uk-background-primary uk-dark ">Nombre</th>
-							 	<th class="uk-background-primary uk-dark">Tipo</th>
-							 	<th class="uk-background-primary uk-dark">Teléfono</th>
-							 	<th class="uk-background-primary uk-dark ">Opciones</th>
+							 	<th class="uk-background-primary uk-dark ">#{mensaje['school-details.table.name']}</th>
+							 	<th class="uk-background-primary uk-dark">#{mensaje['school-details.table.type']}</th>
+							 	<th class="uk-background-primary uk-dark">#{mensaje['school-details.table.phone']}</th>
+							 	<th class="uk-background-primary uk-dark ">#{mensaje['school-details.table.option']}</th>
 							 </tr>
 
 							 </thead>
@@ -215,7 +215,7 @@
 					   	<div class="uk-modal-dialog">
 								<button class="uk-modal-close-default" type="button" uk-close=""></button>
 								<div class="uk-modal-header">
-									<h2 class="uk-modal-title uk-text-center">Nuevo contacto</h2>
+									<h2 class="uk-modal-title uk-text-center">#{mensaje['school-details.new']}</h2>
 								</div>
 								<div class="uk-modal-body">
 									<h:form >
