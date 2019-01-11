@@ -1,7 +1,6 @@
 package tecolotl.web.control.administracion;
 
 import tecolotl.administracion.dto.CodigoPostal;
-import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 
@@ -12,15 +11,19 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.SortedSet;
 import java.util.TreeSet;
+import java.util.logging.Logger;
 
 @Named
 @ViewScoped
 public class CatalogoControlador implements Serializable {
 
+    private Logger logger = Logger.getLogger(getClass().getName());
+
     private SortedSet<MotivoBloqueoDto> motivoBloqueos;
     private SortedSet<CodigoPostal> codigoPostales;
     private MotivoBloqueoDto motivoBloqueoModelo;
-    private int count;
+    private int paginacion;
+    private int primera;
 
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
@@ -29,6 +32,8 @@ public class CatalogoControlador implements Serializable {
     public void init() {
         motivoBloqueos = new TreeSet<>(motivoBloqueoSesionBean.motivoBloque());
         motivoBloqueoModelo = new MotivoBloqueoDto();
+        paginacion = 5;
+        primera = 0;
     }
 
     public void inserta() {
@@ -44,7 +49,12 @@ public class CatalogoControlador implements Serializable {
     }
 
     public void actualiza(MotivoBloqueoDto motivoBloqueoDto) {
+        logger.info("paginacion siguiente");
         motivoBloqueoModelo = motivoBloqueoDto;
+    }
+
+    public void siguiente() {
+        primera += paginacion;
     }
 
     public SortedSet<MotivoBloqueoDto> getMotivoBloqueos() {
@@ -61,6 +71,22 @@ public class CatalogoControlador implements Serializable {
 
     public void setMotivoBloqueoModelo(MotivoBloqueoDto motivoBloqueoModelo) {
         this.motivoBloqueoModelo = motivoBloqueoModelo;
+    }
+
+    public int getPrimera() {
+        return primera;
+    }
+
+    public void setPrimera(int primera) {
+        this.primera = primera;
+    }
+
+    public int getPaginacion() {
+        return paginacion;
+    }
+
+    public void setPaginacion(int paginacion) {
+        this.paginacion = paginacion;
     }
 
     public SortedSet<CodigoPostal> getCodigoPostales() {
