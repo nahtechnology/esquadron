@@ -57,12 +57,11 @@ public class EscuelaControlador implements Serializable {
 
     public void bloquear(String claveCentroTrabajo , boolean activo) {
         EscuelaDto escuelaDto = ((TreeSet<EscuelaDto>)escuelas).floor(new EscuelaDto(claveCentroTrabajo));
+        escuelaDto.setEstatus(!activo);
         if (activo) {
             escuelaSesionBean.bloqueo(claveCentroTrabajo, motivoBloqueo);
-            escuelaDto.setEstatus(false);
         } else {
             escuelaSesionBean.bloqueo(claveCentroTrabajo, 0);
-            escuelaDto.setEstatus(true);
         }
     }
 

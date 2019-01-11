@@ -2,7 +2,7 @@ package tecolotl.administracion.dto;
 
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
-public class MotivoBloqueoDto {
+public class MotivoBloqueoDto implements Comparable<MotivoBloqueoDto> {
 	
 	private short id;
 	private String descripcion;
@@ -32,5 +32,9 @@ public class MotivoBloqueoDto {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
+	@Override
+	public int compareTo(MotivoBloqueoDto motivoBloqueoDto) {
+		return (int)Short.compare(id, motivoBloqueoDto.id);
+	}
 }

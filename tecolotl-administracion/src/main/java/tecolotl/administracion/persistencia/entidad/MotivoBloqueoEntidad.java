@@ -1,28 +1,22 @@
 package tecolotl.administracion.persistencia.entidad;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "motivo_bloqueo", schema ="administracion")
-@NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m")
+@NamedQueries({
+		@NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE NOT (m.id = 0)")
+})
 public class MotivoBloqueoEntidad {
-	
-	@Id
-	private short id;
 
-	@Basic
-	@Column(name = "descripcion")
-	@NotNull
-	@Size(min = 3, max = 20)
+	private short id;
 	private String descripcion;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "secuencia_id")
+    @SequenceGenerator(name = "secuencia_id", schema = "administracion", sequenceName = "motivo_bloqueo_seq")
 	public short getId() {
 		return id;
 	}
@@ -30,7 +24,11 @@ public class MotivoBloqueoEntidad {
 	public void setId(short id) {
 		this.id = id;
 	}
-	
+
+	@Basic
+	@Column(name = "descripcion")
+	@NotNull
+	@Size(min = 3, max = 20)
 	public String getDescripcion() {
 		return descripcion;
 	}

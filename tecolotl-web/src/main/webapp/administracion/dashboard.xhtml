@@ -153,7 +153,23 @@
 						</h:column>
 					</h:dataTable>
                     <h:panelGroup id="panel-escuela-vacia" rendered="#{empty escuelaControlador.escuelas}">
-                        No hay datos
+                        <table class="uk-table uk-table-middle uk-table-hover uk-table-striped ">
+							<thead>
+								<tr>
+									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.cct']}"/></span></th>
+									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.name']}"/></span></th>
+									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.status']}"/></span></th>
+									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.licenses']}"/></span></th>
+									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.remaining.days']}"/></span></th>
+									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.option']}"/></span></th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="6" align="center"><h:graphicImage library="img" name="vacio.svg" height="250px" width="250px" /></td>
+								</tr>
+							</tbody>
+						</table>
                     </h:panelGroup>
 				  	</div>
 					<div class="uk-flex uk-flex-right uk-margin">
