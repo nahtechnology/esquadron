@@ -1,5 +1,7 @@
 package tecolotl.web.control.administracion;
 
+import tecolotl.administracion.dto.CodigoPostal;
+import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 
@@ -16,6 +18,7 @@ import java.util.TreeSet;
 public class CatalogoControlador implements Serializable {
 
     private SortedSet<MotivoBloqueoDto> motivoBloqueos;
+    private SortedSet<CodigoPostal> codigoPostales;
     private MotivoBloqueoDto motivoBloqueoModelo;
     private int count;
 
@@ -58,5 +61,13 @@ public class CatalogoControlador implements Serializable {
 
     public void setMotivoBloqueoModelo(MotivoBloqueoDto motivoBloqueoModelo) {
         this.motivoBloqueoModelo = motivoBloqueoModelo;
+    }
+
+    public SortedSet<CodigoPostal> getCodigoPostales() {
+        return codigoPostales;
+    }
+
+    public void setCodigoPostales(SortedSet<CodigoPostal> codigoPostales) {
+        this.codigoPostales = codigoPostales;
     }
 }

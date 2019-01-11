@@ -5,7 +5,7 @@ import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class CodigoPostal implements Serializable {
+public class CodigoPostal implements Serializable, Comparable<CodigoPostal> {
 
     private String nombre;
     private String id;
@@ -42,5 +42,10 @@ public class CodigoPostal implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public int compareTo(CodigoPostal codigoPostal) {
+        return id.compareTo(codigoPostal.id);
     }
 }
