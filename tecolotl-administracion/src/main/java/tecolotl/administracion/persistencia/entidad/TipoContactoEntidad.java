@@ -22,7 +22,13 @@ public class TipoContactoEntidad {
     @NotNull
     @Size(min = 11, max = 30)
     private String descripcion;
-    
+
+    public TipoContactoEntidad() {
+    }
+
+    public TipoContactoEntidad(int id) {
+        this.id = id;
+    }
 
     public int getId() {
         return id;

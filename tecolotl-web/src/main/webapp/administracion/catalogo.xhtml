@@ -29,9 +29,7 @@
                                                  id="tabla-motivo-bloqueo"
                                                  styleClass="uk-table uk-table-hover uk-table-divider limite-tabla-motivo-bloqueo uk-table-middle"
                                                  headerClass="uk-background-primary uk-dark"
-                                                 footerClass="uk-background-primary"
-                                                 first="#{catalogoControlador.primera}"
-                                                 rows="#{catalogoControlador.paginacion}">
+                                                 footerClass="uk-background-primary">
                                         <h:column>
                                             <f:facet name="header"><h:outputText value="#{mensaje['catalog.description']}" styleClass="uk-text-capitalize"/></f:facet>
                                             <h:outputText value="#{motivo.descripcion}"/>
@@ -43,7 +41,7 @@
                                                 <div uk-dropdown="boundary:.limite-tabla-motivo-bloqueo; mode: click" >
                                                     <ul class="uk-nav uk-dropdown-nav">
                                                         <li>
-                                                            <h:form id="formulario-aditar">
+                                                            <h:form id="formulario-editar">
                                                                 <h:commandLink styleClass="uk-link-muted">
                                                                     <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
                                                                     <span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
@@ -57,22 +55,11 @@
                                         </h:column>
                                     </h:dataTable>
                                     <div class="uk-flex uk-flex-right">
-                                        <h:form id="formulario-paginacion">
-                                            <ul class="uk-pagination uk-background-primary uk-padding-small uk-margin-small-right uk-border-rounded">
-                                                <li><a href="#"><span uk-pagination-previous=""></span></a></li>
-                                                <li><a href="#">1</a></li>
-                                                <li><a href="#">4</a></li>
-                                                <li><a href="#">5</a></li>
-                                                <li><a href="#">6</a></li>
-                                                <li>
-                                                    <h:commandLink>
-                                                        <span uk-pagination-next=""></span>
-                                                        <f:ajax listener="#{catalogoControlador.siguiente}" render="tabla-motivo-bloqueo"/>
-                                                    </h:commandLink>
-                                                </li>
-                                            </ul>
-                                        </h:form>
-                                        <button class="uk-button uk-button-primary uk-margin-small uk-border-rounded" uk-toggle="target: #modal-motivos-bloqueo">
+                                        <ul id="paginacion-tabla-motivo-bloqueo" class="uk-pagination uk-background-primary uk-padding-small uk-margin-small-right uk-border-rounded">
+                                            <li><a href="#"><span uk-pagination-previous=""></span></a></li>
+                                            <li><a href="#"><span uk-pagination-next=""></span></a></li>
+                                        </ul>
+                                        <button class="uk-button uk-button-primary uk-margin uk-border-rounded" uk-toggle="target: #modal-motivos-bloqueo">
                                             <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
                                             <span uk-icon="icon: plus-circle; ratio: 1"></span>
                                         </button>
@@ -224,6 +211,7 @@
                 }
             }
         </script>
+        <h:outputScript library="js" name="tabla.js"/>
     </ui:define>
 </ui:composition>
 

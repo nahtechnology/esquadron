@@ -25,8 +25,6 @@ public class CatalogoControlador implements Serializable {
     private SortedSet<CodigoPostal> codigoPostales;
     private SortedSet<TipoContactoDto> tipoContactos;
     private MotivoBloqueoDto motivoBloqueoModelo;
-    private int paginacion;
-    private int primera;
 
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
@@ -39,8 +37,6 @@ public class CatalogoControlador implements Serializable {
         motivoBloqueos = new TreeSet<>(motivoBloqueoSesionBean.motivoBloque());
         tipoContactos = (SortedSet<TipoContactoDto>)tipoContactoSesionBean.busca();
         motivoBloqueoModelo = new MotivoBloqueoDto();
-        paginacion = 5;
-        primera = 0;
     }
 
     public void inserta() {
@@ -60,10 +56,6 @@ public class CatalogoControlador implements Serializable {
         motivoBloqueoModelo = motivoBloqueoDto;
     }
 
-    public void siguiente() {
-        primera += paginacion;
-    }
-
     public SortedSet<MotivoBloqueoDto> getMotivoBloqueos() {
         return motivoBloqueos;
     }
@@ -78,22 +70,6 @@ public class CatalogoControlador implements Serializable {
 
     public void setMotivoBloqueoModelo(MotivoBloqueoDto motivoBloqueoModelo) {
         this.motivoBloqueoModelo = motivoBloqueoModelo;
-    }
-
-    public int getPrimera() {
-        return primera;
-    }
-
-    public void setPrimera(int primera) {
-        this.primera = primera;
-    }
-
-    public int getPaginacion() {
-        return paginacion;
-    }
-
-    public void setPaginacion(int paginacion) {
-        this.paginacion = paginacion;
     }
 
     public SortedSet<CodigoPostal> getCodigoPostales() {
