@@ -4,6 +4,7 @@ import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 
 public class ContactoDto {
 
+    private int id;
     private String tipo;
     private String nombre;
     private String telefono;
@@ -12,6 +13,7 @@ public class ContactoDto {
     }
 
     public ContactoDto(ContactoEntidad contactoEntidad) {
+        id = contactoEntidad.getTipoContactoEntidad().getId();
         tipo = contactoEntidad.getTipoContactoEntidad().getDescripcion();
         nombre = contactoEntidad.getNombre();
         telefono = contactoEntidad.getTelefono();
