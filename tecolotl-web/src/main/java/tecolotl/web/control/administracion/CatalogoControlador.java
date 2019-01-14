@@ -2,7 +2,9 @@ package tecolotl.web.control.administracion;
 
 import tecolotl.administracion.dto.CodigoPostal;
 import tecolotl.administracion.dto.MotivoBloqueoDto;
+import tecolotl.administracion.dto.TipoContactoDto;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
+import tecolotl.administracion.sesion.TipoContactoSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -21,6 +23,7 @@ public class CatalogoControlador implements Serializable {
 
     private SortedSet<MotivoBloqueoDto> motivoBloqueos;
     private SortedSet<CodigoPostal> codigoPostales;
+    private SortedSet<TipoContactoDto> tipoContactos;
     private MotivoBloqueoDto motivoBloqueoModelo;
     private int paginacion;
     private int primera;
@@ -28,9 +31,13 @@ public class CatalogoControlador implements Serializable {
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 
+    @Inject
+    private TipoContactoSesionBean tipoContactoSesionBean;
+
     @PostConstruct
     public void init() {
         motivoBloqueos = new TreeSet<>(motivoBloqueoSesionBean.motivoBloque());
+        tipoContactos = (SortedSet<TipoContactoDto>)tipoContactoSesionBean.busca();
         motivoBloqueoModelo = new MotivoBloqueoDto();
         paginacion = 5;
         primera = 0;
