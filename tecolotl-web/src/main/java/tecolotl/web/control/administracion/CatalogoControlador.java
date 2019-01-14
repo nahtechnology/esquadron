@@ -103,4 +103,12 @@ public class CatalogoControlador implements Serializable {
     public void setCodigoPostales(SortedSet<CodigoPostal> codigoPostales) {
         this.codigoPostales = codigoPostales;
     }
+
+    public SortedSet<TipoContactoDto> getTipoContactos() {
+        return tipoContactos;
+    }
+
+    public void setTipoContactos(SortedSet<TipoContactoDto> tipoContactos) {
+        this.tipoContactos = tipoContactos;
+    }
 }
