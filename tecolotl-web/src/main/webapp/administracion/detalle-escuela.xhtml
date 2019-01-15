@@ -12,7 +12,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	>
 
 <ui:composition template="/template/template.xhtml">
 	<ui:define name="contenido2">
@@ -215,30 +216,61 @@
 
 								</div>
 								<div class="uk-modal-body">
-									<h:form  styleClass="uk-form-stacked">
+									<h:form id="formulario-agregar-contacto"  styleClass="uk-form-stacked">
 
 										<div class="uk-grid-small" uk-grid="">
 											<div class="uk-width-1-3@s">
-												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.cct']}" for="input-cct" />
-
+												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.name']}" for="input-contacName" />
                                                     <div class="uk-form-controls">
-                                                        <h:inputText styleClass="uk-input"
+                                                        <h:inputText
+																styleClass="uk-input"
+																id="input-contacName"
+																value="#{contacto.nombre}"
+																pt:placeholder="#{mensaje['school.name']}"
+																autocomplete="off"
+																label="#{mensaje['school.name']}"
 																	>
 
 
 														</h:inputText>
 
                                                     </div>
-
-
-
-
 											</div>
 											<div class="uk-width-1-3@s">
-												<input class="uk-input" type="text" placeholder="25"/>
+												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school-details.table.type']}" for="input-cct" />
+
+												<div class="uk-form-controls">
+													<h:inputHidden value=""/>
+													<h:inputText
+															styleClass="uk-input"
+															value="#{contacto.tipo}"
+															pt:placeholder="#{mensaje['school-details.table.type']}"
+															autocomplete="off"
+															label="#{mensaje['school-details.table.type']}"
+													>
+
+
+													</h:inputText>
+
+												</div>
 											</div>
 											<div class="uk-width-1-3@s">
-												<input class="uk-input" type="text" placeholder="25"/>
+												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school-details.table.phone']}" for="input-cct" />
+
+												<div class="uk-form-controls">
+													<h:inputText
+															styleClass="uk-input"
+															value="#{contacto.telefono}"
+															pt:placeholder="#{mensaje['school-details.table.phone']}"
+															autocomplete="off"
+															label="#{mensaje['school-details.table.phone']}"
+													>
+
+
+													</h:inputText>
+
+												</div>
+
 											</div>
 										</div>
 

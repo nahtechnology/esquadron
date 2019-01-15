@@ -16,6 +16,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
 import java.util.TreeSet;
 import java.util.logging.Logger;
 
@@ -81,6 +82,8 @@ public class EscuelaControlador implements Serializable {
         escuelaModelo.setMunicipio(coloniaDto.getMunicipio());
         escuelaModelo.setCodigoPostalList(coloniaDto.getListaCodigoPostal());
     }
+
+
 
     public Set<EscuelaDto> getEscuelas() {
         return escuelas;
