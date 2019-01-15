@@ -31,7 +31,7 @@ public class ContactoEntidad implements Serializable {
     
 	@Column(name = "telefono")
     @NotNull
-    @Size(min = 11, max = 20)
+    @Size(min = 7, max = 20)
     private String telefono;
 
     public TipoContactoEntidad getTipoContactoEntidad() {
