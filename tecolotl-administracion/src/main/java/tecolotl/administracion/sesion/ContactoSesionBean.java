@@ -1,19 +1,18 @@
 package tecolotl.administracion.sesion;
 
 import tecolotl.administracion.dto.ContactoDto;
-import tecolotl.administracion.dto.TipoContactoDto;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.TipoContactoEntidad;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Stateless
 public class ContactoSesionBean {
 
-    @Inject
+    @PersistenceContext
     private EntityManager entityManager;
 
     public ContactoDto insertar(String claveCentroTrabajo, int tipoContracto, String nombre, String telefono) {
