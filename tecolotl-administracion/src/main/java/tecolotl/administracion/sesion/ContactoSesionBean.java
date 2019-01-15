@@ -15,12 +15,12 @@ public class ContactoSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public ContactoDto inserta(String claveCentroTrabajo, int tipoContrato, String nombre, String telefono) {
+    public ContactoDto inserta(String claveCentroTrabajo, int tipoContacto, String nombre, String telefono) {
         ContactoEntidad contactoEntidad = new ContactoEntidad();
         contactoEntidad.setEscuelaEntidad(new EscuelaEntidad(claveCentroTrabajo));
         contactoEntidad.setNombre(nombre);
         contactoEntidad.setTelefono(telefono);
-        contactoEntidad.setTipoContactoEntidad(new TipoContactoEntidad(tipoContrato));
+        contactoEntidad.setTipoContactoEntidad(new TipoContactoEntidad(tipoContacto));
         entityManager.persist(contactoEntidad);
         return new ContactoDto(contactoEntidad);
     }

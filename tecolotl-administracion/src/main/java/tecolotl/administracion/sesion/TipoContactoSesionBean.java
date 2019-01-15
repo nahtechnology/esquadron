@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -22,14 +23,15 @@ public class TipoContactoSesionBean {
      * {@link TreeSet}
      * @return Colección de {@link TipoContactoDto} los tipos de contacto, vacio en caso de no existir
      */
-    public Set<TipoContactoDto> busca() {
-        Set<TipoContactoDto> tipoContactoDtoConjunto = new TreeSet<>();
+    public List<TipoContactoDto> busca() {
+        List<TipoContactoDto> tipoContactoDtolista = new ArrayList<>();
         TypedQuery<TipoContactoEntidad> typedQuery = entityManager.createNamedQuery("TipoContactoEntidad.busca", TipoContactoEntidad.class);
         List<TipoContactoEntidad> tipoContactoEntidadLista = typedQuery.getResultList();
         for (TipoContactoEntidad tipoContactoEntidad :
                 tipoContactoEntidadLista) {
-            tipoContactoDtoConjunto.add(new TipoContactoDto(tipoContactoEntidad));
+            tipoContactoDtolista.add(new TipoContactoDto(tipoContactoEntidad));
         }
-        return  tipoContactoDtoConjunto;
+        return  tipoContactoDtolista;
     }
+
 }

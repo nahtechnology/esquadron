@@ -152,32 +152,23 @@
 							<f:facet name="header">#{mensaje['school-details.table.phone']}</f:facet>
 							#{contacto.telefono}
 						</h:column>
-
 						<h:column>
 							<f:facet name="header">#{mensaje['school-details.table.option']}</f:facet>
 							<div class="uk-inline">
 								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
 								<div uk-dropdown="boundary:.limite; mode: click">
 									<ul class="uk-nav uk-dropdown-nav">
-
 										<h:form>
 											<ui:remove>
 												<h:commandLink value="Detalle" actionListener=""/></ui:remove>
 											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">#{mensaje['school-details.table.option.edit']}</span></a></li>
 											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">#{mensaje['school-details.table.option.delete']}</span></a></li>
 										</h:form>
-
 									</ul>
-
 								</div>
-
-
-
 							</div>
-
 						</h:column>
 					</h:dataTable>
-
 					<h:panelGroup rendered="#{empty escuelaDetalleControlador.escuelaDetalleDto.contactoDtoList}">
 						 <table class="uk-table uk-table-middle uk-table-hover uk-table-striped  ">
 							 <thead class=" limite" >
@@ -187,108 +178,84 @@
 							 	<th class="uk-background-primary uk-dark">#{mensaje['school-details.table.phone']}</th>
 							 	<th class="uk-background-primary uk-dark ">#{mensaje['school-details.table.option']}</th>
 							 </tr>
-
 							 </thead>
-
 							 <tbody>
 							   <tr>
 								   <td colspan="5" align="center"><h:graphicImage library="img" name="vacio.svg" height="250px" width="250px" /></td>
 							   </tr>
 							 </tbody>
 						 </table>
-
-
 					</h:panelGroup>
-
 					<div class="uk-flex uk-flex-right uk-margin">
 						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-contacto"><h:outputText value="#{mensaje['button.add']}"/></button>
 					</div>
-
-
-
-
 					<div id="modal-contacto"  uk-modal="">
-
-					   	<div class="uk-modal-dialog">
-								<button class="uk-modal-close-default" type="button" uk-close=""></button>
-								<div class="uk-modal-header">
-									<h2 class="uk-modal-title uk-text-center">#{mensaje['school-details.new']}</h2>
-
-								</div>
+					   	<div class="uk-contacto">
+							<button class="uk-modal-close-default" type="button" uk-close=""></button>
+							<div class="uk-modal-header">
+								<h2 class="uk-modal-title uk-text-center">#{mensaje['school-details.new']}</h2>
+							</div>
+							<h:form id="formulario-agregar-contacto"  styleClass="uk-form-stacked">
 								<div class="uk-modal-body">
-									<h:form id="formulario-agregar-contacto"  styleClass="uk-form-stacked">
-
-										<div class="uk-grid-small" uk-grid="">
-											<div class="uk-width-1-3@s">
-												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.name']}" for="input-contacName" />
-                                                    <div class="uk-form-controls">
-                                                        <h:inputText
-																styleClass="uk-input"
-																id="input-contacName"
-																value="#{contacto.nombre}"
-																pt:placeholder="#{mensaje['school.name']}"
-																autocomplete="off"
-																label="#{mensaje['school.name']}"
-																	>
-
-
-														</h:inputText>
-
-                                                    </div>
-											</div>
-											<div class="uk-width-1-3@s">
-												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school-details.table.type']}" for="input-cct" />
-
-												<div class="uk-form-controls">
-													<h:inputHidden value=""/>
-													<h:inputText
-															styleClass="uk-input"
-															value="#{contacto.tipo}"
-															pt:placeholder="#{mensaje['school-details.table.type']}"
-															autocomplete="off"
-															label="#{mensaje['school-details.table.type']}"
-													>
-
-
-													</h:inputText>
-
-												</div>
-											</div>
-											<div class="uk-width-1-3@s">
-												<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school-details.table.phone']}" for="input-cct" />
-
-												<div class="uk-form-controls">
-													<h:inputText
-															styleClass="uk-input"
-															value="#{contacto.telefono}"
-															pt:placeholder="#{mensaje['school-details.table.phone']}"
-															autocomplete="off"
-															label="#{mensaje['school-details.table.phone']}"
-													>
-
-
-													</h:inputText>
-
-												</div>
-
+									<div class="uk-grid-small" uk-grid="">
+										<div class="uk-width-1-1">
+											<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="Nombre" for="input-nombre-contacto" />
+											<div class="uk-form-controls">
+												<h:inputText
+														styleClass="uk-input"
+														id="input-nombre-contacto"
+														value="#{escuelaDetalleControlador.contactoDtoModelo.nombre}"
+														pt:placeholder="#{mensaje['school.name']}"
+														autocomplete="off"
+														label="nombre">
+													<f:validateRequired/>
+													<f:validateLength minimum="11" maximum="110"/>
+												</h:inputText>
 											</div>
 										</div>
-
-									</h:form>
-
-
+										<div class="uk-width-1-2">
+											<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school-details.table.type']}" for="seleccion-tipo-contacto" />
+											<div class="uk-form-controls">
+												<h:selectOneMenu
+														id="seleccion-tipo-contacto"
+														value="#{escuelaDetalleControlador.tipoContacto}"
+														label="Tipo contacto"
+														styleClass="uk-select">
+													<f:selectItem itemLabel="#{mensaje['label.select']}" noSelectionOption="true"/>
+													<f:selectItems value="#{escuelaDetalleControlador.tipoContactoDtoLista}" var="tipoContacto" itemValue="#{tipoContacto.id}" itemLabel="#{tipoContacto.descripcion}"/>
+													<f:validateRequired/>
+												</h:selectOneMenu>
+											</div>
+										</div>
+										<div class="uk-width-1-2">
+											<h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school-details.table.phone']}" for="input-telefono" />
+											<div class="uk-form-controls">
+												<h:inputText
+														id="input-telefono"
+														styleClass="uk-input"
+														value="#{escuelaDetalleControlador.contactoDtoModelo.telefono}"
+														pt:placeholder="#{mensaje['school-details.table.phone']}"
+														autocomplete="off"
+														label="#{mensaje['school-details.table.phone']}">
+													<f:validateRequired/>
+													<f:validateLength minimum="7" maximum="20"/>
+												</h:inputText>
+											</div>
+										</div>
+										<div class="uk-width-1-2">
+											<h:messages showDetail="false" styleClass="uk-list uk-alert-danger uk-alert" id="mensajes-error"/>
+										</div>
+									</div>
 								</div>
-
 								<div class="uk-modal-footer uk-text-right">
-									<button class="uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
-									<button class="uk-button uk-button-primary" type="button"><h:outputText value="#{mensaje['button.accept']}"/></button>
+									<button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
+									<h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
+										<f:ajax listener="#{escuelaDetalleControlador.insertar}" execute="@form" render="@form"/>
+									</h:commandButton>
 								</div>
-
+							</h:form>
 						</div>
-
-
 					</div>
-
 				</div>
 			</div>
 		</div>
