@@ -46,6 +46,10 @@ public class EscuelaDetalleControlador implements Serializable {
 
     }
 
+    public void actualiza(ContactoDto contactoDto) {
+        contactoDtoModelo = contactoDto;
+    }
+
     public void insertar() {
         ContactoDto contactoDto =
                 contactoSesionBean.inserta(escuelaDetalleDto.getClaveCentroTrabajo(), tipoContacto, contactoDtoModelo.getNombre(), contactoDtoModelo.getTelefono());

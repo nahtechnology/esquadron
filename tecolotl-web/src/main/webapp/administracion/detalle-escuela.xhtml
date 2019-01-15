@@ -159,10 +159,14 @@
 								<div uk-dropdown="boundary:.limite; mode: click">
 									<ul class="uk-nav uk-dropdown-nav">
 										<h:form>
-											<ui:remove>
-												<h:commandLink value="Detalle" actionListener=""/></ui:remove>
 											<li><a href="#"><span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">#{mensaje['school-details.table.option.edit']}</span></a></li>
-											<li><a href="#" ><span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>  <span class="uk-text-middle">#{mensaje['school-details.table.option.delete']}</span></a></li>
+											<li>
+												<h:commandLink>
+													<span uk-icon="icon: trash" class="uk-margin-small-right uk-icon" ></span>
+													<span class="uk-text-middle">#{mensaje['school-details.table.option.delete']}</span>
+													<f:ajax listener="#{escuelaDetalleControlador.actualiza(contacto)}" render="modal-elimina-contacto" onevent="abrirModalEliminar"/>
+												</h:commandLink>
+											</li>
 										</h:form>
 									</ul>
 								</div>
@@ -254,6 +258,30 @@
 									</h:commandButton>
 								</div>
 							</h:form>
+						</div>
+					</div>
+					<div id="modal-elimina-contacto" uk-modal="">
+						<div class="uk-modal-dialog">
+							<div class="uk-modal-header">
+								<h3 class="uk-modal-title uk-text-capitalize uk-text-center uk-text-danger">
+									Eliminar contacto
+								</h3>
+							</div>
+							<div class="uk-modal-body">
+								<p>
+									Esta seguro que desea a elminiar el contacto: #{escuelaDetalleControlador.contactoDtoModelo.nombre}
+								</p>
+							</div>
+							<div class="uk-modal-footer uk-flex uk-flex-right">
+								<button class="uk-button uk-button-default uk-modal-close uk-border-rounded uk-margin-right" type="button">#{mensaje['button.cancel']}</button>
+								<h:form id="formulario-eliminar-contacto">
+									<h:commandButton
+											styleClass="uk-button uk-button-danger uk-modal-close uk-border-rounded"
+											value="#{mensaje['button.remove']}">
+										<f:ajax listener="#{}" onevent="actualiza"/>
+									</h:commandButton>
+								</h:form>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -24,4 +24,13 @@ public class ContactoSesionBean {
         entityManager.persist(contactoEntidad);
         return new ContactoDto(contactoEntidad);
     }
+
+    /**
+     * Elimina un contacno
+     * @param claveCentroTrabajo Escuela a remover el contacto
+     * @param tipoContacto Tipo de contacto a remover
+     */
+    public void elimina(String claveCentroTrabajo, int tipoContacto) {
+
+    }
 }
