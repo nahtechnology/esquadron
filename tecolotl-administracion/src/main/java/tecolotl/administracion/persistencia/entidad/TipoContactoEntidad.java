@@ -1,11 +1,6 @@
 package tecolotl.administracion.persistencia.entidad;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -15,26 +10,27 @@ import javax.validation.constraints.Size;
 public class TipoContactoEntidad {
 
 	@Id
-	private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Short id;
 
     @Basic
     @Column(name = "descripcion")
     @NotNull
-    @Size(min = 11, max = 30)
+    @Size(min = 7, max = 30)
     private String descripcion;
 
     public TipoContactoEntidad() {
     }
 
-    public TipoContactoEntidad(int id) {
+    public TipoContactoEntidad(Short id) {
         this.id = id;
     }
 
-    public int getId() {
+    public Short getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Short id) {
         this.id = id;
     }
 

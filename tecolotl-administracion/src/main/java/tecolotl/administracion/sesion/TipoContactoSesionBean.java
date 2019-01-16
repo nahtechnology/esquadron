@@ -9,8 +9,6 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 @Stateless
 public class TipoContactoSesionBean {
@@ -20,7 +18,6 @@ public class TipoContactoSesionBean {
 
     /**
      * Recupera todos los tipos de contacto en una colección de conjunto, este conjunto ya está integrado en un  árbol
-     * {@link TreeSet}
      * @return Colección de {@link TipoContactoDto} los tipos de contacto, vacio en caso de no existir
      */
     public List<TipoContactoDto> busca() {
@@ -32,6 +29,18 @@ public class TipoContactoSesionBean {
             tipoContactoDtolista.add(new TipoContactoDto(tipoContactoEntidad));
         }
         return  tipoContactoDtolista;
+    }
+
+    /**
+     * Actualiza un Tipo de Contacto
+     * @param id Llave primaria del tipo de contacto
+     * @param descripcion Datos a actualizar
+     * @return {@link TipoContactoDto} con los datos actualizados
+     */
+    public TipoContactoDto actualiza(Short id, String descripcion) {
+        TipoContactoEntidad tipoContactoEntidad = entityManager.find(TipoContactoEntidad.class, id);
+        tipoContactoEntidad.setDescripcion(descripcion);
+        return new TipoContactoDto(tipoContactoEntidad);
     }
 
 }

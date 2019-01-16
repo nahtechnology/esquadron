@@ -37,8 +37,7 @@ public class ContactoEntidadTest {
 			Assert.assertFalse(contactoEntidadLista.isEmpty());
 			for (ContactoEntidad contactoEntidad : contactoEntidadLista) {
 				Assert.assertNotNull(contactoEntidad.getTelefono());
-				Assert.assertNotNull(contactoEntidad.getEscuelaEntidad().getClaveCentroTrabajo());
-				Assert.assertNotNull(contactoEntidad.getTipoContactoEntidad().getId());
+				Assert.assertNotNull(contactoEntidad.getContactoEntidadPK());
 				Assert.assertNotNull(contactoEntidad.getNombre());
 
 			}

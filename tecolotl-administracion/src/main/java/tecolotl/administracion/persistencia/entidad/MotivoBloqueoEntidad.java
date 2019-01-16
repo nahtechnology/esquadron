@@ -11,17 +11,16 @@ import javax.validation.constraints.Size;
 })
 public class MotivoBloqueoEntidad {
 
-	private short id;
+	private Short id;
 	private String descripcion;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "secuencia_id")
-    @SequenceGenerator(name = "secuencia_id", schema = "administracion", sequenceName = "motivo_bloqueo_seq")
-	public short getId() {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Short getId() {
 		return id;
 	}
 	
-	public void setId(short id) {
+	public void setId(Short id) {
 		this.id = id;
 	}
 

@@ -122,7 +122,7 @@ public class EscuelaEntidad {
 		this.licencia = licencia;
 	}
 
-	@OneToMany(mappedBy = "escuelaEntidad")
+	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad")
 	public List<ContactoEntidad> getContacto() {
 		return contacto;
 	}

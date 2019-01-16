@@ -35,7 +35,7 @@ public class MotivoBloqueoSesionBean {
      * @param descripcion Nueva descripción del motivo de bloque
      * @return {@link MotivoBloqueoDto} con los datos actualizado
      */
-    public MotivoBloqueoDto actualiza(int id, String descripcion) {
+    public MotivoBloqueoDto actualiza(Short id, String descripcion) {
         MotivoBloqueoEntidad motivoBloqueoEntidad = entityManager.find(MotivoBloqueoEntidad.class, id);
         motivoBloqueoEntidad.setDescripcion(descripcion);
         return new MotivoBloqueoDto(motivoBloqueoEntidad);

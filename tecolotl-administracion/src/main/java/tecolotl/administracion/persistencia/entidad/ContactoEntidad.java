@@ -9,47 +9,26 @@ import java.io.Serializable;
 @Table(name = "contacto", schema = "administracion")
 @NamedQueries({
 		@NamedQuery(name = "ContactoEntidad.busca", query = "SELECT m FROM ContactoEntidad m"),
-		@NamedQuery(name = "ContactoEntidad.buscaCCT", query = "SELECT  m FROM ContactoEntidad m WHERE m.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
+		@NamedQuery(name = "ContactoEntidad.buscaCCT", query = "SELECT  m FROM ContactoEntidad m WHERE m.contactoEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
 })
 public class ContactoEntidad implements Serializable {
-	
-    @Id
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_tipo_contacto", referencedColumnName="id")
-	private TipoContactoEntidad tipoContactoEntidad;
-    
-    @Id
-    @ManyToOne
-    @JoinColumn(name="id_escuela", referencedColumnName="clave_centro_trabajo")
-    private EscuelaEntidad escuelaEntidad;
-    
-    
-	@Column(name = "nombre")
-    @NotNull
-    @Size(min = 11, max = 110)
+
+    private ContactoEntidadPK contactoEntidadPK;
     private String nombre;
-    
-	@Column(name = "telefono")
-    @NotNull
-    @Size(min = 7, max = 20)
     private String telefono;
 
-    public TipoContactoEntidad getTipoContactoEntidad() {
-		return tipoContactoEntidad;
+    @EmbeddedId
+	public ContactoEntidadPK getContactoEntidadPK() {
+		return contactoEntidadPK;
 	}
 
-	public void setTipoContactoEntidad(TipoContactoEntidad tipoContactoEntidad) {
-		this.tipoContactoEntidad = tipoContactoEntidad;
+	public void setContactoEntidadPK(ContactoEntidadPK contactoEntidadPK) {
+		this.contactoEntidadPK = contactoEntidadPK;
 	}
 
-	public EscuelaEntidad getEscuelaEntidad() {
-		return escuelaEntidad;
-	}
-
-	public void setEscuelaEntidad(EscuelaEntidad escuelaEntidad) {
-		this.escuelaEntidad = escuelaEntidad;
-	}
-
+	@Column(name = "nombre")
+	@NotNull
+	@Size(min = 11, max = 110)
 	public String getNombre() {
 		return nombre;
 	}
@@ -58,6 +37,9 @@ public class ContactoEntidad implements Serializable {
 		this.nombre = nombre;
 	}
 
+	@Column(name = "telefono")
+	@NotNull
+	@Size(min = 7, max = 20)
 	public String getTelefono() {
 		return telefono;
 	}
