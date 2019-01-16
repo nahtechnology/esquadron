@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 @Named
 @ViewScoped
-public class CatalogoControlador implements Serializable {
+public class CatalogoMotivoBloqueoControlador implements Serializable {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 

@@ -20,13 +20,13 @@
                 <div class="uk-container uk-container-expand">
                     <div class="" uk-grid="">
                         <div class="uk-width-1-2">
-                            <div uk-grid="">catalogoControlador.tipoContactos
+                            <div uk-grid="">
                                 <div class="uk-width-auto"><span uk-icon="icon: ban; ratio: 2"></span></div>
                                 <div class="uk-width-expand">
                                     <h3 class="uk-text-uppercase">#{mensaje['catalog.blockingreason']}</h3>
-                                    <h:dataTable value="#{catalogoControlador.motivoBloqueoModeloDatos}"
-                                                 binding="#{catalogoControlador.dataTableMitivoBloqueo}"
-                                                 rows="#{catalogoControlador.rowsOnPage}"
+                                    <h:dataTable value="#{catalogoMotivoBloqueoControlador.motivoBloqueoModeloDatos}"
+                                                 binding="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo}"
+                                                 rows="#{catalogoMotivoBloqueoControlador.rowsOnPage}"
                                                  first="0"
                                                  var="motivo"
                                                  id="tabla-motivo-bloqueo"
@@ -48,7 +48,7 @@
                                                                 <h:commandLink styleClass="uk-link-muted">
                                                                     <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
                                                                     <span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
-                                                                    <f:ajax listener="#{catalogoControlador.actualiza(motivo)}" render="formulario-motivo-bloqueo" onevent="abreModal"/>
+                                                                    <f:ajax listener="#{catalogoMotivoBloqueoControlador.actualiza(motivo)}" render="formulario-motivo-bloqueo" onevent="abreModal"/>
                                                                 </h:commandLink>
                                                             </h:form>
                                                         </li>
@@ -57,14 +57,14 @@
                                             </div>
                                         </h:column>
                                         <f:facet name="footer">
-                                            <h:outputText value="#{(catalogoControlador.dataTableMitivoBloqueo.first div catalogoControlador.dataTableMitivoBloqueo.rows) + 1}">
+                                            <h:outputText value="#{(catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first div catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows) + 1}">
                                                 <f:converter converterId="javax.faces.Integer"/>
                                             </h:outputText>
                                             de
-                                            <h:outputText value="#{catalogoControlador.dataTableMitivoBloqueo.rowCount mod catalogoControlador.dataTableMitivoBloqueo.rows eq 0
-                                                    ? (catalogoControlador.dataTableMitivoBloqueo.rowCount div catalogoControlador.dataTableMitivoBloqueo.rows)
-                                                    : ((catalogoControlador.dataTableMitivoBloqueo.rowCount div catalogoControlador.dataTableMitivoBloqueo.rows) + 1) -
-                                                        (((catalogoControlador.dataTableMitivoBloqueo.rowCount div catalogoControlador.dataTableMitivoBloqueo.rows) + 1) mod 1)}">
+                                            <h:outputText value="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount mod catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows eq 0
+                                                    ? (catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount div catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows)
+                                                    : ((catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount div catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows) + 1) -
+                                                        (((catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount div catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows) + 1) mod 1)}">
                                                 <f:converter converterId="javax.faces.Integer"/>
                                             </h:outputText>
                                         </f:facet>
@@ -74,13 +74,13 @@
                                             <f:ajax render="tabla-motivo-bloqueo formulario-paginacion-motivo-bloqueo">
                                                 <h:form id="formulario-paginacion-motivo-bloqueo">
                                                     <h:commandButton
-                                                        action="#{catalogoControlador.vistaAnterior(false)}"
-                                                        styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
-                                                        disabled="#{catalogoControlador.dataTableMitivoBloqueo.first eq 0}" value="#{mensaje['button.back']}"/>
+                                                            action="#{catalogoMotivoBloqueoControlador.vistaAnterior(false)}"
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
+                                                            disabled="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first eq 0}" value="#{mensaje['button.back']}"/>
                                                     <h:commandButton
-                                                        action="#{catalogoControlador.vistaSiguiente(false)}"
+                                                        action="#{catalogoMotivoBloqueoControlador.vistaSiguiente(false)}"
                                                         styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
-                                                        disabled="#{catalogoControlador.dataTableMitivoBloqueo.first + catalogoControlador.dataTableMitivoBloqueo.rows ge catalogoControlador.dataTableMitivoBloqueo.rowCount}"
+                                                        disabled="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first + catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows ge catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount}"
                                                         value="#{mensaje['button.next']}"/>
                                                 </h:form>
                                             </f:ajax>
@@ -95,21 +95,23 @@
                                 </div>
                             </div>
                         </div>
-                        <ui:remove>
                         <div class="uk-width-1-2">
                             <div uk-grid="">
                                 <div class="uk-width-auto"><span uk-icon="icon: users; ratio: 2"></span></div>
                                 <div class="uk-width-expand">
                                     <h3 class="uk-text-uppercase uk-text-truncate">#{mensaje['catalog.typescontacts']}</h3>
-                                    <h:dataTable value="#{catalogoControlador.tipoContactos}"
-                                                 var="contacto"
+                                    <h:dataTable value="#{catalagoTipoContactoControlador.paginacionModeloDato}"
+                                                 binding="#{catalagoTipoContactoControlador.htmlDataTable}"
+                                                 rows="#{catalagoTipoContactoControlador.filasEnPagina}"
+                                                 first="0"
+                                                 var="tipoContacto"
                                                  id="tabla-tipos-contactos"
                                                  styleClass="uk-table uk-table-hover uk-table-divider limite-tabla-tipos-contactos uk-table-middle"
                                                  headerClass="uk-background-primary uk-dark"
                                                  footerClass="uk-background-primary">
                                         <h:column>
                                             <f:facet name="header" ><h:outputText value="#{mensaje['catalog.description']}" styleClass="uk-text-capitalize"/></f:facet>
-                                            <h:outputText value="#{contacto.descripcion}"/>
+                                            <h:outputText value="#{tipoContacto.descripcion}"/>
                                         </h:column>
                                         <h:column headerClass="uk-background-primary uk-dark uk-table-shrink uk-text-center">
                                             <f:facet name="header"><h:outputText value="#{mensaje['label.option']}" styleClass="uk-text-capitalize"/></f:facet>
@@ -118,7 +120,7 @@
                                                 <div uk-dropdown="boundary:.limite-tabla-tipos-contactos; mode: click">
                                                     <ul class="uk-nav uk-dropdown-nav">
                                                         <li>
-                                                            <h:form id="formulario-aditar">
+                                                            <h:form id="formulario-editar-tipo-contacto">
                                                                 <h:commandLink styleClass="uk-link-muted">
                                                                     <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
                                                                     <span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
@@ -129,16 +131,52 @@
                                                 </div>
                                             </div>
                                         </h:column>
+                                        <f:facet name="footer">
+                                            <h:outputText value="#{(catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first div catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows) + 1}">
+                                                <f:converter converterId="javax.faces.Integer"/>
+                                            </h:outputText>
+                                            de
+                                            <h:outputText value="#{catalagoTipoContactoControlador.htmlDataTable.rowCount mod catalagoTipoContactoControlador.htmlDataTable.rows eq 0
+                                                    ? (catalagoTipoContactoControlador.htmlDataTable.rowCount div catalagoTipoContactoControlador.htmlDataTable.rows)
+                                                    : ((catalagoTipoContactoControlador.htmlDataTable.rowCount div catalagoTipoContactoControlador.htmlDataTable.rows) + 1) -
+                                                        (((catalagoTipoContactoControlador.htmlDataTable.rowCount div catalagoTipoContactoControlador.htmlDataTable.rows) + 1) mod 1)}">
+                                                <f:converter converterId="javax.faces.Integer"/>
+                                            </h:outputText>
+                                        </f:facet>
                                     </h:dataTable>
+                                    <div class="uk-flex uk-flex-between">
+                                        <div class="uk-panel">
+                                            <f:ajax render="tabla-tipos-contactos formulario-paginacion-tipo-contacto">
+                                                <h:form id="formulario-paginacion-tipo-contacto">
+                                                    <h:commandButton
+                                                            action="#{catalagoTipoContactoControlador.vistaAnterior(false)}"
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
+                                                            disabled="#{catalagoTipoContactoControlador.htmlDataTable.first eq 0}" value="#{mensaje['button.back']}"/>
+                                                    <h:commandButton
+                                                            action="#{catalagoTipoContactoControlador.vistaSiguiente(false)}"
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
+                                                            disabled="#{catalagoTipoContactoControlador.htmlDataTable.first + catalagoTipoContactoControlador.htmlDataTable.rows ge catalagoTipoContactoControlador.htmlDataTable.rowCount}"
+                                                            value="#{mensaje['button.next']}"/>
+                                                </h:form>
+                                            </f:ajax>
+                                        </div>
+                                        <div class="uk-panel">
+                                            <button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-motivos-bloqueo">
+                                                <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
+                                                <span uk-icon="icon: plus-circle; ratio: 1"></span>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <ui:remove>
                         <div class="uk-width-1-1">
                             <div uk-grid="">
                                 <div class="uk-width-auto"><h:graphicImage library="img" name="mapa.svg" pt:uk-svg="" width="40" height="40"/></div>
                                 <div class="uk-width-expand">
                                     <h3 class="uk-text-uppercase uk-text-truncate">COLONIAS</h3>
-                                    <h:panelGroup rendered="#{empty catalogoControlador.codigoPostales}">
+                                    <h:panelGroup rendered="#{empty catalogoMotivoBloqueoControlador.codigoPostales}">
                                         <table class="uk-table uk-table-middle uk-table-hover uk-table-striped">
                                             <thead class="limite">
                                               <tr class="uk-border-rounded">
@@ -183,18 +221,18 @@
                     <h:form id="formulario-motivo-bloqueo" styleClass="uk-form-stacked">
                         <div class="uk-modal-header">
                             <h4 class="uk-modal-title uk-text-capitalize uk-text-center">
-                                <h:outputText rendered="#{catalogoControlador.motivoBloqueoModelo.id eq 0}" value="#{mensaje['catalog.new']}"/>
-                                <h:outputText rendered="#{catalogoControlador.motivoBloqueoModelo.id ne 0}" value="#{mensaje['catalog.edit']}"/>
+                                <h:outputText rendered="#{catalogoMotivoBloqueoControlador.motivoBloqueoModelo.id eq 0}" value="#{mensaje['catalog.new']}"/>
+                                <h:outputText rendered="#{catalogoMotivoBloqueoControlador.motivoBloqueoModelo.id ne 0}" value="#{mensaje['catalog.edit']}"/>
                             </h4>
                         </div>
                         <div class="uk-modal-body">
-                            <h:inputHidden value="#{catalogoControlador.motivoBloqueoModelo.id}"/>
+                            <h:inputHidden value="#{catalogoMotivoBloqueoControlador.motivoBloqueoModelo.id}"/>
                             <div class="uk-margin">
                                 <h:outputLabel value="#{mensaje['catalog.description']}" styleClass="form-stacked-text uk-text-capitalize" for="input-descripcion"/>
                                 <div class="uk-form-controls">
                                     <h:inputText id="input-descripcion"
                                                  styleClass="uk-input"
-                                                 value="#{catalogoControlador.motivoBloqueoModelo.descripcion}"
+                                                 value="#{catalogoMotivoBloqueoControlador.motivoBloqueoModelo.descripcion}"
                                                  pt:placeholder="#{mensaje['catalog.new.placeholder']}"
                                                  autocomplete="off"
                                                  label="#{mensaje['catalog.description']}">
@@ -212,7 +250,47 @@
                         <div class="uk-modal-footer uk-flex uk-flex-right">
                             <button class="uk-button uk-button-default uk-border-rounded uk-modal-close uk-margin-small-right" type="button">#{mensaje['button.cancel']}</button>
                             <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
-                                <f:ajax listener="#{catalogoControlador.inserta}" execute="@form" render="@form tabla-motivo-bloqueo" onevent="cierreModal"/>
+                                <f:ajax listener="#{catalogoMotivoBloqueoControlador.inserta}" execute="@form" render="@form tabla-motivo-bloqueo" onevent="cierreModal"/>
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div id="modal-tipo-contactos" class="uk-flex-center" uk-modal="">
+                <div class="uk-modal-dialog uk-margin-auto-vertical">
+                    <h:form id="formulario-modal-tipo-contacto" styleClass="uk-form-stacked">
+                        <div class="uk-modal-header">
+                            <h4 class="uk-modal-title uk-text-capitalize uk-text-center">
+                                <h:outputText rendered="#{catalagoTipoContactoControlador.tipoContactoDtoModelo.id eq 0}" value="#{mensaje['catalog.new']}"/>
+                                <h:outputText rendered="#{catalagoTipoContactoControlador.tipoContactoDtoModelo.id ne 0}" value="#{mensaje['catalog.edit']}"/>
+                            </h4>
+                        </div>
+                        <div class="uk-modal-body">
+                            <h:inputHidden value="#{catalagoTipoContactoControlador.tipoContactoDtoModelo.id}"/>
+                            <div class="uk-margin">
+                                <h:outputLabel value="#{mensaje['catalog.description']}" styleClass="form-stacked-text uk-text-capitalize" for="input-descripcion"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="input-tipo-contacto-descripcion"
+                                                 styleClass="uk-input"
+                                                 value="#{catalagoTipoContactoControlador.tipoContactoDtoModelo.descripcion}"
+                                                 pt:placeholder="#{mensaje['catalog.new.placeholder']}"
+                                                 autocomplete="off"
+                                                 label="#{mensaje['catalog.description']}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div id="label-error-tipo-contacto" class="uk-margin" style="display: none">
+                                <div class="uk-alert-danger" uk-alert="">
+                                    <h:message  for="input-descripcion" id="mensajes-error-tipo-contacto"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-modal-footer uk-flex uk-flex-right">
+                            <button class="uk-button uk-button-default uk-border-rounded uk-modal-close uk-margin-small-right" type="button">#{mensaje['button.cancel']}</button>
+                            <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
+                                <f:ajax listener="#{catalagoTipoContactoControlador}" execute="@form" render="@form tabla-motivo-bloqueo" onevent="cierreModal"/>
                             </h:commandButton>
                         </div>
                     </h:form>
