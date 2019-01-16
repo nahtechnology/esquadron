@@ -50,4 +50,9 @@ public class ContactoSesionBeanTest {
     public void elimina() {
         contactoSesionBean.elimina("21DBA0035W", (short)-32765);
     }
+
+    @Test
+    public void actualiza() {
+        contactoSesionBean.actualiza("21DBA0035W", (short)-32765, "Jose Maria Espiza", "2345-5467");
+    }
 }
