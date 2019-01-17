@@ -5,7 +5,7 @@ import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 public class ContactoDto {
 
     private String claveCentroTrabajo;
-    private String tipo;
+    private TipoContactoDto tipoContactoDto;
     private String nombre;
     private String telefono;
 
@@ -14,7 +14,7 @@ public class ContactoDto {
 
     public ContactoDto(ContactoEntidad contactoEntidad) {
         claveCentroTrabajo = contactoEntidad.getContactoEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
-        tipo = contactoEntidad.getContactoEntidadPK().getTipoContactoEntidad().getDescripcion();
+        tipoContactoDto = new TipoContactoDto(contactoEntidad.getContactoEntidadPK().getTipoContactoEntidad());
         nombre = contactoEntidad.getNombre();
         telefono = contactoEntidad.getTelefono();
     }
@@ -25,14 +25,6 @@ public class ContactoDto {
 
     public void setClaveCentroTrabajo(String claveCentroTrabajo) {
         this.claveCentroTrabajo = claveCentroTrabajo;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public String getNombre() {
@@ -49,5 +41,13 @@ public class ContactoDto {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    public TipoContactoDto getTipoContactoDto() {
+        return tipoContactoDto;
+    }
+
+    public void setTipoContactoDto(TipoContactoDto tipoContactoDto) {
+        this.tipoContactoDto = tipoContactoDto;
     }
 }

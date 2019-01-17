@@ -14,7 +14,7 @@
 		<class>tecolotl.alumno.persistencia.entidad.TareaVideoEntidadPK</class>
 		<class>tecolotl.alumno.persistencia.entidad.TareaVideoEntidad</class>
         <properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/>
 			<property name="hibernate.show_sql" value="false"/>
         </properties>
 	</persistence-unit>

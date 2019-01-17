@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class TipoContactoDto implements Comparable<TipoContactoDto>{
 
-    private int id;
+    private Short id;
     private String descripcion;
 
     public TipoContactoDto() {
     }
 
-    public TipoContactoDto(int id, String descripcion) {
+    public TipoContactoDto(Short id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
     }
@@ -22,11 +22,11 @@ public class TipoContactoDto implements Comparable<TipoContactoDto>{
         descripcion = tipoContactoEntidad.getDescripcion();
     }
 
-    public int getId() {
+    public Short getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Short id) {
         this.id = id;
     }
 
