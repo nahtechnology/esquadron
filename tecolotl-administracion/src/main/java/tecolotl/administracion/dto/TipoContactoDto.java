@@ -55,4 +55,13 @@ public class TipoContactoDto implements Comparable<TipoContactoDto>{
     public int hashCode() {
         return Objects.hash(id);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("TipoContactoDto{");
+        sb.append("id=").append(id);
+        sb.append(", descripcion='").append(descripcion).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

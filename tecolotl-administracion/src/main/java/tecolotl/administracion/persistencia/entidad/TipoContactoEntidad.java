@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "tipo_contacto", schema = "administracion")
-@NamedQuery(name = "TipoContactoEntidad.busca", query = "SELECT m FROM TipoContactoEntidad m")
+@NamedQuery(name = "TipoContactoEntidad.busca", query = "SELECT tc FROM TipoContactoEntidad tc WHERE NOT (tc.descripcion = :descripcion) ORDER BY tc.descripcion")
 public class TipoContactoEntidad {
 
 	@Id
@@ -24,6 +24,11 @@ public class TipoContactoEntidad {
 
     public TipoContactoEntidad(Short id) {
         this.id = id;
+    }
+
+    public TipoContactoEntidad(Short id, String descripcion) {
+        this.id = id;
+        this.descripcion = descripcion;
     }
 
     public Short getId() {

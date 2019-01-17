@@ -258,7 +258,7 @@
 								<div class="uk-modal-footer uk-text-right">
 									<button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
 									<h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
-										<f:ajax listener="#{escuelaDetalleControlador.insertar}" execute="@form" render="@form panel-contacto modal-contacto" onevent="actualiza"/>
+										<f:ajax listener="#{escuelaDetalleControlador.insertar}" execute="@form" render="@form panel-contacto modal-contacto" onevent="cierraModal"/>
 									</h:commandButton>
 								</div>
 							</h:form>
@@ -292,8 +292,10 @@
 			</div>
 		</div>
 		<script type="text/javascript">
+			var modalAgregar;
 		document.addEventListener("DOMContentLoaded", function (evt) {
 			limpiarSelector("undefined");
+			modalAgregar = document.querySelector('#modal-contacto')
 		});
 		function limpiarSelector(informacion) {
 			if (informacion === "undefined") {
@@ -304,10 +306,13 @@
 				}
 			}
 		}
-
-		function actualiza(data) {
+		function cierraModal(data) {
 			if (data.status === 'success') {
-				document.getElementById('formulario-actualiza:boton-actualizar').click();
+				var mensajeError = document.querySelector('#mensajes-error');
+				if (typeof mensajeError === 'object' || mensajeError.textContent === '') {
+					UIkit.modal(modalAgregar).hide();
+					limpiarSelector("undefined");
+				}
 			}
 		}
 	</script>

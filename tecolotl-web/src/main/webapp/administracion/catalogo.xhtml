@@ -15,11 +15,12 @@
 
 <ui:composition template="/template/template.xhtml">
     <ui:define name="contenido2">
+        <h:outputStylesheet library="css" name="tablas.css"  />
         <div id="content" data-uk-height-viewport="expand: true">
             <div class="uk-section uk-section-medium">
                 <div class="uk-container uk-container-expand">
                     <div class="" uk-grid="">
-                        <div class="uk-width-1-2">
+                        <div class="uk-width-1-2@m uk-width-1-1@s">
                             <div uk-grid="">
                                 <div class="uk-width-auto"><span uk-icon="icon: ban; ratio: 2"></span></div>
                                 <div class="uk-width-expand">
@@ -75,13 +76,12 @@
                                                 <h:form id="formulario-paginacion-motivo-bloqueo">
                                                     <h:commandButton
                                                             action="#{catalogoMotivoBloqueoControlador.vistaAnterior(false)}"
-                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
-                                                            disabled="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first eq 0}" value="#{mensaje['button.back']}"/>
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+                                                            disabled="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first eq 0}"/>
                                                     <h:commandButton
                                                         action="#{catalogoMotivoBloqueoControlador.vistaSiguiente(false)}"
-                                                        styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
-                                                        disabled="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first + catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows ge catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount}"
-                                                        value="#{mensaje['button.next']}"/>
+                                                        styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+                                                        disabled="#{catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first + catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows ge catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rowCount}"/>
                                                 </h:form>
                                             </f:ajax>
                                         </div>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="uk-width-1-2">
+                        <div class="uk-width-1-2@m uk-width-1-1@s">
                             <div uk-grid="">
                                 <div class="uk-width-auto"><span uk-icon="icon: users; ratio: 2"></span></div>
                                 <div class="uk-width-expand">
@@ -124,6 +124,7 @@
                                                                 <h:commandLink styleClass="uk-link-muted">
                                                                     <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
                                                                     <span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
+
                                                                 </h:commandLink>
                                                             </h:form>
                                                         </li>
@@ -132,7 +133,7 @@
                                             </div>
                                         </h:column>
                                         <f:facet name="footer">
-                                            <h:outputText value="#{(catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.first div catalogoMotivoBloqueoControlador.dataTableMitivoBloqueo.rows) + 1}">
+                                            <h:outputText value="#{(catalagoTipoContactoControlador.htmlDataTable.first div catalagoTipoContactoControlador.htmlDataTable.rows) + 1}">
                                                 <f:converter converterId="javax.faces.Integer"/>
                                             </h:outputText>
                                             de
@@ -150,18 +151,17 @@
                                                 <h:form id="formulario-paginacion-tipo-contacto">
                                                     <h:commandButton
                                                             action="#{catalagoTipoContactoControlador.vistaAnterior(false)}"
-                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
-                                                            disabled="#{catalagoTipoContactoControlador.htmlDataTable.first eq 0}" value="#{mensaje['button.back']}"/>
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+                                                            disabled="#{catalagoTipoContactoControlador.htmlDataTable.first eq 0}"/>
                                                     <h:commandButton
                                                             action="#{catalagoTipoContactoControlador.vistaSiguiente(false)}"
-                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right"
-                                                            disabled="#{catalagoTipoContactoControlador.htmlDataTable.first + catalagoTipoContactoControlador.htmlDataTable.rows ge catalagoTipoContactoControlador.htmlDataTable.rowCount}"
-                                                            value="#{mensaje['button.next']}"/>
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+                                                            disabled="#{catalagoTipoContactoControlador.htmlDataTable.first + catalagoTipoContactoControlador.htmlDataTable.rows ge catalagoTipoContactoControlador.htmlDataTable.rowCount}"/>
                                                 </h:form>
                                             </f:ajax>
                                         </div>
                                         <div class="uk-panel">
-                                            <button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-motivos-bloqueo">
+                                            <button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-tipo-contactos">
                                                 <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
                                                 <span uk-icon="icon: plus-circle; ratio: 1"></span>
                                             </button>
@@ -170,46 +170,108 @@
                                 </div>
                             </div>
                         </div>
-                        <ui:remove>
-                        <div class="uk-width-1-1">
+                        <div class="uk-width-1-1@s">
                             <div uk-grid="">
                                 <div class="uk-width-auto"><h:graphicImage library="img" name="mapa.svg" pt:uk-svg="" width="40" height="40"/></div>
                                 <div class="uk-width-expand">
                                     <h3 class="uk-text-uppercase uk-text-truncate">COLONIAS</h3>
-                                    <h:panelGroup rendered="#{empty catalogoMotivoBloqueoControlador.codigoPostales}">
-                                        <table class="uk-table uk-table-middle uk-table-hover uk-table-striped">
-                                            <thead class="limite">
-                                              <tr class="uk-border-rounded">
-                                                  <th class="uk-background-primary uk-dark">#{mensaje['catalog.zipcode']}</th>
-                                                  <th class="uk-background-primary uk-dark">#{mensaje['catalog.name']}</th>
-                                                  <th class="uk-background-primary uk-dark">#{mensaje['catalog.town']}</th>
-                                                  <th class="uk-background-primary uk-dark">#{mensaje['catalog.state']}</th>
-                                                  <th class="uk-background-primary uk-dark">#{mensaje['label.option']}</th>
-                                              </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td colspan="5" align="center" ><h:graphicImage library="img" name="vacio.svg" height="385px" width="385px"/></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <div class="uk-flex uk-flex-right">
-                                            <button class="uk-button uk-button-primary uk-margin-small uk-border-rounded" uk-toggle="target: #modal-motivos-bloqueo">
-                                                <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
-                                                <span uk-icon="icon: plus-circle; ratio: 1"></span>
-                                            </button>
-                                        </div>
+                                    <h:panelGroup id="panel-tabla-colonia">
+                                        <h:dataTable
+                                                rendered="#{not empty catalagoColoniaControlador.paginacionModeloDato}"
+                                                value="#{catalagoColoniaControlador.paginacionModeloDato}"
+                                                binding="#{catalagoColoniaControlador.htmlDataTable}"
+                                                rows="#{catalagoColoniaControlador.filasEnPagina}"
+                                                var="codigoPostalLocal"
+                                                id="tabla-colonia"
+                                                styleClass="uk-table uk-table-hover uk-table-divider limite-tabla-tipos-contactos uk-table-middle"
+                                                headerClass="uk-background-primary uk-dark"
+                                                footerClass="uk-background-primary">
+                                            <h:column >
+                                                <f:facet name="header"><h:outputText value="#{mensaje['catalog.zipcode']}" styleClass="uk-text-capitalize"/></f:facet>
+                                                <h:outputText value="#{codigoPostalLocal.nombre}"/>
+                                            </h:column>
+                                            <f:facet name="footer">
+                                                <h:outputText value="#{(catalagoColoniaControlador.htmlDataTable.first div catalagoColoniaControlador.htmlDataTable.rows) + 1}">
+                                                    <f:converter converterId="javax.faces.Integer"/>
+                                                </h:outputText>
+                                                de
+                                                <h:outputText value="#{catalagoColoniaControlador.htmlDataTable.rowCount mod catalagoColoniaControlador.htmlDataTable.rows eq 0
+                                                        ? (catalagoColoniaControlador.htmlDataTable.rowCount div catalagoColoniaControlador.htmlDataTable.rows)
+                                                        : ((catalagoColoniaControlador.htmlDataTable.rowCount div catalagoColoniaControlador.htmlDataTable.rows) + 1) -
+                                                            (((catalagoColoniaControlador.htmlDataTable.rowCount div catalagoColoniaControlador.htmlDataTable.rows) + 1) mod 1)}">
+                                                    <f:converter converterId="javax.faces.Integer"/>
+                                                </h:outputText>
+                                            </f:facet>
+                                        </h:dataTable>
+                                        <h:panelGroup rendered="#{empty catalagoColoniaControlador.coloniaDto.listaCodigoPostal}">
+                                            <table class="uk-table uk-table-middle uk-table-hover uk-table-striped">
+                                                <thead class="limite">
+                                                  <tr class="uk-border-rounded">
+                                                      <th class="uk-background-primary uk-dark">#{mensaje['catalog.zipcode']}</th>
+                                                      <th class="uk-background-primary uk-dark">#{mensaje['catalog.name']}</th>
+                                                      <th class="uk-background-primary uk-dark">#{mensaje['catalog.town']}</th>
+                                                      <th class="uk-background-primary uk-dark">#{mensaje['catalog.state']}</th>
+                                                      <th class="uk-background-primary uk-dark">#{mensaje['label.option']}</th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="5" align="center" ><h:graphicImage library="img" name="vacio.svg" height="385px" width="385px"/></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </h:panelGroup>
                                     </h:panelGroup>
-                                </div>
-                            </div>
-                        </div>
-                        </ui:remove>
-                        <div class="uk-width-1-2">
-                            <div uk-grid="">
-                                <div class="uk-width-auto"><span uk-icon="icon:heart;ratio:2"></span></div>
-                                <div class="uk-width-expand">
-                                    <h3 class="uk-text-uppercase uk-text-truncate">Title</h3>
-                                    <p class="uk-text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id est ut risus vehicula imperdiet. Aenean id felis quis purus sollicitudin rutrum. Aliquam dignissim euismod justo, at egestas mi tempus eget. Quisque luctus vehicula ornare. Aenean vitae rutrum nisl. Sed commodo ultricies velit, ut placerat nulla maximus vulputate. Donec elit lectus, interdum tempor iaculis vel, vestibulum ac augue. Maecenas ipsum eros, auctor sit amet ultrices lobortis, mollis eget elit.</p>
+                                    <div class="uk-flex uk-flex-between">
+                                        <div class="uk-panel">
+                                            <f:ajax render="tabla-colonia formulario-paginacion-colonia">
+                                                <h:form id="formulario-paginacion-colonia">
+                                                    <h:commandButton
+                                                            action="#{catalagoColoniaControlador.vistaAnterior(false)}"
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+                                                            disabled="#{catalagoColoniaControlador.htmlDataTable.first eq 0}"/>
+                                                    <h:commandButton
+                                                            action="#{catalagoColoniaControlador.vistaSiguiente(false)}"
+                                                            styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+                                                            disabled="#{catalagoColoniaControlador.htmlDataTable.first + catalagoColoniaControlador.htmlDataTable.rows ge catalagoColoniaControlador.htmlDataTable.rowCount}"/>
+                                                </h:form>
+                                            </f:ajax>
+                                        </div>
+                                        <div class="uk-panel">
+                                            <h:form id="formulario-busca-codigo-postal" class="uk-grid-small" pt:uk-grid="">
+                                                <div class="uk-width-1-3">
+                                                    <h:inputText value="#{catalagoColoniaControlador.codigoPostal}" styleClass="uk-input uk-margin-small-right">
+                                                        <f:validateRequired/>
+                                                        <f:validateLength minimum="4" maximum="5"/>
+                                                    </h:inputText>
+                                                </div>
+                                                <div class="uk-width-1-3">
+                                                    <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.search']}">
+                                                        <f:ajax execute="@form" listener="#{catalagoColoniaControlador.busca}" render="panel-tabla-colonia formulario-paginacion-colonia panel-boton-agregar-colonia"/>
+                                                    </h:commandButton>
+                                                </div>
+                                                <div class="uk-width-1-3">
+                                                    <h:message for="formulario-busca-codigo-postal"/>
+                                                </div>
+                                            </h:form>
+                                        </div>
+                                        <div class="uk-panel">
+                                            <h:panelGroup id="panel-boton-agregar-colonia">
+                                                <h:panelGroup rendered="#{empty catalagoColoniaControlador.paginacionModeloDato}">
+                                                    <button class="uk-button uk-button-primary uk-border-rounded" disabled="disabled">
+                                                        <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
+                                                        <span uk-icon="icon: plus-circle; ratio: 1"></span>
+                                                    </button>
+                                                </h:panelGroup>
+                                                <h:panelGroup rendered="#{not empty catalagoColoniaControlador.paginacionModeloDato}">
+                                                    <button class="uk-button uk-button-primary uk-border-rounded">
+                                                        <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
+                                                        <span uk-icon="icon: plus-circle; ratio: 1"></span>
+                                                    </button>
+                                                </h:panelGroup>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -248,9 +310,9 @@
                             </div>
                         </div>
                         <div class="uk-modal-footer uk-flex uk-flex-right">
-                            <button class="uk-button uk-button-default uk-border-rounded uk-modal-close uk-margin-small-right" type="button">#{mensaje['button.cancel']}</button>
+                            <button class="uk-button uk-button-default uk-border-rounded uk-modal-close uk-margin-small-right" type="button" onclick="limpiaModal('motivo-bloqueo')">#{mensaje['button.cancel']}</button>
                             <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
-                                <f:ajax listener="#{catalogoMotivoBloqueoControlador.inserta}" execute="@form" render="@form tabla-motivo-bloqueo" onevent="cierreModal"/>
+                                <f:ajax listener="#{catalogoMotivoBloqueoControlador.inserta}" execute="@form" render="@form tabla-motivo-bloqueo" onevent="function(data){ cierreModal(data, 'motivo-bloqueo') }"/>
                             </h:commandButton>
                         </div>
                     </h:form>
@@ -261,8 +323,8 @@
                     <h:form id="formulario-modal-tipo-contacto" styleClass="uk-form-stacked">
                         <div class="uk-modal-header">
                             <h4 class="uk-modal-title uk-text-capitalize uk-text-center">
-                                <h:outputText rendered="#{catalagoTipoContactoControlador.tipoContactoDtoModelo.id eq 0}" value="#{mensaje['catalog.new']}"/>
-                                <h:outputText rendered="#{catalagoTipoContactoControlador.tipoContactoDtoModelo.id ne 0}" value="#{mensaje['catalog.edit']}"/>
+                                <h:outputText rendered="#{empty catalagoTipoContactoControlador.tipoContactoDtoModelo.id}" value="#{mensaje['catalog.new']}"/>
+                                <h:outputText rendered="#{not empty catalagoTipoContactoControlador.tipoContactoDtoModelo.id}" value="#{mensaje['catalog.edit']}"/>
                             </h4>
                         </div>
                         <div class="uk-modal-body">
@@ -290,7 +352,7 @@
                         <div class="uk-modal-footer uk-flex uk-flex-right">
                             <button class="uk-button uk-button-default uk-border-rounded uk-modal-close uk-margin-small-right" type="button">#{mensaje['button.cancel']}</button>
                             <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
-                                <f:ajax listener="#{catalagoTipoContactoControlador}" execute="@form" render="@form tabla-motivo-bloqueo" onevent="cierreModal"/>
+                                <f:ajax listener="#{catalagoTipoContactoControlador.inserta}" execute="@form" render="@form tabla-tipos-contactos" onevent="function(data){ cierreModal(data, 'tipo-contacto') }"/>
                             </h:commandButton>
                         </div>
                     </h:form>
@@ -299,33 +361,56 @@
         </div>
         <script type="text/javascript">
             var modalMotivoBloqueo;
-            var dropDowns = document.querySelectorAll('.uk-dropdown-nav');
+            var modalTipoContacto;
             document.addEventListener("DOMContentLoaded", function (evt) {
                 modalMotivoBloqueo = document.querySelector('#modal-motivos-bloqueo');
+                modalTipoContacto = document.querySelector('#modal-tipo-contactos');
             });
-            function cierreModal(data) {
-                if (data.status === 'success') {
-                    var mensajeError = document.getElementById('formulario-motivo-bloqueo:mensajes-error');
-                    var estiloError = document.getElementById('label-error');
-                    if (mensajeError.textContent === '') {
-                        UIkit.modal(modalMotivoBloqueo).hide();
-                        estiloError.style.display = 'none';
-                    } else {
-                        estiloError.removeAttribute('style');
-                    }
+            function cierreModal(data, modal) {
+                switch (modal) {
+                    case 'motivo-bloqueo':
+                        if (data.status === 'success') {
+                            var mensajeError = document.getElementById('formulario-motivo-bloqueo:mensajes-error');
+                            var estiloError = document.getElementById('label-error');
+                            if (mensajeError.textContent === '') {
+                                UIkit.modal(modalMotivoBloqueo).hide();
+                                estiloError.style.display = 'none';
+                            } else {
+                                estiloError.removeAttribute('style');
+                            }
+                        }
+                        break;
+                    case 'tipo-contacto':
+                        if (data.status === 'success') {
+                            var mensajeError = document.getElementById('formulario-modal-tipo-contacto:mensajes-error-tipo-contacto');
+                            var estiloError = document.getElementById('label-error-tipo-contacto');
+                            if (mensajeError.textContent === '') {
+                                UIkit.modal(modalTipoContacto).hide();
+                                estiloError.style.display = 'none';
+                            } else {
+                                estiloError.removeAttribute('style');
+                            }
+                        }
+                        break;
                 }
+            }
+            function limpiaModal(modal) {
+                var inputs;
+                switch (modal) {
+                    case 'motivo-bloqueo':
+                        inputs = modalMotivoBloqueo.querySelectorAll('.uk-input');
+                        break;
+                    case 'tipo-contacto':
+                        inputs = modalTipoContacto.querySelectorAll('.uk-input');
+                        break;
+                }
+                inputs.forEach(function (input) {
+                    input.value = '';
+                })
             }
             function abreModal(data) {
                 if (data.status === 'success') {
                     UIkit.modal(modalMotivoBloqueo).show();
-							<f:facet name="header">#{mensaje['school-details.table.phone']}</f:facet>
-							#{contacto.telefono}
-						</h:column>
-						<h:column>
-							<f:facet name="header">#{mensaje['school-details.table.option']}</f:facet>
-							<div class="uk-inline">
-								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
-								<div uk-dropdown="boundary:.limite; mode: click">
                     document.getElementById('formulario-motivo-bloqueo:input-descripcion').click();
                 }
             }

@@ -10,6 +10,9 @@ public class CodigoPostal implements Serializable, Comparable<CodigoPostal> {
     private String nombre;
     private String id;
 
+    public CodigoPostal() {
+    }
+
     public CodigoPostal(ColoniaEntidad coloniaEntidad) {
         id = String.valueOf(coloniaEntidad.getId());
         nombre = coloniaEntidad.getNombre();

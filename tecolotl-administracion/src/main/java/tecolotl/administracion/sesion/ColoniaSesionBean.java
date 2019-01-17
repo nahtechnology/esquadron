@@ -25,7 +25,6 @@ public class ColoniaSesionBean {
      * @return Un objeto con los datos al que pertenece el código postal
      */
     public ColoniaDto busca(String codigoPostal) {
-        logger.info("Codigo Postal:".concat(codigoPostal));
         if (codigoPostal == null) {
             return null;
         }
@@ -38,5 +37,13 @@ public class ColoniaSesionBean {
         } else {
             return new ColoniaDto(typedQuery.getResultList());
         }
+    }
+
+    public void actualiza(Integer id, String nombre) {
+        if (id == null || nombre == null) {
+            return;
+        }
+        ColoniaEntidad coloniaEntidad = entityManager.find(ColoniaEntidad.class, id);
+        coloniaEntidad.setNombre(nombre);
     }
 }

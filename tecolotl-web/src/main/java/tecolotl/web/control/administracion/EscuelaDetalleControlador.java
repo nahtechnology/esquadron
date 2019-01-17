@@ -34,7 +34,7 @@ public class EscuelaDetalleControlador implements Serializable {
 
     private EscuelaDetalleDto escuelaDetalleDto;
     private ContactoDto contactoDtoModelo;
-    private int tipoContacto;
+    private short tipoContacto;
     private List<TipoContactoDto> tipoContactoDtoLista;
 
     @PostConstruct
@@ -79,11 +79,11 @@ public class EscuelaDetalleControlador implements Serializable {
         this.contactoDtoModelo = contactoDtoModelo;
     }
 
-    public int getTipoContacto() {
+    public short getTipoContacto() {
         return tipoContacto;
     }
 
-    public void setTipoContacto(int tipoContacto) {
+    public void setTipoContacto(short tipoContacto) {
         this.tipoContacto = tipoContacto;
     }
 

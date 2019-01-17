@@ -48,6 +48,7 @@ public class CatalogoMotivoBloqueoControlador implements Serializable {
             motivoBloqueos.set(indice, motivoBloqueoModelo);
         }
         motivoBloqueoModelo = new MotivoBloqueoDto();
+        cargaDatos(dataTableMitivoBloqueo.getFirst());
     }
 
     public void actualiza(MotivoBloqueoDto motivoBloqueoDto) {

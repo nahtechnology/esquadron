@@ -23,6 +23,7 @@ public class TipoContactoSesionBean {
     public List<TipoContactoDto> busca() {
         List<TipoContactoDto> tipoContactoDtolista = new ArrayList<>();
         TypedQuery<TipoContactoEntidad> typedQuery = entityManager.createNamedQuery("TipoContactoEntidad.busca", TipoContactoEntidad.class);
+        typedQuery.setParameter("descripcion", "Sin tipo");
         List<TipoContactoEntidad> tipoContactoEntidadLista = typedQuery.getResultList();
         for (TipoContactoEntidad tipoContactoEntidad :
                 tipoContactoEntidadLista) {
@@ -32,14 +33,32 @@ public class TipoContactoSesionBean {
     }
 
     /**
-     * Actualiza un Tipo de Contacto
+     * Actualiza un Tipo de Contacto, en caso de que alguno de los campos sean nulos, no se realiza la dicha operación
      * @param id Llave primaria del tipo de contacto
      * @param descripcion Datos a actualizar
-     * @return {@link TipoContactoDto} con los datos actualizados
+     * @return {@link TipoContactoDto} con los datos actualizados, nulo en caso de no actualizar
      */
     public TipoContactoDto actualiza(Short id, String descripcion) {
+        if (id == null || descripcion == null) {
+            return null;
+        }
         TipoContactoEntidad tipoContactoEntidad = entityManager.find(TipoContactoEntidad.class, id);
         tipoContactoEntidad.setDescripcion(descripcion);
+        return new TipoContactoDto(tipoContactoEntidad);
+    }
+
+    /**
+     * Inserta un tipo de contacto, en caso de ser nulo no se inserta la información
+     * @param descripcion Tipo de contacto a ser insertado
+     * @return {@link TipoContactoDto} Con los datos insertados
+     */
+    public TipoContactoDto inserta(String descripcion) {
+        if (descripcion == null) {
+            return null;
+        }
+        TipoContactoEntidad tipoContactoEntidad = new TipoContactoEntidad();
+        tipoContactoEntidad.setDescripcion(descripcion);
+        entityManager.persist(tipoContactoEntidad);
         return new TipoContactoDto(tipoContactoEntidad);
     }
 

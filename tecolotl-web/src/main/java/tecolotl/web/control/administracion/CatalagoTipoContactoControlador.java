@@ -10,10 +10,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 @Named
 @ViewScoped
 public class CatalagoTipoContactoControlador extends PaginadorControlador<TipoContactoDto> implements Serializable {
+
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
     private TipoContactoSesionBean tipoContactoSesionBean;
@@ -24,13 +27,25 @@ public class CatalagoTipoContactoControlador extends PaginadorControlador<TipoCo
     @PostConstruct
     public void init() {
         tipoContactoDtoLista = tipoContactoSesionBean.busca();
+        tipoContactoDtoModelo = new TipoContactoDto();
         setFilasEnPagina(5);
         setTotalFilas(tipoContactoDtoLista.size());
         cargaDatos(0);
     }
 
     public void inserta() {
-
+        logger.info(tipoContactoDtoModelo.toString());
+        if (tipoContactoDtoModelo.getId() == null) {
+            tipoContactoSesionBean.inserta(tipoContactoDtoModelo.getDescripcion());
+            tipoContactoDtoLista.add(tipoContactoDtoModelo);
+            setTotalFilas(tipoContactoDtoLista.size());
+        } else {
+            tipoContactoSesionBean.actualiza(tipoContactoDtoModelo.getId(), tipoContactoDtoModelo.getDescripcion());
+            int actual = tipoContactoDtoLista.indexOf(tipoContactoDtoModelo);
+            tipoContactoDtoLista.get(actual).setDescripcion(tipoContactoDtoModelo.getDescripcion());
+        }
+        tipoContactoDtoModelo = new TipoContactoDto();
+        cargaDatos(getHtmlDataTable().getFirst());
     }
 
     @Override
