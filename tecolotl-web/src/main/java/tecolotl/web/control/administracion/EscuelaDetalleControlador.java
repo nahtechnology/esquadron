@@ -52,9 +52,15 @@ public class EscuelaDetalleControlador implements Serializable {
 
     public void insertar() {
         ContactoDto contactoDto =
-                contactoSesionBean.inserta(escuelaDetalleDto.getClaveCentroTrabajo(), tipoContacto, contactoDtoModelo.getNombre(), contactoDtoModelo.getTelefono());
+                contactoSesionBean.inserta(escuelaDetalleDto.getClaveCentroTrabajo(), (short) tipoContacto, contactoDtoModelo.getNombre(), contactoDtoModelo.getTelefono());
         escuelaDetalleDto.getContactoDtoList().add(contactoDto);
         contactoDtoModelo = new ContactoDto();
+    }
+
+    public void eliminar(){
+     contactoSesionBean.elimina(escuelaDetalleDto.getClaveCentroTrabajo(),contactoDtoModelo.getTipoContactoDto().getId());
+
+
     }
 
     public EscuelaDetalleDto getEscuelaDetalleDto() {

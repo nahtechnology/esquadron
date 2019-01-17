@@ -318,6 +318,14 @@
             function abreModal(data) {
                 if (data.status === 'success') {
                     UIkit.modal(modalMotivoBloqueo).show();
+							<f:facet name="header">#{mensaje['school-details.table.phone']}</f:facet>
+							#{contacto.telefono}
+						</h:column>
+						<h:column>
+							<f:facet name="header">#{mensaje['school-details.table.option']}</f:facet>
+							<div class="uk-inline">
+								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button" >   </button>
+								<div uk-dropdown="boundary:.limite; mode: click">
                     document.getElementById('formulario-motivo-bloqueo:input-descripcion').click();
                 }
             }
