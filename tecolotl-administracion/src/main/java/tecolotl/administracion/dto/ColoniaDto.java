@@ -2,56 +2,75 @@ package tecolotl.administracion.dto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 
 /**
- * 
- * @author antonio
- *
+ * Objecto que representa los datos de una colonia
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
  */
 public class ColoniaDto {
 
-	private String estado;
-	private String municipio;
-	private List<CodigoPostal> listaCodigoPostal;
+	private Integer id;
+	private String codigoPostal;
+	private String nombre;
 	
 	public ColoniaDto() {
 	
 	}
 
-	public ColoniaDto(List<ColoniaEntidad> listaColonias) {
-		estado = listaColonias.get(0).getMunicipio().getEstado().getNombre();
-		municipio = listaColonias.get(0).getMunicipio().getNombre();
-		listaCodigoPostal = new ArrayList<>();
-		for (ColoniaEntidad coloniaEntidad : listaColonias) {
-			listaCodigoPostal.add(new CodigoPostal(coloniaEntidad));
-		}
+	public ColoniaDto(ColoniaEntidad coloniaEntidad) {
+		this.id = coloniaEntidad.getId();
+		this.codigoPostal = coloniaEntidad.getCodigoPostal();
+		this.nombre = coloniaEntidad.getNombre();
 	}
 
-	public String getEstado() {
-		return estado;
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		ColoniaDto that = (ColoniaDto) o;
+		return id.equals(that.id);
 	}
 
-	public void setEstado(String estado) {
-		this.estado = estado;
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
 	}
 
-	public String getMunicipio() {
-		return municipio;
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("ColoniaDto{");
+		sb.append("id=").append(id);
+		sb.append(", codigoPostal='").append(codigoPostal).append('\'');
+		sb.append(", nombre='").append(nombre).append('\'');
+		sb.append('}');
+		return sb.toString();
 	}
 
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
+	public Integer getId() {
+		return id;
 	}
 
-	public List<CodigoPostal> getListaCodigoPostal() {
-		return listaCodigoPostal;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
-	public void setListaCodigoPostal(List<CodigoPostal> listaCodigoPostal) {
-		this.listaCodigoPostal = listaCodigoPostal;
+	public String getCodigoPostal() {
+		return codigoPostal;
 	}
 
+	public void setCodigoPostal(String codigoPostal) {
+		this.codigoPostal = codigoPostal;
+	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 }

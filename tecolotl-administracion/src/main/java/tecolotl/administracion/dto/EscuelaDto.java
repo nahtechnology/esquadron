@@ -17,7 +17,7 @@ public class EscuelaDto extends EscuelaBaseDto implements Comparable<EscuelaDto>
     public EscuelaDto(EscuelaEntidad escuelaEntidad) {
         setClaveCentroTrabajo(escuelaEntidad.getClaveCentroTrabajo());
         setNombre(escuelaEntidad.getNombre());
-        estatus = escuelaEntidad.getMotivoBloqueoEntidad().getId() == 0;
+        estatus = escuelaEntidad.getMotivoBloqueoEntidad().getId() == -32767;
     }
 
     public boolean isEstatus() {

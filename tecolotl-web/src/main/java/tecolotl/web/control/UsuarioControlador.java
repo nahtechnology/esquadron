@@ -23,7 +23,7 @@ public class UsuarioControlador {
     @PostConstruct
     public void init() {
         Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-        nombre = administradorSesionBean.busca(principal.getName());
+        nombre = "Administracion";
     }
 
     public void cerrarSesion() throws IOException {

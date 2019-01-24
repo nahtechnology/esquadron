@@ -11,9 +11,10 @@ public abstract class PaginadorControlador<T> {
     private PaginacionModeloDato<T> paginacionModeloDato;
     private int filasEnPagina;
     private int totalFilas = 0;
+    private boolean maximo;
 
-    public void vistaAnterior(boolean primera) {
-        if (primera) {
+    public void vistaAnterior() {
+        if (maximo) {
             htmlDataTable.setFirst(0);
         } else {
             htmlDataTable.setFirst(htmlDataTable.getFirst() - htmlDataTable.getRows());
@@ -21,8 +22,8 @@ public abstract class PaginadorControlador<T> {
         cargaDatos(htmlDataTable.getFirst());
     }
 
-    public void vistaSiguiente(boolean ultima) {
-        if (ultima) {
+    public void vistaSiguiente() {
+        if (maximo) {
             int totalRows = htmlDataTable.getRowCount();
             int displayRows = htmlDataTable.getRows();
             int full = totalRows / displayRows;
@@ -74,5 +75,13 @@ public abstract class PaginadorControlador<T> {
 
     public void setTotalFilas(int totalFilas) {
         this.totalFilas = totalFilas;
+    }
+
+    public boolean isMaximo() {
+        return maximo;
+    }
+
+    public void setMaximo(boolean maximo) {
+        this.maximo = maximo;
     }
 }

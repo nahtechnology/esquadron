@@ -35,8 +35,7 @@ public class ColoniaEntidadTest {
 
     @Test
     public void buscaCodigoPostal() {
-        TypedQuery<ColoniaEntidad> typedQuery = entityManager.createQuery(
-                "SELECT c FROM ColoniaEntidad c LEFT JOIN c.municipio LEFT join c.municipio.estado WHERE c.codigoPostal=:codigoPostal",ColoniaEntidad.class);
+        TypedQuery<ColoniaEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaCodigoPostal", ColoniaEntidad.class);
         typedQuery.setParameter("codigoPostal", "72470");
         List<ColoniaEntidad> colonialista = typedQuery.getResultList();
         Assert.assertNotNull(colonialista);
@@ -44,5 +43,14 @@ public class ColoniaEntidadTest {
         
     }
 
-    
+    @Test
+    public void buscaMunicipioCodigoPostal() {
+        TypedQuery<MunicipioEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaMunicipoCodigoPostal", MunicipioEntidad.class);
+        typedQuery.setParameter("codigoPostal", "72000");
+        typedQuery.setMaxResults(1);
+        MunicipioEntidad municipioEntidad = typedQuery.getSingleResult();
+        Assert.assertNotNull(municipioEntidad);
+        Assert.assertNotNull(municipioEntidad.getNombre());
+        Assert.assertNotNull(municipioEntidad.getId());
+    }
 }

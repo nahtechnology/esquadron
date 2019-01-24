@@ -7,28 +7,30 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "colonia", schema = "administracion")
 @NamedQueries({
-	@NamedQuery(name="ColoniaEntidad.buscaCodigoPostal", query = "SELECT c FROM ColoniaEntidad c LEFT JOIN c.municipio LEFT join c.municipio.estado WHERE c.codigoPostal=:codigoPostal" )
+	@NamedQuery(name = "ColoniaEntidad.buscaCodigoPostal", query = "SELECT c FROM ColoniaEntidad c WHERE c.codigoPostal=:codigoPostal ORDER BY c.nombre" ),
+    @NamedQuery(name = "ColoniaEntidad.buscaMunicipoCodigoPostal", query = "SELECT m FROM ColoniaEntidad c LEFT JOIN c.municipio m WHERE c.codigoPostal = :codigoPostal")
 })
 public class ColoniaEntidad {
 
-    private int id;
+    private Integer id;
     private String codigoPostal;
     private String nombre;
     private MunicipioEntidad municipio;
 
     @Id
-    public int getId() {
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
     @Basic
     @Column(name = "codigo_postal")
     @NotNull
-    @Size(min = 5, max = 5)
+    @Size(min = 4, max = 5)
     public String getCodigoPostal() {
         return codigoPostal;
     }
@@ -49,7 +51,7 @@ public class ColoniaEntidad {
         this.nombre = nombre;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_municipio")
     public MunicipioEntidad getMunicipio() {
         return municipio;

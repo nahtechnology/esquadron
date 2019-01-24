@@ -2,6 +2,7 @@ package tecolotl.web.control.administracion;
 
 import tecolotl.administracion.dto.CodigoPostal;
 import tecolotl.administracion.dto.ColoniaDto;
+import tecolotl.administracion.dto.MunicipioDto;
 import tecolotl.administracion.sesion.ColoniaSesionBean;
 import tecolotl.web.control.PaginadorControlador;
 
@@ -15,49 +16,85 @@ import java.util.logging.Logger;
 
 @Named
 @ViewScoped
-public class CatalagoColoniaControlador extends PaginadorControlador<CodigoPostal> implements Serializable {
+public class CatalagoColoniaControlador extends PaginadorControlador<ColoniaDto> implements Serializable {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
     private ColoniaSesionBean coloniaSesionBean;
 
-    private ColoniaDto coloniaDto;
-    private CodigoPostal codigoPostalModelo;
+    private List<ColoniaDto> coloniaDtoLista;
+    private MunicipioDto municipioDto;
+    private ColoniaDto coloniaDtoModelo;
     private String codigoPostal;
 
     @PostConstruct
     public void init() {
-        coloniaDto = new ColoniaDto();
-        codigoPostalModelo = new CodigoPostal();
+        coloniaDtoModelo = new ColoniaDto();
         setFilasEnPagina(5);
     }
 
     public void busca() {
-        coloniaDto = coloniaSesionBean.busca(codigoPostal);
-        setTotalFilas(coloniaDto.getListaCodigoPostal().size());
+        coloniaDtoLista = coloniaSesionBean.busca(codigoPostal);
+        municipioDto = coloniaSesionBean.buscaMunicipio(codigoPostal);
+        setTotalFilas(coloniaDtoLista.size());
         cargaDatos(getHtmlDataTable().getFirst());
     }
 
+    public void inserta() {
+        logger.info(coloniaDtoModelo.toString());
+        if (coloniaDtoModelo.getId() == null) {
+            Integer id = coloniaSesionBean.inserta(coloniaDtoModelo.getNombre(), codigoPostal, municipioDto.getId());
+            coloniaDtoModelo.setId(id);
+            coloniaDtoModelo.setCodigoPostal(codigoPostal);
+            coloniaDtoLista.add(coloniaDtoModelo);
+            setTotalFilas(coloniaDtoLista.size());
+        } else {
+            coloniaSesionBean.actualiza(coloniaDtoModelo.getId(), coloniaDtoModelo.getNombre());
+            int indice = coloniaDtoLista.indexOf(coloniaDtoModelo);
+            ColoniaDto coloniaDto = coloniaDtoLista.get(indice);
+            coloniaDto.setNombre(coloniaDtoModelo.getNombre());
+        }
+        cargaDatos(getHtmlDataTable().getFirst());
+        coloniaDtoModelo = new ColoniaDto();
+    }
+
+    public void actualizaModelo(ColoniaDto coloniaDto) {
+        logger.info( coloniaDto == null ? "null" : coloniaDto.toString());
+        if (coloniaDto == null) {
+            this.coloniaDtoModelo = new ColoniaDto();
+        } else {
+            this.coloniaDtoModelo = coloniaDto;
+        }
+    }
+
     @Override
-    protected List<CodigoPostal> getDatos() {
-        return coloniaDto.getListaCodigoPostal();
+    protected List<ColoniaDto> getDatos() {
+        return coloniaDtoLista;
     }
 
-    public ColoniaDto getColoniaDto() {
-        return coloniaDto;
+    public List<ColoniaDto> getColoniaDtoLista() {
+        return coloniaDtoLista;
     }
 
-    public void setColoniaDto(ColoniaDto coloniaDto) {
-        this.coloniaDto = coloniaDto;
+    public void setColoniaDtoLista(List<ColoniaDto> coloniaDtoLista) {
+        this.coloniaDtoLista = coloniaDtoLista;
     }
 
-    public CodigoPostal getCodigoPostalModelo() {
-        return codigoPostalModelo;
+    public MunicipioDto getMunicipioDto() {
+        return municipioDto;
     }
 
-    public void setCodigoPostalModelo(CodigoPostal codigoPostalModelo) {
-        this.codigoPostalModelo = codigoPostalModelo;
+    public void setMunicipioDto(MunicipioDto municipioDto) {
+        this.municipioDto = municipioDto;
+    }
+
+    public ColoniaDto getColoniaDtoModelo() {
+        return coloniaDtoModelo;
+    }
+
+    public void setColoniaDtoModelo(ColoniaDto coloniaDtoModelo) {
+        this.coloniaDtoModelo = coloniaDtoModelo;
     }
 
     public String getCodigoPostal() {

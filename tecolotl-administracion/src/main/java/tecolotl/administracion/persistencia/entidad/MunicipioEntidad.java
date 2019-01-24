@@ -6,19 +6,29 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "municipio", schema = "administracion")
-@NamedQuery(name = "MunicipioEntidad.busca", query = "SELECT m FROM MunicipioEntidad m")
+@NamedQueries({
+        @NamedQuery(name = "MunicipioEntidad.busca", query = "SELECT m FROM MunicipioEntidad m")
+
+})
 public class MunicipioEntidad {
 
-    private int id;
+    private Integer id;
     private String nombre;
     private EstadoEntidad estado;
 
+    public MunicipioEntidad() {
+    }
+
+    public MunicipioEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -34,7 +44,7 @@ public class MunicipioEntidad {
         this.nombre = nombre;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_estado", referencedColumnName = "id")
     public EstadoEntidad getEstado() {
         return estado;

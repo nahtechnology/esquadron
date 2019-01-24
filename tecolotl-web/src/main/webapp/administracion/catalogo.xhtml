@@ -181,14 +181,44 @@
                                                 value="#{catalagoColoniaControlador.paginacionModeloDato}"
                                                 binding="#{catalagoColoniaControlador.htmlDataTable}"
                                                 rows="#{catalagoColoniaControlador.filasEnPagina}"
-                                                var="codigoPostalLocal"
+                                                var="colonia"
                                                 id="tabla-colonia"
                                                 styleClass="uk-table uk-table-hover uk-table-divider limite-tabla-tipos-contactos uk-table-middle"
                                                 headerClass="uk-background-primary uk-dark"
                                                 footerClass="uk-background-primary">
-                                            <h:column >
+                                            <h:column>
                                                 <f:facet name="header"><h:outputText value="#{mensaje['catalog.zipcode']}" styleClass="uk-text-capitalize"/></f:facet>
-                                                <h:outputText value="#{codigoPostalLocal.nombre}"/>
+                                                <h:outputText value="#{colonia.codigoPostal}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header"><h:outputText value="#{mensaje['catalog.name']}" styleClass="uk-text-capitalize"/></f:facet>
+                                                <h:outputText value="#{colonia.nombre}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header"><h:outputText value="#{mensaje['catalog.town']}" styleClass="uk-text-capitalize"/></f:facet>
+                                                <h:outputText value="#{catalagoColoniaControlador.municipioDto.nombre}"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header"><h:outputText value="#{mensaje['label.option']}" styleClass="uk-text-capitalize"/></f:facet>
+                                                <div class="uk-inline">
+                                                    <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                                                    <div uk-dropdown="boundary:.limite-tabla-tipos-contactos; mode: click">
+                                                        <ul class="uk-nav uk-dropdown-nav">
+                                                            <li>
+                                                                <h:form>
+                                                                    <h:commandButton styleClass="uk-link-muted">
+                                                                        <span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
+                                                                        <span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
+                                                                        <f:ajax
+                                                                                listener="#{catalagoColoniaControlador.actualizaModelo(colonia)}"
+                                                                                render="formulario-colonia"
+                                                                                onevent="function (data) { abreModal(data, 'modal-colonia') }"/>
+                                                                    </h:commandButton>
+                                                                </h:form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
                                             </h:column>
                                             <f:facet name="footer">
                                                 <h:outputText value="#{(catalagoColoniaControlador.htmlDataTable.first div catalagoColoniaControlador.htmlDataTable.rows) + 1}">
@@ -203,7 +233,7 @@
                                                 </h:outputText>
                                             </f:facet>
                                         </h:dataTable>
-                                        <h:panelGroup rendered="#{empty catalagoColoniaControlador.coloniaDto.listaCodigoPostal}">
+                                        <h:panelGroup rendered="#{empty catalagoColoniaControlador.paginacionModeloDato}">
                                             <table class="uk-table uk-table-middle uk-table-hover uk-table-striped">
                                                 <thead class="limite">
                                                   <tr class="uk-border-rounded">
@@ -247,7 +277,9 @@
                                                 </div>
                                                 <div class="uk-width-1-3">
                                                     <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.search']}">
-                                                        <f:ajax execute="@form" listener="#{catalagoColoniaControlador.busca}" render="panel-tabla-colonia formulario-paginacion-colonia panel-boton-agregar-colonia"/>
+                                                        <f:ajax execute="@form"
+                                                                listener="#{catalagoColoniaControlador.busca}"
+                                                                render="panel-tabla-colonia formulario-paginacion-colonia panel-boton-agregar-colonia"/>
                                                     </h:commandButton>
                                                 </div>
                                                 <div class="uk-width-1-3">
@@ -264,7 +296,7 @@
                                                     </button>
                                                 </h:panelGroup>
                                                 <h:panelGroup rendered="#{not empty catalagoColoniaControlador.paginacionModeloDato}">
-                                                    <button class="uk-button uk-button-primary uk-border-rounded">
+                                                    <button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-colonia">
                                                         <h:outputText value="#{mensaje['button.add']}" styleClass="uk-margin-small-right"/>
                                                         <span uk-icon="icon: plus-circle; ratio: 1"></span>
                                                     </button>
@@ -322,7 +354,7 @@
                 <div class="uk-modal-dialog uk-margin-auto-vertical">
                     <h:form id="formulario-modal-tipo-contacto" styleClass="uk-form-stacked">
                         <div class="uk-modal-header">
-                            <h4 class="uk-modal-title uk-text-capitalize uk-text-center">
+                            <h4 class="uk-modal-title uk-modal-title uk-text-capitalize uk-text-center">
                                 <h:outputText rendered="#{empty catalagoTipoContactoControlador.tipoContactoDtoModelo.id}" value="#{mensaje['catalog.new']}"/>
                                 <h:outputText rendered="#{not empty catalagoTipoContactoControlador.tipoContactoDtoModelo.id}" value="#{mensaje['catalog.edit']}"/>
                             </h4>
@@ -358,13 +390,55 @@
                     </h:form>
                 </div>
             </div>
+            <div id="modal-colonia" class="uk-flex-center" uk-modal="">
+                <div class="uk-modal-dialog uk-margin-auto-vertical">
+                    <h:form id="formulario-colonia">
+                        <div class="uk-modal-header">
+                            <h4 class="uk-modal-title uk-text-capitalize uk-text-center">
+                                <h:outputText rendered="#{empty catalagoColoniaControlador.coloniaDtoModelo.id}" value="#{mensaje['catalog.new']}"/>
+                                <h:outputText rendered="#{not empty catalagoColoniaControlador.coloniaDtoModelo.id}" value="#{mensaje['catalog.edit']}"/>
+                            </h4>
+                        </div>
+                        <div class="uk-modal-body">
+                            <h:inputHidden value="#{catalagoColoniaControlador.coloniaDtoModelo.codigoPostal}"/>
+                            <h:outputLabel value="#{mensaje['catalog.description']}" styleClass="form-stacked-text uk-text-capitalize" for="input-colonia"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="input-colonia"
+                                             styleClass="uk-input"
+                                             value="#{catalagoColoniaControlador.coloniaDtoModelo.nombre}"
+                                             pt:placeholder="#{mensaje['catalog.description']}"
+                                             autocomplete="off"
+                                             label="#{mensaje['catalog.description']}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="3" maximum="70"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div id="label-error-colonia" class="uk-margin" style="display: none">
+                            <div class="uk-alert-danger" uk-alert="">
+                                <h:message for="input-colonia" id="mensaje-error-colonia"/>
+                            </div>
+                        </div>
+                        <div class="uk-modal-footer uk-flex uk-flex-right">
+                            <h:commandButton styleClass="uk-button uk-button-default uk-border-rounded uk-modal-close uk-margin-small-right" value="#{mensaje['button.cancel']}">
+                                <f:ajax listener="#{catalagoColoniaControlador.actualizaModelo(null)}" render="@form"/>
+                            </h:commandButton>
+                            <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
+                                <f:ajax listener="#{catalagoColoniaControlador.inserta}" execute="@form" render="@form tabla-colonia mensaje-error-colonia" onevent="function (data) { cierreModal(data, 'modal-colonia')  }"/>
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
         </div>
         <script type="text/javascript">
             var modalMotivoBloqueo;
             var modalTipoContacto;
+            var modalColonia;
             document.addEventListener("DOMContentLoaded", function (evt) {
                 modalMotivoBloqueo = document.querySelector('#modal-motivos-bloqueo');
                 modalTipoContacto = document.querySelector('#modal-tipo-contactos');
+                modalColonia = document.querySelector('#modal-colonia');
             });
             function cierreModal(data, modal) {
                 switch (modal) {
@@ -392,6 +466,17 @@
                             }
                         }
                         break;
+                    case 'modal-colonia':
+                        if (data.status === 'success') {
+                            var mensajeError = document.getElementById('formulario-colonia:mensaje-error-colonia');
+                            var estiloError = document.getElementById('label-error-colonia');
+                            if (mensajeError.textContent === '') {
+                                UIkit.modal(modalColonia).hide();
+                                estiloError.style.display = 'none';
+                            } else {
+                                estiloError.removeAttribute('style');
+                            }
+                        }
                 }
             }
             function limpiaModal(modal) {
@@ -403,15 +488,28 @@
                     case 'tipo-contacto':
                         inputs = modalTipoContacto.querySelectorAll('.uk-input');
                         break;
+                    case 'modal-colonia':
+                        inputs = modalColonia.querySelectorAll('uk.input');
+                        break;
                 }
                 inputs.forEach(function (input) {
                     input.value = '';
                 })
             }
-            function abreModal(data) {
-                if (data.status === 'success') {
-                    UIkit.modal(modalMotivoBloqueo).show();
-                    document.getElementById('formulario-motivo-bloqueo:input-descripcion').click();
+            function abreModal(data, modal) {
+                switch (modal) {
+                    case 'motivo-bloqueo':
+                        if (data.status === 'success') {
+                            UIkit.modal(modalMotivoBloqueo).show();
+                            document.getElementById('formulario-motivo-bloqueo:input-descripcion').click();
+                        }
+                        break;
+                    case 'modal-colonia':
+                        if (data.status === 'success') {
+                            UIkit.modal(modalColonia).show();
+                            document.getElementById('formulario-motivo-bloqueo:input-descripcion').click();
+                        }
+                        break;
                 }
             }
         </script>

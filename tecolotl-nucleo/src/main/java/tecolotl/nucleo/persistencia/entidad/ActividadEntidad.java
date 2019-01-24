@@ -8,8 +8,8 @@ public class ActividadEntidad {
     private short puntaje;
     private int tiempo;
     private String preguntaDetonadora;
-    private LenguajeEntidad IdLenguaje;
-    private NivelLenguajeEntidad IdNivelLenguaje;
+/*    private LenguajeEntidad IdLenguaje;
+    private NivelLenguajeEntidad IdNivelLenguaje;*/
 
     @Basic
     @Column(name = "puntaje")
@@ -40,7 +40,7 @@ public class ActividadEntidad {
     public void setPreguntaDetonadora(String preguntaDetonadora) {
         this.preguntaDetonadora = preguntaDetonadora;
     }
-
+/*
     @Id
     @ManyToOne
     @JoinColumn(name = "id_lenguaje")
@@ -61,5 +61,5 @@ public class ActividadEntidad {
 
     public void setIdNivelLenguaje(NivelLenguajeEntidad idNivelLenguaje) {
         IdNivelLenguaje = idNivelLenguaje;
-    }
+    }*/
 }

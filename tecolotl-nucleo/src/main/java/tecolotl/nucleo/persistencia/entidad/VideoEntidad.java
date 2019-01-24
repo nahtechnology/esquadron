@@ -1,25 +1,25 @@
 package tecolotl.nucleo.persistencia.entidad;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "video", schema = "nucleo")
 @NamedQuery(name = "VideoEntidad.busca", query = "SELECT v FROM VideoEntidad v")
-@IdClass(VideoEntidadPK.class)
-public class VideoEntidad extends ActividadEntidad{
+public class VideoEntidad extends ActividadEntidad implements Serializable {
 
-    private int id;
+    private VideoEntidadPK id;
     private int reproducciones;
     private List<TemaEntidad> temaList;
 
-    @Id
-    @Column(name = "id")
-    public int getId() {
+    @EmbeddedId
+    public VideoEntidadPK getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(VideoEntidadPK id) {
         this.id = id;
     }
 
@@ -52,5 +52,18 @@ public class VideoEntidad extends ActividadEntidad{
 
     public void setTemaList(List<TemaEntidad> temaList) {
         this.temaList = temaList;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VideoEntidad that = (VideoEntidad) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

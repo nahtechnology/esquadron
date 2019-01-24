@@ -39,8 +39,7 @@ public class VideoEntidadTest {
         for (VideoEntidad videoEntidad : videoList) {
             Assert.assertNotNull(videoEntidad.getPreguntaDetonadora());
             Assert.assertNotNull(videoEntidad.getTemaList());
-            Assert.assertNotNull(videoEntidad.getIdLenguaje());
-            Assert.assertNotNull(videoEntidad.getIdNivelLenguaje());
+
             for (TemaEntidad temaEntidad : videoEntidad.getTemaList()) {
                 Assert.assertNotNull(temaEntidad.getNombre());
                 Assert.assertNotNull(temaEntidad.getDescripcion());

@@ -4,346 +4,83 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	  xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pa="http://java.sun.com/jsf/composite/paginacion">
 
     <ui:composition template="/template/template.xhtml">
         <ui:define name="contenido2">
-           <div id="content" data-uk-height-viewport="expand: true">
-			   <div class="uk-padding">
-			    <div class="uk-overflow-auto">
-					<h:dataTable id="tabla-escuela" rendered="#{not empty escuelaControlador.escuelas}"
-                                value="#{escuelaControlador.escuelas}"
-                                var="escuela"
-                                styleClass="limite uk-table uk-table-middle uk-table-hover uk-table-striped "
-                                headerClass="uk-background-primary uk-dark">
-						<h:column >
-							<f:facet name="header"><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.cct']}"/></span></f:facet>
-							#{escuela.claveCentroTrabajo}
-						</h:column>
-						<h:column>
-							<f:facet name="header"><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.name']}"/></span></f:facet>
-							<h:outputText value="#{escuela.nombre}" styleClass="uk-text-middle"/>
-						</h:column>
-						<h:column>
-							<f:facet name="header"><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.status']}"/></span></f:facet>
-							<h:outputLabel rendered="#{escuela.estatus}">
-								<span class="uk-icon-button" uk-icon="check"/>
-							</h:outputLabel>
-							<h:outputLabel rendered="#{not escuela.estatus}">
-								<span class="uk-icon-button" uk-icon="ban"/>
-							</h:outputLabel>
-						</h:column>
-						<h:column>
-							<f:facet name="header"><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.licenses']}"/></span></f:facet>
-							#{escuela.licencias}
-						</h:column>
-						<h:column>
-							<f:facet name="header"><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.remaining.days']}"/></span></f:facet>
-							#{escuela.diasRestantes}
-						</h:column>
-						<h:column>
-							<f:facet name="header">Opciones</f:facet>
-							<div class=" uk-inline">
-								<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"></button>
-								<div uk-dropdown="boundary:.limite; mode: click" >
-									<ul class="uk-nav uk-dropdown-nav">
-										<h:form id="formulario-menu">
-										<li>
-											<h:link outcome="detalle-escuela">
-												<span uk-icon="icon: info" class="uk-margin-small-right uk-icon" ></span>
-												<span class="uk-text-middle"><h:outputText value="#{mensaje['button.detail']}"/></span>
-												<f:param name="claveCentroTrabajo" value="#{escuela.claveCentroTrabajo}"/>
-											</h:link>
-										</li>
-										<li>
-											<h:commandLink pt:uk-toggle="target: #modal-nuevo">
-												<span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
-												<span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
-												<f:ajax listener="#{escuelaControlador.actualiza(escuela.claveCentroTrabajo)}" render="formulario-nuevo"/>
-											</h:commandLink>
-										</li>
-										<li>
-											<a href="#" uk-toggle="target: #modal-eliminar#{escuela.claveCentroTrabajo}">
-												<span uk-icon="icon:  trash" class="uk-margin-small-right uk-icon" ></span>
-												<span class="uk-text-middle"><h:outputText value="#{mensaje['button.remove']}"/></span>
-											</a>
-										</li>
-										<h:outputLabel rendered="#{escuela.estatus}">
-											<li>
-												<a href="#"  uk-toggle="target: #modal-bloqueo#{escuela.claveCentroTrabajo}">
-													<span uk-icon="icon:  ban" class="uk-margin-small-right uk-icon" ></span>
-													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.block']}"/></span>
-												</a>
-											</li>
-										</h:outputLabel>
-										<h:outputLabel rendered="#{not escuela.estatus}">
-											<li>
-												<h:commandLink>
-													<span uk-icon="icon:  check" class="uk-margin-small-right uk-icon" ></span>
-													<span class="uk-text-middle"><h:outputText value="#{mensaje['button.active']}"/></span>
-													<f:ajax listener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo, false)}" onevent="actualiza"/>
-												</h:commandLink>
-											</li>
-										</h:outputLabel>
-										</h:form>
-									</ul>
-								</div>
-							</div>
-						</h:column>
-						<h:column>
-							<div id="modal-eliminar#{escuela.claveCentroTrabajo}" uk-modal="">
-								<div class="uk-modal-dialog">
-									<div class="uk-modal-header">
-										<h3 class="uk-modal-title uk-text-capitalize uk-text-center uk-text-danger">
-											<h:outputFormat value="#{mensaje['school.remove.title']}">
-												<f:param value="#{escuela.claveCentroTrabajo}"/>
-											</h:outputFormat>
-										</h3>
-									</div>
-									<div class="uk-modal-body">
-										<p>
-											<h:outputFormat value="#{mensaje['school.remove.message']}">
-												<f:param value="#{escuela.nombre}"/>
-											</h:outputFormat>
-										</p>
-									</div>
-									<div class="uk-modal-footer uk-flex uk-flex-right">
-										<button class="uk-button uk-button-default uk-modal-close uk-border-rounded uk-margin-right" type="button">#{mensaje['button.cancel']}</button>
-                                        <h:form id="formulario-eliminar-#{escuela.claveCentroTrabajo}">
-											<h:commandButton
-													styleClass="uk-button uk-button-danger uk-modal-close uk-border-rounded"
-													value="#{mensaje['button.remove']}">
-												<f:ajax listener="#{escuelaControlador.eliminar(escuela.claveCentroTrabajo)}" onevent="actualiza"/>
-											</h:commandButton>
-                                        </h:form>
-									</div>
-								</div>
-							</div>
-							<div id="modal-bloqueo#{escuela.claveCentroTrabajo}" uk-modal="" >
-								<div class="uk-modal-dialog">
-									<div class="uk-modal-header">
-										<h3 class="uk-modal-title uk-text-capitalize uk-text-center"><h:outputLabel value="#{mensaje['school.blockreason.title']}"/></h3>
-									</div>
-									<div class="uk-modal-body">
-										<h:outputLabel for="select-motivo" value="#{mensaje['school.blockreason.title']}" styleClass="uk-form-label uk-text-capitalize"/>
-										<div class="uk-form-controls">
-											<h:selectOneMenu styleClass="uk-select"
-															 id="select-motivo"
-															 value="#{escuelaControlador.motivoBloqueo}"
-															 label="#{mensaje['school.blockreason.title']}">
-												<f:selectItems
-														value="#{escuelaControlador.motivos}"
-														var="bloqueo"
-														itemLabel="#{bloqueo.descripcion}"
-														itemValue="#{bloqueo.id}"/>
-												<f:validateRequired/>
-											</h:selectOneMenu>
-										</div>
-									</div>
-									<div class="uk-modal-footer uk-flex uk-flex-right">
-										<button class="uk-border-rounded uk-button uk-button-default uk-modal-close" type="button"><h:outputText value="#{mensaje['button.cancel']}"/></button>
-										<h:form id="formulario-bloquear">
-											<h:commandButton id="aceptar" styleClass="uk-modal-close uk-button uk-button-primary uk-border-rounded uk-margin-left" value="#{mensaje['button.accept']}">
-												<f:ajax execute="formulario-motivo-bloqueo" listener="#{escuelaControlador.bloquear(escuela.claveCentroTrabajo, true)}" onevent="actualiza"/>
-											</h:commandButton>
-										</h:form>
-									</div>
-								</div>
-							</div>
-						</h:column>
-					</h:dataTable>
-                    <h:panelGroup id="panel-escuela-vacia" rendered="#{empty escuelaControlador.escuelas}">
-                        <table class="uk-table uk-table-middle uk-table-hover uk-table-striped ">
-							<thead>
-								<tr>
-									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.cct']}"/></span></th>
-									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.name']}"/></span></th>
-									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.status']}"/></span></th>
-									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.licenses']}"/></span></th>
-									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.remaining.days']}"/></span></th>
-									<th class="uk-background-primary uk-dark "><span class="uk-text-capitalize"><h:outputText value="#{mensaje['school.option']}"/></span></th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td colspan="6" align="center"><h:graphicImage library="img" name="vacio.svg" height="250px" width="250px" /></td>
-								</tr>
-							</tbody>
-						</table>
-                    </h:panelGroup>
-				  	</div>
-					<div class="uk-flex uk-flex-right uk-margin">
-						<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-nuevo"><h:outputText value="#{mensaje['button.add']}"/></button>
-                        <f:ajax render="tabla-escuela">
-                            <h:form id="formulario-actualiza">
-                                <h:commandButton styleClass="uk-button uk-button-primary uk-border-rounded" style="display: none;" id="boton-actualizar" value="Actualizar"/>
-                            </h:form>
-                        </f:ajax>
-					</div>
-			   </div>
-			   <div id="modal-nuevo"  uk-modal="">
-				   <button class="uk-modal-close-default" type="button" uk-close=""></button>
-				   <div class="uk-modal-header">
-					   <h:form id="formulario-nuevo" class="uk-form-stacked">
-						   <h5 class="uk-modal-title uk-text-capitalize uk-text-center"><h:outputText value="#{mensaje['school.add.title']}"/></h5>
-						   <div class="uk-modal-body">
-							   <div class="uk-grid-small" uk-grid="">
-								   <div class="uk-width-1-1@s uk-width-1-3@m">
-									   <h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.cct']}" for="input-cct"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														pt:placeholder="#{mensaje['school.cct']}"
-														value="#{escuelaControlador.escuelaModelo.claveCentroTrabajo}"
-														id="input-cct"
-										   				label="#{mensaje['school.cct']}">
-											   <f:validateRequired/>
-											   <f:validateLength minimum="9" maximum="11"/>
-											   <f:validator binding="#{claveCentroTrabajoValidacion}"/>
-										   </h:inputText>
-									   </div>
-								   </div>
-								   <div class="uk-width-1-1@s uk-width-2-3@m">
-									   <h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.name']}" for="input-nombre"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														id="input-nombre"
-														pt:placeholder="#{mensaje['school.name']}"
-														value="#{escuelaControlador.escuelaModelo.nombre}"
-														label="#{mensaje['school.name']}">
-											   <f:validateRequired/>
-											   <f:validateLength minimum="5" maximum="70"/>
-										   </h:inputText>
-									   </div>
-								   </div>
-								   <!-- Busqueda de la dirección -->
-								   <div class="uk-width-1-1@s uk-width-1-3@m">
-									   <h:outputLabel styleClass="uk-text-capitalize uk-form-label" value="#{mensaje['school.postalcode']}" for="input-codigo-postal"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														id="input-codigo-postal"
-														pt:placeholder="#{mensaje['school.postalcode']}"
-														value="#{escuelaControlador.escuelaModelo.codigoPostal}"
-														label="#{mensaje['school.postalcode']}">
-												<f:validateLength minimum="4" maximum="5"/>
-											   <f:validateRequired/>
-										   </h:inputText>
-									   </div>
-								   </div>
-								   <div class="uk-width-1-1@s uk-width-1-6@m uk-inline">
-									   <h:commandButton id="boton-direccion" value="#{mensaje['button.search']}" styleClass="uk-button uk-button-secondary uk-border-rounded uk-position-bottom-center">
-										   <f:ajax event="click"
-												   execute="formulario-nuevo:input-codigo-postal"
-												   listener="#{escuelaControlador.buscaColinas()}"
-												   render="select-colonia input-municipio input-estado mensajes-error" onevent="limpiarSelector"/>
-									   </h:commandButton>
-								   </div>
-								   <div class="uk-width-1-1@s uk-width-1-2@m">
-									   <h:outputLabel for="select-colonia" value="#{mensaje['school.colony']}" styleClass="uk-form-label uk-text-capitalize"/>
-									   <div class="uk-form-controls">
-											<h:selectOneMenu styleClass="uk-select"
-															 id="select-colonia"
-															 value="#{escuelaControlador.escuelaModelo.idColonia}"
-															 label="#{mensaje['school.colony']}">
-												<f:selectItem itemLabel="Seleccione la colonia..." itemDisabled="true" itemValue="0"/>
-												<f:selectItems value="#{escuelaControlador.escuelaModelo.codigoPostalList}"
-															   var="colonia"
-															   itemValue="#{colonia.id}"
-															   itemLabel="#{colonia.nombre}"/>
-												<f:validateRequired/>
-											</h:selectOneMenu>
-									   </div>
-							       </div>
-								   <div class="uk-width-1-1@s uk-width-1-2@m">
-									   <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.city']}" for="input-municipio"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														id="input-municipio"
-														value="#{escuelaControlador.escuelaModelo.municipio}"
-														readonly="true"
-														pt:placeholder="#{mensaje['school.city']}"/>
-									   </div>
-								   </div>
-								   <div class="uk-width-1-1@s uk-width-1-2@m">
-									   <h:outputLabel id="label-estado" for="input-estado" value="#{mensaje['school.town']}" styleClass="uk-text-capitalize uk-form-label"/>
-									   <h:inputText styleClass="uk-input"
-													id="input-estado"
-													value="#{escuelaControlador.escuelaModelo.estado}"
-													readonly="true"
-													pt:placeholder="#{mensaje['school.town']}"/>
-								   </div>
-								   <div class="uk-width-1-1@s uk-width-2-3@m">
-									   <h:outputLabel id="label-calle" for="input-calle" value="#{mensaje['school.street']}" styleClass="uk-text-capitalize uk-form-label"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														id="input-calle"
-														pt:placeholder="#{mensaje['school.street']}"
-														value="#{escuelaControlador.escuelaModelo.calle}"
-														label="#{mensaje['school.street']}">
-											   <f:validateRequired/>
-											   <f:validateLength maximum="60" minimum="10"/>
-										   </h:inputText>
-									   </div>
-								   </div>
-								   <!--	numero exterior -->
-								   <div class="uk-width-1-1@s uk-width-1-6@m">
-									   <h:outputLabel id="label-numero-exterior" value="#{mensaje['school.street.num.ext']}" styleClass="uk-text-capitalize uk-form-label"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														id="input-numero-interior"
-														pt:placeholder="#{mensaje['school.street.num.ext']}"
-														value="#{escuelaControlador.escuelaModelo.numeroExterior}"
-														label="#{mensaje['school.street.num.int']}">
-											   <f:validateRequired/>
-											   <f:validateLength minimum="1" maximum="15"/>
-										   </h:inputText>
-									   </div>
-								   </div>
-								   <div class="uk-width-1-1@s uk-width-1-6@m">
-									   <h:outputLabel id="label-nummero-exterior" value="#{mensaje['school.street.num.int']}" styleClass="uk-form-label uk-text-capitalize"/>
-									   <div class="uk-form-controls">
-										   <h:inputText styleClass="uk-input"
-														id="input-numero-exterior"
-														pt:placeholder="#{mensaje['school.street.num.int']}"
-														value="#{escuelaControlador.escuelaModelo.numeroInterior}"
-														label="#{mensaje['school.street.num.ext']}">
-											   <f:validateLength maximum="15"/>
-										   </h:inputText>
-									   </div>
-								   </div>
-								   <div class="uk-width-1-1@s">
-								   	<h:messages showDetail="false" styleClass="uk-list uk-alert-danger uk-alert" id="mensajes-error"/>
-								   </div>
-							   </div>
-						   </div>
-						   <div class="uk-modal-footer ">
-							   <div class="uk-flex uk-flex-right">
-								   <button class="uk-modal-close uk-button uk-button-default uk-border-rounded uk-margin-right"><h:outputText value="#{mensaje['button.cancel']}"/></button>
-								   <h:commandButton id="boton-aceptar" styleClass="uk-modal-close uk-button uk-button-primary uk-border-rounded" value="#{mensaje['button.accept']}">
-									   <f:ajax execute="@form" event="click" listener="#{escuelaControlador.inserta()}" render="mensajes-error"/>
-								   </h:commandButton>
-							   </div>
-						   </div>
-					   </h:form>
-				   </div>
-			   </div>
-		   	</div>
+           	<h:outputStylesheet library="css" name="tablas.css"/>
+			<div class="uk-overflow-auto">
+				<h1 class="uk-text-center uk-heading-line"><span>Detalles de la Escuela</span></h1>
+				<h:dataTable id="tabla-escuela"
+							 styleClass="uk-table"
+							 value="#{escuelaDashboardControlador.paginacionModeloDato}"
+							 binding="#{escuelaDashboardControlador.htmlDataTable}"
+							 var="escuela"
+							 first="0"
+							 rows="#{escuelaDashboardControlador.filasEnPagina}"
+							 footerClass="uk-background-primary"
+							 columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
+					<h:column headerClass="uk-background-primary uk-width-small">
+						<f:facet name="header"><h:outputText value="#{mensaje['school.cct']}" styleClass="titulo-blanco"/></f:facet>
+						#{escuela.claveCentroTrabajo}
+					</h:column>
+					<h:column headerClass="uk-background-primary">
+						<f:facet name="header"><h:outputText value="#{mensaje['school.name']}" styleClass="titulo-blanco"/></f:facet>
+						#{escuela.nombre}
+					</h:column>
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center" >
+						<f:facet name="header"><h:outputText value="#{mensaje['school.licenses']}" styleClass="titulo-blanco"/></f:facet>
+						#{escuela.licencias}
+					</h:column>
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+						<f:facet name="header"><h:outputText value="#{mensaje['school.remaining.days']}" styleClass="titulo-blanco"/></f:facet>
+						#{escuela.diasRestantes}
+					</h:column>
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+						<f:facet name="header"><h:outputText value="#{mensaje['school.status']}" styleClass="titulo-blanco"/></f:facet>
+						<h:outputText pt:uk-icon="check" styleClass="uk-icon-button uk-margin-small-right" rendered="#{escuela.estatus}"/>
+						<h:outputText pt:uk-icon="ban" styleClass="uk-icon-button uk-margin-small-right" rendered="#{not escuela.estatus}"/>
+					</h:column>
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+						<f:facet name="header"><h:outputText value="#{mensaje['school.option']}" styleClass="titulo-blanco"/></f:facet>
+						<h:outputText pt:uk-icon="more-vertical" styleClass="uk-icon-button uk-margin-small-right"/>
+					</h:column>
+					<f:facet name="footer">
+						<pa:pie-tabla htmlDataTable="#{escuelaDashboardControlador.htmlDataTable}"/>
+					</f:facet>
+				</h:dataTable>
+			</div>
+			<f:ajax render="tabla-escuela formulario-paginacion-colonia"
+					listener="#{escuelaDashboardControlador.cargaDatos(escuelaDashboardControlador.htmlDataTable.first)}"
+					onevent="limpiaInput">
+				<h:form id="formulario-paginacion-colonia">
+					<h:panelGroup styleClass="uk-margin-top" pt:uk-grid="">
+						<div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+							<pa:boton accionSiguiente="#{escuelaDashboardControlador.vistaSiguiente}"
+									  accionAnterior="#{escuelaDashboardControlador.vistaAnterior}"
+									  htmlDataTable="#{escuelaDashboardControlador.htmlDataTable}"
+									  maximo="#{escuelaDashboardControlador.maximo}"
+									  filasEnPagina="#{escuelaDashboardControlador.filasEnPagina}"
+									  cargaDatos="#{escuelaDashboardControlador.cargaDatos(escuelaDashboardControlador.htmlDataTable.first)}"/>
+						</div>
+						<div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
+							<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-escuela">
+								<span class="uk-margin-small-right"><h:outputText value="#{mensaje['button.add']}"/></span>
+								<h:outputText pt:uk-icon="icon: plus-circle"/>
+							</button>
+						</div>
+					</h:panelGroup>
+				</h:form>
+			</f:ajax>
 			<script type="text/javascript">
 				document.addEventListener("DOMContentLoaded", function (evt) {
-					limpiarSelector("undefined");
+					limpiaInput();
 				});
-				function limpiarSelector(informacion) {
-					if (informacion === "undefined") {
-						document.getElementById('formulario-nuevo:select-colonia').removeAttribute('size');
-					} else {
-						if (informacion.status == 'success') {
-							document.getElementById('formulario-nuevo:select-colonia').removeAttribute('size');
-						}
-					}
-				}
-				function actualiza(data) {
-					if (data.status === 'success') {
-						document.getElementById('formulario-actualiza:boton-actualizar').click();
-					}
+
+				function limpiaInput() {
+					document.querySelectorAll('.uk-select').forEach(function (value) { value.removeAttribute('size') });
 				}
 			</script>
         </ui:define>

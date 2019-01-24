@@ -47,4 +47,5 @@ public class MunicipioEntidadTest {
             Assert.assertNotNull(municipioEntidad.getEstado().getId());
         }
     }
+
 }
