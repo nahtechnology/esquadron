@@ -1,8 +1,10 @@
 package tecolotl.web.control.administracion;
 
+import tecolotl.administracion.dto.EscuelaBaseDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.web.control.PaginadorControlador;
+import tecolotl.web.modelo.administracion.PaginacionModeloDato;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -20,17 +22,38 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     private EscuelaSesionBean escuelaSesionBean;
 
     private List<EscuelaDto> escuelaDtoLista;
+    private List<EscuelaDto> escuelaDtoSubLista;
+    private EscuelaBaseDto escuelaBaseDtoModelo;
 
     @PostConstruct
     public void init() {
         escuelaDtoLista = new ArrayList<>(escuelaSesionBean.busca());
+        escuelaBaseDtoModelo = new EscuelaBaseDto();
         setFilasEnPagina(5);
         setTotalFilas(escuelaDtoLista.size());
         cargaDatos(0);
     }
 
+    public void filtrar() {
+        escuelaDtoSubLista = new ArrayList<>();
+        for (EscuelaDto escuelaDto : escuelaDtoLista) {
+            if (escuelaDto.getNombre().toLowerCase().contains(escuelaBaseDtoModelo.getNombre().toLowerCase())) {
+                escuelaDtoSubLista.add(escuelaDto);
+            }
+        }
+        cargaDatos(0);
+    }
+
     @Override
     protected List<EscuelaDto> getDatos() {
-        return escuelaDtoLista;
+        return escuelaDtoSubLista == null ? escuelaDtoLista : escuelaDtoSubLista;
+    }
+
+    public EscuelaBaseDto getEscuelaBaseDtoModelo() {
+        return escuelaBaseDtoModelo;
+    }
+
+    public void setEscuelaBaseDtoModelo(EscuelaBaseDto escuelaBaseDtoModelo) {
+        this.escuelaBaseDtoModelo = escuelaBaseDtoModelo;
     }
 }

@@ -11,25 +11,24 @@
         <cc:attribute name="accionAnterior" required="true" method-signature="void anterior()"/>
         <cc:attribute name="maximo" required="true"/>
         <cc:attribute name="filasEnPagina" required="true"/>
-        <cc:attribute name="cargaDatos" method-signature="void cargaDatos()" required="true"/>
     </cc:interface>
     <cc:implementation>
-        <h:commandButton styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-primera"
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-primera"
                          disabled="#{cc.attrs.htmlDataTable.first eq 0}"
                          action="#{cc.attrs.accionAnterior}">
             <f:setPropertyActionListener value="true" target="#{cc.attrs.maximo}"/>
         </h:commandButton>
-        <h:commandButton styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-anterior"
                          disabled="#{cc.attrs.htmlDataTable.first eq 0}"
                          action="#{cc.attrs.accionAnterior}">
             <f:setPropertyActionListener value="false" target="#{cc.attrs.maximo}"/>
         </h:commandButton>
-        <h:commandButton styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
                          disabled="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows ge cc.attrs.htmlDataTable.rowCount}"
                          action="#{cc.attrs.accionSiguiente}">
             <f:setPropertyActionListener value="false" target="#{cc.attrs.maximo}"/>
         </h:commandButton>
-        <h:commandButton styleClass="uk-button uk-button-secondary uk-border-rounded uk-margin-small-right boton-paginacion boton-paginacion-ultima"
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-ultima"
                          disabled="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows ge cc.attrs.htmlDataTable.rowCount}"
                          action="#{cc.attrs.accionSiguiente}">
             <f:setPropertyActionListener value="true" target="#{cc.attrs.maximo}"/>

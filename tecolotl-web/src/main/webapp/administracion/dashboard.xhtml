@@ -22,28 +22,33 @@
 							 rows="#{escuelaDashboardControlador.filasEnPagina}"
 							 footerClass="uk-background-primary"
 							 columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
-					<h:column headerClass="uk-background-primary uk-width-small">
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-middle">
 						<f:facet name="header"><h:outputText value="#{mensaje['school.cct']}" styleClass="titulo-blanco"/></f:facet>
 						#{escuela.claveCentroTrabajo}
 					</h:column>
 					<h:column headerClass="uk-background-primary">
-						<f:facet name="header"><h:outputText value="#{mensaje['school.name']}" styleClass="titulo-blanco"/></f:facet>
+						<f:facet name="header">
+							<div class="uk-flex uk-flex-between uk-flex-middle">
+								<h:outputText value="#{mensaje['school.name']}" styleClass="titulo-blanco"/>
+								<h:outputLink value="#modal-busqueda-nombre" styleClass="titulo-blanco uk-navbar-toggle" pt:uk-search-icon="" pt:uk-toggle=""/>
+							</div>
+						</f:facet>
 						#{escuela.nombre}
 					</h:column>
-					<h:column headerClass="uk-background-primary uk-width-small uk-text-center" >
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-middle">
 						<f:facet name="header"><h:outputText value="#{mensaje['school.licenses']}" styleClass="titulo-blanco"/></f:facet>
 						#{escuela.licencias}
 					</h:column>
-					<h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-middle">
 						<f:facet name="header"><h:outputText value="#{mensaje['school.remaining.days']}" styleClass="titulo-blanco"/></f:facet>
 						#{escuela.diasRestantes}
 					</h:column>
-					<h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-middle">
 						<f:facet name="header"><h:outputText value="#{mensaje['school.status']}" styleClass="titulo-blanco"/></f:facet>
 						<h:outputText pt:uk-icon="check" styleClass="uk-icon-button uk-margin-small-right" rendered="#{escuela.estatus}"/>
 						<h:outputText pt:uk-icon="ban" styleClass="uk-icon-button uk-margin-small-right" rendered="#{not escuela.estatus}"/>
 					</h:column>
-					<h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+					<h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-middle">
 						<f:facet name="header"><h:outputText value="#{mensaje['school.option']}" styleClass="titulo-blanco"/></f:facet>
 						<h:outputText pt:uk-icon="more-vertical" styleClass="uk-icon-button uk-margin-small-right"/>
 					</h:column>
@@ -62,11 +67,10 @@
 									  accionAnterior="#{escuelaDashboardControlador.vistaAnterior}"
 									  htmlDataTable="#{escuelaDashboardControlador.htmlDataTable}"
 									  maximo="#{escuelaDashboardControlador.maximo}"
-									  filasEnPagina="#{escuelaDashboardControlador.filasEnPagina}"
-									  cargaDatos="#{escuelaDashboardControlador.cargaDatos(escuelaDashboardControlador.htmlDataTable.first)}"/>
+									  filasEnPagina="#{escuelaDashboardControlador.filasEnPagina}"/>
 						</div>
 						<div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
-							<button class="uk-button uk-button-primary uk-border-rounded" uk-toggle="target: #modal-escuela">
+							<button class="uk-button uk-button-primary" uk-toggle="target: #modal-escuela">
 								<span class="uk-margin-small-right"><h:outputText value="#{mensaje['button.add']}"/></span>
 								<h:outputText pt:uk-icon="icon: plus-circle"/>
 							</button>
@@ -74,9 +78,48 @@
 					</h:panelGroup>
 				</h:form>
 			</f:ajax>
+			<h:panelGroup id="modal-busqueda-nombre" styleClass="uk-flex-top" pt:uk-modal="">
+				<div class="uk-modal-dialog uk-margin-auto-vertical">
+						<div class="uk-modal-header uk-background-secondary">
+							<p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Busca por nombre</span></p>
+						</div>
+					<h:form id="formulario-busqueda-nombre" class="uk-form-stacked">
+						<div class="uk-modal-body">
+							<div class="uk-margin">
+								<h:outputLabel for="input-busqueda-nombre" styleClass="uk-form-label" value="Palabra Clave"/>
+								<div class="uk-form-controls">
+									<h:inputText styleClass="uk-input"
+												 id="input-busqueda-nombre"
+												 pt:placeholder="Escriba texto..."
+												 value="#{escuelaDashboardControlador.escuelaBaseDtoModelo.nombre}"
+												 label="nombre">
+										<f:validateRequired/>
+										<f:validateLength minimum="2"/>
+									</h:inputText>
+								</div>
+							</div>
+							<ui:fragment rendered="#{facesContext.validationFailed}">
+								<h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
+									<h:message id="mensaje-error-busqueda-nombre" for="input-busqueda-nombre"/>
+								</h:panelGroup>
+							</ui:fragment>
+						</div>
+						<div class="uk-modal-footer uk-text-right">
+							<button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">Cancelar</button>
+							<h:commandButton styleClass="uk-button uk-button-secondary" value="#{mensaje['button.search']}">
+								<f:ajax execute="@form" listener="#{escuelaDashboardControlador.filtrar}" render="tabla-escuela @form"/>
+							</h:commandButton>
+						</div>
+					</h:form>
+				</div>
+			</h:panelGroup>
 			<script type="text/javascript">
+				var modalBusquedaNombre = document.querySelector('#modal-busqueda-nombre');
 				document.addEventListener("DOMContentLoaded", function (evt) {
 					limpiaInput();
+					UIkit.util.on('#modal-busqueda-nombre', 'hidden', function () {
+						modalBusquedaNombre.querySelectorAll('.uk-input').forEach(function (entrada) { entrada.value = '' });
+					});
 				});
 
 				function limpiaInput() {

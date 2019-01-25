@@ -59,15 +59,6 @@ public class CatalagoColoniaControlador extends PaginadorControlador<ColoniaDto>
         coloniaDtoModelo = new ColoniaDto();
     }
 
-    public void actualizaModelo(ColoniaDto coloniaDto) {
-        logger.info( coloniaDto == null ? "null" : coloniaDto.toString());
-        if (coloniaDto == null) {
-            this.coloniaDtoModelo = new ColoniaDto();
-        } else {
-            this.coloniaDtoModelo = coloniaDto;
-        }
-    }
-
     @Override
     protected List<ColoniaDto> getDatos() {
         return coloniaDtoLista;
