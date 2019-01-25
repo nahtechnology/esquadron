@@ -12,11 +12,10 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
     private String numeroExterior;
     private String numeroInterior;
     private String calle;
-    private String codigoPostal;
-    private String colonia;
-    private String municipio;
-    private String estado;
-    private String motivoBlqueo;
+    private ColoniaDto coloniaDto;
+    private MunicipioDto municipioDto;
+    private EstadoDto estadoDto;
+    private MotivoBloqueoDto motivoBlqueoDto;
     private List<LicenciaDto> licenciaDtoList;
     private List<ContactoDto> contactoDtoList;
 
@@ -33,11 +32,10 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
         calle = escuelaEntidad.getDomicilio();
         numeroExterior = escuelaEntidad.getNumeroExterior();
         numeroInterior = escuelaEntidad.getNumeroInterior();
-        codigoPostal = escuelaEntidad.getColoniaEntidad().getCodigoPostal();
-        colonia = escuelaEntidad.getColoniaEntidad().getNombre();
-        municipio = escuelaEntidad.getColoniaEntidad().getMunicipio().getNombre();
-        estado = escuelaEntidad.getColoniaEntidad().getMunicipio().getEstado().getNombre();
-        motivoBlqueo = escuelaEntidad.getMotivoBloqueoEntidad().getDescripcion();
+        coloniaDto = new ColoniaDto(escuelaEntidad.getColoniaEntidad());
+        municipioDto = new MunicipioDto(escuelaEntidad.getColoniaEntidad().getMunicipio());
+        estadoDto = new EstadoDto(escuelaEntidad.getColoniaEntidad().getMunicipio().getEstado());
+        motivoBlqueoDto = new MotivoBloqueoDto(escuelaEntidad.getMotivoBloqueoEntidad());
         licenciaDtoList = new ArrayList<>();
         for (LicenciaEntidad licenciaEntidad : escuelaEntidad.getLicencia()) {
             licenciaDtoList.add(new LicenciaDto(licenciaEntidad));
@@ -72,44 +70,36 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
         this.calle = calle;
     }
 
-    public String getCodigoPostal() {
-        return codigoPostal;
+    public ColoniaDto getColoniaDto() {
+        return coloniaDto;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
+    public void setColoniaDto(ColoniaDto coloniaDto) {
+        this.coloniaDto = coloniaDto;
     }
 
-    public String getColonia() {
-        return colonia;
+    public MunicipioDto getMunicipioDto() {
+        return municipioDto;
     }
 
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
+    public void setMunicipioDto(MunicipioDto municipioDto) {
+        this.municipioDto = municipioDto;
     }
 
-    public String getMunicipio() {
-        return municipio;
+    public EstadoDto getEstadoDto() {
+        return estadoDto;
     }
 
-    public void setMunicipio(String municipio) {
-        this.municipio = municipio;
+    public void setEstadoDto(EstadoDto estadoDto) {
+        this.estadoDto = estadoDto;
     }
 
-    public String getEstado() {
-        return estado;
+    public MotivoBloqueoDto getMotivoBlqueoDto() {
+        return motivoBlqueoDto;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getMotivoBlqueo() {
-        return motivoBlqueo;
-    }
-
-    public void setMotivoBlqueo(String motivoBlqueo) {
-        this.motivoBlqueo = motivoBlqueo;
+    public void setMotivoBlqueoDto(MotivoBloqueoDto motivoBlqueoDto) {
+        this.motivoBlqueoDto = motivoBlqueoDto;
     }
 
     public List<LicenciaDto> getLicenciaDtoList() {
@@ -134,13 +124,12 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
         sb.append("numeroExterior='").append(numeroExterior).append('\'');
         sb.append(", numeroInterior='").append(numeroInterior).append('\'');
         sb.append(", calle='").append(calle).append('\'');
-        sb.append(", codigoPostal='").append(codigoPostal).append('\'');
-        sb.append(", colonia='").append(colonia).append('\'');
-        sb.append(", municipio='").append(municipio).append('\'');
-        sb.append(", estado='").append(estado).append('\'');
-        sb.append(", motivoBlqueo='").append(motivoBlqueo).append('\'');
+        sb.append(", coloniaDto=").append(coloniaDto);
+        sb.append(", municipioDto=").append(municipioDto);
+        sb.append(", estadoDto='").append(estadoDto).append('\'');
+        sb.append(", motivoBlqueoDto=").append(motivoBlqueoDto);
         sb.append(", licenciaDtoList=").append(licenciaDtoList);
-        sb.append(" super:").append(super.toString());
+        sb.append(", contactoDtoList=").append(contactoDtoList);
         sb.append('}');
         return sb.toString();
     }

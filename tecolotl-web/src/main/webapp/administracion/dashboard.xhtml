@@ -80,9 +80,9 @@
 			</f:ajax>
 			<h:panelGroup id="modal-busqueda-nombre" styleClass="uk-flex-top" pt:uk-modal="">
 				<div class="uk-modal-dialog uk-margin-auto-vertical">
-						<div class="uk-modal-header uk-background-secondary">
-							<p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Busca por nombre</span></p>
-						</div>
+					<div class="uk-modal-header uk-background-secondary">
+						<p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Busca por nombre</span></p>
+					</div>
 					<h:form id="formulario-busqueda-nombre" class="uk-form-stacked">
 						<div class="uk-modal-body">
 							<div class="uk-margin">
@@ -113,12 +113,125 @@
 					</h:form>
 				</div>
 			</h:panelGroup>
+			<h:panelGroup id="modal-escuela" class="uk-modal-container" pt:uk-modal="">
+				<div class="uk-modal-dialog uk-margin-auto-vertical">
+					<div class="uk-modal-header uk-background-secondary">
+						<p class="uk-h4 uk-text-center uk-text-bold">
+							<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+							<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+						</p>
+					</div>
+					<div class="uk-modal-body">
+						<h:form id="formulario-escuela">
+							<h:panelGroup pt:uk-grid="">
+								<div class="uk-width-1-1@s uk-width-1-6@m">
+									<h:outputLabel styleClass="uk-form-label" for="input-escuela-cct" value="#{mensaje['school.cct']}"/>
+									<div class="uk-form-controls">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-cct"
+													 pt:placeholder="#{mensaje['school.cct']}"
+													 label="#{mensaje['school.cct']}"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}">
+											<f:validateRequired/>
+											<f:validateLength minimum="9" maximum="10"/>
+										</h:inputText>
+									</div>
+								</div>
+								<div class="uk-width-1-1@s uk-width-1-2@m">
+									<h:outputLabel styleClass="uk-form-label" for="input-escuela-nombre" value="#{mensaje['school.name']}"/>
+									<div class="uk-form-controls">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-nombre"
+													 pt:placeholder="#{mensaje['school.name']}"
+													 label="#{mensaje['school.name']}"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.nombre}">
+											<f:validateRequired/>
+										</h:inputText>
+									</div>
+								</div>
+								<div class="uk-width-1-1@s uk-width-1-6@m">
+									<h:outputLabel styleClass="uk-form-label" for="input-escuela-codigo-postal" value="#{mensaje['school.postalcode']}"/>
+									<div class="uk-form-controls">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-codigo-postal"
+													 pt:placeholder="#{mensaje['school.postalcode']}"
+													 label="#{mensaje['school.postalcode']}"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.codigoPostal}">
+											<f:validateRequired/>
+										</h:inputText>
+									</div>
+								</div>
+								<div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
+									<h:commandButton styleClass="uk-button uk-button-secondary uk-position-bottom-center"
+													 value="#{mensaje['button.search']}">
+										<f:ajax execute="input-escuela-codigo-postal" render=""/>
+									</h:commandButton>
+								</div>
+								<div class="uk-inline uk-width-1-1@s uk-width-1-2@m">
+									<h:selectOneMenu styleClass="uk-select" value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.}">
+
+									</h:selectOneMenu>
+									<select class="uk-select  uk-position-bottom-center ">
+										<option>San Lucas Atoyatenco(Los Ranchitos) DE la Virgen de Guadalupe</option>
+										<option>San Martín de Labastida </option>
+									</select>
+								</div>
+								<div class="uk-width-1-1@s uk-width-1-2@m">
+									<label class="uk-form-label" for="input-calle">Calle</label>
+									<div class="uk-form-controls">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-calle"
+													 pt:placeholder="#{mensaje['school.street']}"
+													 label="#{mensaje['school.street']}"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.calle}">
+											<f:validateRequired/>
+										</h:inputText>
+										<input class="" id="input-calle" type="text" placeholder="Escribe la Calle">
+									</div>
+								</div>
+								<div class="uk-width-1-1@s uk-width-1-6@m">
+									<label class="uk-form-label" for="input-numero-ext">Número Ext.</label>
+									<div class="uk-form-controls">
+										<input class="uk-input" id="input-numero-ext" type="text" placeholder="Escribe el Núm.Ext">
+									</div>
+								</div>
+								<div class="uk-width-1-1@s uk-width-1-6@m">
+									<label class="uk-form-label" for="input-numero-int">Número Int.</label>
+									<div class="uk-form-controls">
+										<input class="uk-input" id="input-numero-int" type="text" placeholder="Escribe el Núm.Int">
+									</div>
+								</div>
+								<div class="uk-width-1-1@s uk-width-2-5@m">
+									<label class="uk-form-label" for="input-municipio">Municipio</label>
+									<div class="uk-form-controls">
+										<input class="uk-input" id="input-municipio" type="text" placeholder="Escribe el Municipio">
+									</div>
+								</div>
+								<div class="uk-width-1-1@s uk-width-1-4@m">
+									<label class="uk-form-label" for="input-estado">Estado</label>
+									<div class="uk-form-controls">
+										<input class="uk-input" id="input-estado" type="text" placeholder="Escribe el Estado">
+									</div>
+								</div>
+							</h:panelGroup>
+						</h:form>
+					</div>
+					<div class="uk-modal-footer uk-text-right">
+						<button class="uk-button uk-button-default uk-modal-close uk-border-rounded" type="button">Cancelar</button>
+						<button class="uk-button uk-button-secondary uk-border-rounded" type="button">Guardar</button>
+					</div>
+				</div>
+			</h:panelGroup>
 			<script type="text/javascript">
 				var modalBusquedaNombre = document.querySelector('#modal-busqueda-nombre');
+				var modalEscuela = document.querySelector('#modal-escuela');
 				document.addEventListener("DOMContentLoaded", function (evt) {
 					limpiaInput();
 					UIkit.util.on('#modal-busqueda-nombre', 'hidden', function () {
 						modalBusquedaNombre.querySelectorAll('.uk-input').forEach(function (entrada) { entrada.value = '' });
+					});
+					UIkit.util.on('#modal-escuela', 'hidden', function () {
+						modalEscuela.querySelectorAll('.uk-input').forEach(function (entrada) { entrada.value = '' });
 					});
 				});
 

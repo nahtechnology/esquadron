@@ -1,6 +1,8 @@
 package tecolotl.web.control.administracion;
 
+import tecolotl.administracion.dto.ColoniaDto;
 import tecolotl.administracion.dto.EscuelaBaseDto;
+import tecolotl.administracion.dto.EscuelaDetalleDto;
 import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.web.control.PaginadorControlador;
@@ -24,6 +26,8 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     private List<EscuelaDto> escuelaDtoLista;
     private List<EscuelaDto> escuelaDtoSubLista;
     private EscuelaBaseDto escuelaBaseDtoModelo;
+    private EscuelaDetalleDto escuelaDetalleDtoModelo;
+    private List<ColoniaDto> coloniaDtoLista;
 
     @PostConstruct
     public void init() {
@@ -55,5 +59,21 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
 
     public void setEscuelaBaseDtoModelo(EscuelaBaseDto escuelaBaseDtoModelo) {
         this.escuelaBaseDtoModelo = escuelaBaseDtoModelo;
+    }
+
+    public EscuelaDetalleDto getEscuelaDetalleDtoModelo() {
+        return escuelaDetalleDtoModelo;
+    }
+
+    public void setEscuelaDetalleDtoModelo(EscuelaDetalleDto escuelaDetalleDtoModelo) {
+        this.escuelaDetalleDtoModelo = escuelaDetalleDtoModelo;
+    }
+
+    public List<ColoniaDto> getColoniaDtoLista() {
+        return coloniaDtoLista;
+    }
+
+    public void setColoniaDtoLista(List<ColoniaDto> coloniaDtoLista) {
+        this.coloniaDtoLista = coloniaDtoLista;
     }
 }
