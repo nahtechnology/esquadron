@@ -1,8 +1,10 @@
 package tecolotl.administracion.sesion;
 
 import tecolotl.administracion.dto.ColoniaDto;
+import tecolotl.administracion.dto.EstadoDto;
 import tecolotl.administracion.dto.MunicipioDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
+import tecolotl.administracion.persistencia.entidad.EstadoEntidad;
 import tecolotl.administracion.persistencia.entidad.MunicipioEntidad;
 
 import javax.ejb.Stateless;
@@ -84,6 +86,7 @@ public class ColoniaSesionBean {
      * que el código postal sea nulo se recupera nulo
      * @param codigoPostal Código postal a buscar
      * @return {@link MunicipioDto} con los datos encontrados
+     * @since 0.1
      */
     public MunicipioDto buscaMunicipio(String codigoPostal) {
         if (codigoPostal == null) {
@@ -94,5 +97,21 @@ public class ColoniaSesionBean {
         typedQuery.setMaxResults(1);
         MunicipioEntidad municipioEntidad = typedQuery.getSingleResult();
         return municipioEntidad == null ? null : new MunicipioDto(municipioEntidad);
+    }
+
+    /**
+     * Busca el estado al que pertene un código postal, en caso de que parametro sea nulo, re recupera nulo
+     * @param codigoPostal Código postal para buscar
+     * @return {@link EstadoDto} con los datos contrado o nulo en caso de no encontrarse
+     */
+    public EstadoDto buscaEstado(String codigoPostal) {
+        if (codigoPostal == null) {
+            return null;
+        }
+        TypedQuery<EstadoEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaEstadoPostal", EstadoEntidad.class);
+        typedQuery.setParameter("codigoPostal", codigoPostal);
+        typedQuery.setMaxResults(1);
+        EstadoEntidad estadoEntidad = typedQuery.getSingleResult();
+        return estadoEntidad == null ? null : new EstadoDto(estadoEntidad);
     }
 }

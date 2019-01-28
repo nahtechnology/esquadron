@@ -27,9 +27,6 @@ public class EscuelaModelo {
         calle = escuelaDetalleDto.getCalle();
         numeroInterior = escuelaDetalleDto.getNumeroInterior();
         numeroExterior = escuelaDetalleDto.getNumeroExterior();
-        codigoPostal = escuelaDetalleDto.getCodigoPostal();
-        estado = escuelaDetalleDto.getEstado();
-        municipio = escuelaDetalleDto.getMunicipio();
     }
 
     private List<CodigoPostal> codigoPostalList;

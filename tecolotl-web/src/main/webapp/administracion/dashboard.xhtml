@@ -113,19 +113,19 @@
 					</h:form>
 				</div>
 			</h:panelGroup>
-			<h:panelGroup id="modal-escuela" class="uk-modal-container" pt:uk-modal="">
+			<h:panelGroup layout="block" id="modal-escuela" class="uk-modal-container" pt:uk-modal="">
 				<div class="uk-modal-dialog uk-margin-auto-vertical">
-					<div class="uk-modal-header uk-background-secondary">
-						<p class="uk-h4 uk-text-center uk-text-bold">
-							<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
-							<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
-						</p>
-					</div>
-					<div class="uk-modal-body">
-						<h:form id="formulario-escuela">
-							<h:panelGroup pt:uk-grid="">
+					<h:form id="formulario-escuela">
+						<div class="uk-modal-header uk-background-secondary">
+							<p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+								<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+								<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+							</p>
+						</div>
+						<div class="uk-modal-body">
+							<div uk-grid="">
 								<div class="uk-width-1-1@s uk-width-1-6@m">
-									<h:outputLabel styleClass="uk-form-label" for="input-escuela-cct" value="#{mensaje['school.cct']}"/>
+									<h:outputLabel styleClass="uk-form-label uk-text-uppercase" for="input-escuela-cct" value="#{mensaje['school.cct']}"/>
 									<div class="uk-form-controls">
 										<h:inputText styleClass="uk-input"
 													 id="input-escuela-cct"
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-1-2@m">
-									<h:outputLabel styleClass="uk-form-label" for="input-escuela-nombre" value="#{mensaje['school.name']}"/>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-nombre" value="#{mensaje['school.name']}"/>
 									<div class="uk-form-controls">
 										<h:inputText styleClass="uk-input"
 													 id="input-escuela-nombre"
@@ -150,13 +150,13 @@
 									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-1-6@m">
-									<h:outputLabel styleClass="uk-form-label" for="input-escuela-codigo-postal" value="#{mensaje['school.postalcode']}"/>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-codigo-postal" value="#{mensaje['school.postalcode']}"/>
 									<div class="uk-form-controls">
 										<h:inputText styleClass="uk-input"
 													 id="input-escuela-codigo-postal"
 													 pt:placeholder="#{mensaje['school.postalcode']}"
 													 label="#{mensaje['school.postalcode']}"
-													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.codigoPostal}">
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.coloniaDto.codigoPostal}">
 											<f:validateRequired/>
 										</h:inputText>
 									</div>
@@ -164,20 +164,30 @@
 								<div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
 									<h:commandButton styleClass="uk-button uk-button-secondary uk-position-bottom-center"
 													 value="#{mensaje['button.search']}">
-										<f:ajax execute="input-escuela-codigo-postal" render=""/>
+										<f:ajax execute="input-escuela-codigo-postal"
+												render="seleccion-colonia input-escuela-municipio input-escuela-estado"
+												listener="#{escuelaDashboardControlador.buscaColonia}" onevent="limpiaInput"/>
 									</h:commandButton>
 								</div>
 								<div class="uk-inline uk-width-1-1@s uk-width-1-2@m">
-									<h:selectOneMenu styleClass="uk-select" value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.}">
-
-									</h:selectOneMenu>
-									<select class="uk-select  uk-position-bottom-center ">
-										<option>San Lucas Atoyatenco(Los Ranchitos) DE la Virgen de Guadalupe</option>
-										<option>San Martín de Labastida </option>
-									</select>
+									<div class="uk-margin">
+										<h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.colony']}" for="seleccion-colonia"/>
+										<div class="uk-form-controls">
+											<h:selectOneMenu styleClass="uk-select"
+															 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.coloniaDto.id}"
+															 id="seleccion-colonia">
+												<f:selectItem itemLabel="Selecciones ..." itemValue="0" noSelectionOption="true"/>
+												<f:selectItems value="#{escuelaDashboardControlador.coloniaDtoLista}"
+																var="colonia"
+																itemValue="#{colonia.id}"
+																itemLabel="#{colonia.nombre}"/>
+												<f:validateRequired/>
+											</h:selectOneMenu>
+										</div>
+									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-1-2@m">
-									<label class="uk-form-label" for="input-calle">Calle</label>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.street']}" for="input-escuela-calle"/>
 									<div class="uk-form-controls">
 										<h:inputText styleClass="uk-input"
 													 id="input-escuela-calle"
@@ -186,40 +196,75 @@
 													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.calle}">
 											<f:validateRequired/>
 										</h:inputText>
-										<input class="" id="input-calle" type="text" placeholder="Escribe la Calle">
 									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-1-6@m">
-									<label class="uk-form-label" for="input-numero-ext">Número Ext.</label>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.street.num.ext']}" for="input-escuela-numero-exterior"/>
 									<div class="uk-form-controls">
-										<input class="uk-input" id="input-numero-ext" type="text" placeholder="Escribe el Núm.Ext">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-numero-exterior"
+													 pt:placeholder="#{mensaje['school.street.num.ext']}"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.numeroExterior}"
+													 label="#{mensaje['school.street.num.ext']}">
+											<f:validateRequired/>
+											<f:validateLength minimum="1"/>
+										</h:inputText>
 									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-1-6@m">
-									<label class="uk-form-label" for="input-numero-int">Número Int.</label>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.street.num.int']}" for="input-escuela-numero-interior"/>
 									<div class="uk-form-controls">
-										<input class="uk-input" id="input-numero-int" type="text" placeholder="Escribe el Núm.Int">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-numero-interior"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.numeroInterior}"
+													 pt:placeholder="#{mensaje['school.street.num.int']}"
+													 label="#{mensaje['school.street.num.int']}">
+											<f:validateLength minimum="1" maximum="15"/>
+										</h:inputText>
 									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-2-5@m">
-									<label class="uk-form-label" for="input-municipio">Municipio</label>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.city']}" for="input-escuela-municipio"/>
 									<div class="uk-form-controls">
-										<input class="uk-input" id="input-municipio" type="text" placeholder="Escribe el Municipio">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-municipio"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.municipioDto.nombre}"
+													 pt:placeholder="#{mensaje['school.city']}"
+													 label="#{mensaje['school.city']}"
+													 disabled="true"/>
 									</div>
 								</div>
 								<div class="uk-width-1-1@s uk-width-1-4@m">
-									<label class="uk-form-label" for="input-estado">Estado</label>
+									<h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{mensaje['school.town']}" for="input-escuela-estado"/>
 									<div class="uk-form-controls">
-										<input class="uk-input" id="input-estado" type="text" placeholder="Escribe el Estado">
+										<h:inputText styleClass="uk-input"
+													 id="input-escuela-estado"
+													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.estadoDto.nombre}"
+													 pt:placeholder="#{mensaje['school.town']}"
+													 label="#{mensaje['school.town']}"
+													 disabled="true"/>
 									</div>
 								</div>
-							</h:panelGroup>
-						</h:form>
-					</div>
-					<div class="uk-modal-footer uk-text-right">
-						<button class="uk-button uk-button-default uk-modal-close uk-border-rounded" type="button">Cancelar</button>
-						<button class="uk-button uk-button-secondary uk-border-rounded" type="button">Guardar</button>
-					</div>
+								<ui:fragment rendered="#{facesContext.validationFailed}">
+									<div class="uk-width-1-1@s">
+										<div class="uk-alert-danger" uk-alert="">
+											<h:messages styleClass="uk-list"/>
+										</div>
+									</div>
+								</ui:fragment>
+							</div>
+						</div>
+						<div class="uk-modal-footer uk-flex uk-flex-right">
+							<h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right"
+											 value="#{mensaje['button.cancel']}">
+								<f:ajax render="@form" onevent="limpiaInput"/>
+							</h:commandButton>
+							<h:commandButton styleClass="uk-button uk-button-secondary"
+											 value="#{mensaje['button.add']}">
+								<f:ajax execute="@form" render="@form" listener="#{escuelaDashboardControlador.agrega}" onevent="limpiaInput"/>
+							</h:commandButton>
+						</div>
+					</h:form>
 				</div>
 			</h:panelGroup>
 			<script type="text/javascript">

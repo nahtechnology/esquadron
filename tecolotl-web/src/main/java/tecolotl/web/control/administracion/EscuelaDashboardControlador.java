@@ -1,11 +1,10 @@
 package tecolotl.web.control.administracion;
 
-import tecolotl.administracion.dto.ColoniaDto;
-import tecolotl.administracion.dto.EscuelaBaseDto;
-import tecolotl.administracion.dto.EscuelaDetalleDto;
-import tecolotl.administracion.dto.EscuelaDto;
+import tecolotl.administracion.dto.*;
+import tecolotl.administracion.sesion.ColoniaSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.web.control.PaginadorControlador;
+import tecolotl.web.enumeracion.EscuelaOrdenamiento;
 import tecolotl.web.modelo.administracion.PaginacionModeloDato;
 
 import javax.annotation.PostConstruct;
@@ -14,6 +13,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @ViewScoped
@@ -22,6 +23,9 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
+
+    @Inject
+    private ColoniaSesionBean coloniaSesionBean;
 
     private List<EscuelaDto> escuelaDtoLista;
     private List<EscuelaDto> escuelaDtoSubLista;
@@ -33,6 +37,7 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     public void init() {
         escuelaDtoLista = new ArrayList<>(escuelaSesionBean.busca());
         escuelaBaseDtoModelo = new EscuelaBaseDto();
+        escuelaDetalleDtoModelo = new EscuelaDetalleDto();
         setFilasEnPagina(5);
         setTotalFilas(escuelaDtoLista.size());
         cargaDatos(0);
@@ -48,9 +53,48 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
         cargaDatos(0);
     }
 
+    public void agrega() {
+
+        EscuelaDto escuelaDto = escuelaSesionBean.insertar(
+                escuelaDetalleDtoModelo.getClaveCentroTrabajo(),
+                escuelaDetalleDtoModelo.getColoniaDto().getId(),
+                escuelaDetalleDtoModelo.getNombre(),
+                escuelaDetalleDtoModelo.getCalle(),
+                escuelaDetalleDtoModelo.getNumeroInterior(),
+                escuelaDetalleDtoModelo.getNumeroExterior()
+        );
+        escuelaDtoLista.add(escuelaDto);
+        ordernar(EscuelaOrdenamiento.NOMBRE);
+        escuelaDetalleDtoModelo = new EscuelaDetalleDto();
+        getHtmlDataTable().setFirst(0);
+        cargaDatos(getHtmlDataTable().getFirst());
+    }
+
+    public void buscaColonia() {
+        coloniaDtoLista = coloniaSesionBean.busca(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal());
+        escuelaDetalleDtoModelo.setMunicipioDto(coloniaSesionBean.buscaMunicipio(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
+        escuelaDetalleDtoModelo.setEstadoDto(coloniaSesionBean.buscaEstado(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
+    }
+
     @Override
-    protected List<EscuelaDto> getDatos() {
+    public List<EscuelaDto> getDatos() {
         return escuelaDtoSubLista == null ? escuelaDtoLista : escuelaDtoSubLista;
+    }
+
+    public void ordernar(final EscuelaOrdenamiento escuelaOrdenamiento) {
+        Collections.sort(escuelaDtoLista, new Comparator<EscuelaDto>() {
+            @Override
+            public int compare(EscuelaDto o1, EscuelaDto o2) {
+                switch (escuelaOrdenamiento) {
+                    case NOMBRE:
+                        return o1.getNombre().compareTo(o2.getNombre());
+                    case CCT:
+                        return o1.getClaveCentroTrabajo().compareTo(o2.getClaveCentroTrabajo());
+                    default:
+                        throw new IllegalArgumentException();
+                }
+            }
+        });
     }
 
     public EscuelaBaseDto getEscuelaBaseDtoModelo() {
@@ -76,4 +120,5 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     public void setColoniaDtoLista(List<ColoniaDto> coloniaDtoLista) {
         this.coloniaDtoLista = coloniaDtoLista;
     }
+
 }

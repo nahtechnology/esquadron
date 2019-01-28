@@ -20,6 +20,7 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
     private List<ContactoDto> contactoDtoList;
 
     public EscuelaDetalleDto() {
+        coloniaDto = new ColoniaDto();
     }
 
     public EscuelaDetalleDto(String claveCentroTrabajo) {

@@ -7,7 +7,8 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "motivo_bloqueo", schema ="administracion")
 @NamedQueries({
-		@NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE NOT (m.descripcion = :descripcion) ORDER BY m.descripcion")
+		@NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE NOT (m.descripcion = :descripcion) ORDER BY m.descripcion"),
+		@NamedQuery(name = "MotivoBloqueoEntidad.buscaDescripcion", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE m.descripcion = :descripcion")
 })
 public class MotivoBloqueoEntidad {
 

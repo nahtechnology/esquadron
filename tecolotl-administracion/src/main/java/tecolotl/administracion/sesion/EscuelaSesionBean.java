@@ -105,7 +105,8 @@ public class EscuelaSesionBean {
 		}
 		EscuelaEntidad  escuelaEntidad= new EscuelaEntidad();
 		ColoniaEntidad  coloniaEntidad= new ColoniaEntidad();
-		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
+		TypedQuery<MotivoBloqueoEntidad> typedQuery = entityManager.createNamedQuery("MotivoBloqueoEntidad.buscaDescripcion", MotivoBloqueoEntidad.class);
+		typedQuery.setParameter("descripcion", "Sin bloqueo");
 		escuelaEntidad.setClaveCentroTrabajo(claveCentroTrabajo);
 		coloniaEntidad.setId(colonia);
 		escuelaEntidad.setNombre(nombre);
@@ -113,8 +114,7 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
 		escuelaEntidad.setNumeroInterior(numeroInterior);
 		escuelaEntidad.setNumeroExterior(numeroExterior);
-		motivoBloqueoEntidad.setId((short)0);
-		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
+		escuelaEntidad.setMotivoBloqueoEntidad(typedQuery.getSingleResult());
 		entityManager.persist(escuelaEntidad);
 		return new EscuelaDto(escuelaEntidad);
 	}
