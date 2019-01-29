@@ -39,6 +39,7 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     @PostConstruct
     public void init() {
         escuelaDtoLista = new ArrayList<>(escuelaSesionBean.busca());
+        ordernar(EscuelaOrdenamiento.NOMBRE);
         escuelaBaseDtoModelo = new EscuelaBaseDto();
         escuelaDetalleDtoModelo = new EscuelaDetalleDto();
         setFilasEnPagina(5);
@@ -65,6 +66,7 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
                 escuelaDetalleDtoModelo.getNumeroInterior(),
                 escuelaDetalleDtoModelo.getNumeroExterior()
         );
+        escuelaDtoSubLista = null;
         escuelaDtoLista.add(escuelaDto);
         ordernar(EscuelaOrdenamiento.NOMBRE);
         escuelaDetalleDtoModelo = new EscuelaDetalleDto();
@@ -80,7 +82,8 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
                 escuelaDetalleDtoModelo.getNombre(),
                 escuelaDetalleDtoModelo.getCalle()
         );
-        EscuelaDto escuelaDto = escuelaDtoLista.get(escuelaDtoLista.indexOf(escuelaDetalleDtoModelo));
+        escuelaDtoSubLista = null;
+        EscuelaDto escuelaDto = escuelaDtoLista.get(escuelaDtoLista.indexOf(new EscuelaDto(escuelaDetalleDtoModelo.getClaveCentroTrabajo())));
         escuelaDto.setNombre(escuelaDetalleDtoModelo.getNombre());
         escuelaDetalleDtoModelo = new EscuelaDetalleDto();
     }
@@ -94,6 +97,16 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     public void busca(EscuelaDto escuelaDto) {
         escuelaDetalleDtoModelo = escuelaSesionBean.busca(escuelaDto.getClaveCentroTrabajo());
         coloniaDtoLista = coloniaSesionBean.busca(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal());
+    }
+
+    public void eliminia() {
+        escuelaDtoSubLista = null;
+        escuelaSesionBean.elimina(escuelaBaseDtoModelo.getClaveCentroTrabajo());
+        escuelaDtoLista.remove(escuelaBaseDtoModelo);
+        setTotalFilas(escuelaDtoLista.size());
+        getHtmlDataTable().setFirst(0);
+        cargaDatos(getHtmlDataTable().getFirst());
+        escuelaBaseDtoModelo = new EscuelaBaseDto();
     }
 
     @Override
@@ -141,4 +154,11 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
         this.coloniaDtoLista = coloniaDtoLista;
     }
 
+    public List<EscuelaDto> getEscuelaDtoSubLista() {
+        return escuelaDtoSubLista;
+    }
+
+    public void setEscuelaDtoSubLista(List<EscuelaDto> escuelaDtoSubLista) {
+        this.escuelaDtoSubLista = escuelaDtoSubLista;
+    }
 }

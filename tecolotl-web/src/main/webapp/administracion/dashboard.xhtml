@@ -57,15 +57,23 @@
 								<li>
 									<h:link styleClass="uk-link-reset" outcome="detalle-escuela">
 										<span uk-icon="icon: file-text" class="uk-margin-small-right"/>
-										<span class="uk-text-middle"><h:outputText value="#{mensaje['button.detail']}"/></span>
+										<h:outputText value="#{mensaje['button.detail']}"/>
 										<f:param value="#{escuela.claveCentroTrabajo}" name="claveCentroTrabajo"/>
 									</h:link>
 								</li>
 								<li>
 									<h:commandLink>
-										<span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
-										<span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
+										<span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon"/>
+										<h:outputText value="#{mensaje['button.edit']}"/>
 										<f:ajax listener="#{escuelaDashboardControlador.busca(escuela)}" render="formulario-escuela" onevent="function f(data) { abrebModal(data, 'modal-escuela') }"/>
+									</h:commandLink>
+								</li>
+								<li>
+									<h:commandLink>
+										<span uk-icon="icon: trash" class="uk-margin-small-right"/>
+										<h:outputText value="#{mensaje['button.remove']}"/>
+										<f:ajax render="formulario-eliminar" onevent="function f(data) { abrebModal(data, 'modal-eliminar') }"/>
+										<f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseDtoModelo}"/>
 									</h:commandLink>
 								</li>
 							</ul>
@@ -90,6 +98,11 @@
 									  filasEnPagina="#{escuelaDashboardControlador.filasEnPagina}"/>
 						</div>
 						<div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
+							<h:commandButton disabled="#{empty escuelaDashboardControlador.escuelaDtoSubLista}"
+											 styleClass="uk-button uk-button-primary uk-margin-small-right"
+											 value="#{mensaje['button.back']}">
+								<f:setPropertyActionListener value="#{null}" target="#{escuelaDashboardControlador.escuelaDtoSubLista}"/>
+							</h:commandButton>
 							<button class="uk-button uk-button-primary" uk-toggle="target: #modal-escuela">
 								<span class="uk-margin-small-right"><h:outputText value="#{mensaje['button.add']}"/></span>
 								<h:outputText pt:uk-icon="icon: plus-circle"/>
@@ -127,7 +140,28 @@
 						<div class="uk-modal-footer uk-text-right">
 							<button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">Cancelar</button>
 							<h:commandButton styleClass="uk-button uk-button-secondary" value="#{mensaje['button.search']}">
-								<f:ajax execute="@form" listener="#{escuelaDashboardControlador.filtrar}" render="tabla-escuela @form"/>
+								<f:ajax execute="@form"
+										listener="#{escuelaDashboardControlador.filtrar}"
+										render="formulario-escuela-tabla:tabla-escuela formulario-paginacion-colonia @form"
+										onevent="function f(data) { cierraModal(data, 'modal-busqueda-nombre') }"/>
+							</h:commandButton>
+						</div>
+					</h:form>
+				</div>
+			</h:panelGroup>
+			<h:panelGroup layout="block" id="modal-eliminar" styleClass="uk-modal-container" pt:uk-modal="">
+				<div class="uk-modal-dialog uk-margin-auto-vertical">
+					<h:form id="formulario-eliminar">
+						<div class="uk-modal-header fondo-peligro"  >
+							<p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo">Eliminar escuela #{escuelaDashboardControlador.escuelaBaseDtoModelo.claveCentroTrabajo}</span></p>
+						</div>
+						<div class="uk-modal-body">
+							<p>Esta seguro que desea borrar la escuela: <span class="uk-text-bold">#{escuelaDashboardControlador.escuelaBaseDtoModelo.nombre}</span> </p>
+						</div>
+						<div class="uk-modal-footer uk-flex uk-flex-right">
+							<button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">Cancelar</button>
+							<h:commandButton value="#{mensaje['button.remove']}" styleClass="uk-button uk-button-danger">
+								<f:ajax listener="#{escuelaDashboardControlador.eliminia}" render="formulario-escuela-tabla:tabla-escuela" onevent="function f(data) { cierraModal(data, 'modal-eliminar') }"/>
 							</h:commandButton>
 						</div>
 					</h:form>
@@ -300,6 +334,7 @@
 			<script type="text/javascript">
 				var modalBusquedaNombre = document.querySelector('#modal-busqueda-nombre');
 				var modalEscuela = document.querySelector('#modal-escuela');
+				var modalEliminar = document.querySelector('#modal-eliminar');
 				document.addEventListener("DOMContentLoaded", function (evt) {
 					limpiaInput();
 					UIkit.util.on('#modal-busqueda-nombre', 'hidden', function () {
@@ -319,6 +354,13 @@
 								}
 								break;
 							case 'modal-busqueda-nombre':
+								UIkit.modal(modalBusquedaNombre).hide();
+								break;
+							case 'modal-eliminar':
+								UIkit.modal(modalEliminar).hide();
+								break;
+							case 'modal-busqueda-nombre':
+								UIkit.modal(modalBusquedaNombre).hide();
 								break;
 						}
 					}
@@ -332,6 +374,12 @@
 								UIkit.modal(modalEscuela).show();
 								modalEscuela.querySelector('.uk-input').click();
 								break;
+							case 'modal-eliminar':
+								UIkit.modal(modalEliminar).show();
+								modalEscuela.querySelector('.uk-input').click();
+							case 'modal-busqueda-nombre':
+								UIkit.modal(modalBusquedaNombre).show();
+								modalBusquedaNombre.querySelector('.uk-input').click();
 						}
 					}
 					limpiaInput()

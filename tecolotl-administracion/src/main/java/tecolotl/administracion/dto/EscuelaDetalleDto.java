@@ -134,4 +134,14 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
         sb.append('}');
         return sb.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }
