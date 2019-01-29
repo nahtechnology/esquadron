@@ -70,7 +70,7 @@ public class EscuelaEntidad {
 
 	@Column(name = "nombre")
 	@NotNull
-	@Size(min = 11, max = 50)
+	@Size(min = 11, max = 70)
 	public String getNombre() {
 		return nombre;
 	}

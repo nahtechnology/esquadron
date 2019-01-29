@@ -13,8 +13,9 @@
            	<h:outputStylesheet library="css" name="tablas.css"/>
 			<div class="uk-overflow-auto">
 				<h1 class="uk-text-center uk-heading-line"><span>Detalles de la Escuela</span></h1>
+				<h:form id="formulario-escuela-tabla">
 				<h:dataTable id="tabla-escuela"
-							 styleClass="uk-table"
+							 styleClass="uk-table limite-tabla-escuela"
 							 value="#{escuelaDashboardControlador.paginacionModeloDato}"
 							 binding="#{escuelaDashboardControlador.htmlDataTable}"
 							 var="escuela"
@@ -50,14 +51,33 @@
 					</h:column>
 					<h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-middle">
 						<f:facet name="header"><h:outputText value="#{mensaje['school.option']}" styleClass="titulo-blanco"/></f:facet>
-						<h:outputText pt:uk-icon="more-vertical" styleClass="uk-icon-button uk-margin-small-right"/>
+						<button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+						<div uk-dropdown="animation: uk-animation-slide-top-small; mode: click">
+							<ul class="uk-nav uk-dropdown-nav uk-text-left">
+								<li>
+									<h:link styleClass="uk-link-reset" outcome="detalle-escuela">
+										<span uk-icon="icon: file-text" class="uk-margin-small-right"/>
+										<span class="uk-text-middle"><h:outputText value="#{mensaje['button.detail']}"/></span>
+										<f:param value="#{escuela.claveCentroTrabajo}" name="claveCentroTrabajo"/>
+									</h:link>
+								</li>
+								<li>
+									<h:commandLink>
+										<span uk-icon="icon: file-edit" class="uk-margin-small-right uk-icon" ></span>
+										<span class="uk-text-middle"><h:outputText value="#{mensaje['button.edit']}"/></span>
+										<f:ajax listener="#{escuelaDashboardControlador.busca(escuela)}" render="formulario-escuela" onevent="function f(data) { abrebModal(data, 'modal-escuela') }"/>
+									</h:commandLink>
+								</li>
+							</ul>
+						</div>
 					</h:column>
 					<f:facet name="footer">
 						<pa:pie-tabla htmlDataTable="#{escuelaDashboardControlador.htmlDataTable}"/>
 					</f:facet>
 				</h:dataTable>
+				</h:form>
 			</div>
-			<f:ajax render="tabla-escuela formulario-paginacion-colonia"
+			<f:ajax render="formulario-escuela-tabla:tabla-escuela formulario-paginacion-colonia"
 					listener="#{escuelaDashboardControlador.cargaDatos(escuelaDashboardControlador.htmlDataTable.first)}"
 					onevent="limpiaInput">
 				<h:form id="formulario-paginacion-colonia">
@@ -119,7 +139,7 @@
 						<div class="uk-modal-header uk-background-secondary">
 							<p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
 								<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
-								<h:outputText value="#{mensaje['school.add.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+								<h:outputText value="Moficar escuela" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
 							</p>
 						</div>
 						<div class="uk-modal-body">
@@ -146,6 +166,7 @@
 													 label="#{mensaje['school.name']}"
 													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.nombre}">
 											<f:validateRequired/>
+											<f:validateLength minimum="11" maximum="70"/>
 										</h:inputText>
 									</div>
 								</div>
@@ -158,6 +179,7 @@
 													 label="#{mensaje['school.postalcode']}"
 													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.coloniaDto.codigoPostal}">
 											<f:validateRequired/>
+											<f:validateLength minimum="4" maximum="5"/>
 										</h:inputText>
 									</div>
 								</div>
@@ -175,8 +197,9 @@
 										<div class="uk-form-controls">
 											<h:selectOneMenu styleClass="uk-select"
 															 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.coloniaDto.id}"
-															 id="seleccion-colonia">
-												<f:selectItem itemLabel="Selecciones ..." itemValue="0" noSelectionOption="true"/>
+															 id="seleccion-colonia"
+															 label="#{mensaje['school.colony']}">
+												<f:selectItem itemLabel="Selecciones ..." itemValue="#{null}" noSelectionOption="true"/>
 												<f:selectItems value="#{escuelaDashboardControlador.coloniaDtoLista}"
 																var="colonia"
 																itemValue="#{colonia.id}"
@@ -195,6 +218,7 @@
 													 label="#{mensaje['school.street']}"
 													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.calle}">
 											<f:validateRequired/>
+											<f:validateLength minimum="11" maximum="60"/>
 										</h:inputText>
 									</div>
 								</div>
@@ -207,7 +231,7 @@
 													 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.numeroExterior}"
 													 label="#{mensaje['school.street.num.ext']}">
 											<f:validateRequired/>
-											<f:validateLength minimum="1"/>
+											<f:validateLength minimum="1" maximum="15"/>
 										</h:inputText>
 									</div>
 								</div>
@@ -260,8 +284,14 @@
 								<f:ajax render="@form" onevent="limpiaInput"/>
 							</h:commandButton>
 							<h:commandButton styleClass="uk-button uk-button-secondary"
-											 value="#{mensaje['button.add']}">
-								<f:ajax execute="@form" render="@form" listener="#{escuelaDashboardControlador.agrega}" onevent="limpiaInput"/>
+											 value="#{mensaje['button.add']}"
+											 rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}">
+								<f:ajax execute="@form" render="@form formulario-escuela-tabla:tabla-escuela" listener="#{escuelaDashboardControlador.agrega}" onevent="function f(data) { cierraModal(data, 'modal-escuela') }"/>
+							</h:commandButton>
+							<h:commandButton styleClass="uk-button uk-button-secondary"
+											 value="Actualizar"
+											 rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}">
+								<f:ajax execute="@form" render="@form formulario-escuela-tabla:tabla-escuela" listener="#{escuelaDashboardControlador.actualiza}" onevent="function f(data) { cierraModal(data, 'modal-escuela') }"/>
 							</h:commandButton>
 						</div>
 					</h:form>
@@ -279,6 +309,33 @@
 						modalEscuela.querySelectorAll('.uk-input').forEach(function (entrada) { entrada.value = '' });
 					});
 				});
+
+				function cierraModal(data, modal) {
+					if (data.status === 'success') {
+						switch (modal) {
+							case 'modal-escuela':
+								if (modalEscuela.querySelector('.uk-alert-danger') === null) {
+									UIkit.modal(modalEscuela).hide();
+								}
+								break;
+							case 'modal-busqueda-nombre':
+								break;
+						}
+					}
+					limpiaInput();
+				}
+
+				function abrebModal(data, modal) {
+					if (data.status === 'success') {
+						switch (modal) {
+							case 'modal-escuela':
+								UIkit.modal(modalEscuela).show();
+								modalEscuela.querySelector('.uk-input').click();
+								break;
+						}
+					}
+					limpiaInput()
+				}
 
 				function limpiaInput() {
 					document.querySelectorAll('.uk-select').forEach(function (value) { value.removeAttribute('size') });

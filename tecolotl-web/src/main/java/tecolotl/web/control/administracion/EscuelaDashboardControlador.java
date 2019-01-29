@@ -16,10 +16,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
 public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto> implements Serializable {
+
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
@@ -54,7 +57,6 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     }
 
     public void agrega() {
-
         EscuelaDto escuelaDto = escuelaSesionBean.insertar(
                 escuelaDetalleDtoModelo.getClaveCentroTrabajo(),
                 escuelaDetalleDtoModelo.getColoniaDto().getId(),
@@ -66,14 +68,32 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
         escuelaDtoLista.add(escuelaDto);
         ordernar(EscuelaOrdenamiento.NOMBRE);
         escuelaDetalleDtoModelo = new EscuelaDetalleDto();
+        setTotalFilas(escuelaDtoLista.size());
         getHtmlDataTable().setFirst(0);
         cargaDatos(getHtmlDataTable().getFirst());
+    }
+
+    public void actualiza() {
+        escuelaSesionBean.actualizar(
+                escuelaDetalleDtoModelo.getClaveCentroTrabajo(),
+                escuelaDetalleDtoModelo.getColoniaDto().getId(),
+                escuelaDetalleDtoModelo.getNombre(),
+                escuelaDetalleDtoModelo.getCalle()
+        );
+        EscuelaDto escuelaDto = escuelaDtoLista.get(escuelaDtoLista.indexOf(escuelaDetalleDtoModelo));
+        escuelaDto.setNombre(escuelaDetalleDtoModelo.getNombre());
+        escuelaDetalleDtoModelo = new EscuelaDetalleDto();
     }
 
     public void buscaColonia() {
         coloniaDtoLista = coloniaSesionBean.busca(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal());
         escuelaDetalleDtoModelo.setMunicipioDto(coloniaSesionBean.buscaMunicipio(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
         escuelaDetalleDtoModelo.setEstadoDto(coloniaSesionBean.buscaEstado(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
+    }
+
+    public void busca(EscuelaDto escuelaDto) {
+        escuelaDetalleDtoModelo = escuelaSesionBean.busca(escuelaDto.getClaveCentroTrabajo());
+        coloniaDtoLista = coloniaSesionBean.busca(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal());
     }
 
     @Override
