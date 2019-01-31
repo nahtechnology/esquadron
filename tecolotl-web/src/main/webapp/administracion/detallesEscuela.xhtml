@@ -11,17 +11,82 @@
 <ui:composition template="/template/template.xhtml">
     <ui:define name="contenido2">
         <h:outputStylesheet library="css" name="tablas.css"/>
-        <div class="uk-overflow-auto">
+
             <h1 class="uk-heading-line uk-text-center uk-padding-small" ><span >Detalles de la Escuela</span></h1>
+
             <h2 class="uk-text-center uk-margin-medium-top uk-background-primary uk-padding-small"><span class="letra-titulo">Datos de la escuela</span></h2>
-            <h:form id="formulario-escuela-detalle">
 
 
-            </h:form>
+                <div  uk-grid="" >
 
 
+                    <div class="uk-width-1-5@m uk-width-1-1@s ">
+                        <h:outputLabel styleClass="uk-form-label" for="cct" value="CCT" />
+                        <h:inputText id="cct" value="#{escuelaDetalleControlador.escuelaDetalleDto.claveCentroTrabajo}" disabled="true"  styleClass="uk-input"/>
+                    </div>
 
-        </div>
+                    <div class="uk-width-3-5@m uk-width-1-1@s" >
+                        <h:outputLabel styleClass="uk-form-label" for="nombre-escuela" value="#{mensaje['school-details.table.name']}" />
+                        <h:inputText id="nombre-escuela" value="#{escuelaDetalleControlador.escuelaDetalleDto.nombre}"  disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="codigo-postal" value="#{mensaje['school.details.zipcode']}" />
+                        <h:inputText  id="codigo-postal" value="#{escuelaDetalleControlador.escuelaDetalleDto.coloniaDto.codigoPostal}" disabled="true"  styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-2@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="colonia" value="#{mensaje['school.details.colony']}" />
+                        <h:inputText id="colonia" value="#{escuelaDetalleControlador.escuelaDetalleDto.coloniaDto.nombre}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-2@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="municipio" value="#{mensaje['school.details.town']}" />
+                        <h:inputText id="municipio" value="#{escuelaDetalleControlador.escuelaDetalleDto.municipioDto.nombre}" disabled="true"  styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="estado" value="#{mensaje['school.details.state']}" />
+                        <h:inputText id="estado" value="#{escuelaDetalleControlador.escuelaDetalleDto.estadoDto.nombre}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-3-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="calle" value="#{mensaje['school.details.street']}" />
+                        <h:inputText id="calle" value="#{escuelaDetalleControlador.escuelaDetalleDto.calle}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="numero-exterior" value="#{mensaje['school.details.number.out']}" />
+                        <h:inputText id="numero-exterior" value="#{escuelaDetalleControlador.escuelaDetalleDto.numeroExterior}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="numero-interior" value="#{mensaje['school.details.number.in']}" />
+                        <h:inputText id="numero-interior" value="#{escuelaDetalleControlador.escuelaDetalleDto.numeroInterior}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="estado-bloqueo" value="#{mensaje['school.detail.blockade']}" />
+                        <h:inputText id="estado-bloqueo" value="#{escuelaDetalleControlador.escuelaDetalleDto.motivoBlqueoDto.descripcion}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <h:outputLabel styleClass="uk-form-label" for="licencias" value="#{mensaje['school.details.license']}" />
+                        <h:inputText id="licencias" value="#{escuelaDetalleControlador.escuelaDetalleDto.licenciaDtoList}" disabled="true" styleClass="uk-input"/>
+                    </div>
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <label class="uk-form-label" ></label>
+
+                    </div>
+
+                    <div class="uk-width-1-5@m uk-width-1-1@s">
+                        <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
+                            <label class="uk-width-1-1@m uk-width-1-2@suk-panel uk-form-label" for="licencias" >Ver Coordinadores</label>
+                        </div>
+                        <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
+
+                            <a class="uk-link-reset" href="Detalles-escuela-coord.html">
+                                <button class="uk-button uk-button-primary"><span>Coord(a)</span><span class="uk-margin-small-left " uk-icon="icon: users"></span></button>
+                            </a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
     </ui:define>
 </ui:composition>
 </html>
