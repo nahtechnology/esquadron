@@ -21,6 +21,7 @@ public class EscuelaDetalleDto extends EscuelaBaseDto {
 
     public EscuelaDetalleDto() {
         coloniaDto = new ColoniaDto();
+        motivoBlqueoDto = new MotivoBloqueoDto();
     }
 
     public EscuelaDetalleDto(String claveCentroTrabajo) {

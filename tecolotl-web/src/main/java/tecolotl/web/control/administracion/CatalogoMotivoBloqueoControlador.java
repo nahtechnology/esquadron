@@ -31,7 +31,7 @@ public class CatalogoMotivoBloqueoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        motivoBloqueos = motivoBloqueoSesionBean.motivoBloque();
+        motivoBloqueos = null;
         rowsOnPage = 5;
         allRowsCount = motivoBloqueos.size();
         motivoBloqueoModelo = new MotivoBloqueoDto();

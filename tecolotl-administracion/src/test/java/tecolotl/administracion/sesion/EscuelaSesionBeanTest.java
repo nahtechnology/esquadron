@@ -57,7 +57,7 @@ public class EscuelaSesionBeanTest {
 	}
     @Test
 	public void bloqueo() {
-		escuelaSesionBean.bloqueo("21DBA0004Z",2);
+		escuelaSesionBean.bloqueo("21DBA0004Z",(short)2);
 	}
     
     @Test

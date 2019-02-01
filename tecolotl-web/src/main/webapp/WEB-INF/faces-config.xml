@@ -10,6 +10,14 @@
     		<base-name>lenguaje.comun</base-name>
     		<var>mensaje</var>
     	</resource-bundle>
+		<resource-bundle>
+			<base-name>lenguaje.boton</base-name>
+			<var>boton</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>lenguaje.escuela-dashboard</base-name>
+			<var>escuela-dashboard</var>
+		</resource-bundle>
     </application>
 
 	<navigation-rule>

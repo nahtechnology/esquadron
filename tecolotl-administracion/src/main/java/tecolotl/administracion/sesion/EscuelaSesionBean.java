@@ -144,10 +144,10 @@ public class EscuelaSesionBean {
      * @param claveCentroTrabajo Identificador unico  de la escuela
      * @param motivoBloqueo numero que hace referencia el  bloquear/desbloquear a una escuela (por ejemplo por falta de pago, sanción). 
      */
-	public void bloqueo (String claveCentroTrabajo, int motivoBloqueo) {
+	public void bloqueo (String claveCentroTrabajo, Short motivoBloqueo) {
 		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
 		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
-		motivoBloqueoEntidad.setId((short) motivoBloqueo);
+		motivoBloqueoEntidad.setId(motivoBloqueo);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 	}
 

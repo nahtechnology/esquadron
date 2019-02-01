@@ -20,7 +20,7 @@ public class MotivoBloqueoSesionBean {
      * Recupera el conjunto completo de los motivos de bloqueo, excepto el "sin bloque" ya que es un valor comodín,
      * @return Una colección de {@link MotivoBloqueoDto}
      */
-    public List<MotivoBloqueoDto> motivoBloque() {
+    public List<MotivoBloqueoDto> busca() {
         TypedQuery<MotivoBloqueoEntidad> typedQuery = entityManager.createNamedQuery("MotivoBloqueoEntidad.busca", MotivoBloqueoEntidad.class);
         typedQuery.setParameter("descripcion", "Sin bloqueo");
         List<MotivoBloqueoDto> motivoBloqueoDtoLista = new ArrayList<>();

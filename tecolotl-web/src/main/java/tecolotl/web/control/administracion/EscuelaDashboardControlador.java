@@ -3,6 +3,7 @@ package tecolotl.web.control.administracion;
 import tecolotl.administracion.dto.*;
 import tecolotl.administracion.sesion.ColoniaSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.web.control.PaginadorControlador;
 import tecolotl.web.enumeracion.EscuelaOrdenamiento;
 import tecolotl.web.modelo.administracion.PaginacionModeloDato;
@@ -30,15 +31,20 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     @Inject
     private ColoniaSesionBean coloniaSesionBean;
 
+    @Inject
+    private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
+
     private List<EscuelaDto> escuelaDtoLista;
     private List<EscuelaDto> escuelaDtoSubLista;
     private EscuelaBaseDto escuelaBaseDtoModelo;
     private EscuelaDetalleDto escuelaDetalleDtoModelo;
     private List<ColoniaDto> coloniaDtoLista;
+    private List<MotivoBloqueoDto> motivoBloqueoDtoLista;
 
     @PostConstruct
     public void init() {
         escuelaDtoLista = new ArrayList<>(escuelaSesionBean.busca());
+        motivoBloqueoDtoLista = motivoBloqueoSesionBean.busca();
         ordernar(EscuelaOrdenamiento.NOMBRE);
         escuelaBaseDtoModelo = new EscuelaBaseDto();
         escuelaDetalleDtoModelo = new EscuelaDetalleDto();
@@ -47,13 +53,31 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
         cargaDatos(0);
     }
 
-    public void filtrar() {
+    public void filtrar(EscuelaOrdenamiento escuelaOrdenamiento) {
         escuelaDtoSubLista = new ArrayList<>();
-        for (EscuelaDto escuelaDto : escuelaDtoLista) {
-            if (escuelaDto.getNombre().toLowerCase().contains(escuelaBaseDtoModelo.getNombre().toLowerCase())) {
-                escuelaDtoSubLista.add(escuelaDto);
-            }
+        switch (escuelaOrdenamiento) {
+            case CCT:
+                for (EscuelaDto escuelaDto : escuelaDtoLista) {
+                    if (escuelaDto.getClaveCentroTrabajo().toLowerCase().contains(escuelaBaseDtoModelo.getClaveCentroTrabajo().toLowerCase())) {
+                        escuelaDtoSubLista.add(escuelaDto);
+                    }
+                }
+                break;
+            case NOMBRE:
+                for (EscuelaDto escuelaDto : escuelaDtoLista) {
+                    if (escuelaDto.getNombre().toLowerCase().contains(escuelaBaseDtoModelo.getNombre().toLowerCase())) {
+                        escuelaDtoSubLista.add(escuelaDto);
+                    }
+                }
+                break;
         }
+        setTotalFilas(escuelaDtoSubLista.size());
+        cargaDatos(0);
+    }
+
+    public void limpiarFiltro() {
+        escuelaDtoSubLista = null;
+        setTotalFilas(escuelaDtoLista.size());
         cargaDatos(0);
     }
 
@@ -109,6 +133,12 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
         escuelaBaseDtoModelo = new EscuelaBaseDto();
     }
 
+    public void bloquea() {
+        escuelaSesionBean.bloqueo(escuelaBaseDtoModelo.getClaveCentroTrabajo(), escuelaDetalleDtoModelo.getMotivoBlqueoDto().getId());
+        EscuelaBaseDto escuelaBaseDto = escuelaDtoLista.get(escuelaDtoLista.indexOf(escuelaBaseDtoModelo));
+        ((EscuelaDto) escuelaBaseDto).setEstatus(false);
+    }
+
     @Override
     public List<EscuelaDto> getDatos() {
         return escuelaDtoSubLista == null ? escuelaDtoLista : escuelaDtoSubLista;
@@ -160,5 +190,13 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
 
     public void setEscuelaDtoSubLista(List<EscuelaDto> escuelaDtoSubLista) {
         this.escuelaDtoSubLista = escuelaDtoSubLista;
+    }
+
+    public List<MotivoBloqueoDto> getMotivoBloqueoDtoLista() {
+        return motivoBloqueoDtoLista;
+    }
+
+    public void setMotivoBloqueoDtoLista(List<MotivoBloqueoDto> motivoBloqueoDtoLista) {
+        this.motivoBloqueoDtoLista = motivoBloqueoDtoLista;
     }
 }
