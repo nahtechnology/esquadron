@@ -6,6 +6,7 @@ import tecolotl.administracion.dto.TipoContactoDto;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.sesion.TipoContactoSesionBean;
+import tecolotl.web.control.PaginadorControlador;
 import tecolotl.web.modelo.administracion.EscuelaModelo;
 
 import javax.annotation.PostConstruct;
@@ -19,7 +20,7 @@ import java.util.logging.Logger;
 
 @Named
 @ViewScoped
-public class EscuelaDetalleControlador implements Serializable {
+public class EscuelaDetalleControlador implements Serializable  {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
@@ -34,7 +35,6 @@ public class EscuelaDetalleControlador implements Serializable {
 
     private EscuelaDetalleDto escuelaDetalleDto;
     private ContactoDto contactoDtoModelo;
-    private short tipoContacto;
     private List<TipoContactoDto> tipoContactoDtoLista;
 
     @PostConstruct
@@ -46,22 +46,6 @@ public class EscuelaDetalleControlador implements Serializable {
 
     }
 
-    public void actualiza(ContactoDto contactoDto) {
-        contactoDtoModelo = contactoDto;
-    }
-
-    public void insertar() {
-        ContactoDto contactoDto =
-                contactoSesionBean.inserta(escuelaDetalleDto.getClaveCentroTrabajo(), (short) tipoContacto, contactoDtoModelo.getNombre(), contactoDtoModelo.getTelefono());
-        escuelaDetalleDto.getContactoDtoList().add(contactoDto);
-        contactoDtoModelo = new ContactoDto();
-    }
-
-    public void eliminar(){
-     contactoSesionBean.elimina(escuelaDetalleDto.getClaveCentroTrabajo(),contactoDtoModelo.getTipoContactoDto().getId());
-
-
-    }
 
     public EscuelaDetalleDto getEscuelaDetalleDto() {
         return escuelaDetalleDto;
@@ -79,14 +63,6 @@ public class EscuelaDetalleControlador implements Serializable {
         this.contactoDtoModelo = contactoDtoModelo;
     }
 
-    public short getTipoContacto() {
-        return tipoContacto;
-    }
-
-    public void setTipoContacto(short tipoContacto) {
-        this.tipoContacto = tipoContacto;
-    }
-
     public List<TipoContactoDto> getTipoContactoDtoLista() {
         return tipoContactoDtoLista;
     }
@@ -94,4 +70,8 @@ public class EscuelaDetalleControlador implements Serializable {
     public void setTipoContactoDtoLista(List<TipoContactoDto> tipoContactoDtoLista) {
         this.tipoContactoDtoLista = tipoContactoDtoLista;
     }
+
+
+
+
 }
