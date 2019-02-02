@@ -8,7 +8,7 @@
         <cc:attribute name="htmlDataTable" required="true" type="javax.faces.component.html.HtmlDataTable"/>
     </cc:interface>
     <cc:implementation>
-        <h:outputFormat value="#{mensaje['label.pages']}" styleClass="titulo-blanco primera-mayuscula">
+        <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="titulo-blanco primera-mayuscula">
             <f:param value="#{(cc.attrs.htmlDataTable.first div cc.attrs.htmlDataTable.rows) + 1}"/>
             <f:param value="#{cc.attrs.htmlDataTable.rowCount mod cc.attrs.htmlDataTable.rows eq 0
                     ? (cc.attrs.rowCount div cc.attrs.htmlDataTable.rows)

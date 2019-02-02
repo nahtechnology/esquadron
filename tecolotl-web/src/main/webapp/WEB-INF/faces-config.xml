@@ -15,8 +15,12 @@
 			<var>boton</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>lenguaje.escuela-dashboard</base-name>
-			<var>escuela-dashboard</var>
+			<base-name>lenguaje.escueladashboard</base-name>
+			<var>escueladashboard</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>lenguaje.etiqueta</base-name>
+			<var>etiqueta</var>
 		</resource-bundle>
 		<resource-bundle>
 			<base-name>lenguaje.escuela-detalle</base-name>

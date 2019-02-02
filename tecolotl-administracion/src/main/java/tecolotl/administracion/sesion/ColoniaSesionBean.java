@@ -9,6 +9,7 @@ import tecolotl.administracion.persistencia.entidad.MunicipioEntidad;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.ArrayList;
@@ -95,8 +96,12 @@ public class ColoniaSesionBean {
         TypedQuery<MunicipioEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaMunicipoCodigoPostal", MunicipioEntidad.class);
         typedQuery.setParameter("codigoPostal", codigoPostal);
         typedQuery.setMaxResults(1);
-        MunicipioEntidad municipioEntidad = typedQuery.getSingleResult();
-        return municipioEntidad == null ? null : new MunicipioDto(municipioEntidad);
+        try {
+            MunicipioEntidad municipioEntidad = typedQuery.getSingleResult();
+            return new MunicipioDto(municipioEntidad);
+        } catch (NoResultException ex) {
+            return null;
+        }
     }
 
     /**

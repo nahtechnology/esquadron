@@ -9,6 +9,8 @@ import tecolotl.web.enumeracion.EscuelaOrdenamiento;
 import tecolotl.web.modelo.administracion.PaginacionModeloDato;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -114,8 +116,16 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
 
     public void buscaColonia() {
         coloniaDtoLista = coloniaSesionBean.busca(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal());
-        escuelaDetalleDtoModelo.setMunicipioDto(coloniaSesionBean.buscaMunicipio(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
-        escuelaDetalleDtoModelo.setEstadoDto(coloniaSesionBean.buscaEstado(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
+        if (coloniaDtoLista.isEmpty()) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_WARN, "Sin registro", "código Postal no existe ne Basa de Datos");
+            facesContext.addMessage("input-escuela-codigo-postal", facesMessage);
+            facesContext.renderResponse();
+            facesContext.validationFailed();
+        } else {
+            escuelaDetalleDtoModelo.setMunicipioDto(coloniaSesionBean.buscaMunicipio(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
+            escuelaDetalleDtoModelo.setEstadoDto(coloniaSesionBean.buscaEstado(escuelaDetalleDtoModelo.getColoniaDto().getCodigoPostal()));
+        }
     }
 
     public void busca(EscuelaDto escuelaDto) {
