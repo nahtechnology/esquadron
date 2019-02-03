@@ -2,134 +2,122 @@ package tecolotl.web.control.administracion;
 
 import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
-import tecolotl.web.modelo.administracion.MotivoBloqueoModeloDatos;
+import tecolotl.web.control.PaginadorControlador;
 
 import javax.annotation.PostConstruct;
-import javax.faces.component.html.HtmlDataTable;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 @Named
 @ViewScoped
-public class CatalogoMotivoBloqueoControlador implements Serializable {
+public class CatalogoMotivoBloqueoControlador extends PaginadorControlador<MotivoBloqueoDto> implements Serializable {
 
     private Logger logger = Logger.getLogger(getClass().getName());
-
-    private List<MotivoBloqueoDto> motivoBloqueos;
-    private HtmlDataTable dataTableMitivoBloqueo;
-    private MotivoBloqueoModeloDatos motivoBloqueoModeloDatos;
-    private int rowsOnPage;
-    private int allRowsCount = 0;
-    private MotivoBloqueoDto motivoBloqueoModelo;
 
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 
+    private List<MotivoBloqueoDto> motivoBloqueoDtoLista;
+    private MotivoBloqueoDto motivoBloqueoDtoModelo;
+    private UIComponent uiComponent;
+    private ResourceBundle resourceBundle;
+
     @PostConstruct
     public void init() {
-        motivoBloqueos = null;
-        rowsOnPage = 5;
-        allRowsCount = motivoBloqueos.size();
-        motivoBloqueoModelo = new MotivoBloqueoDto();
+        motivoBloqueoDtoLista = motivoBloqueoSesionBean.busca();
+        motivoBloqueoDtoModelo = new MotivoBloqueoDto();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        resourceBundle = facesContext.getApplication().getResourceBundle(facesContext, "escuelacatalogo");
+        setTotalFilas(motivoBloqueoDtoLista.size());
+        setFilasEnPagina(5);
         cargaDatos(0);
     }
 
-    public void inserta() {
-        if (motivoBloqueoModelo.getId() == 0) {
-            motivoBloqueoSesionBean.inserta(motivoBloqueoModelo.getDescripcion());
-            motivoBloqueos.add(motivoBloqueoModelo);
-        } else {
-            motivoBloqueoSesionBean.actualiza(motivoBloqueoModelo);
-            int indice = motivoBloqueos.indexOf(motivoBloqueoModelo);
-            motivoBloqueos.set(indice, motivoBloqueoModelo);
+    public void guarda() {
+        if (!existe(false)) {
+            motivoBloqueoSesionBean.inserta(motivoBloqueoDtoModelo.getDescripcion());
+            motivoBloqueoDtoModelo = new MotivoBloqueoDto();
+            motivoBloqueoDtoLista = motivoBloqueoSesionBean.busca();
+            setTotalFilas(motivoBloqueoDtoLista.size());
+            cargaDatos(0);
         }
-        motivoBloqueoModelo = new MotivoBloqueoDto();
-        cargaDatos(dataTableMitivoBloqueo.getFirst());
     }
 
-    public void actualiza(MotivoBloqueoDto motivoBloqueoDto) {
-        motivoBloqueoModelo = motivoBloqueoDto;
-    }
-
-    public void vistaAnterior(boolean primera) {
-        if (primera) {
-            dataTableMitivoBloqueo.setFirst(0);
-        } else {
-            dataTableMitivoBloqueo.setFirst(dataTableMitivoBloqueo.getFirst() - dataTableMitivoBloqueo.getRows());
+    public void actualiza() {
+        if (!existe(true)) {
+            motivoBloqueoSesionBean.actualiza(motivoBloqueoDtoModelo.getId(), motivoBloqueoDtoModelo.getDescripcion());
+            MotivoBloqueoDto motivoBloqueoDto = motivoBloqueoDtoLista.get(motivoBloqueoDtoLista.indexOf(motivoBloqueoDtoModelo));
+            motivoBloqueoDto.setDescripcion(motivoBloqueoDtoModelo.getDescripcion());
+            motivoBloqueoDtoModelo = new MotivoBloqueoDto();
+            cargaDatos(0);
         }
-        cargaDatos(dataTableMitivoBloqueo.getFirst());
     }
 
-    public void vistaSiguiente(boolean ultima) {
-        if (ultima) {
-            int totalRows = dataTableMitivoBloqueo.getRowCount();
-            int displayRows = dataTableMitivoBloqueo.getRows();
-            int full = totalRows / displayRows;
-            int modulo = dataTableMitivoBloqueo.getRowCount() % dataTableMitivoBloqueo.getRows();
-            if (modulo <= displayRows && modulo > 0) {
-                dataTableMitivoBloqueo.setFirst(full * displayRows);
-            } else {
-                dataTableMitivoBloqueo.setFirst(modulo + (full - 1) * displayRows);
+
+    private boolean existe(boolean indice) {
+        if (indice) {
+            int actual = motivoBloqueoDtoLista.indexOf(motivoBloqueoDtoModelo);
+            for (int i = 0; i < motivoBloqueoDtoLista.size(); i++) {
+                if (i == actual) continue;
+                if (motivoBloqueoDtoLista.get(i).getDescripcion().equalsIgnoreCase(motivoBloqueoDtoModelo.getDescripcion())) {
+                    generaMensaje();
+                    return true;
+                }
             }
+            return false;
         } else {
-            dataTableMitivoBloqueo.setFirst(dataTableMitivoBloqueo.getFirst() + dataTableMitivoBloqueo.getRows());
+            for (MotivoBloqueoDto motivoBloqueoDto : motivoBloqueoDtoLista) {
+                if (motivoBloqueoDto.getDescripcion().equalsIgnoreCase(motivoBloqueoDtoModelo.getDescripcion())) {
+                    generaMensaje();
+                    return true;
+                }
+            }
+            return false;
         }
-        cargaDatos(dataTableMitivoBloqueo.getFirst());
     }
 
-    public void cargaDatos(int primero) {
-        motivoBloqueoModeloDatos = new MotivoBloqueoModeloDatos(motivoBloqueos.subList(primero, primero + rowsOnPage > motivoBloqueos.size() ? motivoBloqueos.size() : primero + rowsOnPage), allRowsCount, rowsOnPage);
+    private void generaMensaje() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        String mensaje = resourceBundle.getString("modal.block.exist");
+        facesContext.addMessage(uiComponent.getClientId(), new FacesMessage(null, mensaje));
+        facesContext.validationFailed();
+        facesContext.renderResponse();
     }
 
-    public List<MotivoBloqueoDto> getMotivoBloqueos() {
-        return motivoBloqueos;
+    public void limpiaModelo() {
+        motivoBloqueoDtoModelo = new MotivoBloqueoDto();
     }
 
-    public void setMotivoBloqueos(List<MotivoBloqueoDto> motivoBloqueos) {
-        this.motivoBloqueos = motivoBloqueos;
+    public void nuevoModelo(MotivoBloqueoDto motivoBloqueoDto) {
+        motivoBloqueoDtoModelo = new MotivoBloqueoDto(motivoBloqueoDto.getId(), motivoBloqueoDto.getDescripcion());
     }
 
-    public MotivoBloqueoDto getMotivoBloqueoModelo() {
-        return motivoBloqueoModelo;
+    @Override
+    protected List<MotivoBloqueoDto> getDatos() {
+        return motivoBloqueoDtoLista;
     }
 
-    public void setMotivoBloqueoModelo(MotivoBloqueoDto motivoBloqueoModelo) {
-        this.motivoBloqueoModelo = motivoBloqueoModelo;
+    public MotivoBloqueoDto getMotivoBloqueoDtoModelo() {
+        return motivoBloqueoDtoModelo;
     }
 
-    public HtmlDataTable getDataTableMitivoBloqueo() {
-        return dataTableMitivoBloqueo;
+    public void setMotivoBloqueoDtoModelo(MotivoBloqueoDto motivoBloqueoDtoModelo) {
+        this.motivoBloqueoDtoModelo = motivoBloqueoDtoModelo;
     }
 
-    public void setDataTableMitivoBloqueo(HtmlDataTable dataTableMitivoBloqueo) {
-        this.dataTableMitivoBloqueo = dataTableMitivoBloqueo;
+    public UIComponent getUiComponent() {
+        return uiComponent;
     }
 
-    public int getRowsOnPage() {
-        return rowsOnPage;
-    }
-
-    public void setRowsOnPage(int rowsOnPage) {
-        this.rowsOnPage = rowsOnPage;
-    }
-
-    public int getAllRowsCount() {
-        return allRowsCount;
-    }
-
-    public void setAllRowsCount(int allRowsCount) {
-        this.allRowsCount = allRowsCount;
-    }
-
-    public MotivoBloqueoModeloDatos getMotivoBloqueoModeloDatos() {
-        return motivoBloqueoModeloDatos;
-    }
-
-    public void setMotivoBloqueoModeloDatos(MotivoBloqueoModeloDatos motivoBloqueoModeloDatos) {
-        this.motivoBloqueoModeloDatos = motivoBloqueoModeloDatos;
+    public void setUiComponent(UIComponent uiComponent) {
+        this.uiComponent = uiComponent;
     }
 }

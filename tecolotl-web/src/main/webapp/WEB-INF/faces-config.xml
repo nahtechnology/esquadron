@@ -26,6 +26,10 @@
 			<base-name>lenguaje.escuela-detalle</base-name>
 			<var>escuela-detalle</var>
 		</resource-bundle>
+		<resource-bundle>
+			<base-name>lenguaje.escuelacatalogo</base-name>
+			<var>escuelacatalogo</var>
+		</resource-bundle>
     </application>
 
 	<navigation-rule>

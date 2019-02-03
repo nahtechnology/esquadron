@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <cc:interface>
+        <cc:attribute name="htmlDataTable" required="true" type="javax.faces.component.html.HtmlDataTable"/>
+        <cc:attribute name="accionSiguiente" required="true" method-signature="void siguiente()"/>
+        <cc:attribute name="accionAnterior" required="true" method-signature="void anterior()"/>
+        <cc:attribute name="maximo" required="true"/>
+    </cc:interface>
+    <cc:implementation>
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+                         disabled="#{cc.attrs.htmlDataTable.first eq 0}"
+                         action="#{cc.attrs.accionAnterior}">
+            <f:setPropertyActionListener value="false" target="#{cc.attrs.maximo}"/>
+        </h:commandButton>
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+                         disabled="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows ge cc.attrs.htmlDataTable.rowCount}"
+                         action="#{cc.attrs.accionSiguiente}">
+            <f:setPropertyActionListener value="false" target="#{cc.attrs.maximo}"/>
+        </h:commandButton>
+    </cc:implementation>
+
+</html>
