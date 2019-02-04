@@ -14,11 +14,7 @@ public abstract class PaginadorControlador<T> {
     private boolean maximo;
 
     public void vistaAnterior() {
-        if (maximo) {
-            htmlDataTable.setFirst(0);
-        } else {
-            htmlDataTable.setFirst(htmlDataTable.getFirst() - htmlDataTable.getRows());
-        }
+        htmlDataTable.setFirst(maximo ? 0 : htmlDataTable.getFirst() - htmlDataTable.getRows());
         cargaDatos(htmlDataTable.getFirst());
     }
 

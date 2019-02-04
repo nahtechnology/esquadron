@@ -18,73 +18,135 @@
     <ui:define name="contenido2">
         <h:outputStylesheet library="css" name="tablas.css"  />
         <h1 class="uk-heading-line uk-text-center"><span class="uk-text-capitalize">#{escuelacatalogo['title']}</span></h1>
-        <h:panelGroup layout="block" pt:uk-grid="">
+        <div uk-grid="">
             <div class="uk-width-1-2@m " >
-                <h:panelGroup layout="block" pt:uk-grid="">
+                <div uk-grid="">
                     <div  class="uk-width-auto ">
                         <h:outputText pt:uk-icon="icon: ban; ratio: 2" styleClass="uk-icon uk-margin-small-right"/>
                     </div>
                     <div class="uk-width-expand">
                         <h3 class="uk-text-center uk-heading-line "><span class="uk-text-capitalize">#{escuelacatalogo['block.title']}</span></h3>
-                        <h:form id="formulario-tabla-motivo-bloqueo">
-                            <h:dataTable id="tabla-motivo-bloqueo"
-                                         value="#{catalogoMotivoBloqueoControlador.paginacionModeloDato}"
-                                         binding="#{catalogoMotivoBloqueoControlador.htmlDataTable}"
-                                         var="motivoBloqueo"
-                                         first="0"
-                                         rows="#{catalogoMotivoBloqueoControlador.filasEnPagina}"
-                                         footerClass="uk-background-primary"
-                                         columnClasses=",uk-text-center"
-                                         styleClass="uk-table uk-table-small tabla-motivo-bloqueoboundary uk-table-divider uk-table-hover uk-table-middle">
-                                <h:column headerClass="uk-background-primary">
-                                    <f:facet name="header"><h:outputText value="#{etiqueta['description']}" styleClass="letra-titulo"/> </f:facet>
-                                    #{motivoBloqueo.descripcion}
-                                </h:column>
-                                <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                    <f:facet name="header"><h:outputText value="#{etiqueta['options']}" styleClass="letra-titulo"/></f:facet>
-                                    <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                    <div uk-dropdown="mode: click; boundary: .tabla-motivo-bloqueoboundary">
-                                        <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                                            <li>
-                                                <h:commandLink>
-                                                    <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon"/>
-                                                    <h:outputText styleClass="uk-text-bold uk-text-capitalize" value="#{boton.edit}"/>
-                                                    <f:ajax render="formulario-modal-motivo-bloqueo"
-                                                            listener="#{catalogoMotivoBloqueoControlador.nuevoModelo(motivoBloqueo)}"
-                                                            onevent="function f(data) { abreModal(data, 'modal-motivo-bloqueo') }"/>
-                                                </h:commandLink>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </h:column>
-                                <f:facet name="footer">
-                                    <pa:pie-tabla htmlDataTable="#{catalogoMotivoBloqueoControlador.htmlDataTable}"/>
-                                </f:facet>
-                            </h:dataTable>
-                        </h:form>
-                        <f:ajax render="formulario-tabla-motivo-bloqueo:tabla-motivo-bloqueo formulario-paginacion-motivo-bloqueo"
-                                listener="#{catalogoMotivoBloqueoControlador.cargaDatos(catalogoMotivoBloqueoControlador.htmlDataTable.first)}">
-                            <h:form id="formulario-paginacion-motivo-bloqueo">
-                                <h:panelGroup styleClass="uk-margin-top" pt:uk-grid="">
-                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
-                                        <pa:boton-minimizado htmlDataTable="#{catalogoMotivoBloqueoControlador.htmlDataTable}"
-                                                             accionAnterior="#{catalogoMotivoBloqueoControlador.vistaAnterior}"
-                                                             accionSiguiente="#{catalogoMotivoBloqueoControlador.vistaSiguiente}"
-                                                             maximo="#{catalogoMotivoBloqueoControlador.maximo}"/>
-                                    </div>
-                                    <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
-                                        <button class="uk-button uk-button-primary" uk-toggle="target: #modal-motivo-bloqueo">
-                                            <span class="uk-margin-small-right"><h:outputText value="#{boton['add']}"/></span>
-                                            <h:outputText pt:uk-icon="icon: plus-circle"/>
-                                        </button>
-                                    </div>
-                                </h:panelGroup>
-                            </h:form>
-                        </f:ajax>
                     </div>
-                </h:panelGroup>
+                </div>
+                <h:form id="formulario-tabla-motivo-bloqueo">
+                    <h:dataTable id="tabla-motivo-bloqueo"
+                                 value="#{catalogoMotivoBloqueoControlador.paginacionModeloDato}"
+                                 binding="#{catalogoMotivoBloqueoControlador.htmlDataTable}"
+                                 var="motivoBloqueo"
+                                 first="0"
+                                 rows="#{catalogoMotivoBloqueoControlador.filasEnPagina}"
+                                 footerClass="uk-background-primary"
+                                 columnClasses=",uk-text-center"
+                                 styleClass="uk-table uk-table-small tabla-motivo-bloqueoboundary uk-table-divider uk-table-hover uk-table-middle">
+                        <h:column headerClass="uk-background-primary">
+                            <f:facet name="header"><h:outputText value="#{etiqueta['description']}" styleClass="letra-titulo"/> </f:facet>
+                            #{motivoBloqueo.descripcion}
+                        </h:column>
+                        <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                            <f:facet name="header"><h:outputText value="#{etiqueta['options']}" styleClass="letra-titulo"/></f:facet>
+                            <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                            <div uk-dropdown="mode: click; boundary: .tabla-motivo-bloqueoboundary">
+                                <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                    <li>
+                                        <h:commandLink>
+                                            <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon"/>
+                                            <h:outputText styleClass="uk-text-bold uk-text-capitalize" value="#{boton.edit}"/>
+                                            <f:ajax render="formulario-modal-motivo-bloqueo"
+                                                    listener="#{catalogoMotivoBloqueoControlador.nuevoModelo(motivoBloqueo)}"
+                                                    onevent="function f(data) { abreModal(data, 'modal-motivo-bloqueo') }"/>
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </h:column>
+                        <f:facet name="footer">
+                            <pa:pie-tabla htmlDataTable="#{catalogoMotivoBloqueoControlador.htmlDataTable}"/>
+                        </f:facet>
+                    </h:dataTable>
+                </h:form>
+                <f:ajax render="formulario-tabla-motivo-bloqueo:tabla-motivo-bloqueo formulario-paginacion-motivo-bloqueo"
+                        listener="#{catalogoMotivoBloqueoControlador.cargaDatos(catalogoMotivoBloqueoControlador.htmlDataTable.first)}">
+                    <h:form id="formulario-paginacion-motivo-bloqueo">
+                        <h:panelGroup styleClass="uk-margin-top" pt:uk-grid="">
+                            <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                <pa:boton-minimizado htmlDataTable="#{catalogoMotivoBloqueoControlador.htmlDataTable}"
+                                                     accionAnterior="#{catalogoMotivoBloqueoControlador.vistaAnterior}"
+                                                     accionSiguiente="#{catalogoMotivoBloqueoControlador.vistaSiguiente}"
+                                                     maximo="#{catalogoMotivoBloqueoControlador.maximo}"/>
+                            </div>
+                            <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
+                                <button class="uk-button uk-button-primary" uk-toggle="target: #modal-motivo-bloqueo">
+                                    <span class="uk-margin-small-right"><h:outputText value="#{boton['add']}"/></span>
+                                    <h:outputText pt:uk-icon="icon: plus-circle"/>
+                                </button>
+                            </div>
+                        </h:panelGroup>
+                    </h:form>
+                </f:ajax>
             </div>
-        </h:panelGroup>
+            <!--            Tipo Contacto           -->
+            <div class="uk-width-1-2@m " >
+                <div uk-grid="">
+                    <div  class="uk-width-auto " >
+                        <span uk-icon="icon: users; ratio: 2" class="uk-icon uk-margin-small-right"></span>
+                    </div>
+                    <div class="uk-width-expand">
+                        <h3 class=" uk-text-center uk-heading-line "><span class="">Tipo de contacto</span></h3>
+                    </div>
+                </div>
+                <h:form id="formulario-tabla-tipo-contacto">
+                    <h:dataTable id="tabla-tipo-contacto"
+                                 value="#{catalogoTipoContactoControlador.collectionDataModel}"
+                                 binding="#{catalogoTipoContactoControlador.htmlDataTable}"
+                                 var="tipoContacto"
+                                 first="0"
+                                 rows="5"
+                                 footerClass="uk-background-primary"
+                                 columnClasses=",uk-text-center"
+                                 styleClass="uk-table uk-table-small tabla-tipo-contacto-boundary uk-table-divider uk-table-hover uk-table-middle">
+                        <h:column headerClass="uk-background-primary">
+                            <f:facet name="header"><h:outputText value="#{etiqueta['description']}" styleClass="letra-titulo"/> </f:facet>
+                            #{tipoContacto.descripcion}
+                        </h:column>
+                        <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                            <f:facet name="header"><h:outputText value="#{etiqueta['options']}" styleClass="letra-titulo"/></f:facet>
+                            <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                            <div uk-dropdown="mode: click; boundary: .tabla-tipo-contacto-boundary">
+                                <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                    <li>
+                                        <h:commandLink>
+                                            <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon"/>
+                                            <h:outputText styleClass="uk-text-bold uk-text-capitalize" value="#{boton.edit}"/>
+                                            <f:ajax listener="#{catalogoTipoContactoControlador.actualizaModelo(tipoContacto)}"
+                                                    render="formulario-modal-tipo-contacto"
+                                                    onevent="function f(data) { abreModal(data, 'modal-tipo-contacto') }"/>
+                                        </h:commandLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </h:column>
+                        <f:facet name="footer">
+                            <pa:pie-tabla htmlDataTable="#{catalogoTipoContactoControlador.htmlDataTable}"/>
+                        </f:facet>
+                    </h:dataTable>
+                </h:form>
+                <f:ajax render="formulario-tabla-tipo-contacto:tabla-tipo-contacto paginacion-tabla-tipo-contacto">
+                    <h:form id="paginacion-tabla-tipo-contacto">
+                        <h:panelGroup styleClass="uk-margin-top" pt:uk-grid="">
+                            <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                <pa:boton-minimizado2 htmlDataTable="#{catalogoTipoContactoControlador.htmlDataTable}"/>
+                            </div>
+                            <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
+                                <button class="uk-button uk-button-primary" uk-toggle="target: #modal-tipo-contacto">
+                                    <span class="uk-margin-small-right"><h:outputText value="#{boton['add']}"/></span>
+                                    <h:outputText pt:uk-icon="icon: plus-circle"/>
+                                </button>
+                            </div>
+                        </h:panelGroup>
+                    </h:form>
+                </f:ajax>
+            </div>
+        </div>
         <h:panelGroup layout="block" id="modal-motivo-bloqueo" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-modal-motivo-bloqueo" styleClass="uk-form-stacked">
@@ -107,7 +169,7 @@
                                              value="#{catalogoMotivoBloqueoControlador.motivoBloqueoDtoModelo.descripcion}"
                                              label="#{etiqueta['description']}"
                                              binding="#{catalogoMotivoBloqueoControlador.uiComponent}"
-                                             pt:placeholder="#{etiqueta['description']}">
+                                             pt:placeholder="#{etiqueta['write.text']}">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="4" maximum="20"/>
                                 </h:inputText>
@@ -144,11 +206,72 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-tipo-contacto" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-modal-tipo-contacto" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold">
+                            <h:outputText value="#{escuelacatalogo['modal.contact.new.title']}"
+                                          styleClass="letra-titulo uk-text-capitalize"
+                                          rendered="#{empty catalogoTipoContactoControlador.tipoContactoDtoModelo.id}"/>
+                            <h:outputText value="#{escuelacatalogo['modal.contact.edit.title']}"
+                                          styleClass="letra-titulo uk-text-capitalize"
+                                          rendered="#{not empty catalogoTipoContactoControlador.tipoContactoDtoModelo.id}"/>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div class="uk-margin">
+                            <h:outputLabel value="#{etiqueta['description']}" for="input-tipo-contacto" styleClass="uk-form-label uk-text-capitalize"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="input-tipo-contacto"
+                                             styleClass="uk-input"
+                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             value="#{catalogoTipoContactoControlador.tipoContactoDtoModelo.descripcion}"
+                                             binding="#{catalogoTipoContactoControlador.uiComponent}"
+                                             label="#{etiqueta['description']}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="4" maximum="20"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <ui:fragment rendered="#{facesContext.validationFailed}">
+                            <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
+                                <h:message for="input-tipo-contacto"/>
+                            </h:panelGroup>
+                        </ui:fragment>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton.cancel}">
+                            <f:ajax listener="#{catalogoTipoContactoControlador.limpiaModelo}"
+                                    render="@form"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-primary"
+                                         rendered="#{empty catalogoTipoContactoControlador.tipoContactoDtoModelo.id}"
+                                         value="#{boton['accept']}">
+                            <f:ajax listener="#{catalogoTipoContactoControlador.inserta}"
+                                    execute="@form" onevent="function f(data) { cierraModal(data, 'modal-tipo-contacto') }"
+                                    render="formulario-tabla-tipo-contacto:tabla-tipo-contacto @form paginacion-tabla-tipo-contacto"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-primary"
+                                         rendered="#{not empty catalogoTipoContactoControlador.tipoContactoDtoModelo.id}"
+                                         value="#{boton['accept']}">
+                            <f:ajax listener="#{catalogoTipoContactoControlador.actualiza}"
+                                    execute="@form" onevent="function f(data) { cierraModal(data, 'modal-tipo-contacto') }"
+                                    render="formulario-tabla-tipo-contacto:tabla-tipo-contacto @form paginacion-tabla-tipo-contacto"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
         <script type="application/javascript">
             var modalMotivoBloqueo = document.querySelector('#modal-motivo-bloqueo');
+            var modalTipoContacto = document.querySelector('#modal-tipo-contacto');
             document.addEventListener('DOMContentLoaded', function (evt) {
                 UIkit.util.on('#modal-motivo-bloqueo', 'hidden', function() {
                     modalMotivoBloqueo.querySelector('.uk-input').value = '';
+                });
+                UIkit.util.on('#modal-tipo-contacto', 'hidden', function(){
+                    modalTipoContacto.querySelector('.uk-input').value = '';
                 });
             });
             function abreModal(data, modal) {
@@ -157,6 +280,10 @@
                         case 'modal-motivo-bloqueo':
                             UIkit.modal(modalMotivoBloqueo).show();
                             modalMotivoBloqueo.querySelector('.uk-input').click();
+                            break;
+                        case 'modal-tipo-contacto':
+                            UIkit.modal(modalTipoContacto).show();
+                            modalTipoContacto.querySelector('.uk-input').click();
                             break;
                         default:
                             console.error('Modal no programado:'+modal);
@@ -170,6 +297,11 @@
                         case 'modal-motivo-bloqueo':
                             if (modalMotivoBloqueo.querySelector('.uk-alert-danger') === null) {
                                 UIkit.modal(modalMotivoBloqueo).hide();
+                            }
+                            break;
+                        case 'modal-tipo-contacto' :
+                            if (modalTipoContacto.querySelector('.uk-alert-danger') === null) {
+                                UIkit.modal(modalTipoContacto).hide();
                             }
                             break;
                         default:

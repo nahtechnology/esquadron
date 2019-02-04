@@ -10,6 +10,10 @@ public class TipoContactoDto extends CatalogoDto {
         super();
     }
 
+    public TipoContactoDto(Short id, String descripcion) {
+        super(id, descripcion);
+    }
+
     public TipoContactoDto(TipoContactoEntidad tipoContactoEntidad) {
         setId(tipoContactoEntidad.getId());
         setDescripcion(tipoContactoEntidad.getDescripcion());
