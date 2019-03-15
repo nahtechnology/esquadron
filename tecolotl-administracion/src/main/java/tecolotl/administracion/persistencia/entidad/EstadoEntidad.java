@@ -23,7 +23,7 @@ public class EstadoEntidad {
     }
 
     @NotNull
-    @Size(min = 3, max = 40)
+    @Size(min = 3, max = 70)
     @Basic
     @Column(name = "nombre")
     public String getNombre() {

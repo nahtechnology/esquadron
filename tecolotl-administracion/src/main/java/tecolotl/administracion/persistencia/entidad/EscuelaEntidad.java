@@ -12,11 +12,9 @@ import java.util.Objects;
 @NamedQueries({
 	@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"),
 	@NamedQuery(
-			name = "EscuelaEntidad.buscaExistencia",
-			query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"),
-	@NamedQuery(
-			name = "EscuelaEntidad.buscaDesatalle",
-			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad c LEFT JOIN FETCH e.motivoBloqueoEntidad m LEFT JOIN FETCH e.licencia WHERE e.claveCentroTrabajo = :claveCentroTrabajo")
+			name = "EscuelaEntidad.detalle",
+			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad LEFT JOIN FETCH e.motivoBloqueoEntidad " +
+					"WHERE e.claveCentroTrabajo=:claveCentroTrabajo")
 })
 public class EscuelaEntidad {
 
@@ -27,8 +25,8 @@ public class EscuelaEntidad {
 	private String domicilio;
 	private String numeroInterior;
 	private String numeroExterior;
-	private List<LicenciaEntidad> licencia;
-	private List<ContactoEntidad> contacto;
+	private List<LicenciaEntidad> licenciaEntidadLista;
+	private List<ContactoEntidad> contactoEntidadLista;
 
 	public EscuelaEntidad() {
 	}
@@ -39,6 +37,7 @@ public class EscuelaEntidad {
 
 	@Id
 	@Column(name = "clave_centro_trabajo")
+	@Size(min = 10, max = 14)
 	public String getClaveCentroTrabajo() {
 		return claveCentroTrabajo;
 	}
@@ -59,7 +58,7 @@ public class EscuelaEntidad {
 	}
 
 	@OneToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_motivo_bloqueo", referencedColumnName = "id")
+	@JoinColumn(name="id_motivo_bloqueo", referencedColumnName = "clave")
 	public MotivoBloqueoEntidad getMotivoBloqueoEntidad() {
 		return motivoBloqueoEntidad;
 	}
@@ -68,9 +67,10 @@ public class EscuelaEntidad {
 		this.motivoBloqueoEntidad = motivoBloqueoEntidad;
 	}
 
+	@Basic
 	@Column(name = "nombre")
 	@NotNull
-	@Size(min = 11, max = 70)
+	@Size(min = 4, max = 70)
 	public String getNombre() {
 		return nombre;
 	}
@@ -79,6 +79,7 @@ public class EscuelaEntidad {
 		this.nombre = nombre;
 	}
 
+	@Basic
 	@Column(name = "domicilio")
 	@NotNull
 	@Size(min = 11, max = 60)
@@ -113,27 +114,11 @@ public class EscuelaEntidad {
 		this.numeroExterior = numeroExterior;
 	}
 
-	@OneToMany(mappedBy = "escuela", fetch = FetchType.LAZY)
-	public List<LicenciaEntidad> getLicencia() {
-		return licencia;
-	}
-
-	public void setLicencia(List<LicenciaEntidad> licencia) {
-		this.licencia = licencia;
-	}
-
-	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad")
-	public List<ContactoEntidad> getContacto() {
-		return contacto;
-	}
-
-	public void setContacto(List<ContactoEntidad> contacto) {
-		this.contacto = contacto;
-	}
-
 	@PrePersist
-	public void datosActivacion() {
-
+	public void motivoPorDefecto() {
+		if (motivoBloqueoEntidad == null) {
+			motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)0);
+		}
 	}
 
 	@Override

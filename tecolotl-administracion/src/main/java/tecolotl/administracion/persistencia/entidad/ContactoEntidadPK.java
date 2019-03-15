@@ -14,7 +14,7 @@ public class ContactoEntidadPK implements Serializable {
     private EscuelaEntidad escuelaEntidad;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_tipo_contacto", referencedColumnName="id")
+    @JoinColumn(name="id_tipo_contacto", referencedColumnName="clave")
     public TipoContactoEntidad getTipoContactoEntidad() {
         return tipoContactoEntidad;
     }

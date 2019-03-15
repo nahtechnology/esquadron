@@ -1,40 +1,21 @@
 package tecolotl.administracion.persistencia.entidad;
 
+import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "motivo_bloqueo", schema ="administracion")
+@SequenceGenerator(name = "generador_defecto", sequenceName = "motivo_bloqueo_seq", schema = "administracion", allocationSize = 1)
 @NamedQueries({
-		@NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE NOT (m.descripcion = :descripcion) ORDER BY m.descripcion"),
-		@NamedQuery(name = "MotivoBloqueoEntidad.buscaDescripcion", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE m.descripcion = :descripcion")
+		@NamedQuery(name = "MotivoBloqueoEntidad.busca", query = "SELECT m FROM MotivoBloqueoEntidad m WHERE NOT (m.valor = :valor) ORDER BY m.valor")
 })
-public class MotivoBloqueoEntidad {
+public class MotivoBloqueoEntidad extends CatalagoEntidad {
 
-	private Short id;
-	private String descripcion;
+	public MotivoBloqueoEntidad() { }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Short getId() {
-		return id;
-	}
-	
-	public void setId(Short id) {
-		this.id = id;
+	public MotivoBloqueoEntidad(Short clave) {
+		super(clave);
 	}
 
-	@Basic
-	@Column(name = "descripcion")
-	@NotNull
-	@Size(min = 3, max = 20)
-	public String getDescripcion() {
-		return descripcion;
-	}
-	
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
 }

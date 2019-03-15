@@ -1,7 +1,5 @@
 package tecolotl.administracion.sesion;
 
-import tecolotl.administracion.dto.EscuelaDetalleDto;
-import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
@@ -39,7 +37,7 @@ public class EscuelaSesionBean {
 	 * @see EscuelaDto
 	 *
 	 */
-	public Collection<EscuelaDto> busca() {
+/*	public Collection<EscuelaDto> busca() {
 		Calendar calendarFechaHoy = Calendar.getInstance(); int diasTotales = 0;
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
 		Map<String, EscuelaDto> escuelaDtoMap = new HashMap<>();
@@ -71,7 +69,7 @@ public class EscuelaSesionBean {
 		return escuelaDtoMap.values();
 	}
 
-
+*/
 	/**
 	 * Valida que no exista una escuela. Busca una escuela por medio de clave detrabajo, esto se realiza para evitar que se duplique escuela.
 	 * @param claveCentroTrabajo Las escuelas cuentan con una clave de trabajo unica.
@@ -97,7 +95,7 @@ public class EscuelaSesionBean {
 	 * @param domicilio Calle y número donde se encuentra la escuela
 	 * @return {@link EscuelaDto} con los datos de la nueva escuela
 	 */
-	public EscuelaDto insertar (String claveCentroTrabajo, int colonia, String nombre, String domicilio, String numeroInterior, String numeroExterior) {
+/*	public EscuelaDto insertar (String claveCentroTrabajo, int colonia, String nombre, String domicilio, String numeroInterior, String numeroExterior) {
 		if (logger.isLoggable(Level.FINE)) {
 			logger.fine("claveCentroTrabajo:".concat(claveCentroTrabajo));
 			logger.fine("colonia".concat(String.valueOf(colonia)));
@@ -117,7 +115,7 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setMotivoBloqueoEntidad(typedQuery.getSingleResult());
 		entityManager.persist(escuelaEntidad);
 		return new EscuelaDto(escuelaEntidad);
-	}
+	}*/
 	/**
 	 * Realiza cambios a una escuela existente, los cambios que se pueden realizar son en su clave de trabajo, colonia,nombre de escuela
 	 * @param claveCentroTrabajo Identificador unico  de la escuela
@@ -144,19 +142,19 @@ public class EscuelaSesionBean {
      * @param claveCentroTrabajo Identificador unico  de la escuela
      * @param motivoBloqueo numero que hace referencia el  bloquear/desbloquear a una escuela (por ejemplo por falta de pago, sanción). 
      */
-	public void bloqueo (String claveCentroTrabajo, Short motivoBloqueo) {
+/*	public void bloqueo (String claveCentroTrabajo, Short motivoBloqueo) {
 		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
 		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
 		motivoBloqueoEntidad.setId(motivoBloqueo);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
-	}
+	}*/
 
 	/**
 	 * Busca una escuela por id clave centro de trabajo y muestra todos los detalles
 	 * @param claveCentroTrabajo Llave primaria de la escuela
 	 * @return Objecto con los detalles de la escuela
 	 */
-	public EscuelaDetalleDto busca(String claveCentroTrabajo) {
+/*	public EscuelaDetalleDto busca(String claveCentroTrabajo) {
 		if (claveCentroTrabajo == null) {
 			return null;
 		}
@@ -169,16 +167,16 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setContacto(contactoEntidadList);
 		return new EscuelaDetalleDto(escuelaEntidad);
 	}
-
+*/
 	/**
 	 * Elimina una escuela
 	 * @param claveCentroTrabajo Identificador para la escuela
 	 * @return {@link EscuelaDto} eliminado
 	 */
-	public EscuelaDto elimina(String claveCentroTrabajo) {
+/*	public EscuelaDto elimina(String claveCentroTrabajo) {
 		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
 		entityManager.remove(escuelaEntidad);
 		return new EscuelaDto(escuelaEntidad);
 	}
-
+*/
 }

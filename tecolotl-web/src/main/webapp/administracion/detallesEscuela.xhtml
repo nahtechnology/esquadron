@@ -85,7 +85,7 @@
                         </div>
                 </div>
 
-        <div uk-grid="" class="uk-margin-medium-top ">
+        <div uk-grid="" class="uk-margin-medium-top uk-margin-large-bottom">
 
             <div class="uk-width-auto@m uk-overflow-auto uk-width-expand@s ">
                 <h3 class="uk-text-center uk-heading-line "><span class="">#{mensaje['school.details.contact']}</span></h3>
@@ -119,9 +119,10 @@
                                     <ul class="uk-nav uk-dropdown-nav">
                                         <li class="uk-text-left">
 
-                                            <h:commandLink styleClass="uk-link-reset">
+                                            <h:commandLink styleClass="uk-link-reset" >
                                                 <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right" />
                                                 <h:outputText styleClass="uk-text-right uk-text-bold " value="Eliminar"/>
+                                                <f:ajax  onevent="function f(data) { abrebModal(data, 'modal-eliminar') }"></f:ajax>
                                             </h:commandLink>
                                         </li>
                                         <li class="uk-text-left">
@@ -129,6 +130,7 @@
                                             <h:commandLink styleClass="uk-link-reset">
                                                 <h:outputText pt:uk-icon="icon: settings" styleClass="uk-margin-small-right" />
                                                 <h:outputText class="uk-text-right uk-text-bold" value="Modificar"/>
+
                                             </h:commandLink>
                                         </li>
                                     </ul>
@@ -177,6 +179,33 @@
             </div>
 
         </div>
+
+
+
+        <h:panelGroup layout="block" id="modal-eliminar" styleClass="uk-modal-container" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-eliminar">
+                    <div class="uk-modal-header fondo-peligro"  >
+                        <p class="uk-h4 uk-text-center uk-text-bold" >
+                            <h:outputFormat value="#{escueladashboard['modal.remove.title']}" styleClass="letra-titulo">
+                                <f:param value="#{escuelaDashboardControlador.escuelaBaseDtoModelo.claveCentroTrabajo}"/>
+                            </h:outputFormat>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <h:outputFormat value="#{escueladashboard['modal.remove.message']}">
+                            <f:param value="#{escuelaDashboardControlador.escuelaBaseDtoModelo.nombre}"/>
+                        </h:outputFormat>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button"><h:outputText value="#{boton['cancel']}"/></button>
+                        <h:commandButton value="#{boton['remove']}" styleClass="uk-button uk-button-danger">
+                            <f:ajax listener="#{escuelaDashboardControlador.eliminia}" render="formulario-escuela-tabla:tabla-escuela" onevent="function f(data) { cierraModal(data, 'modal-eliminar') }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
 
         <script type="text/javascript">
             var modalBusquedaNombre = document.querySelector('#modal-busqueda-nombre');

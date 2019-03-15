@@ -1,6 +1,5 @@
 package tecolotl.administracion.sesion;
 
-import tecolotl.administracion.dto.ContactoDto;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidadPK;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
@@ -20,7 +19,7 @@ public class ContactoSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public ContactoDto inserta(String claveCentroTrabajo, Short tipoContacto, String nombre, String telefono) {
+/*    public ContactoDto inserta(String claveCentroTrabajo, Short tipoContacto, String nombre, String telefono) {
         ContactoEntidad contactoEntidad = new ContactoEntidad();
         ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
         contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(claveCentroTrabajo));
@@ -30,7 +29,7 @@ public class ContactoSesionBean {
         contactoEntidad.setContactoEntidadPK(contactoEntidadPK);
         entityManager.persist(contactoEntidad);
         return new ContactoDto(contactoEntidad);
-    }
+    }*/
 
     /**
      * Elimina un contacno

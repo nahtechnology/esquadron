@@ -5,7 +5,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,8 +12,6 @@ import org.junit.runner.RunWith;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
-import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -40,17 +37,16 @@ public class ColoniaEntidadTest {
         List<ColoniaEntidad> colonialista = typedQuery.getResultList();
         Assert.assertNotNull(colonialista);
         Assert.assertFalse(colonialista.isEmpty());
-        
+        for (ColoniaEntidad coloniaEntidad :
+                colonialista) {
+            Assert.assertNotNull(coloniaEntidad.getId());
+            Assert.assertNotNull(coloniaEntidad.getNombre());
+            Assert.assertNotNull(coloniaEntidad.getCodigoPostal());
+            MunicipioEntidad municipioEntidad = coloniaEntidad.getMunicipio();
+            Assert.assertNotNull(municipioEntidad);
+            Assert.assertNotNull(municipioEntidad.getId());
+            Assert.assertNotNull(municipioEntidad.getNombre());
+        }
     }
 
-    @Test
-    public void buscaMunicipioCodigoPostal() {
-        TypedQuery<MunicipioEntidad> typedQuery = entityManager.createNamedQuery("ColoniaEntidad.buscaMunicipoCodigoPostal", MunicipioEntidad.class);
-        typedQuery.setParameter("codigoPostal", "72000");
-        typedQuery.setMaxResults(1);
-        MunicipioEntidad municipioEntidad = typedQuery.getSingleResult();
-        Assert.assertNotNull(municipioEntidad);
-        Assert.assertNotNull(municipioEntidad.getNombre());
-        Assert.assertNotNull(municipioEntidad.getId());
-    }
 }

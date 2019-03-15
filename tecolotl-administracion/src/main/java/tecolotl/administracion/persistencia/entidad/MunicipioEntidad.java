@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "municipio", schema = "administracion")
 @NamedQueries({
-        @NamedQuery(name = "MunicipioEntidad.busca", query = "SELECT m FROM MunicipioEntidad m")
+        @NamedQuery(name = "MunicipioEntidad.busca", query = "SELECT m FROM MunicipioEntidad m LEFT JOIN FETCH m.estado")
 
 })
 public class MunicipioEntidad {

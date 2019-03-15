@@ -5,7 +5,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,11 +13,8 @@ import org.junit.runner.RunWith;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.swing.text.html.parser.Entity;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class MunicipioEntidadTest {
@@ -37,14 +33,15 @@ public class MunicipioEntidadTest {
     @Test
     public void busca() {
         TypedQuery<MunicipioEntidad> typedQuery = entityManager.createNamedQuery("MunicipioEntidad.busca", MunicipioEntidad.class);
+        typedQuery.setMaxResults(10);
         List<MunicipioEntidad> municipioLista = typedQuery.getResultList();
         Assert.assertNotNull(municipioLista);
         Assert.assertFalse(municipioLista.isEmpty());
         for (MunicipioEntidad municipioEntidad : municipioLista) {
             Assert.assertNotNull(municipioEntidad.getNombre());
-            Assert.assertNotNull(municipioEntidad.getEstado());
-            Assert.assertNotNull(municipioEntidad.getEstado().getNombre());
-            Assert.assertNotNull(municipioEntidad.getEstado().getId());
+            EstadoEntidad estadoEntidad = municipioEntidad.getEstado();
+            Assert.assertNotNull(estadoEntidad.getNombre());
+            Assert.assertNotNull(estadoEntidad.getId());
         }
     }
 

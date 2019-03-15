@@ -10,9 +10,6 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.administracion.dto.CodigoPostal;
-import tecolotl.administracion.dto.ColoniaDto;
-import tecolotl.administracion.dto.EscuelaDto;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import java.util.Collection;
 
@@ -24,7 +21,6 @@ public class EscuelaSesionBeanTest {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addPackage(EscuelaSesionBean.class.getPackage())
                 .addPackage(ColoniaEntidad.class.getPackage())
-                .addPackage(ColoniaDto.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
 	} 
@@ -32,38 +28,6 @@ public class EscuelaSesionBeanTest {
 	@Inject
 	private EscuelaSesionBean escuelaSesionBean;
 
-
-
-    @Test
-    public void buscaEscuelas() {
-		Collection<EscuelaDto> escuelaDtoCollection = escuelaSesionBean.busca();
-		Assert.assertNotNull(escuelaDtoCollection);
-		Assert.assertFalse(escuelaDtoCollection.isEmpty());
-		for (EscuelaDto escuelaDto : escuelaDtoCollection) {
-			Assert.assertNotNull(escuelaDto);
-			Assert.assertNotNull(escuelaDto.getNombre());
-			Assert.assertNotNull(escuelaDto.getClaveCentroTrabajo());
-		}
-    }
-
-
-    @Test
-	public void insertar() {
-		escuelaSesionBean.insertar("21DBA0004Z", 227805, "Escuela Secundaria Tenica no.32","5 poniente 512" , "1234", null);
-	}
-    @Test
-	public void actualizar() {
-		escuelaSesionBean.actualizar("21DBA0004Z", 227805, "CAmbio Escuela Secundaria Tenica no.32","Cambio 5 poniente 512");
-	}
-    @Test
-	public void bloqueo() {
-		escuelaSesionBean.bloqueo("21DBA0004Z",(short)2);
-	}
-    
-    @Test
-   	public void buscarDuplicado() {
-   		escuelaSesionBean.buscaDuplicado("21DBA0004Z");
-   	}
 }
 
 

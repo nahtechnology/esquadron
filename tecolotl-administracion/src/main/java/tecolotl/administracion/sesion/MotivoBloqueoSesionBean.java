@@ -1,6 +1,5 @@
 package tecolotl.administracion.sesion;
 
-import tecolotl.administracion.dto.MotivoBloqueoDto;
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
 import javax.ejb.Stateless;
@@ -16,50 +15,4 @@ public class MotivoBloqueoSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    /**
-     * Recupera el conjunto completo de los motivos de bloqueo, excepto el "sin bloque" ya que es un valor comodín,
-     * @return Una colección de {@link MotivoBloqueoDto}
-     */
-    public List<MotivoBloqueoDto> busca() {
-        TypedQuery<MotivoBloqueoEntidad> typedQuery = entityManager.createNamedQuery("MotivoBloqueoEntidad.busca", MotivoBloqueoEntidad.class);
-        typedQuery.setParameter("descripcion", "Sin bloqueo");
-        List<MotivoBloqueoDto> motivoBloqueoDtoLista = new ArrayList<>();
-        for (MotivoBloqueoEntidad motivoBloqueoEntidad : typedQuery.getResultList()) {
-            motivoBloqueoDtoLista.add(new MotivoBloqueoDto(motivoBloqueoEntidad));
-        }
-        return motivoBloqueoDtoLista;
-    }
-
-    /**
-     * Actualiza un motivo de bloqueo
-     * @param id Identificador del motivo de bloqueo
-     * @param descripcion Nueva descripción del motivo de bloque
-     * @return {@link MotivoBloqueoDto} con los datos actualizado
-     */
-    public MotivoBloqueoDto actualiza(Short id, String descripcion) {
-        MotivoBloqueoEntidad motivoBloqueoEntidad = entityManager.find(MotivoBloqueoEntidad.class, id);
-        motivoBloqueoEntidad.setDescripcion(descripcion);
-        return new MotivoBloqueoDto(motivoBloqueoEntidad);
-    }
-
-    /**
-     * Actualiza un motivo de bloqueo
-     * @param motivoBloqueoDto Objeto con los datos para la actualización
-     */
-    public void actualiza(MotivoBloqueoDto motivoBloqueoDto) {
-        MotivoBloqueoEntidad motivoBloqueoEntidad = entityManager.find(MotivoBloqueoEntidad.class, motivoBloqueoDto.getId());
-        motivoBloqueoEntidad.setDescripcion(motivoBloqueoDto.getDescripcion());
-    }
-
-    /**
-     * Inserta un nuevo motivo de bloqueo
-     * @param descripcion Descripción del motivo de bloque
-     * @return {@link MotivoBloqueoDto} con los datos insertados
-     */
-    public MotivoBloqueoDto inserta(String descripcion) {
-        MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
-        motivoBloqueoEntidad.setDescripcion(descripcion);
-        entityManager.persist(motivoBloqueoEntidad);
-        return new MotivoBloqueoDto(motivoBloqueoEntidad);
-    }
 }
