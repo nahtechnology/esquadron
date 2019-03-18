@@ -2,9 +2,16 @@ package tecolotl.administracion.persistencia.entidad;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Root;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -32,12 +39,24 @@ public class EscuelaEntidadTest {
 	@PersistenceContext
 	private EntityManager entityManager;
 
- 	@Test
-	public void insertar() {
- 		EscuelaEntidad escuelaEntidad = new EscuelaEntidad();
- 		escuelaEntidad.setClaveCentroTrabajo("21ESU0012Y");
- 		escuelaEntidad.setNombre("ACADEMIA ESTATAL DE LAS FUERZAS DE SEGURIDAD PUBLICA DEL ESTADO DE PUEBLA");
+ 	@Inject private UserTransaction userTransaction;
 
+ 	@Test
+	public void inserta() throws SystemException {
+ 		EscuelaEntidad escuelaEntidad = new EscuelaEntidad();
+ 		escuelaEntidad.setClaveCentroTrabajo("0000000000");
+ 		escuelaEntidad.setNombre("ACADEMIA ESTATAL DE LAS FUERZAS DE SEGURIDAD PUBLICA DEL ESTADO DE P");
+ 		escuelaEntidad.setColoniaEntidad(new ColoniaEntidad(2));
+ 		escuelaEntidad.setDomicilio("Calle siempre viva 13485");
+ 		escuelaEntidad.setNumeroExterior("12345");
+		EntityTransaction entityTransaction = null;
+ 		try {
+ 			userTransaction.begin();
+			entityManager.persist(escuelaEntidad);
+			userTransaction.commit();
+		} catch (Exception ex) {
+			if (entityTransaction != null) {entityTransaction.rollback(); }
+		}
 	}
 
 	@Test
@@ -49,33 +68,54 @@ public class EscuelaEntidadTest {
 			Assert.assertNotNull(escuelaEntidad.getClaveCentroTrabajo());
 			Assert.assertNotNull(escuelaEntidad.getDomicilio());
 			Assert.assertNotNull(escuelaEntidad.getNombre());
-			Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad());
-			Assert.assertNotNull(escuelaEntidad.getColoniaEntidad());
+			Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad().getClave());
+			Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getId());
 			Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
 		}
 	}
-/*
+
 	@Test
 	public void buscaDetalle() {
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.detalle", EscuelaEntidad.class);
-		typedQuery.setParameter("claveCentroTrabajo", "21DBA0034X");
+		typedQuery.setParameter("claveCentroTrabajo", "0000000000");
 		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
 		Assert.assertNotNull(escuelaEntidad);
 		Assert.assertNotNull(escuelaEntidad.getClaveCentroTrabajo());
 		Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
-		Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad());
-		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad());
+		Assert.assertNotNull(escuelaEntidad.getNombre());
+		Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad().getValor());
 		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getNombre());
-		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getMunicipio());
-		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getMunicipio().getEstado());
-		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getMunicipio().getEstado().getNombre());
 		Assert.assertNotNull(escuelaEntidad.getDomicilio());
-		List<LicenciaEntidad> licenciaEntidadLista = escuelaEntidad.getLicencia();
-		Assert.assertNotNull(licenciaEntidadLista);
-		Assert.assertFalse(licenciaEntidadLista.isEmpty());
-		for (LicenciaEntidad licenciaEntidad : licenciaEntidadLista) {
-			Assert.assertNotNull(licenciaEntidad);
-			Assert.assertNotNull(licenciaEntidad.getInicio());
+
+	}
+
+	@Test
+	public void actualiza() throws SystemException {
+		CriteriaUpdate<EscuelaEntidad> criteriaUpdate = entityManager.getCriteriaBuilder().createCriteriaUpdate(EscuelaEntidad.class);
+		Root<EscuelaEntidad> root = criteriaUpdate.from(EscuelaEntidad.class);
+		criteriaUpdate.set(root.get("nombre"), "ACADEMIA ESTATAL de las FUERZAS de SEGURIDAD PUBLICA del ESTADO DE P");
+		criteriaUpdate.set(root.get("domicilio"), "Calle siempre muerta 13485");
+		criteriaUpdate.set(root.get("numeroExterior"), "1111");
+		criteriaUpdate.set(root.get("numeroInterior"), "1111");
+		try {
+			userTransaction.begin();
+			int actualizacion = entityManager.createQuery(criteriaUpdate).executeUpdate();
+			userTransaction.rollback();
+			Assert.assertFalse(actualizacion == 0);
+		} catch (Exception ex) {
+			userTransaction.rollback();
 		}
-	}*/
+	}
+
+	@Test
+	public void borra() throws SystemException {
+ 		EscuelaEntidad escuelaEntidad = new EscuelaEntidad("0000000000");
+ 		try {
+ 			userTransaction.begin();
+			entityManager.remove(escuelaEntidad);
+			userTransaction.commit();
+		} catch (Exception ex) {
+ 			userTransaction.rollback();
+		}
+	}
 }

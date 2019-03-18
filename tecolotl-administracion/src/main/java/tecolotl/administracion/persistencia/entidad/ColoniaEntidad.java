@@ -17,6 +17,13 @@ public class ColoniaEntidad {
     private String nombre;
     private MunicipioEntidad municipio;
 
+    public ColoniaEntidad() {
+    }
+
+    public ColoniaEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

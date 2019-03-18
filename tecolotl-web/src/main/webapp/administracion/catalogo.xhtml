@@ -147,6 +147,38 @@
                 </f:ajax>
             </div>
         </div>
+        <!--                colonias            -->
+        <div class="uk-width-1-1@m " >
+            <div uk-grid="">
+                <div  class="uk-width-auto " >
+                    <h:graphicImage library="img" name="mapa.svg" height="40" width="40" pt:uk-svg=""/>
+                </div>
+                <div class="uk-width-expand">
+                    <h3 class="uk-text-center uk-heading-line"><span class="uk-text-capitalize">#{escuelacatalogo['colony.title']}</span></h3>
+                    <div class="uk-margin-auto-vertical ">
+                        <div class="uk-flex uk-flex-center@s uk-flex-right@m">
+                            <h:form id="formulario-colonia-codigo-postal" styleClass="uk-form-stacked">
+                                <div class="uk-margin">
+                                    <h:outputLabel value="#{escuelacatalogo['colony.zipcode.label']}" for="input-codigo-postal"
+                                                   styleClass="uk-form-label"/>
+                                    <div class="uk-form-controls uk-margin-small-right">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-codigo-postal"
+                                                     pt:placeholder="#{escuelacatalogo['colony.zipcode.input']}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="5"/>
+                                        </h:inputText>
+                                    </div>
+                                </div>
+                                <h:commandButton value="#{boton['search']}"
+                                                 styleClass="uk-button uk-button-primary"/>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--                modal motivo bloque             -->
         <h:panelGroup layout="block" id="modal-motivo-bloqueo" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-modal-motivo-bloqueo" styleClass="uk-form-stacked">

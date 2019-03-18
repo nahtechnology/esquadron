@@ -10,7 +10,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "escuela", schema = "administracion")
 @NamedQueries({
-	@NamedQuery(name = "EscuelaEntidad.busca", query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"),
+	@NamedQuery(
+			name = "EscuelaEntidad.busca",
+			query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"),
 	@NamedQuery(
 			name = "EscuelaEntidad.detalle",
 			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad LEFT JOIN FETCH e.motivoBloqueoEntidad " +
