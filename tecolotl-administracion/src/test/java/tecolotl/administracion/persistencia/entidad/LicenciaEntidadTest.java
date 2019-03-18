@@ -16,6 +16,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 
 @RunWith(Arquillian.class)
 public class LicenciaEntidadTest {
@@ -23,7 +24,7 @@ public class LicenciaEntidadTest {
 	 @Deployment
 	   public static Archive<?> createDeployment() {
 	       return ShrinkWrap.create(WebArchive.class, "test.war")
-	               .addClass(LicenciaEntidad.class)
+	               .addClass(CatalagoEntidad.class)
 	               .addPackage(EscuelaEntidad.class.getPackage())
 	               .addAsResource("META-INF/persistence.xml")
 	               .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -39,17 +40,19 @@ public class LicenciaEntidadTest {
 		Assert.assertNotNull(licenciaLista);
 		Assert.assertFalse(licenciaLista.isEmpty());
 		for (LicenciaEntidad licenciaEntidad: licenciaLista) {
-			Assert.assertNotNull("No encontro fecha de inicio",licenciaEntidad.getInicio());
-			Assert.assertNotNull("No encontro id",licenciaEntidad.getId());
-			Assert.assertNotNull(licenciaEntidad.getEscuela());
-			Assert.assertNotNull("No encontro clave de trabajo", licenciaEntidad.getEscuela().getClaveCentroTrabajo());
-			Assert.assertNotNull(licenciaEntidad.getIdEscuela());
+			Assert.assertNotNull(licenciaEntidad.getAdquisicion());
+			Assert.assertNotNull(licenciaEntidad.getInicio());
+			LicenciaEntidadPk licenciaEntidadPk = licenciaEntidad.getLicenciaEntidadPk();
+			Assert.assertNotNull(licenciaEntidadPk.getContador());
+			Assert.assertNotNull(licenciaEntidadPk.getEscuelaEntidad());
 		}
 	}
 
 	@Test
 	public void buscaCuentaEscuela() {
-		Query query = entityManager.createQuery("SELECT l.idEscuela, COUNT (l.idEscuela), MAX(l.inicio) FROM LicenciaEntidad l GROUP BY l.idEscuela");
+		Query query = entityManager.createQuery("SELECT l.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo, " +
+				"COUNT (l.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo), MAX(l.inicio) FROM LicenciaEntidad l " +
+				"GROUP BY l.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo");
 		List<Object[]> respuesta = query.getResultList();
 		Assert.assertNotNull(respuesta);
 		for (Object[] objectos : respuesta) {
@@ -58,4 +61,5 @@ public class LicenciaEntidadTest {
 			}
 		}
 	}
+
 }

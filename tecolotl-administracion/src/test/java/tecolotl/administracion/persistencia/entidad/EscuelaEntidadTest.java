@@ -118,4 +118,5 @@ public class EscuelaEntidadTest {
  			userTransaction.rollback();
 		}
 	}
+
 }

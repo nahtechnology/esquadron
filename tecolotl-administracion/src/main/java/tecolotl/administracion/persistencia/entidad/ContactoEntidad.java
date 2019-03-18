@@ -9,15 +9,26 @@ import java.io.Serializable;
 @Table(name = "contacto", schema = "administracion")
 @NamedQueries({
 		@NamedQuery(name = "ContactoEntidad.busca", query = "SELECT m FROM ContactoEntidad m"),
-		@NamedQuery(name = "ContactoEntidad.buscaCCT", query = "SELECT  m FROM ContactoEntidad m WHERE m.contactoEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
+		@NamedQuery(
+				name = "ContactoEntidad.buscaCCT",
+				query = "SELECT m FROM ContactoEntidad m WHERE m.contactoEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+		)
 })
 public class ContactoEntidad implements Serializable {
 
     private ContactoEntidadPK contactoEntidadPK;
     private String nombre;
     private String telefono;
+    private String correoElectronico;
 
-    @EmbeddedId
+	public ContactoEntidad() {
+	}
+
+	public ContactoEntidad(ContactoEntidadPK contactoEntidadPK) {
+		this.contactoEntidadPK = contactoEntidadPK;
+	}
+
+	@EmbeddedId
 	public ContactoEntidadPK getContactoEntidadPK() {
 		return contactoEntidadPK;
 	}
@@ -26,6 +37,7 @@ public class ContactoEntidad implements Serializable {
 		this.contactoEntidadPK = contactoEntidadPK;
 	}
 
+	@Basic
 	@Column(name = "nombre")
 	@NotNull
 	@Size(min = 11, max = 110)
@@ -37,6 +49,7 @@ public class ContactoEntidad implements Serializable {
 		this.nombre = nombre;
 	}
 
+	@Basic
 	@Column(name = "telefono")
 	@NotNull
 	@Size(min = 7, max = 20)
@@ -48,4 +61,14 @@ public class ContactoEntidad implements Serializable {
 		this.telefono = telefono;
 	}
 
+	@Basic
+	@Column(name = "correo_electronico")
+	@Size(max = 100)
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
 }

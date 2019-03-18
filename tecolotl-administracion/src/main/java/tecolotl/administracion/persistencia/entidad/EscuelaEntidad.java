@@ -12,11 +12,17 @@ import java.util.Objects;
 @NamedQueries({
 	@NamedQuery(
 			name = "EscuelaEntidad.busca",
-			query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"),
+			query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"
+	),
 	@NamedQuery(
 			name = "EscuelaEntidad.detalle",
 			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad LEFT JOIN FETCH e.motivoBloqueoEntidad " +
-					"WHERE e.claveCentroTrabajo=:claveCentroTrabajo")
+					"WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
+	),
+	@NamedQuery(
+			name = "EscuelaEntidad.contactos",
+			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.contactoEntidadLista"
+	)
 })
 public class EscuelaEntidad {
 
@@ -121,6 +127,15 @@ public class EscuelaEntidad {
 		if (motivoBloqueoEntidad == null) {
 			motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)0);
 		}
+	}
+
+	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad")
+	public List<ContactoEntidad> getContactoEntidadLista() {
+		return contactoEntidadLista;
+	}
+
+	public void setContactoEntidadLista(List<ContactoEntidad> contactoEntidadLista) {
+		this.contactoEntidadLista = contactoEntidadLista;
 	}
 
 	@Override

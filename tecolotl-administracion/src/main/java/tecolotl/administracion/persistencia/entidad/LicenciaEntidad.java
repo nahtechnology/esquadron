@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -12,33 +13,20 @@ import javax.validation.constraints.Size;
 @NamedQuery(name = "LicenciaEntidad.busca", query = "SELECT m FROM LicenciaEntidad m")
 public class LicenciaEntidad {
 
-	private short id;
-	private EscuelaEntidad escuela;
+	private LicenciaEntidadPk licenciaEntidadPk;
 	private Date inicio;
-	private String idEscuela;
+	private Date adquisicion;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public short getId() {
-		return id;
+	@EmbeddedId
+	public LicenciaEntidadPk getLicenciaEntidadPk() {
+		return licenciaEntidadPk;
 	}
 
-	public void setId(short id) {
-		this.id = id;
+	public void setLicenciaEntidadPk(LicenciaEntidadPk licenciaEntidadPk) {
+		this.licenciaEntidadPk = licenciaEntidadPk;
 	}
 
-	@NotNull
-	@Size(min = 10, max = 10)
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_escuela", columnDefinition = "clave_centro_trabajo")
-	public EscuelaEntidad getEscuela() {
-		return escuela;
-	}
-
-	public void setEscuela(EscuelaEntidad escuela) {
-		this.escuela = escuela;
-	}
-
+	@Basic(optional = true)
 	@NotNull
 	@Column(name = "inicio")
 	@Temporal(TemporalType.DATE)
@@ -51,24 +39,15 @@ public class LicenciaEntidad {
 	}
 
 	@Basic
-	@Column(name = "id_escuela", insertable = false, updatable = false)
-	public String getIdEscuela() {
-		return idEscuela;
+	@Null
+	@Column(name = "adquisicion", insertable = false)
+	@Temporal(TemporalType.DATE)
+	public Date getAdquisicion() {
+		return adquisicion;
 	}
 
-	public void setIdEscuela(String idEscuela) {
-		this.idEscuela = idEscuela;
-	}
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		LicenciaEntidad that = (LicenciaEntidad) o;
-		return id == that.id;
+	public void setAdquisicion(Date adquisicion) {
+		this.adquisicion = adquisicion;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
 }

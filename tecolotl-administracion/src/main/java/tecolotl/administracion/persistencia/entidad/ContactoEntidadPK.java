@@ -1,9 +1,6 @@
 package tecolotl.administracion.persistencia.entidad;
 
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -12,6 +9,7 @@ public class ContactoEntidadPK implements Serializable {
 
     private TipoContactoEntidad tipoContactoEntidad;
     private EscuelaEntidad escuelaEntidad;
+    private Short contador;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_tipo_contacto", referencedColumnName="clave")
@@ -23,7 +21,6 @@ public class ContactoEntidadPK implements Serializable {
         this.tipoContactoEntidad = tipoContactoEntidad;
     }
 
-
     @ManyToOne
     @JoinColumn(name="id_escuela", referencedColumnName="clave_centro_trabajo")
     public EscuelaEntidad getEscuelaEntidad() {
@@ -32,6 +29,16 @@ public class ContactoEntidadPK implements Serializable {
 
     public void setEscuelaEntidad(EscuelaEntidad escuelaEntidad) {
         this.escuelaEntidad = escuelaEntidad;
+    }
+
+    @Basic
+    @Column(name = "contador", insertable = false, updatable = false)
+    public Short getContador() {
+        return contador;
+    }
+
+    public void setContador(Short contador) {
+        this.contador = contador;
     }
 
     @Override
