@@ -1,6 +1,5 @@
 package tecolotl.administracion.persistencia.entidad;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -16,7 +15,7 @@ import java.util.Objects;
 	),
 	@NamedQuery(
 			name = "EscuelaEntidad.detalle",
-			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad LEFT JOIN FETCH e.motivoBloqueoEntidad " +
+			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad," +
 					"WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
 	),
 	@NamedQuery(
@@ -65,7 +64,7 @@ public class EscuelaEntidad {
 		this.coloniaEntidad = coloniaEntidad;
 	}
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_motivo_bloqueo", referencedColumnName = "clave")
 	public MotivoBloqueoEntidad getMotivoBloqueoEntidad() {
 		return motivoBloqueoEntidad;

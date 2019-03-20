@@ -1,9 +1,7 @@
 package tecolotl.administracion.persistencia.entidad;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
@@ -12,10 +10,11 @@ import java.util.Objects;
 public class CoordinadorEntidadPK implements Serializable {
 
     private EscuelaEntidad escuelaEntidad;
-    private String nickname;
+    private Short contador;
 
+    @NotNull
     @ManyToOne
-    @JoinColumn(name = "escuela_id", referencedColumnName = "clave_centro_trabajo")
+    @JoinColumn(name = "id_escuela", referencedColumnName = "clave_centro_trabajo")
     public EscuelaEntidad getEscuelaEntidad() {
         return escuelaEntidad;
     }
@@ -24,14 +23,15 @@ public class CoordinadorEntidadPK implements Serializable {
         this.escuelaEntidad = escuelaEntidad;
     }
 
-    @Column(name = "nickname")
-    @Size(min = 3, max = 15)
-    public String getNickname() {
-        return nickname;
+    @Basic
+    @Column(name = "contador")
+    @NotNull
+    public Short getContador() {
+        return contador;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setContador(Short contador) {
+        this.contador = contador;
     }
 
     @Override
@@ -40,11 +40,11 @@ public class CoordinadorEntidadPK implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         CoordinadorEntidadPK that = (CoordinadorEntidadPK) o;
         return escuelaEntidad.equals(that.escuelaEntidad) &&
-                nickname.equals(that.nickname);
+                contador.equals(that.contador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(escuelaEntidad, nickname);
+        return Objects.hash(escuelaEntidad, contador);
     }
 }

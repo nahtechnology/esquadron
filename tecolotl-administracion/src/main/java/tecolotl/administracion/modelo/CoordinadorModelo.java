@@ -1,6 +1,4 @@
-package tecolotl.administracion;
-
-import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
+package tecolotl.administracion.modelo;
 
 import java.util.Objects;
 
@@ -20,16 +18,6 @@ public class CoordinadorModelo {
     public CoordinadorModelo(String claveCentroTrabajo, String nickname) {
         this.claveCentroTrabajo = claveCentroTrabajo;
         this.nickname = nickname;
-    }
-
-    public CoordinadorModelo(CoordinadorEntidad coordinadorEntidad) {
-        this.claveCentroTrabajo = coordinadorEntidad.getCoordinadorEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
-        this.nickname = coordinadorEntidad.getCoordinadorEntidadPK().getNickname();
-        this.nombre = coordinadorEntidad.getNombre();
-        this.apellidoPaterno = coordinadorEntidad.getApellidoPaterno();
-        this.apellidoMaterno = coordinadorEntidad.getApellidoMaterno();
-        this.correoElectronico = coordinadorEntidad.getCorreoElectronico();
-        this.contrasenia = coordinadorEntidad.getContrasenia();
     }
 
     public String getClaveCentroTrabajo() {
