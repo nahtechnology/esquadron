@@ -1,5 +1,6 @@
 package tecolotl.administracion.sesion;
 
+import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
@@ -13,6 +14,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 import java.util.logging.Logger;
@@ -78,8 +81,11 @@ public class EscuelaSesionBean {
 		}
 	}
 
-
-	public void inserta(EscuelaDetalleModelo escuelaDetalleModelo) {
+	/**
+	 * Inserta una escuela
+	 * @param escuelaDetalleModelo Datos de la escuela a ser insertados
+	 */
+	public void inserta(@NotNull EscuelaDetalleModelo escuelaDetalleModelo) {
 		logger.fine("Escuela a persistir:".concat(escuelaDetalleModelo.toString()));
 		EscuelaEntidad escuelaEntidad = new EscuelaEntidad(escuelaDetalleModelo.getClaveCentroTrabajo());
 		escuelaEntidad.setNombre(escuelaDetalleModelo.getNombre());
@@ -88,55 +94,92 @@ public class EscuelaSesionBean {
 		escuelaEntidad.setNumeroInterior(escuelaDetalleModelo.getNumeroInterior());
 		ColoniaEntidad coloniaEntidad = new ColoniaEntidad(escuelaDetalleModelo.getColoniaModelo().getId());
 		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
-		logger.fine(escuelaEntidad::toString);
+		logger.finer(escuelaEntidad.toString());
+		entityManager.persist(escuelaEntidad);
 	}
 
 	/**
-	 * Realiza cambios a una escuela existente, los cambios que se pueden realizar son en su clave de trabajo, colonia,nombre de escuela
-	 * @param claveCentroTrabajo Identificador unico  de la escuela
-	 * @param colonia identificador a la cual perterece la escuela
-	 * @param nombre Nombre de la escuela
-	 * @param domicilio Calle y número donde se encuentra la escuela
+	 * Actualiza los datos de una escuela
+	 * @param escuelaDetalleModelo Datos que serán actualizadps
+	 * @return Número de elementos modificados, cero en caso de no haber cambios
 	 */
-	public EscuelaEntidad actualizar(String claveCentroTrabajo, int colonia, String nombre,String domicilio) {
-	    if (claveCentroTrabajo == null) {
-	        return null;
-        }
-    	EscuelaEntidad escuelaEntidad= entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
-    	ColoniaEntidad coloniaEntidad= new ColoniaEntidad();
-		coloniaEntidad.setId(colonia);
-		escuelaEntidad.setNombre(nombre);
-		escuelaEntidad.setDomicilio(domicilio);
-		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
-		return escuelaEntidad;
+	public int actualizar(@NotNull @Valid EscuelaDetalleModelo escuelaDetalleModelo) {
+		logger.fine("Escuela a actualizar:".concat(escuelaDetalleModelo.toString()));
+	    int cambios = 0;
+		if (escuelaDetalleModelo != null) {
+			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+			CriteriaUpdate<EscuelaEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(EscuelaEntidad.class);
+			Root<EscuelaEntidad> root = criteriaUpdate.from(EscuelaEntidad.class);
+			Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), escuelaDetalleModelo.getClaveCentroTrabajo());
+			criteriaUpdate.set(root.get("nombre"), escuelaDetalleModelo.getNombre());
+			criteriaUpdate.set(root.get("domicilio"), escuelaDetalleModelo.getDomicilio());
+			criteriaUpdate.set(root.get("numeroInterior"), escuelaDetalleModelo.getNumeroInterior());
+			criteriaUpdate.set(root.get("numeroExterior"), escuelaDetalleModelo.getNumeroExterior());
+			ColoniaEntidad coloniaEntidad = new ColoniaEntidad(escuelaDetalleModelo.getColoniaModelo().getId());
+			criteriaUpdate.set(root.get("coloniaEntidad"), coloniaEntidad);
+			criteriaUpdate.where(predicate);
+			cambios = entityManager.createQuery(criteriaUpdate).executeUpdate();
+		}
+		return cambios;
     }
 
-/*	public void bloqueo (String claveCentroTrabajo, Short motivoBloqueo) {
-		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
-		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad();
-		motivoBloqueoEntidad.setId(motivoBloqueo);
-		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
-	}*/
-
-/*	public EscuelaDetalleDto busca(String claveCentroTrabajo) {
-		if (claveCentroTrabajo == null) {
-			return null;
+	/**
+	 * Cambia el estatus de motivo de bloque de una escuela, los parámetros son validados para que sean diferentes de nulo
+	 * ya que si alguno de ellos son nulo no se puede seralzar los cambios. En caso de que la escuela con la CCT no exista
+	 * no se actualiza ningún dato.
+	 * @param escuelaBaseModelo Escuela a ser actualizada
+	 * @param motivoBloqueoModelo Motivo de Bloque con el que se le bloquea
+	 * @return Elementos modificados, cero en caso de no existir la escuela y diferente de cero si se actualiza correctamente
+	 */
+	public int bloqueo (@NotNull EscuelaBaseModelo escuelaBaseModelo, @NotNull MotivoBloqueoModelo motivoBloqueoModelo) {
+		int modificados = 0;
+		logger.finer("Escuela a actualizar:".concat(escuelaBaseModelo.toString()).concat(" con motivo de bloqueo:").concat(motivoBloqueoModelo.toString()));
+		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, escuelaBaseModelo.getClaveCentroTrabajo());
+		if (escuelaEntidad == null) {
+			logger.fine("No se puede actualizar esta escuela:".concat(escuelaBaseModelo.getClaveCentroTrabajo())
+					.concat(" por que no existe en la base de datos"));
+		} else {
+			MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad(motivoBloqueoModelo.getClave());
+			escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
+			modificados = 1;
 		}
-		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaDesatalle", EscuelaEntidad.class);
+		return modificados;
+	}
+
+	/**
+	 * Busca los detalle de una escuela, en caso de no existir se regresa nulo.
+	 * @param claveCentroTrabajo Clave Centro de Trabajo .
+	 * @return {@link EscuelaDetalleModelo} Con los datos, nulo en caso de no localizarse.
+	 */
+	public EscuelaDetalleModelo busca(@NotNull String claveCentroTrabajo) {
+		logger.fine(claveCentroTrabajo);
+		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.detalle", EscuelaEntidad.class);
 		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
 		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
-		TypedQuery<ContactoEntidad> contactoEntidadTypedQuery =entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class);
-		contactoEntidadTypedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
-		List<ContactoEntidad> contactoEntidadList = contactoEntidadTypedQuery.getResultList();
-		escuelaEntidad.setContacto(contactoEntidadList);
-		return new EscuelaDetalleDto(escuelaEntidad);
+		return escuelaEntidad == null ? null : new EscuelaDetalleModelo(escuelaEntidad);
 	}
-*/
 
-/*	public EscuelaDto elimina(String claveCentroTrabajo) {
-		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
-		entityManager.remove(escuelaEntidad);
-		return new EscuelaDto(escuelaEntidad);
+	/**
+	 * Busca una escuela con los datos base de una escula o CCT, en caso de no existir regresa nulo.
+	 * @param escuelaBaseModelo Escuela base con la CCT para buscar
+	 * @return
+	 */
+	public EscuelaDetalleModelo busca(@Valid @NotNull EscuelaBaseModelo escuelaBaseModelo) {
+		return busca(escuelaBaseModelo.getClaveCentroTrabajo());
 	}
-*/
+
+	/**
+	 * Remueve una escuela partiendo
+	 * @param claveCentroTrabajo
+	 * @return
+	 */
+	public int elimina(@NotNull String claveCentroTrabajo) {
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaDelete<EscuelaEntidad> criteriaDelete = criteriaBuilder.createCriteriaDelete(EscuelaEntidad.class);
+		Root<EscuelaEntidad> root = criteriaDelete.from(EscuelaEntidad.class);
+		Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), claveCentroTrabajo);
+		criteriaDelete.where(predicate);
+		return entityManager.createQuery(criteriaDelete).executeUpdate();
+	}
+
 }

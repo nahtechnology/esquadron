@@ -1,6 +1,5 @@
 package tecolotl.administracion.modelo.escuela;
 
-import tecolotl.administracion.modelo.ColoniaModelo;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 
 import javax.validation.constraints.NotNull;

@@ -1,4 +1,6 @@
-package tecolotl.administracion.modelo;
+package tecolotl.administracion.modelo.direccion;
+
+import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 
 import java.util.Collection;
 

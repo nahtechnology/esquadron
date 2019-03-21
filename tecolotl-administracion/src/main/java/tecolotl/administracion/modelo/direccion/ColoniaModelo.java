@@ -1,4 +1,4 @@
-package tecolotl.administracion.modelo;
+package tecolotl.administracion.modelo.direccion;
 
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 
