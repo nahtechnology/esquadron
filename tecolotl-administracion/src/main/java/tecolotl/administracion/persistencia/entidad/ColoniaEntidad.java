@@ -6,6 +6,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "colonia", schema = "administracion")
+@SequenceGenerator(name = "generador_defecto", schema = "administracion", sequenceName = "colonia_seq", allocationSize = 1)
 @NamedQueries({
 	@NamedQuery(
         name = "ColoniaEntidad.buscaMunicipioEstado",
@@ -31,7 +32,7 @@ public class ColoniaEntidad {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador_defecto")
     public Integer getId() {
         return id;
     }

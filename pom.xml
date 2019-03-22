@@ -99,11 +99,6 @@
     <build>
         <pluginManagement>
             <plugins>
-                <!-- The WildFly plugin deploys your ear to a local JBoss
-                    AS container -->
-                <!-- Due to Maven's lack of intelligence with EARs we need 
-                    to configure the wildfly maven plugin to skip deployment for all modules.
-                    We then enable it specifically in the ear module. -->
                 <plugin>
                     <groupId>org.wildfly.plugins</groupId>
                     <artifactId>wildfly-maven-plugin</artifactId>
@@ -115,6 +110,18 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
     </build>
 
     <modules>
@@ -124,4 +131,5 @@
     	<module>tecolotl-alumno</module>
         <module>tecolotl-administracion</module>
     </modules>
+
 </project>

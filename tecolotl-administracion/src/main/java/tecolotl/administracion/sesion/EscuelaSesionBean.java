@@ -149,7 +149,7 @@ public class EscuelaSesionBean {
 	/**
 	 * Busca los detalle de una escuela, en caso de no existir se regresa nulo.
 	 * @param claveCentroTrabajo Clave Centro de Trabajo .
-	 * @return {@link EscuelaDetalleModelo} Con los datos, nulo en caso de no localizarse.
+	 * @return {@link EscuelaDetalleModelo} Con los datos.
 	 */
 	public EscuelaDetalleModelo busca(@NotNull String claveCentroTrabajo) {
 		logger.fine(claveCentroTrabajo);
@@ -162,7 +162,7 @@ public class EscuelaSesionBean {
 	/**
 	 * Busca una escuela con los datos base de una escula o CCT, en caso de no existir regresa nulo.
 	 * @param escuelaBaseModelo Escuela base con la CCT para buscar
-	 * @return
+	 * @return {@link EscuelaDetalleModelo} Con los datos.
 	 */
 	public EscuelaDetalleModelo busca(@Valid @NotNull EscuelaBaseModelo escuelaBaseModelo) {
 		return busca(escuelaBaseModelo.getClaveCentroTrabajo());
@@ -171,7 +171,7 @@ public class EscuelaSesionBean {
 	/**
 	 * Remueve una escuela partiendo
 	 * @param claveCentroTrabajo
-	 * @return
+	 * @return Número de elementos modificados
 	 */
 	public int elimina(@NotNull String claveCentroTrabajo) {
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();

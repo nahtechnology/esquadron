@@ -3,13 +3,21 @@ package tecolotl.administracion.modelo.direccion;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
+/**
+ * Representa los datos de una colonia.
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
+ */
 public class ColoniaModelo {
 
     @NotNull
+    @Min(0)
     private Integer id;
 
     @NotNull(groups = {ColoniaNuevaValidacion.class})
@@ -23,6 +31,10 @@ public class ColoniaModelo {
     public ColoniaModelo() {
     }
 
+    /**
+     * Construye una colonia por identificador.
+     * @param id Indentificador de la colonia.
+     */
     public ColoniaModelo(Integer id) {
         this.id = id;
     }

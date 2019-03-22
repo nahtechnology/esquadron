@@ -1,6 +1,7 @@
 package tecolotl.administracion.modelo.direccion;
 
 import tecolotl.administracion.persistencia.entidad.MunicipioEntidad;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -27,6 +28,7 @@ public class MunicipioModelo {
         nombre = municipioEntidad.getNombre();
     }
 
+    @NotNull
     public Integer getId() {
         return id;
     }
@@ -36,7 +38,7 @@ public class MunicipioModelo {
     }
 
     @NotNull
-    @Size(min = 3, max = 50)
+    @Size(min = 3, max = 50, groups = {ColoniaNuevaValidacion.class})
     public String getNombre() {
         return nombre;
     }
