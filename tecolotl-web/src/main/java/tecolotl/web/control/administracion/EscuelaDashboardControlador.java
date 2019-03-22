@@ -1,12 +1,11 @@
 package tecolotl.web.control.administracion;
 
 import tecolotl.administracion.dto.*;
-import tecolotl.administracion.sesion.ColoniaSesionBean;
+import tecolotl.administracion.sesion.DireccionSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.web.control.PaginadorControlador;
 import tecolotl.web.enumeracion.EscuelaOrdenamiento;
-import tecolotl.web.modelo.administracion.PaginacionModeloDato;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -31,7 +30,7 @@ public class EscuelaDashboardControlador extends PaginadorControlador<EscuelaDto
     private EscuelaSesionBean escuelaSesionBean;
 
     @Inject
-    private ColoniaSesionBean coloniaSesionBean;
+    private DireccionSesionBean coloniaSesionBean;
 
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;

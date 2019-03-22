@@ -1,6 +1,7 @@
 package tecolotl.administracion.modelo.direccion;
 
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,12 +12,12 @@ public class ColoniaModelo {
     @NotNull
     private Integer id;
 
-    @NotNull
-    @Size(min = 4, max = 5)
+    @NotNull(groups = {ColoniaNuevaValidacion.class})
+    @Size(min = 4, max = 5, groups = {ColoniaNuevaValidacion.class})
     private String codigoPostal;
 
-    @NotNull
-    @Size(min = 3, max = 70)
+    @NotNull(groups = {ColoniaNuevaValidacion.class})
+    @Size(min = 3, max = 70, groups = {ColoniaNuevaValidacion.class})
     private String nombre;
 
     public ColoniaModelo() {

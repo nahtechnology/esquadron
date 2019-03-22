@@ -7,8 +7,14 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name = "colonia", schema = "administracion")
 @NamedQueries({
-	@NamedQuery(name = "ColoniaEntidad.buscaCodigoPostal",
-            query = "SELECT c FROM ColoniaEntidad c LEFT JOIN FETCH c.municipio WHERE c.codigoPostal=:codigoPostal ORDER BY c.nombre" )
+	@NamedQuery(
+        name = "ColoniaEntidad.buscaMunicipioEstado",
+        query = "SELECT c FROM ColoniaEntidad c LEFT JOIN FETCH c.municipio m LEFT JOIN FETCH m.estado WHERE c.id=:id ORDER BY c.nombre"
+    ),
+    @NamedQuery(
+        name = "ColoniaEntidad.buscaCodigoPostal",
+        query = "SELECT c FROM ColoniaEntidad c WHERE c.codigoPostal =:codigoPostal"
+    )
 })
 public class ColoniaEntidad {
 

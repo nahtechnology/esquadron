@@ -14,6 +14,7 @@ import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
+import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -101,6 +102,13 @@ public class EscuelaSesionBeanTest {
 		escuelaSesionBean.elimina(null);
 	}
 
+	@Test
+	public void bloqueo() {
+		EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("0000000000");
+		MotivoBloqueoModelo motivoBloqueoModelo = new MotivoBloqueoModelo((short)0);
+		int cambios = escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
+		Assert.assertFalse(cambios == 0);
+	}
 }
 
 
