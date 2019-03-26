@@ -4,7 +4,6 @@ import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Init;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
