@@ -27,6 +27,7 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @RunWith(Arquillian.class)
 public class ContactoSesionBeanTest {
@@ -60,19 +61,44 @@ public class ContactoSesionBeanTest {
         contactoModelo.setTelefono("2226348142");
         contactoModelo.setCorreoElectronico("correo@servidor.com");
         contactoSesionBean.inserta(contactoModelo);
-        Assert.assertNotNull(contactoModelo.getContador());
     }
 
     @Test
     public void busca() {
-
+        List<ContactoModelo> contactoModeloLista = contactoSesionBean.busca("0000000000");
+        Assert.assertNotNull(contactoModeloLista);
+        Assert.assertFalse(contactoModeloLista.isEmpty());
+        for (ContactoModelo contactoModelo : contactoModeloLista) {
+            Assert.assertNotNull(contactoModelo);
+            Assert.assertNotNull(contactoModelo.getClaveCentroTrabajo());
+            Assert.assertNotNull(contactoModelo.getClave());
+            Assert.assertNotNull(contactoModelo.getContador());
+            Assert.assertNotNull(contactoModelo.getCorreoElectronico());
+            Assert.assertNotNull(contactoModelo.getNombre());
+            Assert.assertNotNull(contactoModelo.getTelefono());
+        }
     }
 
     @Test
     public void elimina() {
+        ContactoModelo contactoModelo = new ContactoModelo();
+        contactoModelo.setClave((short)1);
+        contactoModelo.setContador((short)1);
+        contactoModelo.setClaveCentroTrabajo("0000000000");
+        int modificados = contactoSesionBean.elimina(contactoModelo);
+        Assert.assertFalse(modificados == 0);
     }
 
     @Test
     public void actualiza() {
+        ContactoModelo contactoModelo = new ContactoModelo();
+        contactoModelo.setClave((short)1);
+        contactoModelo.setContador((short)2);
+        contactoModelo.setClaveCentroTrabajo("0000000000");
+        contactoModelo.setNombre("Jose Emanuel lopez");
+        contactoModelo.setTelefono("2229338844");
+        contactoModelo.setCorreoElectronico("correo2@servidor.com");
+        int modificados = contactoSesionBean.actualiza(contactoModelo);
+        Assert.assertFalse(modificados == 0);
     }
 }

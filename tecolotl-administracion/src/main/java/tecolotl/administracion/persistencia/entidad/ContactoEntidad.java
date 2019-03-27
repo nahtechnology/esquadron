@@ -12,10 +12,6 @@ import java.io.Serializable;
 		@NamedQuery(
 				name = "ContactoEntidad.buscaCCT",
 				query = "SELECT m FROM ContactoEntidad m WHERE m.contactoEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
-		),
-		@NamedQuery(
-				name = "ContactoEntidad.elimina",
-				query = "DELETE FROM ContactoEntidad c WHERE c.contactoEntidadPK = :contactoEntidadPK"
 		)
 })
 public class ContactoEntidad implements Serializable {

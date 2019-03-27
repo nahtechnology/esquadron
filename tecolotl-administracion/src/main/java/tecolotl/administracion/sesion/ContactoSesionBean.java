@@ -14,10 +14,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -79,13 +76,18 @@ public class ContactoSesionBean {
      * Elimina una escuela.
      * @param contactoModelo Datos de la escuela a ser eliminado.
      * @return Número de elementos modificados.
+     * @exception javax.validation.ConstraintViolationException En caso de que los elementos: clave centro de trabajo, tipo contacto
+     * y contador no existan
      */
     public int elimina(@NotNull ContactoModelo contactoModelo) {
         validadorSessionBean.validacion(contactoModelo, ContactoLlavePrimariaValidacion.class);
         logger.fine(contactoModelo.toString());
-        TypedQuery<ContactoEntidad> typedQuery = entityManager.createNamedQuery("ContactoEntidad.elimina", ContactoEntidad.class);
-        typedQuery.setParameter("contactoEntidadPK", creaLlavePrimaria(contactoModelo));
-        return typedQuery.executeUpdate();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaDelete<ContactoEntidad> criteriaDelete = criteriaBuilder.createCriteriaDelete(ContactoEntidad.class);
+        Root<ContactoEntidad> root = criteriaDelete.from(ContactoEntidad.class);
+        Predicate predicate = criteriaBuilder.equal(root.get("contactoEntidadPK"), creaLlavePrimaria(contactoModelo));
+        criteriaDelete.where(predicate);
+        return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
     /**
