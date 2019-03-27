@@ -1,70 +1,120 @@
 package tecolotl.administracion.sesion;
 
+import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidadPK;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.TipoContactoEntidad;
+import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
+import tecolotl.administracion.validacion.escuela.ContactoNuevoValidacion;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
+/**
+ * Manejo de los contactos de una escuela
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
+ */
 @Stateless
 public class ContactoSesionBean {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-/*    public ContactoDto inserta(String claveCentroTrabajo, Short tipoContacto, String nombre, String telefono) {
-        ContactoEntidad contactoEntidad = new ContactoEntidad();
-        ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
-        contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(claveCentroTrabajo));
-        contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad(tipoContacto));
-        contactoEntidad.setNombre(nombre);
-        contactoEntidad.setTelefono(telefono);
-        contactoEntidad.setContactoEntidadPK(contactoEntidadPK);
+    @Inject
+    private ValidadorSessionBean validadorSessionBean;
+
+    @Inject
+    private Logger logger;
+
+    /**
+     * Busca todos los contactos de una escuela.
+     * @param claveCentrotrabajo Clave Centro de Trabajo de la escuela a buscar los contactos.
+     * @return Coleccióon con los contactos encontrados, vacio en caso de no existir.
+     */
+    public List<ContactoModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentrotrabajo) {
+        List<ContactoModelo> contactoModeloLista = new ArrayList<>();
+        logger.fine("Escuela a busca:".concat(claveCentrotrabajo));
+        TypedQuery<ContactoEntidad> typedQuery = entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentrotrabajo);
+        for (ContactoEntidad contactoEntidad : typedQuery.getResultList()) {
+            contactoModeloLista.add(new ContactoModelo(contactoEntidad));
+        }
+        return contactoModeloLista;
+    }
+
+    /**
+     * Inserta una contacto. El número generado se inserta automaticamente
+     * @param contactoModelo Datos del nuevo contacto.
+     * @exception javax.validation.ConstraintViolationException En caso de que algunos de los campos no sean validos para
+     * la insercción, diche excepcion contiene una colección detalla de los campos que no pasaron.
+     */
+    public void inserta(@NotNull ContactoModelo contactoModelo) {
+        validadorSessionBean.validacion(contactoModelo, ContactoNuevoValidacion.class);
+        logger.fine(contactoModelo.toString());
+        ContactoEntidad contactoEntidad = new ContactoEntidad(creaLlavePrimaria(contactoModelo));
+        contactoEntidad.setNombre(contactoModelo.getNombre());
+        contactoEntidad.setTelefono(contactoModelo.getTelefono());
+        contactoEntidad.setCorreoElectronico(contactoModelo.getCorreoElectronico());
         entityManager.persist(contactoEntidad);
-        return new ContactoDto(contactoEntidad);
-    }*/
-
-    /**
-     * Elimina un contacno
-     * @param claveCentroTrabajo Escuela a remover el contacto
-     * @param tipoContacto Tipo de contacto a remover
-     */
-    public void elimina(String claveCentroTrabajo, Short tipoContacto) {
-        if (claveCentroTrabajo == null || tipoContacto == null) {
-            return;
-        }
-        ContactoEntidad contactoEntidad = entityManager.find(ContactoEntidad.class, creaLlavePrimaria(claveCentroTrabajo, tipoContacto));
-        entityManager.remove(contactoEntidad);
+        contactoModelo.setContador(contactoEntidad.getContactoEntidadPK().getContador());
     }
 
     /**
-     * Actualiza los datos de un contacto
-     * @param claveCentroTrabajo Escuela a la que pertenece el contacto
-     * @param tipoContacto Identificador del ripo de contacto
-     * @param nombre Nombre del contacto
-     * @param telefono Telefono del contacto
-     * @return Número de elementos modificados, cero en caso de no realizar modificaciones
+     * Elimina una escuela.
+     * @param contactoModelo Datos de la escuela a ser eliminado.
+     * @return Número de elementos modificados.
      */
-    public void actualiza(String claveCentroTrabajo, Short tipoContacto, String nombre, String telefono) {
-        if (claveCentroTrabajo == null || tipoContacto == null) {
-            return;
-        }
-        ContactoEntidad contactoEntidad = entityManager.find(ContactoEntidad.class, creaLlavePrimaria(claveCentroTrabajo, tipoContacto));
-        contactoEntidad.setTelefono(telefono);
-        contactoEntidad.setNombre(nombre);
+    public int elimina(@NotNull ContactoModelo contactoModelo) {
+        validadorSessionBean.validacion(contactoModelo, ContactoLlavePrimariaValidacion.class);
+        logger.fine(contactoModelo.toString());
+        TypedQuery<ContactoEntidad> typedQuery = entityManager.createNamedQuery("ContactoEntidad.elimina", ContactoEntidad.class);
+        typedQuery.setParameter("contactoEntidadPK", creaLlavePrimaria(contactoModelo));
+        return typedQuery.executeUpdate();
     }
 
-    private ContactoEntidadPK creaLlavePrimaria(String claveCentroTrabajo, Short tipoContacto) {
+    /**
+     * Actualiza los datos de un contacto.
+     * @param contactoModelo Datos a ser actualizados.
+     * @return Número de elementos modificados.
+     */
+    public int actualiza(@NotNull @Valid ContactoModelo contactoModelo) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaUpdate<ContactoEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ContactoEntidad.class);
+        Root<ContactoEntidad> root = criteriaUpdate.from(ContactoEntidad.class);
+        Predicate predicate = criteriaBuilder.equal(root.get("contactoEntidadPK"), creaLlavePrimaria(contactoModelo));
+        criteriaUpdate.set(root.get("nombre"), contactoModelo.getNombre());
+        criteriaUpdate.set(root.get("telefono"), contactoModelo.getTelefono());
+        criteriaUpdate.set(root.get("correoElectronico"), contactoModelo.getCorreoElectronico());
+        criteriaUpdate.where(predicate);
+        return entityManager.createQuery(criteriaUpdate).executeUpdate();
+    }
+
+    /**
+     * Generamos una llave primaria del tipo {@link ContactoEntidadPK}
+     * @param contactoModelo Datos originarios para crear la llave primaria
+     * @return Llave primaria
+     */
+    private ContactoEntidadPK creaLlavePrimaria(ContactoModelo contactoModelo) {
         ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
-        contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(claveCentroTrabajo));
-        contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad(tipoContacto));
+        contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad(contactoModelo.getClave()));
+        contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(contactoModelo.getClaveCentroTrabajo()));
+        contactoEntidadPK.setContador(contactoModelo.getContador());
         return contactoEntidadPK;
     }
 }

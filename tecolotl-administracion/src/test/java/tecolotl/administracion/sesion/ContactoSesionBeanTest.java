@@ -9,7 +9,22 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.direccion.ColoniaModelo;
+import tecolotl.administracion.modelo.escuela.ContactoModelo;
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
+import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
+import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
+import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
+import tecolotl.administracion.validacion.escuela.ContactoNuevoValidacion;
+import tecolotl.nucleo.herramienta.LoggerProducer;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.modelo.CatalogoModelo;
+import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.sesion.CatalogoSesionBean;
 
 import javax.inject.Inject;
 
@@ -19,8 +34,16 @@ public class ContactoSesionBeanTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(ContactoSesionBean.class)
-                .addPackage(ContactoEntidad.class.getPackage())
+                .addClasses(ContactoSesionBean.class, ContactoModelo.class, LoggerProducer.class, ValidadorSessionBean.class,
+                        CatalagoEntidad.class, CoordinadorEntidad.class, PersonaEntidad.class, ContactoLlavePrimariaValidacion.class,
+                        ContactoNuevoValidacion.class, ColoniaNuevaValidacion.class)
+                .addPackage(EscuelaSesionBean.class.getPackage())
+                .addPackage(EscuelaEntidad.class.getPackage())
+                .addPackage(ColoniaModelo.class.getPackage())
+                .addPackage(EscuelaBaseModelo.class.getPackage())
+                .addPackage(CatalogoModelo.class.getPackage())
+                .addPackage(MotivoBloqueoSesionBean.class.getPackage())
+                .addPackage(CatalogoSesionBean.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -28,14 +51,28 @@ public class ContactoSesionBeanTest {
     @Inject
     private ContactoSesionBean contactoSesionBean;
 
+    @Test
+    public void inserta() {
+        ContactoModelo contactoModelo = new ContactoModelo();
+        contactoModelo.setClaveCentroTrabajo("0000000000");
+        contactoModelo.setClave((short)1);
+        contactoModelo.setNombre("Jose Ismael Gozalez Sontecomani");
+        contactoModelo.setTelefono("2226348142");
+        contactoModelo.setCorreoElectronico("correo@servidor.com");
+        contactoSesionBean.inserta(contactoModelo);
+        Assert.assertNotNull(contactoModelo.getContador());
+    }
+
+    @Test
+    public void busca() {
+
+    }
 
     @Test
     public void elimina() {
-        contactoSesionBean.elimina("21DBA0035W", (short)-32765);
     }
 
     @Test
     public void actualiza() {
-        contactoSesionBean.actualiza("21DBA0035W", (short)-32765, "Jose Maria Espiza", "2345-5467");
     }
 }

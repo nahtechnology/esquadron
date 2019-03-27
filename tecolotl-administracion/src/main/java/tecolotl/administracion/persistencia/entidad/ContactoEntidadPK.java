@@ -11,6 +11,15 @@ public class ContactoEntidadPK implements Serializable {
     private EscuelaEntidad escuelaEntidad;
     private Short contador;
 
+    public ContactoEntidadPK() {
+    }
+
+    public ContactoEntidadPK(TipoContactoEntidad tipoContactoEntidad, EscuelaEntidad escuelaEntidad, Short contador) {
+        this.tipoContactoEntidad = tipoContactoEntidad;
+        this.escuelaEntidad = escuelaEntidad;
+        this.contador = contador;
+    }
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_tipo_contacto", referencedColumnName="clave")
     public TipoContactoEntidad getTipoContactoEntidad() {
