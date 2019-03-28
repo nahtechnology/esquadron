@@ -1,21 +1,28 @@
 package tecolotl.administracion.persistencia.entidad;
 
-import java.util.Date;
-import java.util.Objects;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name= "licencia", schema= "administracion")
-@NamedQuery(name = "LicenciaEntidad.busca", query = "SELECT m FROM LicenciaEntidad m")
+@NamedQueries({
+	@NamedQuery(name = "LicenciaEntidad.busca", query = "SELECT m FROM LicenciaEntidad m"),
+	@NamedQuery(
+		name = "LicenciaEntidad.buscaEscuela",
+		query = "SELECT m FROM LicenciaEntidad m WHERE m.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
+})
 public class LicenciaEntidad {
 
 	private LicenciaEntidadPk licenciaEntidadPk;
 	private Date inicio;
 	private Date adquisicion;
+
+	public LicenciaEntidad() {
+	}
+
+	public LicenciaEntidad(LicenciaEntidadPk licenciaEntidadPk) {
+		this.licenciaEntidadPk = licenciaEntidadPk;
+	}
 
 	@EmbeddedId
 	public LicenciaEntidadPk getLicenciaEntidadPk() {
@@ -26,9 +33,8 @@ public class LicenciaEntidad {
 		this.licenciaEntidadPk = licenciaEntidadPk;
 	}
 
-	@Basic(optional = true)
-	@NotNull
-	@Column(name = "inicio")
+	@Basic
+	@Column(name = "inicio", insertable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
 	public Date getInicio() {
 		return inicio;
@@ -39,7 +45,6 @@ public class LicenciaEntidad {
 	}
 
 	@Basic
-	@Null
 	@Column(name = "adquisicion", insertable = false)
 	@Temporal(TemporalType.DATE)
 	public Date getAdquisicion() {
