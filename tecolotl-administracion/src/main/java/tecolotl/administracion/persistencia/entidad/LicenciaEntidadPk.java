@@ -2,6 +2,7 @@ package tecolotl.administracion.persistencia.entidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Embeddable
 public class LicenciaEntidadPk implements Serializable {
@@ -27,5 +28,19 @@ public class LicenciaEntidadPk implements Serializable {
 
     public void setEscuelaEntidad(EscuelaEntidad escuelaEntidad) {
         this.escuelaEntidad = escuelaEntidad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LicenciaEntidadPk that = (LicenciaEntidadPk) o;
+        return contador.equals(that.contador) &&
+                escuelaEntidad.equals(that.escuelaEntidad);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(contador, escuelaEntidad);
     }
 }

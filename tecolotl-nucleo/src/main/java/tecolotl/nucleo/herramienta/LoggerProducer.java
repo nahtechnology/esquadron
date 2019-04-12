@@ -1,9 +1,11 @@
 package tecolotl.nucleo.herramienta;
 
+import javax.ejb.Singleton;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 import java.util.logging.Logger;
 
+@Singleton
 public class LoggerProducer {
 
     @Produces

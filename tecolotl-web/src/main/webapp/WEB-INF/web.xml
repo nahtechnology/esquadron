@@ -7,17 +7,7 @@
 
 	<display-name>tecolotl-web</display-name>
 
-	<context-param>
-		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
-		<param-value>true</param-value>
-	</context-param>
-    <context-param>
-        <param-name>javax.faces.CONFIG_FILES</param-name>
-        <param-value>/administracion/detalleEscuela.xml</param-value>
-    </context-param>
-
-    <!-- servlet de jsf -->
-
+	<!-- servlet de jsf -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -33,35 +23,4 @@
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
 
-	<!-- seguridad
-
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Administracion</web-resource-name>
-			<url-pattern>/administracion/*</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>administrador</role-name>
-		</auth-constraint>
-		<user-data-constraint>
-			<transport-guarantee>NONE</transport-guarantee>
-		</user-data-constraint>
-	</security-constraint>
-
-	<login-config>
-		<auth-method>FORM</auth-method>
-		<form-login-config>
-			<form-login-page>/WEB-INF/login.xhtml</form-login-page>
-			<form-error-page>/WEB-INF/error.xhtml</form-error-page>
-		</form-login-config>
-	</login-config>
-
-
-	<security-role>
-		<description>Usuario administrador del sistema de Tecolotl</description>
-		<role-name>administrador</role-name>
-	</security-role>
-	-->
 </web-app>

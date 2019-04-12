@@ -10,10 +10,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "coordinador", schema = "administracion")
 @NamedQueries({
-    @NamedQuery(
-            name = "CoordinadorEntidad.busca",
-            query = "SELECT c FROM CoordinadorEntidad c "
-    )
+        @NamedQuery(
+                name = "CoordinadorEntidad.busca",
+                query = "SELECT c FROM CoordinadorEntidad c "
+        ),
+        @NamedQuery(
+                name = "CoordinadorEntidad.buscaEscuela",
+                query = "SELECT c FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+        )
 })
 public class CoordinadorEntidad extends PersonaEntidad {
 
