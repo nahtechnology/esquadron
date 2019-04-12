@@ -1,4 +1,4 @@
-package tecolotl.nucleo.persistencia.entidad;
+package tecolotl.alumno.entidad;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -10,20 +10,23 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class AdministradorEntidadTest {
+public class NivelLenguajeEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClass(AdministradorEntidad.class)
+                .addClasses(NivelLenguajeEntidad.class, CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -32,13 +35,15 @@ public class AdministradorEntidadTest {
     private EntityManager entityManager;
 
     @Test
-    public void buscaNombre() {
-        TypedQuery<AdministradorEntidad> typedQuery = entityManager.createNamedQuery("AdministradorEntidad.buscaApodo", AdministradorEntidad.class);
-        typedQuery.setParameter("apodo", "admin");
-        AdministradorEntidad administradorEntidad = typedQuery.getSingleResult();
-        Assert.assertNotNull(administradorEntidad);
-        Assert.assertNotNull(administradorEntidad.getNombre());
-        Assert.assertNotNull(administradorEntidad.getApellidoMaterno());
-        Assert.assertNotNull(administradorEntidad.getApellidoPaterno());
+    public void busca() {
+        TypedQuery<NivelLenguajeEntidad> typedQuery = entityManager.createNamedQuery("NivelLenguajeEntidad.busca", NivelLenguajeEntidad.class);
+        List<NivelLenguajeEntidad> nivelLenguajeEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(nivelLenguajeEntidadLista);
+        Assert.assertFalse(nivelLenguajeEntidadLista.isEmpty());
+        for (NivelLenguajeEntidad nivelLenguajeEntidad : nivelLenguajeEntidadLista) {
+            Assert.assertNotNull(nivelLenguajeEntidad);
+            Assert.assertNotNull(nivelLenguajeEntidad.getClave());
+            Assert.assertNotNull(nivelLenguajeEntidad.getValor());
+        }
     }
 }
