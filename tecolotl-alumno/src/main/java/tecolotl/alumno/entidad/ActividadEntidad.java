@@ -4,13 +4,14 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "actividad", schema = "alumno")
 @SequenceGenerator(name = "generador",sequenceName = "actividad_seq", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a"
+        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a "
         )
 })
 public class ActividadEntidad {
@@ -22,6 +23,7 @@ public class ActividadEntidad {
     private String lenguaje;
     private String trasncipcion;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
+    private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador")
@@ -94,13 +96,27 @@ public class ActividadEntidad {
     }
 
     @ManyToOne
-    @JoinColumn(columnDefinition = "id_tipo_estudiante")
+    @JoinColumn(name = "id_tipo_estudiante")
     public TipoEstudianteEntidad getTipoEstudianteEntidad() {
         return tipoEstudianteEntidad;
     }
 
     public void setTipoEstudianteEntidad(TipoEstudianteEntidad tipoEstudianteEntidad) {
         this.tipoEstudianteEntidad = tipoEstudianteEntidad;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "nivel_lenguaje_actividad",schema = "alumno",
+            joinColumns = @JoinColumn(name = "id_actividad"),
+            inverseJoinColumns = @JoinColumn(name = "id_nivel_lenguaje")
+    )
+    public List<NivelLenguajeEntidad> getNivelLenguajeEntidad() {
+        return nivelLenguajeEntidad;
+    }
+
+    public void setNivelLenguajeEntidad(List<NivelLenguajeEntidad> nivelLenguajeEntidad) {
+        this.nivelLenguajeEntidad = nivelLenguajeEntidad;
     }
 
     @Override
