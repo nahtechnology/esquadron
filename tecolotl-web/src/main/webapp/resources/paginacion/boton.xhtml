@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:cc="http://java.sun.com/jsf/composite" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:ui="http://java.sun.com/jsf/facelets">
+    <cc:interface>
+        <cc:attribute name="htmlDataTable" required="true" type="javax.faces.component.html.HtmlDataTable"/>
+    </cc:interface>
+    <cc:implementation>
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-primera"
+                         disabled="#{cc.attrs.htmlDataTable.first eq 0}">
+            <f:setPropertyActionListener value="0" target="#{cc.attrs.htmlDataTable.first}"/>
+        </h:commandButton>
+
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+                         disabled="#{cc.attrs.htmlDataTable.first eq 0}">
+            <f:setPropertyActionListener value="#{cc.attrs.htmlDataTable.first - cc.attrs.htmlDataTable.rows}"
+                                         target="#{cc.attrs.htmlDataTable.first}"/>
+        </h:commandButton>
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+                         disabled="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows ge cc.attrs.htmlDataTable.rowCount}">
+            <f:setPropertyActionListener value="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows}"
+                                         target="#{cc.attrs.htmlDataTable.first}"/>
+        </h:commandButton>
+
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-ultima"
+                         disabled="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows ge cc.attrs.htmlDataTable.rowCount}">
+            <f:setPropertyActionListener value="#{((cc.attrs.htmlDataTable.rowCount div cc.attrs.htmlDataTable.rows) -1) * cc.attrs.htmlDataTable.rows}"
+                                         target="#{cc.attrs.htmlDataTable.first}"/>
+        </h:commandButton>
+        <div class="uk-width-1-1@s uk-width-1-4@m">
+            <h:selectOneMenu value="#{cc.attrs.htmlDataTable.rows}"
+                             styleClass="uk-select">
+                <f:selectItem itemValue="5" itemLabel="5" pt:selected="selected"/>
+                <f:selectItem itemValue="10" itemLabel="10"/>
+                <f:selectItem itemValue="15" itemLabel="15"/>
+                <f:selectItem itemValue="20" itemLabel="20"/>
+            </h:selectOneMenu>
+        </div>
+    </cc:implementation>
+</html>
