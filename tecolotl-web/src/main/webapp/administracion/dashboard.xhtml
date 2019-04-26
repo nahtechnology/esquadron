@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+
+
+<ui:composition template="/template/administracion/dashboard.xhtml">
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">Menú</li>
+            <li class="uk-parent uk-open">
+                <h:link><h:outputText pt:uk-icon="info" class="uk-margin-small-right"/>Escuela</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="administracion-dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catalogo</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo administracion</h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Coordinacion</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard coordinador</h:link></li>
+                    <li class="uk-active"><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Gestion de grupo</h:link></li>
+
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Profesor</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="/profesores/dashboard-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard profesor</h:link></li>
+                    <li><h:link outcome="/administracion/catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
+
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="tablas.css"/>
+        <div class="uk-grid uk-grid-medium" data-uk-grid="">
+            <!-- panel -->
+            <div class="uk-width-1-1@s">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                    <div class="uk-card-header">
+                        <div class="uk-grid uk-grid-small">
+                            <div class="uk-width-auto"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{administracion['catalogoadministrativo.title']}</span></h4></div>
+                            <div class="uk-width-expand uk-text-right panel-icons">
+                                <h:form>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon" >
+                                        <f:ajax></f:ajax>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"/>
+                                    </h:commandLink>
+                                </h:form>
+                                <!--<a href="#" class="uk-icon-button uk-icon-link" uk-icon="twitter"></a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <h:form id="formulario-tabla-escuela">
+                            <h:dataTable value="#{dashboardControlador.collectionDataModel}"
+                                         binding="#{dashboardControlador.htmlDataTable}"
+                                         var="escuela"
+                                         id="tabla-escuela"
+                                         first="0"
+                                         rows="5"
+                                         styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover"
+                                         footerClass="uk-background-primary"
+                                         columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
+                                <h:column headerClass="uk-background-primary uk-width-small">
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.cct']}</span></f:facet>
+                                    #{escuela.cct}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-background-primary">
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.name']}</span></f:facet>
+                                    #{escuela.nombre}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.active']}</span></f:facet>
+                                    <h:outputText rendered="#{escuela.activo}" pt:uk-icon="check"/>
+                                    <h:outputText rendered="#{not escuela.activo}" pt:uk-icon="ban"/>
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.licenses']}</span></f:facet>
+                                    #{escuela.licecias}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.remaining.days']}</span></f:facet>
+                                    #{escuela.diasRestantes}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                                    <f:facet name="header"><span class="letra-titulo ">#{etiqueta['options']}</span></f:facet>
+                                    <span class="uk-icon-button uk-text-center" uk-icon="more-vertical"></span>
+                                </h:column>
+                                <f:facet name="footer">
+                                    <pa:pie-tabla htmlDataTable="#{dashboardControlador.htmlDataTable}"/>
+                                </f:facet>
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+                    <div class="uk-card-footer">
+                        <f:ajax render="formulario-tabla-escuela:tabla-escuela formulario-paginacion-escuela"
+                                onevent="limpiaSelect">
+                            <h:form id="formulario-paginacion-escuela">
+                                <div pt:uk-grid="">
+                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                        <pa:boton htmlDataTable="#{dashboardControlador.htmlDataTable}"/>
+                                    </div>
+                                </div>
+                                <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-2@m">
+                                    <h:commandButton disabled="true"
+                                                     styleClass="uk-button uk-button-primary uk-margin-small-right"
+                                                     value="limpiar">
+                                    </h:commandButton>
+                                </div>
+                            </h:form>
+                        </f:ajax>
+                    </div>
+                </div>
+            </div>
+            <!-- /panel -->
+        </div>
+        <footer class="uk-section uk-section-small uk-text-center">
+        <hr/>
+            <p class="uk-text-small uk-text-center">Copyright 2019 - <a href="https://nahtechnology.com/">Creado por Nah Technology</a></p>
+        </footer>
+        <h:panelGroup layout="block" id="modal-escuela" class="uk-modal-container" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-escuela" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            <h:outputText value="#{escueladashboard['modal.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+                            <h:outputText value="#{escueladashboard['modal.edit.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}"/>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div uk-grid="">
+                            <div class="uk-width-1-1@s uk-width-1-6@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-uppercase" for="input-escuela-cct" value="#{escueladashboard['cct']}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-cct"
+                                                 pt:placeholder="#{escueladashboard['cct']}"
+                                                 label="#{escueladashboard['cct']}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="9" maximum="10"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-2@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-nombre" value="#{escueladashboard['name']}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-nombre"
+                                                 pt:placeholder="#{escueladashboard['name']}"
+                                                 label="#{escueladashboard['name']}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.nombre}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="11" maximum="70"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-6@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-codigo-postal" value="#{escueladashboard['zipcode']}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-codigo-postal"
+                                                 pt:placeholder="#{escueladashboard['zipcode']}"
+                                                 label="#{escueladashboard['zipcode']}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.coloniaDto.codigoPostal}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="4" maximum="5"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
+                                <h:commandButton styleClass="uk-button uk-button-secondary uk-position-bottom-center"
+                                                 value="#{mensaje['button.search']}">
+                                    <f:ajax execute="input-escuela-codigo-postal"
+                                            render="seleccion-colonia input-escuela-municipio input-escuela-estado modal-escuela-error"
+                                            listener="#{escuelaDashboardControlador.buscaColonia}" onevent="limpiaInput"/>
+                                </h:commandButton>
+                            </div>
+                            <div class="uk-inline uk-width-1-1@s uk-width-1-2@m">
+                                <div class="uk-margin">
+                                    <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{escueladashboard['colony']}" for="seleccion-colonia"/>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu styleClass="uk-select"
+                                                         value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.coloniaDto.id}"
+                                                         id="seleccion-colonia"
+                                                         label="#{escueladashboard['colony']}">
+                                            <f:selectItem itemLabel="#{etiqueta['select']}" itemValue="#{null}" noSelectionOption="true"/>
+                                            <f:selectItems value="#{escuelaDashboardControlador.coloniaDtoLista}"
+                                                           var="colonia"
+                                                           itemValue="#{colonia.id}"
+                                                           itemLabel="#{colonia.nombre}"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-2@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{escueladashboard['street']}" for="input-escuela-calle"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-calle"
+                                                 pt:placeholder="#{escueladashboard['street']}"
+                                                 label="#{escueladashboard['street']}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.calle}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="11" maximum="60"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-6@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{escueladashboard['street.num.ext']}" for="input-escuela-numero-exterior"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-numero-exterior"
+                                                 pt:placeholder="#{escueladashboard['street.num.ext']}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.numeroExterior}"
+                                                 label="#{escueladashboard['street.num.ext']}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="1" maximum="15"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-6@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{escueladashboard['street.num.int']}" for="input-escuela-numero-interior"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-numero-interior"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.numeroInterior}"
+                                                 pt:placeholder="#{escueladashboard['street.num.int']}"
+                                                 label="#{escueladashboard['street.num.int']}">
+                                        <f:validateLength minimum="1" maximum="15"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-2-5@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{escueladashboard['city']}" for="input-escuela-municipio"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-municipio"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.municipioDto.nombre}"
+                                                 pt:placeholder="#{escueladashboard['city']}"
+                                                 label="#{escueladashboard['city']}"
+                                                 disabled="true"/>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-4@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{escueladashboard['town']}" for="input-escuela-estado"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="input-escuela-estado"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleDtoModelo.estadoDto.nombre}"
+                                                 pt:placeholder="#{escueladashboard['town']}"
+                                                 label="#{escueladashboard['town']}"
+                                                 disabled="true"/>
+                                </div>
+                            </div>
+                            <ui:fragment rendered="#{facesContext.validationFailed}">
+                                <div class="uk-width-1-1@s">
+                                    <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
+                                        <h:messages id="modal-escuela-error" styleClass="uk-list"/>
+                                    </h:panelGroup>
+                                </div>
+                            </ui:fragment>
+                        </div>
+                        <div class="uk-modal-footer uk-flex uk-flex-right">
+                            <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right"
+                                             value="#{boton['cancel']}">
+                                <f:ajax render="@form" onevent="limpiaInput"/>
+                            </h:commandButton>
+                            <h:commandButton styleClass="uk-button uk-button-secondary"
+                                             value="#{boton['add']}"
+                                             rendered="#{empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}">
+                                <f:ajax execute="@form" render="@form formulario-escuela-tabla:tabla-escuela" listener="#{escuelaDashboardControlador.agrega}" onevent="function f(data) { cierraModal(data, 'modal-escuela') }"/>
+                            </h:commandButton>
+                            <h:commandButton styleClass="uk-button uk-button-secondary"
+                                             value="#{mensaje['update']}"
+                                             rendered="#{not empty escuelaDashboardControlador.escuelaDetalleDtoModelo.claveCentroTrabajo}">
+                                <f:ajax execute="@form" render="@form formulario-escuela-tabla:tabla-escuela" listener="#{escuelaDashboardControlador.actualiza}" onevent="function f(data) { cierraModal(data, 'modal-escuela') }"/>
+                            </h:commandButton>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <script type="text/javascript">
+            var modalEscuela;
+            document.addEventListener('DOMContentLoaded', function (evt) {
+                limpiaSelect();
+            });
+
+            function limpiaSelect(data) {
+                if (typeof data === 'undefined') {
+                    document.querySelectorAll('.uk-select').forEach(
+                        function (value) { value.removeAttribute('size'); }
+                    )
+                } else {
+                    if (data.status === 'success') {
+                        document.querySelectorAll('.uk-select').forEach(
+                            function (value) { value.removeAttribute('size'); }
+                        )
+                    }
+                }
+            }
+        </script>
+    </ui:define>
+</ui:composition>
+</html>
