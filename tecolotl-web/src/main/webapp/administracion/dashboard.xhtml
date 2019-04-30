@@ -20,10 +20,10 @@
                 </ul>
             </li>
             <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catalogo</h:link>
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catálogo</h:link>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo administracion</h:link></li>
-                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Administracion</h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Coordinación</h:link></li>
                 </ul>
             </li>
             <li class="uk-parent">
@@ -32,13 +32,6 @@
                     <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard coordinador</h:link></li>
                     <li class="uk-active"><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Gestion de grupo</h:link></li>
 
-                </ul>
-            </li>
-            <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Profesor</h:link>
-                <ul class="uk-nav-sub">
-                    <li><h:link outcome="/profesores/dashboard-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard profesor</h:link></li>
-                    <li><h:link outcome="/administracion/catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
                 </ul>
             </li>
         </ul>
@@ -77,7 +70,7 @@
                                          columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
                                 <h:column headerClass="uk-background-primary uk-width-small">
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.cct']}</span></f:facet>
-                                    #{escuela.cct}
+                                    #{escuela.claveCentroTrabajo}
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-background-primary">
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.name']}</span></f:facet>
@@ -90,7 +83,7 @@
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.licenses']}</span></f:facet>
-                                    #{escuela.licecias}
+                                    #{escuela.licencias}
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.remaining.days']}</span></f:facet>
@@ -98,7 +91,7 @@
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
                                     <f:facet name="header"><span class="letra-titulo ">#{etiqueta['options']}</span></f:facet>
-                                    <span class="uk-icon-button uk-text-center" uk-icon="more-vertical"></span>
+                                    <span class="uk-icon-button uk-text-center" uk-icon="more-vertical"/>
                                 </h:column>
                                 <f:facet name="footer">
                                     <pa:pie-tabla htmlDataTable="#{dashboardControlador.htmlDataTable}"/>

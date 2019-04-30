@@ -59,7 +59,7 @@ public class EscuelaSesionBean {
 			for (Object[] objecto : (List<Object[]>) query.getResultList()) {
 				EscuelaDashboardModelo escuelaDashboardModelo = escuelaDashboardModeloConjunto.ceiling(
 						new EscuelaDashboardModelo((String) objecto[0]));
-				escuelaDashboardModelo.setLicencias((Integer) objecto[1]);
+				escuelaDashboardModelo.setLicencias(((Long)objecto[1]).intValue());
 				Calendar calendarServidor = Calendar.getInstance();
 				calendarServidor.setTime((Date) objecto[2]);
 				calendarServidor.add(Calendar.YEAR, 1);

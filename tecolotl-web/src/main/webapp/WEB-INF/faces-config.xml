@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 			  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-			  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
-        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+			  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 			  version="2.2">
+
+	<application>
+		<resource-bundle>
+			<base-name>etiqueta</base-name>
+			<var>etiqueta</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>boton</base-name>
+			<var>boton</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>administracion</base-name>
+			<var>administracion</var>
+		</resource-bundle>
+		<resource-bundle>
+			<base-name>coordinacion</base-name>
+			<var>coordinacion</var>
+		</resource-bundle>
+	</application>
 
 </faces-config>
