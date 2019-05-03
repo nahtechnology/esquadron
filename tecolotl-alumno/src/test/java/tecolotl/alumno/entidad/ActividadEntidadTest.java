@@ -49,6 +49,7 @@ public class ActividadEntidadTest {
             Assert.assertNotNull(actividadEntidad.getLenguaje());
             Assert.assertNotNull(actividadEntidad.getPreguntaDetonadora());
             Assert.assertNotNull(actividadEntidad.getTiempo());
+            Assert.assertNotNull(actividadEntidad.getTipoEstudianteEntidad().getClave());
         }
     }
 

@@ -111,6 +111,8 @@ public class ActividadEntidad {
             joinColumns = @JoinColumn(name = "id_actividad"),
             inverseJoinColumns = @JoinColumn(name = "id_nivel_lenguaje")
     )
+
+
     public List<NivelLenguajeEntidad> getNivelLenguajeEntidad() {
         return nivelLenguajeEntidad;
     }

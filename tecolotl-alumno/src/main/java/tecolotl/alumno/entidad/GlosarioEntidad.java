@@ -3,6 +3,7 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Table(name = "glosario", schema = "alumno")
@@ -13,7 +14,7 @@ public class GlosarioEntidad {
     private String palabra;
     private byte[] imagen;
     private String significado;
-    private ActividadEntidad actividadEntidad;
+    private List<ActividadEntidad> actividadEntidad;
 
     @Id
     public String getPalabra() {
@@ -47,19 +48,17 @@ public class GlosarioEntidad {
         this.significado = significado;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "glosario_actividad", schema = "alumno",
-            joinColumns = @JoinColumn(name = "id_actividad"),
-            inverseJoinColumns = @JoinColumn(name = "id_glosario")
+            joinColumns = @JoinColumn(name = "id_glosario"),
+            inverseJoinColumns = @JoinColumn(name = "id_actividad")
     )
-    public ActividadEntidad getActividadEntidad() {
+    public List<ActividadEntidad> getActividadEntidad() {
         return actividadEntidad;
     }
 
-    public void setActividadEntidad(ActividadEntidad actividadEntidad) {
+    public void setActividadEntidad(List<ActividadEntidad> actividadEntidad) {
         this.actividadEntidad = actividadEntidad;
     }
-
-
 }

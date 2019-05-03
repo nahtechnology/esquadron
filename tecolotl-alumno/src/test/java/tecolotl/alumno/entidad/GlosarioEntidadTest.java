@@ -9,6 +9,8 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -20,8 +22,10 @@ public class GlosarioEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(GlosarioEntidad.class, ActividadEntidad.class)
-                .addAsResource("META-INF/persisrtence.xml")
+                .addClasses(GlosarioEntidad.class, ActividadEntidad.class,
+                        TipoEstudianteEntidad.class, CatalagoEntidad.class,
+                        NivelLenguajeEntidad.class)
+                .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
