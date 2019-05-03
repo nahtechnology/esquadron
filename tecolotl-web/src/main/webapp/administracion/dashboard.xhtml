@@ -15,6 +15,7 @@
             <li class="uk-nav-header">Menú</li>
             <li class="uk-parent uk-open">
                 <h:link><h:outputText pt:uk-icon="info" class="uk-margin-small-right"/>Escuela</h:link>
+                <h:link><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image" pt:uk-svg=""/></h:link>
                 <ul class="uk-nav-sub">
                     <li><h:link outcome="administracion-dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard</h:link></li>
                 </ul>
@@ -309,6 +310,7 @@
                 }
             }
         </script>
+        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
     </ui:define>
 </ui:composition>
 </html>

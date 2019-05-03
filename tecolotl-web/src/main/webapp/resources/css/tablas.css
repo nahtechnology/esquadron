@@ -21,6 +21,12 @@
    /*font-size: 15px !important;*/
 /*}*/
 
+.boton-paginacion-anterior-admid:enabled {
+    background-image: url('#{resource["img/boton/anterior-habilitado.svg"]}');
+
+}
+
+
 .boton-paginacion-anterior:enabled {
     background-image: url('#{resource["img/boton/anterior-habilitado.svg"]}');
     background-color: var(--tsecundary-option-one);
@@ -39,6 +45,10 @@
 
 }
 
+.boton-paginacion-anterior-admin:disabled {
+    background-image: url('#{resource["img/boton/anterior-deshabilitado.svg"]}');
+
+}
 .boton-paginacion-anterior:disabled {
     background-image: url('#{resource["img/boton/anterior-deshabilitado.svg"]}');
     padding: 8px 25px;
@@ -61,6 +71,11 @@
     background-position: center;
 
 }
+.boton-paginacion-siguiente-admin:enabled {
+    background-image: url('#{resource["img/boton/siguiente-habilitado.svg"]}');
+
+
+}
 
 .boton-paginacion-siguiente:enabled {
     background-image: url('#{resource["img/boton/siguiente-habilitado.svg"]}');
@@ -77,6 +92,12 @@
     margin-top: 10px;
     font-size: 14px;
     text-transform: uppercase;
+
+}
+
+.boton-paginacion-siguiente-admin:disabled {
+    background-image: url('#{resource["img/boton/siguiente-deshabilitado.svg"]}');
+
 
 }
 
@@ -97,6 +118,11 @@
 
 }
 
+.boton-paginacion-primera-admin:enabled {
+    background-image: url('#{resource["img/boton/primero-habilitado.svg"]}');
+
+
+}
 
 .boton-paginacion-primera:enabled {
     background-image: url('#{resource["img/boton/primero-habilitado.svg"]}');
@@ -113,6 +139,12 @@
     margin-top: 10px;
     font-size: 14px;
     text-transform: uppercase;
+
+}
+
+.boton-paginacion-primera-admin:disabled {
+    background-image: url('#{resource["img/boton/primero-deshabilitado.svg"]}');
+
 
 }
 
@@ -133,6 +165,11 @@
 
 }
 
+.boton-paginacion-ultima-admin:enabled {
+    background-image: url('#{resource["img/boton/ultimo-habilitado.svg"]}');
+
+}
+
 .boton-paginacion-ultima:enabled {
     background-image: url('#{resource["img/boton/ultimo-habilitado.svg"]}');
     background-color: var(--tsecundary-option-one);
@@ -148,6 +185,11 @@
     margin-top: 10px;
     font-size: 14px;
     text-transform: uppercase;
+}
+
+.boton-paginacion-ultima-admin:disabled {
+    background-image: url('#{resource["img/boton/ultimo-deshabilitado.svg"]}');
+
 }
 
 .boton-paginacion-ultima:disabled {
@@ -169,3 +211,4 @@
 .module {
      stroke: black;
  }
+

@@ -9,7 +9,7 @@
 
 
 <div class="left-logo uk-flex uk-flex-middle">
-    <h:graphicImage styleClass="uk-margin-small-right" library="img" name="esquadron-no-stroke.svg" width="40" height="40" alt="escuadrom"/>
+    <h:graphicImage id="avatar" styleClass="uk-margin-small-right uk-preserve" library="img" name="esquadron.svg" width="40" height="40" alt="escuadrom" pt:uk-svg=""/>
     <span class="titulo-blanco uk-text-capitalize">Dashboard</span>
 </div>
 <div class="left-content-box  content-box-dark">
@@ -20,12 +20,12 @@
         <!-- user dropdown -->
         <h:panelGroup  layout="block" styleClass="uk-dropdown user-drop" pt:data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
             <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                <li><a href="#"><span data-uk-icon="icon: info"/> Summary</a></li>
-                    <li>
-                         <h:outputLink>
-                             <h:outputText pt:uk-icon="icon: info"/> Hola
-                         </h:outputLink>
-                    </li>
+                <li><a href="#"><h:outputText pt:data-uk-icon="icon: info"/> Summary</a></li>
+                <li>
+                     <h:outputLink>
+                         <h:outputText pt:uk-icon="icon: info"/> Hola
+                     </h:outputLink>
+                </li>
                 <li><a href="#"><span data-uk-icon="icon: refresh"/> Edit</a></li>
                 <li><a href="#"><span data-uk-icon="icon: settings"/> Configuration</a></li>
                 <li class="uk-nav-divider"></li>
