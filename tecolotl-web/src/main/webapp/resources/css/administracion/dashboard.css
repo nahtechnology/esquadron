@@ -1,0 +1,12 @@
+
+#avatar #contorno {
+    fill: black;
+}
+
+#avatar #ojo {
+    fill: black;
+}
+
+svg .icono {
+    stroke: white;
+}
