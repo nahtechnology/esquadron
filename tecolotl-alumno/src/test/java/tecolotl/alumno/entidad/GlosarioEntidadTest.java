@@ -36,6 +36,8 @@ public class GlosarioEntidadTest {
     public void busca(){
         TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
         List<GlosarioEntidad> glosarioEntidadsLista = typedQuery.getResultList();
+        Assert.assertNotNull(glosarioEntidadsLista);
+        Assert.assertFalse(glosarioEntidadsLista.isEmpty());
         for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
             Assert.assertNotNull(glosarioEntidad);
             Assert.assertNotNull(glosarioEntidad.getPalabra());
