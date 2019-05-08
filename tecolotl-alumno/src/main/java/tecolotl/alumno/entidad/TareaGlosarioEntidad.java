@@ -10,7 +10,8 @@ import javax.validation.constraints.Size;
 @Table(name = "tarea_glosario", schema = "alumno")
 @NamedQueries({
         @NamedQuery(name = "TareaGlosarioEntidad.busca", query = "SELECT a FROM TareaGlosarioEntidad a"),
-        @NamedQuery(name = "TareaGlosarioEntidad.buscaAlumno", query = "SELECT b FROM TareaGlosarioEntidad b WHERE b.tareaGlosarioEntidadPK.alumnoEntidad.id = :id")
+        @NamedQuery(name = "TareaGlosarioEntidad.buscaTarea", query = "SELECT b FROM TareaGlosarioEntidad b WHERE b.tareaGlosarioEntidadPK.tareaEntidad.id = :id"),
+        @NamedQuery(name = "TareaGlosarioEntidad.buscaGlosario", query = "SELECT c FROM TareaGlosarioEntidad c WHERE c.tareaGlosarioEntidadPK.glosarioEntidad.palabra = :palabra")
 })
 public class TareaGlosarioEntidad {
     private TareaGlosarioEntidadPK tareaGlosarioEntidadPK;

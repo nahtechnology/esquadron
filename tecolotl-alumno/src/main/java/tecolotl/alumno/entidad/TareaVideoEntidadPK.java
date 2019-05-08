@@ -1,16 +1,14 @@
 package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class TareaGlosarioEntidadPK implements Serializable {
+public class TareaVideoEntidadPK implements Serializable {
     private TareaEntidad tareaEntidad;
-    private GlosarioEntidad glosarioEntidad;
+    private ActividadEntidad actividadEntidad;
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "id_tarea", referencedColumnName = "id")
     public TareaEntidad getTareaEntidad() {
@@ -21,28 +19,27 @@ public class TareaGlosarioEntidadPK implements Serializable {
         this.tareaEntidad = tareaEntidad;
     }
 
-    @NotNull
     @OneToOne
-    @JoinColumn(name = "id_glosario", referencedColumnName = "palabra")
-    public GlosarioEntidad getGlosarioEntidad() {
-        return glosarioEntidad;
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id")
+    public ActividadEntidad getActividadEntidad() {
+        return actividadEntidad;
     }
 
-    public void setGlosarioEntidad(GlosarioEntidad glosarioEntidad) {
-        this.glosarioEntidad = glosarioEntidad;
+    public void setActividadEntidad(ActividadEntidad actividadEntidad) {
+        this.actividadEntidad = actividadEntidad;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TareaGlosarioEntidadPK that = (TareaGlosarioEntidadPK) o;
+        TareaVideoEntidadPK that = (TareaVideoEntidadPK) o;
         return tareaEntidad.equals(that.tareaEntidad) &&
-                glosarioEntidad.equals(that.glosarioEntidad);
+                actividadEntidad.equals(that.actividadEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEntidad, glosarioEntidad);
+        return Objects.hash(tareaEntidad, actividadEntidad);
     }
 }

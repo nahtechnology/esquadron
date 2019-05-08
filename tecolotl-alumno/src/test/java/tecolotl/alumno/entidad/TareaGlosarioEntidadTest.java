@@ -22,10 +22,10 @@ public class TareaGlosarioEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(PersonaEntidad.class, AlumnoEntidad.class, GlosarioEntidad.class,
-                        TareaEntidad.class, ActividadEntidad.class, NivelLenguajeEntidad.class,
-                        CatalagoEntidad.class, GradoEscolarEntidad.class, TipoEstudianteEntidad.class,
-                        TareaGlosarioEntidad.class, TareaGlosarioEntidadPK.class)
+                .addClasses( GlosarioEntidad.class, TareaEntidad.class, ActividadEntidad.class,
+                        TareaGlosarioEntidad.class, TareaGlosarioEntidadPK.class, AlumnoEntidad.class,
+                        PersonaEntidad.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
+                        CatalagoEntidad.class, GradoEscolarEntidad.class, TipoEstudianteEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -43,7 +43,8 @@ public class TareaGlosarioEntidadTest {
             Assert.assertNotNull(tareaGlosarioEntidad.getRespuesta());
             TareaGlosarioEntidadPK tareaGlosarioEntidadPK = tareaGlosarioEntidad.getTareaGlosarioEntidadPK();
             Assert.assertNotNull(tareaGlosarioEntidadPK);
-            Assert.assertNotNull(tareaGlosarioEntidadPK.getAlumnoEntidad());
+            Assert.assertNotNull(tareaGlosarioEntidadPK.getGlosarioEntidad());
+            Assert.assertNotNull(tareaGlosarioEntidadPK.getTareaEntidad());
 
         }
     }
