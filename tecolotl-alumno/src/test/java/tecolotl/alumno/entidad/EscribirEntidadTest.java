@@ -40,7 +40,7 @@ public class EscribirEntidadTest {
             Assert.assertNotNull(escribirEntidad);
             Assert.assertNotNull(escribirEntidad.getPregunta());
             EscribirEntidadPK escribirEntidadPK = escribirEntidad.getEscribirEntidadPK();
-            Assert.assertNotNull(escribirEntidadPK.getActividadEntidadLista());
+            Assert.assertNotNull(escribirEntidadPK.getActividadEntidad());
             Assert.assertNotNull(escribirEntidadPK.getContador());
         }
     }

@@ -8,17 +8,17 @@ import java.util.Objects;
 
 @Embeddable
 public class EscribirEntidadPK implements Serializable {
-    private List<ActividadEntidad> actividadEntidadLista;
+    private ActividadEntidad actividadEntidad;
     private Short contador;
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_actividad", referencedColumnName = "id")
-     public List<ActividadEntidad> getActividadEntidadLista() {
-        return actividadEntidadLista;
+    public ActividadEntidad getActividadEntidad() {
+        return actividadEntidad;
     }
 
-    public void setActividadEntidadLista(List<ActividadEntidad> actividadEntidadLista) {
-        this.actividadEntidadLista = actividadEntidadLista;
+    public void setActividadEntidad(ActividadEntidad actividadEntidad) {
+        this.actividadEntidad = actividadEntidad;
     }
 
     @Basic
@@ -37,12 +37,12 @@ public class EscribirEntidadPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EscribirEntidadPK that = (EscribirEntidadPK) o;
-        return actividadEntidadLista.equals(that.actividadEntidadLista) &&
+        return actividadEntidad.equals(that.actividadEntidad) &&
                 contador.equals(that.contador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(actividadEntidadLista, contador);
+        return Objects.hash(actividadEntidad, contador);
     }
 }
