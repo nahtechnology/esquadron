@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -28,10 +29,6 @@ public class AlumnoSesionBean {
         List<AlumnoModelo> alumnoModeloLista = new ArrayList<>();
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.busca", AlumnoEntidad.class);
         List<AlumnoEntidad> alumnoEntidadLista = typedQuery.getResultList();
-        for (AlumnoEntidad alumnoEntidad :
-                alumnoEntidadLista) {
-            alumnoModeloLista.add(new AlumnoModelo(alumnoEntidad));
-        }
-        return alumnoModeloLista;
+        return alumnoEntidadLista.stream().map(AlumnoModelo::new).collect(Collectors.toList());
     }
 }
