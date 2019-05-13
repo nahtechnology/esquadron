@@ -1,6 +1,9 @@
 package tecolotl.web.administracion.controlador;
 
+import tecolotl.administracion.modelo.direccion.DireccionModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
+import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
+import tecolotl.administracion.sesion.DireccionSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 
 import javax.annotation.PostConstruct;
@@ -13,14 +16,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named
+@Named(value = "escuelaDashboardControlador")
 @ViewScoped
 public class DashboardControlador implements Serializable {
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
 
-    private EscuelaDashboardModelo escuelaDashboardModelo;
+    @Inject
+    private DireccionSesionBean direccionSesionBean;
+
+    private EscuelaDetalleModelo escuelaDetalleModelo;
     private CollectionDataModel<EscuelaDashboardModelo> collectionDataModel;
     private HtmlDataTable htmlDataTable;
 
@@ -29,12 +35,8 @@ public class DashboardControlador implements Serializable {
         collectionDataModel = new CollectionDataModel<>(escuelaSesionBean.busca());
     }
 
-    public EscuelaDashboardModelo getEscuelaDashboardModelo() {
-        return escuelaDashboardModelo;
-    }
-
-    public void setEscuelaDashboardModelo(EscuelaDashboardModelo escuelaDashboardModelo) {
-        this.escuelaDashboardModelo = escuelaDashboardModelo;
+    public void actualizaTabla() {
+        collectionDataModel.setWrappedData(escuelaSesionBean.busca());
     }
 
     public CollectionDataModel<EscuelaDashboardModelo> getCollectionDataModel() {
@@ -52,4 +54,13 @@ public class DashboardControlador implements Serializable {
     public void setHtmlDataTable(HtmlDataTable htmlDataTable) {
         this.htmlDataTable = htmlDataTable;
     }
+
+    public EscuelaDetalleModelo getEscuelaDetalleModelo() {
+        return escuelaDetalleModelo;
+    }
+
+    public void setEscuelaDetalleModelo(EscuelaDetalleModelo escuelaDetalleModelo) {
+        this.escuelaDetalleModelo = escuelaDetalleModelo;
+    }
+
 }

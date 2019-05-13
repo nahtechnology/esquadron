@@ -1,21 +1,19 @@
 package tecolotl.administracion.modelo.direccion;
 
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
-
-import java.util.Collection;
+import java.util.List;
 
 public class DireccionModelo {
 
-    private Collection<ColoniaModelo> coloniaModeloCollection;
+    private List<ColoniaModelo> coloniaModeloLista;
     private String municipio;
     private String estado;
 
-    public Collection<ColoniaModelo> getColoniaModeloCollection() {
-        return coloniaModeloCollection;
+    public List<ColoniaModelo> getColoniaModeloLista() {
+        return coloniaModeloLista;
     }
 
-    public void setColoniaModeloCollection(Collection<ColoniaModelo> coloniaModeloCollection) {
-        this.coloniaModeloCollection = coloniaModeloCollection;
+    public void setColoniaModeloLista(List<ColoniaModelo> coloniaModeloLista) {
+        this.coloniaModeloLista = coloniaModeloLista;
     }
 
     public String getMunicipio() {
@@ -37,10 +35,11 @@ public class DireccionModelo {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("DireccionModelo{");
-        sb.append("coloniaModeloCollection=").append(coloniaModeloCollection);
+        sb.append("coloniaModeloCollection=").append(coloniaModeloLista);
         sb.append(", municipio='").append(municipio).append('\'');
         sb.append(", estado='").append(estado).append('\'');
         sb.append('}');
         return sb.toString();
     }
+
 }

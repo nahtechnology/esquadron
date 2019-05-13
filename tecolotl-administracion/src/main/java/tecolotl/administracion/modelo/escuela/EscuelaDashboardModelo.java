@@ -21,7 +21,7 @@ public class EscuelaDashboardModelo extends EscuelaBaseModelo {
 
     public EscuelaDashboardModelo(EscuelaEntidad escuelaEntidad) {
         super(escuelaEntidad);
-        setActivo(escuelaEntidad.getMotivoBloqueoEntidad().getValor().equals("Sin Bloqueo"));
+        setActivo(!escuelaEntidad.getMotivoBloqueoEntidad().getValor().equals("Sin Bloqueo"));
     }
 
     public boolean isActivo() {
