@@ -17,14 +17,12 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class GlosarioEntidadTest {
-
+public class EscribirEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(GlosarioEntidad.class, ActividadEntidad.class,
-                        TipoEstudianteEntidad.class, CatalagoEntidad.class,
-                        NivelLenguajeEntidad.class)
+                .addClasses(EscribirEntidad.class, EscribirEntidadPK.class, ActividadEntidad.class,
+                        NivelLenguajeEntidad.class, TipoEstudianteEntidad.class, CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -34,16 +32,16 @@ public class GlosarioEntidadTest {
 
     @Test
     public void busca(){
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
-        List<GlosarioEntidad> glosarioEntidadsLista = typedQuery.getResultList();
-        Assert.assertNotNull(glosarioEntidadsLista);
-        Assert.assertFalse(glosarioEntidadsLista.isEmpty());
-        for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
-            Assert.assertNotNull(glosarioEntidad);
-            Assert.assertNotNull(glosarioEntidad.getPalabra());
-            Assert.assertNotNull(glosarioEntidad.getImagen());
-            Assert.assertNotNull(glosarioEntidad.getSignificado());
-            Assert.assertNotNull(glosarioEntidad.getActividadEntidad());
+        TypedQuery<EscribirEntidad> typedQuery = entityManager.createNamedQuery("EscribirEntidad.busca", EscribirEntidad.class);
+        List<EscribirEntidad> escribirEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(escribirEntidadLista);
+        Assert.assertFalse(escribirEntidadLista.isEmpty());
+        for(EscribirEntidad escribirEntidad : escribirEntidadLista){
+            Assert.assertNotNull(escribirEntidad);
+            Assert.assertNotNull(escribirEntidad.getPregunta());
+            EscribirEntidadPK escribirEntidadPK = escribirEntidad.getEscribirEntidadPK();
+            Assert.assertNotNull(escribirEntidadPK.getActividadEntidad());
+            Assert.assertNotNull(escribirEntidadPK.getContador());
         }
     }
 }

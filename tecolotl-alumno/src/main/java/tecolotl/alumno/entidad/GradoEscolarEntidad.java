@@ -10,16 +10,17 @@ import javax.validation.constraints.Size;
         @NamedQuery(name = "GradoEscolarEntidad.busca", query = "SELECT a FROM GradoEscolarEntidad a")
 })
 public class GradoEscolarEntidad {
-    private short id;
+    private Short id;
     private String nivel;
-    private short grado;
+    private Short grado;
+
 
     @Id
-    public short getId() {
+    public Short getId() {
         return id;
     }
 
-    public void setId(short id) {
+    public void setId(Short id) {
         this.id = id;
     }
 
@@ -38,11 +39,13 @@ public class GradoEscolarEntidad {
     @Basic
     @NotNull
     @Column(name = "grado")
-    public short getGrado() {
+    public Short getGrado() {
         return grado;
     }
 
-    public void setGrado(short grado) {
+    public void setGrado(Short grado) {
         this.grado = grado;
     }
+
+
 }
