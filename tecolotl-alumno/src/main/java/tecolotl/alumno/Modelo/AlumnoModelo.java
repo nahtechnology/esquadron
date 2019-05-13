@@ -14,4 +14,20 @@ public class AlumnoModelo {
         this.id = alumnoEntidad.getId();
         this.nivelLenguaje = alumnoEntidad.getNivelLenguajeEntidad().getValor();
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNivelLenguaje() {
+        return nivelLenguaje;
+    }
+
+    public void setNivelLenguaje(String nivelLenguaje) {
+        this.nivelLenguaje = nivelLenguaje;
+    }
 }
