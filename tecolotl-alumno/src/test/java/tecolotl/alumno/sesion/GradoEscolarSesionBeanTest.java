@@ -11,9 +11,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.Modelo.AlumnoModelo;
 import tecolotl.alumno.Modelo.GradoEscolarModelo;
-import tecolotl.alumno.entidad.AlumnoEntidad;
-import tecolotl.alumno.entidad.GradoEscolarEntidad;
+import tecolotl.alumno.entidad.*;
+import tecolotl.nucleo.modelo.PersonaModelo;
+import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.sesion.PersonaSesionBean;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -26,8 +28,12 @@ public class GradoEscolarSesionBeanTest {
         return ShrinkWrap.create(WebArchive.class, "test.war")
             .addPackage(GradoEscolarModelo.class.getPackage())
             .addPackage(AlumnoModelo.class.getPackage())
+            .addPackage(PersonaModelo.class.getPackage())
             .addPackage(PersonaEntidad.class.getPackage())
-            .addClasses(AlumnoEntidad.class, GradoEscolarEntidad.class, PersonaEntidad.class)
+            .addClasses(AlumnoEntidad.class, GradoEscolarEntidad.class, PersonaEntidad.class,
+                    PersonaSesionBean.class, AlumnoSesionBean.class, GradoEscolarSesionBean.class,
+                    CatalagoEntidad.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
+                    TipoEstudianteEntidad.class)
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

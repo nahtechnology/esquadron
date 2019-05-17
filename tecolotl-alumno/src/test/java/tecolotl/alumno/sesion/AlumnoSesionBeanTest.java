@@ -13,8 +13,10 @@ import org.junit.runner.RunWith;
 import tecolotl.alumno.Modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.GradoEscolarEntidad;
+import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.sesion.PersonaSesionBean;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -26,8 +28,10 @@ public class AlumnoSesionBeanTest {
         return ShrinkWrap.create(WebArchive.class, "test.war")
             .addPackage(AlumnoModelo.class.getPackage())
             .addPackage(PersonaEntidad.class.getPackage())
+            .addPackage(PersonaModelo.class.getPackage())
             .addPackage(AlumnoEntidad.class.getPackage())
-            .addClasses(AlumnoEntidad.class, PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class)
+            .addClasses(AlumnoEntidad.class, PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
+            AlumnoSesionBean.class, PersonaSesionBean.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
