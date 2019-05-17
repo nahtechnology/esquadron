@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ public class GradoEscolarSesionBean {
     private EntityManager entityManager;
 
     public List<GradoEscolarModelo> busca(){
+        List<GradoEscolarModelo> gradoEscolarModeloLista = new ArrayList<>();
         TypedQuery<GradoEscolarEntidad> typedQuery = entityManager.createNamedQuery("GradoEscolarEntidad.busca", GradoEscolarEntidad.class);
         List<GradoEscolarEntidad> gradoEscolarEntidadLista = typedQuery.getResultList();
         return gradoEscolarEntidadLista.stream().map(GradoEscolarModelo::new).collect(Collectors.toList());

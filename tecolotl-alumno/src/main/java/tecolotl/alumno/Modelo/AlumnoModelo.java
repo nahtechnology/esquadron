@@ -8,10 +8,6 @@ import java.util.List;
 
 public class AlumnoModelo extends PersonaModelo {
 
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String apodo;
     private Integer id;
     private List gradoEscolar;
     private String nivelLenguaje;
@@ -23,10 +19,7 @@ public class AlumnoModelo extends PersonaModelo {
     }
 
     public AlumnoModelo(AlumnoEntidad alumnoEntidad) {
-        this.nombre = alumnoEntidad.getNombre();
-        this.apellidoPaterno = alumnoEntidad.getApellidoPaterno();
-        this.apellidoMaterno = alumnoEntidad.getApellidoMaterno();
-        this.apodo = alumnoEntidad.getApodo();
+
         this.id = alumnoEntidad.getId();
         this.gradoEscolar = alumnoEntidad.getGradoEscolarEntidad();
         this.nivelLenguaje = alumnoEntidad.getNivelLenguajeEntidad().getValor();
