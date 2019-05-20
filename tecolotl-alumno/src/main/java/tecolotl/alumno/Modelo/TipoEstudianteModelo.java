@@ -13,6 +13,10 @@ public class TipoEstudianteModelo extends CatalogoModelo {
         super(catalagoEntidad);
     }
 
+    public TipoEstudianteModelo(TipoEstudianteEntidad tipoEstudianteEntidad) {
+        super(tipoEstudianteEntidad);
+    }
+
     public TipoEstudianteModelo(Short clave, String valor) {
         super(clave, valor);
     }

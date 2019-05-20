@@ -21,6 +21,7 @@ import java.util.List;
 
 @RunWith(Arquillian.class)
 public class TipoEstudianteSesionBeanTest {
+
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
@@ -31,6 +32,7 @@ public class TipoEstudianteSesionBeanTest {
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
+
     @Inject
     private TipoEstudianteSesionBean tipoEstudianteSesionBean;
 
