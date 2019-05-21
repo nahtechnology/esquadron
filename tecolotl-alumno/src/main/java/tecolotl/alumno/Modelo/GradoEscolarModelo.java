@@ -2,9 +2,17 @@ package tecolotl.alumno.Modelo;
 
 import tecolotl.alumno.entidad.GradoEscolarEntidad;
 
+import javax.validation.constraints.NotNull;
+
 public class GradoEscolarModelo {
+
+    @NotNull
     private Short id;
+
+    @NotNull
     private String nivel;
+
+    @NotNull
     private Short grado;
 
     public GradoEscolarModelo(){
