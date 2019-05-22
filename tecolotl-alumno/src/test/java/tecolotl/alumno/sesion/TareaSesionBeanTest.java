@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import tecolotl.alumno.Modelo.AlumnoModelo;
 import tecolotl.alumno.Modelo.TareaModelo;
 import tecolotl.alumno.entidad.*;
+import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
@@ -33,7 +34,7 @@ public class TareaSesionBeanTest {
                 .addClasses(PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
                         AlumnoEntidad.class, TareaEntidad.class, TipoEstudianteEntidad.class,
                         NivelLenguajeEntidad.class, PersonaSesionBean.class, AlumnoSesionBean.class,
-                        TareaSesionBean.class, GradoEscolarSesionBean.class)
+                        TareaSesionBean.class, GradoEscolarSesionBean.class, LoggerProducer.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -60,6 +61,10 @@ public class TareaSesionBeanTest {
         Assert.assertNotNull(tareaModelo.getId());
         Assert.assertNotNull(tareaModelo.getAlumnoEntidad());
         Assert.assertNotNull(tareaModelo.getAsignacion());
-        
+    }
+
+    @Test
+    public void inserta(){
+        //TareaModelo tareaModelo = tareaSesionBean.inserta(3, 6, );
     }
 }
