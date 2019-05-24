@@ -7,22 +7,15 @@ import tecolotl.administracion.sesion.EscuelaSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @RequestScoped
 @Named
 public class EscuelaControlador {
 
-    @Valid
     private EscuelaDetalleModelo escuelaDetalleModelo;
-
     private DireccionModelo direccionModelo;
-
-    @NotNull
     private String codigoPostal;
 
     @Inject
@@ -36,15 +29,13 @@ public class EscuelaControlador {
         escuelaDetalleModelo = new EscuelaDetalleModelo();
     }
 
-    public void buscaColonias(AjaxBehaviorEvent ajaxBehaviorEvent) {
-        direccionModelo = direccionSesionBean.busca(codigoPostal);
-        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
-        direccionModelo.setEstado(direccionModelo1.getEstado());
-        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+    public void buscaColonias() {
+        System.out.println("pasando");
+        codigoPostal = codigoPostal.concat("a");
     }
 
     public void inserta() {
-        escuelaSesionBean.inserta(escuelaDetalleModelo);
+        System.out.println("pasando");
     }
 
     public EscuelaDetalleModelo getEscuelaDetalleModelo() {
