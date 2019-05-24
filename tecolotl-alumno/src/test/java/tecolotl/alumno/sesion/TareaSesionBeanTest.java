@@ -65,6 +65,6 @@ public class TareaSesionBeanTest {
 
     @Test
     public void inserta(){
-        //TareaModelo tareaModelo = tareaSesionBean.inserta(3, 6, );
+        //TareaModelo tareaModelo = tareaSesionBean.inserta();
     }
 }
