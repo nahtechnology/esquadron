@@ -5,6 +5,7 @@
 			  version="2.2">
 
 	<application>
+		<!-- traduccion de las vistas -->
 		<resource-bundle>
 			<base-name>etiqueta</base-name>
 			<var>etiqueta</var>
@@ -21,6 +22,8 @@
 			<base-name>coordinacion</base-name>
 			<var>coordinacion</var>
 		</resource-bundle>
+
+		<message-bundle>ValidationMessages</message-bundle>
 	</application>
 
 </faces-config>

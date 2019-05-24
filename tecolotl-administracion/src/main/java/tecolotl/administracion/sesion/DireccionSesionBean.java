@@ -71,7 +71,7 @@ public class DireccionSesionBean {
             for (ColoniaEntidad coloniaEntidad : coloniaEntidadLista) {
                 coloniaModeloLista.add(new ColoniaModelo(coloniaEntidad));
             }
-            direccionModelo.setColoniaModeloCollection(coloniaModeloLista);
+            direccionModelo.setColoniaModeloLista(coloniaModeloLista);
         }
         return direccionModelo;
     }

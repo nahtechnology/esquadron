@@ -65,7 +65,7 @@ public class DireccionSesionBeanTest {
     public void buscaCodigoPosal() {
         DireccionModelo direccionModelo = direccionSesionBean.busca("74120");
         Assert.assertNotNull(direccionModelo);
-        Collection<ColoniaModelo> coloniaModeloColeccion = direccionModelo.getColoniaModeloCollection();
+        Collection<ColoniaModelo> coloniaModeloColeccion = direccionModelo.getColoniaModeloLista();
         Assert.assertNotNull(coloniaModeloColeccion);
         Assert.assertFalse(coloniaModeloColeccion.isEmpty());
         for (ColoniaModelo coloniaModelo : coloniaModeloColeccion) {
