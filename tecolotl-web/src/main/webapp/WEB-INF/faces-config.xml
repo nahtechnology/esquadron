@@ -23,7 +23,6 @@
 			<var>coordinacion</var>
 		</resource-bundle>
 
-		<message-bundle>ValidationMessages</message-bundle>
 	</application>
 
 </faces-config>

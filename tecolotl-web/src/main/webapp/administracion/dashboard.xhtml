@@ -197,11 +197,10 @@
                                 </div>
                             </div>
                             <div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
-                                <h:commandButton styleClass="uk-button uk-button-secondary uk-position-bottom-center"
-                                                 value="#{boton['search']}" actionListener="#{escuelaControlador.buscaColonias}">
+                                <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">
                                     <f:ajax execute="formulario-escuela:input-escuela-codigo-postal"
-                                            render="seleccion-colonia input-escuela-municipio input-escuela-estado modal-escuela-error"
-                                            onevent="limpiaSelect(data)"/>
+                                            render="formulario-escuela:input-escuela-codigo-postal formulario-escuela:errores"
+                                            listener="#{escuelaControlador.buscaColonias}"/>
                                 </h:commandButton>
                             </div>
                             <div class="uk-inline uk-width-1-1@s uk-width-1-2@m">
@@ -274,7 +273,7 @@
                                                  disabled="true"/>
                                 </div>
                             </div>
-                            <ui:fragment rendered="#{facesContext.validationFailed}">
+                            <ui:fragment id="errores" rendered="#{facesContext.validationFailed}">
                                 <div class="uk-width-1-1@s">
                                     <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
                                         <h:messages id="modal-escuela-error" styleClass="uk-list"/>
@@ -282,13 +281,12 @@
                                 </div>
                             </ui:fragment>
                         </div>
-                        <div class="uk-modal-footer uk-flex uk-flex-right">
-                            <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
-                            <h:commandButton styleClass="uk-button uk-button-secondary"
-                                             value="#{boton['add']}">
-                                <f:ajax execute="@form" render="@form formulario-escuela-tabla:tabla-escuela" listener="#{escuelaControlador.inserta}" onevent="function f(data) { cierraModal(data, 'modal-escuela') }"/>
-                            </h:commandButton>
-                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}">
+                            <f:ajax execute="@form" render="@form" listener="#{escuelaControlador.inserta}" onevent="function fun(data) { cierraModal(data, 'modal-escuela') }"/>
+                        </h:commandButton>
                     </div>
                 </h:form>
             </div>

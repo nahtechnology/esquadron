@@ -9,12 +9,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import javax.validation.Constraint;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.xml.validation.Validator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -23,17 +26,15 @@ public class TareaSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    //@Inject
-    //private Validator validator;
+    @Inject
+    private Validator validator;
 
     /**
      * Inserta una tarea.
      * @param tareaModelo datos de la tarea.
      */
     public void inserta(@NotNull @Valid TareaModelo tareaModelo){
-
         TareaEntidad tareaEntidad = new TareaEntidad();
-
         tareaEntidad.setAlumnoEntidad(tareaModelo.getAlumnoEntidad());
         tareaEntidad.setAsignacion(tareaModelo.getAsignacion());
         entityManager.persist(tareaEntidad);
