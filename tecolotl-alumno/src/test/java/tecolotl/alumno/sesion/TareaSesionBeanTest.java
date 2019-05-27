@@ -19,6 +19,11 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.PersonaSesionBean;
 
 import javax.inject.Inject;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.swing.text.DateFormatter;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -65,6 +70,23 @@ public class TareaSesionBeanTest {
 
     @Test
     public void inserta(){
-        //TareaModelo tareaModelo = tareaSesionBean.inserta();
+        /*TareaModelo tareaModelo = new TareaModelo(3, , new Date(2018, 10, 13));
+        tareaSesionBean.inserta(tareaModelo);
+        Assert.assertNotNull(tareaModelo);*/
+    }
+
+    @Test
+    public void elimina(){
+        TareaModelo tareaModelo = new TareaModelo(new TareaEntidad());
+        tareaSesionBean.elimina(5);
+        Assert.assertNotNull(tareaModelo);
+    }
+
+    @Test
+    public void actualiza(){
+        TareaModelo tareaModelo = new TareaModelo(new TareaEntidad());
+        tareaModelo.setAsignacion(new Date());
+        int elemModificados = tareaSesionBean.actualiza(tareaModelo);
+        Assert.assertFalse(elemModificados == 0);
     }
 }

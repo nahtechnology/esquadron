@@ -23,8 +23,9 @@ public class TareaSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Inject
-    private Validator validator;
+    //@Inject
+    //private Validator validator;
+
 
     /**
      * Inserta una tarea.
