@@ -8,6 +8,7 @@ public class EscuelaDetalleModelo extends EscuelaBaseModelo {
     private ColoniaModelo coloniaModelo;
 
     public EscuelaDetalleModelo() {
+        coloniaModelo = new ColoniaModelo();
     }
 
     public EscuelaDetalleModelo(String claveCentroTrabajo) {

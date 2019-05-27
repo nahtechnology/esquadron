@@ -23,6 +23,9 @@
 			<var>coordinacion</var>
 		</resource-bundle>
 
+		<message-bundle>
+			validacion.Messages
+		</message-bundle>
 	</application>
 
 </faces-config>

@@ -30,12 +30,14 @@ public class EscuelaControlador {
     }
 
     public void buscaColonias() {
-        System.out.println("pasando");
-        codigoPostal = codigoPostal.concat("a");
+        direccionModelo = direccionSesionBean.busca(codigoPostal);
+        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
+        direccionModelo.setEstado(direccionModelo1.getEstado());
+        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
     }
 
     public void inserta() {
-        System.out.println("pasando");
+        escuelaSesionBean.inserta(escuelaDetalleModelo);
     }
 
     public EscuelaDetalleModelo getEscuelaDetalleModelo() {

@@ -163,12 +163,12 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-cct"
                                                  pt:placeholder="#{administracion['dashboard.modal.cct']}"
-                                                 label="#{administracion['dashboard.modal.cct']}"
                                                  value="#{escuelaControlador.escuelaDetalleModelo.claveCentroTrabajo}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="10" maximum="14"/>
                                     </h:inputText>
                                 </div>
+                                <h:message for="input-escuela-cct" errorClass="uk-alert-danger"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-2@m">
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-nombre" value="#{administracion['dashboard.modal.name']}"/>
@@ -182,6 +182,7 @@
                                         <f:validateLength minimum="4" maximum="70"/>
                                     </h:inputText>
                                 </div>
+                                <h:message for="input-escuela-nombre" errorClass="uk-alert-danger"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-6@m">
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-codigo-postal" value="#{administracion['dashboard.modal.zipcode']}"/>
@@ -189,17 +190,17 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-codigo-postal"
                                                  pt:placeholder="#{administracion['dashboard.modal.zipcode']}"
-                                                 label="#{administracion['dashboard.modal.zipcode']}"
                                                  value="#{escuelaControlador.codigoPostal}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="4" maximum="5"/>
                                     </h:inputText>
                                 </div>
+                                <h:message for="input-escuela-codigo-postal" errorClass="uk-alert-danger" id="error-input-escuela-codigo-postal" showSummary="false" showDetail="true"/>
                             </div>
                             <div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
                                 <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">
                                     <f:ajax execute="formulario-escuela:input-escuela-codigo-postal"
-                                            render="formulario-escuela:input-escuela-codigo-postal formulario-escuela:errores"
+                                            render="formulario-escuela:error-input-escuela-codigo-postal formulario-escuela:seleccion-colonia formulario-escuela:input-escuela-estado formulario-escuela:input-escuela-municipio"
                                             listener="#{escuelaControlador.buscaColonias}"/>
                                 </h:commandButton>
                             </div>
@@ -208,7 +209,7 @@
                                     <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.colony']}" for="seleccion-colonia"/>
                                     <div class="uk-form-controls">
                                         <h:selectOneMenu styleClass="uk-select"
-                                                         value="#{escuelaDashboardControlador.escuelaDetalleModelo.coloniaModelo.id}"
+                                                         value="#{escuelaControlador.escuelaDetalleModelo.coloniaModelo.id}"
                                                          id="seleccion-colonia"
                                                          label="#{administracion['dashboard.modal.colony']}">
                                             <f:selectItem itemLabel="#{etiqueta['select']}" itemValue="#{null}" noSelectionOption="true"/>
@@ -219,6 +220,7 @@
                                             <f:validateRequired/>
                                         </h:selectOneMenu>
                                     </div>
+                                    <h:message for="seleccion-colonia" errorClass="uk-alert-danger"/>
                                 </div>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-2@m">
@@ -228,8 +230,12 @@
                                                  id="input-escuela-calle"
                                                  pt:placeholder="#{administracion['dashboard.modal.street']}"
                                                  label="#{administracion['dashboard.modal.street']}"
-                                                 value="#{escuelaControlador.escuelaDetalleModelo.domicilio}"/>
+                                                 value="#{escuelaControlador.escuelaDetalleModelo.domicilio}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="11" maximum="60"/>
+                                    </h:inputText>
                                 </div>
+                                <h:message for="input-escuela-calle" errorClass="uk-alert-danger"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-6@m">
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.street.num.ext']}" for="input-escuela-numero-exterior"/>
@@ -238,8 +244,12 @@
                                                  id="input-escuela-numero-exterior"
                                                  pt:placeholder="#{administracion['dashboard.modal.street.num.ext']}"
                                                  value="#{escuelaControlador.escuelaDetalleModelo.numeroExterior}"
-                                                 label="#{administracion['dashboard.modal.street.num.ext']}"/>
+                                                 label="#{administracion['dashboard.modal.street.num.ext']}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="1" maximum="15"/>
+                                    </h:inputText>
                                 </div>
+                                <h:message for="input-escuela-numero-exterior" errorClass="uk-alert-danger"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-6@m">
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.street.num.int']}" for="input-escuela-numero-interior"/>
@@ -248,8 +258,11 @@
                                                  id="input-escuela-numero-interior"
                                                  value="#{escuelaControlador.escuelaDetalleModelo.numeroInterior}"
                                                  pt:placeholder="#{administracion['dashboard.modal.street.num.int']}"
-                                                 label="#{administracion['dashboard.modal.street.num.int']}"/>
+                                                 label="#{administracion['dashboard.modal.street.num.int']}">
+                                        <f:validateLength minimum="1" maximum="15"/>
+                                    </h:inputText>
                                 </div>
+                                <h:message for="input-escuela-numero-interior" errorClass="uk-alert-danger"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-2-5@m">
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.city']}" for="input-escuela-municipio"/>
@@ -273,13 +286,6 @@
                                                  disabled="true"/>
                                 </div>
                             </div>
-                            <ui:fragment id="errores" rendered="#{facesContext.validationFailed}">
-                                <div class="uk-width-1-1@s">
-                                    <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
-                                        <h:messages id="modal-escuela-error" styleClass="uk-list"/>
-                                    </h:panelGroup>
-                                </div>
-                            </ui:fragment>
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
