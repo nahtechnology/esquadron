@@ -13,8 +13,6 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 @Named(value = "escuelaDashboardControlador")
 @ViewScoped
@@ -27,16 +25,33 @@ public class DashboardControlador implements Serializable {
     private DireccionSesionBean direccionSesionBean;
 
     private EscuelaDetalleModelo escuelaDetalleModelo;
+    private DireccionModelo direccionModelo;
+    private String codigoPostal;
     private CollectionDataModel<EscuelaDashboardModelo> collectionDataModel;
     private HtmlDataTable htmlDataTable;
 
     @PostConstruct
     public void init() {
         collectionDataModel = new CollectionDataModel<>(escuelaSesionBean.busca());
+        escuelaDetalleModelo = new EscuelaDetalleModelo();
     }
 
     public void actualizaTabla() {
         collectionDataModel.setWrappedData(escuelaSesionBean.busca());
+    }
+
+    public void buscaColonias() {
+        direccionModelo = direccionSesionBean.busca(codigoPostal);
+        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
+        direccionModelo.setEstado(direccionModelo1.getEstado());
+        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+    }
+
+    public void inserta() {
+        escuelaSesionBean.inserta(escuelaDetalleModelo);
+        actualizaTabla();
+        escuelaDetalleModelo = new EscuelaDetalleModelo();
+        codigoPostal = null;
     }
 
     public CollectionDataModel<EscuelaDashboardModelo> getCollectionDataModel() {
@@ -63,4 +78,19 @@ public class DashboardControlador implements Serializable {
         this.escuelaDetalleModelo = escuelaDetalleModelo;
     }
 
+    public DireccionModelo getDireccionModelo() {
+        return direccionModelo;
+    }
+
+    public void setDireccionModelo(DireccionModelo direccionModelo) {
+        this.direccionModelo = direccionModelo;
+    }
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
 }

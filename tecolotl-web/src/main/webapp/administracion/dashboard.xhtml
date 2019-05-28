@@ -120,7 +120,23 @@
                                     </h:column>
                                     <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
                                         <f:facet name="header"><span class="letra-titulo ">#{etiqueta['options']}</span></f:facet>
-                                        <span class="uk-icon-button uk-text-center" uk-icon="more-vertical"/>
+                                        <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
+                                        <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
+                                            <ul class="uk-nav uk-dropdown-nav">
+                                                <li><a href="#">#{boton['detail']}</a></li>
+                                                <li><a href="#">Item</a></li>
+                                                <li>
+                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo">
+                                                        <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['block']}"/></span>
+                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaControlador.escuelaBaseModelo}"/>
+                                                        <f:ajax render="formulario-bloqueo" onevent="function funcion(data) { abreModal('modal-bloqueo') }"/>
+                                                    </h:commandLink>
+                                                </li>
+                                                <li class="uk-nav-divider"></li>
+                                                <li><a href="#">#{boton['remove']}</a></li>
+                                            </ul>
+                                        </h:panelGroup>
                                     </h:column>
                                     <f:facet name="footer">
                                         <pa:pie-tabla htmlDataTable="#{escuelaDashboardControlador.htmlDataTable}"/>
@@ -133,7 +149,7 @@
                         <f:ajax render="formulario-tabla-escuela:tabla-escuela formulario-paginacion-escuela"
                                 onevent="limpiaSelect">
                             <h:form id="formulario-paginacion-escuela">
-                                <div pt:uk-grid="">
+                                <div uk-grid="">
                                     <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
                                         <pa:boton htmlDataTable="#{escuelaDashboardControlador.htmlDataTable}"/>
                                     </div>
@@ -149,7 +165,7 @@
         <hr/>
             <p class="uk-text-small uk-text-center">Copyright 2019 - <a href="https://nahtechnology.com/">Creado por Nah Technology</a></p>
         </footer>
-        <h:panelGroup layout="block" id="modal-escuela" class="uk-modal-container" pt:uk-modal="">
+        <h:panelGroup layout="block" id="modal-escuela" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-escuela" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
@@ -163,7 +179,7 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-cct"
                                                  pt:placeholder="#{administracion['dashboard.modal.cct']}"
-                                                 value="#{escuelaControlador.escuelaDetalleModelo.claveCentroTrabajo}">
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="10" maximum="14"/>
                                     </h:inputText>
@@ -177,7 +193,7 @@
                                                  id="input-escuela-nombre"
                                                  pt:placeholder="#{administracion['dashboard.modal.name']}"
                                                  label="#{administracion['dashboard.modal.name']}"
-                                                 value="#{escuelaControlador.escuelaDetalleModelo.nombre}">
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.nombre}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="4" maximum="70"/>
                                     </h:inputText>
@@ -190,7 +206,7 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-codigo-postal"
                                                  pt:placeholder="#{administracion['dashboard.modal.zipcode']}"
-                                                 value="#{escuelaControlador.codigoPostal}">
+                                                 value="#{escuelaDashboardControlador.codigoPostal}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="4" maximum="5"/>
                                     </h:inputText>
@@ -201,7 +217,7 @@
                                 <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">
                                     <f:ajax execute="formulario-escuela:input-escuela-codigo-postal"
                                             render="formulario-escuela:error-input-escuela-codigo-postal formulario-escuela:seleccion-colonia formulario-escuela:input-escuela-estado formulario-escuela:input-escuela-municipio"
-                                            listener="#{escuelaControlador.buscaColonias}"/>
+                                            listener="#{escuelaDashboardControlador.buscaColonias}"/>
                                 </h:commandButton>
                             </div>
                             <div class="uk-inline uk-width-1-1@s uk-width-1-2@m">
@@ -209,11 +225,11 @@
                                     <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.colony']}" for="seleccion-colonia"/>
                                     <div class="uk-form-controls">
                                         <h:selectOneMenu styleClass="uk-select"
-                                                         value="#{escuelaControlador.escuelaDetalleModelo.coloniaModelo.id}"
+                                                         value="#{escuelaDashboardControlador.escuelaDetalleModelo.coloniaModelo.id}"
                                                          id="seleccion-colonia"
                                                          label="#{administracion['dashboard.modal.colony']}">
                                             <f:selectItem itemLabel="#{etiqueta['select']}" itemValue="#{null}" noSelectionOption="true"/>
-                                            <f:selectItems value="#{escuelaControlador.direccionModelo.coloniaModeloLista}"
+                                            <f:selectItems value="#{escuelaDashboardControlador.direccionModelo.coloniaModeloLista}"
                                                            var="colonia"
                                                            itemValue="#{colonia.id}"
                                                            itemLabel="#{colonia.nombre}"/>
@@ -230,7 +246,7 @@
                                                  id="input-escuela-calle"
                                                  pt:placeholder="#{administracion['dashboard.modal.street']}"
                                                  label="#{administracion['dashboard.modal.street']}"
-                                                 value="#{escuelaControlador.escuelaDetalleModelo.domicilio}">
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.domicilio}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="11" maximum="60"/>
                                     </h:inputText>
@@ -243,7 +259,7 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-numero-exterior"
                                                  pt:placeholder="#{administracion['dashboard.modal.street.num.ext']}"
-                                                 value="#{escuelaControlador.escuelaDetalleModelo.numeroExterior}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.numeroExterior}"
                                                  label="#{administracion['dashboard.modal.street.num.ext']}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="1" maximum="15"/>
@@ -256,7 +272,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-numero-interior"
-                                                 value="#{escuelaControlador.escuelaDetalleModelo.numeroInterior}"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.numeroInterior}"
                                                  pt:placeholder="#{administracion['dashboard.modal.street.num.int']}"
                                                  label="#{administracion['dashboard.modal.street.num.int']}">
                                         <f:validateLength minimum="1" maximum="15"/>
@@ -269,7 +285,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-municipio"
-                                                 value="#{escuelaControlador.direccionModelo.municipio}"
+                                                 value="#{escuelaDashboardControlador.direccionModelo.municipio}"
                                                  pt:placeholder="#{administracion['dashboard.modal.city']}"
                                                  label="#{administracion['dashboard.modal.city']}"
                                                  disabled="true"/>
@@ -280,7 +296,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-estado"
-                                                 value="#{escuelaControlador.direccionModelo.estado}"
+                                                 value="#{escuelaDashboardControlador.direccionModelo.estado}"
                                                  pt:placeholder="#{administracion['dashboard.modal.town']}"
                                                  label="#{administracion['dashboard.modal.town']}"
                                                  disabled="true"/>
@@ -291,7 +307,47 @@
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}">
-                            <f:ajax execute="@form" render="@form" listener="#{escuelaControlador.inserta}" onevent="function fun(data) { cierraModal(data, 'modal-escuela') }"/>
+                            <f:ajax execute="@form" render="@form formulario-tabla-escuela" listener="#{escuelaDashboardControlador.inserta}" onevent="function fun(data) { cierraModal(data, 'modal-escuela') }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-bloqueo" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-bloqueo" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            <!--<h:outputText value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}" styleClass="letra-titulo"/>-->
+                            <h:outputFormat value="#{administracion['dashboard.modalbloqueo.title']}" styleClass="letra-titulo">
+                                <f:param value="#{escuelaControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                            </h:outputFormat>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div class="uk-margin">
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}" for="seleccion-colonia"/>
+                            <div class="uk-form-controls">
+                                <h:selectOneMenu styleClass="uk-select"
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.coloniaModelo.id}"
+                                                 id="seleccion-motivo-bloqueo"
+                                                 label="#{administracion['dashboard.modal.colony']}">
+                                    <f:selectItems value="#{escuelaControlador.motivoBloqueoModeloLista}"
+                                                   var="motivoBloqueo"
+                                                   itemValue="#{motivoBloqueo.clave}"
+                                                   itemLabel="#{motivoBloqueo.valor}"/>
+                                    <f:validateRequired/>
+                                </h:selectOneMenu>
+                            </div>
+                            <h:message for="seleccion-motivo-bloqueo" errorClass="uk-alert-danger"/>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['block']}">
+                            <f:ajax execute="@form"
+                                    render="formulario-tabla-escuela @form"
+                                    listener="#{escuelaControlador.bloquear}" onevent="function fun(data) { cierraModal(data, 'modal-bloqueo') }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -299,6 +355,7 @@
         </h:panelGroup>
         <script type="text/javascript">
             var modalEscuela = document.querySelector('#modal-escuela');
+            var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');
             document.addEventListener('DOMContentLoaded', function (evt) {
                 limpiaSelect();
             });
@@ -334,9 +391,28 @@
                             var validaciones = modalEscuela.querySelector('.uk-alert-danger');
                             if (validaciones === null) {
                                 UIkit.modal(modalEscuela).hide();
+                                limpiaEntrada(modal);
+                            }
+                            break;
+                        case 'modal-bloqueo':
+                            var validaciones = modalMotivoBloqueo.querySelector('.uk-alert-danger');
+                            if (validaciones === null) {
+                                UIkit.modal(modalMotivoBloqueo).hide();
                             }
                             break;
                     }
+                }
+            }
+
+            function abreModal(modal) {
+                switch (modal) {
+                    case 'modal-escuela':
+
+                        break;
+                    case 'modal-bloqueo':
+                        var objecto = modalMotivoBloqueo.querySelector('.uk-form-label');
+                        objecto.click();
+                        break;
                 }
             }
         </script>
