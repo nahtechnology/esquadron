@@ -46,7 +46,7 @@ public class TareaSesionBeanTest {
     @Inject
     private TareaSesionBean tareaSesionBean;
 
-    /*@Test
+    @Test
     public void busca(){
         List<TareaModelo> tareaModeloLista = tareaSesionBean.busca();
         Assert.assertNotNull(tareaModeloLista);
@@ -54,39 +54,41 @@ public class TareaSesionBeanTest {
         for (TareaModelo tareaModelo : tareaModeloLista){
             Assert.assertNotNull(tareaModelo);
             Assert.assertNotNull(tareaModelo.getId());
-            Assert.assertNotNull(tareaModelo.getAlumnoEntidad());
+            Assert.assertNotNull(tareaModelo.getAlumnoModelo());
             Assert.assertNotNull(tareaModelo.getAsignacion());
         }
-    }*/
+    }
 
     @Test
-    public void busca2(){
+    public void buscaID(){
         TareaModelo tareaModelo = tareaSesionBean.busca(2);
         Assert.assertNotNull(tareaModelo);
         Assert.assertNotNull(tareaModelo.getId());
-        Assert.assertNotNull(tareaModelo.getAlumnoEntidad());
+        Assert.assertNotNull(tareaModelo.getAlumnoModelo());
         Assert.assertNotNull(tareaModelo.getAsignacion());
     }
 
     @Test
     public void inserta(){
-        /*TareaModelo tareaModelo = new TareaModelo(3, , new Date(2018, 10, 13));
-        tareaSesionBean.inserta(tareaModelo);
-        Assert.assertNotNull(tareaModelo);*/
+        TareaModelo tareaModelo = new TareaModelo(11);
+        tareaSesionBean.inserta(tareaModelo.getId());
+        Assert.assertNotNull(tareaModelo);
+        Assert.assertNotNull(tareaModelo.getId());
     }
 
     @Test
     public void elimina(){
         TareaModelo tareaModelo = new TareaModelo(new TareaEntidad());
-        tareaSesionBean.elimina(5);
+        tareaSesionBean.elimina(11);
         Assert.assertNotNull(tareaModelo);
     }
 
     @Test
     public void actualiza(){
-        TareaModelo tareaModelo = new TareaModelo(new TareaEntidad());
+        TareaModelo tareaModelo = new TareaModelo(6);
         tareaModelo.setAsignacion(new Date());
-        int elemModificados = tareaSesionBean.actualiza(tareaModelo);
+        int elemModificados = tareaSesionBean.actualiza(tareaModelo.getId());
         Assert.assertFalse(elemModificados == 0);
+
     }
 }
