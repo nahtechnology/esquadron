@@ -29,6 +29,7 @@ public class ColoniaModelo {
     private String nombre;
 
     public ColoniaModelo() {
+        id = new Integer(0);
     }
 
     /**

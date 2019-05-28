@@ -26,6 +26,13 @@ public class TareaModelo {
         this.asignacion = tareaEntidad.getAsignacion();
     }
 
+    public TareaModelo(Integer id, AlumnoEntidad alumnoEntidad, Date asignacion) {
+        this.id = id;
+        this.alumnoEntidad = alumnoEntidad;
+        this.asignacion = asignacion;
+    }
+
+
     public Integer getId() {
         return id;
     }
