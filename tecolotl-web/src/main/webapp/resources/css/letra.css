@@ -27,8 +27,9 @@
 }
 
 .primera-mayuscula::first-letter {
-    text-transform: uppercase;
+    text-transform: uppercase !important;
 }
+
 
 .text-color-level1{
     color: #1E87F0;

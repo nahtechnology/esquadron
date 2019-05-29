@@ -237,7 +237,18 @@
 
 .uk-search-input:focus{
 	outline: 1px solid #1E87F0;
-	/*background-color: rgba(30,135,240,0.2)!important;*/
-	/*color: white;*/
 	font-weight: bold;
+}
+
+.filtrar:focus{
+	background-color: rgba(30,135,240,0.2)!important;
+	color: white;
+}
+
+.alerta-tamaño{
+	font-size: 16px !important;
+}
+
+.uk-text-danger{
+	font-size: 14px;
 }
