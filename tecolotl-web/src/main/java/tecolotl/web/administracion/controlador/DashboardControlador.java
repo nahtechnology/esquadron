@@ -18,6 +18,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Named(value = "escuelaDashboardControlador")
 @ViewScoped
@@ -39,8 +40,9 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     private EscuelaDetalleModelo escuelaDetalleModelo;
     private EscuelaBaseModelo escuelaBaseModelo;
     private DireccionModelo direccionModelo;
-    private String codigoPostal;
     private MotivoBloqueoModelo motivoBloqueoModelo;
+    private String codigoPostal;
+    private String busqueda;
 
     @PostConstruct
     public void init() {
@@ -52,7 +54,14 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     }
 
     public void actualizaTabla() {
-        getCollectionDataModel().setWrappedData(escuelaSesionBean.busca());
+        logger.info(busqueda);
+        if (busqueda == null || busqueda.trim().isEmpty()) {
+            getCollectionDataModel().setWrappedData(escuelaSesionBean.busca());
+        } else {
+            getCollectionDataModel().setWrappedData(escuelaSesionBean.busca().stream().filter(escuelaDashboardModelo ->
+                    escuelaDashboardModelo.getNombre().contains(busqueda) || escuelaDashboardModelo.getClaveCentroTrabajo().contains(busqueda)
+            ).collect(Collectors.toList()));
+        }
     }
 
     public void buscaColonias() {
@@ -132,5 +141,13 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
 
     public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
         this.escuelaBaseModelo = escuelaBaseModelo;
+    }
+
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
     }
 }

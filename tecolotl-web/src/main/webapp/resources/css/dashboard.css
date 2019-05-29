@@ -240,8 +240,8 @@
 	font-weight: bold;
 }
 
-.filtrar:focus{
-	background-color: rgba(30,135,240,0.2)!important;
+.filtrar{
+	background-color: rgba(30,135,240,0.8)!important;
 	color: white;
 }
 

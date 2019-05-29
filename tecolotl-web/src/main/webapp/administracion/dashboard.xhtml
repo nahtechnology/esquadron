@@ -48,8 +48,23 @@
                             <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{administracion['dashboard.titulo']}</span></h4></div>
                             <div class="uk-width-1-3">
                                 <h:form styleClass="uk-search largo-buscar ">
-                                    <span uk-search-icon=""/>
-                                    <input class="uk-search-input" type="search" placeholder="Search..."/>
+                                    <div class="uk-inline">
+                                        <h:commandLink styleClass="uk-form-icon" pt:uk-icon="icon: search" rendered="#{empty escuelaDashboardControlador.busqueda}">
+                                            <f:ajax render="formulario-tabla-escuela @form" execute="filtrado" listener="#{escuelaDashboardControlador.actualizaTabla}"/>
+                                        </h:commandLink>
+                                        <h:commandLink styleClass="uk-form-icon uk-light"
+                                                       pt:uk-icon="icon: close"
+                                                       action="#{escuelaDashboardControlador.actualizaTabla}"
+                                                       rendered="#{not empty escuelaDashboardControlador.busqueda}">
+                                            <f:setPropertyActionListener value="#{null}" target="#{escuelaDashboardControlador.busqueda}"/>
+                                            <f:ajax render="formulario-tabla-escuela @form"/>
+                                        </h:commandLink>
+                                        <h:inputText id="filtrado"
+                                                    styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar'}"
+                                                     pt:placeholder="#{etiqueta['search']}"
+                                                     value="#{escuelaDashboardControlador.busqueda}"
+                                                     pt:uk-tooltip="title: #{administracion['dashboard.search.tooltip']}; delay:1000"/>
+                                    </div>
                                 </h:form>
                             </div>
                             <div class="uk-width-expand uk-text-right panel-icons">
@@ -324,7 +339,9 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}">
                             <f:ajax execute="@form" render="@form formulario-tabla-escuela" listener="#{escuelaDashboardControlador.inserta}" onevent="function fun(data) { cierraModal(data, 'modal-escuela') }"/>
                         </h:commandButton>
@@ -431,13 +448,13 @@
                 if (data.status === "success") {
                     switch (modal) {
                         case 'modal-escuela':
-                            if (modalEscuela.querySelector('.uk-alert-danger') === null) {
+                            if (modalEscuela.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalEscuela).hide();
                                 limpiaEntrada(modal);
                             }
                             break;
                         case 'modal-bloqueo':
-                            if (modalMotivoBloqueo.querySelector('.uk-alert-danger') === null) {
+                            if (modalMotivoBloqueo.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalMotivoBloqueo).hide();
                             }
                             break;
