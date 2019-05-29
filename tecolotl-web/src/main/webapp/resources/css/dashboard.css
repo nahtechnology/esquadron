@@ -199,3 +199,45 @@
 .primera-mayuscula::first-letter {
 	text-transform: uppercase;
 }
+
+.largo-buscar {
+	width: 500px;
+}
+
+/*
+ * Input
+ */
+.largo-buscar .uk-search-input {
+	height: 40px;
+	padding-left: 6px;
+	padding-right: 6px;
+	background: transparent;
+	border: 1px solid #e5e5e5;
+}
+
+/* Focus */
+.largo-buscar .uk-search-input:focus {
+	background-color: transparent;
+}
+
+/*
+ * Icon
+ */
+.largo-buscar .uk-search-icon {
+	width: 40px;
+}
+
+.largo-buscar .uk-search-icon:not(.uk-search-icon-flip) ~ .uk-search-input {
+	padding-left: 40px;
+}
+
+.largo-buscar .uk-search-icon-flip ~ .uk-search-input {
+	padding-right: 40px;
+}
+
+.uk-search-input:focus{
+	outline: 1px solid #1E87F0;
+	/*background-color: rgba(30,135,240,0.2)!important;*/
+	/*color: white;*/
+	font-weight: bold;
+}
