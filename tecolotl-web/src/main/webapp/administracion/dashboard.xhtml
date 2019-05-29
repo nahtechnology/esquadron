@@ -126,15 +126,28 @@
                                                 <li><a href="#">#{boton['detail']}</a></li>
                                                 <li><a href="#">Item</a></li>
                                                 <li>
-                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo">
+                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo" rendered="#{escuela.activo}">
                                                         <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['block']}"/></span>
-                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaControlador.escuelaBaseModelo}"/>
+                                                        <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                                                         <f:ajax render="formulario-bloqueo" onevent="function funcion(data) { abreModal('modal-bloqueo') }"/>
                                                     </h:commandLink>
+                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{not escuela.activo}">
+                                                        <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['active']}"/></span>
+                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
+                                                        <f:ajax render="@this" listener="#{escuelaDashboardControlador.activa}"/>
+                                                    </h:commandLink>
                                                 </li>
-                                                <li class="uk-nav-divider"></li>
-                                                <li><a href="#">#{boton['remove']}</a></li>
+                                                <li class="uk-nav-divider"/>
+                                                <li>
+                                                    <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-eliminar">
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
+                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
+                                                        <f:ajax render="formulario-eliminar" onevent="abreModal('modal-eliminar')"/>
+                                                    </h:commandLink>
+                                                </li>
                                             </ul>
                                         </h:panelGroup>
                                     </h:column>
@@ -318,21 +331,20 @@
                 <h:form id="formulario-bloqueo" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
-                            <!--<h:outputText value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}" styleClass="letra-titulo"/>-->
                             <h:outputFormat value="#{administracion['dashboard.modalbloqueo.title']}" styleClass="letra-titulo">
-                                <f:param value="#{escuelaControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                                <f:param value="#{escuelaDashboardControlador.escuelaBaseModelo.nombre}"/>
                             </h:outputFormat>
                         </p>
                     </div>
                     <div class="uk-modal-body">
                         <div class="uk-margin">
-                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}" for="seleccion-colonia"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}" for="seleccion-motivo-bloqueo"/>
                             <div class="uk-form-controls">
                                 <h:selectOneMenu styleClass="uk-select"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.coloniaModelo.id}"
+                                                 value="#{escuelaDashboardControlador.motivoBloqueoModelo.clave}"
                                                  id="seleccion-motivo-bloqueo"
                                                  label="#{administracion['dashboard.modal.colony']}">
-                                    <f:selectItems value="#{escuelaControlador.motivoBloqueoModeloLista}"
+                                    <f:selectItems value="#{escuelaDashboardControlador.motivoBloqueoModeloLista}"
                                                    var="motivoBloqueo"
                                                    itemValue="#{motivoBloqueo.clave}"
                                                    itemLabel="#{motivoBloqueo.valor}"/>
@@ -347,7 +359,31 @@
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['block']}">
                             <f:ajax execute="@form"
                                     render="formulario-tabla-escuela @form"
-                                    listener="#{escuelaControlador.bloquear}" onevent="function fun(data) { cierraModal(data, 'modal-bloqueo') }"/>
+                                    listener="#{escuelaDashboardControlador.bloquea}" onevent="function fun(data) { cierraModal(data, 'modal-bloqueo') }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-eliminar" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header fondo-peligro">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            <h:outputFormat value="#{administracion['dashboard.modalremove.title']}" styleClass="letra-titulo">
+                                <f:param value="#{escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                            </h:outputFormat>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <h:outputFormat value="#{administracion['dashboard.modalremove.message']}">
+                            <f:param value="#{escuelaDashboardControlador.escuelaBaseModelo.nombre}"/>
+                        </h:outputFormat>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
+                            <f:ajax execute="@form" render="formulario-tabla-escuela" listener="#{escuelaDashboardControlador.elimina}"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -356,6 +392,7 @@
         <script type="text/javascript">
             var modalEscuela = document.querySelector('#modal-escuela');
             var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');
+            var modalEliminar = document.querySelector('#modal-eliminar');
             document.addEventListener('DOMContentLoaded', function (evt) {
                 limpiaSelect();
             });
@@ -388,15 +425,13 @@
                 if (data.status === "success") {
                     switch (modal) {
                         case 'modal-escuela':
-                            var validaciones = modalEscuela.querySelector('.uk-alert-danger');
-                            if (validaciones === null) {
+                            if (modalEscuela.querySelector('.uk-alert-danger') === null) {
                                 UIkit.modal(modalEscuela).hide();
                                 limpiaEntrada(modal);
                             }
                             break;
                         case 'modal-bloqueo':
-                            var validaciones = modalMotivoBloqueo.querySelector('.uk-alert-danger');
-                            if (validaciones === null) {
+                            if (modalMotivoBloqueo.querySelector('.uk-alert-danger') === null) {
                                 UIkit.modal(modalMotivoBloqueo).hide();
                             }
                             break;
@@ -412,6 +447,9 @@
                     case 'modal-bloqueo':
                         var objecto = modalMotivoBloqueo.querySelector('.uk-form-label');
                         objecto.click();
+                        break;
+                    case 'modal-eliminar':
+                        modalEliminar.querySelector('.uk-text-center').click();
                         break;
                 }
             }

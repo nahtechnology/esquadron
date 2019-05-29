@@ -139,6 +139,17 @@ public class EscuelaSesionBean implements Serializable {
 	}
 
 	/**
+	 * Pone estatus activo de una escuela
+	 * @param claveCentroTrabajo Escuela a ser activada
+	 */
+	public void activa(@NotNull String claveCentroTrabajo) {
+		logger.fine(claveCentroTrabajo);
+		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
+		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)0);
+		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
+	}
+
+	/**
 	 * Busca los detalle de una escuela, en caso de no existir se regresa nulo.
 	 * @param claveCentroTrabajo Clave Centro de Trabajo .
 	 * @return {@link EscuelaDetalleModelo} Con los datos.

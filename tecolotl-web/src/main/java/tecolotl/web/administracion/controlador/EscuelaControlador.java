@@ -59,4 +59,5 @@ public class EscuelaControlador {
     public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
         this.escuelaBaseModelo = escuelaBaseModelo;
     }
+
 }
