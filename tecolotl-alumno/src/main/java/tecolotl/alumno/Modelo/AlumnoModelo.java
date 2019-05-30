@@ -3,11 +3,13 @@ package tecolotl.alumno.Modelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.nucleo.modelo.PersonaModelo;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
 public class AlumnoModelo extends PersonaModelo {
 
+    @NotNull
     private Integer id;
     private List gradoEscolar;
     private String nivelLenguaje;

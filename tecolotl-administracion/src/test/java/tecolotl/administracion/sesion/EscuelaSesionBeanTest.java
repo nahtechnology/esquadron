@@ -106,8 +106,8 @@ public class EscuelaSesionBeanTest {
 	public void bloqueo() {
 		EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("0000000000");
 		MotivoBloqueoModelo motivoBloqueoModelo = new MotivoBloqueoModelo((short)0);
-		int cambios = escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
-		Assert.assertFalse(cambios == 0);
+		escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
+
 	}
 }
 

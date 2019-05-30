@@ -17,6 +17,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -28,7 +29,7 @@ import java.util.logging.Logger;
  * @since 0.1
  */
 @Stateless
-public class EscuelaSesionBean {
+public class EscuelaSesionBean implements Serializable {
 
 	@Inject
 	private Logger logger;
@@ -129,21 +130,23 @@ public class EscuelaSesionBean {
 	 * no se actualiza ningún dato.
 	 * @param escuelaBaseModelo Escuela a ser actualizada
 	 * @param motivoBloqueoModelo Motivo de Bloque con el que se le bloquea
-	 * @return Elementos modificados, cero en caso de no existir la escuela y diferente de cero si se actualiza correctamente
 	 */
-	public int bloqueo (@NotNull EscuelaBaseModelo escuelaBaseModelo, @NotNull MotivoBloqueoModelo motivoBloqueoModelo) {
-		int modificados = 0;
+	public void bloqueo (@NotNull EscuelaBaseModelo escuelaBaseModelo, @NotNull MotivoBloqueoModelo motivoBloqueoModelo) {
 		logger.finer("Escuela a actualizar:".concat(escuelaBaseModelo.toString()).concat(" con motivo de bloqueo:").concat(motivoBloqueoModelo.toString()));
 		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, escuelaBaseModelo.getClaveCentroTrabajo());
-		if (escuelaEntidad == null) {
-			logger.fine("No se puede actualizar esta escuela:".concat(escuelaBaseModelo.getClaveCentroTrabajo())
-					.concat(" por que no existe en la base de datos"));
-		} else {
-			MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad(motivoBloqueoModelo.getClave());
-			escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
-			modificados = 1;
-		}
-		return modificados;
+		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad(motivoBloqueoModelo.getClave());
+		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
+	}
+
+	/**
+	 * Pone estatus activo de una escuela
+	 * @param claveCentroTrabajo Escuela a ser activada
+	 */
+	public void activa(@NotNull String claveCentroTrabajo) {
+		logger.fine(claveCentroTrabajo);
+		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
+		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)0);
+		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 	}
 
 	/**

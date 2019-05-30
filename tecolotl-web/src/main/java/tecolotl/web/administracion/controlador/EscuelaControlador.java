@@ -1,66 +1,63 @@
 package tecolotl.web.administracion.controlador;
 
-import tecolotl.administracion.modelo.direccion.DireccionModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
-import tecolotl.administracion.sesion.DireccionSesionBean;
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
+import java.util.logging.Logger;
 
 @RequestScoped
 @Named
 public class EscuelaControlador {
 
-    private EscuelaDetalleModelo escuelaDetalleModelo;
-    private DireccionModelo direccionModelo;
-    private String codigoPostal;
+    private List<MotivoBloqueoModelo> motivoBloqueoModeloLista;
+    private MotivoBloqueoModelo motivoBloqueoModelo;
+    private EscuelaBaseModelo escuelaBaseModelo;
+
+    @Inject
+    private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
 
-    @Inject
-    private DireccionSesionBean direccionSesionBean;
-
     @PostConstruct
     public void init() {
-        escuelaDetalleModelo = new EscuelaDetalleModelo();
+        motivoBloqueoModeloLista = motivoBloqueoSesionBean.busca("Sin bloqueo");
+        escuelaBaseModelo = new EscuelaBaseModelo();
     }
 
-    public void buscaColonias() {
-        direccionModelo = direccionSesionBean.busca(codigoPostal);
-        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
-        direccionModelo.setEstado(direccionModelo1.getEstado());
-        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+    public void bloquear() {
+        escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
     }
 
-    public void inserta() {
-        escuelaSesionBean.inserta(escuelaDetalleModelo);
+    public List<MotivoBloqueoModelo> getMotivoBloqueoModeloLista() {
+        return motivoBloqueoModeloLista;
     }
 
-    public EscuelaDetalleModelo getEscuelaDetalleModelo() {
-        return escuelaDetalleModelo;
+    public void setMotivoBloqueoModeloLista(List<MotivoBloqueoModelo> motivoBloqueoModeloLista) {
+        this.motivoBloqueoModeloLista = motivoBloqueoModeloLista;
     }
 
-    public void setEscuelaDetalleModelo(EscuelaDetalleModelo escuelaDetalleModelo) {
-        this.escuelaDetalleModelo = escuelaDetalleModelo;
+    public MotivoBloqueoModelo getMotivoBloqueoModelo() {
+        return motivoBloqueoModelo;
     }
 
-    public DireccionModelo getDireccionModelo() {
-        return direccionModelo;
+    public void setMotivoBloqueoModelo(MotivoBloqueoModelo motivoBloqueoModelo) {
+        this.motivoBloqueoModelo = motivoBloqueoModelo;
     }
 
-    public void setDireccionModelo(DireccionModelo direccionModelo) {
-        this.direccionModelo = direccionModelo;
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
     }
 
-    public String getCodigoPostal() {
-        return codigoPostal;
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
 }

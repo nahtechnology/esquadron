@@ -24,6 +24,13 @@ public class AlumnoEntidad extends PersonaEntidad {
     private String correoPadreFamilia;
     private byte[] contraseniaPadreFamilia;
 
+    public AlumnoEntidad() {
+    }
+
+    public AlumnoEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue
     public Integer getId() {
