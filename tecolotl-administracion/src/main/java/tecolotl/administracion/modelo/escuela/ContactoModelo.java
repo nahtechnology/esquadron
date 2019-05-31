@@ -17,7 +17,7 @@ public class ContactoModelo {
 
     @NotNull(groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
     @Min(value = 0, groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
-    private Short clave;
+    private TipoContactoModelo tipoContactoModelo;
 
     @NotNull(groups = {ContactoLlavePrimariaValidacion.class})
     @Min(value = 0, groups = {ContactoLlavePrimariaValidacion.class})
@@ -39,7 +39,7 @@ public class ContactoModelo {
 
     public ContactoModelo(ContactoEntidad contactoEntidad) {
         claveCentroTrabajo = contactoEntidad.getContactoEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
-        clave = contactoEntidad.getContactoEntidadPK().getTipoContactoEntidad().getClave();
+        tipoContactoModelo = new TipoContactoModelo(contactoEntidad.getContactoEntidadPK().getTipoContactoEntidad());
         contador = contactoEntidad.getContactoEntidadPK().getContador();
         nombre = contactoEntidad.getNombre();
         telefono= contactoEntidad.getTelefono();
@@ -54,12 +54,12 @@ public class ContactoModelo {
         this.claveCentroTrabajo = claveCentroTrabajo;
     }
 
-    public Short getClave() {
-        return clave;
+    public TipoContactoModelo getTipoContactoModelo() {
+        return tipoContactoModelo;
     }
 
-    public void setClave(Short clave) {
-        this.clave = clave;
+    public void setTipoContactoModelo(TipoContactoModelo tipoContactoModelo) {
+        this.tipoContactoModelo = tipoContactoModelo;
     }
 
     public Short getContador() {
@@ -100,20 +100,20 @@ public class ContactoModelo {
         if (o == null || getClass() != o.getClass()) return false;
         ContactoModelo that = (ContactoModelo) o;
         return claveCentroTrabajo.equals(that.claveCentroTrabajo) &&
-                clave.equals(that.clave) &&
+                tipoContactoModelo.equals(that.tipoContactoModelo) &&
                 contador.equals(that.contador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(claveCentroTrabajo, clave, contador);
+        return Objects.hash(claveCentroTrabajo, tipoContactoModelo, contador);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ContactoModelo{");
         sb.append("claveCentroTrabajo='").append(claveCentroTrabajo).append('\'');
-        sb.append(", clave=").append(clave);
+        sb.append(", tipoContactoModelo=").append(tipoContactoModelo);
         sb.append(", contador=").append(contador);
         sb.append(", nombre='").append(nombre).append('\'');
         sb.append(", telefono='").append(telefono).append('\'');

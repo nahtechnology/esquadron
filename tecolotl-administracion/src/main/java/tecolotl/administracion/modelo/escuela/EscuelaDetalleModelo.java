@@ -6,6 +6,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 public class EscuelaDetalleModelo extends EscuelaBaseModelo {
 
     private ColoniaModelo coloniaModelo;
+    private MotivoBloqueoModelo motivoBloqueoModelo;
 
     public EscuelaDetalleModelo() {
         coloniaModelo = new ColoniaModelo();
@@ -18,6 +19,7 @@ public class EscuelaDetalleModelo extends EscuelaBaseModelo {
     public EscuelaDetalleModelo(EscuelaEntidad escuelaEntidad) {
         super(escuelaEntidad);
         coloniaModelo = new ColoniaModelo(escuelaEntidad.getColoniaEntidad());
+        motivoBloqueoModelo = new MotivoBloqueoModelo(escuelaEntidad.getMotivoBloqueoEntidad());
     }
 
     public ColoniaModelo getColoniaModelo() {
@@ -26,5 +28,13 @@ public class EscuelaDetalleModelo extends EscuelaBaseModelo {
 
     public void setColoniaModelo(ColoniaModelo coloniaModelo) {
         this.coloniaModelo = coloniaModelo;
+    }
+
+    public MotivoBloqueoModelo getMotivoBloqueoModelo() {
+        return motivoBloqueoModelo;
+    }
+
+    public void setMotivoBloqueoModelo(MotivoBloqueoModelo motivoBloqueoModelo) {
+        this.motivoBloqueoModelo = motivoBloqueoModelo;
     }
 }

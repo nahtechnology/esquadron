@@ -143,8 +143,14 @@
                                         <f:facet name="header"><span class="letra-titulo ">#{etiqueta['options']}</span></f:facet>
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
-                                            <ul class="uk-nav uk-dropdown-nav">
-                                                <li><a href="#">#{boton['detail']}</a></li>
+                                            <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                                <li>
+                                                    <h:link styleClass="uk-text-primary" outcome="detalle">
+                                                        <h:outputText pt:uk-icon="icon:  file-text" styleClass="uk-margin-small-right uk-icon"/>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['detail']}" styleClass="primera-mayuscula"/></span>
+                                                        <f:param name="escuela" value="#{escuela.claveCentroTrabajo}"/>
+                                                    </h:link>
+                                                </li>
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo" rendered="#{escuela.activo}">
                                                         <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
@@ -152,11 +158,11 @@
                                                         <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                                                         <f:ajax render="formulario-bloqueo" onevent="function funcion(data) { abreModal('modal-bloqueo') }"/>
                                                     </h:commandLink>
-                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{not escuela.activo}">
+                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{not escuela.activo}" action="#{escuelaDashboardControlador.activa}">
                                                         <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['active']}"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
-                                                        <f:ajax render="@this" listener="#{escuelaDashboardControlador.activa}"/>
+                                                        <f:ajax render="@form"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li class="uk-nav-divider"/>
@@ -215,7 +221,7 @@
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
                                                  validator="#{escuelaValidacion.validate}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="10" maximum="14"/>
+                                        <f:validateLength minimum="11" maximum="110"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-cct" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>

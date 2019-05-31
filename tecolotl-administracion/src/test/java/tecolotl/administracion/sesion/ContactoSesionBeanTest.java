@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.administracion.modelo.escuela.TipoContactoModelo;
 import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
@@ -56,7 +57,7 @@ public class ContactoSesionBeanTest {
     public void inserta() {
         ContactoModelo contactoModelo = new ContactoModelo();
         contactoModelo.setClaveCentroTrabajo("0000000000");
-        contactoModelo.setClave((short)1);
+        contactoModelo.setTipoContactoModelo(new TipoContactoModelo((short)1));
         contactoModelo.setNombre("Jose Ismael Gozalez Sontecomani");
         contactoModelo.setTelefono("2226348142");
         contactoModelo.setCorreoElectronico("correo@servidor.com");
@@ -71,7 +72,8 @@ public class ContactoSesionBeanTest {
         for (ContactoModelo contactoModelo : contactoModeloLista) {
             Assert.assertNotNull(contactoModelo);
             Assert.assertNotNull(contactoModelo.getClaveCentroTrabajo());
-            Assert.assertNotNull(contactoModelo.getClave());
+            Assert.assertNotNull(contactoModelo.getTipoContactoModelo());
+            Assert.assertNotNull(contactoModelo.getTipoContactoModelo().getValor());
             Assert.assertNotNull(contactoModelo.getContador());
             Assert.assertNotNull(contactoModelo.getCorreoElectronico());
             Assert.assertNotNull(contactoModelo.getNombre());
@@ -82,7 +84,7 @@ public class ContactoSesionBeanTest {
     @Test
     public void elimina() {
         ContactoModelo contactoModelo = new ContactoModelo();
-        contactoModelo.setClave((short)1);
+        contactoModelo.setTipoContactoModelo(new TipoContactoModelo((short)1));
         contactoModelo.setContador((short)1);
         contactoModelo.setClaveCentroTrabajo("0000000000");
         int modificados = contactoSesionBean.elimina(contactoModelo);
@@ -92,7 +94,7 @@ public class ContactoSesionBeanTest {
     @Test
     public void actualiza() {
         ContactoModelo contactoModelo = new ContactoModelo();
-        contactoModelo.setClave((short)1);
+        contactoModelo.setTipoContactoModelo(new TipoContactoModelo((short)1));
         contactoModelo.setContador((short)2);
         contactoModelo.setClaveCentroTrabajo("0000000000");
         contactoModelo.setNombre("Jose Emanuel lopez");

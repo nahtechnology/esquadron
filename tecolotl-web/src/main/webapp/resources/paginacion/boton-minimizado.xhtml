@@ -10,12 +10,12 @@
         <cc:attribute name="htmlDataTable" type="javax.faces.component.html.HtmlDataTable" required="true"/>
     </cc:interface>
     <cc:implementation>
-        <h:commandButton styleClass="uk-margin-small-right boton-paginacion boton-paginacion-anterior"
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-anterior"
                          disabled="#{cc.attrs.htmlDataTable.first eq 0}">
             <f:setPropertyActionListener value="#{cc.attrs.htmlDataTable.first - cc.attrs.htmlDataTable.rows}" target="#{cc.attrs.htmlDataTable.first}"/>
         </h:commandButton>
 
-        <h:commandButton styleClass="uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
+        <h:commandButton styleClass="uk-button uk-button-secondary uk-margin-small-right boton-paginacion boton-paginacion-siguiente"
                          disabled="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows ge cc.attrs.htmlDataTable.rowCount}">
             <f:setPropertyActionListener value="#{cc.attrs.htmlDataTable.first + cc.attrs.htmlDataTable.rows}" target="#{cc.attrs.htmlDataTable.first}"/>
         </h:commandButton>

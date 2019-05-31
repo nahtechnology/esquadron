@@ -114,7 +114,7 @@ public class ContactoSesionBean {
      */
     private ContactoEntidadPK creaLlavePrimaria(ContactoModelo contactoModelo) {
         ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
-        contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad(contactoModelo.getClave()));
+        contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
         contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(contactoModelo.getClaveCentroTrabajo()));
         contactoEntidadPK.setContador(contactoModelo.getContador());
         return contactoEntidadPK;

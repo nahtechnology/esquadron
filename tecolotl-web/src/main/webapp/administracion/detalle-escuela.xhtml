@@ -5,143 +5,414 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
 <ui:composition template="/template/administracion/dashboard.xhtml">
-        <ui:define name="menu">
-            <ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav="">
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">Menú</li>
-
-            <li class="uk-active"><h:link outcome="catalogo-coordinacion.xhtml"><span data-uk-icon="icon: table" class=" uk-active uk-margin-small-right"></span>Escuelas</h:link></li>
-
-            <ul class="uk-nav-sub">
-                <li><h:link outcome="catalogo-administracion.xhtml" ><span data-uk-icon="icon: users" class="uk-margin-small-right"></span>Adminsitrador</h:link>
-                </li>
-                <li ><h:link outcome="catalogo-coordinacion.xhtml"><span data-uk-icon="icon: users" class=" uk-active uk-margin-small-right"></span>Coordinador/Profesor</h:link>
-                </li>
-
-            </ul>
-            </ul>
-        </ui:define>
-
+            <li class="uk-parent uk-open">
+                <h:link><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image" pt:uk-svg=""/></h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="administracion-dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catálogo</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Administracion</h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Coordinación</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Coordinación</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard coordinador</h:link></li>
+                    <li class="uk-active"><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Gestion de grupo</h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
-
-
-
-
-                    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
-                        <div class="uk-card-header">
-                            <div class="uk-grid uk-grid-small">
-                                <div class="uk-width-auto"><h4><span class="uk-text-middle">Datos Escuela</span></h4></div>
-
+        <h:outputStylesheet library="css" name="letra.css"/>
+        <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+            <div class="uk-card-header">
+                <div class="uk-grid uk-grid-small">
+                    <div class="uk-width-auto"><h4><span class="uk-text-middle">Datos Escuela</span></h4></div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <h:form styleClass="uk-form-stacked" >
+                    <h:panelGroup styleClass="uk-grid"  pt:uk-grid="" >
+                        <div class="uk-width-1-5@m uk-width-1-1@s ">
+                            <h:outputLabel styleClass="uk-form-label" value="CCT" for="cctv" />
+                            <div class="uk-form-controls">
+                                <h:inputText id="cctv"  pt:placeholder="21DBA0004C" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.claveCentroTrabajo}"/>
                             </div>
                         </div>
+                        <div class="uk-width-3-5@m uk-width-1-1@s" >
+                            <h:outputLabel styleClass="uk-form-label" for="nombre-escuela" value="Nombre" />
+                            <div class="uk-form-controls">
+                                <h:inputText id="nombre-escuela" pt:placeholder="Francisco I Madero " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.nombre}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="codigo-postal" value="Código Postal"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="codigo-postal" pt:placeholder="72730" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.coloniaModelo.codigoPostal}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="colonia" value="Colonia"/>
+                            <div class="uk-form-controls">
+                            <h:inputText id="colonia" pt:placeholder="Reforma" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.coloniaModelo.nombre}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="municipio" value="Municipio"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="municipio" pt:placeholder="Puebla" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.direccionModelo.municipio}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="estado" value="Estado" />
+                            <div class="uk-form-controls">
+                                 <h:inputText id="estado" pt:placeholder="Puebla" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.direccionModelo.estado}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-3-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="calle" value="Calle"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="calle" pt:placeholder="Calle 4 Sur No. 311, Reforma Sur, 72170 Puebla, Pue. " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.domicilio}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="numero-exterior" value="Numero Exterior"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="numero-exterior" pt:placeholder="Número interior" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.numeroExterior}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="numero-interior" value="Número Interior"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="numero-interior" pt:placeholder="Número exterior" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.numeroInterior}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="estado-bloqueo" value="Estado de Bloqueo"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="estado-bloqueo" pt:placeholder="Activo" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.motivoBloqueoModelo.valor}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label" for="licencias" value="Licencias" />
+                            <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.licenciaModeloLista.size()}"/>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <label class="uk-form-label" ></label>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
+                                <h:outputLabel styleClass="uk-width-1-1@m uk-width-1-2@suk-panel uk-form-label" for="licencias" value="Ver Coordinadores"/>
+                            </div>
+                            <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-1@m">
+                                <h:commandLink styleClass="uk-button uk-button-primary uk-width-1-1" value="" action="detalle-coordinador.xhtml">
+                                    <f:ajax></f:ajax>
+                                    <h:outputText styleClass="uk-margin-small-right" value="Coord(a)"/>
 
-
-                        <div class="uk-card-body">
-                            <h:form styleClass="uk-form-stacked" >
-                                <h:panelGroup styleClass="uk-grid"  pt:uk-grid="" >
-
-                                    <div class="uk-width-1-5@m uk-width-1-1@s ">
-                                        <h:outputLabel styleClass="uk-form-label" value="CCT" for="cctv" />
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="cctv"  pt:placeholder="21DBA0004C" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.cct}"/>
-                                        </div>
+                                    <h:outputText styleClass="uk-icon" pt:uk-icon="icon: users"/>
+                                    <div id="my-id" class="uk-flex-top" uk-modal="">
+                                        <div class="uk-modal-dialog uk-margin-auto-vertical"></div>
                                     </div>
-
-                                    <div class="uk-width-3-5@m uk-width-1-1@s" >
-                                        <h:outputLabel styleClass="uk-form-label" for="nombre-escuela" value="Nombre" />
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="nombre-escuela" pt:placeholder="Francisco I Madero " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.nombre}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="codigo-postal" value="Código Postal"/>
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="codigo-postal" pt:placeholder="72730" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.codigo_postal}"/>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="uk-width-1-2@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="colonia" value="Colonia"/>
-                                        <div class="uk-form-controls">
-                                        <h:inputText id="colonia" pt:placeholder="Reforma" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.colonia}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-2@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="municipio" value="Municipio"/>
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="municipio" pt:placeholder="Puebla" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.municipio}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="estado" value="Estado" />
-                                        <div class="uk-form-controls">
-                                             <h:inputText id="estado" pt:placeholder="Puebla" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.estado}"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="uk-width-3-5@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="calle" value="Calle"/>
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="calle" pt:placeholder="Calle 4 Sur No. 311, Reforma Sur, 72170 Puebla, Pue. " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.calle}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="numero-exterior" value="Numero Exterior"/>
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="numero-exterior" pt:placeholder="Número interior" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.numero_exterior}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="numero-interior" value="Número Interior"/>
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="numero-interior" pt:placeholder="Número exterior" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.numero_interior}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <h:outputLabel styleClass="uk-form-label" for="estado-bloqueo" value="Estado de Bloqueo"/>
-                                        <div class="uk-form-controls">
-                                            <h:inputText id="estado-bloqueo" pt:placeholder="Activo" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.bloqueo}"/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-
-                                        <h:outputLabel styleClass="uk-form-label" for="licencias" value="Licencias" />
-                                        <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelos.licecias}"/>
-                                    </div>
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <label class="uk-form-label" ></label>
-
-                                    </div>
-
-                                    <div class="uk-width-1-5@m uk-width-1-1@s">
-                                        <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
-                                            <h:outputLabel styleClass="uk-width-1-1@m uk-width-1-2@suk-panel uk-form-label" for="licencias" value="Ver Coordinadores"/>
-                                        </div>
-                                        <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-1@m">
-                                            <h:commandLink styleClass="uk-button uk-button-primary uk-width-1-1" value="" action="detalle-coordinador.xhtml">
-                                                <f:ajax></f:ajax>
-                                                <h:outputText styleClass="uk-margin-small-right" value="Coord(a)"/>
-
-                                                <h:outputText styleClass="uk-icon" pt:uk-icon="icon: users"/>
-                                                <div id="my-id" class="uk-flex-top" uk-modal="">
-                                                    <div class="uk-modal-dialog uk-margin-auto-vertical"></div>
+                                </h:commandLink>
+                            </div>
+                         </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </div>
+        <h:panelGroup layout="block"  styleClass="uk-margin-medium-top uk-margin-medium-bottom uk-grid" pt:uk-grid="" >
+            <div class="uk-width-1-2@m uk-overflow-auto uk-width-1-1@s ">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
+                    <div class="uk-card-header">
+                        <div class="uk-grid uk-grid-small">
+                            <div class="uk-width-auto"><h4><span class="uk-text-middle">Contactos Escuela</span></h4></div>
+                            <div class="uk-width-expand uk-text-right panel-icons">
+                                <h:form>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-contacto">
+                                        <f:ajax></f:ajax>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <div class="uk-overflow-auto">
+                            <h:form id="formulario-tabla-contacto">
+                                <ui:fragment rendered="#{empty contactoControlador.collectionDataModel.wrappedData}">
+                                    <table class="uk-table uk-table-middle">
+                                        <thead class="uk-background-primary">
+                                        <tr>
+                                            <th><span class="letra-titulo">Nombre</span></th>
+                                            <th><span class="letra-titulo">Tipo</span></th>
+                                            <th><span class="letra-titulo">Telefono</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="uk-flex uk-flex-center">
+                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
                                                 </div>
-                                            </h:commandLink>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot class="uk-background-primary">
+                                        <tr>
+                                            <td colspan="6"><span class="letra-titulo">
+                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
+                                                </h:outputFormat>
+                                            </span></td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </ui:fragment>
+                                <h:dataTable value="#{contactoControlador.collectionDataModel}"
+                                             binding="#{contactoControlador.htmlDataTable}"
+                                             var="contacto"
+                                             id="tabla-contacto"
+                                             rendered="#{not empty contactoControlador.collectionDataModel.wrappedData}"
+                                             first="0"
+                                             rows="5"
+                                             styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center tabla-escuela-contacto"
+                                             headerClass="uk-background-primary uk-text-center"
+                                             footerClass="uk-background-primary uk-text-left"
+                                             columnClasses="uk-text-left,,,">
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Nombre" /></f:facet>
+                                        #{contacto.nombre}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Tipo" /></f:facet>
+                                        #{contacto.tipoContactoModelo.valor}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Telefono" /></f:facet>
+                                        #{contacto.telefono}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Opciones" /></f:facet>
+                                        <div class="uk-inline ">
+                                            <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
+                                            <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="dropear" >
+                                                <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                                    <li>
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-editar-contacto" styleClass="uk-text-primary">
+                                                            <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                            <span class="uk-text-middle"><h:outputText value="Editar"/></span>
+                                                            <f:ajax />
+                                                        </h:commandLink>
+                                                    </li>
+                                                    <li class="uk-nav-divider"/>
+                                                    <li>
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-eliminar-contacto" styleClass="uk-text-danger">
+                                                            <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
+                                                            <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
+                                                            <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
+                                                            <f:ajax render="formulario-eliminar-contacto"/>
+                                                        </h:commandLink>
+                                                    </li>
+                                                </ul>
+                                            </h:panelGroup>
                                         </div>
-
-
-                                     </div>
-                                </h:panelGroup>
+                                    </h:column>
+                                    <f:facet name="footer">
+                                        <pa:pie-tabla htmlDataTable="#{contactoControlador.htmlDataTable}"/>
+                                    </f:facet>
+                                </h:dataTable>
                             </h:form>
                         </div>
-
-
-
                     </div>
+                    <div class="uk-card-footer">
+                        <f:ajax render="formulario-tabla-contacto:tabla-contacto formulario-paginacion-contacto">
+                            <h:form id="formulario-paginacion-contacto">
+                                <div uk-grid="">
+                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                        <pa:boton-minimizado htmlDataTable="#{contactoControlador.htmlDataTable}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </f:ajax>
+                    </div>
+                </div>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <div class="uk-modal-header uk-background-secondary">
+                    <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Contacto</span></p>
+                </div>
+                <h:form styleClass="uk-form-stacked" id="formulario-agregar-contacto">
+                    <div class="uk-modal-body">
+                        <h:panelGroup layout="block" pt:uk-grid="" styleClass="uk-grid">
+                            <div class="uk-width-1-1">
+                                <h:outputLabel styleClass="uk-form-label" for="enrtada-nombre-contacto" value="Nombre"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="enrtada-nombre-contacto"
+                                                 value="#{contactoControlador.contactoModelo.nombre}"
+                                                 pt:placeholder="Nombre">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="2" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="enrtada-nombre-contacto" styleClass="uk-text-danger"/>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <h:outputLabel styleClass="uk-form-label" for="seleccion-tipo-contacto" value="Tipo contacto"/>
+                                <div class="uk-form-controls">
+                                    <h:selectOneMenu value = "#{contactoControlador.tipoContactoModelo.clave}"
+                                                     styleClass="uk-select"
+                                                     id="seleccion-tipo-contacto"
+                                                     label="Tipo contacto">
+                                        <f:selectItem itemValue = "#{null}" itemLabel = "#{etiqueta['select']}" noSelectionOption="true" />
+                                        <f:selectItems value="#{contactoControlador.tipoContactoModeloLista}" var="contacto"
+                                                       itemValue="#{contacto.clave}"
+                                                       itemLabel="#{contacto.valor}"/>
+                                        <f:validateRequired/>
+                                    </h:selectOneMenu>
+                                </div>
+                                <h:message for="seleccion-tipo-contacto" styleClass="uk-text-danger"/>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <label class="uk-form-label" for="entrada-telefono" >Telefono</label>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="entrada-telefono" styleClass="uk-input"
+                                                 value="#{contactoControlador.contactoModelo.telefono}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="7" maximum="20"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="entrada-telefono" styleClass="uk-text-danger"/>
+                            </div>
+                            <div class="uk-width-1-1">
+                                <h:outputLabel styleClass="uk-form-label" value="Correo electronico" for="entrada-correo-electronico"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="entrada-correo-electronico"
+                                                 styleClass="uk-input"
+                                                 value="#{contactoControlador.contactoModelo.correoElectronico}">
+                                        <f:validateRequired/>
+                                        <f:validateLength maximum="100"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="entrada-correo-electronico" styleClass="uk-text-danger"/>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                            <f:ajax render="@form"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['accept']}">
+                            <f:ajax execute="@form" render="@form formulario-tabla-contacto:tabla-contacto" listener="#{contactoControlador.agregar}" onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-eliminar-contacto" pt:uk-modal="">
+            <h:form id="formulario-eliminar-contacto">
+                <div class="uk-modal-dialog uk-margin-auto-vertical">
+                    <div class="uk-modal-header fondo-peligro">
+                        <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo">Eliminar Contacto</span></p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <p>Esta seguro que desea Borrar al contacto: <span class="uk-text-bold">#{contactoControlador.contactoModelo.nombre}</span> </p>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-border-rounded uk-margin-small-left" value="#{boton['accept']}" >
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar') }"/>
+                        </h:commandButton>
+                    </div>
+                </div>
+            </h:form>
+        </h:panelGroup>
+        <script type="text/javascript">
+            var modalAgregar;
+            var modalEliminar;
+            var modalLicencia;
+            var modalEditar;
+            document.addEventListener("DOMContentLoaded", function (evt) {
+                limpiaSelect();
+                modalAgregar = document.querySelector('#modal-agregar-contacto');
+                modalEliminar = document.querySelector('#modal-eliminar-contacto');
+                //modalLicencia = document.querySelector('#modal-agregar-licencia');
+                //modalEditar = document.querySelector('#modal-editar-contacto');
+                UIkit.util.on('#modal-eliminar-contacto', 'show', function () {
+                    modalEliminar.querySelector('.uk-modal-body').click();
+                });
+                UIkit.util.on('#modal-agregar-contacto', 'show', function () {
+                    modalAgregar.querySelector('.uk-modal-body').click();
+                });
+                /*UIkit.util.on('#modal-agregar-licencia', 'show', function () {
+                    modalLicencia.querySelector('.uk-modal-body').click();
+                });
+                UIkit.util.on('#modal-editar-contacto', 'show', function () {
+                    modalEditar.querySelector('.uk-modal-body').click();
+                });*/
+            });
 
+            function limpiaSelect(data) {
+                if (typeof data === 'undefined') {
+                    document.querySelectorAll('.uk-select').forEach(
+                        function (value) { value.removeAttribute('size'); }
+                    )
+                } else {
+                    if (data.status === 'success') {
+                        document.querySelectorAll('.uk-select').forEach(
+                            function (value) { value.removeAttribute('size'); }
+                        )
+                    }
+                }
+            }
+            function cierraModal(data,modal) {
+                if (data.status === "success"){
+                    switch (modal) {
+                        case "modalEliminar":
+                            if (modalEliminar.querySelector('.uk-text-danger') === null) {
+                                UIkit.modal(modalEliminar).hide();
+                            }
+                            break;
+                        case "modalAgregar":
+                            if (modalAgregar.querySelector('.uk-text-danger') === null){
+                                UIkit.modal(modalAgregar).hide();
+                            }
+                            break;
+                        case "modalLicencia":
+                            if (modalAgregar.querySelector('.uk-text-danger') === null){
+                                UIkit.modal(modalLicencia).hide();
+                            }
+                            break;
+                        case "modalEditar":
+                            if (modalEditar.querySelector('.uk-text-danger') === null){
+                                UIkit.modal(modalEditar).hide();
+                            }
+                            break;
+                        default: console.error(modal);
+
+                    }
+                }
+            }
+        </script>
+    </ui:define>
+            <!--
                     <h:panelGroup layout="block"  styleClass="uk-margin-medium-top uk-margin-medium-bottom uk-grid" pt:uk-grid="" >
                         <div class="uk-width-auto@m uk-overflow-auto uk-width-expand@s ">
                             <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
@@ -255,84 +526,6 @@
                         </div>
                     </h:panelGroup>
 
-
-                    <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="" class="">
-                        <div class="uk-modal-dialog uk-margin-auto-vertical">
-
-                            <div class="uk-modal-header fondo-peligro"  >
-                                <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo">Eliminar</span></p>
-                            </div>
-                            <div class="uk-modal-body">
-                                <p>Esta seguro que desea Borrar al contacto: <span class="uk-text-bold">Nombre</span> </p>
-                            </div>
-                            <div class="uk-modal-footer uk-text-right">
-                                <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">Cancelar</button>
-                                <h:commandButton styleClass="uk-button uk-button-danger uk-border-rounded uk-margin-small-left" value="Aceptar" >
-                                    <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar') }"/>
-                                </h:commandButton>
-                            </div>
-                        </div>
-                    </h:panelGroup>
-                    <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
-                        <div class="uk-modal-dialog uk-margin-auto-vertical">
-
-                            <div class="uk-modal-header uk-background-secondary">
-                                <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Contacto</span></p>
-                            </div>
-                            <h:form>
-                            <div class="uk-modal-body">
-
-                                    <h:panelGroup layout="block" pt:uk-grid="" styleClass="uk-grid">
-
-
-                                        <div class="uk-width-1-1">
-                                            <h:outputLabel styleClass="uk-form-label" for="nombre-contacto" value="Nombre"/>
-                                            <div class="uk-form-controls">
-                                                <h:inputText styleClass="uk-input" id="nombre-contacto"  pt:placeholder="Nombre" pt:maxlength="30">
-                                                    <f:validateRequired/>
-                                                    <f:validateLength minimum="2" maximum="30"/>
-                                                </h:inputText>
-                                            </div>
-                                        </div>
-
-                                        <div class="uk-width-1-3">
-                                            <h:outputLabel styleClass="uk-form-label" for="seleccion-licencia" value="Tipo contacto"/>
-                                            <div class="uk-form-controls">
-                                                <h:selectOneMenu
-                                                        value = "#{detalleEscuelaControlador.escuelaDetalleModelos.nombre}"
-                                                        styleClass="uk-select"
-                                                        id="seleccion-licencia"
-                                                        label="Tipo contacto">
-                                                    <f:selectItem itemValue = "#{null}" itemLabel = "seleccione" noSelectionOption="true" />
-                                                    <f:selectItems value="#{detalleEscuelaControlador.tipoContactoModelos}" var="contacto"
-                                                                   itemValue="#{contacto.tipoContaco}"
-                                                                   itemLabel="#{contacto.tipoContaco}"/>
-                                                    <f:validateRequired/>
-                                                </h:selectOneMenu>
-                                            </div>
-                                        </div>
-
-                                        <div class="uk-width-2-3">
-                                            <label class="uk-form-label" for="telefono" >Telefono</label>
-                                            <input id="telefono" placeholder="(222)2307383" type="text" class="uk-input"/>
-                                        </div>
-                                    </h:panelGroup>
-                                    <ui:fragment rendered="#{facesContext.validationFailed}">
-                                        <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
-                                            <h:messages styleClass="uk-list" />
-                                        </h:panelGroup>
-                                    </ui:fragment>
-                            </div>
-                            <div class="uk-modal-footer uk-text-right">
-                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                                <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="Aceptar" >
-                                    <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }" render="@form" execute="@form" />
-                                </h:commandButton>
-                            </div>
-                        </h:form>
-                        </div>
-                    </h:panelGroup>
-
                     <h:panelGroup layout="block" id="modal-editar-contacto" pt:uk-modal="" >
                         <div class="uk-modal-dialog uk-margin-auto-vertical">
 
@@ -410,86 +603,9 @@
                             </div>
                         </div>
                     </h:panelGroup>
+        -->
 
 
 
-            <div>
-
-        </div>
-
-
-        <script type="text/javascript">
-            var modalAgregar;
-            var modalEliminar;
-            var modalLicencia;
-            var modalEditar;
-            document.addEventListener("DOMContentLoaded", function (evt) {
-                limpiaSelect("undefined");
-                modalAgregar = document.querySelector('#modal-agregar-contacto');
-                modalEliminar = document.querySelector('#modal-eliminar');
-                modalLicencia = document.querySelector('#modal-agregar-licencia');
-                modalEditar = document.querySelector('#modal-editar-contacto');
-                UIkit.util.on('#modal-eliminar', 'show', function () {
-                    modalEliminar.querySelector('.uk-modal-body').click();
-                });
-                UIkit.util.on('#modal-agregar-contacto', 'show', function () {
-                    modalAgregar.querySelector('.uk-modal-body').click();
-                });
-                UIkit.util.on('#modal-agregar-licencia', 'show', function () {
-                    modalLicencia.querySelector('.uk-modal-body').click();
-                });
-                UIkit.util.on('#modal-editar-contacto', 'show', function () {
-                    modalEditar.querySelector('.uk-modal-body').click();
-                });
-            });
-            document.addEventListener('DOMContentLoaded', function (evt) {
-                limpiaSelect();
-            });
-
-            function limpiaSelect(data) {
-                if (typeof data === 'undefined') {
-                    document.querySelectorAll('.uk-select').forEach(
-                        function (value) { value.removeAttribute('size'); }
-                    )
-                } else {
-                    if (data.status === 'success') {
-                        document.querySelectorAll('.uk-select').forEach(
-                            function (value) { value.removeAttribute('size'); }
-                        )
-                    }
-                }
-            }
-            function cierraModal(data,modal) {
-                if (data.status === "success"){
-                    switch (modal) {
-                        case "modalEliminar":
-                            if (modalEliminar.querySelector('.uk-alert-danger') === null) {
-                                UIkit.modal(modalEliminar).hide();
-                            }
-                            break;
-                        case "modalAgregar":
-                            if (modalAgregar.querySelector('.uk-alert-danger') === null){
-                                UIkit.modal(modalAgregar).hide();
-                            }
-                            break;
-                        case "modalLicencia":
-                            if (modalAgregar.querySelector('.uk-alert-danger') === null){
-                                UIkit.modal(modalLicencia).hide();
-                            }
-                            break;
-                        case "modalEditar":
-                            if (modalEditar.querySelector('.uk-alert-danger') === null){
-                                UIkit.modal(modalEditar).hide();
-                            }
-                            break;
-                        default: console.error(modal);
-
-                    }
-                }
-            }
-        </script>
-
-
-    </ui:define>
 </ui:composition>
 </html>
