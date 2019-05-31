@@ -9,9 +9,11 @@
     </cc:interface>
     <cc:implementation>
         <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
-            <f:converter converterId="tecolotl.web.convertidor.TechoConvertidor"/>
             <f:param value="#{(cc.attrs.htmlDataTable.first div cc.attrs.htmlDataTable.rows) + 1}"/>
-            <f:param value="#{cc.attrs.htmlDataTable.rows div cc.attrs.htmlDataTable.rowCount}"/>
+            <f:param value="#{cc.attrs.htmlDataTable.rowCount mod cc.attrs.htmlDataTable.rows eq 0 ?
+            (cc.attrs.htmlDataTable.rowCount div cc.attrs.htmlDataTable.rows) :
+                ((cc.attrs.htmlDataTable.rowCount div cc.attrs.htmlDataTable.rows) + 1) -
+                (((cc.attrs.htmlDataTable.rowCount div cc.attrs.htmlDataTable.rows) + 1) mod 1)}"/>
             <f:param value="#{cc.attrs.htmlDataTable.rowCount}"/>
         </h:outputFormat>
     </cc:implementation>

@@ -17,7 +17,11 @@ import java.util.Objects;
 			name = "EscuelaEntidad.detalle",
 			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad LEFT JOIN FETCH e.contactoEntidadLista " +
 					"WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
-	)
+	),
+		@NamedQuery(
+				name = "EscuelaEntidad.existe",
+				query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
+		)
 })
 public class EscuelaEntidad {
 

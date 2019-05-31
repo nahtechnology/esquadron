@@ -54,7 +54,6 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     }
 
     public void actualizaTabla() {
-        logger.info(busqueda);
         if (busqueda == null || busqueda.trim().isEmpty()) {
             getCollectionDataModel().setWrappedData(escuelaSesionBean.busca());
         } else {

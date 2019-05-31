@@ -10,10 +10,7 @@ import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -159,7 +156,17 @@ public class EscuelaSesionBean implements Serializable {
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.detalle", EscuelaEntidad.class);
 		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
 		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
-		return escuelaEntidad == null ? null : new EscuelaDetalleModelo(escuelaEntidad);
+		return new EscuelaDetalleModelo(escuelaEntidad);
+	}
+
+	public String valida(@NotNull String claveCentroTrabajo) {
+		logger.fine(claveCentroTrabajo);
+		try {
+			return entityManager.createNamedQuery("EscuelaEntidad.existe", String.class)
+					.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
+		} catch (NoResultException exception) {
+			return null;
+		}
 	}
 
 	/**

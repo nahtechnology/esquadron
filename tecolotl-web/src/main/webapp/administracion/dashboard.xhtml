@@ -145,7 +145,6 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li><a href="#">#{boton['detail']}</a></li>
-                                                <li><a href="#">Item</a></li>
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo" rendered="#{escuela.activo}">
                                                         <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
@@ -216,6 +215,7 @@
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="10" maximum="14"/>
+                                        <f:validator validatorId="escuelaExisteValidacion" />
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-cct" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
@@ -251,6 +251,7 @@
                                 <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">
                                     <f:ajax execute="formulario-escuela:input-escuela-codigo-postal"
                                             render="formulario-escuela:error-input-escuela-codigo-postal formulario-escuela:seleccion-colonia formulario-escuela:input-escuela-estado formulario-escuela:input-escuela-municipio"
+                                            onevent="function funcion(data) { limpiaSelect(data) }"
                                             listener="#{escuelaDashboardControlador.buscaColonias}"/>
                                 </h:commandButton>
                             </div>
@@ -340,10 +341,13 @@
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
-                            <f:ajax render="@form"/>
+                            <f:ajax render="@form" onevent="function funcion(data) { limpiaSelect(data) }"/>
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}">
-                            <f:ajax execute="@form" render="@form formulario-tabla-escuela" listener="#{escuelaDashboardControlador.inserta}" onevent="function fun(data) { cierraModal(data, 'modal-escuela') }"/>
+                            <f:ajax execute="@form"
+                                    render="@form formulario-tabla-escuela formulario-paginacion-escuela"
+                                    listener="#{escuelaDashboardControlador.inserta}"
+                                    onevent="function fun(data) { cierraModal(data, 'modal-escuela'); limpiaSelect(data) }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -406,7 +410,10 @@
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
-                            <f:ajax execute="@form" render="formulario-tabla-escuela" listener="#{escuelaDashboardControlador.elimina}"/>
+                            <f:ajax execute="@form"
+                                    render="formulario-tabla-escuela formulario-paginacion-escuela"
+                                    onevent="function funcion(data) { limpiaSelect(data) }"
+                                    listener="#{escuelaDashboardControlador.elimina}"/>
                         </h:commandButton>
                     </div>
                 </h:form>
