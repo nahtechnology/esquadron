@@ -9,8 +9,17 @@ import java.util.ResourceBundle;
 public class MesajeProductor {
 
     @Produces
-    public ResourceBundle generaMensaje() {
+    @TipoMensaje(value = MensajeBundle.ADMINISTRACION)
+    public ResourceBundle generaMensajeAdministrador() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         return facesContext.getApplication().getResourceBundle(facesContext, "administracion");
     }
+
+    @Produces
+    @TipoMensaje(value = MensajeBundle.COORDINADOR)
+    ResourceBundle generaMensajeCoordinador() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        return facesContext.getApplication().getResourceBundle(facesContext, "coordinador");
+    }
+
 }

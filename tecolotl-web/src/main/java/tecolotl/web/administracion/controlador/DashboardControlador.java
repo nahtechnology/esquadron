@@ -11,6 +11,7 @@ import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.web.controlador.TablaControlador;
 
 import javax.annotation.PostConstruct;
+import javax.faces.component.UIInput;
 import javax.faces.model.CollectionDataModel;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -149,4 +150,5 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     public void setBusqueda(String busqueda) {
         this.busqueda = busqueda;
     }
+
 }

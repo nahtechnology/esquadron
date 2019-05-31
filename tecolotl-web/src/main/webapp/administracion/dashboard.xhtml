@@ -212,10 +212,10 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-cct"
                                                  pt:placeholder="#{administracion['dashboard.modal.cct']}"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
+                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
+                                                 validator="#{escuelaValidacion.validate}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="10" maximum="14"/>
-                                        <f:validator validatorId="escuelaExisteValidacion" />
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-cct" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
