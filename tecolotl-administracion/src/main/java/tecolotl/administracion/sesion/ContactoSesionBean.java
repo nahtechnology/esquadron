@@ -96,6 +96,7 @@ public class ContactoSesionBean {
      * @return Número de elementos modificados.
      */
     public int actualiza(@NotNull @Valid ContactoModelo contactoModelo) {
+        logger.info(contactoModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<ContactoEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ContactoEntidad.class);
         Root<ContactoEntidad> root = criteriaUpdate.from(ContactoEntidad.class);
@@ -103,6 +104,7 @@ public class ContactoSesionBean {
         criteriaUpdate.set(root.get("nombre"), contactoModelo.getNombre());
         criteriaUpdate.set(root.get("telefono"), contactoModelo.getTelefono());
         criteriaUpdate.set(root.get("correoElectronico"), contactoModelo.getCorreoElectronico());
+        criteriaUpdate.set(root.get("contactoEntidadPK").get("tipoContactoEntidad"), new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }

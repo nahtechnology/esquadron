@@ -54,7 +54,8 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
         motivoBloqueoModeloLista = motivoBloqueoSesionBean.busca("Sin bloqueo");
     }
 
-    public void actualizaTabla() {
+    @Override
+    public void actualizaDataModel() {
         if (busqueda == null || busqueda.trim().isEmpty()) {
             getCollectionDataModel().setWrappedData(escuelaSesionBean.busca());
         } else {
@@ -73,7 +74,7 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
 
     public void inserta() {
         escuelaSesionBean.inserta(escuelaDetalleModelo);
-        actualizaTabla();
+        actualizaDataModel();
         escuelaDetalleModelo = new EscuelaDetalleModelo();
         codigoPostal = null;
     }
@@ -82,17 +83,17 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
         escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
         motivoBloqueoModelo = new MotivoBloqueoModelo();
         escuelaBaseModelo = new EscuelaBaseModelo();
-        actualizaTabla();
+        actualizaDataModel();
     }
 
     public void activa() {
         escuelaSesionBean.activa(escuelaBaseModelo.getClaveCentroTrabajo());
-        actualizaTabla();
+        actualizaDataModel();
     }
 
     public void elimina() {
         escuelaSesionBean.elimina(escuelaBaseModelo.getClaveCentroTrabajo());
-        actualizaTabla();
+        actualizaDataModel();
     }
 
     public EscuelaDetalleModelo getEscuelaDetalleModelo() {

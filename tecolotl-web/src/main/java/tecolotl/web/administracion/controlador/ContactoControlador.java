@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
@@ -30,6 +31,9 @@ public class ContactoControlador extends TablaControlador implements Serializabl
     @Inject
     private TipoContactoSesionBean tipoContactoSesionBean;
 
+    @Inject
+    private Logger logger;
+
     @PostConstruct
     public void init() {
         claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
@@ -39,10 +43,34 @@ public class ContactoControlador extends TablaControlador implements Serializabl
         tipoContactoModelo = new TipoContactoModelo();
     }
 
+    @Override
+    public void actualizaDataModel() {
+        setCollectionDataModel(new CollectionDataModel(contactoSesionBean.busca(claveCentroTrabajo)));
+        contactoModelo = new ContactoModelo();
+    }
+
     public void agregar() {
         contactoModelo.setClaveCentroTrabajo(claveCentroTrabajo);
         contactoModelo.setTipoContactoModelo(tipoContactoModelo);
         contactoSesionBean.inserta(contactoModelo);
+        actualizaDataModel();
+    }
+
+    public void eliminar() {
+        contactoSesionBean.elimina(contactoModelo);
+        actualizaDataModel();
+    }
+
+    public void actualiza() {
+        logger.info(tipoContactoModelo.toString());
+        contactoModelo.setTipoContactoModelo(tipoContactoModelo);
+        contactoSesionBean.actualiza(contactoModelo);
+        actualizaDataModel();
+    }
+
+    public void limpiaModelo() {
+        contactoModelo = new ContactoModelo();
+        tipoContactoModelo = new TipoContactoModelo();
     }
 
     public List<TipoContactoModelo> getTipoContactoModeloLista() {
@@ -68,4 +96,5 @@ public class ContactoControlador extends TablaControlador implements Serializabl
     public void setContactoModelo(ContactoModelo contactoModelo) {
         this.contactoModelo = contactoModelo;
     }
+
 }

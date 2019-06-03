@@ -16,7 +16,6 @@ public class ContactoModelo {
     private String claveCentroTrabajo;
 
     @NotNull(groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
-    @Min(value = 0, groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
     private TipoContactoModelo tipoContactoModelo;
 
     @NotNull(groups = {ContactoLlavePrimariaValidacion.class})

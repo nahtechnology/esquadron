@@ -5,10 +5,12 @@ import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.CollectionDataModel;
 
-public class TablaControlador<T> {
+public abstract class TablaControlador<T> {
 
     private CollectionDataModel<T> collectionDataModel;
     private HtmlDataTable htmlDataTable;
+
+    public abstract void actualizaDataModel();
 
     public CollectionDataModel<T> getCollectionDataModel() {
         return collectionDataModel;

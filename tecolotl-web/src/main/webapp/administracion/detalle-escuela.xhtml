@@ -213,10 +213,12 @@
                                             <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="dropear" >
                                                 <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                     <li>
-                                                        <h:commandLink  pt:uk-toggle="target: #modal-editar-contacto" styleClass="uk-text-primary">
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
                                                             <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                            <span class="uk-text-middle"><h:outputText value="Editar"/></span>
-                                                            <f:ajax />
+                                                            <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
+                                                            <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
+                                                            <f:setPropertyActionListener value="#{contacto.tipoContactoModelo}" target="#{contactoControlador.tipoContactoModelo}"/>
+                                                            <f:ajax render="formulario-agregar-contacto" onevent="function funcion(data) { limpiaSelect(data) }"/>
                                                         </h:commandLink>
                                                     </li>
                                                     <li class="uk-nav-divider"/>
@@ -256,7 +258,10 @@
         <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header uk-background-secondary">
-                    <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Contacto</span></p>
+                    <p class="uk-h4 uk-text-center uk-text-bold">
+                        <h:outputText styleClass="letra-titulo" value="Agregar Contacto" rendered="#{empty contactoControlador.contactoModelo.contador}"/>
+                        <h:outputText styleClass="letra-titulo" value="Modifcar Contacto" rendered="#{not empty contactoControlador.contactoModelo.contador}"/>
+                    </p>
                 </div>
                 <h:form styleClass="uk-form-stacked" id="formulario-agregar-contacto">
                     <div class="uk-modal-body">
@@ -317,18 +322,27 @@
                     </div>
                     <div class="uk-modal-footer uk-text-right">
                         <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
-                            <f:ajax render="@form"/>
+                            <f:ajax render="@form" listener="#{contactoControlador.limpiaModelo}" onevent="function funcion(data) { limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['accept']}">
-                            <f:ajax execute="@form" render="@form formulario-tabla-contacto:tabla-contacto" listener="#{contactoControlador.agregar}" onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty contactoControlador.contactoModelo.contador}">
+                            <f:ajax execute="@form"
+                                    render="@form formulario-tabla-contacto"
+                                    listener="#{contactoControlador.agregar}"
+                                    onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty contactoControlador.contactoModelo.contador}">
+                            <f:ajax execute="@form"
+                                    render="@form formulario-tabla-contacto"
+                                    listener="#{contactoControlador.actualiza}"
+                                    onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
             </div>
         </h:panelGroup>
         <h:panelGroup layout="block" id="modal-eliminar-contacto" pt:uk-modal="">
-            <h:form id="formulario-eliminar-contacto">
-                <div class="uk-modal-dialog uk-margin-auto-vertical">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-eliminar-contacto">
                     <div class="uk-modal-header fondo-peligro">
                         <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo">Eliminar Contacto</span></p>
                     </div>
@@ -336,13 +350,16 @@
                         <p>Esta seguro que desea Borrar al contacto: <span class="uk-text-bold">#{contactoControlador.contactoModelo.nombre}</span> </p>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-border-rounded uk-margin-small-left" value="#{boton['accept']}" >
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar') }"/>
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-margin-small-left" value="#{boton['accept']}" >
+                            <f:ajax execute="@form"
+                                    render="formulario-tabla-contacto"
+                                    listener="#{contactoControlador.eliminar}"
+                                    onevent="function cerrar(data) { cierraModal(data,'modalEliminar') }"/>
                         </h:commandButton>
                     </div>
-                </div>
-            </h:form>
+                </h:form>
+            </div>
         </h:panelGroup>
         <script type="text/javascript">
             var modalAgregar;
@@ -360,6 +377,14 @@
                 });
                 UIkit.util.on('#modal-agregar-contacto', 'show', function () {
                     modalAgregar.querySelector('.uk-modal-body').click();
+                });/*
+                UIkit.util.on('#modal-agregar-contacto', 'hidden', function () {
+                    modalAgregar.querySelectorAll('.uk-input').forEach(function (entrada) {
+                        entrada.value = '';
+                    });
+                    var seleccion = modalAgregar.querySelector('.uk-select');
+                    seleccion.removeAttribute('size');
+                    seleccion.selectedIndex = "0"
                 });
                 /*UIkit.util.on('#modal-agregar-licencia', 'show', function () {
                     modalLicencia.querySelector('.uk-modal-body').click();
