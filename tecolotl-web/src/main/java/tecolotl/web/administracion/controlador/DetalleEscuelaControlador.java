@@ -25,9 +25,6 @@ public class DetalleEscuelaControlador {
     private List<LicenciaModelo> licenciaModeloLista;
     private EscuelaDetalleModelo escuelaDetalleModelo;
     private DireccionModelo direccionModelo;
-    /*private List<ContactoModelo> contactoModelo;
-    private List<LicenciaModelo> licenciasModelo;
-    private List<TipoContactoModelo> tipoContactoModelos;*/
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;

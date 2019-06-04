@@ -17,6 +17,7 @@ import java.util.List;
 
 })
 public class AlumnoEntidad extends PersonaEntidad {
+
     private Integer id;
     private NivelLenguajeEntidad nivelLenguajeEntidad;
     private List<GradoEscolarEntidad> gradoEscolarEntidad;

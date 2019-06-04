@@ -62,7 +62,6 @@ public class ContactoControlador extends TablaControlador implements Serializabl
     }
 
     public void actualiza() {
-        logger.info(tipoContactoModelo.toString());
         contactoModelo.setTipoContactoModelo(tipoContactoModelo);
         contactoSesionBean.actualiza(contactoModelo);
         actualizaDataModel();

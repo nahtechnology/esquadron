@@ -130,6 +130,7 @@
     	<module>tecolotl-nucleo</module>
     	<module>tecolotl-alumno</module>
         <module>tecolotl-administracion</module>
+        <module>tecolotl-profesor</module>
     </modules>
 
 </project>

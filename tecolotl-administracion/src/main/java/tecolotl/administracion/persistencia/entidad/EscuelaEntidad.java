@@ -15,7 +15,7 @@ import java.util.Objects;
 	),
 	@NamedQuery(
 			name = "EscuelaEntidad.detalle",
-			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad LEFT JOIN FETCH e.contactoEntidadLista " +
+			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad " +
 					"LEFT JOIN FETCH e.motivoBloqueoEntidad WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
 	),
 		@NamedQuery(

@@ -11,12 +11,13 @@ import java.io.Serializable;
 		@NamedQuery(name = "ContactoEntidad.busca", query = "SELECT m FROM ContactoEntidad m"),
 		@NamedQuery(
 				name = "ContactoEntidad.buscaCCT",
-				query = "SELECT m FROM ContactoEntidad m WHERE m.contactoEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+				query = "SELECT m FROM ContactoEntidad m WHERE m.contactoEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo ORDER BY m.contactoEntidadPK.contador"
 		)
 })
 public class ContactoEntidad implements Serializable {
 
     private ContactoEntidadPK contactoEntidadPK;
+	private TipoContactoEntidad tipoContactoEntidad;
     private String nombre;
     private String telefono;
     private String correoElectronico;
@@ -35,6 +36,16 @@ public class ContactoEntidad implements Serializable {
 
 	public void setContactoEntidadPK(ContactoEntidadPK contactoEntidadPK) {
 		this.contactoEntidadPK = contactoEntidadPK;
+	}
+
+	@ManyToOne
+	@JoinColumn(name="id_tipo_contacto", referencedColumnName="clave")
+	public TipoContactoEntidad getTipoContactoEntidad() {
+		return tipoContactoEntidad;
+	}
+
+	public void setTipoContactoEntidad(TipoContactoEntidad tipoContactoEntidad) {
+		this.tipoContactoEntidad = tipoContactoEntidad;
 	}
 
 	@Basic

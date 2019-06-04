@@ -68,6 +68,7 @@ public class ContactoSesionBean {
         contactoEntidad.setNombre(contactoModelo.getNombre());
         contactoEntidad.setTelefono(contactoModelo.getTelefono());
         contactoEntidad.setCorreoElectronico(contactoModelo.getCorreoElectronico());
+        contactoEntidad.setTipoContactoEntidad(new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
         entityManager.persist(contactoEntidad);
         contactoModelo.setContador(contactoEntidad.getContactoEntidadPK().getContador());
     }
@@ -104,7 +105,7 @@ public class ContactoSesionBean {
         criteriaUpdate.set(root.get("nombre"), contactoModelo.getNombre());
         criteriaUpdate.set(root.get("telefono"), contactoModelo.getTelefono());
         criteriaUpdate.set(root.get("correoElectronico"), contactoModelo.getCorreoElectronico());
-        criteriaUpdate.set(root.get("contactoEntidadPK").get("tipoContactoEntidad"), new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
+        criteriaUpdate.set(root.get("tipoContactoEntidad"), new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
@@ -116,7 +117,6 @@ public class ContactoSesionBean {
      */
     private ContactoEntidadPK creaLlavePrimaria(ContactoModelo contactoModelo) {
         ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
-        contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
         contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(contactoModelo.getClaveCentroTrabajo()));
         contactoEntidadPK.setContador(contactoModelo.getContador());
         return contactoEntidadPK;

@@ -7,27 +7,15 @@ import java.util.Objects;
 @Embeddable
 public class ContactoEntidadPK implements Serializable {
 
-    private TipoContactoEntidad tipoContactoEntidad;
     private EscuelaEntidad escuelaEntidad;
     private Short contador;
 
     public ContactoEntidadPK() {
     }
 
-    public ContactoEntidadPK(TipoContactoEntidad tipoContactoEntidad, EscuelaEntidad escuelaEntidad, Short contador) {
-        this.tipoContactoEntidad = tipoContactoEntidad;
+    public ContactoEntidadPK(EscuelaEntidad escuelaEntidad, Short contador) {
         this.escuelaEntidad = escuelaEntidad;
         this.contador = contador;
-    }
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_tipo_contacto", referencedColumnName="clave")
-    public TipoContactoEntidad getTipoContactoEntidad() {
-        return tipoContactoEntidad;
-    }
-
-    public void setTipoContactoEntidad(TipoContactoEntidad tipoContactoEntidad) {
-        this.tipoContactoEntidad = tipoContactoEntidad;
     }
 
     @ManyToOne
@@ -55,12 +43,13 @@ public class ContactoEntidadPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ContactoEntidadPK that = (ContactoEntidadPK) o;
-        return tipoContactoEntidad.equals(that.tipoContactoEntidad) &&
-                escuelaEntidad.equals(that.escuelaEntidad);
+        return escuelaEntidad.equals(that.escuelaEntidad) &&
+                contador.equals(that.contador);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tipoContactoEntidad, escuelaEntidad);
+        return Objects.hash(escuelaEntidad, contador);
     }
+
 }

@@ -36,6 +36,8 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
+        <h:outputStylesheet library="css" name="pikaday.css"/>
+        <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <div class="uk-card uk-card-default uk-card-small uk-card-hover">
             <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
@@ -107,7 +109,7 @@
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
                             <h:outputLabel styleClass="uk-form-label" for="licencias" value="Licencias" />
-                            <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.licenciaModeloLista.size()}"/>
+                            <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
                             <label class="uk-form-label" ></label>
@@ -133,7 +135,7 @@
             </div>
         </div>
         <h:panelGroup layout="block"  styleClass="uk-margin-medium-top uk-margin-medium-bottom uk-grid" pt:uk-grid="" >
-            <div class="uk-width-1-2@m uk-overflow-auto uk-width-1-1@s ">
+            <div class="uk-width-2-3@m uk-overflow-auto uk-width-1-1@s ">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
                     <div class="uk-card-header">
                         <div class="uk-grid uk-grid-small">
@@ -195,6 +197,10 @@
                                              footerClass="uk-background-primary uk-text-left"
                                              columnClasses="uk-text-left,,,">
                                     <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Id" /></f:facet>
+                                        #{contacto.contador}
+                                    </h:column>
+                                    <h:column>
                                         <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Nombre" /></f:facet>
                                         #{contacto.nombre}
                                     </h:column>
@@ -207,10 +213,14 @@
                                         #{contacto.telefono}
                                     </h:column>
                                     <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Correo electrónico" /></f:facet>
+                                        #{contacto.correoElectronico}
+                                    </h:column>
+                                    <h:column>
                                         <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Opciones" /></f:facet>
                                         <div class="uk-inline ">
                                             <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
-                                            <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="dropear" >
+                                            <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
                                                 <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                     <li>
                                                         <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
@@ -251,6 +261,97 @@
                                 </div>
                             </h:form>
                         </f:ajax>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-1-3@m uk-overflow-auto uk-width-1-1@s">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                    <div class="uk-card-header">
+                        <div class="uk-grid uk-grid-small">
+                            <div class="uk-width-auto"><h4><span class="uk-text-middle">Licencia</span></h4></div>
+                            <div class="uk-width-expand uk-text-right panel-icons">
+                                <h:form>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-licencia" >
+                                        <f:ajax/>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <div class="uk-overflow-auto">
+                        <h:form id="formulario-licencia">
+                            <ui:fragment rendered="#{empty licenciasControlador.collectionDataModel.wrappedData}">
+                                <table class="uk-table uk-table-middle">
+                                    <thead class="uk-background-primary">
+                                    <tr>
+                                        <th><span class="letra-titulo">Id</span></th>
+                                        <th><span class="letra-titulo">Fecha Inicio</span></th>
+                                        <th><span class="letra-titulo">Fecha Fin</span></th>
+                                        <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="4">
+                                            <div class="uk-flex uk-flex-center">
+                                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot class="uk-background-primary">
+                                    <tr>
+                                        <td colspan="6"><span class="letra-titulo">
+                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                </h:outputFormat>
+                                            </span></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </ui:fragment>
+                            <h:dataTable value="#{licenciasControlador.collectionDataModel.wrappedData}"
+                                         binding="#{licenciasControlador.htmlDataTable}"
+                                         var="licencia"
+                                         id="tabla-licencias"
+                                         first="0"
+                                         rows="5"
+                                         rendered="#{not empty licenciasControlador.collectionDataModel.wrappedData}"
+                                         styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center"
+                                         headerClass="uk-button-primary uk-text-center"
+                                         columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center" >
+                                <h:column>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="ID"/></f:facet>
+                                    #{licencia.contador}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Fecha Inicio"/></f:facet>
+                                    <h:outputText value="#{licencia.inicio}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Fecha Adquisición"/></f:facet>
+                                    <h:outputText value="#{licencia.adquisicion}">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:outputText>
+                                </h:column>
+                                <h:column>
+                                <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Opciones" /></f:facet>
+                                    <div class="uk-inline ">
+                                        <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
+                                        <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click">
+                                            <ul></ul>
+                                        </h:panelGroup>
+                                    </div>
+                                </h:column>
+                            </h:dataTable>
+                        </h:form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -361,6 +462,32 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-agregar-licencia" pt:uk-modal="" >
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-agregar-licencia" styleClass="uk-form-stacked">
+                <div class="uk-modal-header uk-background-secondary">
+                    <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Licencias</span></p>
+                </div>
+                <div class="uk-modal-body">
+                    <h:outputLabel styleClass="uk-form-label" for="entrada-fecha" value="Fecha inicio"/>
+                    <div class="uk-form-controls">
+                        <h:inputText id="entrada-fecha"
+                                     value="#{licenciasControlador.licenciaModelo.inicio}"
+                                     styleClass="uk-input">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </h:inputText>
+                    </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                    <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="Aceptar" >
+                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"  />
+                    </h:commandButton>
+                </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <h:outputScript library="js" name="pikaday.js"/>
         <script type="text/javascript">
             var modalAgregar;
             var modalEliminar;
@@ -377,21 +504,27 @@
                 });
                 UIkit.util.on('#modal-agregar-contacto', 'show', function () {
                     modalAgregar.querySelector('.uk-modal-body').click();
-                });/*
-                UIkit.util.on('#modal-agregar-contacto', 'hidden', function () {
-                    modalAgregar.querySelectorAll('.uk-input').forEach(function (entrada) {
-                        entrada.value = '';
-                    });
-                    var seleccion = modalAgregar.querySelector('.uk-select');
-                    seleccion.removeAttribute('size');
-                    seleccion.selectedIndex = "0"
                 });
-                /*UIkit.util.on('#modal-agregar-licencia', 'show', function () {
-                    modalLicencia.querySelector('.uk-modal-body').click();
+                var datePicker = new Pikaday({
+                    field: document.getElementById('formulario-agregar-licencia:entrada-fecha'),
+                    format: 'DD-MM-YYYY',
+                    toString(date, format) {
+                        // you should do formatting based on the passed format,
+                        // but we will just return 'D/M/YYYY' for simplicity
+                        var day = date.getDate();
+                        var month = date.getMonth() + 1;
+                        var year = date.getFullYear();
+                        return day + '/' + month.toString().padStart(2, '0') + '/'+year;
+                    },
+                    parse(dateString, format) {
+                        // dateString is the result of `toString` method
+                        var parts = dateString.split('-');
+                        var day = parseInt(parts[0], 10);
+                        var month = parseInt(parts[1], 10) - 1;
+                        var year = parseInt(parts[2], 10);
+                        return new Date(year, month, day);
+                    }
                 });
-                UIkit.util.on('#modal-editar-contacto', 'show', function () {
-                    modalEditar.querySelector('.uk-modal-body').click();
-                });*/
             });
 
             function limpiaSelect(data) {
@@ -439,195 +572,13 @@
     </ui:define>
             <!--
                     <h:panelGroup layout="block"  styleClass="uk-margin-medium-top uk-margin-medium-bottom uk-grid" pt:uk-grid="" >
-                        <div class="uk-width-auto@m uk-overflow-auto uk-width-expand@s ">
-                            <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
-                                <div class="uk-card-header">
-                                    <div class="uk-grid uk-grid-small">
-                                        <div class="uk-width-auto"><h4><span class="uk-text-middle">Contactos Escuela</span></h4></div>
-                                        <div class="uk-width-expand uk-text-right panel-icons">
-                                            <h:form>
-                                                <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-contacto">
-                                                    <f:ajax></f:ajax>
-                                                    <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
-                                                </h:commandLink>
-                                            </h:form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="uk-card-body">
-                                    <div class="uk-overflow-auto">
-                                        <h:form id="formulario-tabla-contacto">
 
-                                            <h:dataTable value="#{detalleEscuelaControlador.contactoModelo}"
-                                                         var="contacto"
-                                                         id="tabla-contacto"
-                                                         first="0"
-                                                         rows="5"
-                                                         styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center tabla-escuela-contacto"
-                                                         headerClass="uk-background-primary uk-text-center"
-                                                          columnClasses=""  >
-                                                <h:column>
-                                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Nombre" /></f:facet>
-                                                    #{contacto.nombre}
-                                                </h:column>
-                                                <h:column>
-                                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Tipo" /></f:facet>
-                                                    #{contacto.tipo}
-                                                </h:column>
-                                                <h:column>
-                                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Telefono" /></f:facet>
-                                                     #{contacto.telefono}
-                                                </h:column>
-                                                <h:column>
-                                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Opciones" /></f:facet>
-                                                    <div class="uk-inline ">
-                                                        <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"></button>
-                                                        <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="dropear" >
-                                                            <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                                                                <li>
-                                                                    <h:commandLink  pt:uk-toggle="target: #modal-editar-contacto" styleClass="uk-text-primary">
-                                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                                        <span class="uk-text-middle"><h:outputText value="Editar"/></span>
-                                                                        <f:ajax />
-                                                                    </h:commandLink>
-                                                                </li>
-                                                                <li>
-                                                                    <h:commandLink  pt:uk-toggle="target: #modal-eliminar" styleClass="uk-text-primary" >
-                                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                                        <span class="uk-text-middle"><h:outputText value="Eliminar"/></span>
-                                                                        <f:ajax/>
-                                                                    </h:commandLink>
-                                                                </li>
-                                                            </ul>
-                                                        </h:panelGroup>
-                                                    </div>
-                                                </h:column>
 
-                                            </h:dataTable>
-
-                                        </h:form>
-                                    </div>
-                                </div>
-                             </div>
-                        </div>
-                        <div class="uk-width-auto@m uk-overflow-auto ">
-                            <div class="uk-card uk-card-default uk-card-small uk-card-hover">
-                                <div class="uk-card-header">
-                                    <div class="uk-grid uk-grid-small">
-                                        <div class="uk-width-auto"><h4><span class="uk-text-middle">Licencia</span></h4></div>
-                                        <div class="uk-width-expand uk-text-right panel-icons">
-                                            <h:form>
-                                                <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-licencia" >
-                                                    <f:ajax></f:ajax>
-                                                    <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
-                                                </h:commandLink>
-                                            </h:form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="uk-card-body">
-                                    <h:form>
-                                        <h:dataTable value="#{detalleEscuelaControlador.licenciasModelo}"
-                                                     var="licencias"
-                                                     id="tabla-licencias"
-                                                     first="0"
-                                                     rows="5"
-                                                     styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center"
-                                                     headerClass="uk-button-primary uk-text-center"
-                                                     columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center" >
-                                            <h:column>
-                                                <f:facet name="header"><h:outputText styleClass="letra-titulo" value="ID"/></f:facet>
-                                                #{licencias.id}
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Usuarios restantes"/></f:facet>
-                                                #{licencias.diasRestantes}
-                                            </h:column>
-                                        </h:dataTable>
-                                    </h:form>
-                                </div>
-
-                            </div>
-                        </div>
                     </h:panelGroup>
 
-                    <h:panelGroup layout="block" id="modal-editar-contacto" pt:uk-modal="" >
-                        <div class="uk-modal-dialog uk-margin-auto-vertical">
-
-                            <div class="uk-modal-header uk-background-secondary">
-                                <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Contacto</span></p>
-                            </div>
-                            <h:form>
-                                <div class="uk-modal-body">
-
-                                    <h:panelGroup layout="block" pt:uk-grid="" styleClass="uk-grid">
 
 
-                                        <div class="uk-width-1-1">
-                                            <h:outputLabel styleClass="uk-form-label" for="editar-nombre" value="Nombre"/>
-                                            <div class="uk-form-controls">
-                                                <h:inputText styleClass="uk-input" id="editar-nombre"  pt:placeholder="Nombre" pt:maxlength="30" value="Juan Pancracio Filomeno">
-                                                    <f:validateRequired/>
-                                                    <f:validateLength minimum="2" maximum="30"/>
-                                                </h:inputText>
-                                            </div>
-                                        </div>
 
-                                        <div class="uk-width-1-3">
-                                            <h:outputLabel styleClass="uk-form-label" for="seleccion-tipo-contacto" value="Tipo contacto"/>
-                                            <div class="uk-form-controls">
-                                                <h:selectOneMenu
-                                                        value = "#{detalleEscuelaControlador.escuelaDetalleModelos.nombre}"
-                                                        styleClass="uk-select"
-                                                        id="seleccion-tipo-contacto"
-                                                        label="Tipo contacto">
-                                                    <f:selectItem itemValue = "#{null}" itemLabel = "seleccione" noSelectionOption="true" />
-                                                    <f:selectItems value="#{detalleEscuelaControlador.tipoContactoModelos}" var="contacto"
-                                                                   itemValue="#{contacto.tipoContaco}"
-                                                                   itemLabel="#{contacto.tipoContaco}"/>
-                                                    <f:validateRequired/>
-                                                </h:selectOneMenu>
-                                            </div>
-                                        </div>
-
-                                        <div class="uk-width-2-3">
-                                            <label class="uk-form-label" for="telefono-editar" >Telefono</label>
-                                            <input id="telefono-editar" placeholder="(222)2307383" type="text" class="uk-input"/>
-                                        </div>
-                                    </h:panelGroup>
-                                    <ui:fragment rendered="#{facesContext.validationFailed}">
-                                        <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
-                                            <h:messages styleClass="uk-list" />
-                                        </h:panelGroup>
-                                    </ui:fragment>
-                                </div>
-                                <div class="uk-modal-footer uk-text-right">
-                                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                                    <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="Aceptar" >
-                                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEditar') }" render="@form" execute="@form" />
-                                    </h:commandButton>
-                                </div>
-                            </h:form>
-                        </div>
-                    </h:panelGroup>
-
-                    <h:panelGroup layout="block" id="modal-agregar-licencia" pt:uk-modal="" >
-                        <div class="uk-modal-dialog uk-margin-auto-vertical">
-
-                            <div class="uk-modal-header uk-background-secondary">
-                                <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Licencias</span></p>
-                            </div>
-                            <div class="uk-modal-body">
-                                <p>Se agregara una licencia a la escuela a la escuela: <span>21DBA0004C</span></p>
-                            </div>
-                            <div class="uk-modal-footer uk-text-right">
-                                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                            <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="Aceptar" >
-                                <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"  />
-                            </h:commandButton>
-                            </div>
-                        </div>
-                    </h:panelGroup>
         -->
 
 

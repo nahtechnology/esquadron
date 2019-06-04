@@ -62,8 +62,9 @@ public class ContactoEntidadTest {
 			Assert.assertNotNull(contactoEntidad.getTelefono());
 			Assert.assertNotNull(contactoEntidad.getNombre());
 			Assert.assertNotNull(contactoEntidad.getCorreoElectronico());
+			Assert.assertNotNull(contactoEntidad.getTipoContactoEntidad());
+			Assert.assertNotNull(contactoEntidad.getTipoContactoEntidad().getValor());
 			ContactoEntidadPK contactoEntidadPK = contactoEntidad.getContactoEntidadPK();
-			Assert.assertNotNull(contactoEntidadPK.getTipoContactoEntidad().getClave());
 			Assert.assertNotNull(contactoEntidadPK.getEscuelaEntidad().getClaveCentroTrabajo());
 			Assert.assertNotNull(contactoEntidadPK.getContador());
 		}
@@ -73,12 +74,13 @@ public class ContactoEntidadTest {
 	public void guarda() throws SystemException {
 		ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
 		contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad("0000000000"));
-		contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad((short)1));
+		//contactoEntidadPK.setTipoContactoEntidad(new TipoContactoEntidad((short)1));
 		ContactoEntidad contactoEntidad = new ContactoEntidad();
 		contactoEntidad.setContactoEntidadPK(contactoEntidadPK);
 		contactoEntidad.setCorreoElectronico("correo@servidor.com");
 		contactoEntidad.setNombre("Estrada Analco José Isamel");
 		contactoEntidad.setTelefono("2323126945");
+		contactoEntidad.setTipoContactoEntidad(new TipoContactoEntidad((short)1));
 		try {
 			userTransaction.begin();
 			entityManager.persist(contactoEntidad);

@@ -38,7 +38,7 @@ public class ContactoModelo {
 
     public ContactoModelo(ContactoEntidad contactoEntidad) {
         claveCentroTrabajo = contactoEntidad.getContactoEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
-        tipoContactoModelo = new TipoContactoModelo(contactoEntidad.getContactoEntidadPK().getTipoContactoEntidad());
+        tipoContactoModelo = new TipoContactoModelo(contactoEntidad.getTipoContactoEntidad());
         contador = contactoEntidad.getContactoEntidadPK().getContador();
         nombre = contactoEntidad.getNombre();
         telefono= contactoEntidad.getTelefono();
