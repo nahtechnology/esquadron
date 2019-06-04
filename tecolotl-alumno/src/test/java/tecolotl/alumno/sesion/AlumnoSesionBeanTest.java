@@ -2,7 +2,6 @@ package tecolotl.alumno.sesion;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -49,5 +48,11 @@ public class AlumnoSesionBeanTest {
             Assert.assertNotNull(alumnoModelo.getId());
             Assert.assertNotNull(alumnoModelo.getNivelLenguaje());
         }
+    }
+
+    @Test
+    public void buscaID(){
+        AlumnoModelo alumnoModelo = alumnoSesionBean.busca(5);
+        Assert.assertNotNull(alumnoModelo);
     }
 }

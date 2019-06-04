@@ -29,7 +29,7 @@ public class TareaModelo {
 
     public TareaModelo(TareaEntidad tareaEntidad){
         this.id = tareaEntidad.getId();
-        this.alumnoModelo = new AlumnoModelo();    //Preguntar Mañana a Toño
+        this.alumnoModelo = new AlumnoModelo(tareaEntidad.getAlumnoEntidad());    //Preguntar Mañana a Toño
         this.asignacion = tareaEntidad.getAsignacion();
     }
 

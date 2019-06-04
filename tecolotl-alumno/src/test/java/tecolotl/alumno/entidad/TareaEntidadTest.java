@@ -22,7 +22,9 @@ public class TareaEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(AlumnoEntidad.class, PersonaEntidad.class, TareaEntidad.class,
+                .addClasses(AlumnoEntidad.class, PersonaEntidad.class, TareaEntidad.class, TareaGlosarioEntidad.class,
+                        TareaGlosarioEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
+                        TipoEstudianteEntidad.class,
                         NivelLenguajeEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

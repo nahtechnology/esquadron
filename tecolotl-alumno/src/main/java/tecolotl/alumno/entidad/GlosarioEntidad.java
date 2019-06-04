@@ -15,6 +15,7 @@ public class GlosarioEntidad {
     private byte[] imagen;
     private String significado;
     private List<ActividadEntidad> actividadEntidad;
+    //private TareaGlosarioEntidad tareaGlosarioEntidad;
 
     @Id
     public String getPalabra() {
@@ -61,4 +62,13 @@ public class GlosarioEntidad {
     public void setActividadEntidad(List<ActividadEntidad> actividadEntidad) {
         this.actividadEntidad = actividadEntidad;
     }
+
+    /*@OneToOne(mappedBy = "glosarioEntidad")
+    public TareaGlosarioEntidad getTareaGlosarioEntidad() {
+        return tareaGlosarioEntidad;
+    }
+
+    public void setTareaGlosarioEntidad(TareaGlosarioEntidad tareaGlosarioEntidad) {
+        this.tareaGlosarioEntidad = tareaGlosarioEntidad;
+    }*/
 }

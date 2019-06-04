@@ -6,6 +6,7 @@ import java.util.Objects;
 
 @Embeddable
 public class TareaVideoEntidadPK implements Serializable {
+
     private TareaEntidad tareaEntidad;
     private ActividadEntidad actividadEntidad;
 

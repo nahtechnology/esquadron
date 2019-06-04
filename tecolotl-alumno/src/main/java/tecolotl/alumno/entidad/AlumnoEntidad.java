@@ -13,8 +13,10 @@ import java.util.List;
 @SequenceGenerator(name = "generador_automatico", schema = "alumno", sequenceName = "alumno.alumno_seq")
 @NamedQueries({
         @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad b"),
-        @NamedQuery(name = "AlumnoEntidad.actualizaNivel", query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id")
-
+        @NamedQuery(name = "AlumnoEntidad.actualizaNivel", query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
+        /*@NamedQuery(
+                name = "AlumnoEntidad.buscaTareas",
+                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.tareaEntidadLista tel LEFT JOIN FETCH a.nivelLenguajeEntidad x WHERE a.id=:id")*/
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
@@ -24,6 +26,7 @@ public class AlumnoEntidad extends PersonaEntidad {
     private Date nacimiento;
     private String correoPadreFamilia;
     private byte[] contraseniaPadreFamilia;
+   // private List<TareaEntidad> tareaEntidadLista;
 
     public AlumnoEntidad() {
     }
@@ -33,7 +36,7 @@ public class AlumnoEntidad extends PersonaEntidad {
     }
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator = "generador_automatico")
     public Integer getId() {
         return id;
     }
@@ -64,6 +67,7 @@ public class AlumnoEntidad extends PersonaEntidad {
     @Basic
     @Column(name = "nacimiento")
     @NotNull
+    @Temporal(TemporalType.DATE)
     public Date getNacimiento() {
         return nacimiento;
     }
@@ -93,4 +97,13 @@ public class AlumnoEntidad extends PersonaEntidad {
     public void setContraseniaPadreFamilia(byte[] contraseniaPadreFamilia) {
         this.contraseniaPadreFamilia = contraseniaPadreFamilia;
     }
+
+    /*@OneToMany(mappedBy = "alumnoEntidad")
+    public List<TareaEntidad> getTareaEntidadLista() {
+        return tareaEntidadLista;
+    }
+
+    public void setTareaEntidadLista(List<TareaEntidad> tareaEntidadLista) {
+        this.tareaEntidadLista = tareaEntidadLista;
+    }*/
 }

@@ -37,9 +37,12 @@ public class TareaSesionBeanTest {
                 .addPackage(TareaModelo.class.getPackage())
                 .addPackage(PersonaEntidad.class.getPackage())
                 .addClasses(PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
-                        AlumnoEntidad.class, TareaEntidad.class, TipoEstudianteEntidad.class,
+                        AlumnoEntidad.class, TareaEntidad.class, /*TipoEstudianteEntidad.class,
+                        TareaGlosarioEntidad.class, TareaVideoEntidad.class,
+                        TareaGlosarioEntidadPK.class, TareaVideoEntidadPK.class,*/
                         NivelLenguajeEntidad.class, PersonaSesionBean.class, AlumnoSesionBean.class,
-                        TareaSesionBean.class, GradoEscolarSesionBean.class, LoggerProducer.class)
+                        TareaSesionBean.class, GradoEscolarSesionBean.class, LoggerProducer.class
+                        /*GlosarioEntidad.class, ActividadEntidad.class*/)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -79,13 +82,13 @@ public class TareaSesionBeanTest {
     @Test
     public void elimina(){
         TareaModelo tareaModelo = new TareaModelo(new TareaEntidad());
-        tareaSesionBean.elimina(11);
+        tareaSesionBean.elimina(6);
         Assert.assertNotNull(tareaModelo);
     }
 
     @Test
     public void actualiza(){
-        TareaModelo tareaModelo = new TareaModelo(6);
+        TareaModelo tareaModelo = new TareaModelo(2);
         tareaModelo.setAsignacion(new Date());
         int elemModificados = tareaSesionBean.actualiza(tareaModelo.getId());
         Assert.assertFalse(elemModificados == 0);

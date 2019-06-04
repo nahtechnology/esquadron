@@ -53,4 +53,45 @@ public class GradoEscolarSesionBeanTest {
             Assert.assertNotNull(gradoEscolarModelo.getGrado());
         }
     }
+
+    @Test
+    public void buscaID(){
+        GradoEscolarModelo gradoEscolarModelo = gradoEscolarSesionBean.busca((short)2);
+        Assert.assertNotNull(gradoEscolarModelo);
+        Assert.assertNotNull(gradoEscolarModelo.getId());
+        Assert.assertNotNull(gradoEscolarModelo.getNivel());
+        Assert.assertNotNull(gradoEscolarModelo.getGrado());
+    }
+
+    @Test
+    public void inserta(){
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo((short)6, "C1", (short)2);
+        gradoEscolarSesionBean.inserta(gradoEscolarModelo);
+        Assert.assertNotNull(gradoEscolarModelo.getId());
+        Assert.assertNotNull(gradoEscolarModelo.getNivel());
+        Assert.assertNotNull(gradoEscolarModelo.getGrado());
+    }
+
+    @Test
+    public void insertaVal(){
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo((short) 7);
+        gradoEscolarSesionBean.inserta( gradoEscolarModelo.getId(),"NewLevel", (short) 1);
+        Assert.assertNotNull(gradoEscolarModelo);
+
+    }
+
+    @Test
+    public void elimina(){
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo(new GradoEscolarEntidad());
+        gradoEscolarSesionBean.elimina((short)6);
+        Assert.assertNotNull(gradoEscolarModelo);
+    }
+
+    @Test
+    public void actualiza(){
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo((short) 2);
+        gradoEscolarSesionBean.actualiza(gradoEscolarModelo.getId());
+        Assert.assertNotNull(gradoEscolarModelo);
+        Assert.assertNotNull(gradoEscolarModelo.getId());
+    }
 }

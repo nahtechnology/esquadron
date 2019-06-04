@@ -18,10 +18,20 @@ public class GradoEscolarModelo {
     public GradoEscolarModelo(){
     }
 
+    public GradoEscolarModelo(Short id) {
+        this.id = id;
+    }
+
     public GradoEscolarModelo(GradoEscolarEntidad gradoEscolarEntidad){
         this.id = gradoEscolarEntidad.getId();
         this.nivel = gradoEscolarEntidad.getNivel();
         this.grado = gradoEscolarEntidad.getGrado();
+    }
+
+    public GradoEscolarModelo(Short id, String nivel, Short grado) {
+        this.id = id;
+        this.nivel = nivel;
+        this.grado = grado;
     }
 
     public Short getId() {

@@ -55,19 +55,24 @@ public class TareaSesionBean {
         return tareaEntidadLista.stream().map(TareaModelo::new).collect(Collectors.toList());
     }
 
+    public TareaModelo busca(@NotNull @Min(0) Integer id){
+        //return new TareaModelo(entityManager.createNamedQuery("TareaEntidad.buscaTareas", TareaEntidad.class).setParameter("id", id).getSingleResult());
+        return new TareaModelo(id);
+    }
+
     /**
      * Busca una traea por llave primaria
      * @param id dato para buscar una tarea
      * @return retorna la tarea encontrada.
      */
-    public TareaModelo busca(@NotNull @Min(1) Integer id){
+    /*public TareaModelo busca(@NotNull @Min(1) Integer id){
         return new TareaModelo(entityManager.find(TareaEntidad.class, id));
-    }
+    }*/
 
     /**
      * Modifica una tarea
      * @param idTarea dato para modificar la tarea.
-     * @return numero de elementos modificados, cero en caso de no existir.
+     * @return numero de elementos modificados, 0 en caso de no existir.
      */
     public Integer actualiza(@NotNull @Valid Integer idTarea){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();

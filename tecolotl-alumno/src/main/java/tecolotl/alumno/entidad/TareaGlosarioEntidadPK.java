@@ -11,8 +11,7 @@ public class TareaGlosarioEntidadPK implements Serializable {
     private GlosarioEntidad glosarioEntidad;
 
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "id_tarea", referencedColumnName = "id")
+    @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
         return tareaEntidad;
     }
@@ -22,8 +21,7 @@ public class TareaGlosarioEntidadPK implements Serializable {
     }
 
     @NotNull
-    @OneToOne
-    @JoinColumn(name = "id_glosario", referencedColumnName = "palabra")
+    @JoinColumn(name = "id_glosario")
     public GlosarioEntidad getGlosarioEntidad() {
         return glosarioEntidad;
     }

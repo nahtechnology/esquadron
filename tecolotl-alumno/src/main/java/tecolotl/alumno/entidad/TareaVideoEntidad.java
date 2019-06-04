@@ -1,6 +1,8 @@
 package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,6 +14,7 @@ import javax.validation.constraints.Size;
         @NamedQuery(name = "TareaVideoEntidad.buscaActividad", query = "SELECT a FROM TareaVideoEntidad a WHERE a.tareaVideoEntidadPK.actividadEntidad.id = :id")
 })
 public class TareaVideoEntidad {
+
     private TareaVideoEntidadPK tareaVideoEntidadPK;
     private Short reproducciones;
 
@@ -27,7 +30,8 @@ public class TareaVideoEntidad {
     @Basic
     @Column(name = "reproducciones")
     @NotNull
-    @Size(max = 32)
+    @Max(32767)
+    @Min(0)
     public Short getReproducciones() {
         return reproducciones;
     }
