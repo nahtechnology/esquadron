@@ -7,9 +7,12 @@ import java.util.Objects;
 
 @Embeddable
 public class TareaGlosarioEntidadPK implements Serializable {
+
     private TareaEntidad tareaEntidad;
     private GlosarioEntidad glosarioEntidad;
+    private String respuesta;
 
+    @ManyToOne
     @NotNull
     @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
@@ -20,6 +23,7 @@ public class TareaGlosarioEntidadPK implements Serializable {
         this.tareaEntidad = tareaEntidad;
     }
 
+    @OneToOne
     @NotNull
     @JoinColumn(name = "id_glosario")
     public GlosarioEntidad getGlosarioEntidad() {

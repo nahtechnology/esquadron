@@ -12,9 +12,10 @@ import javax.validation.constraints.Size;
         @NamedQuery(name = "TareaGlosarioEntidad.buscaGlosario", query = "SELECT c FROM TareaGlosarioEntidad c WHERE c.tareaGlosarioEntidadPK.glosarioEntidad.palabra = :palabra")*/
 })
 public class TareaGlosarioEntidad {
+
     private TareaGlosarioEntidadPK tareaGlosarioEntidadPK;
-    //private TareaEntidad tareaEntidad;
-    //private GlosarioEntidad glosarioEntidad;
+    private TareaEntidad tareaEntidad;
+    private GlosarioEntidad glosarioEntidad;
     private char respuesta;
 
     @EmbeddedId
@@ -25,7 +26,8 @@ public class TareaGlosarioEntidad {
     public void setTareaGlosarioEntidadPK(TareaGlosarioEntidadPK tareaGlosarioEntidadPK) {
         this.tareaGlosarioEntidadPK = tareaGlosarioEntidadPK;
     }
-    /*@OneToOne
+
+    @ManyToOne
     @MapsId("tareaEntidad")
     @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
@@ -45,7 +47,7 @@ public class TareaGlosarioEntidad {
 
     public void setGlosarioEntidad(GlosarioEntidad glosarioEntidad) {
         this.glosarioEntidad = glosarioEntidad;
-    }*/
+    }
 
     @Basic
     @Column(name = "respuesta")

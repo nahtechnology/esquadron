@@ -11,11 +11,11 @@ import java.util.List;
         @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT a FROM GlosarioEntidad a")
 })
 public class GlosarioEntidad {
+
     private String palabra;
     private byte[] imagen;
     private String significado;
     private List<ActividadEntidad> actividadEntidad;
-    //private TareaGlosarioEntidad tareaGlosarioEntidad;
 
     @Id
     public String getPalabra() {
@@ -63,12 +63,4 @@ public class GlosarioEntidad {
         this.actividadEntidad = actividadEntidad;
     }
 
-    /*@OneToOne(mappedBy = "glosarioEntidad")
-    public TareaGlosarioEntidad getTareaGlosarioEntidad() {
-        return tareaGlosarioEntidad;
-    }
-
-    public void setTareaGlosarioEntidad(TareaGlosarioEntidad tareaGlosarioEntidad) {
-        this.tareaGlosarioEntidad = tareaGlosarioEntidad;
-    }*/
 }

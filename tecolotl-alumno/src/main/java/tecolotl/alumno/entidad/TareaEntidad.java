@@ -19,7 +19,7 @@ public class TareaEntidad {
     private Integer id;
     private AlumnoEntidad alumnoEntidad;
     private Date asignacion;
-    //private List<TareaGlosarioEntidad> tareaGlosarioEntidadLista;
+    private List<TareaGlosarioEntidad> tareaGlosarioEntidadLista;
     //private List<TareaVideoEntidad> tareaVideoEntidadLista;
 
     @Id
@@ -43,7 +43,8 @@ public class TareaEntidad {
     }
 
     @Basic
-    @JoinColumn(name = "asignacion")
+    @Column(name = "asignacion")
+    @Temporal(TemporalType.TIMESTAMP)
     @NotNull
     public Date getAsignacion() {
         return asignacion;
@@ -53,7 +54,7 @@ public class TareaEntidad {
         this.asignacion = asignacion;
     }
 
-    /*@OneToMany(mappedBy = "tareaEntidad")
+    @OneToMany(mappedBy = "tareaEntidad")
     public List<TareaGlosarioEntidad> getTareaGlosarioEntidadLista() {
         return tareaGlosarioEntidadLista;
     }
@@ -62,7 +63,7 @@ public class TareaEntidad {
         this.tareaGlosarioEntidadLista = tareaGlosarioEntidadLista;
     }
 
-    @OneToMany(mappedBy = "")
+/*    @OneToMany(mappedBy = "")
     public List<TareaVideoEntidad> getTareaVideoEntidadLista() {
         return tareaVideoEntidadLista;
     }
