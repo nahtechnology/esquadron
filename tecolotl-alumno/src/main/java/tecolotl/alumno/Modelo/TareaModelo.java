@@ -14,7 +14,7 @@ public class TareaModelo {
 
     @NotNull
     @Valid
-    private AlumnoModelo alumnoModelo;
+    private tecolotl.alumno.modelo.AlumnoModelo alumnoModelo;
 
     @NotNull
     private Date asignacion;
@@ -28,13 +28,13 @@ public class TareaModelo {
 
     public TareaModelo(TareaEntidad tareaEntidad){
         this.id = tareaEntidad.getId();
-        this.alumnoModelo = new AlumnoModelo(tareaEntidad.getAlumnoEntidad());    //Preguntar Mañana a Toño
+        this.alumnoModelo = new tecolotl.alumno.modelo.AlumnoModelo(tareaEntidad.getAlumnoEntidad());    //Preguntar Mañana a Toño
         this.asignacion = tareaEntidad.getAsignacion();
     }
 
 
 
-    public TareaModelo(AlumnoModelo alumnoModelo, Date asignacion) {
+    public TareaModelo(tecolotl.alumno.modelo.AlumnoModelo alumnoModelo, Date asignacion) {
         this.alumnoModelo = alumnoModelo;
         this.asignacion = asignacion;
     }
@@ -55,11 +55,11 @@ public class TareaModelo {
         this.asignacion = asignacion;
     }
 
-    public AlumnoModelo getAlumnoModelo() {
+    public tecolotl.alumno.modelo.AlumnoModelo getAlumnoModelo() {
         return alumnoModelo;
     }
 
-    public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
+    public void setAlumnoModelo(tecolotl.alumno.modelo.AlumnoModelo alumnoModelo) {
         this.alumnoModelo = alumnoModelo;
     }
 }
