@@ -3,7 +3,7 @@ package tecolotl.administracion.modelo.escuela;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 
 /**
- * Modelo con los datos de una escuela con los datos para una visualización
+ * modelo con los datos de una escuela con los datos para una visualización
  * rápida para que el usuario no entre en detalles de dicha escuela.
  */
 public class EscuelaDashboardModelo extends EscuelaBaseModelo {

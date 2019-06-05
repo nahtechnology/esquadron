@@ -9,9 +9,10 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.Modelo.AlumnoModelo;
+import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.GradoEscolarEntidad;
+import tecolotl.alumno.entidad.TareaGlosarioActividadEntidad;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
@@ -30,7 +31,7 @@ public class AlumnoSesionBeanTest {
             .addPackage(PersonaModelo.class.getPackage())
             .addPackage(AlumnoEntidad.class.getPackage())
             .addClasses(AlumnoEntidad.class, PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
-            AlumnoSesionBean.class, PersonaSesionBean.class)
+            AlumnoSesionBean.class, PersonaSesionBean.class, TareaGlosarioActividadEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -46,13 +47,25 @@ public class AlumnoSesionBeanTest {
         for (AlumnoModelo alumnoModelo : alumnoModeloLista){
             Assert.assertNotNull(alumnoModelo);
             Assert.assertNotNull(alumnoModelo.getId());
-            Assert.assertNotNull(alumnoModelo.getNivelLenguaje());
+            Assert.assertNotNull(alumnoModelo.getNombre());
+            Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
+            Assert.assertNotNull(alumnoModelo.getApellidoMaterno());
+            Assert.assertNotNull(alumnoModelo.getApodo());
+            Assert.assertNotNull(alumnoModelo.getContrasenia());
+            Assert.assertNotNull(alumnoModelo.getNacimiento());
+            Assert.assertNotNull(alumnoModelo.getCorreoPadreFamilia());
+            Assert.assertNotNull(alumnoModelo.getContraseniaPadreFamilia());
+            Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
+            Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
+            Assert.assertNotNull(alumnoModelo.getGradoEscolarModelo());
+            Assert.assertNotNull(alumnoModelo.getGradoEscolarModelo().getGrado());
+            Assert.assertNotNull(alumnoModelo.getGradoEscolarModelo().getNivel());
         }
     }
 
     @Test
     public void buscaID(){
         AlumnoModelo alumnoModelo = alumnoSesionBean.busca(5);
-        Assert.assertNotNull(alumnoModelo);
+
     }
 }

@@ -50,11 +50,7 @@ public class GlosarioEntidad {
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "glosario_actividad", schema = "alumno",
-            joinColumns = @JoinColumn(name = "id_glosario"),
-            inverseJoinColumns = @JoinColumn(name = "id_actividad")
-    )
+    @JoinColumn()
     public List<ActividadEntidad> getActividadEntidad() {
         return actividadEntidad;
     }

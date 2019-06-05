@@ -9,18 +9,22 @@ import java.util.List;
 @Table(name = "tarea", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", sequenceName = "tarea_seq", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "TareaEntidad.busca", query = "SELECT a FROM TareaEntidad a")/*,
+        @NamedQuery(name = "TareaEntidad.busca", query = "SELECT a FROM TareaEntidad a"),
         @NamedQuery(
-                name="TareaEntidad.buscaTareas",
-                query="SELECT a FROM TareaEntidad a LEFT JOIN FETCH a.tareaGlosarioEntidad x where a.id= :id"
-        )*/
+                name="TareaEntidad.buscaPorAlumno",
+                query="SELECT t FROM " +
+                        "TareaEntidad t INNER JOIN FETCH " +
+                        "t.tareaGlosarioActividadEntidadList tgae INNER JOIN FETCH " +
+                        "tgae.tareaGlosarioActividadEntidadPK.actividadEntidad a INNER JOIN FETCH " +
+                        "tgae.tareaGlosarioActividadEntidadPK.glosarioEntidad WHERE t.alumnoEntidad.id = :idAlumno"
+        )
 })
 public class TareaEntidad {
+
     private Integer id;
     private AlumnoEntidad alumnoEntidad;
     private Date asignacion;
-    private List<TareaGlosarioEntidad> tareaGlosarioEntidadLista;
-    //private List<TareaVideoEntidad> tareaVideoEntidadLista;
+    private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador_automatico")
@@ -32,7 +36,7 @@ public class TareaEntidad {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_alumno")
     public AlumnoEntidad getAlumnoEntidad() {
         return alumnoEntidad;
@@ -54,21 +58,12 @@ public class TareaEntidad {
         this.asignacion = asignacion;
     }
 
-    @OneToMany(mappedBy = "tareaEntidad")
-    public List<TareaGlosarioEntidad> getTareaGlosarioEntidadLista() {
-        return tareaGlosarioEntidadLista;
+    @OneToMany(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad")
+    public List<TareaGlosarioActividadEntidad> getTareaGlosarioActividadEntidadList() {
+        return tareaGlosarioActividadEntidadList;
     }
 
-    public void setTareaGlosarioEntidadLista(List<TareaGlosarioEntidad> tareaGlosarioEntidadLista) {
-        this.tareaGlosarioEntidadLista = tareaGlosarioEntidadLista;
+    public void setTareaGlosarioActividadEntidadList(List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadList) {
+        this.tareaGlosarioActividadEntidadList = tareaGlosarioActividadEntidadList;
     }
-
-/*    @OneToMany(mappedBy = "")
-    public List<TareaVideoEntidad> getTareaVideoEntidadLista() {
-        return tareaVideoEntidadLista;
-    }
-
-    public void setTareaVideoEntidadLista(List<TareaVideoEntidad> tareaVideoEntidadLista) {
-        this.tareaVideoEntidadLista = tareaVideoEntidadLista;
-    }*/
 }

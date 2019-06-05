@@ -12,21 +12,18 @@ import java.util.List;
 @Table(name = "alumno", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", schema = "alumno", sequenceName = "alumno.alumno_seq")
 @NamedQueries({
-        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad b"),
+        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle LEFT JOIN FETCH a.gradoEscolarEntidad gee"),
         @NamedQuery(name = "AlumnoEntidad.actualizaNivel", query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
-        /*@NamedQuery(
-                name = "AlumnoEntidad.buscaTareas",
-                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.tareaEntidadLista tel LEFT JOIN FETCH a.nivelLenguajeEntidad x WHERE a.id=:id")*/
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
     private Integer id;
     private NivelLenguajeEntidad nivelLenguajeEntidad;
-    private List<GradoEscolarEntidad> gradoEscolarEntidad;
+    private GradoEscolarEntidad gradoEscolarEntidad;
     private Date nacimiento;
     private String correoPadreFamilia;
     private byte[] contraseniaPadreFamilia;
-   // private List<TareaEntidad> tareaEntidadLista;
+    private List<TareaEntidad> tareaEntidadLista;
 
     public AlumnoEntidad() {
     }
@@ -55,15 +52,16 @@ public class AlumnoEntidad extends PersonaEntidad {
         this.nivelLenguajeEntidad = nivelLenguajeEntidad;
     }
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_grado_escolar")
-    public List<GradoEscolarEntidad> getGradoEscolarEntidad() {
+    public GradoEscolarEntidad getGradoEscolarEntidad() {
         return gradoEscolarEntidad;
     }
 
-    public void setGradoEscolarEntidad(List<GradoEscolarEntidad> gradoEscolarEntidad) {
+    public void setGradoEscolarEntidad(GradoEscolarEntidad gradoEscolarEntidad) {
         this.gradoEscolarEntidad = gradoEscolarEntidad;
     }
+
     @Basic
     @Column(name = "nacimiento")
     @NotNull
@@ -98,12 +96,12 @@ public class AlumnoEntidad extends PersonaEntidad {
         this.contraseniaPadreFamilia = contraseniaPadreFamilia;
     }
 
-    /*@OneToMany(mappedBy = "alumnoEntidad")
+    @OneToMany(mappedBy = "alumnoEntidad")
     public List<TareaEntidad> getTareaEntidadLista() {
         return tareaEntidadLista;
     }
 
     public void setTareaEntidadLista(List<TareaEntidad> tareaEntidadLista) {
         this.tareaEntidadLista = tareaEntidadLista;
-    }*/
+    }
 }

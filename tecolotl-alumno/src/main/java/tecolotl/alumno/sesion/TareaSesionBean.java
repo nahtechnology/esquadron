@@ -1,8 +1,9 @@
 package tecolotl.alumno.sesion;
 
-import tecolotl.alumno.Modelo.TareaModelo;
+import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.TareaEntidad;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -11,10 +12,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
-import javax.validation.Validator;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -26,10 +25,11 @@ public class TareaSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
+    @Inject
+    private ValidadorSessionBean validadorSessionBean;
 
-    //@Inject
-    //private Validator validator;
-
+    @Inject
+    private Logger logger;
 
     /**
      * Inserta una tarea.
@@ -49,15 +49,20 @@ public class TareaSesionBean {
      * @return todas las tareas encontradas.
      */
     public List<TareaModelo> busca(){
-        //List<TareaModelo> tareaModeloLista = new ArrayList<>();
         TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.busca", TareaEntidad.class);
         List<TareaEntidad> tareaEntidadLista = typedQuery.getResultList();
         return tareaEntidadLista.stream().map(TareaModelo::new).collect(Collectors.toList());
     }
 
-    public TareaModelo busca(@NotNull @Min(0) Integer id){
-        //return new TareaModelo(entityManager.createNamedQuery("TareaEntidad.buscaTareas", TareaEntidad.class).setParameter("id", id).getSingleResult());
-        return new TareaModelo(id);
+    /**
+     * Busca todas las tareas de un alumno
+     * @param idAlumno Identificador del alumno
+     * @return
+     */
+    public List<TareaModelo> busca(@NotNull Integer idAlumno){
+        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaPorAlumno", TareaEntidad.class);
+        typedQuery.setParameter("idAlumno", idAlumno);
+        return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
     }
 
     /**

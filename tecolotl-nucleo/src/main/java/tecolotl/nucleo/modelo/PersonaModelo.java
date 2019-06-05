@@ -8,23 +8,29 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class PersonaModelo implements Comparable<PersonaModelo>{
+
     @NotNull
     @Size(max = 40)
     private String nombre;
+
     @NotNull
     @Size(max = 50)
     private String apellidoPaterno;
+
     @NotNull
     @Size(max = 50)
     private String apellidoMaterno;
+
     @NotNull
     @Size(max = 40)
     private String apodo;
+
     @NotNull
     private byte[] contrasenia;
 
     public PersonaModelo(){
     }
+
     public PersonaModelo(PersonaEntidad personaEntidad){
         this.nombre = personaEntidad.getNombre();
         this.apellidoPaterno = personaEntidad.getApellidoPaterno();

@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
         @NamedQuery(name = "GradoEscolarEntidad.busca", query = "SELECT a FROM GradoEscolarEntidad a")
 })
 public class GradoEscolarEntidad {
+
     private Short id;
     private String nivel;
     private Short grado;

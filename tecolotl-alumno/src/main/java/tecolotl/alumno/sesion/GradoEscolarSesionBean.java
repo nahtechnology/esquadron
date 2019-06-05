@@ -1,17 +1,14 @@
 package tecolotl.alumno.sesion;
 
-import tecolotl.alumno.Modelo.GradoEscolarModelo;
-import tecolotl.alumno.entidad.AlumnoEntidad;
+import tecolotl.alumno.modelo.GradoEscolarModelo;
 import tecolotl.alumno.entidad.GradoEscolarEntidad;
 
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
-import javax.validation.Validator;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;

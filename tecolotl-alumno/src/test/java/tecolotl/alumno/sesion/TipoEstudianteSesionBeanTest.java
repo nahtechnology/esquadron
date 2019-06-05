@@ -9,7 +9,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.Modelo.TipoEstudianteModelo;
+import tecolotl.alumno.modelo.TipoEstudianteModelo;
 import tecolotl.alumno.entidad.TipoEstudianteEntidad;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.CatalogoModelo;

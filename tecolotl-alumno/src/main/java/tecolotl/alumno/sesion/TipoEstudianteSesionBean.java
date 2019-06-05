@@ -1,6 +1,6 @@
 package tecolotl.alumno.sesion;
 
-import tecolotl.alumno.Modelo.TipoEstudianteModelo;
+import tecolotl.alumno.modelo.TipoEstudianteModelo;
 import tecolotl.alumno.entidad.TipoEstudianteEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 

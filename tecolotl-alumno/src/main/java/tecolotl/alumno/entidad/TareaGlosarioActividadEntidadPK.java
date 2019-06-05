@@ -6,13 +6,13 @@ import java.io.Serializable;
 import java.util.Objects;
 
 @Embeddable
-public class TareaGlosarioEntidadPK implements Serializable {
+public class TareaGlosarioActividadEntidadPK implements Serializable {
 
     private TareaEntidad tareaEntidad;
     private GlosarioEntidad glosarioEntidad;
-    private String respuesta;
+    private ActividadEntidad actividadEntidad;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
@@ -23,7 +23,7 @@ public class TareaGlosarioEntidadPK implements Serializable {
         this.tareaEntidad = tareaEntidad;
     }
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "id_glosario")
     public GlosarioEntidad getGlosarioEntidad() {
@@ -34,17 +34,14 @@ public class TareaGlosarioEntidadPK implements Serializable {
         this.glosarioEntidad = glosarioEntidad;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TareaGlosarioEntidadPK that = (TareaGlosarioEntidadPK) o;
-        return tareaEntidad.equals(that.tareaEntidad) &&
-                glosarioEntidad.equals(that.glosarioEntidad);
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @JoinColumn(name = "id_actividad")
+    public ActividadEntidad getActividadEntidad() {
+        return actividadEntidad;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(tareaEntidad, glosarioEntidad);
+    public void setActividadEntidad(ActividadEntidad actividadEntidad) {
+        this.actividadEntidad = actividadEntidad;
     }
 }

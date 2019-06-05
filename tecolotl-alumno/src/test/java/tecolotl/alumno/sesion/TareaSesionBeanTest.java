@@ -9,20 +9,17 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.Modelo.AlumnoModelo;
-import tecolotl.alumno.Modelo.TareaModelo;
+import tecolotl.alumno.modelo.AlumnoModelo;
+import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.entidad.*;
 import tecolotl.nucleo.herramienta.LoggerProducer;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.PersonaSesionBean;
 
 import javax.inject.Inject;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.swing.text.DateFormatter;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -37,12 +34,12 @@ public class TareaSesionBeanTest {
                 .addPackage(TareaModelo.class.getPackage())
                 .addPackage(PersonaEntidad.class.getPackage())
                 .addClasses(PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
-                        AlumnoEntidad.class, TareaEntidad.class, /*TipoEstudianteEntidad.class,
-                        TareaGlosarioEntidad.class, TareaVideoEntidad.class,
-                        TareaGlosarioEntidadPK.class, TareaVideoEntidadPK.class,*/
+                        AlumnoEntidad.class, TareaEntidad.class, TipoEstudianteEntidad.class,
+                        TareaGlosarioActividadEntidad.class, TareaVideoEntidad.class,
+                        TareaGlosarioActividadEntidadPK.class, TareaVideoEntidadPK.class,
                         NivelLenguajeEntidad.class, PersonaSesionBean.class, AlumnoSesionBean.class,
-                        TareaSesionBean.class, GradoEscolarSesionBean.class, LoggerProducer.class
-                        /*GlosarioEntidad.class, ActividadEntidad.class*/)
+                        TareaSesionBean.class, GradoEscolarSesionBean.class, LoggerProducer.class, ValidadorSessionBean.class,
+                        GlosarioEntidad.class, ActividadEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -64,11 +61,10 @@ public class TareaSesionBeanTest {
 
     @Test
     public void buscaID(){
-        TareaModelo tareaModelo = tareaSesionBean.busca(2);
-        Assert.assertNotNull(tareaModelo);
-        Assert.assertNotNull(tareaModelo.getId());
-        Assert.assertNotNull(tareaModelo.getAlumnoModelo());
-        Assert.assertNotNull(tareaModelo.getAsignacion());
+        List<TareaModelo> tareaModeloLista = tareaSesionBean.busca(5);
+        Assert.assertNotNull(tareaModeloLista);
+        Assert.assertFalse(tareaModeloLista.isEmpty());
+
     }
 
     @Test

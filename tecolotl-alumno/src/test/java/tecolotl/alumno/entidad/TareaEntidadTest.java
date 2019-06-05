@@ -22,8 +22,8 @@ public class TareaEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(AlumnoEntidad.class, PersonaEntidad.class, TareaEntidad.class, TareaGlosarioEntidad.class,
-                        TareaGlosarioEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
+                .addClasses(AlumnoEntidad.class, PersonaEntidad.class, TareaEntidad.class, TareaGlosarioActividadEntidad.class,
+                        TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
                         TipoEstudianteEntidad.class,
                         NivelLenguajeEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
@@ -45,5 +45,13 @@ public class TareaEntidadTest {
             Assert.assertNotNull(tareaEntidad.getAlumnoEntidad());
             Assert.assertNotNull(tareaEntidad.getAsignacion());
         }
+    }
+
+    @Test
+    public void buscaPorAlumno() {
+        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaPorAlumno", TareaEntidad.class);
+        typedQuery.setParameter("idAlumno", 5);
+        TareaEntidad tareaEntidad = typedQuery.getSingleResult();
+        Assert.assertNotNull(tareaEntidad);
     }
 }

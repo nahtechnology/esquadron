@@ -24,6 +24,7 @@ public class ActividadEntidad {
     private String trasncipcion;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
+    private List<GlosarioEntidad> glosarioEntidadLista;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador")
@@ -95,7 +96,7 @@ public class ActividadEntidad {
         this.trasncipcion = trasncipcion;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_estudiante")
     public TipoEstudianteEntidad getTipoEstudianteEntidad() {
         return tipoEstudianteEntidad;
@@ -105,20 +106,27 @@ public class ActividadEntidad {
         this.tipoEstudianteEntidad = tipoEstudianteEntidad;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "nivel_lenguaje_actividad",schema = "alumno",
             joinColumns = @JoinColumn(name = "id_actividad"),
             inverseJoinColumns = @JoinColumn(name = "id_nivel_lenguaje")
     )
-
-
     public List<NivelLenguajeEntidad> getNivelLenguajeEntidad() {
         return nivelLenguajeEntidad;
     }
 
     public void setNivelLenguajeEntidad(List<NivelLenguajeEntidad> nivelLenguajeEntidad) {
         this.nivelLenguajeEntidad = nivelLenguajeEntidad;
+    }
+
+    @OneToMany(mappedBy = "actividadEntidad")
+    public List<GlosarioEntidad> getGlosarioEntidadLista() {
+        return glosarioEntidadLista;
+    }
+
+    public void setGlosarioEntidadLista(List<GlosarioEntidad> glosarioEntidadLista) {
+        this.glosarioEntidadLista = glosarioEntidadLista;
     }
 
     @Override
