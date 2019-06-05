@@ -28,7 +28,8 @@ public class ProfesorEntidadTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "prueba.war")
-                .addClasses(ProfesorEntidad.class, PersonaEntidad.class, LoggerProducer.class, CatalagoEntidad.class)
+                .addClasses(ProfesorEntidad.class, PersonaEntidad.class, LoggerProducer.class, CatalagoEntidad.class,
+                            GrupoEntidad.class)
                 .addPackage(EscuelaEntidad.class.getPackage())
                 .addPackage(AlumnoEntidad.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")

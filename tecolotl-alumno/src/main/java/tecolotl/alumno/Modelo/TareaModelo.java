@@ -1,12 +1,11 @@
-package tecolotl.alumno.modelo;
+package tecolotl.alumno.Modelo;
+
 
 import tecolotl.alumno.entidad.TareaEntidad;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class TareaModelo {
 
@@ -20,8 +19,6 @@ public class TareaModelo {
     @NotNull
     private Date asignacion;
 
-    private List<TareaGlosarioModelo> tareaGlosarioModeloLista;
-
     public TareaModelo(){
     }
 
@@ -30,11 +27,12 @@ public class TareaModelo {
     }
 
     public TareaModelo(TareaEntidad tareaEntidad){
-        this(tareaEntidad.getId());
+        this.id = tareaEntidad.getId();
+        this.alumnoModelo = new AlumnoModelo(tareaEntidad.getAlumnoEntidad());    //Preguntar Mañana a Toño
         this.asignacion = tareaEntidad.getAsignacion();
-        tareaGlosarioModeloLista = tareaEntidad.getTareaGlosarioActividadEntidadList()
-                .stream().map(TareaGlosarioModelo::new).collect(Collectors.toList());
     }
+
+
 
     public TareaModelo(AlumnoModelo alumnoModelo, Date asignacion) {
         this.alumnoModelo = alumnoModelo;
@@ -63,13 +61,5 @@ public class TareaModelo {
 
     public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
         this.alumnoModelo = alumnoModelo;
-    }
-
-    public List<TareaGlosarioModelo> getTareaGlosarioModeloLista() {
-        return tareaGlosarioModeloLista;
-    }
-
-    public void setTareaGlosarioModeloLista(List<TareaGlosarioModelo> tareaGlosarioModeloLista) {
-        this.tareaGlosarioModeloLista = tareaGlosarioModeloLista;
     }
 }

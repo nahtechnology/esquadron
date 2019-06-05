@@ -1,9 +1,6 @@
 package tecolotl.profesor.entidad;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -17,9 +14,9 @@ public class GrupoEntidadPK implements Serializable {
     private ProfesorEntidad profesorEntidad;
 
     @Basic
-    @Column(name = "grado")
     @NotNull
     @Min(0)
+    @JoinColumn(name = "grado")
     public Short getGrado() {
         return grado;
     }
@@ -29,8 +26,8 @@ public class GrupoEntidadPK implements Serializable {
     }
 
     @Basic
-    @Column(name = "grupo")
     @NotNull
+    @JoinColumn(name = "grupo")
     public Character getGrupo() {
         return grupo;
     }
@@ -40,7 +37,8 @@ public class GrupoEntidadPK implements Serializable {
     }
 
     @ManyToOne
-    @Column(name = "id_profesor")
+    @NotNull
+    @JoinColumn(name = "id_profesor")
     public ProfesorEntidad getProfesorEntidad() {
         return profesorEntidad;
     }

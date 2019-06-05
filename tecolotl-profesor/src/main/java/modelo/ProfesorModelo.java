@@ -1,20 +1,33 @@
 package modelo;
 
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.alumno.Modelo.AlumnoModelo;
+import tecolotl.nucleo.modelo.PersonaModelo;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.profesor.entidad.ProfesorEntidad;
+
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
-public class ProfesorModelo {
+public class ProfesorModelo extends PersonaModelo {
 
     @NotNull
     private Integer id;
-    //@NotNull
-    //private EscuelaModelo escuelaModelo;
+    @NotNull
+    @Valid
+    private EscuelaBaseModelo escuelaBaseModelo;
 
     public ProfesorModelo() {
     }
 
-    public ProfesorModelo(Integer id) {
-        this.id = id;
+    public ProfesorModelo(PersonaEntidad personaEntidad) {
+        super(personaEntidad);
     }
+    public ProfesorModelo(ProfesorEntidad profesorEntidad){
+        this.id = profesorEntidad.getId();
+        //this.escuelaBaseModelo = new ProfesorModelo(profesorEntidad.getEscuelaEntidad());
+    }
+
 
     public Integer getId() {
         return id;
@@ -24,11 +37,11 @@ public class ProfesorModelo {
         this.id = id;
     }
 
-    /*public EscuelaModelo getEscuelaModelo() {
-        return escuelaModelo;
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
     }
 
-    public void setEscuelaModelo(EscuelaModelo escuelaModelo) {
-        this.escuelaModelo = escuelaModelo;
-    }*/
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
+    }
 }

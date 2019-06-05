@@ -4,6 +4,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(schema = "profesor", name = "profesor")
@@ -15,6 +16,7 @@ public class ProfesorEntidad extends PersonaEntidad {
 
     private Integer id;
     private EscuelaEntidad escuelaEntidad;
+    private List<GrupoEntidad> grupoEntidadLista;
 
     @Id
     @GeneratedValue(generator = "secuencia", strategy = GenerationType.IDENTITY)
@@ -26,7 +28,7 @@ public class ProfesorEntidad extends PersonaEntidad {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_escuela")
     public EscuelaEntidad getEscuelaEntidad() {
         return escuelaEntidad;
@@ -34,5 +36,15 @@ public class ProfesorEntidad extends PersonaEntidad {
 
     public void setEscuelaEntidad(EscuelaEntidad escuelaEntidad) {
         this.escuelaEntidad = escuelaEntidad;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_grupo")
+    public List<GrupoEntidad> getGrupoEntidadLista() {
+        return grupoEntidadLista;
+    }
+
+    public void setGrupoEntidadLista(List<GrupoEntidad> grupoEntidadLista) {
+        this.grupoEntidadLista = grupoEntidadLista;
     }
 }
