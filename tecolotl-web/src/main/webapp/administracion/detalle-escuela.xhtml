@@ -112,7 +112,8 @@
                             <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <label class="uk-form-label" ></label>
+                            <label class="uk-form-label" for="entrda-de-prueba"></label>
+                            <input id="entrda-de-prueba" type="text"/>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
                             <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
@@ -217,7 +218,7 @@
                                         #{contacto.correoElectronico}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Opciones" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}" /></f:facet>
                                         <div class="uk-inline ">
                                             <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
                                             <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
@@ -252,7 +253,7 @@
                         </div>
                     </div>
                     <div class="uk-card-footer">
-                        <f:ajax render="formulario-tabla-contacto:tabla-contacto formulario-paginacion-contacto">
+                        <f:ajax render="formulario-paginacion-contacto formulario-tabla-contacto">
                             <h:form id="formulario-paginacion-contacto">
                                 <div uk-grid="">
                                     <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
@@ -271,8 +272,8 @@
                             <div class="uk-width-auto"><h4><span class="uk-text-middle">Licencia</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
-                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-licencia" >
-                                        <f:ajax/>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon">
+                                        <f:ajax render="formulario-licencia formulario-paginacion-licencia" listener="#{licenciasControlador.inserta}"/>
                                         <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
                                     </h:commandLink>
                                 </h:form>
@@ -321,8 +322,9 @@
                                          first="0"
                                          rows="5"
                                          rendered="#{not empty licenciasControlador.collectionDataModel.wrappedData}"
-                                         styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center"
+                                         styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center tabla-licencia"
                                          headerClass="uk-button-primary uk-text-center"
+                                         footerClass="uk-background-primary uk-text-left"
                                          columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center" >
                                 <h:column>
                                     <f:facet name="header"><h:outputText styleClass="letra-titulo" value="ID"/></f:facet>
@@ -341,17 +343,40 @@
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
-                                <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Opciones" /></f:facet>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}"/></f:facet>
                                     <div class="uk-inline ">
                                         <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
-                                        <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click">
-                                            <ul></ul>
+                                        <h:panelGroup layout="block" pt:uk-dropdown="boundary: .tabla-licencia; mode: click" id="licencia-menu">
+                                            <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                                <li>
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-modificar-licencia" styleClass="uk-text-primary">
+                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
+<!--                                                        <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>-->
+                                                        <f:ajax render="formulario-modificar-licencia"/>
+                                                    </h:commandLink>
+                                                </li>
+                                            </ul>
                                         </h:panelGroup>
                                     </div>
                                 </h:column>
+                                <f:facet name="footer">
+                                    <pa:pie-tabla htmlDataTable="#{licenciasControlador.htmlDataTable}"/>
+                                </f:facet>
                             </h:dataTable>
                         </h:form>
                         </div>
+                    </div>
+                    <div class="uk-card-footer">
+                        <f:ajax render="formulario-licencia formulario-paginacion-licencia">
+                            <h:form id="formulario-paginacion-licencia">
+                                <div uk-grid="">
+                                    <div class="uk-panel uk-flex uk-flex-left">
+                                        <pa:boton-minimizado htmlDataTable="#{licenciasControlador.htmlDataTable}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </f:ajax>
                     </div>
                 </div>
             </div>
@@ -427,13 +452,13 @@
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty contactoControlador.contactoModelo.contador}">
                             <f:ajax execute="@form"
-                                    render="@form formulario-tabla-contacto"
+                                    render="@form formulario-tabla-contacto formulario-paginacion-contacto"
                                     listener="#{contactoControlador.agregar}"
                                     onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty contactoControlador.contactoModelo.contador}">
                             <f:ajax execute="@form"
-                                    render="@form formulario-tabla-contacto"
+                                    render="@form formulario-tabla-contacto formulario-paginacion-contacto"
                                     listener="#{contactoControlador.actualiza}"
                                     onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
                         </h:commandButton>
@@ -462,26 +487,33 @@
                 </h:form>
             </div>
         </h:panelGroup>
-        <h:panelGroup layout="block" id="modal-agregar-licencia" pt:uk-modal="" >
+        <h:panelGroup layout="block" id="modal-modificar-licencia" pt:uk-modal="" >
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <h:form id="formulario-agregar-licencia" styleClass="uk-form-stacked">
+                <h:form id="formulario-modificar-licencia" styleClass="uk-form-stacked">
                 <div class="uk-modal-header uk-background-secondary">
-                    <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo">Agregar Licencias</span></p>
+                    <p class="uk-h4 uk-text-center uk-text-bold">
+                        <span class="letra-titulo">Actualiza licencia número: #{licenciasControlador.licenciaModelo.contador}</span>
+                    </p>
                 </div>
                 <div class="uk-modal-body">
-                    <h:outputLabel styleClass="uk-form-label" for="entrada-fecha" value="Fecha inicio"/>
+                    <h:outputLabel styleClass="uk-form-label" for="input-fecha" value="Fecha inicio"/>
                     <div class="uk-form-controls">
-                        <h:inputText id="entrada-fecha"
+                        <h:inputText id="input-fecha"
                                      value="#{licenciasControlador.licenciaModelo.inicio}"
                                      styleClass="uk-input">
-                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+<!--                            <f:convertDateTime pattern="dd-MM-yyyy"/>-->
+<!--                            <f:validateRequired/>-->
                         </h:inputText>
                     </div>
+                    <h:message for="input-fecha" errorClass="uk-text-danger"/>
+                    <input id="entrada-prueba" type="text"/>
                 </div>
                 <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="Aceptar" >
-                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"  />
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
+                    <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" >
+                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
+                                render="formulario-licencia"
+                                listener="#{licenciasControlador.actualiza}"/>
                     </h:commandButton>
                 </div>
                 </h:form>
@@ -497,7 +529,7 @@
                 limpiaSelect();
                 modalAgregar = document.querySelector('#modal-agregar-contacto');
                 modalEliminar = document.querySelector('#modal-eliminar-contacto');
-                //modalLicencia = document.querySelector('#modal-agregar-licencia');
+                modalLicencia = document.querySelector('#modal-modificar-licencia');
                 //modalEditar = document.querySelector('#modal-editar-contacto');
                 UIkit.util.on('#modal-eliminar-contacto', 'show', function () {
                     modalEliminar.querySelector('.uk-modal-body').click();
@@ -505,26 +537,15 @@
                 UIkit.util.on('#modal-agregar-contacto', 'show', function () {
                     modalAgregar.querySelector('.uk-modal-body').click();
                 });
-                var datePicker = new Pikaday({
-                    field: document.getElementById('formulario-agregar-licencia:entrada-fecha'),
-                    format: 'DD-MM-YYYY',
-                    toString(date, format) {
-                        // you should do formatting based on the passed format,
-                        // but we will just return 'D/M/YYYY' for simplicity
-                        var day = date.getDate();
-                        var month = date.getMonth() + 1;
-                        var year = date.getFullYear();
-                        return day + '/' + month.toString().padStart(2, '0') + '/'+year;
-                    },
-                    parse(dateString, format) {
-                        // dateString is the result of `toString` method
-                        var parts = dateString.split('-');
-                        var day = parseInt(parts[0], 10);
-                        var month = parseInt(parts[1], 10) - 1;
-                        var year = parseInt(parts[2], 10);
-                        return new Date(year, month, day);
-                    }
+                UIkit.util.on('#modal-modificar-licencia', 'show', function () {
+                    modalAgregar.querySelector('.uk-modal-body').click();
                 });
+                console.log('antes picker');
+                var entrada = document.getElementById('entrada-prueba');
+                var datePicker = new Pikaday({
+                    field: entrada
+                });
+                console.log(entrada);
             });
 
             function limpiaSelect(data) {
@@ -554,7 +575,7 @@
                             }
                             break;
                         case "modalLicencia":
-                            if (modalAgregar.querySelector('.uk-text-danger') === null){
+                            if (modalLicencia.querySelector('.uk-text-danger') === null){
                                 UIkit.modal(modalLicencia).hide();
                             }
                             break;
@@ -570,18 +591,5 @@
             }
         </script>
     </ui:define>
-            <!--
-                    <h:panelGroup layout="block"  styleClass="uk-margin-medium-top uk-margin-medium-bottom uk-grid" pt:uk-grid="" >
-
-
-                    </h:panelGroup>
-
-
-
-
-        -->
-
-
-
 </ui:composition>
 </html>

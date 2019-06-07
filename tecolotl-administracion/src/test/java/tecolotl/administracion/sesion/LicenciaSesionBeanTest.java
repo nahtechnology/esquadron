@@ -29,6 +29,8 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 
 import javax.inject.Inject;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -77,9 +79,9 @@ public class LicenciaSesionBeanTest {
 
     @Test
     public void inserta() {
-        LicenciaModelo licenciaModelo = new LicenciaModelo("0000000000");
-        licenciaSesionBean.inserta(licenciaModelo);
-        Assert.assertNotNull(licenciaModelo);
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        licenciaSesionBean.inserta("21DBS0029K");
     }
 
     @Test

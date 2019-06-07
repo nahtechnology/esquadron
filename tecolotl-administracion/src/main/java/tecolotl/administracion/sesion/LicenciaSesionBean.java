@@ -5,7 +5,6 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.LicenciaEntidad;
 import tecolotl.administracion.persistencia.entidad.LicenciaEntidadPk;
 import tecolotl.administracion.validacion.escuela.LicenciaActualizaValidacion;
-import tecolotl.administracion.validacion.escuela.LicenciaNuevaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -15,11 +14,11 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.validation.Valid;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -40,7 +39,7 @@ public class LicenciaSesionBean {
 	 * @param claveCentrotrabajo Clave centro de trabajo de la escuela.
 	 * @return Colección de licencias que pertenecen a la escuela
 	 */
-	public List<LicenciaModelo> busca (@NotNull String claveCentrotrabajo) {
+	public List<LicenciaModelo> busca(@NotNull String claveCentrotrabajo) {
 		logger.fine(claveCentrotrabajo);
 		TypedQuery<LicenciaEntidad> typedQuery = entityManager.createNamedQuery("LicenciaEntidad.buscaEscuela", LicenciaEntidad.class);
 		typedQuery.setParameter("claveCentroTrabajo", claveCentrotrabajo);
@@ -53,14 +52,13 @@ public class LicenciaSesionBean {
 
 	/**
 	 * Inserta una licencia a una escuela.
-	 * @param licenciaModelo Datos de la licencia.
+	 * @param claveCentroTrabajo Datos de la escuela.
 	 */
-	public void inserta(@NotNull @Valid LicenciaModelo licenciaModelo) {
-		logger.fine(licenciaModelo.toString());
-		validadorSessionBean.validacion(licenciaModelo, LicenciaNuevaValidacion.class);
-		LicenciaEntidad licenciaEntidad = new LicenciaEntidad(creaLlave(licenciaModelo));
-		licenciaEntidad.setAdquisicion(licenciaModelo.getAdquisicion());
-		licenciaEntidad.setInicio(licenciaModelo.getInicio());
+	public void inserta(@NotNull String claveCentroTrabajo) {
+		logger.fine(claveCentroTrabajo);
+		LicenciaEntidadPk licenciaEntidadPk = new LicenciaEntidadPk();
+		licenciaEntidadPk.setEscuelaEntidad(new EscuelaEntidad(claveCentroTrabajo));
+		LicenciaEntidad licenciaEntidad = new LicenciaEntidad(licenciaEntidadPk);
 		entityManager.persist(licenciaEntidad);
 	}
 

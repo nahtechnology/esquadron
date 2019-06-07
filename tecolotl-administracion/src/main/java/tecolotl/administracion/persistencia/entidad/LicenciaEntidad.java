@@ -34,7 +34,7 @@ public class LicenciaEntidad {
 	}
 
 	@Basic
-	@Column(name = "inicio", insertable = false, updatable = false)
+	@Column(name = "inicio", insertable = false)
 	@Temporal(TemporalType.DATE)
 	public Date getInicio() {
 		return inicio;
@@ -45,7 +45,7 @@ public class LicenciaEntidad {
 	}
 
 	@Basic
-	@Column(name = "adquisicion", insertable = false)
+	@Column(name = "adquisicion", insertable = false, updatable = false)
 	@Temporal(TemporalType.DATE)
 	public Date getAdquisicion() {
 		return adquisicion;
