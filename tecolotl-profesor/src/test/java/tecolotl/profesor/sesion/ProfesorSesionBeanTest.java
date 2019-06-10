@@ -1,6 +1,11 @@
-package sesion;
+package tecolotl.profesor.sesion;
 
-import modelo.ProfesorModelo;
+import tecolotl.administracion.modelo.direccion.ColoniaModelo;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
+import tecolotl.administracion.validacion.escuela.*;
+import tecolotl.alumno.entidad.*;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.profesor.modelo.ProfesorModelo;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -16,9 +21,6 @@ import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
 import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
 import tecolotl.administracion.persistencia.entidad.*;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
-import tecolotl.alumno.entidad.AlumnoEntidad;
-import tecolotl.alumno.entidad.GradoEscolarEntidad;
-import tecolotl.alumno.entidad.NivelLenguajeEntidad;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
@@ -36,10 +38,11 @@ public class ProfesorSesionBeanTest {
 
     @Deployment
     public static Archive<?> createDeployment(){
-        return ShrinkWrap.create(WebArchive.class, "test.war")
+        return ShrinkWrap.create(WebArchive.class, "prueba.war")
             .addPackage(PersonaModelo.class.getPackage())
             .addPackage(ProfesorModelo.class.getPackage())
             .addPackage(ProfesorEntidad.class.getPackage())
+            .addPackage(PersonaEntidad.class.getPackage())
             .addClasses(PersonaModelo.class, PersonaEntidad.class, ProfesorEntidad.class,
                         ProfesorModelo.class, ProfesorSesionBean.class, EscuelaEntidad.class,
                         EscuelaBaseModelo.class, EscuelaSesionBean.class, EscuelaDetalleModelo.class,
@@ -49,7 +52,10 @@ public class ProfesorSesionBeanTest {
                         TipoContactoEntidad.class, LicenciaEntidad.class, LicenciaEntidadPk.class,
                         AlumnoEntidad.class, GrupoEntidad.class, GrupoEntidadPK.class,
                         NivelLenguajeEntidad.class, GradoEscolarEntidad.class, EscuelaDashboardModelo.class,
-                LoggerProducer.class)
+                        LoggerProducer.class, TareaEntidad.class, TareaGlosarioActividadEntidad.class,
+                        TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
+                        TipoEstudianteEntidad.class, ColoniaModelo.class, ProfesorValidacion.class,
+                        ValidadorSessionBean.class, ProfesorSesionBean.class, ColoniaNuevaValidacion.class)
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -69,4 +75,39 @@ public class ProfesorSesionBeanTest {
         }
     }
 
+    @Test
+    public void inserta(){
+        ProfesorModelo profesorModelo = new ProfesorModelo();
+        profesorModelo.setNombre("Cochi");
+        profesorModelo.setApellidoPaterno("Reyes");
+        profesorModelo.setApellidoMaterno("Sanchez");
+        profesorModelo.setApodo("Cochiloco");
+        profesorModelo.setContrasenia("123456".getBytes());
+        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
+    }
+
+    /*public void inserta(){
+        ProfesorModelo profesorModelo = new ProfesorModelo();
+        profesorModelo.setNombre("Jesus");
+        profesorModelo.setApellidoPaterno("Reyes");
+        profesorModelo.setApellidoMaterno("Sanchez");
+        profesorModelo.setApodo("El Juanito");
+        profesorModelo.setContrasenia("123456".getBytes());
+        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
+    }*/
+
+    @Test
+    public void actualiza(){
+        ProfesorModelo profesorModelo = new ProfesorModelo(2);
+        profesorModelo.setApodo("Don Levantonces");
+        int elementosModificados = profesorSesionBean.actualiza(profesorModelo);
+        Assert.assertFalse(elementosModificados == 0);
+    }
+
+    @Test
+    public void elimina(){
+        ProfesorModelo profesorModelo = new ProfesorModelo(new ProfesorEntidad());
+        profesorSesionBean.elimina(2);
+        Assert.assertNotNull(profesorModelo);
+    }
 }

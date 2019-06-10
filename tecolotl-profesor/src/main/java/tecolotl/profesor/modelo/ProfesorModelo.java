@@ -1,7 +1,6 @@
-package modelo;
+package tecolotl.profesor.modelo;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.alumno.Modelo.AlumnoModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.profesor.entidad.ProfesorEntidad;
@@ -25,9 +24,12 @@ public class ProfesorModelo extends PersonaModelo {
     }
     public ProfesorModelo(ProfesorEntidad profesorEntidad){
         this.id = profesorEntidad.getId();
-        //this.escuelaBaseModelo = new ProfesorModelo(profesorEntidad.getEscuelaEntidad());
+        this.escuelaBaseModelo = new EscuelaBaseModelo(profesorEntidad.getEscuelaEntidad());
     }
 
+    public ProfesorModelo(Integer id) {
+        this.id = id;
+    }
 
     public Integer getId() {
         return id;

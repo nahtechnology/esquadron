@@ -1,6 +1,7 @@
 package tecolotl.administracion.modelo.escuela;
 
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -8,7 +9,9 @@ import java.util.Objects;
 
 public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
 
-    @NotNull
+    //crear un grupo de validacion para la clave centro de trabajo
+
+    @NotNull(message = "Clave centro de trabajo no puede ser nulo", groups = {ProfesorValidacion.class})
     @Size(min = 10, max = 14)
     private String claveCentroTrabajo;
 
