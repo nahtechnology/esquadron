@@ -5,6 +5,7 @@
         <jar-file>../tecolotl-nucleo.jar</jar-file>
         <jar-file>../tecolotl-alumno.jar</jar-file>
 		<jar-file>../tecolotl-administracion.jar</jar-file>
+        <jar-file>../tecolotl-profesor.jar</jar-file>
         <properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
 			<property name="hibernate.show_sql" value="false"/>

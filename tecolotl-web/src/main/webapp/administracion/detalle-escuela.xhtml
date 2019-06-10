@@ -112,10 +112,6 @@
                             <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <label class="uk-form-label" for="entrda-de-prueba"></label>
-                            <input id="entrda-de-prueba" type="text"/>
-                        </div>
-                        <div class="uk-width-1-5@m uk-width-1-1@s">
                             <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
                                 <h:outputLabel styleClass="uk-width-1-1@m uk-width-1-2@suk-panel uk-form-label" for="licencias" value="Ver Coordinadores"/>
                             </div>
@@ -352,7 +348,7 @@
                                                     <h:commandLink  pt:uk-toggle="target: #modal-modificar-licencia" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
-<!--                                                        <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>-->
+                                                        <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
                                                         <f:ajax render="formulario-modificar-licencia"/>
                                                     </h:commandLink>
                                                 </li>
@@ -487,38 +483,38 @@
                 </h:form>
             </div>
         </h:panelGroup>
-        <h:panelGroup layout="block" id="modal-modificar-licencia" pt:uk-modal="" >
+        <h:panelGroup layout="block" id="modal-modificar-licencia" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <h:form id="formulario-modificar-licencia" styleClass="uk-form-stacked">
-                <div class="uk-modal-header uk-background-secondary">
-                    <p class="uk-h4 uk-text-center uk-text-bold">
-                        <span class="letra-titulo">Actualiza licencia número: #{licenciasControlador.licenciaModelo.contador}</span>
-                    </p>
-                </div>
-                <div class="uk-modal-body">
-                    <h:outputLabel styleClass="uk-form-label" for="input-fecha" value="Fecha inicio"/>
-                    <div class="uk-form-controls">
-                        <h:inputText id="input-fecha"
-                                     value="#{licenciasControlador.licenciaModelo.inicio}"
-                                     styleClass="uk-input">
-<!--                            <f:convertDateTime pattern="dd-MM-yyyy"/>-->
-<!--                            <f:validateRequired/>-->
-                        </h:inputText>
+                <h:form id="formulario-modifica-licencia" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold">
+                            <span class="letra-titulo">Actualiza licencia número: #{licenciasControlador.licenciaModelo.contador}</span>
+                        </p>
                     </div>
-                    <h:message for="input-fecha" errorClass="uk-text-danger"/>
-                    <input id="entrada-prueba" type="text"/>
-                </div>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                    <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" >
-                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
-                                render="formulario-licencia"
-                                listener="#{licenciasControlador.actualiza}"/>
-                    </h:commandButton>
-                </div>
+                    <div class="uk-modal-body">
+                        <h:outputLabel styleClass="uk-form-label" for="input-fecha" value="Fecha inicio"/>
+                        <div class="uk-form-controls">
+                            <h:inputText id="input-fecha"
+                                         value="9 Oct 2014"
+                                         styleClass="uk-input">
+                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                <f:validateRequired/>
+                            </h:inputText>
+                        </div>
+                        <h:message for="input-fecha" errorClass="uk-text-danger"/>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" >
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
+                                    render="formulario-licencia"
+                                    listener="#{licenciasControlador.actualiza}"/>
+                        </h:commandButton>
+                    </div>
                 </h:form>
             </div>
         </h:panelGroup>
+
         <h:outputScript library="js" name="pikaday.js"/>
         <script type="text/javascript">
             var modalAgregar;
@@ -541,9 +537,11 @@
                     modalAgregar.querySelector('.uk-modal-body').click();
                 });
                 console.log('antes picker');
-                var entrada = document.getElementById('entrada-prueba');
+                var entrada = document.getElementById('formulario-modifica-licencia:input-fecha');
                 var datePicker = new Pikaday({
-                    field: entrada
+                    field: entrada,
+                    format: 'DD/MM/YYYY',
+                    defaultDate: ''
                 });
                 console.log(entrada);
             });
