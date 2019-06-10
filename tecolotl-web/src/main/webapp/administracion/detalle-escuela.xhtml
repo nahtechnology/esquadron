@@ -495,7 +495,7 @@
                         <h:outputLabel styleClass="uk-form-label" for="input-fecha" value="Fecha inicio"/>
                         <div class="uk-form-controls">
                             <h:inputText id="input-fecha"
-                                         value="9 Oct 2014"
+                                         value="09-10-2014"
                                          styleClass="uk-input">
                                 <f:convertDateTime pattern="dd-MM-yyyy"/>
                                 <f:validateRequired/>
@@ -540,8 +540,7 @@
                 var entrada = document.getElementById('formulario-modifica-licencia:input-fecha');
                 var datePicker = new Pikaday({
                     field: entrada,
-                    format: 'DD/MM/YYYY',
-                    defaultDate: ''
+                    defaultDate: 'DD-MM-YYYY'
                 });
                 console.log(entrada);
             });

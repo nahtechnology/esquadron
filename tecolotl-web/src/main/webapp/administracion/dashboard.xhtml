@@ -50,11 +50,11 @@
                                 <h:form styleClass="uk-search largo-buscar ">
                                     <div class="uk-inline">
                                         <h:commandLink styleClass="uk-form-icon" pt:uk-icon="icon: search" rendered="#{empty escuelaDashboardControlador.busqueda}">
-                                            <f:ajax render="formulario-tabla-escuela @form" execute="filtrado" listener="#{escuelaDashboardControlador.actualizaTabla}"/>
+                                            <f:ajax render="formulario-tabla-escuela @form" execute="filtrado" listener="#{escuelaDashboardControlador.actualizaDataModel}"/>
                                         </h:commandLink>
                                         <h:commandLink styleClass="uk-form-icon uk-light"
                                                        pt:uk-icon="icon: close"
-                                                       action="#{escuelaDashboardControlador.actualizaTabla}"
+                                                       action="#{escuelaDashboardControlador.actualizaDataModel}"
                                                        rendered="#{not empty escuelaDashboardControlador.busqueda}">
                                             <f:setPropertyActionListener value="#{null}" target="#{escuelaDashboardControlador.busqueda}"/>
                                             <f:ajax render="formulario-tabla-escuela @form"/>

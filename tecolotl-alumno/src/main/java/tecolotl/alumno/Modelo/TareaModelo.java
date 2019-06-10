@@ -1,4 +1,4 @@
-package tecolotl.alumno.Modelo;
+package tecolotl.alumno.modelo;
 
 
 import tecolotl.alumno.entidad.TareaEntidad;
