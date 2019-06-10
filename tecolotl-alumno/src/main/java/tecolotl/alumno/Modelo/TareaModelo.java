@@ -1,11 +1,12 @@
 package tecolotl.alumno.modelo;
 
-
 import tecolotl.alumno.entidad.TareaEntidad;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class TareaModelo {
 
@@ -14,10 +15,12 @@ public class TareaModelo {
 
     @NotNull
     @Valid
-    private tecolotl.alumno.modelo.AlumnoModelo alumnoModelo;
+    private AlumnoModelo alumnoModelo;
 
     @NotNull
     private Date asignacion;
+
+    private List<TareaGlosarioModelo> tareaGlosarioModeloLista;
 
     public TareaModelo(){
     }
@@ -27,14 +30,13 @@ public class TareaModelo {
     }
 
     public TareaModelo(TareaEntidad tareaEntidad){
-        this.id = tareaEntidad.getId();
-        this.alumnoModelo = new tecolotl.alumno.modelo.AlumnoModelo(tareaEntidad.getAlumnoEntidad());    //Preguntar Mañana a Toño
+        this(tareaEntidad.getId());
         this.asignacion = tareaEntidad.getAsignacion();
+        tareaGlosarioModeloLista = tareaEntidad.getTareaGlosarioActividadEntidadList()
+                .stream().map(TareaGlosarioModelo::new).collect(Collectors.toList());
     }
 
-
-
-    public TareaModelo(tecolotl.alumno.modelo.AlumnoModelo alumnoModelo, Date asignacion) {
+    public TareaModelo(AlumnoModelo alumnoModelo, Date asignacion) {
         this.alumnoModelo = alumnoModelo;
         this.asignacion = asignacion;
     }
@@ -55,11 +57,19 @@ public class TareaModelo {
         this.asignacion = asignacion;
     }
 
-    public tecolotl.alumno.modelo.AlumnoModelo getAlumnoModelo() {
+    public AlumnoModelo getAlumnoModelo() {
         return alumnoModelo;
     }
 
-    public void setAlumnoModelo(tecolotl.alumno.modelo.AlumnoModelo alumnoModelo) {
+    public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
         this.alumnoModelo = alumnoModelo;
+    }
+
+    public List<TareaGlosarioModelo> getTareaGlosarioModeloLista() {
+        return tareaGlosarioModeloLista;
+    }
+
+    public void setTareaGlosarioModeloLista(List<TareaGlosarioModelo> tareaGlosarioModeloLista) {
+        this.tareaGlosarioModeloLista = tareaGlosarioModeloLista;
     }
 }
