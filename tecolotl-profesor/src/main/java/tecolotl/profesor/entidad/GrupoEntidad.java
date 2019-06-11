@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
+@SequenceGenerator(name = "GeneradorATM", schema = "profesor", sequenceName = "grupo_seq")
 @NamedQueries({
     @NamedQuery(name ="GrupoEntidad.busca",query = "SELECT g FROM GrupoEntidad g")
 })
@@ -19,6 +20,7 @@ public class GrupoEntidad {
     private ProfesorEntidad profesorEntidad;
 
     @Id
+    @GeneratedValue(generator = "GeneradorATM", strategy = GenerationType.IDENTITY)
     public Integer getId() {
         return id;
     }
@@ -45,7 +47,7 @@ public class GrupoEntidad {
         this.grupo = grupo;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "id_profesor")
     public ProfesorEntidad getProfesorEntidad() {
