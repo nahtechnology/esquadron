@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion"
+      xmlns:mo="http://xmlns.jcp.org/jsf/composite/modal"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/administracion/dashboard.xhtml">
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">Menú</li>
+            <li class="uk-parent ">
+                <h:link><h:outputText pt:uk-icon="info" class="uk-margin-small-right"/>Escuela</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="/administracion/administracion-dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent uk-open">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catalogo</h:link>
+                <ul class="uk-nav-sub">
+                    <li class="uk-active"><h:link ><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo administracion</h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent ">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Coordinacion</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="/coordinacion/dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard coordinador</h:link></li>
+                    <li class=""><h:link outcome="/coordinacion/gesto-grupos"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Gestion de grupo</h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent ">
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Profesor</h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="/profesores/dashboard-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard profesor</h:link></li>
+                    <li><h:link outcome="/administracion/catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="tablas.css"/>
+
+        <h4 class="uk-heading-line uk-text-bold"><span></span></h4>
+
+
+
+        <div class="uk-grid uk-grid-medium" data-uk-grid="">
+
+            <!-- catalogo Motivo Bloqueo -->
+            <div class="uk-width-1-2@l">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                    <div class="uk-card-header ">
+                        <div class="uk-grid uk-grid-small">
+                            <div class="uk-width-auto "><h4 class="uk-text-capitalize">#{administracion['catalogoadministrativo.administrator.bloc.catalog']}</h4></div>
+                            <div class="uk-width-expand uk-flex uk-flex-right">
+                                <h:form id="formulario-nuevo-bloqueo-catalogo">
+                                <ul class="uk-iconnav">
+                                    <li>
+                                        <h:commandLink pt:uk-toggle="target: #modal-bloqueo-catalogo">
+                                            <span class="uk-icon-link uk-text-primary" title="#{boton['add']}" data-uk-tooltip="" data-uk-icon="icon: plus-circle; ratio: 1.5">
+                                            </span>
+                                            <f:ajax/>
+                                        </h:commandLink>
+                                    </li>
+
+                                </ul>
+                            </h:form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <h:form id="formulario-tabla-motivo-bloqueo">
+                            <h:dataTable id="tabla-motivo-bloqueo"
+                                         value="#{catalogoAdministradoBloqueControlador.collectionDataModel}"
+                                         binding="#{catalogoAdministradoBloqueControlador.htmlDataTable}"
+                                         var="dato"
+                                         first="0"
+                                         rows="5"
+                                         styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover"
+                                         footerClass="uk-background-primary"
+                                         columnClasses=",uk-text-center">
+                                <h:column headerClass="uk-background-primary uk-background-primary">
+                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.blocking.reason.table.header.name']}</span></f:facet>
+                                    #{dato.valor}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-primary ">
+                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.blocking.reason.table.header.editar']}</span></f:facet>
+                                    <h:commandLink   pt:uk-toggle="target: #modal-bloqueo-catalogo">
+                                        <span class="uk-icon-button puntero uk-text-primary" uk-icon="file-edit" type="button"/>
+                                        <f:setPropertyActionListener value="#{dato}" target="#{catalogoAdministradoBloqueControlador.catalogoModelo}"/>
+                                        <f:ajax render=""/>
+                                    </h:commandLink>
+                                </h:column>
+                                <f:facet name="footer">
+                                    <pa:pie-tabla htmlDataTable="#{catalogoAdministradoBloqueControlador.htmlDataTable}"/>
+                                </f:facet>
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+                    <div class="uk-card-footer">
+                        <f:ajax render="formulario-tabla-motivo-bloqueo:tabla-motivo-bloqueo formulario-botones-bloqueo">
+                            <h:form id="formulario-botones-bloqueo">
+                                <pa:boton-minimizado htmlDataTable="#{catalogoAdministradoBloqueControlador.htmlDataTable}"/>
+                            </h:form>
+                        </f:ajax>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mo:actualiza catalogoModelo="#{catalogoAdministradoBloqueControlador.catalogoModelo}"
+                      actionListener="#{catalogoAdministradoBloqueControlador.}"
+                      nombreModal=""/>
+        <script type="text/javascript">
+            var modalEditar;
+        /*    var modalAgregarBloqueo;
+            var modalAgregarContacto;
+            var modalAgregarColonia;
+            var modalEliminar;*/
+            document.addEventListener("DOMContentLoaded", function (evt) {
+                modalEditar = document.querySelector('#modal-colonia');
+            /*    modalAgregarBloqueo = document.querySelector('#modal-bloqueo-catalogo');
+                modalAgregarContacto = document.querySelector('#modal-tipo-contacto');
+                modalAgregarColonia = document.querySelector('#modal-colonia');
+                modalEliminar = document.querySelector('#modal-eliminar');*/
+
+                UIkit.util.on('#modal-colonia', 'show', function () {
+                    modalEditar.querySelector('.uk-modal-body').click();
+                });
+             /*   UIkit.util.on('#modal-bloqueo-catalogo', 'show', function () {
+                    modalAgregarBloqueo.querySelector('.uk-modal-body').click();
+                });
+                UIkit.util.on('#modal-tipo-contacto\'', 'show', function () {
+                    modalAgregarContacto.querySelector('.uk-modal-body').click();
+                });
+                UIkit.util.on('#modal-colonia', 'show', function () {
+                    modalAgregarColonia.querySelector('.uk-modal-body').click();
+                });
+                UIkit.util.on('#modal-eliminar', 'show', function () {
+                    modalEliminar.querySelector('.uk-modal-body').click();
+                });
+*/
+            });
+
+
+            function cierraModal(data,modal) {
+                if (data.status === "success"){
+                    switch (modal) {
+                        case "modalEliminar":
+                            if (modalEliminar.querySelector('.uk-alert-danger') === null) {
+                                UIkit.modal(modalEliminar).hide();
+                            }
+                            break;
+                        case "modalEditar":
+                            if (modalEditar.querySelector('.uk-alert-danger') === null) {
+                                UIkit.modal(modalEditar).hide();
+                            }
+                            break;
+                        case "modalAgregarBloqueo":
+                            if (modalAgregarBloqueo.querySelector('.uk-alert-danger') === null) {
+                                UIkit.modal(modalAgregarBloqueo).hide();
+                            }
+                            break;case "modalAgregarContacto":
+                            if (modalAgregarContacto.querySelector('.uk-alert-danger') === null) {
+                                UIkit.modal(modalAgregarContacto).hide();
+                            }
+                            break;case "modalAgregarColonia":
+                            if (modalAgregarColonia.querySelector('.uk-alert-danger') === null) {
+                                UIkit.modal(modalAgregarColonia).hide();
+                            }
+                            break;
+                        default: console.error(modal);
+
+                    }
+                }
+
+
+            }
+        */
+        </script>
+
+    </ui:define>
+</ui:composition>
+</html>
