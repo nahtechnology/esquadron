@@ -38,7 +38,7 @@ public class ProfesorSesionBeanTest {
 
     @Deployment
     public static Archive<?> createDeployment(){
-        return ShrinkWrap.create(WebArchive.class, "prueba.war")
+        return ShrinkWrap.create(WebArchive.class, "test.war")
             .addPackage(PersonaModelo.class.getPackage())
             .addPackage(ProfesorModelo.class.getPackage())
             .addPackage(ProfesorEntidad.class.getPackage())
@@ -76,17 +76,20 @@ public class ProfesorSesionBeanTest {
     }
 
     @Test
-    public void inserta(){
+    public void inserta2(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
-        profesorModelo.setNombre("Cochi");
+        profesorModelo.setNombre("Eliminando");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
-        profesorModelo.setApodo("Cochiloco");
+        profesorModelo.setApodo("Otro mas");
         profesorModelo.setContrasenia("123456".getBytes());
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
+        profesorSesionBean.inserta(profesorModelo);
+        Assert.assertNotNull(profesorModelo);
     }
 
-    /*public void inserta(){
+    @Test
+    public void inserta(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
         profesorModelo.setNombre("Jesus");
         profesorModelo.setApellidoPaterno("Reyes");
@@ -94,20 +97,33 @@ public class ProfesorSesionBeanTest {
         profesorModelo.setApodo("El Juanito");
         profesorModelo.setContrasenia("123456".getBytes());
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
-    }*/
+        profesorSesionBean.inserta(profesorModelo);
+        Assert.assertNotNull(profesorModelo);
+    }
 
     @Test
     public void actualiza(){
-        ProfesorModelo profesorModelo = new ProfesorModelo(2);
-        profesorModelo.setApodo("Don Levantonces");
+        ProfesorModelo profesorModelo = new ProfesorModelo(-42);
+        profesorModelo.setNombre("Cochi");
+        profesorModelo.setApellidoPaterno("Reyes");
+        profesorModelo.setApellidoMaterno("Sanchez");
+        profesorModelo.setApodo("Don Levantones");
+        profesorModelo.setContrasenia("123456".getBytes());
+        EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("21DBS0029K");
+        escuelaBaseModelo.setNombre("AGUSTIN MELGAR");
+        escuelaBaseModelo.setDomicilio("RAFAEL CAÑEDO BENITEX");
+        escuelaBaseModelo.setNumeroExterior("12234");
+        profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
+
         int elementosModificados = profesorSesionBean.actualiza(profesorModelo);
         Assert.assertFalse(elementosModificados == 0);
     }
 
     @Test
     public void elimina(){
-        ProfesorModelo profesorModelo = new ProfesorModelo(new ProfesorEntidad());
-        profesorSesionBean.elimina(2);
-        Assert.assertNotNull(profesorModelo);
+        Integer profesorEliminado = 0;
+        profesorEliminado = profesorSesionBean.elimina(-41);
+        Assert.assertNotNull(profesorEliminado);
+        Assert.assertFalse(profesorEliminado == 0);
     }
 }
