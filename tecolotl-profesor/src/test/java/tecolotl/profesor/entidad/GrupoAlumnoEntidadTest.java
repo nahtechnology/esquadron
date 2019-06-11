@@ -54,6 +54,6 @@ public class GrupoAlumnoEntidadTest {
         for (GrupoAlumnoEntidad grupoAlumnoEntidad :grupoAlumnoEntidadLista){
             Assert.assertNotNull(grupoAlumnoEntidad);
             //Assert.assertNotNull(grupoAlumnoEntidad.getGrupoAlumnoEntidadPK());
-        }
+            //
     }
 }
