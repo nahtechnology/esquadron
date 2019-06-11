@@ -30,6 +30,10 @@ public class ProfesorSesionBean {
     @Inject
     private ValidadorSessionBean validadorSessionBean;
 
+    /**
+     * Inserta un nuevo profesor.
+     * @param profesorModelo dato para insertar un profesor.
+     */
     public void inserta(@NotNull ProfesorModelo profesorModelo){
         validadorSessionBean.validacion(profesorModelo, ProfesorValidacion.class);
         ProfesorEntidad profesorEntidad = new ProfesorEntidad();
@@ -37,16 +41,26 @@ public class ProfesorSesionBean {
         profesorEntidad.setApellidoPaterno(profesorModelo.getApellidoPaterno());
         profesorEntidad.setApellidoMaterno(profesorModelo.getApellidoMaterno());
         profesorEntidad.setApodo(profesorModelo.getApodo());
+        profesorEntidad.setContrasenia(profesorModelo.getContrasenia());
         profesorEntidad.setEscuelaEntidad(new EscuelaEntidad(profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo()));
         entityManager.persist(profesorEntidad);
     }
 
+    /**
+     * Busca un profesor.
+     * @return una lista de todos los profesores.
+     */
     public List<ProfesorModelo> busca(){
         TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.busca", ProfesorEntidad.class);
         List<ProfesorEntidad> profesorEntidadLista = typedQuery.getResultList();
         return profesorEntidadLista.stream().map(ProfesorModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Actualiza los datos de un profesor
+     * @param profesorModelo datos para poder modificar un profesor
+     * @return numero de elementos modificados, 0 en caso de no existir.
+     */
     public Integer actualiza(@NotNull @Valid ProfesorModelo profesorModelo){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<ProfesorEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ProfesorEntidad.class);
@@ -57,7 +71,12 @@ public class ProfesorSesionBean {
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
 
-    public Integer elimina(@NotNull @Valid Integer idProfesor){
+    /**
+     * Elimina un profesor.
+     * @param idProfesor dato para eliminar el profesor.
+     * @return numero de elementos modificados, 0 en caso de no existir.
+     */
+    public Integer elimina(@NotNull Integer idProfesor){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete<ProfesorEntidad> criteriaDelete = criteriaBuilder.createCriteriaDelete(ProfesorEntidad.class);
         Root<ProfesorEntidad> root = criteriaDelete.from(ProfesorEntidad.class);
