@@ -26,6 +26,9 @@
     background-color: #f0506e;
 }
 
+.fondo-peligro-lista li:hover {
+    background-color: rgba(240, 80, 110, 0.3) !important;
+}
 .primera-mayuscula::first-letter {
     text-transform: uppercase !important;
 }

@@ -12,23 +12,23 @@
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">Menú</li>
             <li class="uk-parent uk-open">
-                <h:link><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image" pt:uk-svg=""/></h:link>
+                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/>#{administracion['menu.schools']}</a>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="administracion-dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard</h:link></li>
+                    <li><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.dashboard']}</h:link></li>
                 </ul>
             </li>
             <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catálogo</h:link>
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>#{administracion['menu.catalog']}</h:link>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Administracion</h:link></li>
-                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Coordinación</h:link></li>
+                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.catalog.administrator']}</h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.catalog.coordinator']}</h:link></li>
                 </ul>
             </li>
             <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Coordinación</h:link>
+                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>#{administracion['menu.coordinator']}</h:link>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard coordinador</h:link></li>
-                    <li class="uk-active"><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Gestion de grupo</h:link></li>
+                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.dashboard']}</h:link></li>
+                    <li class="uk-active"><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.admingroup']}</h:link></li>
                 </ul>
             </li>
         </ul>
@@ -36,97 +36,88 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
-        <h:outputStylesheet library="css" name="pikaday.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <div class="uk-card uk-card-default uk-card-small uk-card-hover">
             <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
-                    <div class="uk-width-auto"><h4><span class="uk-text-middle">Datos Escuela</span></h4></div>
+                    <div class="uk-width-auto"><h4><h:outputText styleClass="uk-text-middle uk-text-capitalize" value="#{administracion['schooldetail.title']}"/></h4></div>
                 </div>
             </div>
             <div class="uk-card-body">
                 <h:form styleClass="uk-form-stacked" >
                     <h:panelGroup styleClass="uk-grid"  pt:uk-grid="" >
                         <div class="uk-width-1-5@m uk-width-1-1@s ">
-                            <h:outputLabel styleClass="uk-form-label" value="CCT" for="cctv" />
+                            <h:outputLabel styleClass="uk-form-label uk-text-uppercase" value="#{administracion['dashboard.modal.cct']}" for="cctv" />
                             <div class="uk-form-controls">
                                 <h:inputText id="cctv"  pt:placeholder="21DBA0004C" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.claveCentroTrabajo}"/>
                             </div>
                         </div>
                         <div class="uk-width-3-5@m uk-width-1-1@s" >
-                            <h:outputLabel styleClass="uk-form-label" for="nombre-escuela" value="Nombre" />
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="nombre-escuela" value="#{administracion['dashboard.modal.name']}" />
                             <div class="uk-form-controls">
                                 <h:inputText id="nombre-escuela" pt:placeholder="Francisco I Madero " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.nombre}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="codigo-postal" value="Código Postal"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="codigo-postal" value="#{administracion['dashboard.modal.zipcode']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText id="codigo-postal" pt:placeholder="72730" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.coloniaModelo.codigoPostal}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-2@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="colonia" value="Colonia"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="colonia" value="#{administracion['dashboard.modal.colony']}"/>
                             <div class="uk-form-controls">
                             <h:inputText id="colonia" pt:placeholder="Reforma" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.coloniaModelo.nombre}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-2@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="municipio" value="Municipio"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="municipio" value="#{administracion['dashboard.modal.city']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText id="municipio" pt:placeholder="Puebla" disabled="true"  styleClass="uk-input" value="#{detalleEscuelaControlador.direccionModelo.municipio}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="estado" value="Estado" />
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="estado" value="#{administracion['dashboard.modal.town']}" />
                             <div class="uk-form-controls">
                                  <h:inputText id="estado" pt:placeholder="Puebla" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.direccionModelo.estado}"/>
                             </div>
                         </div>
                         <div class="uk-width-3-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="calle" value="Calle"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="calle" value="#{administracion['dashboard.modal.street']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText id="calle" pt:placeholder="Calle 4 Sur No. 311, Reforma Sur, 72170 Puebla, Pue. " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.domicilio}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="numero-exterior" value="Numero Exterior"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="numero-exterior" value="#{administracion['dashboard.modal.street.num.ext']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText id="numero-exterior" pt:placeholder="Número interior" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.numeroExterior}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="numero-interior" value="Número Interior"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="numero-interior" value="#{administracion['dashboard.modal.street.num.int']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText id="numero-interior" pt:placeholder="Número exterior" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.numeroInterior}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="estado-bloqueo" value="Estado de Bloqueo"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="estado-bloqueo" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText id="estado-bloqueo" pt:placeholder="Activo" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.motivoBloqueoModelo.valor}"/>
                             </div>
                         </div>
                         <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label" for="licencias" value="Licencias" />
-                            <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="licencias" value="#{administracion['schooldetail.licensetotal']}" />
+                            <div class="uk-form-controls">
+                                <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
+                            </div>
                         </div>
-                        <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <div class="uk-width-1-1@m  uk-flex uk-flex-right@m uk-flex-center@s">
-                                <h:outputLabel styleClass="uk-width-1-1@m uk-width-1-2@suk-panel uk-form-label" for="licencias" value="Ver Coordinadores"/>
-                            </div>
-                            <div class="uk-panel uk-flex uk-flex-right@m uk-flex-center@s uk-width-1-1@s uk-width-1-1@m">
-                                <h:commandLink styleClass="uk-button uk-button-primary uk-width-1-1" value="" action="detalle-coordinador.xhtml">
-                                    <f:ajax></f:ajax>
-                                    <h:outputText styleClass="uk-margin-small-right" value="Coord(a)"/>
-
-                                    <h:outputText styleClass="uk-icon" pt:uk-icon="icon: users"/>
-                                    <div id="my-id" class="uk-flex-top" uk-modal="">
-                                        <div class="uk-modal-dialog uk-margin-auto-vertical"></div>
-                                    </div>
-                                </h:commandLink>
-                            </div>
-                         </div>
+                        <h:panelGroup layout="block" styleClass="uk-width-2-5@m uk-width-1-1@s uk-inline" rendered="true">
+                            <h:commandLink styleClass="uk-button uk-button-primary uk-position-bottom-right">
+                                <h:outputText value="Coordinadores" styleClass="uk-margin-small-right"/>
+                                <h:outputText styleClass="uk-icon" pt:uk-icon="icon: users"/>
+                            </h:commandLink>
+                         </h:panelGroup>
                     </h:panelGroup>
                 </h:form>
             </div>
@@ -136,7 +127,7 @@
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
                     <div class="uk-card-header">
                         <div class="uk-grid uk-grid-small">
-                            <div class="uk-width-auto"><h4><span class="uk-text-middle">Contactos Escuela</span></h4></div>
+                            <div class="uk-width-auto"><h4><h:outputText styleClass="uk-text-middle uk-text-capitalize" value="#{administracion['schooldetail.contacts']}"/></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
                                     <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-contacto">
@@ -154,9 +145,11 @@
                                     <table class="uk-table uk-table-middle">
                                         <thead class="uk-background-primary">
                                         <tr>
-                                            <th><span class="letra-titulo">Nombre</span></th>
-                                            <th><span class="letra-titulo">Tipo</span></th>
-                                            <th><span class="letra-titulo">Telefono</span></th>
+                                            <th><span class="letra-titulo uk-text-uppercase">#{administracion['schooldetail.contacts.id']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.name']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.type']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.phone']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.email']}</span></th>
                                             <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
                                         </tr>
                                         </thead>
@@ -194,23 +187,23 @@
                                              footerClass="uk-background-primary uk-text-left"
                                              columnClasses="uk-text-left,,,">
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Id" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.id']}" /></f:facet>
                                         #{contacto.contador}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Nombre" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.name']}" /></f:facet>
                                         #{contacto.nombre}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Tipo" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.type']}" /></f:facet>
                                         #{contacto.tipoContactoModelo.valor}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Telefono" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.phone']}"/></f:facet>
                                         #{contacto.telefono}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Correo electrónico" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.email']}" /></f:facet>
                                         #{contacto.correoElectronico}
                                     </h:column>
                                     <h:column>
@@ -265,7 +258,7 @@
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover">
                     <div class="uk-card-header">
                         <div class="uk-grid uk-grid-small">
-                            <div class="uk-width-auto"><h4><span class="uk-text-middle">Licencia</span></h4></div>
+                            <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">#{administracion['schooldetail.licenses']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
                                     <h:commandLink styleClass="uk-icon-button  uk-icon">
@@ -283,9 +276,9 @@
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
                                     <tr>
-                                        <th><span class="letra-titulo">Id</span></th>
-                                        <th><span class="letra-titulo">Fecha Inicio</span></th>
-                                        <th><span class="letra-titulo">Fecha Fin</span></th>
+                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
+                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
+                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
                                         <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
                                     </tr>
                                     </thead>
@@ -323,19 +316,19 @@
                                          footerClass="uk-background-primary uk-text-left"
                                          columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center" >
                                 <h:column>
-                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="ID"/></f:facet>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.id']}"/></f:facet>
                                     #{licencia.contador}
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Fecha Inicio"/></f:facet>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.datestart']}"/></f:facet>
                                     <h:outputText value="#{licencia.inicio}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="Fecha Adquisición"/></f:facet>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.dateacquisition']}"/></f:facet>
                                     <h:outputText value="#{licencia.adquisicion}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
@@ -349,7 +342,18 @@
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
                                                         <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
-                                                        <f:ajax render="formulario-modificar-licencia"/>
+                                                        <f:ajax render="formulario-modifica-licencia"/>
+                                                    </h:commandLink>
+                                                </li>
+                                                <ui:fragment rendered="#{licenciasControlador.htmlDataTable.rowIndex eq licenciasControlador.htmlDataTable.rows}">
+                                                    <li class="uk-nav-divider"/>
+                                                </ui:fragment>
+                                                <li>
+                                                    <h:commandLink pt:uk-toggle="target: #modal-elimina-licencia" styleClass="uk-text-danger" rendered="#{licenciasControlador.htmlDataTable.rowIndex eq (licenciasControlador.htmlDataTable.rows + 1)}">
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
+                                                        <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
+                                                        <f:ajax render="formulario-eliminar-licencia"/>
                                                     </h:commandLink>
                                                 </li>
                                             </ul>
@@ -381,15 +385,15 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header uk-background-secondary">
                     <p class="uk-h4 uk-text-center uk-text-bold">
-                        <h:outputText styleClass="letra-titulo" value="Agregar Contacto" rendered="#{empty contactoControlador.contactoModelo.contador}"/>
-                        <h:outputText styleClass="letra-titulo" value="Modifcar Contacto" rendered="#{not empty contactoControlador.contactoModelo.contador}"/>
+                        <h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['schooldetail.modal.addcontact.title']}" rendered="#{empty contactoControlador.contactoModelo.contador}"/>
+                        <h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['schooldetail.modal.updatecontact']}" rendered="#{not empty contactoControlador.contactoModelo.contador}"/>
                     </p>
                 </div>
                 <h:form styleClass="uk-form-stacked" id="formulario-agregar-contacto">
                     <div class="uk-modal-body">
                         <h:panelGroup layout="block" pt:uk-grid="" styleClass="uk-grid">
                             <div class="uk-width-1-1">
-                                <h:outputLabel styleClass="uk-form-label" for="enrtada-nombre-contacto" value="Nombre"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="enrtada-nombre-contacto" value="#{administracion['schooldetail.contacts.name']}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="enrtada-nombre-contacto"
@@ -402,7 +406,7 @@
                                 <h:message for="enrtada-nombre-contacto" styleClass="uk-text-danger"/>
                             </div>
                             <div class="uk-width-1-2">
-                                <h:outputLabel styleClass="uk-form-label" for="seleccion-tipo-contacto" value="Tipo contacto"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="seleccion-tipo-contacto" value="#{administracion['schooldetail.contacts.type']}"/>
                                 <div class="uk-form-controls">
                                     <h:selectOneMenu value = "#{contactoControlador.tipoContactoModelo.clave}"
                                                      styleClass="uk-select"
@@ -418,7 +422,7 @@
                                 <h:message for="seleccion-tipo-contacto" styleClass="uk-text-danger"/>
                             </div>
                             <div class="uk-width-1-2">
-                                <label class="uk-form-label" for="entrada-telefono" >Telefono</label>
+                                <label class="uk-form-label uk-text-capitalize" for="entrada-telefono" >#{administracion['schooldetail.contacts.phone']}</label>
                                 <div class="uk-form-controls">
                                     <h:inputText id="entrada-telefono" styleClass="uk-input"
                                                  value="#{contactoControlador.contactoModelo.telefono}">
@@ -429,7 +433,7 @@
                                 <h:message for="entrada-telefono" styleClass="uk-text-danger"/>
                             </div>
                             <div class="uk-width-1-1">
-                                <h:outputLabel styleClass="uk-form-label" value="Correo electronico" for="entrada-correo-electronico"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['schooldetail.contacts.email']}" for="entrada-correo-electronico"/>
                                 <div class="uk-form-controls">
                                     <h:inputText id="entrada-correo-electronico"
                                                  styleClass="uk-input"
@@ -466,10 +470,14 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-eliminar-contacto">
                     <div class="uk-modal-header fondo-peligro">
-                        <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo">Eliminar Contacto</span></p>
+                        <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.modal.removecontact.title']}</span></p>
                     </div>
                     <div class="uk-modal-body">
-                        <p>Esta seguro que desea Borrar al contacto: <span class="uk-text-bold">#{contactoControlador.contactoModelo.nombre}</span> </p>
+                        <p>
+                            <h:outputFormat value="#{administracion['schooldetail.modal.removecontact.message']}" styleClass="primera-mayuscula" style="display: block">
+                                <f:param value="#{contactoControlador.contactoModelo.nombre}"/>
+                            </h:outputFormat>
+                        </p>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
@@ -488,16 +496,18 @@
                 <h:form id="formulario-modifica-licencia" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold">
-                            <span class="letra-titulo">Actualiza licencia número: #{licenciasControlador.licenciaModelo.contador}</span>
+                            <h:outputFormat styleClass="letra-titulo primera-mayuscula" value="#{administracion['schooldetail.modal.updatelicense.title']}" style="display: block">
+                                <f:param value="#{licenciasControlador.licenciaModelo.contador}"/>
+                            </h:outputFormat>
                         </p>
                     </div>
                     <div class="uk-modal-body">
-                        <h:outputLabel styleClass="uk-form-label" for="input-fecha" value="Fecha inicio"/>
+                        <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-fecha" value="#{administracion['schooldetail.lisense.datestart']}"/>
                         <div class="uk-form-controls">
                             <h:inputText id="input-fecha"
-                                         value="09-10-2014"
+                                         value="#{licenciasControlador.licenciaModelo.inicio}"
                                          styleClass="uk-input">
-                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
                                 <f:validateRequired/>
                             </h:inputText>
                         </div>
@@ -507,26 +517,53 @@
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" >
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
-                                    render="formulario-licencia"
+                                    render="formulario-licencia" execute="@form"
                                     listener="#{licenciasControlador.actualiza}"/>
                         </h:commandButton>
                     </div>
                 </h:form>
             </div>
         </h:panelGroup>
-
-        <h:outputScript library="js" name="pikaday.js"/>
+        <h:panelGroup layout="block" id="modal-elimina-licencia" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-eliminar-licencia">
+                    <div class="uk-modal-header fondo-peligro">
+                        <p class="uk-h4 uk-text-center uk-text-bold">
+                            <h:outputFormat value="#{administracion['schooldetail.modal.deletelicense.title']}" styleClass="letra-titulo primera-mayuscula" style="display: block">
+                                <f:param value="#{licenciasControlador.licenciaModelo.contador}"/>
+                            </h:outputFormat>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <ul class="uk-list uk-list-divider fondo-peligro-lista">
+                            <li>Tiene asignado 23 alumno</li>
+<!--                            TODO realizar las consultas para recuperar la cantidad de alumnos asiganos a una escuela -->
+                            <li>Tiene asginado 2 profesores</li>
+                        </ul>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-margin-small-left" value="#{boton['remove']}">
+                            <f:ajax execute="@form"
+                                    listener="#{licenciasControlador.elimina}"
+                                    render="formulario-licencia formulario-paginacion-licencia"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
         <script type="text/javascript">
             var modalAgregar;
             var modalEliminar;
             var modalLicencia;
             var modalEditar;
+            var modalEliminaLicencia;
             document.addEventListener("DOMContentLoaded", function (evt) {
                 limpiaSelect();
                 modalAgregar = document.querySelector('#modal-agregar-contacto');
                 modalEliminar = document.querySelector('#modal-eliminar-contacto');
                 modalLicencia = document.querySelector('#modal-modificar-licencia');
-                //modalEditar = document.querySelector('#modal-editar-contacto');
+                modalEliminaLicencia = document.querySelector('#modal-elimina-licencia');
                 UIkit.util.on('#modal-eliminar-contacto', 'show', function () {
                     modalEliminar.querySelector('.uk-modal-body').click();
                 });
@@ -536,13 +573,9 @@
                 UIkit.util.on('#modal-modificar-licencia', 'show', function () {
                     modalAgregar.querySelector('.uk-modal-body').click();
                 });
-                console.log('antes picker');
-                var entrada = document.getElementById('formulario-modifica-licencia:input-fecha');
-                var datePicker = new Pikaday({
-                    field: entrada,
-                    defaultDate: 'DD-MM-YYYY'
-                });
-                console.log(entrada);
+                UIkit.util.on('#modal-elimina-licencia', 'show', function () {
+                    modalEliminaLicencia.querySelector('.uk-modal-body').click();
+                })
             });
 
             function limpiaSelect(data) {

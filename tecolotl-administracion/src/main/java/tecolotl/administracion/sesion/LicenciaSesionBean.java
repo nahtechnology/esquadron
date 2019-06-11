@@ -5,6 +5,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.LicenciaEntidad;
 import tecolotl.administracion.persistencia.entidad.LicenciaEntidadPk;
 import tecolotl.administracion.validacion.escuela.LicenciaActualizaValidacion;
+import tecolotl.administracion.validacion.escuela.LicenciaNuevaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -75,6 +76,16 @@ public class LicenciaSesionBean {
 		criteriaUpdate.set(root.get("inicio"), licenciaModelo.getInicio());
 		criteriaUpdate.where(criteriaBuilder.equal(root.get("licenciaEntidadPk"), creaLlave(licenciaModelo)));
 		return entityManager.createQuery(criteriaUpdate).executeUpdate();
+	}
+
+	/**
+	 * Remueve la licencia de una escuela
+	 * @param licenciaModelo
+	 */
+	public void elimina(@NotNull LicenciaModelo licenciaModelo) {
+		logger.fine(licenciaModelo.toString());
+		validadorSessionBean.validacion(licenciaModelo, LicenciaNuevaValidacion.class);
+		entityManager.remove(entityManager.find(LicenciaEntidad.class, creaLlave(licenciaModelo)));
 	}
 
 	/**

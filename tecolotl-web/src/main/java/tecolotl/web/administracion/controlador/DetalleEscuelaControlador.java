@@ -66,4 +66,5 @@ public class DetalleEscuelaControlador {
     public void setDireccionModelo(DireccionModelo direccionModelo) {
         this.direccionModelo = direccionModelo;
     }
+
 }

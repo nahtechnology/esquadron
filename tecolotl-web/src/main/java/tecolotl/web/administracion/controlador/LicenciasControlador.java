@@ -11,6 +11,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
@@ -18,6 +19,8 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
 
     @Inject
     private LicenciaSesionBean licenciaSesionBean;
+
+    @Inject private Logger logger;
 
     private LicenciaModelo licenciaModelo;
     private String  claveCentroTrabajo;
@@ -34,7 +37,14 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
         actualizaDataModel();
     }
 
+    public void elimina() {
+        licenciaModelo.setClaveCentroTrabajo(claveCentroTrabajo);
+        licenciaSesionBean.elimina(licenciaModelo);
+        actualizaDataModel();
+    }
+
     public void actualiza() {
+        licenciaModelo.setClaveCentroTrabajo(claveCentroTrabajo);
         licenciaSesionBean.actualiza(licenciaModelo);
         actualizaDataModel();
     }

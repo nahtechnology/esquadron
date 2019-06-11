@@ -71,6 +71,15 @@ public class LicenciaSesionBeanTest {
     }
 
     @Test
+    public void elimina() {
+        LicenciaModelo licenciaModelo = new LicenciaModelo();
+        licenciaModelo.setClaveCentroTrabajo("21DBS0029K");
+        licenciaModelo.setContador((short)8);
+        licenciaSesionBean.elimina(licenciaModelo);
+        Assert.assertNotNull(licenciaModelo);
+    }
+
+    @Test
     public void buscaVacio() {
         List<LicenciaModelo> licenciaModeloLista = licenciaSesionBean.busca("111111111");
         Assert.assertNotNull(licenciaModeloLista);
