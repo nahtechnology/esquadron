@@ -11,6 +11,7 @@ import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -72,7 +73,8 @@ public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalagoEnti
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<E> criteriaQuery = criteriaBuilder.createQuery(catalogoEntidad);
         Root<E> root = criteriaQuery.from(catalogoEntidad);
-        criteriaQuery.select(root);
+        Order order = criteriaBuilder.asc(root.get("valor"));
+        criteriaQuery.select(root).orderBy(order);
         List<E> catalogoEntidadLista = entityManager.createQuery(criteriaQuery).getResultList();
         try {
             for (E e : catalogoEntidadLista) {
@@ -97,6 +99,18 @@ public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalagoEnti
         criteriaUpdate.set(root.get("valor"), catalogoModelo.getValor());
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
+    }
+
+
+    public void inserta(@NotNull @Size(min = 4, max = 30) String valor) {
+        logger.fine(valor);
+        try {
+            E e = catalogoEntidad.getConstructor().newInstance();
+            e.setValor(valor);
+            entityManager.persist(e);
+        } catch (ReflectiveOperationException ex) {
+            logger.severe("No se puede instanciar un objecto por que: " + ex.getMessage());
+        }
     }
 
 }

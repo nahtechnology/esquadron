@@ -245,13 +245,14 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-codigo-postal"
+                                                 binding="#{escuelaDashboardControlador.uiInputCodigoPostal}"
                                                  pt:placeholder="#{administracion['dashboard.modal.zipcode']}"
                                                  value="#{escuelaDashboardControlador.codigoPostal}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="4" maximum="5"/>
                                     </h:inputText>
                                 </div>
-                                <h:message for="input-escuela-codigo-postal" errorClass="uk-text-danger uk-display-block primera-mayuscula" id="error-input-escuela-codigo-postal" showSummary="false" showDetail="true"/>
+                                <h:message for="input-escuela-codigo-postal" errorClass="uk-text-danger uk-display-block primera-mayuscula" id="error-input-escuela-codigo-postal" warnClass="uk-text-warning"/>
                             </div>
                             <div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
                                 <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">

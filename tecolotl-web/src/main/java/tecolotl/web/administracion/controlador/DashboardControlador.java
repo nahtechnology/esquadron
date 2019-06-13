@@ -9,15 +9,20 @@ import tecolotl.administracion.sesion.DireccionSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.web.controlador.TablaControlador;
+import tecolotl.web.herramienta.MensajeBundle;
+import tecolotl.web.herramienta.TipoMensaje;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.model.CollectionDataModel;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -37,6 +42,10 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 
+    @Inject
+    @TipoMensaje(MensajeBundle.ADMINISTRACION)
+    private transient ResourceBundle resourceBundle;
+
     private List<MotivoBloqueoModelo> motivoBloqueoModeloLista;
     private EscuelaDetalleModelo escuelaDetalleModelo;
     private EscuelaBaseModelo escuelaBaseModelo;
@@ -44,6 +53,7 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     private MotivoBloqueoModelo motivoBloqueoModelo;
     private String codigoPostal;
     private String busqueda;
+    private UIInput uiInputCodigoPostal;
 
     @PostConstruct
     public void init() {
@@ -51,6 +61,7 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
         escuelaDetalleModelo = new EscuelaDetalleModelo();
         escuelaBaseModelo = new EscuelaBaseModelo();
         motivoBloqueoModelo = new MotivoBloqueoModelo();
+        direccionModelo = new DireccionModelo();
         motivoBloqueoModeloLista = motivoBloqueoSesionBean.busca("Sin bloqueo");
     }
 
@@ -67,9 +78,16 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
 
     public void buscaColonias() {
         direccionModelo = direccionSesionBean.busca(codigoPostal);
-        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
-        direccionModelo.setEstado(direccionModelo1.getEstado());
-        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+        if (direccionModelo == null || direccionModelo.getColoniaModeloLista() == null || direccionModelo.getColoniaModeloLista().isEmpty()) {
+            FacesMessage facesMessage = new FacesMessage(resourceBundle.getString("dashboard.validation.zipcode"));
+            facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.addMessage(uiInputCodigoPostal.getClientId(facesContext), facesMessage);
+        } else {
+            DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
+            direccionModelo.setEstado(direccionModelo1.getEstado());
+            direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+        }
     }
 
     public void inserta() {
@@ -152,4 +170,11 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
         this.busqueda = busqueda;
     }
 
+    public UIInput getUiInputCodigoPostal() {
+        return uiInputCodigoPostal;
+    }
+
+    public void setUiInputCodigoPostal(UIInput uiInputCodigoPostal) {
+        this.uiInputCodigoPostal = uiInputCodigoPostal;
+    }
 }
