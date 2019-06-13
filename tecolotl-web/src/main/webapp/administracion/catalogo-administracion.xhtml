@@ -141,7 +141,7 @@
                                     #{dato.valor}
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.contact.table.header.edit']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo ">#{etiqueta['edit']}</span></f:facet>
                                     <h:commandLink   pt:uk-toggle="target: #modal-tipo-contacto">
                                         <h:outputText styleClass="uk-icon-button puntero uk-text-primary" pt:uk-icon="file-edit"/>
                                         <f:setPropertyActionListener value="#{dato}" target="#{tipoContactoControlador.catalogoModelo}"/>
@@ -165,7 +165,7 @@
             </div>
             <!--    FIN catalogo tipo contacto -->
             <!-- catalog colonias   -->
-            <div class="uk-width-1-1l uk-margin-large-bottom">
+            <div class="uk-width-1-2@m uk-width-1-1@s">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-bottom">
                     <div class="uk-card-header ">
                         <div class="uk-grid uk-grid-small">
@@ -176,7 +176,7 @@
                                         <ul class="uk-iconnav">
                                             <li>
                                                 <h:commandLink pt:uk-toggle="target: #modal-colonia">
-                                                    <span class="uk-icon-link uk-text-primary" title="#{boton['add']}" data-uk-tooltip="" data-uk-icon="icon: plus-circle; ratio: 1.5"></span>
+                                                    <h:outputText styleClass="uk-icon-link uk-text-primary" pt:data-uk-tooltip="" pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
                                                     <f:ajax/>
                                                 </h:commandLink>
                                             </li>
@@ -188,61 +188,60 @@
                     </div>
                     <div class="uk-card-body">
                         <h:form id="formulario-tabla-colonia">
+                            <ui:fragment rendered="#{empty catalogoColoniaControlador.collectionDataModel.wrappedData}">
+                                <table class="uk-table uk-table-middle">
+                                    <thead class="uk-background-primary">
+                                    <tr>
+                                        <th><span class="letra-titulo">#{administracion['catalogoadministrativo.administrator.colony.catalog']}</span></th>
+                                        <th><span class="letra-titulo">#{etiqueta['edit']}</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="uk-flex uk-flex-center">
+                                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot class="uk-background-primary">
+                                    <tr>
+                                        <td colspan="5"><span class="letra-titulo">
+                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
+                                                </h:outputFormat>
+                                            </span></td>
+                                    </tr>
+                                    </tfoot>
+                                </table>
+                            </ui:fragment>
                             <h:dataTable id="tabla-colonia"
-                                         value="#{catalogoAdministradoColoniaControlador.collectionDataModel}"
-                                         binding="#{catalogoAdministradoColoniaControlador.htmlDataTable}"
+                                         value="#{catalogoColoniaControlador.collectionDataModel}"
+                                         binding="#{catalogoColoniaControlador.htmlDataTable}"
+                                         rendered="#{not empty catalogoColoniaControlador.collectionDataModel.wrappedData}"
                                          var="dato"
                                          first="0"
                                          rows="5"
                                          styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-colonia-limite"
                                          footerClass="uk-background-primary"
-                                         columnClasses="uk-text-center,,,uk-text-center,uk-text-center">
-
+                                         columnClasses=",uk-text-center">
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.colony.table.header.code.zip']}</span></f:facet>
-                                    #{dato.codigopostal}
-                                </h:column>
-
-                                <h:column headerClass="uk-background-primary uk-background-primary">
-                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.colony.table.header.name']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.administrator.colony.catalog']}</span></f:facet>
                                     #{dato.nombre}
                                 </h:column>
-
-                                <h:column headerClass="uk-background-primary uk-background-primary">
-                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.colony.table.header.municipality']}</span></f:facet>
-                                    #{dato.municipio}
-                                </h:column>
-
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                    <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.colony.table.header.estate']}</span></f:facet>
-                                    #{dato.estado}
+                                    <f:facet name="header"><span class="letra-titulo ">#{etiqueta['edit']}</span></f:facet>
+                                    <h:commandLink   pt:uk-toggle="target: #modal-tipo-contacto">
+                                        <h:outputText styleClass="uk-icon-button puntero uk-text-primary" pt:uk-icon="file-edit"/>
+                                        <f:setPropertyActionListener value="#{dato}" target="#{catalogoColoniaControlador}"/>
+                                        <f:ajax render="formulario-modal-tipo-contacto"/>
+                                    </h:commandLink>
                                 </h:column>
-
-                                <h:column headerClass="uk-background-primary uk-width-small ">
-
-                                    <div class=" uk-inline uk-text-left">
-                                        <span class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"></span>
-                                        <div uk-dropdown="boundary:.tabla-colonia-limite; mode: click" >
-                                            <ul class="uk-nav uk-dropdown-nav">
-                                                <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-colonia" >
-                                                        <span uk-icon="icon: file-text" class="uk-margin-small-right uk-icon uk-text-primary" ></span>
-                                                        <span class="uk-text-middle uk-text-primary"><h:outputText value="Editar"/></span>
-                                                        <f:ajax/>
-                                                    </h:commandLink>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-eliminar" >
-                                                        <span uk-icon="icon: trash" class="uk-margin-small-right uk-icon uk-text-primary" ></span>
-                                                        <span class="uk-text-middle uk-text-primary"><h:outputText value="borrar"/></span>
-                                                        <f:ajax/>
-                                                    </h:commandLink>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </h:column>
-
                                 <f:facet name="footer">
-                                    <pa:pie-tabla htmlDataTable="#{catalogoAdministradoColoniaControlador.htmlDataTable}"/>
+                                    <pa:pie-tabla htmlDataTable="#{catalogoColoniaControlador.htmlDataTable}"/>
                                 </f:facet>
                             </h:dataTable>
                         </h:form>
@@ -252,19 +251,32 @@
                             <div class="uk-width-auto ">
                                 <f:ajax render="formulario-tabla-colonia:tabla-colonia formulario-colonia">
                                     <h:form id="formulario-colonia" styleClass="uk-form-horizontal">
-                                        <pa:boton-minimizado htmlDataTable="#{catalogoAdministradoColoniaControlador.htmlDataTable}"/>
+                                        <pa:boton-minimizado htmlDataTable="#{catalogoColoniaControlador.htmlDataTable}"/>
                                     </h:form>
                                 </f:ajax>
-
                             </div>
                             <div class="uk-width-expand uk-flex uk-flex-right">
                                 <div class="uk-width-expand uk-flex uk-flex-right">
-                                    <input class="uk-input uk-form-width-small uk-text-left uk-margin-right" id="form-horizontal-text" type="text" placeholder="Codigo Postal"/>
-
-                                    <button class="uk-button uk-button-secondary uk-margin-small-right "  type="button">
-                                        <span >Busca C.P.</span>
-                                        <span uk-icon="icon: location" class="uk-icon uk-margin-small-right"></span>
-                                    </button>
+                                    <h:form id="formulario-busca-colonia">
+                                        <h:message for="form-horizontal-text"
+                                                   style="max-width: 200px"
+                                                   errorClass="uk-text-danger uk-display-inline-block primera-mayuscula uk-margin-small-right"
+                                                   warnClass="uk-text-warning uk-display-inline-block primera-mayuscula uk-margin-small-right"
+                                                   infoClass="uk-text-primary uk-display-inline-block primera-mayuscula uk-margin-small-right"/>
+                                        <h:inputText styleClass="uk-input uk-form-width-small uk-text-left uk-margin-right"
+                                                     id="form-horizontal-text"
+                                                     binding="#{catalogoColoniaControlador.uiInputColonia}"
+                                                     value="#{catalogoColoniaControlador.codigoPostal}"
+                                                     pt:placeholder="Codigo Postal">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="5"/>
+                                        </h:inputText>
+                                        <h:commandLink styleClass="uk-button uk-button-secondary uk-margin-small-right">
+                                            #{boton['search']}
+                                            <h:outputText pt:uk-icon="icon: location" styleClass="uk-icon uk-margin-small-right"/>
+                                            <f:ajax execute="@form" render="@form formulario-tabla-colonia" listener="#{catalogoColoniaControlador.busca}"/>
+                                        </h:commandLink>
+                                    </h:form>
                                 </div>
                             </div>
                         </div>

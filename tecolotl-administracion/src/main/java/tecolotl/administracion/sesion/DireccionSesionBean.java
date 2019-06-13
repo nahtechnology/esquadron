@@ -66,7 +66,7 @@ public class DireccionSesionBean implements Serializable {
         typedQuery.setParameter("codigoPostal", codigoPostal);
         List<ColoniaEntidad> coloniaEntidadLista = typedQuery.getResultList();
         logger.finer("Elementos encontrados:".concat(String.valueOf(coloniaEntidadLista.size())));
-        if (coloniaEntidadLista != null && !coloniaEntidadLista.isEmpty()) {
+        if (!coloniaEntidadLista.isEmpty()) {
             direccionModelo = new DireccionModelo();
             List<ColoniaModelo> coloniaModeloLista = new ArrayList<>();
             for (ColoniaEntidad coloniaEntidad : coloniaEntidadLista) {
