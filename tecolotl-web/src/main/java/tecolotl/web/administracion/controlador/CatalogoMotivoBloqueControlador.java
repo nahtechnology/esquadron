@@ -4,13 +4,14 @@ import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.web.controlador.CatalogoControlador;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class CatalogoMotivoBloqueControlador extends CatalogoControlador {
+public class CatalogoMotivoBloqueControlador extends CatalogoControlador implements Serializable {
 
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;

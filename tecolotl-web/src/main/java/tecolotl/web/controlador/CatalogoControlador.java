@@ -23,9 +23,19 @@ public abstract class CatalogoControlador extends TablaControlador<CatalogoModel
         actualizaDataModel();
     }
 
+    public void inserta() {
+        catalogoSesionBean.inserta(catalogoModelo.getValor());
+        actualizaDataModel();
+    }
+
+    public void limpiaModelo() {
+        catalogoModelo = new CatalogoModelo();
+    }
+
     @Override
     public void actualizaDataModel() {
         getCollectionDataModel().setWrappedData(getCatalogoSesionBean().busca());
+        catalogoModelo = new CatalogoModelo();
     }
 
     protected abstract CatalogoSesionBean getCatalogoSesionBean();

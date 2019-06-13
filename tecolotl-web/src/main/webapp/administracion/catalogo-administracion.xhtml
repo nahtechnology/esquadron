@@ -59,7 +59,7 @@
                                                               pt:title="#{boton['add']}"
                                                               pt:data-uk-tooltip=""
                                                               pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
-                                                <f:ajax render="formulario-modal-editar"/>
+                                                <f:ajax render="formulario-modal-editar" listener="#{catalogoMotivoBloqueControlador.limpiaModelo}"/>
                                             </h:commandLink>
                                         </li>
                                     </ul>
@@ -133,13 +133,17 @@
                     </div>
                     <div class="uk-modal-footer uk-text-right">
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{boton['cancel']}</button>
-                        <h:commandButton value="#{boton['block']}"
-                                         id="boton-enviar"
-                                         styleClass="uk-button uk-button-secondary">
+                        <h:commandButton value="#{boton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{not empty catalogoMotivoBloqueControlador.catalogoModelo.clave}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalEditar' ) }"
                                     listener="#{catalogoMotivoBloqueControlador.actualiza}"
                                     execute="@form"
-                                    render="@form"/>
+                                    render="formulario-tabla-motivo-bloqueo"/>
+                        </h:commandButton>
+                        <h:commandButton value="#{boton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{empty catalogoMotivoBloqueControlador.catalogoModelo.clave}">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalEditar' ) }"
+                                    listener="#{catalogoMotivoBloqueControlador.inserta}"
+                                    execute="@form"
+                                    render="formulario-tabla-motivo-bloqueo"/>
                         </h:commandButton>
                     </div>
                 </h:form>
