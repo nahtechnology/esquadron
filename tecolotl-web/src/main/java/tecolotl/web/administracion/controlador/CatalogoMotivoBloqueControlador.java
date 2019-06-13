@@ -10,7 +10,7 @@ import javax.inject.Named;
 
 @RequestScoped
 @Named
-public class CatalogoAdministradoBloqueControlador  extends CatalogoControlador {
+public class CatalogoMotivoBloqueControlador extends CatalogoControlador {
 
     @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;

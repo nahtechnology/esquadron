@@ -6,18 +6,21 @@ import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import javax.annotation.PostConstruct;
 import javax.faces.model.CollectionDataModel;
 
-public abstract class CatalogoControlador<T extends CatalogoSesionBean> extends TablaControlador<CatalogoModelo> {
+public abstract class CatalogoControlador extends TablaControlador<CatalogoModelo> {
 
-    private T t;
+    private CatalogoSesionBean catalogoSesionBean;
     private CatalogoModelo catalogoModelo;
 
     @PostConstruct
     public void init() {
         setCollectionDataModel(new CollectionDataModel<>(getCatalogoSesionBean().busca()));
+        catalogoSesionBean = getCatalogoSesionBean();
+        catalogoModelo = new CatalogoModelo();
     }
 
-    public void enviar() {
-
+    public void actualiza() {
+        catalogoSesionBean.actualiza(catalogoModelo);
+        actualizaDataModel();
     }
 
     @Override

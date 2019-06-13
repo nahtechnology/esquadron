@@ -6,7 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion"
-      xmlns:mo="http://xmlns.jcp.org/jsf/composite/modal"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/template/administracion/dashboard.xhtml">
@@ -44,13 +43,7 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
-
-        <h4 class="uk-heading-line uk-text-bold"><span></span></h4>
-
-
-
         <div class="uk-grid uk-grid-medium" data-uk-grid="">
-
             <!-- catalogo Motivo Bloqueo -->
             <div class="uk-width-1-2@l">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover">
@@ -59,26 +52,26 @@
                             <div class="uk-width-auto "><h4 class="uk-text-capitalize">#{administracion['catalogoadministrativo.administrator.bloc.catalog']}</h4></div>
                             <div class="uk-width-expand uk-flex uk-flex-right">
                                 <h:form id="formulario-nuevo-bloqueo-catalogo">
-                                <ul class="uk-iconnav">
-                                    <li>
-                                        <h:commandLink pt:uk-toggle="target: #modal-bloqueo-catalogo">
-                                            <span class="uk-icon-link uk-text-primary" title="#{boton['add']}" data-uk-tooltip="" data-uk-icon="icon: plus-circle; ratio: 1.5">
-                                            </span>
-                                            <f:ajax/>
-                                        </h:commandLink>
-                                    </li>
-
-                                </ul>
-                            </h:form>
+                                    <ul class="uk-iconnav">
+                                        <li>
+                                            <h:commandLink pt:uk-toggle="target: #modal-motivo-bloqueo">
+                                                <h:outputText styleClass="uk-icon-link uk-text-primary"
+                                                              pt:title="#{boton['add']}"
+                                                              pt:data-uk-tooltip=""
+                                                              pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
+                                                <f:ajax render="formulario-modal-editar"/>
+                                            </h:commandLink>
+                                        </li>
+                                    </ul>
+                                </h:form>
                             </div>
-
                         </div>
                     </div>
                     <div class="uk-card-body">
                         <h:form id="formulario-tabla-motivo-bloqueo">
                             <h:dataTable id="tabla-motivo-bloqueo"
-                                         value="#{catalogoAdministradoBloqueControlador.collectionDataModel}"
-                                         binding="#{catalogoAdministradoBloqueControlador.htmlDataTable}"
+                                         value="#{catalogoMotivoBloqueControlador.collectionDataModel}"
+                                         binding="#{catalogoMotivoBloqueControlador.htmlDataTable}"
                                          var="dato"
                                          first="0"
                                          rows="5"
@@ -91,14 +84,14 @@
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center uk-text-primary ">
                                     <f:facet name="header"><span class="letra-titulo ">#{administracion['catalogoadministrativo.blocking.reason.table.header.editar']}</span></f:facet>
-                                    <h:commandLink   pt:uk-toggle="target: #modal-bloqueo-catalogo">
-                                        <span class="uk-icon-button puntero uk-text-primary" uk-icon="file-edit" type="button"/>
-                                        <f:setPropertyActionListener value="#{dato}" target="#{catalogoAdministradoBloqueControlador.catalogoModelo}"/>
-                                        <f:ajax render=""/>
+                                    <h:commandLink pt:uk-toggle="target: #modal-motivo-bloqueo">
+                                        <h:outputText styleClass="uk-icon-button puntero uk-text-primary" pt:uk-icon="file-edit"/>
+                                        <f:setPropertyActionListener value="#{dato}" target="#{catalogoMotivoBloqueControlador.catalogoModelo}"/>
+                                        <f:ajax render="formulario-modal-editar"/>
                                     </h:commandLink>
                                 </h:column>
                                 <f:facet name="footer">
-                                    <pa:pie-tabla htmlDataTable="#{catalogoAdministradoBloqueControlador.htmlDataTable}"/>
+                                    <pa:pie-tabla htmlDataTable="#{catalogoMotivoBloqueControlador.htmlDataTable}"/>
                                 </f:facet>
                             </h:dataTable>
                         </h:form>
@@ -106,16 +99,52 @@
                     <div class="uk-card-footer">
                         <f:ajax render="formulario-tabla-motivo-bloqueo:tabla-motivo-bloqueo formulario-botones-bloqueo">
                             <h:form id="formulario-botones-bloqueo">
-                                <pa:boton-minimizado htmlDataTable="#{catalogoAdministradoBloqueControlador.htmlDataTable}"/>
+                                <pa:boton-minimizado htmlDataTable="#{catalogoMotivoBloqueControlador.htmlDataTable}"/>
                             </h:form>
                         </f:ajax>
                     </div>
                 </div>
             </div>
         </div>
-        <mo:actualiza catalogoModelo="#{catalogoAdministradoBloqueControlador.catalogoModelo}"
-                      actionListener="#{catalogoAdministradoBloqueControlador.}"
-                      nombreModal=""/>
+        <h:panelGroup layout="block" id="modal-motivo-bloqueo" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-modal-editar" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold">
+                            <h:outputText styleClass="letra-titulo uk-text-capitalize" value="editar catalogo" rendered="#{not empty catalogoMotivoBloqueControlador.catalogoModelo.clave}"/>
+                            <h:outputText styleClass="letra-titulo uk-text-capitalize" value="nuevo catalogo" rendered="#{empty catalogoMotivoBloqueControlador.catalogoModelo.clave}"/>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div class="uk-margin uk-text-capitalize">
+                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['description']}"/>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input"
+                                             id="input-catalogo-bloqueo"
+                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             label="#{etiqueta['description']}"
+                                             value="#{catalogoMotivoBloqueControlador.catalogoModelo.valor}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="3" maximum="20"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="input-catalogo-bloqueo" styleClass="uk-text-danger"/>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{boton['cancel']}</button>
+                        <h:commandButton value="#{boton['block']}"
+                                         id="boton-enviar"
+                                         styleClass="uk-button uk-button-secondary">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalEditar' ) }"
+                                    listener="#{catalogoMotivoBloqueControlador.actualiza}"
+                                    execute="@form"
+                                    render="@form"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
         <script type="text/javascript">
             var modalEditar;
         /*    var modalAgregarBloqueo;
@@ -123,13 +152,13 @@
             var modalAgregarColonia;
             var modalEliminar;*/
             document.addEventListener("DOMContentLoaded", function (evt) {
-                modalEditar = document.querySelector('#modal-colonia');
+                modalEditar = document.querySelector('#modal-motivo-bloqueo');
             /*    modalAgregarBloqueo = document.querySelector('#modal-bloqueo-catalogo');
                 modalAgregarContacto = document.querySelector('#modal-tipo-contacto');
                 modalAgregarColonia = document.querySelector('#modal-colonia');
                 modalEliminar = document.querySelector('#modal-eliminar');*/
 
-                UIkit.util.on('#modal-colonia', 'show', function () {
+                UIkit.util.on('#modal-motivo-bloqueo', 'show', function () {
                     modalEditar.querySelector('.uk-modal-body').click();
                 });
              /*   UIkit.util.on('#modal-bloqueo-catalogo', 'show', function () {
@@ -157,11 +186,11 @@
                             }
                             break;
                         case "modalEditar":
-                            if (modalEditar.querySelector('.uk-alert-danger') === null) {
+                            if (modalEditar.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalEditar).hide();
                             }
                             break;
-                        case "modalAgregarBloqueo":
+/*                        case "modalAgregarBloqueo":
                             if (modalAgregarBloqueo.querySelector('.uk-alert-danger') === null) {
                                 UIkit.modal(modalAgregarBloqueo).hide();
                             }
@@ -173,15 +202,12 @@
                             if (modalAgregarColonia.querySelector('.uk-alert-danger') === null) {
                                 UIkit.modal(modalAgregarColonia).hide();
                             }
-                            break;
+                            break;*/
                         default: console.error(modal);
 
                     }
                 }
-
-
             }
-        */
         </script>
 
     </ui:define>
