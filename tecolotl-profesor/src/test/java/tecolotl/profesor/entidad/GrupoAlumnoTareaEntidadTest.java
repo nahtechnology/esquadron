@@ -45,7 +45,7 @@ public class GrupoAlumnoTareaEntidadTest {
 
     @Test
     public void busca(){
-        TypedQuery<GrupoAlumnoTareaEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnTareaEntidad.busca", GrupoAlumnoTareaEntidad.class);
+        TypedQuery<GrupoAlumnoTareaEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoTareaEntidad.busca", GrupoAlumnoTareaEntidad.class);
         List<GrupoAlumnoTareaEntidad> grupoAlumnoTareaEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(grupoAlumnoTareaEntidadLista);
         Assert.assertFalse(grupoAlumnoTareaEntidadLista.isEmpty());

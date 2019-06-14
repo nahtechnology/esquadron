@@ -26,6 +26,13 @@ public class TareaEntidad {
     private Date asignacion;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadList;
 
+    public TareaEntidad() {
+    }
+
+    public TareaEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador_automatico")
     public Integer getId() {
