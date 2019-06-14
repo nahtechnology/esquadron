@@ -4,13 +4,14 @@ import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
 public class ProfesorModelo extends PersonaModelo {
 
-    @NotNull
+    @NotNull(message = "ID Profesor no puede ser nulo", groups = {GrupoProfesorValidacion.class})
     private Integer id;
     @NotNull
     @Valid

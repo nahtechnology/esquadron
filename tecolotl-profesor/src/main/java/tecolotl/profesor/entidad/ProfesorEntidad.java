@@ -18,6 +18,13 @@ public class ProfesorEntidad extends PersonaEntidad {
     private EscuelaEntidad escuelaEntidad;
     private List<GrupoEntidad> grupoEntidadLista;
 
+    public ProfesorEntidad() {
+    }
+
+    public ProfesorEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(generator = "secuencia", strategy = GenerationType.IDENTITY)
     public Integer getId() {

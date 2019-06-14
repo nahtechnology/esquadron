@@ -13,7 +13,6 @@ import tecolotl.alumno.entidad.*;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -21,12 +20,14 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
-public class GrupoAlumnoEntidadTest {
-
+public class GrupoAlumnoTareaEntidadTest {
     @Deployment
-    public static WebArchive createDeployment() {
+    public static WebArchive createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-            .addClasses(ProfesorEntidad.class, GrupoEntidad.class, GrupoAlumnoEntidad.class,
+                .addPackage(GrupoAlumnoTareaEntidad.class.getPackage())
+                .addPackage(GrupoAlumnoTareaEntidadPK.class.getPackage())
+                .addPackage(GrupoEntidad.class.getPackage())
+                .addClasses(ProfesorEntidad.class, GrupoEntidad.class, GrupoAlumnoEntidad.class,
                         GrupoAlumnoEntidadPK.class, Logger.class, PersonaEntidad.class,
                         CatalagoEntidad.class, EscuelaEntidad.class, AlumnoEntidad.class,
                         ColoniaEntidad.class, MunicipioEntidad.class, EstadoEntidad.class,
@@ -35,12 +36,8 @@ public class GrupoAlumnoEntidadTest {
                         GradoEscolarEntidad.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
                         TareaEntidad.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class,
                         TipoEstudianteEntidad.class, GlosarioEntidad.class)
-            .addPackage(GrupoAlumnoEntidad.class.getPackage())
-            .addPackage(GrupoEntidad.class.getPackage())
-            .addPackage(GrupoAlumnoEntidadPK.class.getPackage())
-            .addPackage(AlumnoEntidad.class.getPackage())
-            .addAsResource("META-INF/persistence.xml")
-            .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsResource("META-INF/persistence.xml")
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @PersistenceContext
@@ -48,14 +45,15 @@ public class GrupoAlumnoEntidadTest {
 
     @Test
     public void busca(){
-        TypedQuery<GrupoAlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.busca", GrupoAlumnoEntidad.class);
-        List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista = typedQuery.getResultList();
-        Assert.assertNotNull(grupoAlumnoEntidadLista);
-        Assert.assertFalse(grupoAlumnoEntidadLista.isEmpty());
-        for (GrupoAlumnoEntidad grupoAlumnoEntidad : grupoAlumnoEntidadLista) {
-            Assert.assertNotNull(grupoAlumnoEntidad);
-            //Assert.assertNotNull(grupoAlumnoEntidad.getGrupoAlumnoEntidadPK());
-            //
+        TypedQuery<GrupoAlumnoTareaEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoTareaEntidad.busca", GrupoAlumnoTareaEntidad.class);
+        List<GrupoAlumnoTareaEntidad> grupoAlumnoTareaEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(grupoAlumnoTareaEntidadLista);
+        Assert.assertFalse(grupoAlumnoTareaEntidadLista.isEmpty());
+        for (GrupoAlumnoTareaEntidad grupoAlumnoTareaEntidad : grupoAlumnoTareaEntidadLista){
+            Assert.assertNotNull(grupoAlumnoTareaEntidad);
+            Assert.assertNotNull(grupoAlumnoTareaEntidad.getAsignacion());
+
         }
     }
 }
+

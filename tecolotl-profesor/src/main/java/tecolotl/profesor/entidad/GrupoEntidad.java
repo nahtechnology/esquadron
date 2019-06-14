@@ -19,6 +19,13 @@ public class GrupoEntidad {
     private char grupo;
     private ProfesorEntidad profesorEntidad;
 
+    public GrupoEntidad() {
+    }
+
+    public GrupoEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(generator = "GeneradorATM", strategy = GenerationType.IDENTITY)
     public Integer getId() {
