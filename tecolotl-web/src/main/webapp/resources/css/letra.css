@@ -18,6 +18,10 @@
     color:white;
 }
 
+.letra-desabilitada-negra:disabled {
+    color: black;
+}
+
 .letra-tabla{
     color: black;
 }

@@ -7,8 +7,6 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
-
-
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
@@ -39,6 +37,7 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
+        <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <div class="uk-grid uk-grid-medium" data-uk-grid="">
             <!-- panel -->
             <div class="uk-width-1-1@s">
@@ -47,9 +46,12 @@
                         <div class="uk-grid uk-grid-small">
                             <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{administracion['dashboard.titulo']}</span></h4></div>
                             <div class="uk-width-1-3">
-                                <h:form styleClass="uk-search largo-buscar ">
+                                <h:form styleClass="uk-search largo-buscar" id="formulario-filtrado-escuela">
                                     <div class="uk-inline">
-                                        <h:commandLink styleClass="uk-form-icon" pt:uk-icon="icon: search" rendered="#{empty escuelaDashboardControlador.busqueda}">
+                                        <h:commandLink styleClass="uk-form-icon"
+                                                       id="comando-busqueda"
+                                                       pt:uk-icon="icon: search"
+                                                       rendered="#{empty escuelaDashboardControlador.busqueda}">
                                             <f:ajax render="formulario-tabla-escuela @form" execute="filtrado" listener="#{escuelaDashboardControlador.actualizaDataModel}"/>
                                         </h:commandLink>
                                         <h:commandLink styleClass="uk-form-icon uk-light"
@@ -60,10 +62,11 @@
                                             <f:ajax render="formulario-tabla-escuela @form"/>
                                         </h:commandLink>
                                         <h:inputText id="filtrado"
-                                                    styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar'}"
+                                                     styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar'}"
                                                      pt:placeholder="#{etiqueta['search']}"
                                                      value="#{escuelaDashboardControlador.busqueda}"
-                                                     pt:uk-tooltip="title: #{administracion['dashboard.search.tooltip']}; delay:1000"/>
+                                                     pt:uk-tooltip="title: #{administracion['dashboard.search.tooltip']}; delay:1000">
+                                        </h:inputText>
                                     </div>
                                 </h:form>
                             </div>

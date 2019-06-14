@@ -7,6 +7,7 @@ import tecolotl.web.controlador.TablaControlador;
 import tecolotl.web.herramienta.MensajeBundle;
 import tecolotl.web.herramienta.TipoMensaje;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
@@ -22,8 +23,10 @@ import java.util.logging.Logger;
 @Named
 public class CatalogoColoniaControlador extends TablaControlador<ColoniaModelo> implements Serializable {
 
-    private String codigoPostal;
     private UIInput uiInputColonia;
+    private ColoniaModelo coloniaModelo;
+    private String estado;
+    private String municipio;
 
     @Inject
     private DireccionSesionBean direccionSesionBean;
@@ -35,14 +38,22 @@ public class CatalogoColoniaControlador extends TablaControlador<ColoniaModelo> 
     @TipoMensaje(MensajeBundle.ADMINISTRACION)
     private transient ResourceBundle resourceBundle;
 
+    @PostConstruct
+    public void init() {
+        coloniaModelo = new ColoniaModelo();
+    }
+
     public void busca() {
-        DireccionModelo direccionModelo = direccionSesionBean.busca(codigoPostal);
+        DireccionModelo direccionModelo = direccionSesionBean.busca(coloniaModelo.getCodigoPostal());
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (direccionModelo == null || direccionModelo.getColoniaModeloLista() == null || direccionModelo.getColoniaModeloLista().isEmpty()) {
             facesContext.addMessage(uiInputColonia.getClientId(facesContext),
                     new FacesMessage(FacesMessage.SEVERITY_WARN, resourceBundle.getString("dashboard.validation.zipcode"), null));
         } else {
             setCollectionDataModel(new CollectionDataModel<>(direccionModelo.getColoniaModeloLista()));
+            direccionModelo = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
+            estado = direccionModelo.getEstado();
+            municipio = direccionModelo.getMunicipio();
             facesContext.addMessage(uiInputColonia.getClientId(facesContext),
                     new FacesMessage(FacesMessage.SEVERITY_INFO, resourceBundle.getString("dashboard.success.zipcode"), null));
         }
@@ -53,19 +64,35 @@ public class CatalogoColoniaControlador extends TablaControlador<ColoniaModelo> 
 
     }
 
-    public String getCodigoPostal() {
-        return codigoPostal;
-    }
-
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
-
     public UIInput getUiInputColonia() {
         return uiInputColonia;
     }
 
     public void setUiInputColonia(UIInput uiInputColonia) {
         this.uiInputColonia = uiInputColonia;
+    }
+
+    public ColoniaModelo getColoniaModelo() {
+        return coloniaModelo;
+    }
+
+    public void setColoniaModelo(ColoniaModelo coloniaModelo) {
+        this.coloniaModelo = coloniaModelo;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public String getMunicipio() {
+        return municipio;
+    }
+
+    public void setMunicipio(String municipio) {
+        this.municipio = municipio;
     }
 }
