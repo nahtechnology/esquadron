@@ -5,6 +5,8 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Assert;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
@@ -28,6 +30,10 @@ import tecolotl.profesor.modelo.GrupoAlumnoTareaModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
+
+import javax.inject.Inject;
+import java.sql.Timestamp;
+import java.util.List;
 
 @RunWith(Arquillian.class)
 public class GrupoAlumnoTareaSesionBeanTest {
@@ -60,6 +66,42 @@ public class GrupoAlumnoTareaSesionBeanTest {
             )
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+    }
 
+    @Inject
+    private GrupoAlumnoTareaSesionBean grupoAlumnoTareaSesionBean;
+
+    @Test
+    public void busca(){
+        List<GrupoAlumnoTareaModelo> grupoAlumnoTareaModeloLista = grupoAlumnoTareaSesionBean.busca();
+        Assert.assertNotNull(grupoAlumnoTareaModeloLista);
+        Assert.assertFalse(grupoAlumnoTareaModeloLista.isEmpty());
+        for (GrupoAlumnoTareaModelo grupoAlumnoTareaModelo : grupoAlumnoTareaModeloLista){
+            Assert.assertNotNull(grupoAlumnoTareaModelo);
+            Assert.assertNotNull(grupoAlumnoTareaModelo.getIdGrupo());
+            Assert.assertNotNull(grupoAlumnoTareaModelo.getIdAlumno());
+            Assert.assertNotNull(grupoAlumnoTareaModelo.getIdTarea());
+            Assert.assertNotNull(grupoAlumnoTareaModelo.getAsignacion());
+        }
+    }
+
+    @Test
+    public void inserta(){
+        GrupoAlumnoTareaModelo grupoAlumnoTareaModelo = new GrupoAlumnoTareaModelo();
+        grupoAlumnoTareaModelo.setIdGrupo(3);
+        grupoAlumnoTareaModelo.setIdAlumno(10);
+        grupoAlumnoTareaModelo.setIdTarea(8);
+        grupoAlumnoTareaSesionBean.inserta(grupoAlumnoTareaModelo);
+        Assert.assertNotNull(grupoAlumnoTareaModelo);
+    }
+
+    @Test
+    public void elimina(){
+        GrupoAlumnoTareaModelo grupoAlumnoTareaModelo = new GrupoAlumnoTareaModelo();
+        grupoAlumnoTareaModelo.setIdGrupo(3);
+        grupoAlumnoTareaModelo.setIdAlumno(10);
+        grupoAlumnoTareaModelo.setIdTarea(8);
+        Integer grupoATEliminado = grupoAlumnoTareaSesionBean.elimina(grupoAlumnoTareaModelo);
+        Assert.assertFalse(grupoATEliminado == 0);
     }
 }

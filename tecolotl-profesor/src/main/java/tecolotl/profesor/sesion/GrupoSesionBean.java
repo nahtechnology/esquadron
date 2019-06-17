@@ -30,6 +30,11 @@ public class GrupoSesionBean {
     @Inject
     private ValidadorSessionBean validadorSessionBean;
 
+
+    /**
+     * Inserta un nuevo Grupo.
+     * @param grupoModelo datos para insertar el nuevo Grupo.
+     */
     public void inserta(@NotNull GrupoModelo grupoModelo){
         GrupoEntidad grupoEntidad = new GrupoEntidad();
         grupoEntidad.setGrupo(grupoModelo.getGrupo());
@@ -38,12 +43,21 @@ public class GrupoSesionBean {
         entityManager.persist(grupoEntidad);
     }
 
+    /**
+     * Busca un Grupo.
+     * @return Lista de todos los Grupos.
+     */
     public List<GrupoModelo> busca(){
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.busca", GrupoEntidad.class);
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
         return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     *  Actualiza la información de un Grupo.
+     * @param grupoModelo  datos para poder actualizar el Grupo.
+     * @return numero de elementos modificados, 0 en caso de no existir.
+     */
     public Integer actualiza(@NotNull GrupoModelo grupoModelo){
         validadorSessionBean.validacion(grupoModelo, GrupoProfesorValidacion.class);
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
@@ -55,6 +69,11 @@ public class GrupoSesionBean {
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
 
+    /**
+     * Elimina un Grupo.
+     * @param idGrupo id del Grupo a eliminar.
+     * @return numero de elementos modificados, 0 en caso de no existir.
+     */
     public Integer elimina(@NotNull Integer idGrupo){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete criteriaDelete = criteriaBuilder.createCriteriaDelete(GrupoEntidad.class);
