@@ -5,7 +5,6 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Entity
 @Table(name = "coordinador", schema = "administracion")
@@ -16,13 +15,15 @@ import java.util.Objects;
         ),
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaEscuela",
-                query = "SELECT c FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+                query = "SELECT c FROM CoordinadorEntidad c LEFT JOIN FETCH c.coordinadorMotivoBloqueoEntidad cmb " +
+                        "WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo ORDER BY c.apellidoPaterno"
         )
 })
 public class CoordinadorEntidad extends PersonaEntidad {
 
     private CoordinadorEntidadPK coordinadorEntidadPK;
     private String correoEletronico;
+    private CoordinadorMotivoBloqueoEntidad coordinadorMotivoBloqueoEntidad;
 
     @EmbeddedId
     public CoordinadorEntidadPK getCoordinadorEntidadPK() {
@@ -43,5 +44,15 @@ public class CoordinadorEntidad extends PersonaEntidad {
 
     public void setCorreoEletronico(String correoEletronico) {
         this.correoEletronico = correoEletronico;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_motivo_bloqueo")
+    public CoordinadorMotivoBloqueoEntidad getCoordinadorMotivoBloqueoEntidad() {
+        return coordinadorMotivoBloqueoEntidad;
+    }
+
+    public void setCoordinadorMotivoBloqueoEntidad(CoordinadorMotivoBloqueoEntidad coordinadorMotivoBloqueoEntidad) {
+        this.coordinadorMotivoBloqueoEntidad = coordinadorMotivoBloqueoEntidad;
     }
 }

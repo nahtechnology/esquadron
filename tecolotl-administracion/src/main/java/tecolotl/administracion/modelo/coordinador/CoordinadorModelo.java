@@ -1,22 +1,34 @@
 package tecolotl.administracion.modelo.coordinador;
 
+import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
+import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
+import tecolotl.nucleo.modelo.PersonaModelo;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
+import java.util.StringJoiner;
 
-public class CoordinadorModelo {
+public class CoordinadorModelo extends PersonaModelo {
 
     private String claveCentroTrabajo;
     private Short contador;
     private String correoEletronico;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String apodo;
-    private byte[] contrasenia;
+    private CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo;
 
-    @NotNull
-    @Size(min = 10, max = 14)
+    public CoordinadorModelo() {
+    }
+
+    public CoordinadorModelo(CoordinadorEntidad coordinadorEntidad) {
+        super(coordinadorEntidad);
+        contador = coordinadorEntidad.getCoordinadorEntidadPK().getContador();
+        claveCentroTrabajo = coordinadorEntidad.getCoordinadorEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
+        correoEletronico = coordinadorEntidad.getCorreoEletronico();
+    }
+
+    @NotNull(groups = {CoordinadorLlavePrimaria.class})
+    @Size(min = 10, max = 14, groups = {CoordinadorLlavePrimaria.class})
     public String getClaveCentroTrabajo() {
         return claveCentroTrabajo;
     }
@@ -25,8 +37,8 @@ public class CoordinadorModelo {
         this.claveCentroTrabajo = claveCentroTrabajo;
     }
 
-    @NotNull
-    @Min(1)
+    @NotNull(groups = {CoordinadorLlavePrimaria.class})
+    @Min(value = 1, groups = {CoordinadorLlavePrimaria.class})
     public Short getContador() {
         return contador;
     }
@@ -45,52 +57,22 @@ public class CoordinadorModelo {
         this.correoEletronico = correoEletronico;
     }
 
-    @Size(min = 3, max = 40)
     @NotNull
-    public String getNombre() {
-        return nombre;
+    public CoordinadorMotivoBloqueoModelo getCoordinadorMotivoBloqueoModelo() {
+        return coordinadorMotivoBloqueoModelo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCoordinadorMotivoBloqueoModelo(CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo) {
+        this.coordinadorMotivoBloqueoModelo = coordinadorMotivoBloqueoModelo;
     }
 
-    @Size(min = 4, max = 50)
-    @NotNull
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
-    }
-
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
-    }
-
-    @Size(min = 4, max = 50)
-    @NotNull
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
-    }
-
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
-    @Size(min = 4, max = 50)
-    @NotNull
-    public String getApodo() {
-        return apodo;
-    }
-
-    public void setApodo(String apodo) {
-        this.apodo = apodo;
-    }
-
-    @NotNull
-    public byte[] getContrasenia() {
-        return contrasenia;
-    }
-
-    public void setContrasenia(byte[] contrasenia) {
-        this.contrasenia = contrasenia;
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", CoordinadorModelo.class.getSimpleName() + "[", "]")
+                .add("claveCentroTrabajo='" + claveCentroTrabajo + "'")
+                .add("contador=" + contador)
+                .add("correoEletronico='" + correoEletronico + "'")
+                .add(super.toString())
+                .toString();
     }
 }

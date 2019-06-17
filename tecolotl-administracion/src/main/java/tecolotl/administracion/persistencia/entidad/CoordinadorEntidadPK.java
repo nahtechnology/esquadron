@@ -12,6 +12,14 @@ public class CoordinadorEntidadPK implements Serializable {
     private EscuelaEntidad escuelaEntidad;
     private Short contador;
 
+    public CoordinadorEntidadPK() {
+    }
+
+    public CoordinadorEntidadPK(EscuelaEntidad escuelaEntidad, Short contador) {
+        this.escuelaEntidad = escuelaEntidad;
+        this.contador = contador;
+    }
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "id_escuela", referencedColumnName = "clave_centro_trabajo")
