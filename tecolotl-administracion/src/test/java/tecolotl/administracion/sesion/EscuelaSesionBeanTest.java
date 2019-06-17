@@ -16,6 +16,8 @@ import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
 import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
+import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
@@ -32,6 +34,8 @@ public class EscuelaSesionBeanTest {
                 .addPackage(ColoniaEntidad.class.getPackage())
 				.addPackage(EscuelaBaseModelo.class.getPackage())
 				.addPackage(ColoniaModelo.class.getPackage())
+				.addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+				.addPackage(ColoniaNuevaValidacion.class.getPackage())
 				.addClasses(CatalagoEntidad.class, CatalogoModelo.class, PersonaEntidad.class,
 						EscuelaSesionBean.class, LoggerProducer.class)
                 .addAsResource("META-INF/persistence.xml")

@@ -10,25 +10,25 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">Menú</li>
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
             <li class="uk-parent uk-open">
-                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/>#{administracion['menu.schools']}</a>
+                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.dashboard']}</h:link></li>
+                    <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                 </ul>
             </li>
             <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>#{administracion['menu.catalog']}</h:link>
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog']}</span></h:link>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.catalog.administrator']}</h:link></li>
-                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.catalog.coordinator']}</h:link></li>
+                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.administrator']}</span></h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.coordinator']}</span></h:link></li>
                 </ul>
             </li>
             <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>#{administracion['menu.coordinator']}</h:link>
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.coordinator']}</span></h:link>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.dashboard']}</h:link></li>
-                    <li class="uk-active"><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>#{administracion['menu.admingroup']}</h:link></li>
+                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                    <li><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.admingroup']}</span></h:link></li>
                 </ul>
             </li>
         </ul>
@@ -37,6 +37,7 @@
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
+        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <div class="uk-card uk-card-default uk-card-small uk-card-hover">
             <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">

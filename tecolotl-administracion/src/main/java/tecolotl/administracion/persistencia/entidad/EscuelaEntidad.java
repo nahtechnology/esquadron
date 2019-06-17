@@ -128,7 +128,7 @@ public class EscuelaEntidad {
 		}
 	}
 
-	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad")
+	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad", fetch = FetchType.LAZY)
 	public List<ContactoEntidad> getContactoEntidadLista() {
 		return contactoEntidadLista;
 	}

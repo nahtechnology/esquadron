@@ -43,7 +43,8 @@ public class CatalogoColoniaControlador extends TablaControlador<ColoniaModelo> 
         coloniaModelo = new ColoniaModelo();
     }
 
-    public void busca() {
+    @Override
+    public void actualizaDataModel() {
         DireccionModelo direccionModelo = direccionSesionBean.busca(coloniaModelo.getCodigoPostal());
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (direccionModelo == null || direccionModelo.getColoniaModeloLista() == null || direccionModelo.getColoniaModeloLista().isEmpty()) {
@@ -59,9 +60,9 @@ public class CatalogoColoniaControlador extends TablaControlador<ColoniaModelo> 
         }
     }
 
-    @Override
-    public void actualizaDataModel() {
-
+    public void actualiza() {
+        direccionSesionBean.actualiza(coloniaModelo);
+        actualizaDataModel();;
     }
 
     public UIInput getUiInputColonia() {

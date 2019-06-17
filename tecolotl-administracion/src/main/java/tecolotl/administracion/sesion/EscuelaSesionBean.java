@@ -65,7 +65,7 @@ public class EscuelaSesionBean implements Serializable {
 					escuelaDashboardModelo.setDiasRestantes(0);
 				} else {
 					diasTotales += calendarFechaHoy.getMaximum(Calendar.DAY_OF_YEAR) - calendarFechaHoy.get(Calendar.DAY_OF_YEAR);
-					for (int anio = calendarFechaHoy.get(Calendar.YEAR); anio < calendarServidor.get(Calendar.YEAR); anio++) {
+					for (int anio = calendarFechaHoy.get(Calendar.YEAR) + 1; anio < calendarServidor.get(Calendar.YEAR); anio++) {
 						Calendar calendar = Calendar.getInstance();
 						calendar.set(Calendar.YEAR, anio);
 						diasTotales += calendar.getMaximum(Calendar.DAY_OF_YEAR);

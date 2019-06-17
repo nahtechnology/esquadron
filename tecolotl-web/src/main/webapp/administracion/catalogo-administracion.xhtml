@@ -11,38 +11,32 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">Menú</li>
-            <li class="uk-parent ">
-                <h:link><h:outputText pt:uk-icon="info" class="uk-margin-small-right"/>Escuela</h:link>
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-parent">
+                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="/administracion/administracion-dashboard"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard</h:link></li>
+                    <li><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                 </ul>
             </li>
             <li class="uk-parent uk-open">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Catalogo</h:link>
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog']}</span></h:link>
                 <ul class="uk-nav-sub">
-                    <li class="uk-active"><h:link ><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo administracion</h:link></li>
-                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                    <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.administrator']}</span></a></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.coordinator']}</span></h:link></li>
                 </ul>
             </li>
-            <li class="uk-parent ">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Coordinacion</h:link>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.coordinator']}</span></h:link>
                 <ul class="uk-nav-sub">
-                    <li><h:link outcome="/coordinacion/dashboard-coordinador"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard coordinador</h:link></li>
-                    <li class=""><h:link outcome="/coordinacion/gesto-grupos"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Gestion de grupo</h:link></li>
-                </ul>
-            </li>
-            <li class="uk-parent ">
-                <h:link><h:outputText pt:uk-icon="database" class="uk-margin-small-right"/>Profesor</h:link>
-                <ul class="uk-nav-sub">
-                    <li><h:link outcome="/profesores/dashboard-profesor"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Dashboard profesor</h:link></li>
-                    <li><h:link outcome="/administracion/catalogo-coordinacion"><h:outputText pt:uk-icon="home" class="uk-margin-small-right"/>Catalogo coordinacion</h:link></li>
+                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                    <li><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.admingroup']}</span></h:link></li>
                 </ul>
             </li>
         </ul>
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
+        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <div class="uk-grid uk-grid-medium" data-uk-grid="">
             <!-- catalogo Motivo Bloqueo -->
             <div class="uk-width-1-2@l">
@@ -171,18 +165,7 @@
                         <div class="uk-grid uk-grid-small">
                             <div class="uk-width-auto "><h4 class="uk-text-capitalize">#{administracion['catalogoadministrativo.administrator.colony.catalog']}</h4></div>
                             <div class="uk-width-expand uk-flex uk-flex-right">
-                                <div class="uk-width-expand uk-flex uk-flex-right">
-                                    <h:form id="formulario-nuevo-catalogo-colonia">
-                                        <ul class="uk-iconnav">
-                                            <li>
-                                                <h:commandLink pt:uk-toggle="target: #modal-colonia">
-                                                    <h:outputText styleClass="uk-icon-link uk-text-primary" pt:data-uk-tooltip="" pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
-                                                    <f:ajax/>
-                                                </h:commandLink>
-                                            </li>
-                                        </ul>
-                                    </h:form>
-                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -244,10 +227,10 @@
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
                                     <f:facet name="header"><span class="letra-titulo ">#{etiqueta['edit']}</span></f:facet>
-                                    <h:commandLink   pt:uk-toggle="target: #modal-tipo-contacto">
+                                    <h:commandLink   pt:uk-toggle="target: #modal-agrega-colonia">
                                         <h:outputText styleClass="uk-icon-button puntero uk-text-primary" pt:uk-icon="file-edit"/>
-                                        <f:setPropertyActionListener value="#{dato}" target="#{catalogoColoniaControlador}"/>
-                                        <f:ajax render="formulario-modal-tipo-contacto"/>
+                                        <f:setPropertyActionListener value="#{dato}" target="#{catalogoColoniaControlador.coloniaModelo}"/>
+                                        <f:ajax render="formulario-modal-colonia"/>
                                     </h:commandLink>
                                 </h:column>
                                 <f:facet name="footer">
@@ -277,14 +260,14 @@
                                                      id="form-horizontal-text"
                                                      binding="#{catalogoColoniaControlador.uiInputColonia}"
                                                      value="#{catalogoColoniaControlador.coloniaModelo.codigoPostal}"
-                                                     pt:placeholder="Codigo Postal">
+                                                     pt:placeholder="#{administracion['catalogoadministrativo.colony.table.header.code.zip']}">
                                             <f:validateRequired/>
                                             <f:validateLength minimum="4" maximum="5"/>
                                         </h:inputText>
                                         <h:commandLink styleClass="uk-button uk-button-secondary uk-margin-small-right">
                                             #{boton['search']}
                                             <h:outputText pt:uk-icon="icon: location" styleClass="uk-icon uk-margin-small-right"/>
-                                            <f:ajax execute="@form" render="@form formulario-tabla-colonia" listener="#{catalogoColoniaControlador.busca}"/>
+                                            <f:ajax execute="@form" render="@form formulario-tabla-colonia" listener="#{catalogoColoniaControlador.actualizaDataModel}"/>
                                         </h:commandLink>
                                     </h:form>
                                 </div>
@@ -382,20 +365,52 @@
             </div>
         </h:panelGroup>
         <h:panelGroup layout="block" id="modal-agrega-colonia" pt:uk-modal="">
-
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-modal-colonia" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold"><h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['catalogoadministrativo.administrator.modal.edit']}"/> </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div class="uk-margin">
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogoadministrativo.administrator.colony.catalog']}" for="entrada-colonia"/>
+                            <div class="uk-form-controls">
+                                <h:inputText id="entrada-colonia"
+                                             value="#{catalogoColoniaControlador.coloniaModelo.nombre}"
+                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             styleClass="uk-input">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="3" maximum="70"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="entrada-colonia" styleClass="uk-text-danger"/>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{boton['cancel']}</button>
+                        <h:commandButton value="#{boton['update']}" styleClass="uk-button uk-button-secondary">
+                            <f:ajax onevent="function funcion(data) { cierraModal(data, 'modalColonia') }" listener="#{catalogoColoniaControlador.actualiza}" execute="@form" render="formulario-tabla-colonia"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
         </h:panelGroup>
         <script type="text/javascript">
             var modalEditar;
             var modalTipoContacto;
+            var modalColonia;
             document.addEventListener("DOMContentLoaded", function (evt) {
                 modalEditar = document.querySelector('#modal-motivo-bloqueo');
                 modalTipoContacto = document.querySelector('#modal-tipo-contacto');
+                modalColonia = document.querySelector('#modal-agrega-colonia');
                 UIkit.util.on('#modal-motivo-bloqueo', 'show', function () {
                     modalEditar.querySelector('.uk-modal-body').click();
                 });
                 UIkit.util.on('#modal-tipo-contacto', 'show', function () {
                     modalTipoContacto.querySelector('.uk-modal-body').click();
-                })
+                });
+                UIkit.util.on('#modal-agrega-colonia', 'show',function () {
+                    modalColonia.querySelector('.uk-modal-body').click();
+                });
             });
             function cierraModal(data,modal) {
                 if (data.status === "success"){
@@ -408,6 +423,11 @@
                         case "modalEditar":
                             if (modalEditar.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalEditar).hide();
+                            }
+                            break;
+                        case 'modalColonia':
+                            if (modalColonia.querySelector('uk-text-danger') === null) {
+                                UIkit.modal(modalColonia).hide();
                             }
                             break;
                         default: console.error(modal);
