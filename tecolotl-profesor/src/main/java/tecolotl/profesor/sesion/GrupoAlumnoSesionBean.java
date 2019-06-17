@@ -32,6 +32,10 @@ public class GrupoAlumnoSesionBean {
     //@Inject
     //private ValidadorSessionBean validadorSessionBean;
 
+    /**
+     * Inserta un nuevo GrupoAlumno.
+     * @param grupoAlumnoModelo dato para poder insertar un nuecvo GrupoAlumno.
+     */
     public void inserta(@NotNull GrupoAlumnoModelo grupoAlumnoModelo){
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
@@ -41,12 +45,21 @@ public class GrupoAlumnoSesionBean {
         entityManager.persist(grupoAlumnoEntidad);
     }
 
+    /**
+     * Busca un GrupoAlumno.
+     * @return una Lista de GrupoAlumno.
+     */
     public List<GrupoAlumnoModelo> busca(){
         TypedQuery<GrupoAlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.busca", GrupoAlumnoEntidad.class);
         List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista = typedQuery.getResultList();
         return grupoAlumnoEntidadLista.stream().map(GrupoAlumnoModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Elimina un GrupoAlumno.
+     * @param grupoAlumnoModelo dato para eliminar el GrupoAlumno.
+     * @return numero de elementos modificados, 0 en caso de no existir.
+     */
     public Integer elimina(@NotNull GrupoAlumnoModelo grupoAlumnoModelo){
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
