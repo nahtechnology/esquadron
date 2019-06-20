@@ -1,6 +1,7 @@
 package tecolotl.nucleo.modelo;
 
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -9,23 +10,23 @@ import java.util.Objects;
 
 public class PersonaModelo implements Comparable<PersonaModelo>{
 
-    @NotNull
-    @Size(max = 40)
+    @NotNull(groups = {PersonaNuevaValidacion.class})
+    @Size(max = 40, groups = {PersonaNuevaValidacion.class})
     private String nombre;
 
-    @NotNull
-    @Size(max = 50)
+    @NotNull(groups = {PersonaNuevaValidacion.class})
+    @Size(max = 50, groups = {PersonaNuevaValidacion.class})
     private String apellidoPaterno;
 
-    @NotNull
-    @Size(max = 50)
+    @NotNull(groups = {PersonaNuevaValidacion.class})
+    @Size(max = 50, groups = {PersonaNuevaValidacion.class})
     private String apellidoMaterno;
 
-    @NotNull
-    @Size(max = 40)
+    @NotNull(groups = {PersonaNuevaValidacion.class})
+    @Size(max = 40, groups = {PersonaNuevaValidacion.class})
     private String apodo;
 
-    @NotNull
+    @NotNull(groups = {PersonaNuevaValidacion.class})
     private byte[] contrasenia;
 
     public PersonaModelo(){

@@ -35,9 +35,9 @@ public class ValidadorSessionBean {
         Set<ConstraintViolation<T>> constraintViolationConjunto = validator.validate(objecto, grupos);
         if (!constraintViolationConjunto.isEmpty()) {
             logger.fine("Validaciones incorrectas:".concat(String.valueOf(constraintViolationConjunto.size())));
-            if (logger.isLoggable(Level.FINER)) {
+            if (logger.isLoggable(Level.FINE)) {
                 for (ConstraintViolation<T> constraintViolation : constraintViolationConjunto) {
-                    logger.log(Level.FINER, "Campo no validado: {0} ", constraintViolation.getMessage());
+                    logger.fine(String.format("Campo no validado: {0} con el valor {1}", constraintViolation.getPropertyPath(), constraintViolation.getMessage()));
                 }
             }
             throw new ConstraintViolationException(constraintViolationConjunto);

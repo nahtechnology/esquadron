@@ -20,8 +20,12 @@ public class CoordinadorEntidadPK implements Serializable {
         this.contador = contador;
     }
 
+    public CoordinadorEntidadPK(String claveCentroTrabajo, Short contador) {
+        this(new EscuelaEntidad(claveCentroTrabajo), contador);
+    }
+
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_escuela", referencedColumnName = "clave_centro_trabajo")
     public EscuelaEntidad getEscuelaEntidad() {
         return escuelaEntidad;
@@ -31,9 +35,8 @@ public class CoordinadorEntidadPK implements Serializable {
         this.escuelaEntidad = escuelaEntidad;
     }
 
-    @Basic
     @Column(name = "contador")
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Short getContador() {
         return contador;
     }

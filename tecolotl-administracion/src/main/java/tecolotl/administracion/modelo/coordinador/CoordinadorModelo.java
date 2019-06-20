@@ -2,6 +2,7 @@ package tecolotl.administracion.modelo.coordinador;
 
 import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
+import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
 import tecolotl.nucleo.modelo.PersonaModelo;
 
 import javax.validation.constraints.Min;
@@ -20,15 +21,25 @@ public class CoordinadorModelo extends PersonaModelo {
     public CoordinadorModelo() {
     }
 
+    public CoordinadorModelo(String claveCentroTrabajo) {
+        this.claveCentroTrabajo = claveCentroTrabajo;
+    }
+
+    public CoordinadorModelo(String claveCentroTrabajo, Short contador) {
+        this.claveCentroTrabajo = claveCentroTrabajo;
+        this.contador = contador;
+    }
+
     public CoordinadorModelo(CoordinadorEntidad coordinadorEntidad) {
         super(coordinadorEntidad);
         contador = coordinadorEntidad.getCoordinadorEntidadPK().getContador();
         claveCentroTrabajo = coordinadorEntidad.getCoordinadorEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
         correoEletronico = coordinadorEntidad.getCorreoEletronico();
+        coordinadorMotivoBloqueoModelo = new CoordinadorMotivoBloqueoModelo(coordinadorEntidad.getCoordinadorMotivoBloqueoEntidad().getClave());
     }
 
-    @NotNull(groups = {CoordinadorLlavePrimaria.class})
-    @Size(min = 10, max = 14, groups = {CoordinadorLlavePrimaria.class})
+    @NotNull(groups = {CoordinadorLlavePrimaria.class, CoordinadorNuevoValidacion.class})
+    @Size(min = 10, max = 14, groups = {CoordinadorLlavePrimaria.class, CoordinadorNuevoValidacion.class})
     public String getClaveCentroTrabajo() {
         return claveCentroTrabajo;
     }
@@ -47,8 +58,8 @@ public class CoordinadorModelo extends PersonaModelo {
         this.contador = contador;
     }
 
-    @NotNull
-    @Size(max = 100, min = 3)
+    @NotNull(groups = {CoordinadorNuevoValidacion.class})
+    @Size(max = 100, min = 3, groups = {CoordinadorNuevoValidacion.class})
     public String getCorreoEletronico() {
         return correoEletronico;
     }
@@ -57,7 +68,6 @@ public class CoordinadorModelo extends PersonaModelo {
         this.correoEletronico = correoEletronico;
     }
 
-    @NotNull
     public CoordinadorMotivoBloqueoModelo getCoordinadorMotivoBloqueoModelo() {
         return coordinadorMotivoBloqueoModelo;
     }
@@ -75,4 +85,5 @@ public class CoordinadorModelo extends PersonaModelo {
                 .add(super.toString())
                 .toString();
     }
+
 }
