@@ -10,24 +10,34 @@ import javax.faces.model.CollectionDataModel;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 
 @ViewScoped
 @Named
-public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> {
+public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> implements Serializable {
 
     @Inject
     private CoordinadorSesionBean coordinadorSesionBean;
 
+    private CoordinadorModelo coordinadorModelo;
     private String claveCentroTrabajo;
 
     @PostConstruct
     public void init() {
         claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
-        setCollectionDataModel(new CollectionDataModel<>(coordinadorSesionBean.busca(claveCentroTrabajo)));
+        actualizaDataModel();
     }
 
     @Override
     public void actualizaDataModel() {
         setCollectionDataModel(new CollectionDataModel<>(coordinadorSesionBean.busca(claveCentroTrabajo)));
+    }
+
+    public CoordinadorModelo getCoordinadorModelo() {
+        return coordinadorModelo;
+    }
+
+    public void setCoordinadorModelo(CoordinadorModelo coordinadorModelo) {
+        this.coordinadorModelo = coordinadorModelo;
     }
 }

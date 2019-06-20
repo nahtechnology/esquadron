@@ -26,6 +26,7 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.inject.Inject;
+import javax.persistence.NoResultException;
 
 import java.util.List;
 
@@ -129,10 +130,11 @@ public class CoordinadorSesionBeanTest {
         assertNotNull(coordinadorModelo);
     }
 
-    @Test
+    @Test(expected = NoResultException.class)
     @InSequence(6)
     public void elimina() {
-
+        CoordinadorModelo coordinadorModelo = new CoordinadorModelo("21DBS0029K", (short)1);
+        coordinadorSesionBean.elimina(coordinadorModelo);
     }
 
 }
