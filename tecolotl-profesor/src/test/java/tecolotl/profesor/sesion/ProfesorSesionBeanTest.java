@@ -1,11 +1,5 @@
 package tecolotl.profesor.sesion;
 
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
-import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
-import tecolotl.administracion.validacion.escuela.*;
-import tecolotl.alumno.entidad.*;
-import tecolotl.nucleo.herramienta.ValidadorSessionBean;
-import tecolotl.profesor.modelo.ProfesorModelo;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -15,20 +9,28 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
 import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
 import tecolotl.administracion.persistencia.entidad.*;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
+import tecolotl.administracion.validacion.escuela.*;
+import tecolotl.alumno.entidad.*;
+import tecolotl.nucleo.herramienta.EncriptadorContrasenia;
 import tecolotl.nucleo.herramienta.LoggerProducer;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.GrupoEntidad;
 import tecolotl.profesor.entidad.GrupoEntidadPK;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.modelo.ProfesorModelo;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -55,13 +57,19 @@ public class ProfesorSesionBeanTest {
                         LoggerProducer.class, TareaEntidad.class, TareaGlosarioActividadEntidad.class,
                         TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
                         TipoEstudianteEntidad.class, ColoniaModelo.class, ProfesorValidacion.class,
-                        ValidadorSessionBean.class, ProfesorSesionBean.class, ColoniaNuevaValidacion.class)
+                        ValidadorSessionBean.class, ProfesorSesionBean.class, ColoniaNuevaValidacion.class,
+                        EncriptadorContrasenia.class, PersonaNuevaValidacion.class, ContactoLlavePrimariaValidacion.class,
+                        ContactoNuevoValidacion.class, CoordinadorLlavePrimaria.class, CoordinadorNuevoValidacion.class,
+                        LicenciaNuevaValidacion.class, LicenciaActualizaValidacion.class)
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Inject
     private ProfesorSesionBean profesorSesionBean;
+
+    @Inject
+    private EncriptadorContrasenia encriptadorContrasenia;
 
     @Test
     public void busca(){
@@ -76,13 +84,25 @@ public class ProfesorSesionBeanTest {
     }
 
     @Test
+    public void buscaClaveCen(){
+        List<ProfesorModelo> profesorModeloLista = profesorSesionBean.buscaClave("");
+        Assert.assertNotNull(profesorModeloLista);
+        Assert.assertFalse(profesorModeloLista.isEmpty());
+        for(ProfesorModelo profesorModelo : profesorModeloLista){
+            Assert.assertNotNull(profesorModelo);
+            Assert.assertNotNull(profesorModelo.getId());
+            Assert.assertNotNull(profesorModelo.getEscuelaBaseModelo());
+        }
+    }
+
+    @Test
     public void inserta2(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
         profesorModelo.setNombre("Eliminando");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("Otro mas");
-        profesorModelo.setContrasenia("123456".getBytes());
+        profesorModelo.setContrasenia(encriptadorContrasenia.encrypt("123456"));
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
         profesorSesionBean.inserta(profesorModelo);
         Assert.assertNotNull(profesorModelo);
@@ -95,7 +115,9 @@ public class ProfesorSesionBeanTest {
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("El Juanito");
-        profesorModelo.setContrasenia("123456".getBytes());
+        try{
+            profesorModelo.setContrasenia(encriptadorContrasenia.encrypt("123456"));
+        }catch(Exception e){}
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
         profesorSesionBean.inserta(profesorModelo);
         Assert.assertNotNull(profesorModelo);

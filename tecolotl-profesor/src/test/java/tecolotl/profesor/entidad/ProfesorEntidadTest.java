@@ -13,6 +13,7 @@ import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,7 +30,7 @@ public class ProfesorEntidadTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "prueba.war")
                 .addClasses(ProfesorEntidad.class, PersonaEntidad.class, LoggerProducer.class, CatalagoEntidad.class,
-                            GrupoEntidad.class)
+                            GrupoEntidad.class, PersonaNuevaValidacion.class)
                 .addPackage(EscuelaEntidad.class.getPackage())
                 .addPackage(AlumnoEntidad.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")

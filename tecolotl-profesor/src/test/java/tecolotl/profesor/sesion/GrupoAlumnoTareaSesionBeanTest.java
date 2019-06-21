@@ -24,6 +24,7 @@ import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.*;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoTareaModelo;
@@ -62,7 +63,8 @@ public class GrupoAlumnoTareaSesionBeanTest {
                 ValidadorSessionBean.class, ProfesorSesionBean.class, ColoniaNuevaValidacion.class,
                 GrupoProfesorValidacion.class, GrupoAlumnoEntidad.class, GrupoAlumnoEntidadPK.class,
                 GrupoAlumnoModelo.class, GrupoAlumnoSesionBean.class, GrupoAlumnoTareaEntidad.class,
-                GrupoAlumnoTareaEntidadPK.class, GrupoAlumnoTareaModelo.class, GrupoAlumnoTareaSesionBean.class
+                GrupoAlumnoTareaEntidadPK.class, GrupoAlumnoTareaModelo.class, GrupoAlumnoTareaSesionBean.class,
+                    PersonaNuevaValidacion.class
             )
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

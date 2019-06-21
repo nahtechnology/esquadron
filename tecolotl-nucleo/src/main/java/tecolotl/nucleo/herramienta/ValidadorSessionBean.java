@@ -1,10 +1,18 @@
 package tecolotl.nucleo.herramienta;
 
+import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.PBEKeySpec;
+import javax.crypto.spec.SecretKeySpec;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
+import java.security.spec.KeySpec;
+import java.util.Base64;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +30,9 @@ public class ValidadorSessionBean {
 
     @Inject
     private Logger logger;
+
+    private  String salt = "asf7567gsfth123fb%s&sdf/%";
+    private String secretKey = "78dfg/(8d7fg8d$%67f7g87d#$%";
 
     /**
      * Ejecuta las validaciones de un objecto conforme a un grupo de validaciones. Es importe remarcar que para {@link Level}

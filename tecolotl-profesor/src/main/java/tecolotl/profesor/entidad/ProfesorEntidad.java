@@ -10,7 +10,11 @@ import java.util.List;
 @Table(schema = "profesor", name = "profesor")
 @SequenceGenerator(name = "secuencia", schema = "profesor", sequenceName = "profesor_seq")
 @NamedQueries({
-        @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p")
+        @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p"),
+        @NamedQuery(name = "ProfesorEntidad.buscaIdEscuela", query =
+                    "SELECT p FROM ProfesorEntidad p JOIN LEFT FETCH" +
+                            "p.escuelaEntidad pe WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+        )
 })
 public class ProfesorEntidad extends PersonaEntidad {
 

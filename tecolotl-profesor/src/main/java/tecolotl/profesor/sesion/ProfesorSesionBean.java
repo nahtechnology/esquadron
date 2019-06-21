@@ -57,6 +57,17 @@ public class ProfesorSesionBean {
     }
 
     /**
+     * Busca profesores por escuela
+     * @param claveCentrodeTrabajo id de la escuela para listar los profesores.
+     * @return Lista de ProfesorModelo.
+     */
+    public List<ProfesorModelo> buscaClave(@NotNull String claveCentrodeTrabajo){
+        TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaIdEscuela", ProfesorEntidad.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentrodeTrabajo);
+        List<ProfesorEntidad> profesorEntidadLista = typedQuery.getResultList();
+        return profesorEntidadLista.stream().map(ProfesorModelo::new).collect(Collectors.toList());
+    }
+    /**
      * Actualiza los datos de un profesor
      * @param profesorModelo datos para poder modificar un profesor
      * @return numero de elementos modificados, 0 en caso de no existir.
@@ -82,5 +93,30 @@ public class ProfesorSesionBean {
         Root<ProfesorEntidad> root = criteriaDelete.from(ProfesorEntidad.class);
         criteriaDelete.where(criteriaBuilder.equal(root.get("id"), idProfesor));
         return entityManager.createQuery(criteriaDelete).executeUpdate();
+    }
+
+
+    /**
+     * CRUD Relacion Profesor-Grupo
+     * Se crean las funciones para obtención de la información de la relación de alumno profesor.
+     *
+     *
+     */
+
+    public void insertaRel(){
+
+    }
+
+    public List<ProfesorModelo> buscaRel(){
+        List<ProfesorModelo> profesorModeloList = null;
+        return profesorModeloList;
+    }
+
+    public Integer actualizaRel(){
+        return 1;
+    }
+
+    public Integer eliminaRel(){
+        return 1;
     }
 }
