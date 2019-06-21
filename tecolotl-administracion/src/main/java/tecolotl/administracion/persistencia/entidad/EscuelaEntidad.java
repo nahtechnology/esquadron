@@ -18,10 +18,10 @@ import java.util.Objects;
 			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad " +
 					"LEFT JOIN FETCH e.motivoBloqueoEntidad WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
 	),
-		@NamedQuery(
-				name = "EscuelaEntidad.existe",
-				query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
-		)
+	@NamedQuery(
+			name = "EscuelaEntidad.existe",
+			query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
+	)
 })
 public class EscuelaEntidad {
 

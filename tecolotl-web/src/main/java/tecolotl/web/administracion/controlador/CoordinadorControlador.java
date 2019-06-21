@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
@@ -25,6 +26,9 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     @Inject
     private CoordinadorMotivoBloqueoSesionBean coordinadorMotivoBloqueoSesionBean;
 
+    @Inject
+    private Logger logger;
+
     private List<CoordinadorMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista;
     private CoordinadorModelo coordinadorModelo;
     private CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo;
@@ -34,6 +38,7 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     public void init() {
         claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
         coordinadorMotivoBloqueoModeloLista = coordinadorMotivoBloqueoSesionBean.buscaFiltro("Sin Bloqueo");
+        coordinadorMotivoBloqueoModelo = new CoordinadorMotivoBloqueoModelo();
         actualizaDataModel();
     }
 
@@ -68,6 +73,7 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     }
 
     public void desbloquea() {
+        System.out.println(coordinadorModelo);
         coordinadorSesionBean.estatus(coordinadorModelo, (short)1);
         limpiaCoordinador();
         actualizaDataModel();

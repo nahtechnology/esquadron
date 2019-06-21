@@ -105,18 +105,6 @@ public class CoordinadorSesionBean {
      */
     public void actualiza(@NotNull @Valid CoordinadorModelo coordinadorModelo) {
         logger.fine(coordinadorModelo.toString());
-        /*CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaUpdate<CoordinadorEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(CoordinadorEntidad.class);
-        Root<CoordinadorEntidad> root = criteriaUpdate.from(CoordinadorEntidad.class);
-        Predicate predicate = criteriaBuilder.equal(root.get("coordinadorEntidadPK"), generaLlavePrimaria(coordinadorModelo));
-        criteriaUpdate.set(root.get("correoEletronico"), coordinadorModelo.getCorreoEletronico())
-                .set(root.get("nombre"), coordinadorModelo.getNombre())
-                .set(root.get("apellidoPaterno"), coordinadorModelo.getApellidoPaterno())
-                .set(root.get("apellidoMaterno"), coordinadorModelo.getApellidoMaterno())
-                .set(root.get("apodo"), coordinadorModelo.getApodo())
-                .set(root.get("contrasenia"), coordinadorModelo.getContrasenia())
-                .where(predicate);
-        return entityManager.createQuery(criteriaUpdate).executeUpdate();*/
         CoordinadorEntidad coordinadorEntidad = entityManager.find(CoordinadorEntidad.class, generaLlavePrimaria(coordinadorModelo));
         coordinadorEntidad.setCorreoEletronico(coordinadorModelo.getCorreoEletronico());
         coordinadorEntidad.setApodo(coordinadorModelo.getApodo());

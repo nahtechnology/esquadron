@@ -14,6 +14,7 @@ import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
@@ -77,6 +78,11 @@ public class EscuelaSesionBean implements Serializable {
 			}
 			return escuelaDashboardModeloConjunto;
 		}
+	}
+
+	public String nombre(@NotNull @Size(min = 8) String claveCentroTrabajo) {
+		return entityManager.createNamedQuery("EscuelaEntidad.existe", String.class)
+				.setParameter("claveCentroTrabajo",claveCentroTrabajo).getSingleResult();
 	}
 
 	/**

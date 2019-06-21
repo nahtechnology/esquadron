@@ -15,7 +15,7 @@
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
-                    <li class="uk-active"><h:link outcome="dashborad"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                    <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                 </ul>
             </li>
             <li class="uk-parent">
@@ -37,12 +37,13 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
+        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <div uk-grid="">
             <div class="uk-width-1-1@s ">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-bottom">
                     <div class="uk-card-header">
                         <div class="uk-grid uk-grid-small" uk-grid="">
-                            <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">detalle coordinador</span></h4></div>
+                            <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">#{administracion['catalogocoordinador.title']}</span> : <span>#{administracion['dashboard.modal.name']}</span> <span class="uk-text-bold">#{escuelaControlador.busca(param['escuela'])}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
                                     <h:commandLink styleClass="uk-icon-button  uk-icon uk-text-primary" pt:uk-toggle="target: #modal-coordinador" >
@@ -147,11 +148,11 @@
                                                         <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
                                                         <f:ajax render="formulario-motivo-bloqueo" onevent="function limpia(data) { limpiaSelect(data); }"/>
                                                     </h:commandLink>
-                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{coordinador.coordinadorMotivoBloqueoModelo.clave ne 1}">
+                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{coordinador.coordinadorMotivoBloqueoModelo.clave ne 1}" action="#{coordinadorControlador.desbloquea}">
                                                         <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{boton['active']}"/></span>
                                                         <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
-                                                        <f:ajax render="formulario-coordinador" listener="#{coordinadorControlador.desbloquea}"/>
+                                                        <f:ajax render="formulario-coordinador"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li class="uk-nav-divider"/>
@@ -462,9 +463,6 @@
             }
         </script>
     </ui:define>
-
-
-
 </ui:composition>
 
 
