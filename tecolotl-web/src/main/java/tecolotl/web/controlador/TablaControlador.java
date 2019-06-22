@@ -1,7 +1,5 @@
 package tecolotl.web.controlador;
 
-import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
-
 import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.CollectionDataModel;
 

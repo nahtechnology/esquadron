@@ -4,17 +4,22 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.modelo.ProfesorDashboardModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -61,11 +66,16 @@ public class ProfesorSesionBean {
      * @param claveCentrodeTrabajo id de la escuela para listar los profesores.
      * @return Lista de ProfesorModelo.
      */
-    public List<ProfesorModelo> buscaClave(@NotNull String claveCentrodeTrabajo){
+    public Collection<ProfesorDashboardModelo> busca(@NotNull String claveCentrodeTrabajo){
         TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaIdEscuela", ProfesorEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentrodeTrabajo);
-        List<ProfesorEntidad> profesorEntidadLista = typedQuery.getResultList();
-        return profesorEntidadLista.stream().map(ProfesorModelo::new).collect(Collectors.toList());
+        Map<Integer, ProfesorDashboardModelo> profesorDashboardModeloMapa = typedQuery.getResultList().stream()
+                .map(ProfesorDashboardModelo::new).collect(Collectors.toMap(ProfesorDashboardModelo::getId, Function.identity()));
+        entityManager.createNamedQuery("ProfesorEntidad.buscaTotalGrupos", Object[].class)
+                .setParameter("claveCentroTrabajo", claveCentrodeTrabajo).getResultList().forEach(objects -> {
+            profesorDashboardModeloMapa.get(objects[1]).setTotalGrupos(((Long)objects[0]).intValue());
+        });
+        return profesorDashboardModeloMapa.values();
     }
     /**
      * Actualiza los datos de un profesor

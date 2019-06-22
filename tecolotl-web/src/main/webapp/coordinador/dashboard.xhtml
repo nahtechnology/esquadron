@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+<ui:composition template="/template/administracion/dashboard.xhtml">
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="tablas.css"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
+        <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
+        <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
+            <div class="uk-width-1-1@m">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover  uk-padding-small">
+                    <div class="uk-grid uk-grid-divider uk-grid-small uk-grid-margin-small  uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-margin-auto  uk-text-center" uk-grid="">
+                        <div>
+                            <span class="uk-text-small uk-text-capitalize" ><h:outputText pt:uk-icon="icon:users" styleClass="uk-margin-small-right uk-text-primary"/>#{administracion['catalogoadministrativo.title']}</span>
+                            <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary">2.134</h1>
+                            <div class="uk-text-small">
+                                <h:outputText styleClass="uk-text-success" pt:uk-icon="icon: triangle-up" value="15%"/> more than last week.
+                            </div>
+                        </div>
+                        <div>
+                            <span class="uk-text-small uk-text-capitalize"><h:outputText pt:uk-icon="icon:social" styleClass="uk-margin-small-right uk-text-primary"/>social media</span>
+                            <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">8.490</h1>
+                            <div class="uk-text-small">
+                                <h:outputText styleClass="uk-text-warning" pt:uk-icon="icon: triangle-down" value="-15%"/>less than last week.
+                            </div>
+                        </div>
+                        <div>
+                            <span class="uk-text-small uk-text-capitalize"><h:outputText pt:uk-icon="icon:clock" styleClass="uk-margin-small-right uk-text-primary"/>Traffic hours</span>
+                            <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">12.00<small class="uk-text-small">PM</small></h1>
+                            <div class="uk-text-small">
+                                <h:outputText styleClass="uk-text-success" pt:uk-icon="icon: triangle-up" value="19%"/>more than last week.
+                            </div>
+                        </div>
+                        <div>
+                            <span class="uk-text-small uk-text-capitalize"><h:outputText pt:uk-icon="icon:search" styleClass="uk-margin-small-right uk-text-primary"/>Week Search</span>
+                            <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">9.543</h1>
+                            <div class="uk-text-small">
+                                <h:outputText styleClass="uk-text-danger" pt:uk-icon="icon: triangle-down" value="-23%"/>less than last week.
+                            </div>
+                        </div>
+                        <div class="uk-visible@xl">
+                            <span class="uk-text-small"><h:outputText pt:uk-icon="icon:users" styleClass="uk-margin-small-right uk-text-primary"/>Lorem ipsum</span>
+                            <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">5.284</h1>
+                            <div class="uk-text-small">
+                                <h:outputText styleClass="uk-text-success" pt:uk-icon="icon: triangle-up" value="7%"/>more than last week.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-1-1@s ">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-bottom">
+                    <div class="uk-card-header">
+                        <div class="uk-grid uk-grid-small" uk-grid="">
+                            <div class="uk-width-auto"><h4><span class="uk-text-middle">Administracion profesores</span></h4></div>
+                            <div class="uk-width-expand uk-text-right panel-icons">
+                                <h:form>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-nuevo-coord" >
+                                        <f:ajax></f:ajax>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"/>
+                                    </h:commandLink>
+                                </h:form>
+                                <!--<a href="#" class="uk-icon-button uk-icon-link" uk-icon="twitter"></a>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <h:form id="formulario-coordinador-profesor">
+                            <ui:fragment rendered="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}">
+                                <table class="uk-table uk-table-middle">
+                                    <thead class="uk-background-primary">
+                                        <tr>
+                                            <th><span class="letra-titulo">nombre profesor</span></th>
+                                            <th><span class="letra-titulo">número de grupos</span></th>
+                                            <th><span class="letra-titulo">tareas asignadas</span></th>
+                                            <th><span class="letra-titulo">Tareas por asignar</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="uk-flex uk-flex-center">
+                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot class="uk-background-primary">
+                                        <tr>
+                                            <td colspan="5">
+                                                <span class="letra-titulo">
+                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                        <f:param value="#{escuelaDashboardControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{escuelaDashboardControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{escuelaDashboardControlador.htmlDataTable.rowCount}"/>
+                                                    </h:outputFormat>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </ui:fragment>
+                            <h:dataTable
+                                    value="#{coordinadorDashboarControlador.collectionDataModel}"
+                                    binding="#{coordinadorDashboarControlador.htmlDataTable}"
+                                    rendered="#{not empty coordinadorDashboarControlador.collectionDataModel.wrappedData}"
+                                    var="profesor"
+                                    id="tabla-profesor"
+                                    first="0"
+                                    rows="5"
+                                    styleClass="uk-table uk-table-divider uk-table-middle uk-table-small uk-table-hover uk-text-center tabla-profesor-dropdown"
+                                    headerClass="uk-background-primary uk-text-center"
+                                    footerClass="uk-background-primary uk-text-left"
+                                    columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
+                                <h:column>
+                                    <f:facet name="header"><span class="letra-titulo">Nombre Profesor</span></f:facet>
+                                    #{profesor.apellidoPaterno} #{profesor.apellidoMaterno} #{profesor.nombre}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"><span class="letra-titulo">N° de grupos</span></f:facet>
+                                    #{profesor.totalGrupos}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"><span class="letra-titulo">Tareas asignadas</span></f:facet>
+                                    NaN
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"><span class="letra-titulo">Tareas por asignar</span></f:facet>
+                                    Nan
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header"><span class="letra-titulo">Opciones</span></f:facet>
+                                    <div class="uk-inline  ">
+                                        <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"></button>
+                                        <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
+                                            <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                                <li>
+                                                    <h:link    outcome="detalle-profesor" styleClass="uk-text-primary" >
+                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
+                                                    </h:link>
+                                                </li>
+                                                <li>
+                                                    <h:commandLink   pt:uk-toggle="target: #modal-editar-prof" styleClass="uk-text-primary">
+                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="Editar"/></span>
+                                                        <f:ajax />
+                                                    </h:commandLink>
+                                                </li>
+                                                <li>
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-eliminar" styleClass="uk-text-primary" >
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="Eliminar"/></span>
+                                                        <f:ajax/>
+                                                    </h:commandLink>
+                                                </li>
+                                                <li>
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-bloqueo" styleClass="uk-text-primary" >
+                                                        <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="Bloqueo"/></span>
+                                                        <f:ajax/>
+                                                    </h:commandLink>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </h:column>
+                                <f:facet name="footer">
+                                    <pa:pie-tabla htmlDataTable="#{coordinadorDashboarControlador.htmlDataTable}"/>
+                                </f:facet>
+                            </h:dataTable>
+                        </h:form>
+                    </div>
+                    <div class="uk-card-footer">
+                        <f:ajax render="formulario-coordinador-profesor:tabla-profesor formulario-paginacion-prof"
+                                onevent="limpiaSelect">
+                            <h:form id="formulario-paginacion-prof">
+                                <div  styleClass="" pt:uk-grid="">
+                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                        <pa:boton htmlDataTable="#{coordinadorDashboarControlador.htmlDataTable}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </f:ajax>
+                    </div>
+                </div>
+            </div>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
+</html>

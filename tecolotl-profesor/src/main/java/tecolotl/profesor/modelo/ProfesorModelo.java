@@ -15,9 +15,11 @@ public class ProfesorModelo extends PersonaModelo {
 
     @NotNull(message = "ID Profesor no puede ser nulo", groups = {GrupoProfesorValidacion.class})
     private Integer id;
+
     @NotNull
     @Valid
     private EscuelaBaseModelo escuelaBaseModelo;
+
     @NotNull
     private List<GrupoModelo> grupoModeloLista;
 
@@ -28,9 +30,8 @@ public class ProfesorModelo extends PersonaModelo {
         super(personaEntidad);
     }
     public ProfesorModelo(ProfesorEntidad profesorEntidad){
+        super(profesorEntidad);
         this.id = profesorEntidad.getId();
-        this.escuelaBaseModelo = new EscuelaBaseModelo(profesorEntidad.getEscuelaEntidad());
-        //this.grupoModeloLista = new GrupoModelo(profesorEntidad.);
     }
 
     public ProfesorModelo(Integer id) {

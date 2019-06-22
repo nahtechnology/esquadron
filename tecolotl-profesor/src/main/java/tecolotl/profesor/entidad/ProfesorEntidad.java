@@ -11,9 +11,14 @@ import java.util.List;
 @SequenceGenerator(name = "secuencia", schema = "profesor", sequenceName = "profesor_seq")
 @NamedQueries({
         @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p"),
-        @NamedQuery(name = "ProfesorEntidad.buscaIdEscuela", query =
-                    "SELECT p FROM ProfesorEntidad p JOIN LEFT FETCH" +
-                            "p.escuelaEntidad pe WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+        @NamedQuery(
+            name = "ProfesorEntidad.buscaIdEscuela",
+            query = "SELECT p FROM ProfesorEntidad p WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+        ),
+        @NamedQuery(
+            name = "ProfesorEntidad.buscaTotalGrupos" ,
+            query = "SELECT COUNT(g.profesorEntidad.id), p.id FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
+                    "WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo GROUP BY g.profesorEntidad.id, p.id"
         )
 })
 public class ProfesorEntidad extends PersonaEntidad {
@@ -49,8 +54,7 @@ public class ProfesorEntidad extends PersonaEntidad {
         this.escuelaEntidad = escuelaEntidad;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_grupo")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profesorEntidad")
     public List<GrupoEntidad> getGrupoEntidadLista() {
         return grupoEntidadLista;
     }
@@ -58,4 +62,5 @@ public class ProfesorEntidad extends PersonaEntidad {
     public void setGrupoEntidadLista(List<GrupoEntidad> grupoEntidadLista) {
         this.grupoEntidadLista = grupoEntidadLista;
     }
+
 }

@@ -31,9 +31,6 @@ public class ValidadorSessionBean {
     @Inject
     private Logger logger;
 
-    private  String salt = "asf7567gsfth123fb%s&sdf/%";
-    private String secretKey = "78dfg/(8d7fg8d$%67f7g87d#$%";
-
     /**
      * Ejecuta las validaciones de un objecto conforme a un grupo de validaciones. Es importe remarcar que para {@link Level}
      * FINE sólo muestra el número de elemento, en el nivel FINER muestra cada unos de las validaciones.

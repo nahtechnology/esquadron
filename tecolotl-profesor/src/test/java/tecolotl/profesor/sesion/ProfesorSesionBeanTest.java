@@ -30,9 +30,12 @@ import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.GrupoEntidad;
 import tecolotl.profesor.entidad.GrupoEntidadPK;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.modelo.ProfesorDashboardModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
+import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
+import java.util.Collection;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -60,7 +63,7 @@ public class ProfesorSesionBeanTest {
                         ValidadorSessionBean.class, ProfesorSesionBean.class, ColoniaNuevaValidacion.class,
                         EncriptadorContrasenia.class, PersonaNuevaValidacion.class, ContactoLlavePrimariaValidacion.class,
                         ContactoNuevoValidacion.class, CoordinadorLlavePrimaria.class, CoordinadorNuevoValidacion.class,
-                        LicenciaNuevaValidacion.class, LicenciaActualizaValidacion.class)
+                        LicenciaNuevaValidacion.class, LicenciaActualizaValidacion.class, GrupoProfesorValidacion.class)
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -85,13 +88,18 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaClaveCen(){
-        List<ProfesorModelo> profesorModeloLista = profesorSesionBean.buscaClave("");
+        Collection<ProfesorDashboardModelo> profesorModeloLista = profesorSesionBean.busca("21DBS0029K");
         Assert.assertNotNull(profesorModeloLista);
         Assert.assertFalse(profesorModeloLista.isEmpty());
-        for(ProfesorModelo profesorModelo : profesorModeloLista){
+        for(ProfesorDashboardModelo profesorModelo : profesorModeloLista){
             Assert.assertNotNull(profesorModelo);
             Assert.assertNotNull(profesorModelo.getId());
-            Assert.assertNotNull(profesorModelo.getEscuelaBaseModelo());
+            Assert.assertNotNull(profesorModelo.getApodo());
+            Assert.assertNotNull(profesorModelo.getNombre());
+            Assert.assertNotNull(profesorModelo.getApellidoPaterno());
+            Assert.assertNotNull(profesorModelo.getApellidoMaterno());
+            Assert.assertNotNull(profesorModelo.getContrasenia());
+            Assert.assertFalse(profesorModelo.getTotalGrupos() < 0);
         }
     }
 
