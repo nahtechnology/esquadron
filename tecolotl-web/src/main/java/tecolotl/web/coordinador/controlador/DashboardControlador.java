@@ -11,9 +11,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
+@Named
 @ViewScoped
-@Named(value = "coordinadorDashboarControlador")
-public class DashboarControloador extends TablaControlador<ProfesorDashboardModelo> implements Serializable {
+public class DashboardControlador extends TablaControlador<ProfesorDashboardModelo> implements Serializable {
 
     @Inject
     private ProfesorSesionBean profesorSesionBean;
@@ -27,4 +27,5 @@ public class DashboarControloador extends TablaControlador<ProfesorDashboardMode
     public void actualizaDataModel() {
         setCollectionDataModel(new CollectionDataModel<>(profesorSesionBean.busca("21DBS0029K")));
     }
+
 }

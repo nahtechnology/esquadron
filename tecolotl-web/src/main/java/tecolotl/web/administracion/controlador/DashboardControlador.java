@@ -23,15 +23,11 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Named(value = "escuelaDashboardControlador")
 @ViewScoped
 public class DashboardControlador extends TablaControlador<EscuelaDashboardModelo> implements Serializable {
-
-    @Inject
-    private Logger logger;
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
