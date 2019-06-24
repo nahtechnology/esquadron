@@ -1,10 +1,7 @@
 package tecolotl.profesor.entidad;
 
-import tecolotl.alumno.entidad.AlumnoEntidad;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")

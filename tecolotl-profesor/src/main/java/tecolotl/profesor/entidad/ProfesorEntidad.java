@@ -19,7 +19,12 @@ import java.util.List;
             name = "ProfesorEntidad.buscaTotalGrupos" ,
             query = "SELECT COUNT(g.profesorEntidad.id), p.id FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
                     "WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo GROUP BY g.profesorEntidad.id, p.id"
-        )
+        )/*,
+        @NamedQuery(
+                name = "ProfesorEntidad.buscaAlumnos",
+                query = "SELECT COUNT() FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
+                        "WHERE "
+        )*/
 })
 public class ProfesorEntidad extends PersonaEntidad {
 

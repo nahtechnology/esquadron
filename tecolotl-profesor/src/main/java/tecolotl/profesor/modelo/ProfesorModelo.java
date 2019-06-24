@@ -8,6 +8,7 @@ import tecolotl.profesor.entidad.ProfesorEntidad;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 

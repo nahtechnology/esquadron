@@ -2,6 +2,7 @@ package tecolotl.profesor.sesion;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.logging.Logger;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -19,6 +20,7 @@ import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.*;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.nucleo.herramienta.EncriptadorContrasenia;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -87,6 +89,18 @@ public class ProfesorSesionBeanTest {
     }
 
     @Test
+    public void buscaContrasenia(){
+        ProfesorModelo profesorModelo = profesorSesionBean.buscaID(-38);
+        Assert.assertNotNull(profesorModelo);
+        Assert.assertNotNull(profesorModelo.getNombre());
+        Assert.assertNotNull(profesorModelo.getContrasenia());
+        System.out.println("Ya accediste: ");
+        String str1 = encriptadorContrasenia.decrypt(profesorModelo.getContrasenia());
+        System.out.println("Cieñit0L1ñd0#/5200*[]{}?¿~!¡€".equals(str1)+"\n Lo lograste!!");
+        System.out.println(str1);
+    }
+
+    @Test
     public void buscaClaveCen(){
         Collection<ProfesorDashboardModelo> profesorModeloLista = profesorSesionBean.busca("21DBS0029K");
         Assert.assertNotNull(profesorModeloLista);
@@ -110,7 +124,7 @@ public class ProfesorSesionBeanTest {
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("Otro mas");
-        profesorModelo.setContrasenia(encriptadorContrasenia.encrypt("123456"));
+        profesorModelo.setContrasenia(encriptadorContrasenia.encrypt("Cieñit0L1ñd0#/5200*[]{}"));
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
         profesorSesionBean.inserta(profesorModelo);
         Assert.assertNotNull(profesorModelo);
@@ -133,12 +147,12 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void actualiza(){
-        ProfesorModelo profesorModelo = new ProfesorModelo(-42);
-        profesorModelo.setNombre("Cochi");
+        ProfesorModelo profesorModelo = new ProfesorModelo(-38);
+        profesorModelo.setNombre("Eliminando");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("Don Levantones");
-        profesorModelo.setContrasenia("123456".getBytes());
+        profesorModelo.setContrasenia(encriptadorContrasenia.encrypt("Cieñit0L1ñd0#/5200*[]{}?¿~!¡€"));
         EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("21DBS0029K");
         escuelaBaseModelo.setNombre("AGUSTIN MELGAR");
         escuelaBaseModelo.setDomicilio("RAFAEL CAÑEDO BENITEX");
@@ -152,7 +166,7 @@ public class ProfesorSesionBeanTest {
     @Test
     public void elimina(){
         Integer profesorEliminado = 0;
-        profesorEliminado = profesorSesionBean.elimina(-41);
+        profesorEliminado = profesorSesionBean.elimina(-39);
         Assert.assertNotNull(profesorEliminado);
         Assert.assertFalse(profesorEliminado == 0);
     }

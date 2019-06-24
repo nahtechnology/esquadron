@@ -62,6 +62,16 @@ public class ProfesorSesionBean {
     }
 
     /**
+     * Método para buscar un profesor por ID.
+     * @param ID ID del profesor.
+     * @return un profesor.
+     */
+    public ProfesorModelo buscaID(@NotNull Integer ID){
+        return new ProfesorModelo(entityManager.find(ProfesorEntidad.class, ID));
+
+    }
+
+    /**
      * Busca profesores por escuela
      * @param claveCentrodeTrabajo id de la escuela para listar los profesores.
      * @return Lista de ProfesorModelo.
@@ -82,12 +92,12 @@ public class ProfesorSesionBean {
      * @param profesorModelo datos para poder modificar un profesor
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
-    public Integer actualiza(@NotNull @Valid ProfesorModelo profesorModelo){
+    public Integer actualiza(@NotNull ProfesorModelo profesorModelo){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<ProfesorEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ProfesorEntidad.class);
         Root<ProfesorEntidad> root = criteriaUpdate.from(ProfesorEntidad.class);
         Predicate predicate = criteriaBuilder.equal(root.get("id"), profesorModelo.getId());
-        criteriaUpdate.set(root.get("apodo"), profesorModelo.getApodo());
+        criteriaUpdate.set(root.get("contrasenia"), profesorModelo.getContrasenia());
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
@@ -105,28 +115,4 @@ public class ProfesorSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
-
-    /**
-     * CRUD Relacion Profesor-Grupo
-     * Se crean las funciones para obtención de la información de la relación de alumno profesor.
-     *
-     *
-     */
-
-    public void insertaRel(){
-
-    }
-
-    public List<ProfesorModelo> buscaRel(){
-        List<ProfesorModelo> profesorModeloList = null;
-        return profesorModeloList;
-    }
-
-    public Integer actualizaRel(){
-        return 1;
-    }
-
-    public Integer eliminaRel(){
-        return 1;
-    }
 }

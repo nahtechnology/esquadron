@@ -1,6 +1,5 @@
 package tecolotl.profesor.sesion;
 
-import com.sun.javafx.scene.EnteredExitedHandler;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.profesor.entidad.GrupoEntidad;
