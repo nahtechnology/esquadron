@@ -14,7 +14,7 @@ public abstract class TablaControlador<T> {
 
     private CollectionDataModel<T> collectionDataModel;
     private HtmlDataTable htmlDataTable;
-    private T modelo;
+    protected T modelo;
 
     public abstract void actualizaDataModel();
 

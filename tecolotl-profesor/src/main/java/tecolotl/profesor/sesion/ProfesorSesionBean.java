@@ -47,6 +47,7 @@ public class ProfesorSesionBean {
         profesorEntidad.setApellidoMaterno(profesorModelo.getApellidoMaterno());
         profesorEntidad.setApodo(profesorModelo.getApodo());
         profesorEntidad.setContrasenia(profesorModelo.getContrasenia());
+        profesorEntidad.setCorreoEletronico(profesorModelo.getCorreoEletronico());
         profesorEntidad.setEscuelaEntidad(new EscuelaEntidad(profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo()));
         entityManager.persist(profesorEntidad);
     }

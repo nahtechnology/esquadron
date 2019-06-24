@@ -57,21 +57,21 @@
             <div class="uk-width-1-1@s ">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-bottom">
                     <div class="uk-card-header">
-                        <div class="uk-grid uk-grid-small" uk-grid="">
+                        <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small" pt:uk-grid="">
                             <div class="uk-width-auto"><h4><span class="uk-text-middle">Administracion profesores</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
-                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-nuevo-coord" >
-                                        <f:ajax></f:ajax>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-profesor" >
                                         <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"/>
+                                        <f:ajax render="formulario-modal-profesor" listener="#{coordinadorDashboardControlador.limpiaModelo}"/>
                                     </h:commandLink>
                                 </h:form>
                             </div>
-                        </div>
+                        </h:panelGroup>
                     </div>
                     <div class="uk-card-body">
-                        <h:form id="formulario-coordinador-profesor">
-                            <ui:fragment rendered="#{empty dashboardControlador.collectionDataModel.wrappedData}">
+                        <h:form id="formulario-profesor">
+                            <ui:fragment rendered="#{empty coordinadorDashboardControlador.collectionDataModel.wrappedData}">
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
                                         <tr>
@@ -96,9 +96,9 @@
                                             <td colspan="5">
                                                 <span class="letra-titulo">
                                                     <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
-                                                        <f:param value="#{dashboardControlador.htmlDataTable.rowCount}"/>
-                                                        <f:param value="#{dashboardControlador.htmlDataTable.rowCount}"/>
-                                                        <f:param value="#{dashboardControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{coordinadorDashboardControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{coordinadorDashboardControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{coordinadorDashboardControlador.htmlDataTable.rowCount}"/>
                                                     </h:outputFormat>
                                                 </span>
                                             </td>
@@ -107,9 +107,9 @@
                                 </table>
                             </ui:fragment>
                             <h:dataTable
-                                    rendered="#{not empty dashboardControlador.collectionDataModel.wrappedData}"
-                                    value="#{dashboardControlador.collectionDataModel}"
-                                    binding="#{dashboardControlador.htmlDataTable}"
+                                    rendered="#{not empty coordinadorDashboardControlador.collectionDataModel.wrappedData}"
+                                    value="#{coordinadorDashboardControlador.collectionDataModel}"
+                                    binding="#{coordinadorDashboardControlador.htmlDataTable}"
                                     var="profesor"
                                     id="tabla-profesor"
                                     first="0"
@@ -136,8 +136,8 @@
                                 <h:column headerClass="uk-background-primary uk-text-center uk-width-1-6">
                                     <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
                                     <div class="uk-inline  ">
-                                        <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"></button>
-                                        <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
+                                        <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                                        <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
                                             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                 <li>
                                                     <h:link    outcome="detalle-profesor" styleClass="uk-text-primary" >
@@ -167,23 +167,20 @@
                                                     </h:commandLink>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </h:panelGroup>
                                     </div>
                                 </h:column>
                                 <f:facet name="footer">
-                                    <pa:pie-tabla htmlDataTable="#{dashboardControlador.htmlDataTable}"/>
+                                    <pa:pie-tabla htmlDataTable="#{coordinadorDashboardControlador.htmlDataTable}"/>
                                 </f:facet>
                             </h:dataTable>
                         </h:form>
                     </div>
                     <div class="uk-card-footer">
-                        <f:ajax render="formulario-coordinador-profesor:tabla-profesor formulario-paginacion-prof"
-                                onevent="limpiaSelect">
+                        <f:ajax render="formulario-coordinador-profesor:tabla-profesor formulario-paginacion-prof" onevent="limpiaSelect">
                             <h:form id="formulario-paginacion-prof">
-                                <div  styleClass="" pt:uk-grid="">
-                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
-                                        <pa:boton htmlDataTable="#{dashboardControlador.htmlDataTable}"/>
-                                    </div>
+                                <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                    <pa:boton htmlDataTable="#{coordinadorDashboardControlador.htmlDataTable}"/>
                                 </div>
                             </h:form>
                         </f:ajax>
@@ -191,6 +188,146 @@
                 </div>
             </div>
         </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-profesor" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-modal-profesor">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold">
+                        <span class="letra-titulo uk-text-capitalize">
+                            <h:outputText value="#{administracion['detallecoordinador.coordinator.modal.title.new.coordinator']}" rendered="#{empty coordinadorDashboardControlador.modelo.id}"/>
+                            <h:outputText value="#{administracion['detallecoordinador.coordinator.modal.title.edit.coordinator']}" rendered="#{not empty coordinadorDashboardControlador.modelo.id}"/>
+                        </span>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div class="uk-grid-small uk-grid uk-form-stacked" uk-grid="">
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogocoordinador.coordinator.detail.table.header.nick']}" for="modal-nick"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText
+                                            id="modal-nick"
+                                            pt:placeholder="#{administracion['catalogocoordinador.coordinator.detail.table.header.nick']}"
+                                            value="#{coordinadorDashboardControlador.modelo.apodo}"
+                                            styleClass="uk-input" >
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="modal-nick" styleClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-2-3@m ">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogocoordinador.coordinator.block.table.header.name']}" for="modal-nombre"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText
+                                            id="modal-nombre"
+                                            pt:placeholder="#{administracion['catalogocoordinador.coordinator.block.table.header.name']}"
+                                            value="#{coordinadorDashboardControlador.modelo.nombre}"
+                                            styleClass="uk-input">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="modal-nombre" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-2@m ">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['detallecoordinador.coordinator.active.modal.last.name']}" for="modal-paterno"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText
+                                            id="modal-paterno"
+                                            pt:placeholder="#{administracion['detallecoordinador.coordinator.active.modal.last.name']}"
+                                            value="#{coordinadorDashboardControlador.modelo.apellidoPaterno}"
+                                            styleClass="uk-input">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="modal-paterno" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-2@m ">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['detallecoordinador.coordinator.active.modal.mothers.last']}" for="modal-materno"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText
+                                            id="modal-materno"
+                                            pt:placeholder="#{administracion['detallecoordinador.coordinator.active.modal.mothers.last']}"
+                                            value="#{coordinadorDashboardControlador.modelo.apellidoMaterno}"
+                                            styleClass="uk-input">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="modal-materno" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-2-3@m uk-first-column">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['catalogocoordinador.coordinator.detail.table.header.email']}" for="modal-email"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText
+                                            id="modal-email"
+                                            pt:placeholder="#{administracion['catalogocoordinador.coordinator.detail.table.header.email']}"
+                                            value="#{coordinadorDashboardControlador.modelo.correoEletronico}"
+                                            styleClass="uk-input"
+                                            pt:type="email">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="30"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="modal-email" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m ">
+                                <h:outputLabel for="input-secret-editar-password" styleClass=" uk-text-capitalize uk-form-label" value="#{administracion['detalleprofesor.active.modal.header.password']}"/>
+                                <div class="uk-inline">
+                                    <h:commandLink styleClass="uk-form-icon uk-form-icon-flip">
+                                        <f:ajax/>
+                                        <h:graphicImage library="img" name="icono/ojo.svg" styleClass="uk-icon-image" pt:uk-icon="" onclick="cambiareditar()"/>
+                                    </h:commandLink>
+                                    <h:inputSecret styleClass="uk-input"
+                                                   id="input-secret-editar-password"
+                                                   pt:placeholder="#{administracion['detalleprofesor.active.modal.header.password']}"
+                                                   value="#{coordinadorDashboardControlador.modelo.contrasenia}">
+                                        <f:validateRequired/>
+                                        <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                    </h:inputSecret>
+                                </div>
+                                <h:message for="input-secret-editar-password" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['accept']}" rendered="#{empty coordinadorDashboardControlador.modelo.id}">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
+                                    render="@form formulario-profesor"
+                                    execute="@form"
+                                    listener="#{coordinadorDashboardControlador.agrega}"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" rendered="#{not empty coordinadorDashboardControlador.modelo.id}">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
+                                    render="@form formulario-profesor"
+                                    execute="@form"
+                                    listener="#{coordinadorDashboardControlador.actualiza}"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <script type="text/javascript">
+            var modalProfesor = document.querySelector('#modal-profesor');
+            document.addEventListener('DOMContentLoaded', function (evt) {
+                UIkit.util.on('#modal-profesor', 'beforeshow', function () {
+                    modalProfesor.querySelector('.uk-modal-body').click();
+                })
+            });
+            function cierraModal(data, modal) {
+                if (typeof data === 'undefined') {
+                    switch (modal) {
+                        case "modalProfesor":
+                            if (modalProfesor.querySelector('.uk-text-danger') === null) {
+                                UIkit.modal(modalProfesor).hide();
+                            }
+                            break;
+                    }
+                }
+            }
+        </script>
     </ui:define>
 </ui:composition>
 </html>

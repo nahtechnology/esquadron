@@ -10,6 +10,7 @@ import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 public class ProfesorModelo extends PersonaModelo {
@@ -24,15 +25,21 @@ public class ProfesorModelo extends PersonaModelo {
     @NotNull
     private List<GrupoModelo> grupoModeloLista;
 
+    @NotNull
+    @Size(max = 100)
+    private String correoEletronico;
+
     public ProfesorModelo() {
     }
 
     public ProfesorModelo(PersonaEntidad personaEntidad) {
         super(personaEntidad);
     }
+
     public ProfesorModelo(ProfesorEntidad profesorEntidad){
         super(profesorEntidad);
         this.id = profesorEntidad.getId();
+        correoEletronico = profesorEntidad.getCorreoEletronico();
     }
 
     public ProfesorModelo(Integer id) {
@@ -61,5 +68,13 @@ public class ProfesorModelo extends PersonaModelo {
 
     public void setGrupoModeloLista(List<GrupoModelo> grupoModeloLista) {
         this.grupoModeloLista = grupoModeloLista;
+    }
+
+    public String getCorreoEletronico() {
+        return correoEletronico;
+    }
+
+    public void setCorreoEletronico(String correoEletronico) {
+        this.correoEletronico = correoEletronico;
     }
 }

@@ -4,6 +4,8 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -29,6 +31,7 @@ import java.util.List;
 public class ProfesorEntidad extends PersonaEntidad {
 
     private Integer id;
+    private String correoEletronico;
     private EscuelaEntidad escuelaEntidad;
     private List<GrupoEntidad> grupoEntidadLista;
 
@@ -66,6 +69,18 @@ public class ProfesorEntidad extends PersonaEntidad {
 
     public void setGrupoEntidadLista(List<GrupoEntidad> grupoEntidadLista) {
         this.grupoEntidadLista = grupoEntidadLista;
+    }
+
+    @Basic
+    @Column(name = "correo_electronico")
+    @NotNull
+    @Size(max = 100)
+    public String getCorreoEletronico() {
+        return correoEletronico;
+    }
+
+    public void setCorreoEletronico(String correoEletronico) {
+        this.correoEletronico = correoEletronico;
     }
 
 }

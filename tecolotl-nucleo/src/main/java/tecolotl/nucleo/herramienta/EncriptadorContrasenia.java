@@ -16,8 +16,8 @@ import java.util.logging.Logger;
 /**
  * Herramienta para encriptar las contraseñas
  * de los usuarios.
- * v1.0
- * Jesus Caballero Luna
+ * @version  1.0
+ * @author Jesus Caballero Luna
  */
 @Singleton
 public class EncriptadorContrasenia {
@@ -36,9 +36,8 @@ public class EncriptadorContrasenia {
      */
     public byte[] encrypt(String contrasenia){
         try{
-            cipher = iniciaCifrado(1);
+            cipher = iniciaCifrado(Cipher.ENCRYPT_MODE);
             return cipher.doFinal(contrasenia.getBytes(StandardCharsets.UTF_8));
-            //return cipher.doFinal("Cieñit0L1ñd0#/5200".getBytes(StandardCharsets.UTF_8));
         }catch(Exception e){
             logger.fine("Error al encriptar la contraseña: ".concat(e.getMessage()).concat("Contacte a su administrador."));
         }
@@ -52,11 +51,8 @@ public class EncriptadorContrasenia {
      */
     public String decrypt(byte[] contrasenia){
         try{
-            cipher = iniciaCifrado(2);
-            //String tmp = Base64.getEncoder().encodeToString(contrasenia);
-            //System.out.println(tmp);
+            cipher = iniciaCifrado(Cipher.DECRYPT_MODE);
             return new String(cipher.doFinal(contrasenia), StandardCharsets.UTF_8);
-            //return new String(cipher.doFinal(Base64.getDecoder().decode(tmp)));
         }catch(Exception e){
             logger.fine("Error al desencriptar la contraseña: ".concat(e.getMessage()).concat("Contacte a su adminitrador."));
         }
@@ -78,15 +74,6 @@ public class EncriptadorContrasenia {
         cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(cipherMode, secretKeySpec, ivParameterSpec);
         return cipher;
-    }
-
-    public static void main(String[] args) {
-        String str1 = new String("hola*");
-        byte[] bytes = str1.getBytes(StandardCharsets.UTF_8);
-        String str2 = new String(bytes, StandardCharsets.UTF_8);
-
-        System.out.println("hola*".equals(str2));
-        System.out.println(str2);
     }
 
 }
