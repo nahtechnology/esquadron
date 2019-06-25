@@ -39,8 +39,12 @@ public class DashboardControlador extends TablaControlador<ProfesorDashboardMode
     }
 
     public void actualiza() {
-        logger.info(modelo.toString());
         profesorSesionBean.actualiza(modelo);
+    }
+
+    public void elimina() {
+        profesorSesionBean.elimina(modelo.getId());
+        actualizaDataModel();
     }
 
     @Override

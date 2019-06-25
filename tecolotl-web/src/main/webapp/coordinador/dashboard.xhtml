@@ -8,6 +8,13 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
 <ui:composition template="/template/administracion/dashboard.xhtml">
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></a></li>
+            <li><a href="#"></a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">grupos</span></li>
+        </ul>
+    </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
@@ -117,23 +124,23 @@
                                     styleClass="uk-table uk-table-divider uk-table-middle uk-table-small uk-table-hover uk-text-center tabla-profesor-dropdown"
                                     footerClass="uk-background-primary uk-text-left"
                                     columnClasses="uk-text-left,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
-                                <h:column headerClass="uk-text-left uk-background-primary uk-width-1-3">
+                                <h:column headerClass="uk-text-left uk-background-primary uk-table-expand">
                                     <f:facet name="header"><span class="letra-titulo">nombre profesor</span></f:facet>
                                     #{profesor.apellidoPaterno} #{profesor.apellidoMaterno} #{profesor.nombre}
                                 </h:column>
-                                <h:column headerClass="uk-background-primary uk-text-center uk-width-1-6">
-                                    <f:facet name="header"><span class="letra-titulo">número de grupos</span></f:facet>
+                                <h:column headerClass="uk-text-left uk-background-primary uk-width-small">
+                                    <f:facet name="header"><span class="letra-titulo">apodo</span></f:facet>
+                                    #{profesor.apodo}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-text-center uk-width-small">
+                                    <f:facet name="header"><span class="letra-titulo">grupos</span></f:facet>
                                     #{profesor.totalGrupos}
                                 </h:column>
-                                <h:column headerClass="uk-background-primary uk-text-center uk-width-1-6">
+                                <h:column headerClass="uk-background-primary uk-text-center uk-width-small">
                                     <f:facet name="header"><span class="letra-titulo">tareas asignadas</span></f:facet>
                                     NaN
                                 </h:column>
-                                <h:column headerClass="uk-background-primary uk-text-center uk-width-1-6">
-                                    <f:facet name="header"><span class="letra-titulo">tareas por asignar</span></f:facet>
-                                    Nan
-                                </h:column>
-                                <h:column headerClass="uk-background-primary uk-text-center uk-width-1-6">
+                                <h:column headerClass="uk-background-primary uk-text-center uk-width-small">
                                     <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
                                     <div class="uk-inline  ">
                                         <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
@@ -149,14 +156,8 @@
                                                     <h:commandLink   pt:uk-toggle="target: #modal-editar-prof" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="Editar"/></span>
-                                                        <f:ajax />
-                                                    </h:commandLink>
-                                                </li>
-                                                <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-eliminar" styleClass="uk-text-primary" >
-                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="Eliminar"/></span>
-                                                        <f:ajax/>
+                                                        <f:setPropertyActionListener value="#{profesor}" target="#{coordinadorDashboardControlador.modelo}"/>
+                                                        <f:ajax render="formulario-eliminar"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li>
@@ -164,6 +165,15 @@
                                                         <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="Bloqueo"/></span>
                                                         <f:ajax/>
+                                                    </h:commandLink>
+                                                </li>
+                                                <li class="uk-nav-divider"/>
+                                                <li>
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-eliminar" styleClass="uk-text-danger" >
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="Eliminar"/></span>
+                                                        <f:setPropertyActionListener value="#{profesor}" target="#{coordinadorDashboardControlador.modelo}"/>
+                                                        <f:ajax render="formulario-eliminar"/>
                                                     </h:commandLink>
                                                 </li>
                                             </ul>
@@ -194,8 +204,8 @@
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold">
                         <span class="letra-titulo uk-text-capitalize">
-                            <h:outputText value="#{administracion['detallecoordinador.coordinator.modal.title.new.coordinator']}" rendered="#{empty coordinadorDashboardControlador.modelo.id}"/>
-                            <h:outputText value="#{administracion['detallecoordinador.coordinator.modal.title.edit.coordinator']}" rendered="#{not empty coordinadorDashboardControlador.modelo.id}"/>
+                            <h:outputText value="nuevo profesor" rendered="#{empty coordinadorDashboardControlador.modelo.id}"/>
+                            <h:outputText value="actualizar profesor" rendered="#{not empty coordinadorDashboardControlador.modelo.id}"/>
                         </span>
                         </p>
                     </div>
@@ -277,7 +287,7 @@
                                 <div class="uk-inline">
                                     <h:commandLink styleClass="uk-form-icon uk-form-icon-flip">
                                         <f:ajax/>
-                                        <h:graphicImage library="img" name="icono/ojo.svg" styleClass="uk-icon-image" pt:uk-icon="" onclick="cambiareditar()"/>
+                                        <h:graphicImage library="img" name="icono/ojo.svg" styleClass="uk-icon-image" pt:uk-icon=""/>
                                     </h:commandLink>
                                     <h:inputSecret styleClass="uk-input"
                                                    id="input-secret-editar-password"
@@ -293,14 +303,14 @@
                     </div>
                     <div class="uk-modal-footer uk-text-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['accept']}" rendered="#{empty coordinadorDashboardControlador.modelo.id}">
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['add']}" rendered="#{empty coordinadorDashboardControlador.modelo.id}">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalProfesor'); limpiaSelect(data); }"
                                     render="@form formulario-profesor"
                                     execute="@form"
                                     listener="#{coordinadorDashboardControlador.agrega}"/>
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" rendered="#{not empty coordinadorDashboardControlador.modelo.id}">
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalProfesor'); limpiaSelect(data); }"
                                     render="@form formulario-profesor"
                                     execute="@form"
                                     listener="#{coordinadorDashboardControlador.actualiza}"/>
@@ -309,21 +319,65 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-eliminar" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header fondo-peligro">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            <h:outputFormat value="eliminar profesor {0}" styleClass="letra-titulo">
+                                <f:param value="#{coordinadorDashboardControlador.modelo.apodo}"/>
+                            </h:outputFormat>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <h:outputFormat value="está seguro que desea elimiar al profesor(a) {0}">
+                            <f:param value="#{coordinadorDashboardControlador.modelo.apellidoPaterno.concat(' ').concat(coordinadorDashboardControlador.modelo.apellidoMaterno)
+                            .concat(' ').concat(coordinadorDashboardControlador.modelo.apellidoMaterno)}"/>
+                        </h:outputFormat>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" >#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
+                            <f:ajax execute="@form"
+                                    render="formulario-profesor"
+                                    onevent="function funcion(data) { limpiaSelect(data) }"
+                                    listener="#{coordinadorDashboardControlador.elimina}"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
         <script type="text/javascript">
             var modalProfesor = document.querySelector('#modal-profesor');
+            var modalEliminar = document.querySelector('#modal-eliminar');
             document.addEventListener('DOMContentLoaded', function (evt) {
                 UIkit.util.on('#modal-profesor', 'beforeshow', function () {
                     modalProfesor.querySelector('.uk-modal-body').click();
-                })
+                });
+                UIkit.util.on('#modal-eliminar', 'beforeshow', function () {
+                    modalEliminar.querySelector('.uk-modal-body').click();
+                });
+                limpiaSelect();
             });
             function cierraModal(data, modal) {
-                if (typeof data === 'undefined') {
+                if (data.status === 'success') {
                     switch (modal) {
                         case "modalProfesor":
                             if (modalProfesor.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalProfesor).hide();
                             }
                             break;
+                        default :
+                            console.error('modal aun no programado:'.concat(modal))
+                    }
+                }
+            }
+            function limpiaSelect(data) {
+                if (typeof data === 'undefined') {
+                    document.querySelector('.uk-select').removeAttribute('size');
+                } else {
+                    if (data.status === 'success') {
+                        document.querySelector('.uk-select').removeAttribute('size');
                     }
                 }
             }
