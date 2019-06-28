@@ -33,6 +33,7 @@ import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -80,6 +81,8 @@ public class GrupoSesionBeanTest {
             Assert.assertNotNull(grupoModelo.getId());
             Assert.assertNotNull(grupoModelo.getGrupo());
             Assert.assertNotNull(grupoModelo.getGrado());
+            Assert.assertNotNull(grupoModelo.getInicio());
+            Assert.assertNotNull(grupoModelo.getFin());
             Assert.assertNotNull(grupoModelo.getProfesorModelo());
         }
     }
@@ -89,6 +92,8 @@ public class GrupoSesionBeanTest {
         GrupoModelo grupoModelo = new GrupoModelo();
         grupoModelo.setGrado((short)6);
         grupoModelo.setGrupo('D');
+        grupoModelo.setInicio(new Date());
+        grupoModelo.setFin(new Date());
         grupoModelo.setProfesorModelo(new ProfesorModelo(-42));
         grupoSesionBean.inserta(grupoModelo);
         Assert.assertNotNull(grupoModelo);
@@ -99,6 +104,8 @@ public class GrupoSesionBeanTest {
         GrupoModelo grupoModelo = new GrupoModelo(3);
         grupoModelo.setGrado((short)6);
         grupoModelo.setGrupo('A');
+        grupoModelo.setInicio(new Date());
+        grupoModelo.setFin(new Date());
         grupoModelo.setProfesorModelo(new ProfesorModelo(1));
         int grupoAct = grupoSesionBean.actualiza(grupoModelo);
         Assert.assertFalse(grupoAct == 0);

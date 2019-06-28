@@ -49,6 +49,8 @@ public class GrupoEntidadTest {
             Assert.assertNotNull(grupoEntidad.getId());
             Assert.assertNotNull(grupoEntidad.getGrado());
             Assert.assertNotNull(grupoEntidad.getGrupo());
+            Assert.assertNotNull(grupoEntidad.getInicio());
+            Assert.assertNotNull(grupoEntidad.getFin());
             Assert.assertNotNull(grupoEntidad.getProfesorEntidad());
         }
     }

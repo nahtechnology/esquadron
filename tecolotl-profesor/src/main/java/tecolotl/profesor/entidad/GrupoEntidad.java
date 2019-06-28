@@ -2,6 +2,7 @@ package tecolotl.profesor.entidad;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
@@ -14,6 +15,8 @@ public class GrupoEntidad {
     private Integer id;
     private Short grado;
     private char grupo;
+    private Date inicio;
+    private Date fin;
     private ProfesorEntidad profesorEntidad;
 
     public GrupoEntidad() {
@@ -49,6 +52,24 @@ public class GrupoEntidad {
 
     public void setGrupo(char grupo) {
         this.grupo = grupo;
+    }
+
+    @NotNull
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    @NotNull
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -38,6 +38,8 @@ public class GrupoSesionBean {
         GrupoEntidad grupoEntidad = new GrupoEntidad();
         grupoEntidad.setGrupo(grupoModelo.getGrupo());
         grupoEntidad.setGrado(grupoModelo.getGrado());
+        grupoEntidad.setInicio(grupoModelo.getInicio());
+        grupoEntidad.setFin(grupoModelo.getFin());
         grupoEntidad.setProfesorEntidad(new ProfesorEntidad(grupoModelo.getProfesorModelo().getId()));
         entityManager.persist(grupoEntidad);
     }

@@ -4,6 +4,7 @@ import tecolotl.profesor.entidad.GrupoEntidad;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 public class GrupoModelo {
 
@@ -15,6 +16,12 @@ public class GrupoModelo {
 
     @NotNull
     private char grupo;
+
+    @NotNull
+    private Date inicio;
+
+    @NotNull
+    private Date fin;
 
     @NotNull
     @Valid
@@ -31,6 +38,8 @@ public class GrupoModelo {
         this.id = grupoEntidad.getId();
         this.grado = grupoEntidad.getGrado();
         this.grupo = grupoEntidad.getGrupo();
+        this.inicio = grupoEntidad.getInicio();
+        this.fin = grupoEntidad.getFin();
         this.profesorModelo = new ProfesorModelo(grupoEntidad.getProfesorEntidad());
     }
 
@@ -56,6 +65,22 @@ public class GrupoModelo {
 
     public void setGrupo(char grupo) {
         this.grupo = grupo;
+    }
+
+    public Date getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(Date inicio) {
+        this.inicio = inicio;
+    }
+
+    public Date getFin() {
+        return fin;
+    }
+
+    public void setFin(Date fin) {
+        this.fin = fin;
     }
 
     public ProfesorModelo getProfesorModelo() {
