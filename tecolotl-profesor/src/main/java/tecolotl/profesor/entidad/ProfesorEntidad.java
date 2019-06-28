@@ -21,12 +21,15 @@ import java.util.List;
             name = "ProfesorEntidad.buscaTotalGrupos" ,
             query = "SELECT COUNT(g.profesorEntidad.id), p.id FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
                     "WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo GROUP BY g.profesorEntidad.id, p.id"
-        )/*,
+        ),
+    //TODO query TotalAlumnos por profesor
         @NamedQuery(
-                name = "ProfesorEntidad.buscaAlumnos",
-                query = "SELECT COUNT() FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
-                        "WHERE "
-        )*/
+                name = "ProfesorEntidad.totalAlumnos",
+                query = "SELECT COUNT(ga.id_alumno), p.nombre FROM ProfesorEntidad p " +
+                    "LEFT JOIN p.grupoEntidadLista g " +
+                    "LEFT JOIN g.grupoAlumnoEntidad ga " +
+                    "WHERE p.profesorEntidad.id =: id GROUP BY p.id, ga.idAlumno"
+        )
 })
 public class ProfesorEntidad extends PersonaEntidad {
 

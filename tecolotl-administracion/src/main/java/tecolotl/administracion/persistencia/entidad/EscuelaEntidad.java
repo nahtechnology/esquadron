@@ -21,7 +21,21 @@ import java.util.Objects;
 	@NamedQuery(
 			name = "EscuelaEntidad.existe",
 			query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
-	)
+	),//TODO querys de TotalAlumnos y TotalProfesores por escuela
+    @NamedQuery(
+            name = "EscuelaEntidad.totalAlumnos",
+            query = "SELECT COUNT(pga.id), p.nombre FROM ProfesorEntidad p "+
+                "LEFT JOIN p.GrupoEntidad pg " +
+                "LEFT JOIN pg.GrupoAlumnoEntidad pga " +
+                "WHERE p.escuelaEntidad.claveCentroTrabajo =: claveCentroTrabajo GROUP BY pga.id, p.nombre"
+    ),
+    @NamedQuery(
+            name = "EscuelaEntidad.totalProfesores",
+            query = "SELECT COUNT(p.id), e.escuelaEntidad.nombre FROM ProfesorEntidad p " +
+                "LEFT JOIN p.EscuelaEntidad e " +
+                "WHERE p.escuelaEntidad.claveCentroTrabajo =: claveCentroTrabajo GROUP BY p.id, e.escuelaEntidad.nombre"
+    )
+
 })
 public class EscuelaEntidad {
 
