@@ -1,17 +1,16 @@
 package tecolotl.administracion.modelo.escuela;
 
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
-import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
+import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
 
-    //crear un grupo de validacion para la clave centro de trabajo
-
-    @NotNull(message = "Clave centro de trabajo no puede ser nulo", groups = {ProfesorValidacion.class})
+    @NotNull(message = "Clave centro de trabajo no puede ser nulo", groups = {EscuelaLlavePrimariaValidacion.class})
     @Size(min = 10, max = 14)
     private String claveCentroTrabajo;
 
@@ -101,5 +100,16 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     @Override
     public int hashCode() {
         return Objects.hash(claveCentroTrabajo);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EscuelaBaseModelo.class.getSimpleName() + "[", "]")
+                .add("claveCentroTrabajo='" + claveCentroTrabajo + "'")
+                .add("nombre='" + nombre + "'")
+                .add("domicilio='" + domicilio + "'")
+                .add("numeroInterior='" + numeroInterior + "'")
+                .add("numeroExterior='" + numeroExterior + "'")
+                .toString();
     }
 }

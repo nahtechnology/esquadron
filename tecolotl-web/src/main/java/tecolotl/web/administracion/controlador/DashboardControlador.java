@@ -74,16 +74,33 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
 
     public void buscaColonias() {
         direccionModelo = direccionSesionBean.busca(codigoPostal);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        FacesMessage facesMessage;
         if (direccionModelo == null || direccionModelo.getColoniaModeloLista() == null || direccionModelo.getColoniaModeloLista().isEmpty()) {
-            FacesMessage facesMessage = new FacesMessage(resourceBundle.getString("dashboard.validation.zipcode"));
+            facesMessage = new FacesMessage(resourceBundle.getString("dashboard.validation.zipcode"));
             facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
-            FacesContext facesContext = FacesContext.getCurrentInstance();
             facesContext.addMessage(uiInputCodigoPostal.getClientId(facesContext), facesMessage);
         } else {
             DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
             direccionModelo.setEstado(direccionModelo1.getEstado());
             direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+            facesMessage = new FacesMessage(resourceBundle.getString("dashboard.success.zipcode"));
+            facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
+            facesContext.addMessage(uiInputCodigoPostal.getClientId(facesContext), facesMessage);
         }
+    }
+
+    public void actualizaDetalleModelo() {
+        escuelaDetalleModelo = escuelaSesionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+        codigoPostal = escuelaDetalleModelo.getColoniaModelo().getCodigoPostal();
+        direccionModelo = direccionSesionBean.busca(codigoPostal);
+        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
+        direccionModelo.setEstado(direccionModelo1.getEstado());
+        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
+    }
+
+    public void limpiaDetalleModelo() {
+        escuelaDetalleModelo = new EscuelaDetalleModelo();
     }
 
     public void inserta() {
@@ -107,6 +124,11 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
 
     public void elimina() {
         escuelaSesionBean.elimina(escuelaBaseModelo.getClaveCentroTrabajo());
+        actualizaDataModel();
+    }
+
+    public void actualiza() {
+        escuelaSesionBean.actualizar(escuelaDetalleModelo);
         actualizaDataModel();
     }
 

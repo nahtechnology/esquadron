@@ -39,6 +39,7 @@ import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 import javax.inject.Inject;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 @RunWith(Arquillian.class)
 public class ProfesorSesionBeanTest {
@@ -102,18 +103,18 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaClaveCen(){
-        Collection<ProfesorDashboardModelo> profesorModeloLista = profesorSesionBean.busca("21DBS0029K");
+        Map<Integer, ProfesorDashboardModelo> profesorModeloLista = profesorSesionBean.busca("21DBS0029K");
         Assert.assertNotNull(profesorModeloLista);
         Assert.assertFalse(profesorModeloLista.isEmpty());
-        for(ProfesorDashboardModelo profesorModelo : profesorModeloLista){
-            Assert.assertNotNull(profesorModelo);
-            Assert.assertNotNull(profesorModelo.getId());
-            Assert.assertNotNull(profesorModelo.getApodo());
-            Assert.assertNotNull(profesorModelo.getNombre());
-            Assert.assertNotNull(profesorModelo.getApellidoPaterno());
-            Assert.assertNotNull(profesorModelo.getApellidoMaterno());
-            Assert.assertNotNull(profesorModelo.getContrasenia());
-            Assert.assertFalse(profesorModelo.getTotalGrupos() < 0);
+        for(Map.Entry<Integer, ProfesorDashboardModelo> profesorModeloEntry : profesorModeloLista.entrySet()){
+            Assert.assertNotNull(profesorModeloEntry.getValue());
+            Assert.assertNotNull(profesorModeloEntry.getValue().getId());
+            Assert.assertNotNull(profesorModeloEntry.getValue().getApodo());
+            Assert.assertNotNull(profesorModeloEntry.getValue().getNombre());
+            Assert.assertNotNull(profesorModeloEntry.getValue().getApellidoPaterno());
+            Assert.assertNotNull(profesorModeloEntry.getValue().getApellidoMaterno());
+            Assert.assertNotNull(profesorModeloEntry.getValue().getContrasenia());
+            Assert.assertFalse(profesorModeloEntry.getValue().getTotalGrupos() < 0);
         }
     }
 

@@ -37,6 +37,17 @@
     text-transform: uppercase !important;
 }
 
+.uk-text-primary {
+    font-size: 14px;
+}
+
+.uk-text-success {
+    font-size: 14px;
+}
+
+.uk-text-waring {
+    font-size: 14px;
+}
 
 .text-color-level1{
     color: #1E87F0;

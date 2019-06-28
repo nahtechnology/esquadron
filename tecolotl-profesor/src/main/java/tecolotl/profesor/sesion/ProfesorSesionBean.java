@@ -1,11 +1,14 @@
 package tecolotl.profesor.sesion;
 
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion;
 import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.ProfesorEntidad;
 import tecolotl.profesor.modelo.ProfesorDashboardModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
+import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -40,7 +43,7 @@ public class ProfesorSesionBean {
      * @param profesorModelo dato para insertar un profesor.
      */
     public void inserta(@NotNull ProfesorModelo profesorModelo){
-        validadorSessionBean.validacion(profesorModelo, ProfesorValidacion.class);
+        validadorSessionBean.validacion(profesorModelo, ProfesorNuevoValidacion.class, PersonaNuevaValidacion.class, EscuelaLlavePrimariaValidacion.class);
         ProfesorEntidad profesorEntidad = new ProfesorEntidad();
         profesorEntidad.setNombre(profesorModelo.getNombre());
         profesorEntidad.setApellidoPaterno(profesorModelo.getApellidoPaterno());
@@ -50,6 +53,7 @@ public class ProfesorSesionBean {
         profesorEntidad.setCorreoEletronico(profesorModelo.getCorreoEletronico());
         profesorEntidad.setEscuelaEntidad(new EscuelaEntidad(profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo()));
         entityManager.persist(profesorEntidad);
+        profesorModelo.setId(profesorEntidad.getId());
     }
 
     /**
@@ -77,7 +81,7 @@ public class ProfesorSesionBean {
      * @param claveCentrodeTrabajo id de la escuela para listar los profesores.
      * @return Lista de ProfesorModelo.
      */
-    public Collection<ProfesorDashboardModelo> busca(@NotNull String claveCentrodeTrabajo){
+    public Map<Integer, ProfesorDashboardModelo> busca(@NotNull String claveCentrodeTrabajo){
         TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaIdEscuela", ProfesorEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentrodeTrabajo);
         Map<Integer, ProfesorDashboardModelo> profesorDashboardModeloMapa = typedQuery.getResultList().stream()
@@ -86,7 +90,7 @@ public class ProfesorSesionBean {
                 .setParameter("claveCentroTrabajo", claveCentrodeTrabajo).getResultList().forEach(objects -> {
             profesorDashboardModeloMapa.get(objects[1]).setTotalGrupos(((Long)objects[0]).intValue());
         });
-        return profesorDashboardModeloMapa.values();
+        return profesorDashboardModeloMapa;
     }
     /**
      * Actualiza los datos de un profesor
@@ -98,7 +102,12 @@ public class ProfesorSesionBean {
         CriteriaUpdate<ProfesorEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ProfesorEntidad.class);
         Root<ProfesorEntidad> root = criteriaUpdate.from(ProfesorEntidad.class);
         Predicate predicate = criteriaBuilder.equal(root.get("id"), profesorModelo.getId());
-        criteriaUpdate.set(root.get("contrasenia"), profesorModelo.getContrasenia());
+        criteriaUpdate.set(root.get("contrasenia"), profesorModelo.getContrasenia())
+                .set(root.get("nombre"), profesorModelo.getNombre())
+                .set(root.get("apellidoPaterno"), profesorModelo.getApellidoPaterno())
+                .set(root.get("apellidoMaterno"), profesorModelo.getApellidoMaterno())
+                .set(root.get("apodo"), profesorModelo.getApodo())
+                .set(root.get("correoEletronico"), profesorModelo.getCorreoEletronico());
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }

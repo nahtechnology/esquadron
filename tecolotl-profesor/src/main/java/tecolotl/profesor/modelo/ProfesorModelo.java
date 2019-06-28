@@ -6,16 +6,19 @@ import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.profesor.entidad.ProfesorEntidad;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
+import tecolotl.profesor.validacion.ProfesorLlavePrimaria;
+import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class ProfesorModelo extends PersonaModelo {
 
-    @NotNull(message = "ID Profesor no puede ser nulo", groups = {GrupoProfesorValidacion.class})
+    @NotNull(groups = {ProfesorLlavePrimaria.class})
     private Integer id;
 
     @NotNull
@@ -25,8 +28,8 @@ public class ProfesorModelo extends PersonaModelo {
     @NotNull
     private List<GrupoModelo> grupoModeloLista;
 
-    @NotNull
-    @Size(max = 100)
+    @NotNull(groups = {ProfesorNuevoValidacion.class})
+    @Size(max = 100, groups = {ProfesorNuevoValidacion.class})
     private String correoEletronico;
 
     public ProfesorModelo() {
@@ -40,6 +43,15 @@ public class ProfesorModelo extends PersonaModelo {
         super(profesorEntidad);
         this.id = profesorEntidad.getId();
         correoEletronico = profesorEntidad.getCorreoEletronico();
+    }
+
+    public ProfesorModelo(ProfesorModelo profesorModelo) {
+        id = profesorModelo.getId();
+        setApodo(profesorModelo.getApodo());
+        setApellidoPaterno(profesorModelo.getApellidoPaterno());
+        setApellidoMaterno(profesorModelo.getApellidoMaterno());
+        setNombre(profesorModelo.getNombre());
+        setCorreoEletronico(profesorModelo.getCorreoEletronico());
     }
 
     public ProfesorModelo(Integer id) {
@@ -76,5 +88,16 @@ public class ProfesorModelo extends PersonaModelo {
 
     public void setCorreoEletronico(String correoEletronico) {
         this.correoEletronico = correoEletronico;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ProfesorModelo.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("escuelaBaseModelo=" + escuelaBaseModelo)
+                .add("grupoModeloLista=" + grupoModeloLista)
+                .add("correoEletronico='" + correoEletronico + "'")
+                .add(super.toString())
+                .toString();
     }
 }

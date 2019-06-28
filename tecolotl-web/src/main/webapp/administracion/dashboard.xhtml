@@ -44,7 +44,7 @@
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right"/>Alumnos Asignados</span>
                 <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary">2.134</h1>
                 <div class="uk-text-small">
-                    <span class="uk-text-success">15%</span> porcentaje utilizados.
+                    <span class="uk-text-success">15%</span> utilizados.
                 </div>
             </div>
             <div class="uk-text-center">
@@ -109,7 +109,14 @@
                                 </h:form>
                             </div>
                             <div class="uk-width-expand uk-text-right panel-icons">
-                                <button class="uk-icon-button uk-icon-link" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-escuela"/>
+                                <h:form id="formulario-agregar-escuela">
+                                    <h:commandLink styleClass="uk-icon-link"
+                                                   pt:uk-icon="icon: plus-circle; ratio: 1.5"
+                                                   pt:uk-toggle="target: #modal-escuela"
+                                                   pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000">
+                                        <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela"/>
+                                    </h:commandLink>
+                                </h:form>
                             </div>
                         </div>
                     </div>
@@ -188,20 +195,28 @@
                                                 <li>
                                                     <h:link styleClass="uk-text-primary" outcome="detalle">
                                                         <h:outputText pt:uk-icon="icon:  file-text" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['detail']}" styleClass="primera-mayuscula"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['detail']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:param name="escuela" value="#{escuela.claveCentroTrabajo}"/>
                                                     </h:link>
                                                 </li>
                                                 <li>
+                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-escuela" action="#{escuelaDashboardControlador.actualizaDetalleModelo}">
+                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['edit']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
+                                                        <f:ajax render="formulario-escuela" onevent="function cierra(data) { abreModal('modal-escuela') }"/>
+                                                    </h:commandLink>
+                                                </li>
+                                                <li>
                                                     <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo" rendered="#{escuela.activo}">
                                                         <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['block']}"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['block']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                                                         <f:ajax render="formulario-bloqueo" onevent="function funcion(data) { abreModal('modal-bloqueo') }"/>
                                                     </h:commandLink>
                                                     <h:commandLink styleClass="uk-text-primary" rendered="#{not escuela.activo}" action="#{escuelaDashboardControlador.activa}">
                                                         <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['active']}"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['active']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
                                                         <f:ajax render="@form"/>
                                                     </h:commandLink>
@@ -210,7 +225,7 @@
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-eliminar">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
                                                         <f:ajax render="formulario-eliminar" onevent="abreModal('modal-eliminar')"/>
                                                     </h:commandLink>
@@ -249,7 +264,10 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-escuela" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
-                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize"><h:outputText value="#{administracion['dashboard.modal.add.title']}" styleClass="letra-titulo"/></p>
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            <h:outputText value="#{administracion['dashboard.modal.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"/>
+                            <h:outputText value="#{administracion['dashboard.modal.update.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"/>
+                        </p>
                     </div>
                     <div class="uk-modal-body">
                         <div uk-grid="">
@@ -258,11 +276,12 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-cct"
+                                                 disabled="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
                                                  pt:placeholder="#{administracion['dashboard.modal.cct']}"
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
                                                  validator="#{escuelaValidacion.validate}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="11" maximum="110"/>
+                                        <f:validateLength minimum="10" maximum="14"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-cct" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
@@ -293,7 +312,11 @@
                                         <f:validateLength minimum="4" maximum="5"/>
                                     </h:inputText>
                                 </div>
-                                <h:message for="input-escuela-codigo-postal" errorClass="uk-text-danger uk-display-block primera-mayuscula" id="error-input-escuela-codigo-postal" warnClass="uk-text-warning"/>
+                                <h:message for="input-escuela-codigo-postal"
+                                           infoClass="uk-text-primary uk-display-block primera-mayuscula"
+                                           errorClass="uk-text-danger uk-display-block primera-mayuscula"
+                                           id="error-input-escuela-codigo-postal"
+                                           warnClass="uk-text-warning uk-display-block primera-mayuscula"/>
                             </div>
                             <div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
                                 <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">
@@ -391,11 +414,17 @@
                         <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
                             <f:ajax render="@form" onevent="function funcion(data) { limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-escuela formulario-paginacion-escuela"
                                     listener="#{escuelaDashboardControlador.inserta}"
                                     onevent="function fun(data) { cierraModal(data, 'modal-escuela'); limpiaSelect(data) }"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
+                            <f:ajax execute="@form"
+                                    render="@form formulario-tabla-escuela formulario-paginacion-escuela"
+                                    listener="#{escuelaDashboardControlador.actualiza}"
+                                    onevent="function actualizacion(data) { cierraModal(data, 'modal-escuela'); limpiaSelect(data) }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -496,6 +525,8 @@
                             entrada.value = '';
                         });
                         break;
+                    default:
+                        console.error('Opcion aun no programada:'.concat(modal));
                 }
             }
 
@@ -513,6 +544,8 @@
                                 UIkit.modal(modalMotivoBloqueo).hide();
                             }
                             break;
+                        default:
+                            console.error('Opcion aun no programada:'.concat(modal));
                     }
                 }
             }
@@ -520,7 +553,7 @@
             function abreModal(modal) {
                 switch (modal) {
                     case 'modal-escuela':
-
+                        modalEscuela.querySelector('.uk-modal-header').click();
                         break;
                     case 'modal-bloqueo':
                         var objecto = modalMotivoBloqueo.querySelector('.uk-form-label');
@@ -529,6 +562,8 @@
                     case 'modal-eliminar':
                         modalEliminar.querySelector('.uk-text-center').click();
                         break;
+                    default:
+                        console.error('Opcion aun no programada:'.concat(modal));
                 }
             }
         </script>

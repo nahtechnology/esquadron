@@ -110,20 +110,18 @@ public class EscuelaSesionBean implements Serializable {
 	public int actualizar(@NotNull @Valid EscuelaDetalleModelo escuelaDetalleModelo) {
 		logger.fine("Escuela a actualizar:".concat(escuelaDetalleModelo.toString()));
 	    int cambios = 0;
-		if (escuelaDetalleModelo != null) {
-			CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-			CriteriaUpdate<EscuelaEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(EscuelaEntidad.class);
-			Root<EscuelaEntidad> root = criteriaUpdate.from(EscuelaEntidad.class);
-			Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), escuelaDetalleModelo.getClaveCentroTrabajo());
-			criteriaUpdate.set(root.get("nombre"), escuelaDetalleModelo.getNombre());
-			criteriaUpdate.set(root.get("domicilio"), escuelaDetalleModelo.getDomicilio());
-			criteriaUpdate.set(root.get("numeroInterior"), escuelaDetalleModelo.getNumeroInterior());
-			criteriaUpdate.set(root.get("numeroExterior"), escuelaDetalleModelo.getNumeroExterior());
-			ColoniaEntidad coloniaEntidad = new ColoniaEntidad(escuelaDetalleModelo.getColoniaModelo().getId());
-			criteriaUpdate.set(root.get("coloniaEntidad"), coloniaEntidad);
-			criteriaUpdate.where(predicate);
-			cambios = entityManager.createQuery(criteriaUpdate).executeUpdate();
-		}
+		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		CriteriaUpdate<EscuelaEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(EscuelaEntidad.class);
+		Root<EscuelaEntidad> root = criteriaUpdate.from(EscuelaEntidad.class);
+		Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), escuelaDetalleModelo.getClaveCentroTrabajo());
+		criteriaUpdate.set(root.get("nombre"), escuelaDetalleModelo.getNombre());
+		criteriaUpdate.set(root.get("domicilio"), escuelaDetalleModelo.getDomicilio());
+		criteriaUpdate.set(root.get("numeroInterior"), escuelaDetalleModelo.getNumeroInterior());
+		criteriaUpdate.set(root.get("numeroExterior"), escuelaDetalleModelo.getNumeroExterior());
+		ColoniaEntidad coloniaEntidad = new ColoniaEntidad(escuelaDetalleModelo.getColoniaModelo().getId());
+		criteriaUpdate.set(root.get("coloniaEntidad"), coloniaEntidad);
+		criteriaUpdate.where(predicate);
+		cambios = entityManager.createQuery(criteriaUpdate).executeUpdate();
 		return cambios;
     }
 

@@ -27,8 +27,7 @@ public class EscuelaValidacion implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
-        String nombre = value == null ? "" : (String) value;
-        if (!nombre.isEmpty() && nombre != escuelaSesionBean.valida(nombre)) {
+        if (value != null && null != escuelaSesionBean.valida((String)value)) {
             FacesMessage facesMessage = new FacesMessage(resourceBundle.getString("dashboard.validation.cct"));
             facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
             throw new ValidatorException(facesMessage);

@@ -14,7 +14,7 @@ public class GrupoEntidad {
 
     private Integer id;
     private Short grado;
-    private char grupo;
+    private Character grupo;
     private Date inicio;
     private Date fin;
     private ProfesorEntidad profesorEntidad;
@@ -46,11 +46,11 @@ public class GrupoEntidad {
     }
 
     @NotNull
-    public char getGrupo() {
+    public Character getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(char grupo) {
+    public void setGrupo(Character grupo) {
         this.grupo = grupo;
     }
 

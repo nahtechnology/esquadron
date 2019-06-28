@@ -9,6 +9,16 @@ public class ProfesorDashboardModelo extends ProfesorModelo {
     public ProfesorDashboardModelo() {
     }
 
+    public ProfesorDashboardModelo(ProfesorModelo profesorModelo) {
+        super(profesorModelo);
+        totalGrupos =  0;
+    }
+
+    public ProfesorDashboardModelo(ProfesorModelo profesorModelo, int totalGrupos) {
+        super(profesorModelo);
+        this.totalGrupos = totalGrupos;
+    }
+
     public ProfesorDashboardModelo(ProfesorEntidad profesorEntidad) {
         super(profesorEntidad);
     }

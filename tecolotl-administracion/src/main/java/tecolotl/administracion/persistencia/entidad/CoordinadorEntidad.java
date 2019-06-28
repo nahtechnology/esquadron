@@ -7,7 +7,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "coordinador", schema = "administracion")
+@Table(name = "coordinador", schema = "administracion", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"apodo"})
+})
 @NamedQueries({
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaDetalle",

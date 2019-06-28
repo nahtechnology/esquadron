@@ -9,7 +9,9 @@ import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-@Table(schema = "profesor", name = "profesor")
+@Table(schema = "profesor", name = "profesor", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"apodo"})
+})
 @SequenceGenerator(name = "secuencia", schema = "profesor", sequenceName = "profesor_seq")
 @NamedQueries({
         @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p"),

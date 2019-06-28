@@ -138,7 +138,7 @@ public class EscuelaEntidad {
 	@PrePersist
 	public void motivoPorDefecto() {
 		if (motivoBloqueoEntidad == null) {
-			motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)0);
+			motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)1);
 		}
 	}
 

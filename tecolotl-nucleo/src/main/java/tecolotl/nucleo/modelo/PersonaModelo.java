@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class PersonaModelo implements Comparable<PersonaModelo>{
 
@@ -87,7 +88,13 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
 
     @Override
     public String toString() {
-        return "";
+        return new StringJoiner(", ", PersonaModelo.class.getSimpleName() + "[", "]")
+                .add("nombre='" + nombre + "'")
+                .add("apellidoPaterno='" + apellidoPaterno + "'")
+                .add("apellidoMaterno='" + apellidoMaterno + "'")
+                .add("apodo='" + apodo + "'")
+                .add("contrasenia=" + Arrays.toString(contrasenia))
+                .toString();
     }
 
     @Override
