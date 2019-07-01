@@ -1,6 +1,7 @@
 package tecolotl.administracion.persistencia.entidad;
 
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,7 +14,7 @@ import javax.validation.constraints.Size;
 @NamedQueries({
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaDetalle",
-                query = "SELECT c FROM CoordinadorEntidad c LEFT JOIN FETCH c.coordinadorMotivoBloqueoEntidad cmb WHERE c.coordinadorEntidadPK = :coordinadorEntidadPK"
+                query = "SELECT c FROM CoordinadorEntidad c LEFT JOIN FETCH c.personaMotivoBloqueoEntidad pmb WHERE c.coordinadorEntidadPK = :coordinadorEntidadPK"
         ),
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaEscuela",
@@ -24,7 +25,7 @@ public class CoordinadorEntidad extends PersonaEntidad {
 
     private CoordinadorEntidadPK coordinadorEntidadPK;
     private String correoEletronico;
-    private CoordinadorMotivoBloqueoEntidad coordinadorMotivoBloqueoEntidad;
+    private PersonaMotivoBloqueoEntidad personaMotivoBloqueoEntidad;
 
     public CoordinadorEntidad() {
     }
@@ -54,18 +55,19 @@ public class CoordinadorEntidad extends PersonaEntidad {
         this.correoEletronico = correoEletronico;
     }
 
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_motivo_bloqueo")
-    public CoordinadorMotivoBloqueoEntidad getCoordinadorMotivoBloqueoEntidad() {
-        return coordinadorMotivoBloqueoEntidad;
+    public PersonaMotivoBloqueoEntidad getPersonaMotivoBloqueoEntidad() {
+        return personaMotivoBloqueoEntidad;
     }
 
-    public void setCoordinadorMotivoBloqueoEntidad(CoordinadorMotivoBloqueoEntidad coordinadorMotivoBloqueoEntidad) {
-        this.coordinadorMotivoBloqueoEntidad = coordinadorMotivoBloqueoEntidad;
+    public void setPersonaMotivoBloqueoEntidad(PersonaMotivoBloqueoEntidad personaMotivoBloqueoEntidad) {
+        this.personaMotivoBloqueoEntidad = personaMotivoBloqueoEntidad;
     }
 
     @PrePersist
     public void agregaMotivoBloqueo() {
-        coordinadorMotivoBloqueoEntidad = new CoordinadorMotivoBloqueoEntidad((short)1);
+        personaMotivoBloqueoEntidad = new PersonaMotivoBloqueoEntidad((short)1);
     }
 }

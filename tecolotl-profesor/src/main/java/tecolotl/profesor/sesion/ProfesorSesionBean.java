@@ -19,6 +19,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +124,11 @@ public class ProfesorSesionBean {
         Root<ProfesorEntidad> root = criteriaDelete.from(ProfesorEntidad.class);
         criteriaDelete.where(criteriaBuilder.equal(root.get("id"), idProfesor));
         return entityManager.createQuery(criteriaDelete).executeUpdate();
+    }
+
+    public Integer total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        return entityManager.createNamedQuery("EscuelaEntidad.totalProfesores", Integer.class)
+                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
     }
 
 }

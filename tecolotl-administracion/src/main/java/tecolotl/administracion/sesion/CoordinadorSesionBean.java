@@ -1,25 +1,19 @@
 package tecolotl.administracion.sesion;
 
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.coordinador.CoordinadorMotivoBloqueoModelo;
 import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
 import tecolotl.administracion.persistencia.entidad.CoordinadorEntidadPK;
-import tecolotl.administracion.persistencia.entidad.CoordinadorMotivoBloqueoEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
 import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -62,8 +56,8 @@ public class CoordinadorSesionBean {
                 .setParameter("coordinadorEntidadPK", new CoordinadorEntidadPK(claveCentroTrabajo, contador))
                 .getSingleResult();
         CoordinadorModelo coordinadorModelo = new CoordinadorModelo(coordinadorEntidad);
-        coordinadorModelo.getCoordinadorMotivoBloqueoModelo().setValor(
-                coordinadorEntidad.getCoordinadorMotivoBloqueoEntidad().getValor());
+        coordinadorModelo.getPersonaMotivoBloqueoModelo().setValor(
+                coordinadorEntidad.getPersonaMotivoBloqueoEntidad().getValor());
         return coordinadorModelo;
     }
 
@@ -78,9 +72,7 @@ public class CoordinadorSesionBean {
         logger.fine(motivoBloqueo.toString());
         validadorSessionBean.validacion(coordinadorModelo, CoordinadorLlavePrimaria.class);
         CoordinadorEntidad coordinadorEntidad = entityManager.find(CoordinadorEntidad.class, generaLlavePrimaria(coordinadorModelo));
-        CoordinadorMotivoBloqueoEntidad coordinadorMotivoBloqueoEntidad =
-                new CoordinadorMotivoBloqueoEntidad(motivoBloqueo);
-        coordinadorEntidad.setCoordinadorMotivoBloqueoEntidad(coordinadorMotivoBloqueoEntidad);
+        coordinadorEntidad.setPersonaMotivoBloqueoEntidad(new PersonaMotivoBloqueoEntidad(motivoBloqueo));
     }
 
     /**

@@ -1,9 +1,6 @@
 package tecolotl.administracion.sesion;
 
-import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
+import tecolotl.administracion.modelo.escuela.*;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;

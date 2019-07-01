@@ -11,10 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
-import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
+import tecolotl.administracion.modelo.escuela.*;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
@@ -113,6 +110,7 @@ public class EscuelaSesionBeanTest {
 		escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
 
 	}
+
 }
 
 

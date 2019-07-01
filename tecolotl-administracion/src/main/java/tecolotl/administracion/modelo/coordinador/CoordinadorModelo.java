@@ -4,6 +4,7 @@ import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
 import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
 import tecolotl.nucleo.modelo.PersonaModelo;
+import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -16,7 +17,7 @@ public class CoordinadorModelo extends PersonaModelo {
     private String claveCentroTrabajo;
     private Short contador;
     private String correoEletronico;
-    private CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo;
+    private PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo;
 
     public CoordinadorModelo() {
     }
@@ -35,7 +36,7 @@ public class CoordinadorModelo extends PersonaModelo {
         contador = coordinadorEntidad.getCoordinadorEntidadPK().getContador();
         claveCentroTrabajo = coordinadorEntidad.getCoordinadorEntidadPK().getEscuelaEntidad().getClaveCentroTrabajo();
         correoEletronico = coordinadorEntidad.getCorreoEletronico();
-        coordinadorMotivoBloqueoModelo = new CoordinadorMotivoBloqueoModelo(coordinadorEntidad.getCoordinadorMotivoBloqueoEntidad().getClave());
+        personaMotivoBloqueoModelo = new PersonaMotivoBloqueoModelo(coordinadorEntidad.getPersonaMotivoBloqueoEntidad().getClave());
     }
 
     @NotNull(groups = {CoordinadorLlavePrimaria.class, CoordinadorNuevoValidacion.class})
@@ -68,12 +69,12 @@ public class CoordinadorModelo extends PersonaModelo {
         this.correoEletronico = correoEletronico;
     }
 
-    public CoordinadorMotivoBloqueoModelo getCoordinadorMotivoBloqueoModelo() {
-        return coordinadorMotivoBloqueoModelo;
+    public PersonaMotivoBloqueoModelo getPersonaMotivoBloqueoModelo() {
+        return personaMotivoBloqueoModelo;
     }
 
-    public void setCoordinadorMotivoBloqueoModelo(CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo) {
-        this.coordinadorMotivoBloqueoModelo = coordinadorMotivoBloqueoModelo;
+    public void setPersonaMotivoBloqueoModelo(PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo) {
+        this.personaMotivoBloqueoModelo = personaMotivoBloqueoModelo;
     }
 
     @Override

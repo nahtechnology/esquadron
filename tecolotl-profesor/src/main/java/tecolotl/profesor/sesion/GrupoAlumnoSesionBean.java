@@ -2,7 +2,6 @@ package tecolotl.profesor.sesion;
 
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.nucleo.herramienta.LoggerProducer;
-import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.profesor.entidad.GrupoAlumnoEntidad;
 import tecolotl.profesor.entidad.GrupoAlumnoEntidadPK;
 import tecolotl.profesor.entidad.GrupoEntidad;

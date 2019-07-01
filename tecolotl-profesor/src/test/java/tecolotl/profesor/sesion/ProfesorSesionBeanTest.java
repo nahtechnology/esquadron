@@ -171,4 +171,9 @@ public class ProfesorSesionBeanTest {
         Assert.assertNotNull(profesorEliminado);
         Assert.assertFalse(profesorEliminado == 0);
     }
+
+    @Test
+    public void buscaTotal() {
+        Integer total = profesorSesionBean.total("21DJN1326E");
+    }
 }

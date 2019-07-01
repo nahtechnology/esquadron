@@ -1,9 +1,9 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.coordinador.CoordinadorMotivoBloqueoModelo;
-import tecolotl.administracion.sesion.CoordinadorMotivoBloqueoSesionBean;
 import tecolotl.administracion.sesion.CoordinadorSesionBean;
+import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
+import tecolotl.nucleo.sesion.PersonaMoitvoBloqueoSesionBean;
 import tecolotl.web.controlador.TablaControlador;
 
 import javax.annotation.PostConstruct;
@@ -24,21 +24,21 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     private CoordinadorSesionBean coordinadorSesionBean;
 
     @Inject
-    private CoordinadorMotivoBloqueoSesionBean coordinadorMotivoBloqueoSesionBean;
+    private PersonaMoitvoBloqueoSesionBean personaMoitvoBloqueoSesionBean;
 
     @Inject
     private Logger logger;
 
-    private List<CoordinadorMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista;
+    private List<PersonaMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista;
     private CoordinadorModelo coordinadorModelo;
-    private CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo;
+    private PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo;
     private String claveCentroTrabajo;
 
     @PostConstruct
     public void init() {
         claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
-        coordinadorMotivoBloqueoModeloLista = coordinadorMotivoBloqueoSesionBean.buscaFiltro("Sin Bloqueo");
-        coordinadorMotivoBloqueoModelo = new CoordinadorMotivoBloqueoModelo();
+        coordinadorMotivoBloqueoModeloLista = personaMoitvoBloqueoSesionBean.busca("Sin Bloqueo");
+        personaMotivoBloqueoModelo = new PersonaMotivoBloqueoModelo();
         actualizaDataModel();
     }
 
@@ -67,7 +67,7 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
 
     public void bloqueo() {
         coordinadorModelo.setClaveCentroTrabajo(claveCentroTrabajo);
-        coordinadorSesionBean.estatus(coordinadorModelo, coordinadorMotivoBloqueoModelo.getClave());
+        coordinadorSesionBean.estatus(coordinadorModelo, personaMotivoBloqueoModelo.getClave());
         limpiaCoordinador();
         actualizaDataModel();
     }
@@ -92,19 +92,19 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
         this.coordinadorModelo = coordinadorModelo;
     }
 
-    public List<CoordinadorMotivoBloqueoModelo> getCoordinadorMotivoBloqueoModeloLista() {
+    public List<PersonaMotivoBloqueoModelo> getCoordinadorMotivoBloqueoModeloLista() {
         return coordinadorMotivoBloqueoModeloLista;
     }
 
-    public void setCoordinadorMotivoBloqueoModeloLista(List<CoordinadorMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista) {
+    public void setCoordinadorMotivoBloqueoModeloLista(List<PersonaMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista) {
         this.coordinadorMotivoBloqueoModeloLista = coordinadorMotivoBloqueoModeloLista;
     }
 
-    public CoordinadorMotivoBloqueoModelo getCoordinadorMotivoBloqueoModelo() {
-        return coordinadorMotivoBloqueoModelo;
+    public PersonaMotivoBloqueoModelo getPersonaMotivoBloqueoModelo() {
+        return personaMotivoBloqueoModelo;
     }
 
-    public void setCoordinadorMotivoBloqueoModelo(CoordinadorMotivoBloqueoModelo coordinadorMotivoBloqueoModelo) {
-        this.coordinadorMotivoBloqueoModelo = coordinadorMotivoBloqueoModelo;
+    public void setPersonaMotivoBloqueoModelo(PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo) {
+        this.personaMotivoBloqueoModelo = personaMotivoBloqueoModelo;
     }
 }

@@ -6,12 +6,10 @@ import org.jboss.arquillian.junit.InSequence;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.coordinador.CoordinadorMotivoBloqueoModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
@@ -21,6 +19,7 @@ import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
+import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
@@ -45,7 +44,7 @@ public class CoordinadorSesionBeanTest {
                 .addPackage(ColoniaNuevaValidacion.class.getPackage())
                 .addClasses(CatalagoEntidad.class, CatalogoModelo.class, PersonaEntidad.class,DireccionSesionBean.class,
                         LoggerProducer.class, ColoniaNuevaValidacion.class, CoordinadorSesionBean.class, CoordinadorModelo.class,
-                        PersonaModelo.class, ValidadorSessionBean.class, CoordinadorMotivoBloqueoModelo.class, PersonaNuevaValidacion.class)
+                        PersonaModelo.class, ValidadorSessionBean.class, PersonaMotivoBloqueoModelo.class, PersonaNuevaValidacion.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -63,8 +62,8 @@ public class CoordinadorSesionBeanTest {
             assertNotNull(coordinadorModelo);
             assertNotNull(coordinadorModelo.getClaveCentroTrabajo());
             assertNotNull(coordinadorModelo.getContador());
-            assertNotNull(coordinadorModelo.getCoordinadorMotivoBloqueoModelo());
-            assertNotNull(coordinadorModelo.getCoordinadorMotivoBloqueoModelo().getClave());
+            assertNotNull(coordinadorModelo.getPersonaMotivoBloqueoModelo());
+            assertNotNull(coordinadorModelo.getPersonaMotivoBloqueoModelo().getClave());
             assertNotNull(coordinadorModelo.getNombre());
             assertNotNull(coordinadorModelo.getApellidoPaterno());
             assertNotNull(coordinadorModelo.getApellidoMaterno());
@@ -104,9 +103,9 @@ public class CoordinadorSesionBeanTest {
         assertNotNull(coordinadorModelo);
         assertNotNull(coordinadorModelo.getClaveCentroTrabajo());
         assertNotNull(coordinadorModelo.getContador());
-        assertNotNull(coordinadorModelo.getCoordinadorMotivoBloqueoModelo());
-        assertNotNull(coordinadorModelo.getCoordinadorMotivoBloqueoModelo().getClave());
-        assertNotNull(coordinadorModelo.getCoordinadorMotivoBloqueoModelo().getValor());
+        assertNotNull(coordinadorModelo.getPersonaMotivoBloqueoModelo());
+        assertNotNull(coordinadorModelo.getPersonaMotivoBloqueoModelo().getClave());
+        assertNotNull(coordinadorModelo.getPersonaMotivoBloqueoModelo().getValor());
         assertNotNull(coordinadorModelo.getNombre());
         assertNotNull(coordinadorModelo.getApellidoPaterno());
         assertNotNull(coordinadorModelo.getApellidoMaterno());

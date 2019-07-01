@@ -21,21 +21,14 @@ import java.util.Objects;
 	@NamedQuery(
 			name = "EscuelaEntidad.existe",
 			query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
-	),//TODO querys de TotalAlumnos y TotalProfesores por escuela
-    @NamedQuery(
+	),
+/*    @NamedQuery(
             name = "EscuelaEntidad.totalAlumnos",
             query = "SELECT COUNT(pga.id), p.nombre FROM ProfesorEntidad p "+
                 "LEFT JOIN p.GrupoEntidad pg " +
                 "LEFT JOIN pg.GrupoAlumnoEntidad pga " +
                 "WHERE p.escuelaEntidad.claveCentroTrabajo =: claveCentroTrabajo GROUP BY pga.id, p.nombre"
-    ),
-    @NamedQuery(
-            name = "EscuelaEntidad.totalProfesores",
-            query = "SELECT COUNT(p.id), e.escuelaEntidad.nombre FROM ProfesorEntidad p " +
-                "LEFT JOIN p.EscuelaEntidad e " +
-                "WHERE p.escuelaEntidad.claveCentroTrabajo =: claveCentroTrabajo GROUP BY p.id, e.escuelaEntidad.nombre"
-    )
-
+    ),*/
 })
 public class EscuelaEntidad {
 
@@ -46,7 +39,6 @@ public class EscuelaEntidad {
 	private String domicilio;
 	private String numeroInterior;
 	private String numeroExterior;
-	private List<LicenciaEntidad> licenciaEntidadLista;
 	private List<ContactoEntidad> contactoEntidadLista;
 
 	public EscuelaEntidad() {
@@ -135,13 +127,6 @@ public class EscuelaEntidad {
 		this.numeroExterior = numeroExterior;
 	}
 
-	@PrePersist
-	public void motivoPorDefecto() {
-		if (motivoBloqueoEntidad == null) {
-			motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)1);
-		}
-	}
-
 	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad", fetch = FetchType.LAZY)
 	public List<ContactoEntidad> getContactoEntidadLista() {
 		return contactoEntidadLista;
@@ -149,6 +134,13 @@ public class EscuelaEntidad {
 
 	public void setContactoEntidadLista(List<ContactoEntidad> contactoEntidadLista) {
 		this.contactoEntidadLista = contactoEntidadLista;
+	}
+
+	@PrePersist
+	public void motivoPorDefecto() {
+		if (motivoBloqueoEntidad == null) {
+			motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)1);
+		}
 	}
 
 	@Override
