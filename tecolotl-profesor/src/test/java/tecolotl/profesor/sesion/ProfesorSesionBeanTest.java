@@ -2,7 +2,6 @@ package tecolotl.profesor.sesion;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.logging.Logger;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -10,34 +9,30 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
+import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
-import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
-import tecolotl.administracion.persistencia.entidad.*;
-import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
+import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
-import tecolotl.administracion.validacion.escuela.*;
-import tecolotl.alumno.entidad.*;
+import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
+import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.nucleo.herramienta.EncriptadorContrasenia;
-import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
-import tecolotl.nucleo.modelo.CatalogoModelo;
-import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
-import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
-import tecolotl.profesor.entidad.GrupoEntidad;
-import tecolotl.profesor.entidad.GrupoEntidadPK;
-import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.nucleo.modelo.CatalogoModelo;
+import tecolotl.nucleo.sesion.CatalogoSesionBean;
+import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
+import tecolotl.profesor.entidad.GrupoAlumnoEntidad;
+import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.ProfesorDashboardModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -47,26 +42,29 @@ public class ProfesorSesionBeanTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-            .addPackage(PersonaModelo.class.getPackage())
-            .addPackage(ProfesorModelo.class.getPackage())
-            .addPackage(ProfesorEntidad.class.getPackage())
-            .addPackage(PersonaEntidad.class.getPackage())
-            .addClasses(PersonaModelo.class, PersonaEntidad.class, ProfesorEntidad.class,
-                        ProfesorModelo.class, ProfesorSesionBean.class, EscuelaEntidad.class,
-                        EscuelaBaseModelo.class, EscuelaSesionBean.class, EscuelaDetalleModelo.class,
-                        MotivoBloqueoModelo.class, ColoniaEntidad.class, MunicipioEntidad.class,
-                        EstadoEntidad.class, MotivoBloqueoEntidad.class, CatalagoEntidad.class,
-                        CatalogoModelo.class, ContactoEntidad.class, ContactoEntidadPK.class,
-                        TipoContactoEntidad.class, LicenciaEntidad.class, LicenciaEntidadPk.class,
-                        AlumnoEntidad.class, GrupoEntidad.class, GrupoEntidadPK.class,
-                        NivelLenguajeEntidad.class, GradoEscolarEntidad.class, EscuelaDashboardModelo.class,
-                        LoggerProducer.class, TareaEntidad.class, TareaGlosarioActividadEntidad.class,
-                        TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
-                        TipoEstudianteEntidad.class, ColoniaModelo.class, ProfesorValidacion.class,
-                        ValidadorSessionBean.class, ProfesorSesionBean.class, ColoniaNuevaValidacion.class,
-                        EncriptadorContrasenia.class, PersonaNuevaValidacion.class, ContactoLlavePrimariaValidacion.class,
-                        ContactoNuevoValidacion.class, CoordinadorLlavePrimaria.class, CoordinadorNuevoValidacion.class,
-                        LicenciaNuevaValidacion.class, LicenciaActualizaValidacion.class, GrupoProfesorValidacion.class)
+                //nucleo
+            .addPackage(ValidadorSessionBean.class.getPackage())
+            .addPackage(CatalogoModelo.class.getPackage())
+            .addPackage(CatalagoEntidad.class.getPackage())
+            .addPackage(CatalogoSesionBean.class.getPackage())
+            .addPackage(CatalogoNuevoValidacion.class.getPackage())
+                //administracion
+            .addPackage(CoordinadorModelo.class.getPackage())
+            .addPackage(ColoniaModelo.class.getPackage())
+            .addPackage(ContactoModelo.class.getPackage())
+            .addPackage(ColoniaEntidad.class.getPackage())
+            .addPackage(ContactoSesionBean.class.getPackage())
+            .addClass(ColoniaNuevaValidacion.class)
+            .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+                //alumno
+            .addPackage(ActividadEntidad.class.getPackage())
+            .addPackage(AlumnoModelo.class.getPackage())
+            .addPackage(AlumnoSesionBean.class.getPackage())
+                //profesor
+            .addPackage(GrupoAlumnoEntidad.class.getPackage())
+            .addPackage(GrupoAlumnoModelo.class.getPackage())
+            .addPackage(GrupoAlumnoSesionBean.class.getPackage())
+            .addPackage(GrupoProfesorValidacion.class.getPackage())
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -174,6 +172,7 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaTotal() {
-        Integer total = profesorSesionBean.total("21DJN1326E");
+        Long total = profesorSesionBean.total("21DJN1326E");
+        Assert.assertNotEquals(total.intValue(), 0);
     }
 }

@@ -3,6 +3,7 @@ package tecolotl.profesor.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
@@ -18,6 +19,7 @@ public class GrupoEntidad {
     private Date inicio;
     private Date fin;
     private ProfesorEntidad profesorEntidad;
+    private List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista;
 
     public GrupoEntidad() {
     }
@@ -81,5 +83,14 @@ public class GrupoEntidad {
 
     public void setProfesorEntidad(ProfesorEntidad profesorEntidad) {
         this.profesorEntidad = profesorEntidad;
+    }
+
+    @OneToMany(mappedBy = "grupoAlumnoEntidadPK.grupoEntidad")
+    public List<GrupoAlumnoEntidad> getGrupoAlumnoEntidadLista() {
+        return grupoAlumnoEntidadLista;
+    }
+
+    public void setGrupoAlumnoEntidadLista(List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista) {
+        this.grupoAlumnoEntidadLista = grupoAlumnoEntidadLista;
     }
 }

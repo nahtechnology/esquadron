@@ -12,8 +12,6 @@ import javax.persistence.*;
 public class GrupoAlumnoEntidad {
 
     private GrupoAlumnoEntidadPK grupoAlumnoEntidadPK;
-    private GrupoEntidad grupoEntidad;
-    private AlumnoEntidad alumnoEntidad;
 
     @EmbeddedId
     public GrupoAlumnoEntidadPK getGrupoAlumnoEntidadPK() {
@@ -24,23 +22,4 @@ public class GrupoAlumnoEntidad {
         this.grupoAlumnoEntidadPK = grupoAlumnoEntidadPK;
     }
 
-    /*@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_grupo")
-    public GrupoEntidad getGrupoEntidad() {
-        return grupoEntidad;
-    }
-
-    public void setGrupoEntidad(GrupoEntidad grupoEntidad) {
-        this.grupoEntidad = grupoEntidad;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_alumno")
-    public AlumnoEntidad getAlumnoEntidad() {
-        return alumnoEntidad;
-    }
-
-    public void setAlumnoEntidad(AlumnoEntidad alumnoEntidad) {
-        this.alumnoEntidad = alumnoEntidad;
-    }*/
 }

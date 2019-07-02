@@ -1,38 +1,15 @@
 package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.GradoEscolarEntidad;
-
-import javax.validation.constraints.NotNull;
-import java.util.StringJoiner;
+import tecolotl.nucleo.modelo.CatalogoModelo;
 
 public class GradoEscolarModelo {
 
-    @NotNull
     private Short id;
-
-    @NotNull
     private String nivel;
-
-    @NotNull
     private Short grado;
 
-    public GradoEscolarModelo(){
-    }
-
-    public GradoEscolarModelo(Short id) {
-        this.id = id;
-    }
-
-    public GradoEscolarModelo(GradoEscolarEntidad gradoEscolarEntidad){
-        this.id = gradoEscolarEntidad.getId();
-        this.nivel = gradoEscolarEntidad.getNivel();
-        this.grado = gradoEscolarEntidad.getGrado();
-    }
-
-    public GradoEscolarModelo(Short id, String nivel, Short grado) {
-        this.id = id;
-        this.nivel = nivel;
-        this.grado = grado;
+    public GradoEscolarModelo(GradoEscolarEntidad gradoEscolarEntidad) {
     }
 
     public Short getId() {
@@ -57,14 +34,5 @@ public class GradoEscolarModelo {
 
     public void setGrado(Short grado) {
         this.grado = grado;
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", GradoEscolarModelo.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("nivel='" + nivel + "'")
-                .add("grado=" + grado)
-                .toString();
     }
 }

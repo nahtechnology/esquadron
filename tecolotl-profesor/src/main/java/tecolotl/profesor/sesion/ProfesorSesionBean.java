@@ -126,8 +126,8 @@ public class ProfesorSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
-    public Integer total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
-        return entityManager.createNamedQuery("EscuelaEntidad.totalProfesores", Integer.class)
+    public Long total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        return entityManager.createNamedQuery("EscuelaEntidad.totalProfesores", Long.class)
                 .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
     }
 
