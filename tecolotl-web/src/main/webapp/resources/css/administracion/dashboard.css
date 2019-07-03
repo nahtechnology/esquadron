@@ -13,17 +13,12 @@ svg .icono {
 
 .uk-tooltip {
      /* 4 */
-    background: #666;
+    background: #222A30;
     border-radius: 2px;
     color: #fff;
     font-size: 14px;
+    border-top: solid 3px #1E87F0;
+    border-bottom: solid 3px #1E87F0;
 
 }
 
-.abajo{
-    border-bottom: solid 5px #1E87F0;
-}
-
-.arriba{
-    border-top: solid 5px #1E87F0;
-}
