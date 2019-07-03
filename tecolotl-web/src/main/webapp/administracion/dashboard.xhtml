@@ -43,14 +43,14 @@
         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl" pt:data-uk-grid="">
             <div class="uk-text-center">
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right"/>Alumnos Asignados</span>
-                <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary">2.134</h1>
+                <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary">#{escuelaPoblacionControlador.totalAlumnos}</h1>
                 <div class="uk-text-small">
-                    <span class="uk-text-success">15%</span> utilizados.
+                    <span class="uk-text-success">#{(initParam['alumno.licencia'])} 15%</span> utilizados.
                 </div>
             </div>
             <div class="uk-text-center">
-                <span class="uk-text-small"><span data-uk-icon="icon:social" class="uk-margin-small-right uk-text-primary"/>Social Media</span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">8.490</h1>
+                <span class="uk-text-small"><span data-uk-icon="icon:social" class="uk-margin-small-right uk-text-primary"/>Profesores Asignados</span>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">#{escuelaPoblacionControlador.totalProfesores}</h1>
                 <div class="uk-text-small">
                     <span class="uk-text-warning" data-uk-icon="icon: triangle-down">-15%</span> less than last week.
                 </div>

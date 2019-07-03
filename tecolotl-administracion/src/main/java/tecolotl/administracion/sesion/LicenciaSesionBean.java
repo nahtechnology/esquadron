@@ -18,6 +18,7 @@ import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -100,4 +101,8 @@ public class LicenciaSesionBean {
 		return licenciaEntidadPk;
 	}
 
+	public int cuenta(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+		return entityManager.createNamedQuery("LicenciaEntidad.cuentaPorEscuela", Long.class)
+				.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue();
+	}
 }

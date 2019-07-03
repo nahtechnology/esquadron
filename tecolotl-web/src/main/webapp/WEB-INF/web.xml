@@ -17,6 +17,11 @@
 		<param-value>true</param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>alumno.licencia</param-name>
+		<param-value>250</param-value>
+	</context-param>
+
 	<!-- servlet de jsf -->
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>

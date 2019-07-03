@@ -24,9 +24,12 @@ import tecolotl.administracion.validacion.escuela.LicenciaActualizaValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
+import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
+import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.time.LocalDate;
@@ -48,7 +51,11 @@ public class LicenciaSesionBeanTest {
             .addPackage(ColoniaNuevaValidacion.class.getPackage())
             .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
             .addPackage(LoggerProducer.class.getPackage())
-            .addClasses(LicenciaSesionBean.class, CatalogoModelo.class, CatalagoEntidad.class, CatalogoSesionBean.class, PersonaEntidad.class)
+            .addPackage(ColoniaNuevaValidacion.class.getPackage())
+            .addPackage(CatalogoNuevoValidacion.class.getPackage())
+            .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+            .addClasses(LicenciaSesionBean.class, CatalogoModelo.class, CatalagoEntidad.class, CatalogoSesionBean.class,
+                    PersonaEntidad.class, PersonaMotivoBloqueoModelo.class, PersonaMotivoBloqueoEntidad.class)
             .addAsResource("META-INF/persistence.xml")
             .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -101,4 +108,9 @@ public class LicenciaSesionBeanTest {
         Assert.assertFalse(modificados == 0);
     }
 
+    @Test
+    public void cuentaPorEscuela() {
+        int total = licenciaSesionBean.cuenta("21DJN1326E");
+        assertNotEquals(total, 0);
+    }
 }

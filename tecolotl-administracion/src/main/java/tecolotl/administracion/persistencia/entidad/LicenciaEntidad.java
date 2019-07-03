@@ -9,7 +9,11 @@ import java.util.Date;
 	@NamedQuery(name = "LicenciaEntidad.busca", query = "SELECT m FROM LicenciaEntidad m"),
 	@NamedQuery(
 		name = "LicenciaEntidad.buscaEscuela",
-		query = "SELECT m FROM LicenciaEntidad m WHERE m.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
+		query = "SELECT m FROM LicenciaEntidad m WHERE m.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
+	@NamedQuery(
+		name = "LicenciaEntidad.cuentaPorEscuela",
+		query = "SELECT COUNT(l.licenciaEntidadPk.contador) FROM LicenciaEntidad l WHERE l.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+	)
 })
 public class LicenciaEntidad {
 
