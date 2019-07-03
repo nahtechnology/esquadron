@@ -12,6 +12,9 @@ public class GradoEscolarModelo {
     public GradoEscolarModelo(GradoEscolarEntidad gradoEscolarEntidad) {
     }
 
+    public GradoEscolarModelo() {
+    }
+
     public Short getId() {
         return id;
     }

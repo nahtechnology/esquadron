@@ -65,7 +65,7 @@ public class GradoEscolarSesionBeanTest {
 
     @Test
     public void inserta(){
-        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo((short)6, "C1", (short)2);
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo();
         gradoEscolarSesionBean.inserta(gradoEscolarModelo);
         Assert.assertNotNull(gradoEscolarModelo.getId());
         Assert.assertNotNull(gradoEscolarModelo.getNivel());
@@ -74,7 +74,7 @@ public class GradoEscolarSesionBeanTest {
 
     @Test
     public void insertaVal(){
-        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo((short) 7);
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo();
         gradoEscolarSesionBean.inserta( gradoEscolarModelo.getId(),"NewLevel", (short) 1);
         Assert.assertNotNull(gradoEscolarModelo);
 
@@ -89,7 +89,7 @@ public class GradoEscolarSesionBeanTest {
 
     @Test
     public void actualiza(){
-        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo((short) 2);
+        GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo();
         gradoEscolarSesionBean.actualiza(gradoEscolarModelo.getId());
         Assert.assertNotNull(gradoEscolarModelo);
         Assert.assertNotNull(gradoEscolarModelo.getId());
