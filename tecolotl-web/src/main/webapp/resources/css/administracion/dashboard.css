@@ -10,3 +10,20 @@
 svg .icono {
     stroke: white;
 }
+
+.uk-tooltip {
+     /* 4 */
+    background: #666;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 14px;
+
+}
+
+.abajo{
+    border-bottom: solid 5px #1E87F0;
+}
+
+.arriba{
+    border-top: solid 5px #1E87F0;
+}
