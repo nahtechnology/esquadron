@@ -42,25 +42,13 @@
 			<type>ejb</type>
 			<scope>provided</scope>
 		</dependency>
-	
-		<!-- Import the JAX-RS API, we use provided scope as the API is included 
-			in JBoss WildFly -->
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>jaxrs-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
 
-		<!-- Import the CDI API, we use provided scope as the API is included in 
-			JBoss WildFly -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
 			<artifactId>cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-
-		<!-- Import the JSF API, we use provided scope as the API is included in 
-			JBoss WildFly -->
+		
 		<dependency>
 			<groupId>org.jboss.spec.javax.faces</groupId>
 			<artifactId>jboss-jsf-api_2.2_spec</artifactId>
