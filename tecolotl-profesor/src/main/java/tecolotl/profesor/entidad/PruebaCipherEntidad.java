@@ -46,13 +46,4 @@ public class PruebaCipherEntidad {
     public void setKey(String key) {
         this.key = key;
     }
-
-    @Override
-    public String toString() {
-        return "PruebaCipherEntidad{" +
-                "id=" + id +
-                ", password='" + password + '\'' +
-                ", key='" + key + '\'' +
-                '}';
-    }
 }
