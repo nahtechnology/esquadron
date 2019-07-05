@@ -18,6 +18,7 @@
 	</context-param>
 
 	<context-param>
+		<description>El número de alumnos por licencia</description>
 		<param-name>alumno.licencia</param-name>
 		<param-value>250</param-value>
 	</context-param>
