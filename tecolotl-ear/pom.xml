@@ -54,6 +54,13 @@
 					<version>7</version>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<fileNameMapping>no-version</fileNameMapping>
+					<modules>
+						<webModule>
+							<groupId>tecolotl</groupId>
+							<artifactId>tecolotl-web</artifactId>
+							<contextRoot>/pruebas-tecolotl</contextRoot>
+						</webModule>
+					</modules>
 				</configuration>
 			</plugin>
 			<plugin>
