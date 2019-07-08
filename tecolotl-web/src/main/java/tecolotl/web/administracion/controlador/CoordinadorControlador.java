@@ -29,7 +29,7 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     @Inject
     private Logger logger;
 
-    private List<PersonaMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista;
+    private List<PersonaMotivoBloqueoModelo> personaMotivoBloqueoModeloLista;
     private CoordinadorModelo coordinadorModelo;
     private PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo;
     private String claveCentroTrabajo;
@@ -37,7 +37,7 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     @PostConstruct
     public void init() {
         claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
-        coordinadorMotivoBloqueoModeloLista = personaMoitvoBloqueoSesionBean.busca("Sin Bloqueo");
+        personaMotivoBloqueoModeloLista = personaMoitvoBloqueoSesionBean.busca("Sin Bloqueo");
         personaMotivoBloqueoModelo = new PersonaMotivoBloqueoModelo();
         actualizaDataModel();
     }
@@ -92,12 +92,12 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
         this.coordinadorModelo = coordinadorModelo;
     }
 
-    public List<PersonaMotivoBloqueoModelo> getCoordinadorMotivoBloqueoModeloLista() {
-        return coordinadorMotivoBloqueoModeloLista;
+    public List<PersonaMotivoBloqueoModelo> getPersonaMotivoBloqueoModeloLista() {
+        return personaMotivoBloqueoModeloLista;
     }
 
-    public void setCoordinadorMotivoBloqueoModeloLista(List<PersonaMotivoBloqueoModelo> coordinadorMotivoBloqueoModeloLista) {
-        this.coordinadorMotivoBloqueoModeloLista = coordinadorMotivoBloqueoModeloLista;
+    public void setPersonaMotivoBloqueoModeloLista(List<PersonaMotivoBloqueoModelo> personaMotivoBloqueoModeloLista) {
+        this.personaMotivoBloqueoModeloLista = personaMotivoBloqueoModeloLista;
     }
 
     public PersonaMotivoBloqueoModelo getPersonaMotivoBloqueoModelo() {

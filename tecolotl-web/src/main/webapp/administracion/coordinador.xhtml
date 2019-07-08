@@ -117,8 +117,8 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.status']}</span></f:facet>
-                                    <h:outputText rendered="#{coordinador.coordinadorMotivoBloqueoModelo.clave eq 1}" pt:uk-icon="check"/>
-                                    <h:outputText rendered="#{coordinador.coordinadorMotivoBloqueoModelo.clave ne 1}" pt:uk-icon="ban"/>
+                                    <h:outputText rendered="#{coordinador.personaMotivoBloqueoModelo.clave eq 1}" pt:uk-icon="check"/>
+                                    <h:outputText rendered="#{coordinador.personaMotivoBloqueoModelo.clave ne 1}" pt:uk-icon="ban"/>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
@@ -135,20 +135,13 @@
                                                     </h:commandLink>
                                                 </li>
                                                 <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-asignar-licencia" styleClass="uk-text-primary">
-                                                        <h:outputText pt:uk-icon="icon: plus-circle" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="Licencia"/></span>
-                                                        <f:ajax/>
-                                                    </h:commandLink>
-                                                </li>
-                                                <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-bloqueo" styleClass="uk-text-primary" rendered="#{coordinador.coordinadorMotivoBloqueoModelo.clave eq 1}">
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-bloqueo" styleClass="uk-text-primary" rendered="#{coordinador.personaMotivoBloqueoModelo.clave eq 1}">
                                                         <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{boton['block']}"/></span>
                                                         <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
                                                         <f:ajax render="formulario-motivo-bloqueo" onevent="function limpia(data) { limpiaSelect(data); }"/>
                                                     </h:commandLink>
-                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{coordinador.coordinadorMotivoBloqueoModelo.clave ne 1}" action="#{coordinadorControlador.desbloquea}">
+                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{coordinador.personaMotivoBloqueoModelo.clave ne 1}" action="#{coordinadorControlador.desbloquea}">
                                                         <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{boton['active']}"/></span>
                                                         <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
@@ -343,12 +336,12 @@
                         <p>Bloqueo al coordinador: <span class="uk-text-bold">#{coordinadorControlador.coordinadorModelo.apellidoPaterno} #{coordinadorControlador.coordinadorModelo.apellidoMaterno} #{coordinadorControlador.coordinadorModelo.nombre}</span></p>
                         <h:outputLabel styleClass="uk-form-label primera-mayuscula uk-display-inline-block" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}"/>
                         <div class="uk-form-controls">
-                            <h:selectOneMenu value="#{coordinadorControlador.coordinadorMotivoBloqueoModelo.clave}"
+                            <h:selectOneMenu value="#{coordinadorControlador.personaMotivoBloqueoModelo.clave}"
                                              id="seleccion-bloqueo"
                                              label="bloqueo"
                                              styleClass="uk-select">
                                 <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
-                                <f:selectItems value="#{coordinadorControlador.coordinadorMotivoBloqueoModeloLista}"
+                                <f:selectItems value="#{coordinadorControlador.personaMotivoBloqueoModeloLista}"
                                                var="motivoBloqueo"
                                                itemValue="#{motivoBloqueo.clave}"
                                                itemLabel="#{motivoBloqueo.valor}"/>

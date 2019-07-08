@@ -39,23 +39,21 @@
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
+        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
 
         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl" pt:data-uk-grid="">
             <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right"/>Alumnos Asignados</span>
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
                 <div class="uk-text-small">
-                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0}%">
+                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : (escuelaPoblacionControlador.totalAlumnos * 100) / (initParam['alumno.licencia'] * escuelaPoblacionControlador.totalLicencias)}%" id="porcentaje-alumno">
                         <f:convertNumber type="number" maxIntegerDigits="3" maxFractionDigits="2"/>
-                    </h:outputText>  utilizados.
+                    </h:outputText>  #{administracion['dashboard.header.student.used']}.
                 </div>
             </div>
             <div class="uk-text-center">
-                <span class="uk-text-small"><span data-uk-icon="icon:social" class="uk-margin-small-right uk-text-primary"/>Profesores Asignados</span>
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">#{escuelaPoblacionControlador.totalProfesores}</h1>
-                <div class="uk-text-small">
-                    <span class="uk-text-warning" data-uk-icon="icon: triangle-down">-15%</span> less than last week.
-                </div>
             </div>
             <div class="uk-text-center">
                 <span class="uk-text-small"><span data-uk-icon="icon:clock" class="uk-margin-small-right uk-text-primary"/>Traffic hours</span>
@@ -173,7 +171,7 @@
                                         <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['catalogoadministrativo.school.table.cct']}" pt:uk-tooltip="title:; delay:2000; pos: top"/></f:facet>
                                         <h:commandLink styleClass="uk-link-reset" value="#{escuela.claveCentroTrabajo}" action="#{escuelaPoblacionControlador.actualiza}">
                                             <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaPoblacionControlador.claveCentroTrabajo}"/>
-                                            <f:ajax render="total-alumnos"/>
+                                            <f:ajax render="total-alumnos porcentaje-alumno"/>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column headerClass="uk-background-primary">
@@ -573,7 +571,6 @@
                 }
             }
         </script>
-        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
     </ui:define>
 </ui:composition>
 </html>

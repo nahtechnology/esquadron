@@ -20,8 +20,15 @@ svg .icono {
     border-bottom: solid 3px #1E87F0;
 }
 
-/*satisfactorio*/
+.uk-tooltip::first-letter{
+    text-transform: uppercase !important;
+}
 
+.uk-notification-message::first-letter{
+    text-transform: uppercase !important;
+}
+
+/*satisfactorio*/
 .uk-notification-message-primary {
     background-color: rgba(30, 135, 240, 0.8);
     border-radius: 2px;
@@ -32,6 +39,7 @@ svg .icono {
     border-bottom: solid 3px rgba(34, 42, 48, 0.8);
     margin-bottom: 5px;
 }
+
 /*peligro*/
 .uk-notification-message-warning {
     background-color: rgba(250, 160, 90, 0.8);
