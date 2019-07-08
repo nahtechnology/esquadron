@@ -77,7 +77,6 @@ public class GradoEscolarSesionBeanTest {
         GradoEscolarModelo gradoEscolarModelo = new GradoEscolarModelo();
         gradoEscolarSesionBean.inserta( gradoEscolarModelo.getId(),"NewLevel", (short) 1);
         Assert.assertNotNull(gradoEscolarModelo);
-
     }
 
     @Test
