@@ -46,7 +46,7 @@
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
                 <div class="uk-text-small">
-                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0}%" id="porcentaje-alumno">
+                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : (escuelaPoblacionControlador.totalAlumnos * 100) / (initParam['alumno.licencia'] * escuelaPoblacionControlador.totalLicencias)}%" id="porcentaje-alumno">
                         <f:convertNumber type="number" maxIntegerDigits="3" maxFractionDigits="2"/>
                     </h:outputText>  #{administracion['dashboard.header.student.used']}.
                 </div>
