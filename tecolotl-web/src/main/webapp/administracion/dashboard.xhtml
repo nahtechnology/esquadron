@@ -46,14 +46,14 @@
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
                 <div class="uk-text-small">
-                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : (escuelaPoblacionControlador.totalAlumnos * 100) / (initParam['alumno.licencia'] * escuelaPoblacionControlador.totalLicencias)}%" id="porcentaje-alumno">
-                        <f:convertNumber type="number" maxIntegerDigits="3" maxFractionDigits="2"/>
+                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : escuelaPoblacionControlador.totalAlumnos / (initParam['alumno.licencia'] * escuelaPoblacionControlador.totalLicencias)}" id="porcentaje-alumno">
+                        <f:convertNumber type="percent"/>
                     </h:outputText>  #{administracion['dashboard.header.student.used']}.
                 </div>
             </div>
             <div class="uk-text-center">
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">#{escuelaPoblacionControlador.totalProfesores}</h1>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalProfesores}" id="total-profesor"/></h1>
             </div>
             <div class="uk-text-center">
                 <span class="uk-text-small"><span data-uk-icon="icon:clock" class="uk-margin-small-right uk-text-primary"/>Traffic hours</span>
@@ -171,7 +171,7 @@
                                         <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['catalogoadministrativo.school.table.cct']}" pt:uk-tooltip="title:; delay:2000; pos: top"/></f:facet>
                                         <h:commandLink styleClass="uk-link-reset" value="#{escuela.claveCentroTrabajo}" action="#{escuelaPoblacionControlador.actualiza}">
                                             <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaPoblacionControlador.claveCentroTrabajo}"/>
-                                            <f:ajax render="total-alumnos porcentaje-alumno"/>
+                                            <f:ajax render="total-alumnos porcentaje-alumno total-profesor"/>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column headerClass="uk-background-primary">

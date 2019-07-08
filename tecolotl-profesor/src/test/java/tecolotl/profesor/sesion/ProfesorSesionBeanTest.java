@@ -173,7 +173,8 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaTotal() {
-        EscuelaPoblacionModelo escuelaPoblacionModelo = profesorSesionBean.total("21DJN1326E");
-        Assert.assertNotEquals(escuelaPoblacionModelo.getTotalAlumnos().intValue(), 0);
+        EscuelaPoblacionModelo escuelaPoblacionModelo = profesorSesionBean.total("21DBA0010N");
+        Assert.assertNotEquals(escuelaPoblacionModelo.getTotalAlumnos(), 0);
+        Assert.assertNotEquals(escuelaPoblacionModelo.getTotalProfesores(), 0);
     }
 }

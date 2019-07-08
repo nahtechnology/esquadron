@@ -5,26 +5,26 @@ import javax.validation.constraints.NotNull;
 
 public class EscuelaPoblacionModelo {
 
-    private Integer totalProfesores;
-    private Integer totalAlumnos;
+    private int totalProfesores;
+    private int totalAlumnos;
 
     @NotNull
     @Min(0)
-    public Integer getTotalProfesores() {
+    public int getTotalProfesores() {
         return totalProfesores;
     }
 
-    public void setTotalProfesores(Integer totalProfesores) {
+    public void setTotalProfesores(int totalProfesores) {
         this.totalProfesores = totalProfesores;
     }
 
     @NotNull
     @Min(0)
-    public Integer getTotalAlumnos() {
+    public int getTotalAlumnos() {
         return totalAlumnos;
     }
 
-    public void setTotalAlumnos(Integer totalAlumnos) {
+    public void setTotalAlumnos(int totalAlumnos) {
         this.totalAlumnos = totalAlumnos;
     }
 }

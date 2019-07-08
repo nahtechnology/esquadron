@@ -19,18 +19,21 @@
             <groupId>tecolotl</groupId>
             <artifactId>tecolotl-nucleo</artifactId>
             <type>ejb</type>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>tecolotl</groupId>
             <artifactId>tecolotl-administracion</artifactId>
             <type>ejb</type>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>tecolotl</groupId>
             <artifactId>tecolotl-alumno</artifactId>
             <type>ejb</type>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>

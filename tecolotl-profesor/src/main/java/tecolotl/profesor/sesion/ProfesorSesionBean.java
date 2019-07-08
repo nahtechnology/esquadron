@@ -13,10 +13,7 @@ import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -127,12 +124,21 @@ public class ProfesorSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
+    /**
+     * Busca el total de población de una escuela
+     * @param claveCentroTrabajo
+     * @return
+     */
     public EscuelaPoblacionModelo total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
         EscuelaPoblacionModelo escuelaPoblacionModelo = new EscuelaPoblacionModelo();
-        escuelaPoblacionModelo.setTotalProfesores(entityManager.createNamedQuery("ProfesorEntidad.totalProfesores", Long.class)
-                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
-        escuelaPoblacionModelo.setTotalAlumnos(entityManager.createNamedQuery("ProfesorEntidad.totalAlumnosPorEscuela", Long.class)
-                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
+        try {
+            escuelaPoblacionModelo.setTotalProfesores(entityManager.createNamedQuery("ProfesorEntidad.totalProfesores", Long.class)
+                    .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
+            escuelaPoblacionModelo.setTotalAlumnos(entityManager.createNamedQuery("ProfesorEntidad.totalAlumnosPorEscuela", Long.class)
+                    .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
+        } catch (NoResultException ex) {
+            logger.fine("Escuela poblacion sin datos para la escuela:".concat(claveCentroTrabajo));
+        }
         return escuelaPoblacionModelo;
     }
 
