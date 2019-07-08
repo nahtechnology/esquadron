@@ -1,5 +1,6 @@
 package tecolotl.profesor.sesion;
 
+import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion;
 import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
@@ -126,9 +127,13 @@ public class ProfesorSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
-    public Long total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
-        return entityManager.createNamedQuery("EscuelaEntidad.totalProfesores", Long.class)
-                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
+    public EscuelaPoblacionModelo total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        EscuelaPoblacionModelo escuelaPoblacionModelo = new EscuelaPoblacionModelo();
+        escuelaPoblacionModelo.setTotalProfesores(entityManager.createNamedQuery("ProfesorEntidad.totalProfesores", Long.class)
+                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
+        escuelaPoblacionModelo.setTotalAlumnos(entityManager.createNamedQuery("ProfesorEntidad.totalAlumnosPorEscuela", Long.class)
+                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
+        return escuelaPoblacionModelo;
     }
 
 }

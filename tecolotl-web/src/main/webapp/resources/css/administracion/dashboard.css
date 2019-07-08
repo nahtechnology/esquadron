@@ -12,18 +12,55 @@ svg .icono {
 }
 
 .uk-tooltip {
-     /* 4 */
-    background: #666;
+    background: #222A30;
     border-radius: 2px;
     color: #fff;
     font-size: 14px;
-
+    border-top: solid 3px #1E87F0;
+    border-bottom: solid 3px #1E87F0;
 }
 
-.abajo{
-    border-bottom: solid 5px #1E87F0;
+.uk-tooltip::first-letter{
+    text-transform: uppercase !important;
 }
 
-.arriba{
-    border-top: solid 5px #1E87F0;
+.uk-notification-message::first-letter{
+    text-transform: uppercase !important;
+}
+
+/*satisfactorio*/
+.uk-notification-message-primary {
+    background-color: rgba(30, 135, 240, 0.8);
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border-top: solid 3px rgba(34, 42, 48, 0.8);
+    border-bottom: solid 3px rgba(34, 42, 48, 0.8);
+    margin-bottom: 5px;
+}
+
+/*peligro*/
+.uk-notification-message-warning {
+    background-color: rgba(250, 160, 90, 0.8);
+    opacity: 0.3;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border-top: solid 3px rgba(34, 42, 48, 0.8);
+    border-bottom: solid 3px rgba(34, 42, 48, 0.8);
+    margin-bottom: 5px;
+}
+/*error*/
+.uk-notification-message-danger {
+    background-color: rgba(240, 80, 110, 0.8);
+    opacity: 0.3;
+    border-radius: 2px;
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    border-top: solid 3px rgba(34, 42, 48, 0.8);
+    border-bottom: solid 3px rgba(34, 42, 48, 0.8);
+    margin-bottom: 5px;
 }

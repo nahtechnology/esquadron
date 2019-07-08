@@ -4,7 +4,6 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,15 +12,16 @@ import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 public class ProfesorEntidadTest {
@@ -30,7 +30,8 @@ public class ProfesorEntidadTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "prueba.war")
                 .addClasses(ProfesorEntidad.class, PersonaEntidad.class, LoggerProducer.class, CatalagoEntidad.class,
-                            GrupoEntidad.class, PersonaNuevaValidacion.class)
+                            GrupoEntidad.class, PersonaMotivoBloqueoEntidad.class, GrupoAlumnoEntidad.class,
+                            GrupoAlumnoEntidadPK.class, PersonaNuevaValidacion.class)
                 .addPackage(EscuelaEntidad.class.getPackage())
                 .addPackage(AlumnoEntidad.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")

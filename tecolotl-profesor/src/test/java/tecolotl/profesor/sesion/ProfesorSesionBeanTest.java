@@ -13,6 +13,7 @@ import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
@@ -172,7 +173,7 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaTotal() {
-        Long total = profesorSesionBean.total("21DJN1326E");
-        Assert.assertNotEquals(total.intValue(), 0);
+        EscuelaPoblacionModelo escuelaPoblacionModelo = profesorSesionBean.total("21DJN1326E");
+        Assert.assertNotEquals(escuelaPoblacionModelo.getTotalAlumnos().intValue(), 0);
     }
 }
