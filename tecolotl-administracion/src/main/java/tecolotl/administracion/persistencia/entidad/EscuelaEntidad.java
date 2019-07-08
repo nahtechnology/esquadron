@@ -22,13 +22,10 @@ import java.util.Objects;
 			name = "EscuelaEntidad.existe",
 			query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
 	),
-/*    @NamedQuery(
-            name = "EscuelaEntidad.totalAlumnos",
-            query = "SELECT COUNT(pga.id), p.nombre FROM ProfesorEntidad p "+
-                "LEFT JOIN p.GrupoEntidad pg " +
-                "LEFT JOIN pg.GrupoAlumnoEntidad pga " +
-                "WHERE p.escuelaEntidad.claveCentroTrabajo =: claveCentroTrabajo GROUP BY pga.id, p.nombre"
-    ),*/
+    @NamedQuery(
+            name = "EscuelaEntidad.buscaNombre",
+            query = "SELECT NEW EscuelaEntidad(e.claveCentroTrabajo, e.nombre) FROM EscuelaEntidad e"
+    )
 })
 public class EscuelaEntidad {
 
@@ -46,6 +43,11 @@ public class EscuelaEntidad {
 
 	public EscuelaEntidad(String claveCentroTrabajo) {
 		this.claveCentroTrabajo = claveCentroTrabajo;
+	}
+
+	public EscuelaEntidad(String claveCentroTrabajo, String nombre) {
+		this.claveCentroTrabajo = claveCentroTrabajo;
+		this.nombre = nombre;
 	}
 
 	@Id

@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.*;
 import java.util.logging.Logger;
-
+import java.util.stream.Collectors;
 
 
 /**
@@ -77,9 +77,24 @@ public class EscuelaSesionBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Busca el nombre de una escuela
+	 * @param claveCentroTrabajo Identificador de la escuela
+	 * @return String con el nombre de la escuela, nulo en caso de no existir
+	 */
 	public String nombre(@NotNull @Size(min = 8) String claveCentroTrabajo) {
 		return entityManager.createNamedQuery("EscuelaEntidad.existe", String.class)
 				.setParameter("claveCentroTrabajo",claveCentroTrabajo).getSingleResult();
+	}
+
+	public List<EscuelaBaseModelo> nombre() {
+		return entityManager.createNamedQuery("EscuelaEntidad.buscaNombre", EscuelaEntidad.class).getResultList()
+				.stream().map(escuelaEntidad -> {
+					EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo();
+					escuelaBaseModelo.setNombre(escuelaEntidad.getNombre());
+					escuelaBaseModelo.setClaveCentroTrabajo(escuelaEntidad.getClaveCentroTrabajo());
+					return escuelaBaseModelo;
+				}).collect(Collectors.toList());
 	}
 
 	/**
