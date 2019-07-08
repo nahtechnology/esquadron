@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="562" height="498" version="1.1" viewBox="0 0 148.7 131.76" xmlns="http://www.w3.org/2000/svg">
+
+ <g transform="translate(-36.164 -23.121)">
+  <path d="m183.55 99.882c0 41.679-30.811 53.707-71.15 53.707-40.339 0-74.93-12.028-74.93-53.707-1e-6 -41.679 32.701-75.466 73.04-75.466 40.339 0 73.04 33.787 73.04 75.466z" fill="#a56192" style="paint-order:fill markers stroke"/>
+  <ellipse cx="85.669" cy="90.198" rx="19.334" ry="21.354" fill="#fff" style="paint-order:fill markers stroke"/>
+  <ellipse cx="133.03" cy="89.824" rx="19.93" ry="21.277" fill="#fff" style="paint-order:fill markers stroke"/>
+  <ellipse cx="78.71" cy="87.43" rx="9.9946" ry="11.117" fill="#1E87F0" style="paint-order:fill markers stroke"/>
+  <ellipse cx="127.64" cy="87.355" rx="9.9946" ry="11.117" fill="#1E87F0" style="paint-order:fill markers stroke"/>
+  <ellipse cx="77.588" cy="86.756" rx="6.6293" ry="7.3027" fill="#0c0c0c" style="paint-order:fill markers stroke"/>
+  <ellipse cx="126.74" cy="86.756" rx="6.6293" ry="7.3027" fill="#0c0c0c" style="paint-order:fill markers stroke"/>
+  <ellipse cx="83.194" cy="80.621" rx="2.6014" ry="2.2273" fill="#fffeff" style="paint-order:fill markers stroke"/>
+  <ellipse cx="132.36" cy="81.295" rx="2.949" ry="2.7245" fill="#fffeff" style="paint-order:fill markers stroke"/>
+ </g>
+</svg>
