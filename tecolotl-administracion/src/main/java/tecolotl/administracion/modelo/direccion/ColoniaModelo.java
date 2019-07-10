@@ -16,16 +16,8 @@ import java.util.Objects;
  */
 public class ColoniaModelo {
 
-    @NotNull
-    @Min(0)
     private Integer id;
-
-    @NotNull(groups = {ColoniaNuevaValidacion.class})
-    @Size(min = 4, max = 5, groups = {ColoniaNuevaValidacion.class})
     private String codigoPostal;
-
-    @NotNull(groups = {ColoniaNuevaValidacion.class})
-    @Size(min = 3, max = 70, groups = {ColoniaNuevaValidacion.class})
     private String nombre;
 
     public ColoniaModelo() {
@@ -46,6 +38,8 @@ public class ColoniaModelo {
         nombre = coloniaEntidad.getNombre();
     }
 
+    @NotNull
+    @Min(0)
     public Integer getId() {
         return id;
     }
@@ -54,6 +48,8 @@ public class ColoniaModelo {
         this.id = id;
     }
 
+    @NotNull(groups = {ColoniaNuevaValidacion.class})
+    @Size(min = 4, max = 5, groups = {ColoniaNuevaValidacion.class})
     public String getCodigoPostal() {
         return codigoPostal;
     }
@@ -62,6 +58,8 @@ public class ColoniaModelo {
         this.codigoPostal = codigoPostal;
     }
 
+    @NotNull(groups = {ColoniaNuevaValidacion.class})
+    @Size(min = 3, max = 70, groups = {ColoniaNuevaValidacion.class})
     public String getNombre() {
         return nombre;
     }

@@ -29,10 +29,6 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     @Size(max = 15, min = 1)
     private String numeroExterior;
 
-    enum Busqueda {
-        PROFESOR, ALUMNO
-    }
-
     public EscuelaBaseModelo() {
     }
 

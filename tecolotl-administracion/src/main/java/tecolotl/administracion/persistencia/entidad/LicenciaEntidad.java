@@ -2,6 +2,7 @@ package tecolotl.administracion.persistencia.entidad;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name= "licencia", schema= "administracion")
@@ -59,4 +60,12 @@ public class LicenciaEntidad {
 		this.adquisicion = adquisicion;
 	}
 
+	@Override
+	public String toString() {
+		return new StringJoiner(", ", LicenciaEntidad.class.getSimpleName() + "[", "]")
+				.add("licenciaEntidadPk=" + licenciaEntidadPk)
+				.add("inicio=" + inicio)
+				.add("adquisicion=" + adquisicion)
+				.toString();
+	}
 }

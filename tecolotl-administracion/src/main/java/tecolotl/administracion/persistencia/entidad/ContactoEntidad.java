@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "contacto", schema = "administracion")
@@ -81,5 +82,16 @@ public class ContactoEntidad implements Serializable {
 
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
+	}
+
+	@Override
+	public String toString() {
+		return new StringJoiner(", ", ContactoEntidad.class.getSimpleName() + "[", "]")
+				.add("contactoEntidadPK=" + contactoEntidadPK)
+				.add("tipoContactoEntidad=" + tipoContactoEntidad)
+				.add("nombre='" + nombre + "'")
+				.add("telefono='" + telefono + "'")
+				.add("correoElectronico='" + correoElectronico + "'")
+				.toString();
 	}
 }
