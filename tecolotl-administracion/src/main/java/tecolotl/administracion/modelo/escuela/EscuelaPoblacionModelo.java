@@ -2,6 +2,7 @@ package tecolotl.administracion.modelo.escuela;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.StringJoiner;
 
 public class EscuelaPoblacionModelo {
 
@@ -26,5 +27,13 @@ public class EscuelaPoblacionModelo {
 
     public void setTotalAlumnos(int totalAlumnos) {
         this.totalAlumnos = totalAlumnos;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EscuelaPoblacionModelo.class.getSimpleName() + "[", "]")
+                .add("totalProfesores=" + totalProfesores)
+                .add("totalAlumnos=" + totalAlumnos)
+                .toString();
     }
 }

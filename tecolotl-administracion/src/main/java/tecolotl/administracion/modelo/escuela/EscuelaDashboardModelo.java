@@ -2,6 +2,8 @@ package tecolotl.administracion.modelo.escuela;
 
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 
+import java.util.StringJoiner;
+
 /**
  * modelo con los datos de una escuela con los datos para una visualización
  * rápida para que el usuario no entre en detalles de dicha escuela.
@@ -46,5 +48,15 @@ public class EscuelaDashboardModelo extends EscuelaBaseModelo {
 
     public void setLicencias(int licencias) {
         this.licencias = licencias;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EscuelaDashboardModelo.class.getSimpleName() + "[", "]")
+                .add("activo=" + activo)
+                .add("diasRestantes=" + diasRestantes)
+                .add("licencias=" + licencias)
+                .add("super" + super.toString())
+                .toString();
     }
 }

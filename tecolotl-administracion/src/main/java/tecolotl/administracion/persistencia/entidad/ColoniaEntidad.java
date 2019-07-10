@@ -3,6 +3,7 @@ package tecolotl.administracion.persistencia.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "colonia", schema = "administracion")
@@ -73,5 +74,15 @@ public class ColoniaEntidad {
 
     public void setMunicipio(MunicipioEntidad municipio) {
         this.municipio = municipio;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ColoniaEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("codigoPostal='" + codigoPostal + "'")
+                .add("nombre='" + nombre + "'")
+                .add("municipio=" + municipio)
+                .toString();
     }
 }

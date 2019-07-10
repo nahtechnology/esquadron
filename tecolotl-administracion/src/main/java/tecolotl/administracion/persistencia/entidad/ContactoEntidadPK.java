@@ -3,6 +3,7 @@ package tecolotl.administracion.persistencia.entidad;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class ContactoEntidadPK implements Serializable {
@@ -52,4 +53,11 @@ public class ContactoEntidadPK implements Serializable {
         return Objects.hash(escuelaEntidad, contador);
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ContactoEntidadPK.class.getSimpleName() + "[", "]")
+                .add("escuelaEntidad=" + escuelaEntidad)
+                .add("contador=" + contador)
+                .toString();
+    }
 }
