@@ -58,7 +58,7 @@
 						<webModule>
 							<groupId>tecolotl</groupId>
 							<artifactId>tecolotl-web</artifactId>
-							<contextRoot>/pruebas-tecolotl</contextRoot>
+							<contextRoot>/tecolotl-desarrollo</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>

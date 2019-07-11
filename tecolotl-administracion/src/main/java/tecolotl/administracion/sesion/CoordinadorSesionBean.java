@@ -44,6 +44,7 @@ public class CoordinadorSesionBean {
      * @return Colección de {@link CoordinadorModelo}, lista vacia en caso de no tener alumnos.
      */
     public List<CoordinadorModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        logger.fine("Bucando coordinadores con CCT:".concat(claveCentroTrabajo));
         return entityManager.createNamedQuery("CoordinadorEntidad.buscaEscuela", CoordinadorEntidad.class)
                 .setParameter("claveCentroTrabajo",claveCentroTrabajo).getResultList().stream()
                 .map(CoordinadorModelo::new).collect(Collectors.toList());
@@ -51,10 +52,12 @@ public class CoordinadorSesionBean {
 
     public CoordinadorModelo busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
                                    @NotNull Short contador) {
+        logger.fine("Buscando por id:".concat(contador.toString()).concat(" clave centro trabajo:").concat(claveCentroTrabajo));
         CoordinadorEntidad coordinadorEntidad = entityManager.createNamedQuery(
                 "CoordinadorEntidad.buscaDetalle", CoordinadorEntidad.class)
                 .setParameter("coordinadorEntidadPK", new CoordinadorEntidadPK(claveCentroTrabajo, contador))
                 .getSingleResult();
+        logger.finer("coordinador encontrado:".concat(coordinadorEntidad.toString()));
         CoordinadorModelo coordinadorModelo = new CoordinadorModelo(coordinadorEntidad);
         coordinadorModelo.getPersonaMotivoBloqueoModelo().setValor(
                 coordinadorEntidad.getPersonaMotivoBloqueoEntidad().getValor());
@@ -80,6 +83,7 @@ public class CoordinadorSesionBean {
      * @param coordinadorModelo Datos del coordinador a ser insertados en la base de datos.
      */
     public void agreaga(@NotNull CoordinadorModelo coordinadorModelo) {
+        logger.finer("coordinador a ser insertado".concat(coordinadorModelo.toString()));
         validadorSessionBean.validacion(coordinadorModelo, CoordinadorNuevoValidacion.class, PersonaNuevaValidacion.class);
         CoordinadorEntidad coordinadorEntidad = new CoordinadorEntidad(generaLlavePrimaria(coordinadorModelo));
         coordinadorEntidad.setCorreoEletronico(coordinadorModelo.getCorreoEletronico());
@@ -96,7 +100,7 @@ public class CoordinadorSesionBean {
      * @param coordinadorModelo
      */
     public void actualiza(@NotNull @Valid CoordinadorModelo coordinadorModelo) {
-        logger.fine(coordinadorModelo.toString());
+        logger.fine("Coordinador a ser actualizado".concat(coordinadorModelo.toString()));
         CoordinadorEntidad coordinadorEntidad = entityManager.find(CoordinadorEntidad.class, generaLlavePrimaria(coordinadorModelo));
         coordinadorEntidad.setCorreoEletronico(coordinadorModelo.getCorreoEletronico());
         coordinadorEntidad.setApodo(coordinadorModelo.getApodo());
@@ -115,6 +119,7 @@ public class CoordinadorSesionBean {
         CoordinadorEntidadPK coordinadorEntidadPK = new CoordinadorEntidadPK();
         coordinadorEntidadPK.setEscuelaEntidad(new EscuelaEntidad(coordinadorModelo.getClaveCentroTrabajo()));
         coordinadorEntidadPK.setContador(coordinadorModelo.getContador());
+        logger.fine("Llave primaria del coordinador:".concat(coordinadorEntidadPK.toString()));
         return coordinadorEntidadPK;
     }
 

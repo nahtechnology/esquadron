@@ -38,6 +38,7 @@ public class EscuelaSesionBean implements Serializable {
 	 * @return Colección de {@link EscuelaDashboardModelo}, en caso de no existir elemento recupera una colección vacia.
 	 */
 	public Collection<EscuelaDashboardModelo> busca() {
+		logger.fine("buscando todas las escuelas");
 		Calendar calendarFechaHoy = Calendar.getInstance();
 		int diasTotales = 0;
 		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.busca", EscuelaEntidad.class);
@@ -83,6 +84,7 @@ public class EscuelaSesionBean implements Serializable {
 	 * @return String con el nombre de la escuela, nulo en caso de no existir
 	 */
 	public String nombre(@NotNull @Size(min = 8) String claveCentroTrabajo) {
+		logger.fine("Buscando el nombre de la escuela".concat(claveCentroTrabajo));
 		return entityManager.createNamedQuery("EscuelaEntidad.existe", String.class)
 				.setParameter("claveCentroTrabajo",claveCentroTrabajo).getSingleResult();
 	}
@@ -145,7 +147,7 @@ public class EscuelaSesionBean implements Serializable {
 	 * @param motivoBloqueoModelo Motivo de Bloque con el que se le bloquea
 	 */
 	public void bloqueo (@NotNull EscuelaBaseModelo escuelaBaseModelo, @NotNull MotivoBloqueoModelo motivoBloqueoModelo) {
-		logger.finer("Escuela a actualizar:".concat(escuelaBaseModelo.toString()).concat(" con motivo de bloqueo:").concat(motivoBloqueoModelo.toString()));
+		logger.fine("Escuela a actualizar:".concat(escuelaBaseModelo.toString()).concat(" con motivo de bloqueo:").concat(motivoBloqueoModelo.toString()));
 		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, escuelaBaseModelo.getClaveCentroTrabajo());
 		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad(motivoBloqueoModelo.getClave());
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
@@ -200,6 +202,7 @@ public class EscuelaSesionBean implements Serializable {
 	 * @return Número de elementos modificados
 	 */
 	public int elimina(@NotNull String claveCentroTrabajo) {
+		logger.fine("Escuela a eliminar:".concat(claveCentroTrabajo));
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaDelete<EscuelaEntidad> criteriaDelete = criteriaBuilder.createCriteriaDelete(EscuelaEntidad.class);
 		Root<EscuelaEntidad> root = criteriaDelete.from(EscuelaEntidad.class);

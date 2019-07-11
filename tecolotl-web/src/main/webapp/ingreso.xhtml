@@ -9,17 +9,10 @@
     <title>Registro</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:inputText id="nombre"/>
-        <h:inputSecret id="contrasenia"/>
-        <h:selectOneMenu>
-            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}"/>
-            <f:selectItems value="#{ingresoControlador.escuelaBaseModeloLista}"
-                           var="escuela"
-                           itemLabel="#{escuela.nombre}"
-                           itemValue="#{escuela.claveCentroTrabajo}"/>
-        </h:selectOneMenu>
-        <h:commandButton value="Ingresar"/>
-    </h:form>
+    <form method="post" action="j_security_check">
+        <input type="text" name="j_username"/>
+        <input type="password" name="j_password"/>
+        <input type="submit" value="enviar"/>
+    </form>
 </h:body>
 </html>

@@ -168,7 +168,11 @@
                                              footerClass="uk-background-primary"
                                              columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
                                     <h:column headerClass="uk-background-primary uk-width-small">
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['catalogoadministrativo.school.table.cct']}" pt:uk-tooltip="title:; delay:2000; pos: top"/></f:facet>
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="letra-titulo"
+                                                          value="#{administracion['catalogoadministrativo.school.table.cct']}"
+                                                          pt:uk-tooltip="title:#{administracion['dashboard.busqueda.cct']}; delay:2000; pos: top"/>
+                                        </f:facet>
                                         <h:commandLink styleClass="uk-link-reset" value="#{escuela.claveCentroTrabajo}" action="#{escuelaPoblacionControlador.actualiza}">
                                             <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaPoblacionControlador.claveCentroTrabajo}"/>
                                             <f:ajax render="total-alumnos porcentaje-alumno total-profesor"/>
