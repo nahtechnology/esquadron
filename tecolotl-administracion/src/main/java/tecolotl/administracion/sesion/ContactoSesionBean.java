@@ -46,7 +46,7 @@ public class ContactoSesionBean {
      * @return Coleccióon con los contactos encontrados, vacio en caso de no existir.
      */
     public List<ContactoModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentrotrabajo) {
-        logger.fine("Buscando conacto con la clave centro de trabajo:".concat(claveCentrotrabajo));
+        logger.fine("Buscando contacto con la clave centro de trabajo:".concat(claveCentrotrabajo));
         List<ContactoModelo> contactoModeloLista = new ArrayList<>();
         TypedQuery<ContactoEntidad> typedQuery = entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentrotrabajo);

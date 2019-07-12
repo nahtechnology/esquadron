@@ -100,11 +100,13 @@
                                             <f:setPropertyActionListener value="#{null}" target="#{escuelaDashboardControlador.busqueda}"/>
                                             <f:ajax render="formulario-tabla-escuela @form"/>
                                         </h:commandLink>
-                                        <h:inputText id="filtrado"
+                                        <h:inputText id="filtrado" disabled="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}"
                                                      styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar'}"
                                                      pt:placeholder="#{etiqueta['search']}"
                                                      value="#{escuelaDashboardControlador.busqueda}"
-                                                     pt:uk-tooltip="title: #{administracion['dashboard.search.tooltip']}; delay:2000; pos:  right;">
+                                                     pt:uk-tooltip="title: #{empty escuelaDashboardControlador.collectionDataModel.wrappedData
+                                                        ? administracion['dashboard.search.tooltip.diseble']
+                                                        : administracion['dashboard.search.tooltip.enable']}; delay:2000; pos:right;">
                                         </h:inputText>
                                     </div>
                                 </h:form>
@@ -123,6 +125,11 @@
                     </div>
                     <div class="uk-card-body">
                         <h:form id="formulario-tabla-escuela">
+                            <ui:fragment rendered="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData and not empty escuelaDashboardControlador.busqueda}">
+                                <script type="application/javascript">
+                                    UIkit.notification({menssage : 'Sin filtro', status : 'primary', pos : 'top-right'});
+                                </script>
+                            </ui:fragment>
                             <ui:fragment rendered="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}">
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
@@ -285,6 +292,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-cct"
+                                                 autocomplete="off"
                                                  disabled="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
                                                  pt:placeholder="#{administracion['dashboard.modal.cct']}"
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
@@ -300,6 +308,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-nombre"
+                                                 autocomplete="off"
                                                  pt:placeholder="#{administracion['dashboard.modal.name']}"
                                                  label="#{administracion['dashboard.modal.name']}"
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.nombre}">
@@ -314,6 +323,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-codigo-postal"
+                                                 autocomplete="off"
                                                  binding="#{escuelaDashboardControlador.uiInputCodigoPostal}"
                                                  pt:placeholder="#{administracion['dashboard.modal.zipcode']}"
                                                  value="#{escuelaDashboardControlador.codigoPostal}">
@@ -359,6 +369,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-calle"
+                                                 autocomplete="off"
                                                  pt:placeholder="#{administracion['dashboard.modal.street']}"
                                                  label="#{administracion['dashboard.modal.street']}"
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.domicilio}">
@@ -373,6 +384,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-numero-exterior"
+                                                 autocomplete="off"
                                                  pt:placeholder="#{administracion['dashboard.modal.street.num.ext']}"
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.numeroExterior}"
                                                  label="#{administracion['dashboard.modal.street.num.ext']}">
@@ -425,7 +437,7 @@
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
                             <f:ajax execute="@form"
-                                    render="@form formulario-tabla-escuela formulario-paginacion-escuela"
+                                    render="@form formulario-tabla-escuela formulario-paginacion-escuela formulario-filtrado-escuela"
                                     listener="#{escuelaDashboardControlador.inserta}"
                                     onevent="function fun(data) { cierraModal(data, 'modal-escuela'); limpiaSelect(data) }"/>
                         </h:commandButton>
@@ -497,7 +509,7 @@
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
                             <f:ajax execute="@form"
-                                    render="formulario-tabla-escuela formulario-paginacion-escuela"
+                                    render="formulario-tabla-escuela formulario-paginacion-escuela formulario-filtrado-escuela"
                                     onevent="function funcion(data) { limpiaSelect(data) }"
                                     listener="#{escuelaDashboardControlador.elimina}"/>
                         </h:commandButton>
