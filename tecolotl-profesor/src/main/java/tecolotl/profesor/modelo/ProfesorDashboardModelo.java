@@ -2,6 +2,8 @@ package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.ProfesorEntidad;
 
+import java.util.StringJoiner;
+
 public class ProfesorDashboardModelo extends ProfesorModelo {
 
     private Integer totalGrupos;
@@ -29,5 +31,12 @@ public class ProfesorDashboardModelo extends ProfesorModelo {
 
     public void setTotalGrupos(Integer totalGrupos) {
         this.totalGrupos = totalGrupos;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ProfesorDashboardModelo.class.getSimpleName() + "[", "]")
+                .add("totalGrupos=" + totalGrupos)
+                .toString();
     }
 }

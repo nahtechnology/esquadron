@@ -4,6 +4,7 @@ import tecolotl.profesor.entidad.GrupoAlumnoTareaEntidad;
 
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
+import java.util.StringJoiner;
 
 public class GrupoAlumnoTareaModelo {
     @NotNull
@@ -59,5 +60,15 @@ public class GrupoAlumnoTareaModelo {
 
     public void setAsignacion(Timestamp asignacion) {
         this.asignacion = asignacion;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoAlumnoTareaModelo.class.getSimpleName() + "[", "]")
+                .add("idGrupo=" + idGrupo)
+                .add("idAlumno=" + idAlumno)
+                .add("idTarea=" + idTarea)
+                .add("asignacion=" + asignacion)
+                .toString();
     }
 }

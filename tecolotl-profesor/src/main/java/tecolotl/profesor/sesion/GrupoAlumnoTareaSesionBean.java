@@ -19,6 +19,7 @@ import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -28,7 +29,7 @@ public class GrupoAlumnoTareaSesionBean {
     private EntityManager entityManager;
 
     @Inject
-    private LoggerProducer logger;
+    private Logger logger;
 
     @Inject
     private ValidadorSessionBean validadorSessionBean;
@@ -38,6 +39,7 @@ public class GrupoAlumnoTareaSesionBean {
      * @param grupoAlumnoTareaModelo dato para insertar la actividad.
      */
     public void inserta(@NotNull GrupoAlumnoTareaModelo grupoAlumnoTareaModelo){
+        logger.fine(grupoAlumnoTareaModelo.toString());
         GrupoAlumnoTareaEntidadPK grupoAlumnoTareaEntidadPK = new GrupoAlumnoTareaEntidadPK();
         grupoAlumnoTareaEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoTareaModelo.getIdGrupo()));
         grupoAlumnoTareaEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoTareaModelo.getIdAlumno()));
@@ -54,6 +56,7 @@ public class GrupoAlumnoTareaSesionBean {
     public List<GrupoAlumnoTareaModelo> busca(){
         TypedQuery<GrupoAlumnoTareaEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoTareaEntidad.busca", GrupoAlumnoTareaEntidad.class);
         List<GrupoAlumnoTareaEntidad> grupoAlumnoTareaEntidadLista = typedQuery.getResultList();
+        logger.finer("Numero de profesores encontrados: ".concat(String.valueOf(grupoAlumnoTareaEntidadLista.size())));
         return grupoAlumnoTareaEntidadLista.stream().map(GrupoAlumnoTareaModelo::new).collect(Collectors.toList());
     }
 
@@ -63,6 +66,7 @@ public class GrupoAlumnoTareaSesionBean {
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
     public Integer elimina(@NotNull GrupoAlumnoTareaModelo grupoAlumnoTareaModelo){
+        logger.fine(grupoAlumnoTareaModelo.toString());
         GrupoAlumnoTareaEntidadPK grupoAlumnoTareaEntidadPK = new GrupoAlumnoTareaEntidadPK();
         grupoAlumnoTareaEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoTareaModelo.getIdGrupo()));
         grupoAlumnoTareaEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoTareaModelo.getIdAlumno()));

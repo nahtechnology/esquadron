@@ -15,6 +15,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -24,7 +25,7 @@ public class GrupoSesionBean {
     private EntityManager entityManager;
 
     @Inject
-    private LoggerProducer logger;
+    private Logger logger;
 
     @Inject
     private ValidadorSessionBean validadorSessionBean;
@@ -35,6 +36,7 @@ public class GrupoSesionBean {
      * @param grupoModelo datos para insertar el nuevo Grupo.
      */
     public void inserta(@NotNull GrupoModelo grupoModelo){
+        logger.fine(grupoModelo.toString());
         GrupoEntidad grupoEntidad = new GrupoEntidad();
         grupoEntidad.setGrupo(grupoModelo.getGrupo());
         grupoEntidad.setGrado(grupoModelo.getGrado());
@@ -51,6 +53,7 @@ public class GrupoSesionBean {
     public List<GrupoModelo> busca(){
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.busca", GrupoEntidad.class);
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
+        logger.finer("Numero de grupos encontrados: ".concat(String.valueOf(grupoEntidadLista.size())));
         return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
     }
 
@@ -61,6 +64,7 @@ public class GrupoSesionBean {
      */
     public Integer actualiza(@NotNull GrupoModelo grupoModelo){
         validadorSessionBean.validacion(grupoModelo, GrupoProfesorValidacion.class);
+        logger.fine(grupoModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate criteriaUpdate = criteriaBuilder.createCriteriaUpdate(GrupoEntidad.class);
         Root<GrupoEntidad> root = criteriaUpdate.from(GrupoEntidad.class);
@@ -76,6 +80,7 @@ public class GrupoSesionBean {
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
     public Integer elimina(@NotNull Integer idGrupo){
+        logger.fine(idGrupo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete criteriaDelete = criteriaBuilder.createCriteriaDelete(GrupoEntidad.class);
         Root<GrupoEntidad> root = criteriaDelete.from(GrupoEntidad.class);

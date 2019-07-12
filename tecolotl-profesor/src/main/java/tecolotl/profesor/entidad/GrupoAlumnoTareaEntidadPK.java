@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class GrupoAlumnoTareaEntidadPK implements Serializable {
@@ -62,5 +63,14 @@ public class GrupoAlumnoTareaEntidadPK implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(grupoEntidad, alumnoEntidad, tareaEntidad);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoAlumnoTareaEntidadPK.class.getSimpleName() + "[", "]")
+                .add("grupoEntidad=" + grupoEntidad)
+                .add("alumnoEntidad=" + alumnoEntidad)
+                .add("tareaEntidad=" + tareaEntidad)
+                .toString();
     }
 }

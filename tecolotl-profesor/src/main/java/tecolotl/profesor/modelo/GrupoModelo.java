@@ -5,6 +5,7 @@ import tecolotl.profesor.entidad.GrupoEntidad;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.StringJoiner;
 
 public class GrupoModelo {
 
@@ -89,5 +90,17 @@ public class GrupoModelo {
 
     public void setProfesorModelo(ProfesorModelo profesorModelo) {
         this.profesorModelo = profesorModelo;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoModelo.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("grado=" + grado)
+                .add("grupo=" + grupo)
+                .add("inicio=" + inicio)
+                .add("fin=" + fin)
+                .add("profesorModelo=" + profesorModelo)
+                .toString();
     }
 }

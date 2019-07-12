@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 @Table(schema = "profesor", name = "profesor", uniqueConstraints = {
@@ -89,4 +90,13 @@ public class ProfesorEntidad extends PersonaEntidad {
         this.correoEletronico = correoEletronico;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ProfesorEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("correoEletronico='" + correoEletronico + "'")
+                .add("escuelaEntidad=" + escuelaEntidad)
+                .add("grupoEntidadLista=" + grupoEntidadLista)
+                .toString();
+    }
 }

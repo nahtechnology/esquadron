@@ -17,6 +17,7 @@ import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -26,7 +27,7 @@ public class GrupoAlumnoSesionBean {
     private EntityManager entityManager;
 
     @Inject
-    private LoggerProducer loger;
+    private Logger logger;
 
     //@Inject
     //private ValidadorSessionBean validadorSessionBean;
@@ -36,6 +37,7 @@ public class GrupoAlumnoSesionBean {
      * @param grupoAlumnoModelo dato para poder insertar un nuecvo GrupoAlumno.
      */
     public void inserta(@NotNull GrupoAlumnoModelo grupoAlumnoModelo){
+        logger.fine(grupoAlumnoModelo.toString());
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
         grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
@@ -51,6 +53,7 @@ public class GrupoAlumnoSesionBean {
     public List<GrupoAlumnoModelo> busca(){
         TypedQuery<GrupoAlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.busca", GrupoAlumnoEntidad.class);
         List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista = typedQuery.getResultList();
+        logger.finer("Numero de profesores encontrados: ".concat(String.valueOf(grupoAlumnoEntidadLista.size())));
         return grupoAlumnoEntidadLista.stream().map(GrupoAlumnoModelo::new).collect(Collectors.toList());
     }
 
@@ -60,6 +63,7 @@ public class GrupoAlumnoSesionBean {
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
     public Integer elimina(@NotNull GrupoAlumnoModelo grupoAlumnoModelo){
+        logger.fine(grupoAlumnoModelo.toString());
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
