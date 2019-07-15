@@ -67,7 +67,8 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
             getCollectionDataModel().setWrappedData(escuelaSesionBean.busca());
         } else {
             getCollectionDataModel().setWrappedData(escuelaSesionBean.busca().stream().filter(escuelaDashboardModelo ->
-                    escuelaDashboardModelo.getNombre().contains(busqueda) || escuelaDashboardModelo.getClaveCentroTrabajo().contains(busqueda)
+                    escuelaDashboardModelo.getNombre().toLowerCase().contains(busqueda.toLowerCase()) ||
+                            escuelaDashboardModelo.getClaveCentroTrabajo().toLowerCase().contains(busqueda.toLowerCase())
             ).collect(Collectors.toList()));
         }
     }

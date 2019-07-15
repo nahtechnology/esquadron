@@ -160,7 +160,7 @@ public class EscuelaSesionBean implements Serializable {
 	public void activa(@NotNull String claveCentroTrabajo) {
 		logger.fine(claveCentroTrabajo);
 		EscuelaEntidad escuelaEntidad = entityManager.find(EscuelaEntidad.class, claveCentroTrabajo);
-		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)0);
+		MotivoBloqueoEntidad motivoBloqueoEntidad = new MotivoBloqueoEntidad((short)1);
 		escuelaEntidad.setMotivoBloqueoEntidad(motivoBloqueoEntidad);
 	}
 

@@ -292,32 +292,34 @@
                             <ui:fragment rendered="#{empty licenciasControlador.collectionDataModel.wrappedData}">
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
-                                    <tr>
-                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
-                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
-                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
-                                        <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
-                                    </tr>
+                                        <tr>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td colspan="4">
-                                            <div class="uk-flex uk-flex-center">
-                                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <div class="uk-flex uk-flex-center">
+                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                     <tfoot class="uk-background-primary">
-                                    <tr>
-                                        <td colspan="6"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
-                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
-                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
-                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
-                                                </h:outputFormat>
-                                            </span></td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <span class="letra-titulo">
+                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                        <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                    </h:outputFormat>
+                                                </span>
+                                            </td>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </ui:fragment>
@@ -523,7 +525,6 @@
                             </h:outputFormat>
                         </p>
                     </div>
-                    <h:inputHidden id="input-fecha-adquisicion" value="#{licenciasControlador.licenciaModelo.adquisicion}"/>
                     <div class="uk-modal-body">
                         <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-fecha" value="#{administracion['schooldetail.lisense.datestart']}"/>
                         <div class="uk-form-controls">
