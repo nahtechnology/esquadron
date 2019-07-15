@@ -98,7 +98,7 @@ public class EscuelaEntidad {
 	@Basic
 	@Column(name = "domicilio")
 	@NotNull
-	@Size(min = 11, max = 60)
+	@Size(min = 2, max = 60)
 	public String getDomicilio() {
 		return domicilio;
 	}

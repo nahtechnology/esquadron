@@ -103,6 +103,7 @@
                                         <h:inputText id="filtrado" disabled="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}"
                                                      styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar'}"
                                                      pt:placeholder="#{etiqueta['search']}"
+                                                     autocomplete="off"
                                                      value="#{escuelaDashboardControlador.busqueda}"
                                                      pt:uk-tooltip="title: #{empty escuelaDashboardControlador.collectionDataModel.wrappedData
                                                         ? administracion['dashboard.search.tooltip.diseble']
@@ -117,7 +118,7 @@
                                                    pt:uk-icon="icon: plus-circle; ratio: 1.5"
                                                    pt:uk-toggle="target: #modal-escuela"
                                                    pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000">
-                                        <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela"/>
+                                        <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela" onevent="function limpia(data) { limpiaSelect(data); }"/>
                                     </h:commandLink>
                                 </h:form>
                             </div>
@@ -125,9 +126,9 @@
                     </div>
                     <div class="uk-card-body">
                         <h:form id="formulario-tabla-escuela">
-                            <ui:fragment rendered="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData and not empty escuelaDashboardControlador.busqueda}">
-                                <script type="application/javascript">
-                                    UIkit.notification({menssage : 'Sin filtro', status : 'primary', pos : 'top-right'});
+                            <ui:fragment rendered="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}">
+                                <script type="text/javascript">
+                                    UIkit.notification({message:"#{administracion['dashboard.notification.notfound']}", status:'warning', pos:'top-right'});
                                 </script>
                             </ui:fragment>
                             <ui:fragment rendered="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}">
@@ -337,8 +338,8 @@
                                            id="error-input-escuela-codigo-postal"
                                            warnClass="uk-text-warning uk-display-block primera-mayuscula"/>
                             </div>
-                            <div class="uk-inline uk-width-1-1@s uk-width-1-6@m ">
-                                <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary uk-position-bottom-center" value="#{boton['search']}">
+                            <div class="uk-width-1-1@s uk-width-1-6@m uk-flex uk-flex-bottom">
+                                <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary" value="#{boton['search']}">
                                     <f:ajax execute="formulario-escuela:input-escuela-codigo-postal"
                                             render="formulario-escuela:error-input-escuela-codigo-postal formulario-escuela:seleccion-colonia formulario-escuela:input-escuela-estado formulario-escuela:input-escuela-municipio"
                                             onevent="function funcion(data) { limpiaSelect(data) }"
@@ -374,7 +375,7 @@
                                                  label="#{administracion['dashboard.modal.street']}"
                                                  value="#{escuelaDashboardControlador.escuelaDetalleModelo.domicilio}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="11" maximum="60"/>
+                                        <f:validateLength minimum="2" maximum="60"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-calle" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
@@ -501,7 +502,7 @@
                         </p>
                     </div>
                     <div class="uk-modal-body">
-                        <h:outputFormat value="#{administracion['dashboard.modalremove.message']}">
+                        <h:outputFormat styleClass="primera-mayuscula uk-display-block" value="#{administracion['dashboard.modalremove.message']}">
                             <f:param value="#{escuelaDashboardControlador.escuelaBaseModelo.nombre}"/>
                         </h:outputFormat>
                     </div>
@@ -521,15 +522,16 @@
             var modalEscuela = document.querySelector('#modal-escuela');
             var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');
             var modalEliminar = document.querySelector('#modal-eliminar');
-            document.addEventListener('DOMContentLoaded', function (evt) {
+
+            document.addEventListener('DOMContentLoaded', function() {
                 limpiaSelect();
             });
 
             function limpiaSelect(data) {
                 if (typeof data === 'undefined') {
-                    document.querySelectorAll('.uk-select').forEach(
-                        function (value) { value.removeAttribute('size'); }
-                    )
+                    document.querySelectorAll('.uk-select').forEach(function (value) {
+                        value.removeAttribute('size');
+                    })
                 } else {
                     if (data.status === 'success') {
                         document.querySelectorAll('.uk-select').forEach(
