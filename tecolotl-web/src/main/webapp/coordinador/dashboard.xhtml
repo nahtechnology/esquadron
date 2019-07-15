@@ -207,7 +207,6 @@
                         <span class="letra-titulo uk-text-capitalize">
                             <h:outputText value="nuevo profesor" rendered="#{empty coordinadorDashboardControlador.profesorModelo.id}"/>
                             <h:outputText value="actualizar profesor" rendered="#{not empty coordinadorDashboardControlador.profesorModelo.id}"/>
-                            <h:inputHidden value="#{coordinadorDashboardControlador.profesorModelo.id}" />
                         </span>
                         </p>
                     </div>
@@ -313,6 +312,7 @@
                                     listener="#{coordinadorDashboardControlador.agrega()}"/>
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" rendered="#{not empty coordinadorDashboardControlador.profesorModelo.id}">
+                            <f:setPropertyActionListener value="#{coordinadorDashboardControlador.profesorModelo.id}" target="#{coordinadorDashboardControlador.profesorModelo.id}"/>
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalProfesor'); limpiaSelect(data); }"
                                     render="@form formulario-profesor"
                                     execute="@form"

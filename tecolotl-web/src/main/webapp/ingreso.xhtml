@@ -9,10 +9,10 @@
     <title>Registro</title>
 </h:head>
 <h:body>
+    <h:outputStylesheet library="css" name="uikit.css"/>
     <h:outputStylesheet library="css" name="ingreso.css"/>
-
     <div class="contenedor">
-        <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg/>
+        <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
         <form action="">
             <div class="uk-margin">
                 <div class="uk-inline">
@@ -38,5 +38,7 @@
         <a href="#">Se me olvido mi contraseña</a>
         <a href="#">No tengo una cuenta</a>
     </div>
+    <h:outputScript library="js" name="uikit.js"/>
+    <h:outputScript library="js" name="uikit-icons.js"/>
 </h:body>
 </html>

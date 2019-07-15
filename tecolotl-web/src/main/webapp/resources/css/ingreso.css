@@ -36,12 +36,12 @@ body{
     height: 100vh;
 }
 
-a{
+a {
     color: white;
     margin: 10px;
 }
 
-a:hover{
+a:hover {
     color: purple;
 }
 
