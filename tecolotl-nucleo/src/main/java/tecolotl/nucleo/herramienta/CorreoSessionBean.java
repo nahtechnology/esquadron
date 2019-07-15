@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 @SessionScoped
 public class CorreoSessionBean implements Serializable {
 
+    //TODO Insertar el JNDI para poder hacer pruebas.
     @Resource()
     private Session session;
 
