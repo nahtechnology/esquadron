@@ -38,6 +38,9 @@
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        <h:outputStylesheet library="css" name="/administracion/date-picker.css"/>
+
+
         <div class="uk-card uk-card-default uk-card-small uk-card-hover">
             <div class="uk-card-header">
                 <div class="uk-grid uk-grid-small">
@@ -404,7 +407,9 @@
                     </div>
                 </div>
             </div>
+
         </h:panelGroup>
+
         <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header uk-background-secondary">
@@ -530,7 +535,7 @@
                         <div class="uk-form-controls">
                             <h:inputText id="input-fecha"
                                          value="#{licenciasControlador.licenciaModelo.inicio}"
-                                         styleClass="uk-input">
+                                         styleClass="uk-input picker">
                                 <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
                                 <f:validateRequired/>
                             </h:inputText>
@@ -576,6 +581,7 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:outputScript library="js" name="date-picker.js"/>
         <script type="text/javascript">
             var modalAgregar;
             var modalEliminar;
@@ -644,6 +650,7 @@
                 }
             }
         </script>
+
     </ui:define>
 </ui:composition>
 </html>

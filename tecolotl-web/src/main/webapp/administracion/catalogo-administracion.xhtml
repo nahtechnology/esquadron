@@ -37,6 +37,7 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        <h:outputStylesheet library="css" name="/administracion/date-picker.css"/>
         <div class="uk-grid uk-grid-medium" data-uk-grid="">
             <!-- catalogo Motivo Bloqueo -->
             <div class="uk-width-1-2@l">
@@ -180,6 +181,7 @@
                                     <h:outputLabel for="entrada-municipio" value="municipio" styleClass="uk-text-capitalize letra-desabilitada-negra"/>
                                     <h:inputText id="entrada-municipio" value="#{catalogoColoniaControlador.municipio}" styleClass="uk-input  uk-text-bold" disabled="true"/>
                                 </div>
+
                             </h:panelGroup>
                             <ui:fragment rendered="#{empty catalogoColoniaControlador.collectionDataModel.wrappedData}">
                                 <table class="uk-table uk-table-middle">
@@ -394,6 +396,7 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:outputScript library="js" name="date-picker.js"/>
         <script type="text/javascript">
             var modalEditar;
             var modalTipoContacto;

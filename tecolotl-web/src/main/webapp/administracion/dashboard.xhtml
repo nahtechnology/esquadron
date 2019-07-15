@@ -40,6 +40,8 @@
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        <h:outputStylesheet library="css" name="/administracion/date-picker.css"/>
+
 
         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl" pt:data-uk-grid="">
             <div class="uk-text-center">
@@ -431,6 +433,9 @@
                                                  label="#{administracion['dashboard.modal.town']}"
                                                  disabled="true"/>
                                 </div>
+                                <div class="uk-margin">
+                                    <input class="uk-input picker" type="text" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -520,6 +525,8 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:outputScript library="js" name="date-picker.js"/>
+
         <script type="text/javascript">
             var modalEscuela = document.querySelector('#modal-escuela');
             var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');
