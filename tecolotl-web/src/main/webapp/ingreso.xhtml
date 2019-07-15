@@ -4,22 +4,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <h:head>
     <title>Registro</title>
 </h:head>
 <h:body>
-    <h:form>
-        <h:inputText id="nombre"/>
-        <h:inputSecret id="contrasenia"/>
-        <h:selectOneMenu>
-            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}"/>
-            <f:selectItems value="#{ingresoControlador.escuelaBaseModeloLista}"
-                           var="escuela"
-                           itemLabel="#{escuela.nombre}"
-                           itemValue="#{escuela.claveCentroTrabajo}"/>
-        </h:selectOneMenu>
-        <h:commandButton value="Ingresar"/>
-    </h:form>
+    <h:outputStylesheet library="css" name="ingreso.css"/>
+
+    <div class="contenedor">
+        <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg/>
+        <form action="">
+            <div class="uk-margin">
+                <div class="uk-inline">
+                    <a class="uk-form-icon" uk-icon="icon: user"/>
+                    <input class="uk-input uk-border-rounded" placeholder="apodo"/>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <div class="uk-inline">
+                    <a class="uk-form-icon" uk-icon="icon: lock"/>
+                    <input class="uk-input uk-border-rounded" type="password" placeholder="contraseña"/>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <select class="uk-select uk-border-rounded selector">
+                    <option>opcion1</option>
+                    <option>opcion2</option>
+                    <option>opcion3</option>
+                </select>
+            </div>
+            <input class="uk-button uk-button-primary uk-border-rounded boton" type="submit" value="enviar"/>
+        </form>
+        <a href="#">Se me olvido mi contraseña</a>
+        <a href="#">No tengo una cuenta</a>
+    </div>
 </h:body>
 </html>
