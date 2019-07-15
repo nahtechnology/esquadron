@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class CoordinadorEntidadPK implements Serializable {
@@ -57,5 +58,13 @@ public class CoordinadorEntidadPK implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(escuelaEntidad, contador);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", CoordinadorEntidadPK.class.getSimpleName() + "[", "]")
+                .add("escuelaEntidad=" + escuelaEntidad)
+                .add("contador=" + contador)
+                .toString();
     }
 }

@@ -22,8 +22,10 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
 
 @Stateless
 public class ProfesorSesionBean {
@@ -62,6 +64,7 @@ public class ProfesorSesionBean {
     public List<ProfesorModelo> busca(){
         TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.busca", ProfesorEntidad.class);
         List<ProfesorEntidad> profesorEntidadLista = typedQuery.getResultList();
+        logger.finer("Numero de profesores encontrados: ".concat(String.valueOf(profesorEntidadLista.size())));
         return profesorEntidadLista.stream().map(ProfesorModelo::new).collect(Collectors.toList());
     }
 
@@ -71,7 +74,9 @@ public class ProfesorSesionBean {
      * @return un profesor.
      */
     public ProfesorModelo buscaID(@NotNull Integer ID){
-        return new ProfesorModelo(entityManager.find(ProfesorEntidad.class, ID));
+        ProfesorModelo profesorModelo = new ProfesorModelo(entityManager.find(ProfesorEntidad.class, ID));
+        logger.finer("Profesor encontrado por ID: ".concat(profesorModelo.toString()));
+        return profesorModelo;
 
     }
 
@@ -97,6 +102,7 @@ public class ProfesorSesionBean {
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
     public Integer actualiza(@NotNull ProfesorModelo profesorModelo){
+        logger.fine(profesorModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<ProfesorEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ProfesorEntidad.class);
         Root<ProfesorEntidad> root = criteriaUpdate.from(ProfesorEntidad.class);
@@ -117,6 +123,7 @@ public class ProfesorSesionBean {
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
     public Integer elimina(@NotNull Integer idProfesor){
+        logger.fine(idProfesor.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete<ProfesorEntidad> criteriaDelete = criteriaBuilder.createCriteriaDelete(ProfesorEntidad.class);
         Root<ProfesorEntidad> root = criteriaDelete.from(ProfesorEntidad.class);

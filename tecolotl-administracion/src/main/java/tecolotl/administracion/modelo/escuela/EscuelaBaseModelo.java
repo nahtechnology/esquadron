@@ -19,7 +19,7 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     private String nombre;
 
     @NotNull
-    @Size(min = 11, max = 60)
+    @Size(min = 2, max = 60)
     private String domicilio;
 
     @Size(max = 15, min = 1)
@@ -28,10 +28,6 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     @NotNull
     @Size(max = 15, min = 1)
     private String numeroExterior;
-
-    enum Busqueda {
-        PROFESOR, ALUMNO
-    }
 
     public EscuelaBaseModelo() {
     }

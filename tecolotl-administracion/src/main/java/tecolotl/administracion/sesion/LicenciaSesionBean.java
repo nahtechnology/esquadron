@@ -24,6 +24,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
+/**
+ * Servicios para las licencias de una escuela
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
+ */
 @Stateless
 public class LicenciaSesionBean {
 
@@ -102,6 +107,7 @@ public class LicenciaSesionBean {
 	}
 
 	public int cuenta(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+		logger.fine("Contanto las licencias para la escuela:".concat(claveCentroTrabajo));
 		return entityManager.createNamedQuery("LicenciaEntidad.cuentaPorEscuela", Long.class)
 				.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue();
 	}

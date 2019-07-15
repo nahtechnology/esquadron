@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
@@ -92,5 +93,18 @@ public class GrupoEntidad {
 
     public void setGrupoAlumnoEntidadLista(List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista) {
         this.grupoAlumnoEntidadLista = grupoAlumnoEntidadLista;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("grado=" + grado)
+                .add("grupo=" + grupo)
+                .add("inicio=" + inicio)
+                .add("fin=" + fin)
+                .add("profesorEntidad=" + profesorEntidad)
+                .add("grupoAlumnoEntidadLista=" + grupoAlumnoEntidadLista)
+                .toString();
     }
 }

@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class GrupoAlumnoEntidadPK implements Serializable {
@@ -46,5 +47,13 @@ public class GrupoAlumnoEntidadPK implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(grupoEntidad, alumnoEntidad);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoAlumnoEntidadPK.class.getSimpleName() + "[", "]")
+                .add("grupoEntidad=" + grupoEntidad)
+                .add("alumnoEntidad=" + alumnoEntidad)
+                .toString();
     }
 }

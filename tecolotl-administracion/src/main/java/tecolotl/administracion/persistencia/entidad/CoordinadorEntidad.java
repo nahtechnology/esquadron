@@ -6,6 +6,7 @@ import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "coordinador", schema = "administracion", uniqueConstraints = {
@@ -69,5 +70,14 @@ public class CoordinadorEntidad extends PersonaEntidad {
     @PrePersist
     public void agregaMotivoBloqueo() {
         personaMotivoBloqueoEntidad = new PersonaMotivoBloqueoEntidad((short)1);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", CoordinadorEntidad.class.getSimpleName() + "[", "]")
+                .add("coordinadorEntidadPK=" + coordinadorEntidadPK)
+                .add("correoEletronico='" + correoEletronico + "'")
+                .add("personaMotivoBloqueoEntidad=" + personaMotivoBloqueoEntidad)
+                .toString();
     }
 }

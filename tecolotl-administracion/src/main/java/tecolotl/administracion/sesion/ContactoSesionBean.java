@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -45,12 +46,18 @@ public class ContactoSesionBean {
      * @return Coleccióon con los contactos encontrados, vacio en caso de no existir.
      */
     public List<ContactoModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentrotrabajo) {
+        logger.fine("Buscando contacto con la clave centro de trabajo:".concat(claveCentrotrabajo));
         List<ContactoModelo> contactoModeloLista = new ArrayList<>();
-        logger.fine("Escuela a busca:".concat(claveCentrotrabajo));
         TypedQuery<ContactoEntidad> typedQuery = entityManager.createNamedQuery("ContactoEntidad.buscaCCT", ContactoEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentrotrabajo);
         for (ContactoEntidad contactoEntidad : typedQuery.getResultList()) {
             contactoModeloLista.add(new ContactoModelo(contactoEntidad));
+        }
+        logger.finer("Número de escuelas encontradas:".concat(String.valueOf(contactoModeloLista.size())));
+        if (logger.isLoggable(Level.FINEST)) {
+            final StringBuilder stringBuilder = new StringBuilder();
+            contactoModeloLista.forEach(contactoModelo -> stringBuilder.append(contactoModelo.toString()).append(','));
+            logger.finest(stringBuilder.toString());
         }
         return contactoModeloLista;
     }
@@ -70,6 +77,7 @@ public class ContactoSesionBean {
         contactoEntidad.setCorreoElectronico(contactoModelo.getCorreoElectronico());
         contactoEntidad.setTipoContactoEntidad(new TipoContactoEntidad(contactoModelo.getTipoContactoModelo().getClave()));
         entityManager.persist(contactoEntidad);
+        logger.fine("Contacto guardado:".concat(contactoEntidad.toString()));
         contactoModelo.setContador(contactoEntidad.getContactoEntidadPK().getContador());
     }
 
@@ -97,7 +105,7 @@ public class ContactoSesionBean {
      * @return Número de elementos modificados.
      */
     public int actualiza(@NotNull @Valid ContactoModelo contactoModelo) {
-        logger.info(contactoModelo.toString());
+        logger.fine(contactoModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<ContactoEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ContactoEntidad.class);
         Root<ContactoEntidad> root = criteriaUpdate.from(ContactoEntidad.class);
@@ -119,6 +127,7 @@ public class ContactoSesionBean {
         ContactoEntidadPK contactoEntidadPK = new ContactoEntidadPK();
         contactoEntidadPK.setEscuelaEntidad(new EscuelaEntidad(contactoModelo.getClaveCentroTrabajo()));
         contactoEntidadPK.setContador(contactoModelo.getContador());
+        logger.fine(contactoEntidadPK.toString());
         return contactoEntidadPK;
     }
 }

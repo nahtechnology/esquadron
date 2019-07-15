@@ -14,6 +14,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.ResourceBundle;
 
+/**
+ * Validación para saber si una escuela ya está registrada en la base de datos
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
+ */
 @RequestScoped
 @Named
 public class EscuelaValidacion implements Validator {

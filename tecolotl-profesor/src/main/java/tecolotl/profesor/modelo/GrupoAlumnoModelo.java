@@ -3,6 +3,7 @@ package tecolotl.profesor.modelo;
 import tecolotl.profesor.entidad.GrupoAlumnoEntidad;
 
 import javax.validation.constraints.NotNull;
+import java.util.StringJoiner;
 
 public class GrupoAlumnoModelo {
 
@@ -34,5 +35,13 @@ public class GrupoAlumnoModelo {
 
     public void setIdGrupo(Integer idGrupo) {
         this.idGrupo = idGrupo;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoAlumnoModelo.class.getSimpleName() + "[", "]")
+                .add("idAlumno=" + idAlumno)
+                .add("idGrupo=" + idGrupo)
+                .toString();
     }
 }

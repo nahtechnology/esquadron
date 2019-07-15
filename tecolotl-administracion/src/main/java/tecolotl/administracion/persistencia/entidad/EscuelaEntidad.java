@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "escuela", schema = "administracion")
@@ -97,7 +98,7 @@ public class EscuelaEntidad {
 	@Basic
 	@Column(name = "domicilio")
 	@NotNull
-	@Size(min = 11, max = 60)
+	@Size(min = 2, max = 60)
 	public String getDomicilio() {
 		return domicilio;
 	}
@@ -156,5 +157,19 @@ public class EscuelaEntidad {
 	@Override
 	public int hashCode() {
 		return Objects.hash(claveCentroTrabajo);
+	}
+
+	@Override
+	public String toString() {
+		return new StringJoiner(", ", EscuelaEntidad.class.getSimpleName() + "[", "]")
+				.add("claveCentroTrabajo='" + claveCentroTrabajo + "'")
+				.add("coloniaEntidad=" + coloniaEntidad)
+				.add("motivoBloqueoEntidad=" + motivoBloqueoEntidad)
+				.add("nombre='" + nombre + "'")
+				.add("domicilio='" + domicilio + "'")
+				.add("numeroInterior='" + numeroInterior + "'")
+				.add("numeroExterior='" + numeroExterior + "'")
+				.add("contactoEntidadLista=" + contactoEntidadLista)
+				.toString();
 	}
 }

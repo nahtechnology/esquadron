@@ -127,10 +127,7 @@
                                     <f:param name="escuela" value="#{param['escuela']}"/>
                                 </h:link>
                             </div>
-                        </div><!--
-                        <h:panelGroup layout="block" styleClass="uk-width-2-5@m uk-width-1-1@s uk-inline" rendered="true">
-
-                         </h:panelGroup>-->
+                        </div>
                     </h:panelGroup>
                 </h:form>
             </div>
@@ -145,7 +142,9 @@
                                 <h:form>
                                     <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-contacto">
                                         <f:ajax></f:ajax>
-                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"
+                                                      styleClass="uk-text-primary"
+                                                      pt:uk-tooltip="title:#{administracion['schooldetail.contacts.tooltip.add']}; delay:2000; pos: top"/>
                                     </h:commandLink>
                                 </h:form>
                             </div>
@@ -200,7 +199,10 @@
                                              footerClass="uk-background-primary uk-text-left"
                                              columnClasses="uk-text-left,,,">
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.id']}" /></f:facet>
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="letra-titulo"
+                                                          value="#{administracion['schooldetail.contacts.id']}"/>
+                                        </f:facet>
                                         #{contacto.contador}
                                     </h:column>
                                     <h:column>
@@ -276,7 +278,9 @@
                                 <h:form>
                                     <h:commandLink styleClass="uk-icon-button  uk-icon">
                                         <f:ajax render="formulario-licencia formulario-paginacion-licencia" listener="#{licenciasControlador.inserta}"/>
-                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5" styleClass="uk-text-primary"/>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"
+                                                      styleClass="uk-text-primary"
+                                                      pt:uk-tooltip="title:#{administracion['schooldetail.lisense.tooltip.add']}; delay:2000; pos: top"/>
                                     </h:commandLink>
                                 </h:form>
                             </div>
@@ -288,32 +292,34 @@
                             <ui:fragment rendered="#{empty licenciasControlador.collectionDataModel.wrappedData}">
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
-                                    <tr>
-                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
-                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
-                                        <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
-                                        <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
-                                    </tr>
+                                        <tr>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td colspan="4">
-                                            <div class="uk-flex uk-flex-center">
-                                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                <div class="uk-flex uk-flex-center">
+                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                     <tfoot class="uk-background-primary">
-                                    <tr>
-                                        <td colspan="6"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
-                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
-                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
-                                                    <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
-                                                </h:outputFormat>
-                                            </span></td>
-                                    </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <span class="letra-titulo">
+                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                        <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                        <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
+                                                    </h:outputFormat>
+                                                </span>
+                                            </td>
+                                        </tr>
                                     </tfoot>
                                 </table>
                             </ui:fragment>
@@ -329,7 +335,10 @@
                                          footerClass="uk-background-primary uk-text-left"
                                          columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center" >
                                 <h:column>
-                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.id']}"/></f:facet>
+                                    <f:facet name="header">
+                                        <h:outputText styleClass="letra-titulo"
+                                                      value="#{administracion['schooldetail.lisense.id']}"/>
+                                    </f:facet>
                                     #{licencia.contador}
                                 </h:column>
                                 <h:column>
@@ -362,7 +371,9 @@
                                                     <li class="uk-nav-divider"/>
                                                 </ui:fragment>
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-elimina-licencia" styleClass="uk-text-danger" rendered="#{licenciasControlador.htmlDataTable.rowIndex eq (licenciasControlador.htmlDataTable.rows + 1)}">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-elimina-licencia"
+                                                                   styleClass="uk-text-danger"
+                                                                   rendered="#{licenciasControlador.htmlDataTable.rowIndex eq (licenciasControlador.htmlDataTable.rows + 1)}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
                                                         <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>

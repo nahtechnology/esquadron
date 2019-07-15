@@ -2,6 +2,7 @@ package tecolotl.profesor.entidad;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "grupo_alumno_tarea", schema = "profesor")
@@ -29,5 +30,13 @@ public class GrupoAlumnoTareaEntidad {
 
     public void setAsignacion(Timestamp asignacion) {
         this.asignacion = asignacion;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoAlumnoTareaEntidad.class.getSimpleName() + "[", "]")
+                .add("grupoAlumnoTareaEntidadPK=" + grupoAlumnoTareaEntidadPK)
+                .add("asignacion=" + asignacion)
+                .toString();
     }
 }

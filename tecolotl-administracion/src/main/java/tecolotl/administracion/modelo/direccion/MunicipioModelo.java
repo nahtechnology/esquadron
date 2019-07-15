@@ -5,6 +5,7 @@ import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 public class MunicipioModelo {
 
@@ -45,5 +46,13 @@ public class MunicipioModelo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", MunicipioModelo.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("nombre='" + nombre + "'")
+                .toString();
     }
 }

@@ -3,6 +3,7 @@ package tecolotl.administracion.persistencia.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "estado", schema = "administracion")
@@ -32,5 +33,13 @@ public class EstadoEntidad {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EstadoEntidad.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("nombre='" + nombre + "'")
+                .toString();
     }
 }
