@@ -1,0 +1,11 @@
+.nombre-escuela{
+    color: white;
+    font-weight: bold;
+    background: #39f;
+    margin: 20px;
+    padding: 5px;
+    width: auto;
+    height: 30px;
+    border-radius: 5px;
+
+}

@@ -38,8 +38,11 @@
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        <h:outputStylesheet library="css" name="administracion/coordinador.css"/>
         <div uk-grid="">
-            <span class="uk-text-bold">#{escuelaControlador.busca(param['escuela'])}</span>
+            <div class="nombre-escuela">
+                <span class="uk-text-bold">#{escuelaControlador.busca(param['escuela'])}</span>
+            </div>
 <!--        TODO estilios para la escuela actual    -->
             <div class="uk-width-1-1@s ">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-bottom">
