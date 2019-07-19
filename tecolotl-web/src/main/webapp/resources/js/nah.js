@@ -25,13 +25,18 @@ SelectorFecha.prototype.mesAnio = function () {
 };
 
 SelectorFecha.prototype.creaSelector = function (elemento) {
-    var contenedorSelector = document.createElement('div').classList.add('contenedor-date');
-    var selectorAnio = document.createElement('div').classList.add('calendar-year');
-    var iconoAnioIzquierdo = document.createElement('a').classList.add('navLeftY');
+    var contenedorSelector = document.createElement('div');
+    contenedorSelector.classList.add('contenedor-date');
+    var selectorAnio = document.createElement('div');
+    selectorAnio.classList.add('calendar-year');
+    var iconoAnioIzquierdo = document.createElement('a');
+    iconoAnioIzquierdo.classList.add('navLeftY');
     iconoAnioIzquierdo.setAttribute('uk-icon','icon:  triangle-left;ratio: 1.2');
-    var tituloAnio = document.createElement('h4').appendChild(document.createTextNode(this.fecha.getFullYear().toString()));
+    var tituloAnio = document.createElement('h4');
+    tituloAnio.appendChild(document.createTextNode(this.fecha.getFullYear().toString()));
     selectorAnio.appendChild(iconoAnioIzquierdo);
     selectorAnio.appendChild(tituloAnio);
     contenedorSelector.appendChild(selectorAnio);
-    elemento.parentNode.insertBefore(selectorAnio, elemento.nextSibling);
+    //elemento.parentNode.insertBefore(selectorAnio, elemento.nextSibling);
+    elemento.appendChild(contenedorSelector);
 };

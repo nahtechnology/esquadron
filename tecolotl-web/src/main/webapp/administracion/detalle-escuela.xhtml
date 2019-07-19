@@ -6,7 +6,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion"
+      xmlns:sf="http://xmlns.jcp.org/jsf/composite/selectorfecha">
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
@@ -528,20 +529,8 @@
                             </h:outputFormat>
                         </p>
                     </div>
-                    <div class="uk-modal-body">
-                        <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-fecha" value="#{administracion['schooldetail.lisense.datestart']}"/>
-                        <div class="uk-form-controls">
-                            <div uk-form-custom="target: true">
-                                <input type="file"/>
-                                <h:inputText id="input-fecha"
-                                             value="#{licenciasControlador.licenciaModelo.inicio}"
-                                             styleClass="uk-select">
-                                    <f:convertDateTime dateStyle="short"/>
-                                    <f:validateRequired/>
-                                </h:inputText>
-                            </div>
-                        </div>
-                        <h:message for="input-fecha" errorClass="uk-text-danger"/>
+                    <div class="uk-modal-body uk-flex uk-flex-center">
+                        <sf:selector-fecha fecha="#{licenciasControlador.licenciaModelo.inicio}"/>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
@@ -601,11 +590,15 @@
                     modalAgregar.querySelector('.uk-modal-body').click();
                 });
                 UIkit.util.on('#modal-modificar-licencia', 'show', function () {
-                    modalAgregar.querySelector('.uk-modal-body').click();
+                    modalLicencia.querySelector('.uk-modal-body').click();
                 });
                 UIkit.util.on('#modal-elimina-licencia', 'show', function () {
                     modalEliminaLicencia.querySelector('.uk-modal-body').click();
-                })
+                });
+                document.querySelectorAll('.selectorFecha').forEach(function (value) {
+                    var selectorFecha = new SelectorFecha();
+                    selectorFecha.creaSelector(value);
+                });
             });
 
             function limpiaSelect(data) {
@@ -650,7 +643,7 @@
                 }
             }
         </script>
-
+        <h:outputScript library="js" name="nah.js"/>
     </ui:define>
 </ui:composition>
 </html>

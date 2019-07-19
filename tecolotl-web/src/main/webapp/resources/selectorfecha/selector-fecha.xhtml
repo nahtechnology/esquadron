@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+<cc:interface>
+    <cc:attribute name="fecha" required="true" type="java.util.Date"/>
+</cc:interface>
+<cc:implementation>
+    <div class="contenedor-date">
+        <div class="calendar-year">
+            <a href="" uk-icon="icon:  triangle-left;ratio: 1.2"/>
+            <h4>
+                <h:outputText value="#{cc.attrs.fecha}">
+                    <f:convertDateTime pattern="yyyy"/>
+                </h:outputText>
+            </h4>
+            <a href="" uk-icon="icon:  triangle-right;ratio: 1.2"/>
+        </div>
+        <div class="calendar-mount">
+            <a href="" uk-icon="icon:  triangle-left;ratio: 1.2"/>
+            <h4>
+                <h:outputText value="#{cc.attrs.fecha}">
+                    <f:convertDateTime pattern="MMMMM"/>
+                </h:outputText>
+            </h4>
+            <a href="" uk-icon="icon:  triangle-right;ratio: 1.2"/>
+        </div>
+        <div class="calendar-week">
+            <div>su</div>
+            <div>mo</div>
+            <div>tu</div>
+            <div>we</div>
+            <div>th</div>
+            <div>fr</div>
+            <div>sa</div>
+        </div>
+        <div class="calendar-day">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+        </div>
+    </div>
+</cc:implementation>
+</html>
