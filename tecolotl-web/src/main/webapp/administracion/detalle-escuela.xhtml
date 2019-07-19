@@ -347,13 +347,13 @@
                                 <h:column>
                                     <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.datestart']}"/></f:facet>
                                     <h:outputText value="#{licencia.inicio}">
-                                        <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
+                                        <f:convertDateTime dateStyle="short"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.dateacquisition']}"/></f:facet>
                                     <h:outputText value="#{licencia.adquisicion}">
-                                        <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
+                                        <f:convertDateTime dateStyle="short"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
@@ -407,9 +407,7 @@
                     </div>
                 </div>
             </div>
-
         </h:panelGroup>
-
         <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header uk-background-secondary">
@@ -533,12 +531,15 @@
                     <div class="uk-modal-body">
                         <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-fecha" value="#{administracion['schooldetail.lisense.datestart']}"/>
                         <div class="uk-form-controls">
-                            <h:inputText id="input-fecha"
-                                         value="#{licenciasControlador.licenciaModelo.inicio}"
-                                         styleClass="uk-input picker">
-                                <f:convertDateTime pattern="#{etiqueta['date.format']}"/>
-                                <f:validateRequired/>
-                            </h:inputText>
+                            <div uk-form-custom="target: true">
+                                <input type="file"/>
+                                <h:inputText id="input-fecha"
+                                             value="#{licenciasControlador.licenciaModelo.inicio}"
+                                             styleClass="uk-select">
+                                    <f:convertDateTime dateStyle="short"/>
+                                    <f:validateRequired/>
+                                </h:inputText>
+                            </div>
                         </div>
                         <h:message for="input-fecha" errorClass="uk-text-danger"/>
                     </div>
@@ -581,7 +582,6 @@
                 </h:form>
             </div>
         </h:panelGroup>
-        <h:outputScript library="js" name="date-picker.js"/>
         <script type="text/javascript">
             var modalAgregar;
             var modalEliminar;

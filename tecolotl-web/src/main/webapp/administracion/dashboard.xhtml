@@ -522,88 +522,84 @@
                                     onevent="function funcion(data) { limpiaSelect(data) }"
                                     listener="#{escuelaDashboardControlador.elimina}"/>
                         </h:commandButton>
-                        <div class="uk-margin">
-                            <input class="uk-input picker" type="text" />
-                        </div>
                     </div>
                 </h:form>
             </div>
         </h:panelGroup>
 
 
-<!--        <script type="text/javascript">-->
-<!--            var modalEscuela = document.querySelector('#modal-escuela');-->
-<!--            var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');-->
-<!--            var modalEliminar = document.querySelector('#modal-eliminar');-->
+        <script type="text/javascript">
+            var modalEscuela = document.querySelector('#modal-escuela');
+            var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');
+            var modalEliminar = document.querySelector('#modal-eliminar');
 
-<!--            document.addEventListener('DOMContentLoaded', function() {-->
-<!--                limpiaSelect();-->
-<!--            });-->
+            document.addEventListener('DOMContentLoaded', function() {
+                limpiaSelect();
+            });
 
-<!--            function limpiaSelect(data) {-->
-<!--                if (typeof data === 'undefined') {-->
-<!--                    document.querySelectorAll('.uk-select').forEach(function (value) {-->
-<!--                        value.removeAttribute('size');-->
-<!--                    })-->
-<!--                } else {-->
-<!--                    if (data.status === 'success') {-->
-<!--                        document.querySelectorAll('.uk-select').forEach(-->
-<!--                            function (value) { value.removeAttribute('size'); }-->
-<!--                        )-->
-<!--                    }-->
-<!--                }-->
-<!--            }-->
+            function limpiaSelect(data) {
+                if (typeof data === 'undefined') {
+                    document.querySelectorAll('.uk-select').forEach(function (value) {
+                        value.removeAttribute('size');
+                    })
+                } else {
+                    if (data.status === 'success') {
+                        document.querySelectorAll('.uk-select').forEach(
+                            function (value) { value.removeAttribute('size'); }
+                        )
+                    }
+                }
+            }
 
-<!--            function limpiaEntrada(modal) {-->
-<!--                switch (modal) {-->
-<!--                    case 'modal-escuela':-->
-<!--                        modalEscuela.querySelectorAll('.uk-input').forEach(function (entrada) {-->
-<!--                            entrada.value = '';-->
-<!--                        });-->
-<!--                        break;-->
-<!--                    default:-->
-<!--                        console.error('Opcion aun no programada:'.concat(modal));-->
-<!--                }-->
-<!--            }-->
+            function limpiaEntrada(modal) {
+                switch (modal) {
+                    case 'modal-escuela':
+                        modalEscuela.querySelectorAll('.uk-input').forEach(function (entrada) {
+                            entrada.value = '';
+                        });
+                        break;
+                    default:
+                        console.error('Opcion aun no programada:'.concat(modal));
+                }
+            }
 
-<!--            function cierraModal(data, modal) {-->
-<!--                if (data.status === "success") {-->
-<!--                    switch (modal) {-->
-<!--                        case 'modal-escuela':-->
-<!--                            if (modalEscuela.querySelector('.uk-text-danger') === null) {-->
-<!--                                UIkit.modal(modalEscuela).hide();-->
-<!--                                limpiaEntrada(modal);-->
-<!--                            }-->
-<!--                            break;-->
-<!--                        case 'modal-bloqueo':-->
-<!--                            if (modalMotivoBloqueo.querySelector('.uk-text-danger') === null) {-->
-<!--                                UIkit.modal(modalMotivoBloqueo).hide();-->
-<!--                            }-->
-<!--                            break;-->
-<!--                        default:-->
-<!--                            console.error('Opcion aun no programada:'.concat(modal));-->
-<!--                    }-->
-<!--                }-->
-<!--            }-->
+            function cierraModal(data, modal) {
+                if (data.status === "success") {
+                    switch (modal) {
+                        case 'modal-escuela':
+                            if (modalEscuela.querySelector('.uk-text-danger') === null) {
+                                UIkit.modal(modalEscuela).hide();
+                                limpiaEntrada(modal);
+                            }
+                            break;
+                        case 'modal-bloqueo':
+                            if (modalMotivoBloqueo.querySelector('.uk-text-danger') === null) {
+                                UIkit.modal(modalMotivoBloqueo).hide();
+                            }
+                            break;
+                        default:
+                            console.error('Opcion aun no programada:'.concat(modal));
+                    }
+                }
+            }
 
-<!--            function abreModal(modal) {-->
-<!--                switch (modal) {-->
-<!--                    case 'modal-escuela':-->
-<!--                        modalEscuela.querySelector('.uk-modal-header').click();-->
-<!--                        break;-->
-<!--                    case 'modal-bloqueo':-->
-<!--                        var objecto = modalMotivoBloqueo.querySelector('.uk-form-label');-->
-<!--                        objecto.click();-->
-<!--                        break;-->
-<!--                    case 'modal-eliminar':-->
-<!--                        modalEliminar.querySelector('.uk-text-center').click();-->
-<!--                        break;-->
-<!--                    default:-->
-<!--                        console.error('Opcion aun no programada:'.concat(modal));-->
-<!--                }-->
-<!--            }-->
-<!--        </script>-->
-        <h:outputScript library="js" name="date-picker.js"/>
+            function abreModal(modal) {
+                switch (modal) {
+                    case 'modal-escuela':
+                        modalEscuela.querySelector('.uk-modal-header').click();
+                        break;
+                    case 'modal-bloqueo':
+                        var objecto = modalMotivoBloqueo.querySelector('.uk-form-label');
+                        objecto.click();
+                        break;
+                    case 'modal-eliminar':
+                        modalEliminar.querySelector('.uk-text-center').click();
+                        break;
+                    default:
+                        console.error('Opcion aun no programada:'.concat(modal));
+                }
+            }
+        </script>
     </ui:define>
 </ui:composition>
 </html>
