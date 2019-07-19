@@ -6,6 +6,7 @@ import tecolotl.administracion.persistencia.entidad.CoordinadorEntidadPK;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
 import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
+import tecolotl.nucleo.herramienta.CorreoSessionBean;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
@@ -17,7 +18,11 @@ import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.List;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -37,6 +42,10 @@ public class CoordinadorSesionBean {
 
     @Inject
     private ValidadorSessionBean validadorSessionBean;
+    //classloader
+    @Inject
+    private CorreoSessionBean correoSessionBean;
+
 
     /**
      * Busca todos los coordinadores de una escuela, sin el motivo de bloqueo de dicho coordinador.
@@ -92,6 +101,7 @@ public class CoordinadorSesionBean {
         coordinadorEntidad.setApellidoPaterno(coordinadorModelo.getApellidoPaterno());
         coordinadorEntidad.setApellidoMaterno(coordinadorModelo.getApellidoMaterno());
         coordinadorEntidad.setContrasenia(coordinadorModelo.getContrasenia());
+        //TODO insertar función de envio de correo envío de correo.
         entityManager.persist(coordinadorEntidad);
     }
 
@@ -123,4 +133,32 @@ public class CoordinadorSesionBean {
         return coordinadorEntidadPK;
     }
 
+
+
+    public void enviaCorreo(){
+        correoSessionBean.setAsunto("Bienvenido a Squadrón ".concat("Jesús Reyes"));
+        correoSessionBean.setDestinatario("solucionesT67@gmail.com");
+        correoSessionBean.setRemitente("squadron@tecolotl.com");
+        correoSessionBean.setMensaje("Bienvenido a e-squadron");
+        logger.fine("Ocurrio un evento: ".concat(correoSessionBean.toString()));
+        File cuerpoMail = correoSessionBean.getCuerpoMail("C:/Users/jesus/IdeaProjects/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
+        try{
+                String cadena;
+                String aux;
+                String aux2;
+                FileReader f = new FileReader("C:/Users/jesus/IdeaProjects/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
+                BufferedReader b = new BufferedReader(f);
+                while((cadena = b.readLine())!=null) {
+                    /*System.out.println(cadena);
+                    aux = cadena.replaceFirst("correo@correo", "solucionesT67@gmail.com");
+                    System.out.println(aux);*/
+                    //switch ()
+                }
+                b.close();
+
+        }catch (Exception e){
+            logger.log(Level.SEVERE, "Ocurrio un error al leer el archivo: ".concat(e.toString()));
+        }
+        //correoSessionBean.enviar();
+    }
 }

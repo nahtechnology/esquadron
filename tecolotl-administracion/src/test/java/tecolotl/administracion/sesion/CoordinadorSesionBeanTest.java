@@ -11,10 +11,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
+import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
+import tecolotl.nucleo.herramienta.CorreoSessionBean;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -22,6 +24,9 @@ import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
+import tecolotl.nucleo.sesion.CatalogoSesionBean;
+import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.inject.Inject;
@@ -44,7 +49,23 @@ public class CoordinadorSesionBeanTest {
                 .addPackage(ColoniaNuevaValidacion.class.getPackage())
                 .addClasses(CatalagoEntidad.class, CatalogoModelo.class, PersonaEntidad.class,DireccionSesionBean.class,
                         LoggerProducer.class, ColoniaNuevaValidacion.class, CoordinadorSesionBean.class, CoordinadorModelo.class,
-                        PersonaModelo.class, ValidadorSessionBean.class, PersonaMotivoBloqueoModelo.class, PersonaNuevaValidacion.class)
+                        PersonaModelo.class, ValidadorSessionBean.class, PersonaMotivoBloqueoModelo.class, PersonaNuevaValidacion.class,
+                    PersonaMotivoBloqueoEntidad.class,
+                        CorreoSessionBean.class)
+            //nucleo
+            .addPackage(ValidadorSessionBean.class.getPackage())
+            .addPackage(CatalogoModelo.class.getPackage())
+            .addPackage(CatalagoEntidad.class.getPackage())
+            .addPackage(CatalogoSesionBean.class.getPackage())
+            .addPackage(CatalogoNuevoValidacion.class.getPackage())
+            //administracion
+            .addPackage(CoordinadorModelo.class.getPackage())
+            .addPackage(ColoniaModelo.class.getPackage())
+            .addPackage(ContactoModelo.class.getPackage())
+            .addPackage(ColoniaEntidad.class.getPackage())
+            .addPackage(ContactoSesionBean.class.getPackage())
+            .addClass(ColoniaNuevaValidacion.class)
+            .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -135,5 +156,11 @@ public class CoordinadorSesionBeanTest {
         CoordinadorModelo coordinadorModelo = new CoordinadorModelo("21DBS0029K", (short)1);
         coordinadorSesionBean.elimina(coordinadorModelo);
     }
+
+    @Test
+    public void correo(){
+        coordinadorSesionBean.enviaCorreo();
+    }
+
 
 }

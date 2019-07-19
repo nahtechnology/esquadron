@@ -12,7 +12,8 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
-import java.io.Serializable;
+import java.io.*;
+import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,8 +27,7 @@ import java.util.logging.Logger;
 @SessionScoped
 public class CorreoSessionBean implements Serializable {
 
-    //TODO Insertar el JNDI para poder hacer pruebas.
-    @Resource()
+    @Resource(mappedName = "java:jboss/mail/MyOtherMail")
     private Session session;
 
     private Logger logger;
@@ -41,7 +41,9 @@ public class CorreoSessionBean implements Serializable {
     private String mensaje;
 
     //TODO Verificar como se insertarán las url's de los archivos.
-    private String urlArchivo = "C:/Users/jesus/Documents/TecoltlProy/Reglamento.pdf";
+    //private String urlArchivo = "C:/Users/jesus/Documents/TecoltlProy/Reglamento.pdf";
+    private String urlArchivo = "C:/Users/jesus/IdeaProjects/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html";
+
 
     public Session getSession() {
         return session;
@@ -95,6 +97,7 @@ public class CorreoSessionBean implements Serializable {
      * Metodo para enciar el correo
      * @throws Exception
      */
+    //String nombre, String apellidoP, String apellidoM, String apodo, String correo, String contrasenia
     public void enviar(){
         try{
             BodyPart texto = new MimeBodyPart();
@@ -116,5 +119,39 @@ public class CorreoSessionBean implements Serializable {
         }catch(Exception e){
             logger.log(Level.SEVERE,"Error al enviar el correo: ",e);
         }
+    }
+
+    public File getCuerpoMail(String direccionCuerpo){
+        try {
+            InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(direccionCuerpo);
+            if(inputStream == null){
+                return null;
+            }
+            File archivoTmp = File.createTempFile(String.valueOf(inputStream.hashCode()),".tmp");
+            archivoTmp.deleteOnExit();
+            try(FileOutputStream out = new FileOutputStream(archivoTmp)){
+                byte[] buffer = new byte[1024];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1){
+                    out.write(buffer, 0, bytesRead);
+                }
+            }
+            return archivoTmp;
+        }catch(IOException e){
+            logger.fine("Hubo un error en la lectura del archivo: ".concat(e.toString()));
+            return null;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", CorreoSessionBean.class.getSimpleName() + "[", "]")
+            .add("session=" + session)
+            .add("destinatario='" + destinatario + "'")
+            .add("remitente='" + remitente + "'")
+            .add("asunto='" + asunto + "'")
+            .add("mensaje='" + mensaje + "'")
+            .add("urlArchivo='" + urlArchivo + "'")
+            .toString();
     }
 }
