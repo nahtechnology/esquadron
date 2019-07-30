@@ -113,4 +113,11 @@ public class LicenciaSesionBeanTest {
         int total = licenciaSesionBean.cuenta("21DJN1326E");
         assertNotEquals(total, 0);
     }
+
+    @Test
+    public void cuenta() {
+        Long total = licenciaSesionBean.cuenta();
+        assertNotNull(total);
+        assertNotEquals(total, Long.valueOf(0));
+    }
 }

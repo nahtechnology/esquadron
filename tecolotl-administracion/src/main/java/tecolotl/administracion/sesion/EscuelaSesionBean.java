@@ -100,6 +100,14 @@ public class EscuelaSesionBean implements Serializable {
 	}
 
 	/**
+	 * Cuenta las escuelas registradas.
+	 * @return numeto de escuelas encontradas.
+	 */
+	public Long cuenta() {
+		return entityManager.createNamedQuery("EscuelaEntidad.cuentaEscuela", Long.class).getSingleResult();
+	}
+
+	/**
 	 * Inserta una escuela
 	 * @param escuelaDetalleModelo Datos de la escuela a ser insertados
 	 */

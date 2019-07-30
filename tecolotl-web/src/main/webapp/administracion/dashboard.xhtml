@@ -25,13 +25,6 @@
                     <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.coordinator']}</span></h:link></li>
                 </ul>
             </li>
-            <li class="uk-parent">
-                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.coordinator']}</span></h:link>
-                <ul class="uk-nav-sub">
-                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
-                    <li><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.admingroup']}</span></h:link></li>
-                </ul>
-            </li>
         </ul>
     </ui:define>
 
@@ -40,8 +33,15 @@
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
-        <h:outputStylesheet library="css" name="/administracion/date-picker.css"/>
         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl" pt:data-uk-grid="">
+            <div class="uk-text-center">
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.coor']}</span></span>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalCoordinadores}" id="total-coordinadores"/></h1>
+            </div>
+            <div class="uk-text-center">
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalProfesores}" id="total-profesor"/></h1>
+            </div>
             <div class="uk-text-center">
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
@@ -51,31 +51,6 @@
                     </h:outputText>  #{administracion['dashboard.header.student.used']}.
                 </div>
 
-            </div>
-            <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalProfesores}" id="total-profesor"/></h1>
-            </div>
-            <div class="uk-text-center">
-                <span class="uk-text-small"><span data-uk-icon="icon:clock" class="uk-margin-small-right uk-text-primary"/>Traffic hours</span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">12.00<small class="uk-text-small">PM</small></h1>
-                <div class="uk-text-small">
-                    <span class="uk-text-success" data-uk-icon="icon: triangle-up"> 19%</span> more than last week.
-                </div>
-            </div>
-            <div class="uk-text-center">
-                <span class="uk-text-small"><span data-uk-icon="icon:search" class="uk-margin-small-right uk-text-primary"/>Week Search</span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">9.543</h1>
-                <div class="uk-text-small">
-                    <span class="uk-text-danger" data-uk-icon="icon: triangle-down"> -23%</span> less than last week.
-                </div>
-            </div>
-            <div class="uk-visible@xl uk-text-center">
-                <span class="uk-text-small"><span data-uk-icon="icon:users" class="uk-margin-small-right uk-text-primary"/>Lorem ipsum</span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">5.284</h1>
-                <div class="uk-text-small">
-                    <span class="uk-text-success" data-uk-icon="icon: triangle-up"> 7%</span> more than last week.
-                </div>
             </div>
         </h:panelGroup>
         <div class="uk-grid uk-grid-medium" data-uk-grid="">
@@ -104,7 +79,7 @@
                                             <f:ajax render="formulario-tabla-escuela @form"/>
                                         </h:commandLink>
                                         <h:inputText id="filtrado" disabled="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}"
-                                                     styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar'}"
+                                                     styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar uk-light'}"
                                                      pt:placeholder="#{etiqueta['search']}"
                                                      autocomplete="off"
                                                      value="#{escuelaDashboardControlador.busqueda}"
@@ -186,7 +161,7 @@
                                         </f:facet>
                                         <h:commandLink styleClass="uk-link-reset" value="#{escuela.claveCentroTrabajo}" action="#{escuelaPoblacionControlador.actualiza}">
                                             <f:setPropertyActionListener value="#{escuela.claveCentroTrabajo}" target="#{escuelaPoblacionControlador.claveCentroTrabajo}"/>
-                                            <f:ajax render="total-alumnos porcentaje-alumno total-profesor"/>
+                                            <f:ajax render="total-alumnos porcentaje-alumno total-profesor total-coordinadores escuela-seleccion"/>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column headerClass="uk-background-primary">
@@ -524,8 +499,6 @@
                 </h:form>
             </div>
         </h:panelGroup>
-
-
         <script type="text/javascript">
             var modalEscuela = document.querySelector('#modal-escuela');
             var modalMotivoBloqueo = document.querySelector('#modal-bloqueo');
@@ -598,7 +571,6 @@
                 }
             }
         </script>
-        <h:outputScript library="js" name="nah.js"/>
     </ui:define>
 </ui:composition>
 </html>

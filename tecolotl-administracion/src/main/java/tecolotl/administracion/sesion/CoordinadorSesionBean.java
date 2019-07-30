@@ -120,11 +120,30 @@ public class CoordinadorSesionBean {
         coordinadorEntidad.setContrasenia(coordinadorModelo.getContrasenia());
     }
 
+    /**
+     * Elimina un coordinador
+     * @param coordinadorModelo
+     */
     public void elimina(@NotNull CoordinadorModelo coordinadorModelo) {
         logger.fine(coordinadorModelo.toString());
         entityManager.remove(entityManager.find(CoordinadorEntidad.class, generaLlavePrimaria(coordinadorModelo)));
     }
 
+    /**
+     * Cuenta el total de coordinadores por escuela.
+     * @param claveCentroTrabajo Identidicador de la escuela.
+     * @return total de coordiandores encontrados.
+     */
+    public Long cuenta(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        return entityManager.createNamedQuery("CoordinadorEntidad.cuentaPorEscuela", Long.class)
+                .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
+    }
+
+    /**
+     * Genera la llave primaria de un coordinador.
+     * @param coordinadorModelo Datos donde vienen integrado la llave primaria.
+     * @return CoordinadorEntidadPK con los datos de llave primaria.
+     */
     private CoordinadorEntidadPK generaLlavePrimaria(CoordinadorModelo coordinadorModelo) {
         CoordinadorEntidadPK coordinadorEntidadPK = new CoordinadorEntidadPK();
         coordinadorEntidadPK.setEscuelaEntidad(new EscuelaEntidad(coordinadorModelo.getClaveCentroTrabajo()));
@@ -132,8 +151,6 @@ public class CoordinadorSesionBean {
         logger.fine("Llave primaria del coordinador:".concat(coordinadorEntidadPK.toString()));
         return coordinadorEntidadPK;
     }
-
-
 
     public void enviaCorreo(){
         correoSessionBean.setAsunto("Bienvenido a Squadrón ".concat("Jesús Reyes"));

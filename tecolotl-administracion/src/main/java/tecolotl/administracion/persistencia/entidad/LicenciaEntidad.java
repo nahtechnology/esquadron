@@ -13,7 +13,10 @@ import java.util.StringJoiner;
 		query = "SELECT m FROM LicenciaEntidad m WHERE m.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
 	@NamedQuery(
 		name = "LicenciaEntidad.cuentaPorEscuela",
-		query = "SELECT COUNT(l.licenciaEntidadPk.contador) FROM LicenciaEntidad l WHERE l.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+		query = "SELECT COUNT(l.licenciaEntidadPk.contador) FROM LicenciaEntidad l WHERE l.licenciaEntidadPk.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
+	@NamedQuery(
+		name = "LicenciaEntidad.cuenta",
+		query = "SELECT COUNT (l) FROM LicenciaEntidad l"
 	)
 })
 public class LicenciaEntidad {

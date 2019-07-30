@@ -26,7 +26,11 @@ import java.util.StringJoiner;
     @NamedQuery(
             name = "EscuelaEntidad.buscaNombre",
             query = "SELECT NEW EscuelaEntidad(e.claveCentroTrabajo, e.nombre) FROM EscuelaEntidad e"
-    )
+    ),
+	@NamedQuery(
+		name = "EscuelaEntidad.cuentaEscuela",
+		query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e"
+	)
 })
 public class EscuelaEntidad {
 

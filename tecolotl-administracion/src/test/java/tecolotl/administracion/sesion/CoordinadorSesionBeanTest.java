@@ -162,5 +162,11 @@ public class CoordinadorSesionBeanTest {
         coordinadorSesionBean.enviaCorreo();
     }
 
+    @Test
+    public void cuenta() {
+        Long encontrados = coordinadorSesionBean.cuenta("21DBA0020U");
+        assertNotNull(encontrados);
+        assertNotEquals(encontrados, Long.valueOf(0));
+    }
 
 }

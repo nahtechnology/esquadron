@@ -20,6 +20,10 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaEscuela",
                 query = "SELECT c FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo ORDER BY c.apellidoPaterno"
+        ),
+        @NamedQuery(
+                name = "CoordinadorEntidad.cuentaPorEscuela",
+                query = "SELECT COUNT (c) FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
         )
 })
 public class CoordinadorEntidad extends PersonaEntidad {

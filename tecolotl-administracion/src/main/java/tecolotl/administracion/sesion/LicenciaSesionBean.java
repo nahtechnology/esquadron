@@ -19,6 +19,7 @@ import javax.persistence.criteria.Root;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +31,7 @@ import java.util.logging.Logger;
  * @since 0.1
  */
 @Stateless
-public class LicenciaSesionBean {
+public class LicenciaSesionBean implements Serializable {
 
 	@PersistenceContext
 	private EntityManager entityManager;
@@ -106,9 +107,22 @@ public class LicenciaSesionBean {
 		return licenciaEntidadPk;
 	}
 
+	/**
+	 * Cuenta las licencias por escuela.
+	 * @param claveCentroTrabajo
+	 * @return
+	 */
 	public int cuenta(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
 		logger.fine("Contanto las licencias para la escuela:".concat(claveCentroTrabajo));
 		return entityManager.createNamedQuery("LicenciaEntidad.cuentaPorEscuela", Long.class)
 				.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue();
+	}
+
+	/**
+	 * Cuenta el total de licencias
+	 * @return Número de licencias encontradas
+	 */
+	public Long cuenta() {
+		return entityManager.createNamedQuery("LicenciaEntidad.cuenta", Long.class).getSingleResult();
 	}
 }
