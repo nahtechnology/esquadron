@@ -1,10 +1,10 @@
 package tecolotl.nucleo.herramienta;
 
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
 import javax.annotation.Resource;
+import javax.ejb.Stateless;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import javax.mail.*;
@@ -13,6 +13,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.*;
+import java.net.URL;
 import java.util.StringJoiner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,7 +43,7 @@ public class CorreoSessionBean implements Serializable {
 
     //TODO Verificar como se insertarán las url's de los archivos.
     //private String urlArchivo = "C:/Users/jesus/Documents/TecoltlProy/Reglamento.pdf";
-    private String urlArchivo = "C:/Users/jesus/IdeaProjects/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html";
+    private String urlArchivo = "D:/Proyectos/Tecolotl/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html";
 
 
     public Session getSession() {
@@ -101,7 +102,7 @@ public class CorreoSessionBean implements Serializable {
     public void enviar(){
         try{
             BodyPart texto = new MimeBodyPart();
-            texto.setText(mensaje);
+            texto.setContent(mensaje, "text/html");
             BodyPart archivo = new MimeBodyPart();
             DataSource source = new FileDataSource(urlArchivo);
             archivo.setDataHandler(new DataHandler(source));
@@ -120,28 +121,46 @@ public class CorreoSessionBean implements Serializable {
             logger.log(Level.SEVERE,"Error al enviar el correo: ",e);
         }
     }
-
-    public File getCuerpoMail(String direccionCuerpo){
+/*
+    public String getCuerpoMail(Class coordinador){
         try {
-            InputStream inputStream = ClassLoader.getSystemClassLoader().getResourceAsStream(direccionCuerpo);
-            if(inputStream == null){
-                return null;
-            }
-            File archivoTmp = File.createTempFile(String.valueOf(inputStream.hashCode()),".tmp");
-            archivoTmp.deleteOnExit();
-            try(FileOutputStream out = new FileOutputStream(archivoTmp)){
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = inputStream.read(buffer)) != -1){
-                    out.write(buffer, 0, bytesRead);
-                }
-            }
-            return archivoTmp;
-        }catch(IOException e){
-            logger.fine("Hubo un error en la lectura del archivo: ".concat(e.toString()));
+            Class clase = coordinador;
+            InputStream inputStream = clase.getClassLoader().getResourceAsStream("/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
+            String cuerpo = this.readFromInputStream(inputStream);
+            inputStream.close();
+            return cuerpo;
+        }catch(Exception io){
+            logger.log(Level.SEVERE, "Ocurrió un error al obtener el archivo: ", io);
             return null;
         }
     }
+    private String readFromInputStream(InputStream inputStream){
+        StringBuilder resultStringBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            String aux;
+            while ((line = br.readLine()) != null) {
+                if(line.matches("(.*)NombreCompleto(.*)")){
+                    aux = line.replaceFirst("NombreCompleto","Jesus Reyes Reyes");
+                    resultStringBuilder.append(aux).append("\n");
+                }else if(line.matches("(.*)ApodoA(.*)")){
+                    aux = line.replaceFirst("ApodoA","Juanito");
+                    resultStringBuilder.append(aux).append("\n");
+                }else if(line.matches("(.*)correo@correo(.*)")){
+                    aux = line.replaceFirst("correo@correo","solucionesT67@gmail.com");
+                    resultStringBuilder.append(aux).append("\n");
+                }else if(line.matches("(.*)contrasenia(.*)")){
+                    aux = line.replaceFirst("contrasenia","123456");
+                    resultStringBuilder.append(aux).append("\n");
+                }else {
+                    resultStringBuilder.append(line).append("\n");
+                }
+            }
+        }catch(IOException io){
+            logger.log(Level.SEVERE, "Ocurrio un error al leer el archivo: ",io);
+        }
+        return resultStringBuilder.toString();
+    }*/
 
     @Override
     public String toString() {
