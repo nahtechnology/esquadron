@@ -13,7 +13,7 @@
 	<artifactId>tecolotl-ear</artifactId>
 	<packaging>ear</packaging>
 	<name>tecolotl-ear</name>
-	<description>proyecto que genera el proyecto con empaquetado ear para el despliegue con WildFly</description>
+	<description>proyecto que genera el proyecto con empaquetado ear para el despliegue con JBoss</description>
 
 	<dependencies>
 		<dependency>
@@ -58,7 +58,7 @@
 						<webModule>
 							<groupId>tecolotl</groupId>
 							<artifactId>tecolotl-web</artifactId>
-							<contextRoot>/tecolotl-desarrollo</contextRoot>
+							<contextRoot>/tecolotl</contextRoot>
 						</webModule>
 					</modules>
 				</configuration>
@@ -73,24 +73,4 @@
 		</plugins>
 	</build>
 
-	<profiles>
-        <profile>
-            <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-            <!-- Use this profile for any OpenShift specific customization your app will need. -->
-            <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-            <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-            <id>openshift</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-ear-plugin</artifactId>
-                        <version>${version.ear.plugin}</version>
-                        <configuration>
-                            <outputDirectory>deployments</outputDirectory>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
