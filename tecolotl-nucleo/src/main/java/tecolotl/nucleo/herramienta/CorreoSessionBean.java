@@ -121,11 +121,14 @@ public class CorreoSessionBean implements Serializable {
             logger.log(Level.SEVERE,"Error al enviar el correo: ",e);
         }
     }
-/*
-    public String getCuerpoMail(Class coordinador){
+
+    //Cuando se resuelva el problema de NullPointerException este es el códifo para leer el recurso y la modificación para su uso según sea el caso,
+   /* public String getCuerpoMail(Class coordinador){
         try {
             Class clase = coordinador;
-            InputStream inputStream = clase.getClassLoader().getResourceAsStream("/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
+            System.out.println(coordinador);
+            InputStream inputStream = clase.getClassLoader().getResourceAsStream("ConfirmacionNuevoCoordinador.html");
+            System.out.println(inputStream);
             String cuerpo = this.readFromInputStream(inputStream);
             inputStream.close();
             return cuerpo;

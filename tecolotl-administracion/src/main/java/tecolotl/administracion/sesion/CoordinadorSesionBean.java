@@ -152,15 +152,17 @@ public class CoordinadorSesionBean {
         return coordinadorEntidadPK;
     }
 
+    /**
+     * Metodo que envia el correo y lee un archivo con BufferedReader y FileReader
+     * lo cual no lo hace apto más que para ver eñ contenido del archivo y así procesarlo.
+     */
     public void enviaCorreo(){
         StringBuilder resultStringBuilder = new StringBuilder();
         correoSessionBean.setAsunto("Bienvenido a Squadrón ".concat("Jesús Reyes"));
-        correoSessionBean.setDestinatario("sauronavp92@hotmail.com");
+        correoSessionBean.setDestinatario("jesus.cab.lun@gmail.com");
         correoSessionBean.setRemitente("squadron@tecolotl.com");
         logger.fine("Ocurrio un evento: ".concat(correoSessionBean.toString()));
-        //System.out.println(correoSessionBean.getCuerpoMail());
-        //File cuerpoMail = correoSessionBean.getCuerpoMail("C:/Users/jesus/IdeaProjects/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
-        /*try{
+        try{
                 String cadena;
                 String aux;
                 FileReader f = new FileReader("D:/Proyectos/Tecolotl/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
@@ -187,16 +189,15 @@ public class CoordinadorSesionBean {
                     }else {
                         resultStringBuilder.append(cadena).append("\n");
                     }
-
                 }
                 b.close();
                 System.out.println(resultStringBuilder.toString());
         }catch (Exception e){
             logger.log(Level.SEVERE, "Ocurrio un error al leer el archivo: ".concat(e.toString()));
-        }*/
-        //resultStringBuilder.append("hola");
+        }
+        correoSessionBean.setMensaje(resultStringBuilder.toString());
         //correoSessionBean.setMensaje(correoSessionBean.getCuerpoMail(CoordinadorSesionBean.class));
-        //correoSessionBean.enviar();
-        System.out.println("HOLA mundo");
+        correoSessionBean.enviar();
+
     }
 }
