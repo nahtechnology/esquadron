@@ -33,9 +33,8 @@ public class CorreoSessionBean implements Serializable {
     /**
      * Envio de correo electrónico
      */
-    //String nombre, String apellidoP, String apellidoM, String apodo, String correo, String contrasenia
     public void enviar(CorreoConfirmacionModelo correoConfirmacionModelo, TipoCorreo tipoCorreo){
-        try{
+        try {
             BodyPart texto = new MimeBodyPart();
             texto.setContent(tipoCorreo.getCuerpo(), "text/html");
             MimeMultipart multipart = new MimeMultipart();
@@ -47,9 +46,31 @@ public class CorreoSessionBean implements Serializable {
             message.setSubject(tipoCorreo.getCabecera());
             message.setContent(multipart);
             Transport.send(message);
-        }catch(Exception e){
+        } catch(Exception e) {
             logger.log(Level.SEVERE,"Error al enviar el correo: ".concat(correoConfirmacionModelo.toString()),e);
         }
     }
 
+    private String reemplaza(CorreoConfirmacionModelo correoConfirmacionModelo, String cadenaOriginal) {
+        StringBuilder stringBuilder = new StringBuilder(cadenaOriginal);
+        int indice = 0, posicionInicial, posicionFinal;
+        while ((indice = stringBuilder.indexOf("$", indice)) != -1) {
+            posicionInicial = stringBuilder.indexOf("{", indice);
+            posicionFinal = stringBuilder.indexOf("}", indice);
+            switch (stringBuilder.substring(posicionInicial, posicionFinal)) {
+                case "nombre":
+                    stringBuilder.replace(posicionInicial, posicionFinal, correoConfirmacionModelo.getNombre());
+                    break;
+                case "apodo":
+                    stringBuilder.replace(posicionInicial, posicionFinal, correoConfirmacionModelo.getCorreo());
+                    break;
+                case "contrasenia":
+                    stringBuilder.replace(posicionInicial, posicionFinal, correoConfirmacionModelo.getContrasenia());
+                    break;
+                default:
+                    throw new IllegalArgumentException(stringBuilder.substring(posicionInicial, posicionFinal));
+            }
+        }
+        return stringBuilder.toString();
+    }
 }

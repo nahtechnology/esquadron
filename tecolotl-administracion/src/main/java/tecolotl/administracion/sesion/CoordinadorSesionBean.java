@@ -157,7 +157,7 @@ public class CoordinadorSesionBean {
      * lo cual no lo hace apto más que para ver eñ contenido del archivo y así procesarlo.
      */
     public void enviaCorreo(){
-        StringBuilder resultStringBuilder = new StringBuilder();
+    /*    StringBuilder resultStringBuilder = new StringBuilder();
         correoSessionBean.setAsunto("Bienvenido a Squadrón ".concat("Jesús Reyes"));
         correoSessionBean.setDestinatario("jesus.cab.lun@gmail.com");
         correoSessionBean.setRemitente("squadron@tecolotl.com");
@@ -198,6 +198,6 @@ public class CoordinadorSesionBean {
         correoSessionBean.setMensaje(resultStringBuilder.toString());
         //correoSessionBean.setMensaje(correoSessionBean.getCuerpoMail(CoordinadorSesionBean.class));
         correoSessionBean.enviar();
-
+        */
     }
 }
