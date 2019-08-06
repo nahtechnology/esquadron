@@ -21,7 +21,7 @@ public class EscribirEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(EscribirEntidad.class, EscribirEntidadPK.class, ActividadEntidad.class,
+                .addClasses(EscribirEntidad.class, ActividadEntidad.class,
                         NivelLenguajeEntidad.class, TipoEstudianteEntidad.class, CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
@@ -39,9 +39,6 @@ public class EscribirEntidadTest {
         for(EscribirEntidad escribirEntidad : escribirEntidadLista){
             Assert.assertNotNull(escribirEntidad);
             Assert.assertNotNull(escribirEntidad.getPregunta());
-            EscribirEntidadPK escribirEntidadPK = escribirEntidad.getEscribirEntidadPK();
-            Assert.assertNotNull(escribirEntidadPK.getActividadEntidad());
-            Assert.assertNotNull(escribirEntidadPK.getContador());
         }
     }
 }

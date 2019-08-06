@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class TareaGlosarioActividadEntidadPK implements Serializable {
@@ -43,5 +44,14 @@ public class TareaGlosarioActividadEntidadPK implements Serializable {
 
     public void setActividadEntidad(ActividadEntidad actividadEntidad) {
         this.actividadEntidad = actividadEntidad;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaGlosarioActividadEntidadPK.class.getSimpleName() + "[", "]")
+                .add("tareaEntidad=" + tareaEntidad)
+                .add("glosarioEntidad=" + glosarioEntidad)
+                .add("actividadEntidad=" + actividadEntidad)
+                .toString();
     }
 }

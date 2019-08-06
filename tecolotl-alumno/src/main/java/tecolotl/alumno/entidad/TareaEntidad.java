@@ -3,7 +3,7 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
-import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "tarea", schema = "alumno")
@@ -24,7 +24,9 @@ public class TareaEntidad {
     private Integer id;
     private AlumnoEntidad alumnoEntidad;
     private Date asignacion;
-    private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadList;
+    private TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad;
+    private TareaEscribirActividadEntidad tareaEscribirActividadEntidad;
+    private TareaVideoEntidad tareaVideoEntidad;
 
     public TareaEntidad() {
     }
@@ -65,12 +67,43 @@ public class TareaEntidad {
         this.asignacion = asignacion;
     }
 
-    @OneToMany(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad")
-    public List<TareaGlosarioActividadEntidad> getTareaGlosarioActividadEntidadList() {
-        return tareaGlosarioActividadEntidadList;
+    @OneToOne(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad")
+    public TareaGlosarioActividadEntidad getTareaGlosarioActividadEntidad() {
+        return tareaGlosarioActividadEntidad;
     }
 
-    public void setTareaGlosarioActividadEntidadList(List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadList) {
-        this.tareaGlosarioActividadEntidadList = tareaGlosarioActividadEntidadList;
+    public void setTareaGlosarioActividadEntidad(TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad) {
+        this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
+    }
+
+    //Aquí modificar también
+    @OneToMany(mappedBy = "")
+    public TareaEscribirActividadEntidad getTareaEscribirActividadEntidad() {
+        return tareaEscribirActividadEntidad;
+    }
+
+    public void setTareaEscribirActividadEntidad(TareaEscribirActividadEntidad tareaEscribirActividadEntidad) {
+        this.tareaEscribirActividadEntidad = tareaEscribirActividadEntidad;
+    }
+
+    @OneToMany(mappedBy = "")
+    public TareaVideoEntidad getTareaVideoEntidad() {
+        return tareaVideoEntidad;
+    }
+
+    public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
+        this.tareaVideoEntidad = tareaVideoEntidad;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("alumnoEntidad=" + alumnoEntidad)
+                .add("asignacion=" + asignacion)
+                .add("tareaGlosarioActividadEntidad=" + tareaGlosarioActividadEntidad)
+                .add("tareaEscribirEntidad=" + tareaEscribirActividadEntidad)
+                .add("tareaVideoEntidad=" + tareaVideoEntidad)
+                .toString();
     }
 }

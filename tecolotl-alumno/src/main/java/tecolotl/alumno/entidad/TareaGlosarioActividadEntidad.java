@@ -1,6 +1,7 @@
 package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "tarea_glosario_actividad", schema = "alumno")
@@ -20,4 +21,10 @@ public class TareaGlosarioActividadEntidad {
         this.tareaGlosarioActividadEntidadPK = tareaGlosarioActividadEntidadPK;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaGlosarioActividadEntidad.class.getSimpleName() + "[", "]")
+                .add("tareaGlosarioActividadEntidadPK=" + tareaGlosarioActividadEntidadPK)
+                .toString();
+    }
 }

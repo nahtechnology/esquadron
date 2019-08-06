@@ -3,7 +3,9 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "glosario", schema = "alumno")
@@ -15,7 +17,7 @@ public class GlosarioEntidad {
     private String palabra;
     private byte[] imagen;
     private String significado;
-    private List<ActividadEntidad> actividadEntidad;
+    private List<AlumnoEntidad> alumnoEntidad;
 
     @Id
     public String getPalabra() {
@@ -37,6 +39,18 @@ public class GlosarioEntidad {
         this.imagen = imagen;
     }
 
+    //Modificar aquí
+    @OneToMany
+    @JoinColumn(name = "significado")
+    @NotNull
+    public List<AlumnoEntidad> getAlumnoEntidad() {
+        return alumnoEntidad;
+    }
+
+    public void setAlumnoEntidad(List<AlumnoEntidad> alumnoEntidad) {
+        this.alumnoEntidad = alumnoEntidad;
+    }
+
     @Basic
     @Column(name = "significado")
     @NotNull
@@ -49,14 +63,13 @@ public class GlosarioEntidad {
         this.significado = significado;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn()
-    public List<ActividadEntidad> getActividadEntidad() {
-        return actividadEntidad;
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GlosarioEntidad.class.getSimpleName() + "[", "]")
+                .add("palabra='" + palabra + "'")
+                .add("imagen=" + Arrays.toString(imagen))
+                .add("significado='" + significado + "'")
+                .add("alumnoEntidad=" + alumnoEntidad)
+                .toString();
     }
-
-    public void setActividadEntidad(List<ActividadEntidad> actividadEntidad) {
-        this.actividadEntidad = actividadEntidad;
-    }
-
 }

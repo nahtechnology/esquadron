@@ -5,6 +5,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "tarea_video", schema = "alumno")
@@ -38,5 +39,13 @@ public class TareaVideoEntidad {
 
     public void setReproducciones(Short reproducciones) {
         this.reproducciones = reproducciones;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaVideoEntidad.class.getSimpleName() + "[", "]")
+                .add("tareaVideoEntidadPK=" + tareaVideoEntidadPK)
+                .add("reproducciones=" + reproducciones)
+                .toString();
     }
 }

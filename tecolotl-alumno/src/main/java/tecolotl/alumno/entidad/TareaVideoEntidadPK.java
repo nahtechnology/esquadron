@@ -3,6 +3,7 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class TareaVideoEntidadPK implements Serializable {
@@ -42,5 +43,13 @@ public class TareaVideoEntidadPK implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(tareaEntidad, actividadEntidad);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaVideoEntidadPK.class.getSimpleName() + "[", "]")
+                .add("tareaEntidad=" + tareaEntidad)
+                .add("actividadEntidad=" + actividadEntidad)
+                .toString();
     }
 }

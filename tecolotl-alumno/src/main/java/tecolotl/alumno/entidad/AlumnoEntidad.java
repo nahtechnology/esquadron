@@ -5,8 +5,10 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "alumno", schema = "alumno")
@@ -23,7 +25,7 @@ public class AlumnoEntidad extends PersonaEntidad {
     private Date nacimiento;
     private String correoPadreFamilia;
     private byte[] contraseniaPadreFamilia;
-    private List<TareaEntidad> tareaEntidadLista;
+
 
     public AlumnoEntidad() {
     }
@@ -96,12 +98,15 @@ public class AlumnoEntidad extends PersonaEntidad {
         this.contraseniaPadreFamilia = contraseniaPadreFamilia;
     }
 
-    @OneToMany(mappedBy = "alumnoEntidad")
-    public List<TareaEntidad> getTareaEntidadLista() {
-        return tareaEntidadLista;
-    }
-
-    public void setTareaEntidadLista(List<TareaEntidad> tareaEntidadLista) {
-        this.tareaEntidadLista = tareaEntidadLista;
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AlumnoEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("nivelLenguajeEntidad=" + nivelLenguajeEntidad)
+                .add("gradoEscolarEntidad=" + gradoEscolarEntidad)
+                .add("nacimiento=" + nacimiento)
+                .add("correoPadreFamilia='" + correoPadreFamilia + "'")
+                .add("contraseniaPadreFamilia=" + Arrays.toString(contraseniaPadreFamilia))
+                .toString();
     }
 }

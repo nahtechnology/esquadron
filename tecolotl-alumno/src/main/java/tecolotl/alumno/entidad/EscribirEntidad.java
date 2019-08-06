@@ -3,24 +3,25 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "escribir", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "EscribirEntidad.busca", query = "SELECT a FROM EscribirEntidad a"),
-        @NamedQuery(name = "EscribirEntidad.buscaActividad", query = "SELECT b FROM EscribirEntidad b WHERE b.escribirEntidadPK.actividadEntidad.id = :id")
+        @NamedQuery(name = "EscribirEntidad.busca", query = "SELECT a FROM EscribirEntidad a")
 })
 public class EscribirEntidad {
-    private EscribirEntidadPK escribirEntidadPK;
+    private Integer id;
     private String pregunta;
+    private EscribirActividadEntidad escribirActividadEntidad;
 
-    @EmbeddedId
-    public EscribirEntidadPK getEscribirEntidadPK() {
-        return escribirEntidadPK;
+    @Id
+    public Integer getId() {
+        return id;
     }
 
-    public void setEscribirEntidadPK(EscribirEntidadPK escribirEntidadPK) {
-        this.escribirEntidadPK = escribirEntidadPK;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -33,5 +34,23 @@ public class EscribirEntidad {
 
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
+    }
+
+    @OneToMany
+    public EscribirActividadEntidad getEscribirActividadEntidad() {
+        return escribirActividadEntidad;
+    }
+
+    public void setEscribirActividadEntidad(EscribirActividadEntidad escribirActividadEntidad) {
+        this.escribirActividadEntidad = escribirActividadEntidad;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EscribirEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("pregunta='" + pregunta + "'")
+                .add("escribirActividadEntidad=" + escribirActividadEntidad)
+                .toString();
     }
 }
