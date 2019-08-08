@@ -13,7 +13,7 @@ import java.util.StringJoiner;
         @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g")
 })
 public class GlosarioEntidad {
-    private GlosarioEntidad glosarioEntidad;
+    private ClaseGlosarioEntidad claseGlosarioEntidad;
     private String palabra;
     private byte[] imagen;
     private String significado;
@@ -53,18 +53,19 @@ public class GlosarioEntidad {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_clase_glosario")
     @NotNull
-    public GlosarioEntidad getGlosarioEntidad() {
-        return glosarioEntidad;
+    public ClaseGlosarioEntidad getClaseGlosarioEntidad() {
+        return claseGlosarioEntidad;
     }
 
-    public void setGlosarioEntidad(GlosarioEntidad glosarioEntidad) {
-        this.glosarioEntidad = glosarioEntidad;
+    public void setClaseGlosarioEntidad(ClaseGlosarioEntidad claseGlosarioEntidad) {
+        this.claseGlosarioEntidad = claseGlosarioEntidad;
     }
+
 
     @Override
     public String toString() {
         return new StringJoiner(", ", GlosarioEntidad.class.getSimpleName() + "[", "]")
-                .add("glosarioEntidad=" + glosarioEntidad)
+                .add("claseGlosarioEntidad=" + claseGlosarioEntidad)
                 .add("palabra='" + palabra + "'")
                 .add("imagen=" + Arrays.toString(imagen))
                 .add("significado='" + significado + "'")
