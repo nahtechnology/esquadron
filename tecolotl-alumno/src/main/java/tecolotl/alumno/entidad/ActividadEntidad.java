@@ -9,43 +9,40 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "actividad", schema = "alumno")
-@SequenceGenerator(name = "generador",sequenceName = "actividad_seq", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a "
+        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad"
         )
 })
 public class ActividadEntidad {
 
-    private Integer id;
-    private String idVideo;
+    private String id;
+    private Short puntaje;
     private Integer tiempo;
     private String preguntaDetonadora;
     private String lenguaje;
     private String trasncipcion;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
-    private List<GlosarioEntidad> glosarioEntidadLista;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador")
-    public Integer getId() {
+    @Column(name = "id_video")
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @Basic
-    @Column(name = "id_video", unique = true)
+    @Column(name = "puntaje")
     @NotNull
-    @Size(min = 11, max = 11)
-    public String getIdVideo() {
-        return idVideo;
+    public Short getPuntaje() {
+        return puntaje;
     }
 
-    public void setIdVideo(String idVideo) {
-        this.idVideo = idVideo;
+    public void setPuntaje(Short puntaje) {
+        this.puntaje = puntaje;
     }
 
     @Basic
@@ -119,7 +116,7 @@ public class ActividadEntidad {
     public void setNivelLenguajeEntidad(List<NivelLenguajeEntidad> nivelLenguajeEntidad) {
         this.nivelLenguajeEntidad = nivelLenguajeEntidad;
     }
-
+/*
     @OneToMany(mappedBy = "actividadEntidad")
     public List<GlosarioEntidad> getGlosarioEntidadLista() {
         return glosarioEntidadLista;
@@ -128,7 +125,7 @@ public class ActividadEntidad {
     public void setGlosarioEntidadLista(List<GlosarioEntidad> glosarioEntidadLista) {
         this.glosarioEntidadLista = glosarioEntidadLista;
     }
-
+*/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
