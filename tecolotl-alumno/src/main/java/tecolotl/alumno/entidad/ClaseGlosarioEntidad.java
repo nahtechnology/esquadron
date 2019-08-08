@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "clase_glosario", schema = "alumno")
-@SequenceGenerator(name = "generadorDefault", schema = "alumno", sequenceName = "clase_glosario_seq")
+@SequenceGenerator(name = "generador_defecto", schema = "alumno", sequenceName = "clase_glosario_seq")
 @NamedQueries(
         @NamedQuery(name = "ClaseGlosarioEntidad.busca", query = "SELECT cg FROM ClaseGlosarioEntidad cg")
 )
