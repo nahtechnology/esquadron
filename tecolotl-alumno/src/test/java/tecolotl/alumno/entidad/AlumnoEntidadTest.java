@@ -48,7 +48,6 @@ public class AlumnoEntidadTest {
             Assert.assertNotNull(alumnoEntidad.getApellidoPaterno());
             Assert.assertNotNull(alumnoEntidad.getApodo());
             Assert.assertNotNull(alumnoEntidad.getContrasenia());
-
         }
     }
 }

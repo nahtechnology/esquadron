@@ -9,20 +9,11 @@ import java.util.StringJoiner;
 @Table(name = "tarea", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", sequenceName = "tarea_seq", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "TareaEntidad.busca", query = "SELECT a FROM TareaEntidad a"),
-        @NamedQuery(
-                name="TareaEntidad.buscaPorAlumno",
-                query="SELECT t FROM " +
-                        "TareaEntidad t INNER JOIN FETCH " +
-                        "t.tareaGlosarioActividadEntidadList tgae INNER JOIN FETCH " +
-                        "tgae.tareaGlosarioActividadEntidadPK.actividadEntidad a INNER JOIN FETCH " +
-                        "tgae.tareaGlosarioActividadEntidadPK.glosarioEntidad WHERE t.alumnoEntidad.id = :idAlumno"
-        )
+        @NamedQuery(name = "TareaEntidad.busca", query = "SELECT t FROM TareaEntidad t"),
 })
 public class TareaEntidad {
 
     private Integer id;
-    private AlumnoEntidad alumnoEntidad;
     private Date asignacion;
     private TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad;
     private TareaEscribirActividadEntidad tareaEscribirActividadEntidad;
@@ -43,16 +34,6 @@ public class TareaEntidad {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_alumno")
-    public AlumnoEntidad getAlumnoEntidad() {
-        return alumnoEntidad;
-    }
-
-    public void setAlumnoEntidad(AlumnoEntidad alumnoEntidad) {
-        this.alumnoEntidad = alumnoEntidad;
     }
 
     @Basic
@@ -76,8 +57,8 @@ public class TareaEntidad {
         this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
     }
 
-    //Aquí modificar también
-    @OneToMany(mappedBy = "")
+    //TODO Verificar si el mappedBy es correcto.
+    @OneToMany(mappedBy = "tareaEscribirActividadPK.tareaEntidad")
     public TareaEscribirActividadEntidad getTareaEscribirActividadEntidad() {
         return tareaEscribirActividadEntidad;
     }
@@ -86,7 +67,8 @@ public class TareaEntidad {
         this.tareaEscribirActividadEntidad = tareaEscribirActividadEntidad;
     }
 
-    @OneToMany(mappedBy = "")
+    //TODO Verificar si el Mappedby es correcto.
+    @OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad")
     public TareaVideoEntidad getTareaVideoEntidad() {
         return tareaVideoEntidad;
     }
@@ -99,10 +81,9 @@ public class TareaEntidad {
     public String toString() {
         return new StringJoiner(", ", TareaEntidad.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
-                .add("alumnoEntidad=" + alumnoEntidad)
                 .add("asignacion=" + asignacion)
                 .add("tareaGlosarioActividadEntidad=" + tareaGlosarioActividadEntidad)
-                .add("tareaEscribirEntidad=" + tareaEscribirActividadEntidad)
+                .add("tareaEscribirActividadEntidad=" + tareaEscribirActividadEntidad)
                 .add("tareaVideoEntidad=" + tareaVideoEntidad)
                 .toString();
     }

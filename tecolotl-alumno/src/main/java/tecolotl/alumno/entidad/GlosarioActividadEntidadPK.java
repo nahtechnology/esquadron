@@ -1,28 +1,18 @@
 package tecolotl.alumno.entidad;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 @Embeddable
-public class TareaGlosarioActividadEntidadPK implements Serializable {
-
-    private TareaEntidad tareaEntidad;
+public class GlosarioActividadEntidadPK implements Serializable {
     private GlosarioEntidad glosarioEntidad;
     private ActividadEntidad actividadEntidad;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
-    @JoinColumn(name = "id_tarea")
-    public TareaEntidad getTareaEntidad() {
-        return tareaEntidad;
-    }
-
-    public void setTareaEntidad(TareaEntidad tareaEntidad) {
-        this.tareaEntidad = tareaEntidad;
-    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
@@ -52,21 +42,19 @@ public class TareaGlosarioActividadEntidadPK implements Serializable {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        TareaGlosarioActividadEntidadPK that = (TareaGlosarioActividadEntidadPK) o;
-        return tareaEntidad.equals(that.tareaEntidad) &&
-                glosarioEntidad.equals(that.glosarioEntidad) &&
+        GlosarioActividadEntidadPK that = (GlosarioActividadEntidadPK) o;
+        return glosarioEntidad.equals(that.glosarioEntidad) &&
                 actividadEntidad.equals(that.actividadEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEntidad, glosarioEntidad, actividadEntidad);
+        return Objects.hash(glosarioEntidad, actividadEntidad);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", TareaGlosarioActividadEntidadPK.class.getSimpleName() + "[", "]")
-                .add("tareaEntidad=" + tareaEntidad)
+        return new StringJoiner(", ", GlosarioActividadEntidadPK.class.getSimpleName() + "[", "]")
                 .add("glosarioEntidad=" + glosarioEntidad)
                 .add("actividadEntidad=" + actividadEntidad)
                 .toString();

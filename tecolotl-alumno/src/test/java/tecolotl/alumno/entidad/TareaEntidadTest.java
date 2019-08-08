@@ -42,7 +42,6 @@ public class TareaEntidadTest {
         for (TareaEntidad tareaEntidad : tareaEntidadLista){
             Assert.assertNotNull(tareaEntidad);
             Assert.assertNotNull(tareaEntidad.getId());
-            Assert.assertNotNull(tareaEntidad.getAlumnoEntidad());
             Assert.assertNotNull(tareaEntidad.getAsignacion());
         }
     }

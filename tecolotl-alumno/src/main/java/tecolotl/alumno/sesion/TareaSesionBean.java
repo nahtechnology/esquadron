@@ -38,7 +38,6 @@ public class TareaSesionBean {
      */
     public Integer inserta(@NotNull Integer idAlumno){
         TareaEntidad tareaEntidad = new TareaEntidad();
-        tareaEntidad.setAlumnoEntidad(new AlumnoEntidad(idAlumno));
         tareaEntidad.setAsignacion(new Date());
         entityManager.persist(tareaEntidad);
         return tareaEntidad.getId();

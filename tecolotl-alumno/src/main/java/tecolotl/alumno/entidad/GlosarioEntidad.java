@@ -10,14 +10,13 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "glosario", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT a FROM GlosarioEntidad a")
+        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g")
 })
 public class GlosarioEntidad {
-
+    private GlosarioEntidad glosarioEntidad;
     private String palabra;
     private byte[] imagen;
     private String significado;
-    private List<AlumnoEntidad> alumnoEntidad;
 
     @Id
     public String getPalabra() {
@@ -39,18 +38,6 @@ public class GlosarioEntidad {
         this.imagen = imagen;
     }
 
-    //Modificar aquí
-    @OneToMany
-    @JoinColumn(name = "significado")
-    @NotNull
-    public List<AlumnoEntidad> getAlumnoEntidad() {
-        return alumnoEntidad;
-    }
-
-    public void setAlumnoEntidad(List<AlumnoEntidad> alumnoEntidad) {
-        this.alumnoEntidad = alumnoEntidad;
-    }
-
     @Basic
     @Column(name = "significado")
     @NotNull
@@ -63,13 +50,24 @@ public class GlosarioEntidad {
         this.significado = significado;
     }
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_clase_glosario")
+    @NotNull
+    public GlosarioEntidad getGlosarioEntidad() {
+        return glosarioEntidad;
+    }
+
+    public void setGlosarioEntidad(GlosarioEntidad glosarioEntidad) {
+        this.glosarioEntidad = glosarioEntidad;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", GlosarioEntidad.class.getSimpleName() + "[", "]")
+                .add("glosarioEntidad=" + glosarioEntidad)
                 .add("palabra='" + palabra + "'")
                 .add("imagen=" + Arrays.toString(imagen))
                 .add("significado='" + significado + "'")
-                .add("alumnoEntidad=" + alumnoEntidad)
                 .toString();
     }
 }
