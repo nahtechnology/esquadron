@@ -57,25 +57,25 @@ public class TareaEntidad {
         this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
     }
 
-    //TODO Verificar si el mappedBy es correcto.
-    @OneToMany(mappedBy = "tareaEscribirActividadPK.tareaEntidad")
+    //TODO esta parte aún contiene errpres también.
+    /*@OneToMany(mappedBy = "tareaEscribirActividadPK.tareaEntidad")
     public TareaEscribirActividadEntidad getTareaEscribirActividadEntidad() {
         return tareaEscribirActividadEntidad;
     }
 
     public void setTareaEscribirActividadEntidad(TareaEscribirActividadEntidad tareaEscribirActividadEntidad) {
         this.tareaEscribirActividadEntidad = tareaEscribirActividadEntidad;
-    }
+    }*/
 
-    //TODO Verificar si el Mappedby es correcto.
-    @OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad")
+
+    /*@OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad")
     public TareaVideoEntidad getTareaVideoEntidad() {
         return tareaVideoEntidad;
     }
 
     public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
         this.tareaVideoEntidad = tareaVideoEntidad;
-    }
+    }*/
 
     @Override
     public String toString() {

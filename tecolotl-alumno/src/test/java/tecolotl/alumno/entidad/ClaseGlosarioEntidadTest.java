@@ -14,17 +14,17 @@ import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.validation.constraints.Max;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class GlosarioEntidadTest {
-
+public class ClaseGlosarioEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(GlosarioEntidad.class, CatalagoEntidad.class, ClaseGlosarioEntidad.class)
+                .addClasses(CatalagoEntidad.class, ClaseGlosarioEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+                .addAsWebInfResource(EmptyAsset.INSTANCE,"beans.xml");
     }
 
     @PersistenceContext
@@ -32,16 +32,14 @@ public class GlosarioEntidadTest {
 
     @Test
     public void busca(){
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
-        List<GlosarioEntidad> glosarioEntidadsLista = typedQuery.getResultList();
-        Assert.assertNotNull(glosarioEntidadsLista);
-        Assert.assertFalse(glosarioEntidadsLista.isEmpty());
-        for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
-            Assert.assertNotNull(glosarioEntidad);
-            Assert.assertNotNull(glosarioEntidad.getPalabra());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidad());
-            Assert.assertNotNull(glosarioEntidad.getImagen());
-            Assert.assertNotNull(glosarioEntidad.getSignificado());
+        TypedQuery<ClaseGlosarioEntidad> typedQuery = entityManager.createNamedQuery("ClaseGlosarioEntidad.busca",ClaseGlosarioEntidad.class);
+        List<ClaseGlosarioEntidad> claseGlosarioEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(claseGlosarioEntidadLista);
+        Assert.assertFalse(claseGlosarioEntidadLista.isEmpty());
+        for (ClaseGlosarioEntidad claseGlosarioEntidad : claseGlosarioEntidadLista){
+            Assert.assertNotNull(claseGlosarioEntidad);
+            Assert.assertNotNull(claseGlosarioEntidad.getClave());
+            Assert.assertNotNull(claseGlosarioEntidad.getValor());
         }
     }
 }

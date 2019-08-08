@@ -23,10 +23,11 @@ public class TareaGlosarioActividadEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses( GlosarioEntidad.class, TareaEntidad.class, ActividadEntidad.class,
-                         AlumnoEntidad.class,
-                        PersonaEntidad.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
-                        CatalagoEntidad.class, GradoEscolarEntidad.class, TipoEstudianteEntidad.class)
+                .addClasses( GlosarioEntidad.class, ClaseGlosarioEntidad.class, TareaEntidad.class,
+                        ActividadEntidad.class, GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class,
+                        TareaGlosarioActividadEntidadPK.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
+                        CatalagoEntidad.class, TipoEstudianteEntidad.class, TareaVideoEntidad.class,
+                        TareaVideoEntidadPK.class, TareaGlosarioActividadEntidad.class, TareaEscribirActividadEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -40,14 +41,13 @@ public class TareaGlosarioActividadEntidadTest {
         List<TareaGlosarioActividadEntidad> tareaGlosarioEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaGlosarioEntidadLista);
         Assert.assertFalse(tareaGlosarioEntidadLista.isEmpty());
-    /*    for (TareaGlosarioActividadEntidad tareaGlosarioEntidad : tareaGlosarioEntidadLista){
+        for (TareaGlosarioActividadEntidad tareaGlosarioEntidad : tareaGlosarioEntidadLista){
             Assert.assertNotNull(tareaGlosarioEntidad);
-            Assert.assertNotNull(tareaGlosarioEntidad.getRespuesta());
             TareaGlosarioActividadEntidadPK tareaGlosarioEntidadPK = tareaGlosarioEntidad.getTareaGlosarioActividadEntidadPK();
             Assert.assertNotNull(tareaGlosarioEntidadPK);
             Assert.assertNotNull(tareaGlosarioEntidadPK.getGlosarioEntidad());
             Assert.assertNotNull(tareaGlosarioEntidadPK.getTareaEntidad());
 
-        }*/
+        }
     }
 }

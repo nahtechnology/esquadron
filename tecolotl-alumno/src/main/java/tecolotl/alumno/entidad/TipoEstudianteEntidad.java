@@ -11,4 +11,9 @@ import javax.persistence.*;
         @NamedQuery(name = "TipoEstudianteEntidad.busca", query = "SELECT t FROM TipoEstudianteEntidad t")
 })
 public class TipoEstudianteEntidad extends CatalagoEntidad {
+    public TipoEstudianteEntidad() {
+    }
+    public TipoEstudianteEntidad(Short clave) {
+        super(clave);
+    }
 }

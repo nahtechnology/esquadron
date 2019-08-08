@@ -45,7 +45,6 @@ public class ActividadEntidadTest {
         for (ActividadEntidad actividadEntidad : actividadEntidadLista) {
             Assert.assertNotNull(actividadEntidad);
             Assert.assertNotNull(actividadEntidad.getId());
-            Assert.assertNotNull(actividadEntidad.getIdVideo());
             Assert.assertNotNull(actividadEntidad.getLenguaje());
             Assert.assertNotNull(actividadEntidad.getPreguntaDetonadora());
             Assert.assertNotNull(actividadEntidad.getTiempo());

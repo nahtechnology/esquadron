@@ -6,7 +6,7 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "glosario_actividad", schema = "alumno")
 @NamedQueries(
-        @NamedQuery(name="GlosarioActividadEntidad.busca", query= "SELECT ga FROM GlosarioActividad ga")
+        @NamedQuery(name="GlosarioActividadEntidad.busca", query= "SELECT ga FROM GlosarioActividadEntidad ga")
 )
 public class GlosarioActividadEntidad {
     private GlosarioActividadEntidadPK glosarioActividadEntidadPK;
