@@ -27,7 +27,8 @@ public class TareaGlosarioActividadEntidadTest {
                         ActividadEntidad.class, GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class,
                         TareaGlosarioActividadEntidadPK.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
                         CatalagoEntidad.class, TipoEstudianteEntidad.class, TareaVideoEntidad.class,
-                        TareaVideoEntidadPK.class, TareaGlosarioActividadEntidad.class, TareaEscribirActividadEntidad.class)
+                        TareaVideoEntidadPK.class, TareaGlosarioActividadEntidad.class, TareaEscribirActividadEntidad.class,
+                        TareaEscribirActividadEntidadPK.class, EscribirActividadEntidad.class, EscribirEntidad.class, EscribirActividadEntidadPK.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -37,7 +38,7 @@ public class TareaGlosarioActividadEntidadTest {
 
     @Test
     public void busca() {
-        TypedQuery<TareaGlosarioActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaGlosarioEntidad.busca", TareaGlosarioActividadEntidad.class);
+        TypedQuery<TareaGlosarioActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaGlosarioActividadEntidad.busca", TareaGlosarioActividadEntidad.class);
         List<TareaGlosarioActividadEntidad> tareaGlosarioEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaGlosarioEntidadLista);
         Assert.assertFalse(tareaGlosarioEntidadLista.isEmpty());
@@ -45,7 +46,9 @@ public class TareaGlosarioActividadEntidadTest {
             Assert.assertNotNull(tareaGlosarioEntidad);
             TareaGlosarioActividadEntidadPK tareaGlosarioEntidadPK = tareaGlosarioEntidad.getTareaGlosarioActividadEntidadPK();
             Assert.assertNotNull(tareaGlosarioEntidadPK);
-            Assert.assertNotNull(tareaGlosarioEntidadPK.getGlosarioEntidad());
+            Assert.assertNotNull(tareaGlosarioEntidadPK.getGlosarioActividadEntidad());
+            Assert.assertNotNull(tareaGlosarioEntidadPK.getGlosarioActividadEntidad().getGlosarioActividadEntidadPK().getActividadEntidad());
+            Assert.assertNotNull(tareaGlosarioEntidadPK.getGlosarioActividadEntidad().getGlosarioActividadEntidadPK().getGlosarioEntidad());
             Assert.assertNotNull(tareaGlosarioEntidadPK.getTareaEntidad());
 
         }

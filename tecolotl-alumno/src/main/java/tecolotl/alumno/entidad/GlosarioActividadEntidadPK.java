@@ -11,6 +11,7 @@ import java.util.StringJoiner;
 
 @Embeddable
 public class GlosarioActividadEntidadPK implements Serializable {
+
     private GlosarioEntidad glosarioEntidad;
     private ActividadEntidad actividadEntidad;
 

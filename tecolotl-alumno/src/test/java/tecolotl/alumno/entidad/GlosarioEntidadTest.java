@@ -39,7 +39,7 @@ public class GlosarioEntidadTest {
         for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
             Assert.assertNotNull(glosarioEntidad);
             Assert.assertNotNull(glosarioEntidad.getPalabra());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidad());
+            Assert.assertNotNull(glosarioEntidad.getClaseGlosarioEntidad());
             Assert.assertNotNull(glosarioEntidad.getImagen());
             Assert.assertNotNull(glosarioEntidad.getSignificado());
         }

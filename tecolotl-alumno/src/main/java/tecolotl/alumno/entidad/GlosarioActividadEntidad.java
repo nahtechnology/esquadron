@@ -9,6 +9,7 @@ import java.util.StringJoiner;
         @NamedQuery(name="GlosarioActividadEntidad.busca", query= "SELECT ga FROM GlosarioActividadEntidad ga")
 )
 public class GlosarioActividadEntidad {
+
     private GlosarioActividadEntidadPK glosarioActividadEntidadPK;
 
     @EmbeddedId

@@ -12,10 +12,12 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "generador_defecto", sequenceName = "nivel_lenguaje_seq", schema = "alumno")
 @NamedQuery(name = "NivelLenguajeEntidad.busca", query = "SELECT nl FROM NivelLenguajeEntidad nl")
 public class NivelLenguajeEntidad extends CatalagoEntidad {
+
     public NivelLenguajeEntidad() {
     }
 
     public NivelLenguajeEntidad(Short clave) {
         super(clave);
     }
+
 }

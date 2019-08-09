@@ -10,8 +10,7 @@ import java.util.StringJoiner;
 public class TareaGlosarioActividadEntidadPK implements Serializable {
 
     private TareaEntidad tareaEntidad;
-    private GlosarioEntidad glosarioEntidad;
-    private ActividadEntidad actividadEntidad;
+    private GlosarioActividadEntidad glosarioActividadEntidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
@@ -25,50 +24,37 @@ public class TareaGlosarioActividadEntidadPK implements Serializable {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
-    @JoinColumn(name = "id_glosario")
-    public GlosarioEntidad getGlosarioEntidad() {
-        return glosarioEntidad;
+    @JoinColumns(value = {
+            @JoinColumn(name = "id_glosario", referencedColumnName = "id_glosario"),
+            @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+    })
+    public GlosarioActividadEntidad getGlosarioActividadEntidad() {
+        return glosarioActividadEntidad;
     }
 
-    public void setGlosarioEntidad(GlosarioEntidad glosarioEntidad) {
-        this.glosarioEntidad = glosarioEntidad;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
-    @JoinColumn(name = "id_actividad")
-    public ActividadEntidad getActividadEntidad() {
-        return actividadEntidad;
-    }
-
-    public void setActividadEntidad(ActividadEntidad actividadEntidad) {
-        this.actividadEntidad = actividadEntidad;
+    public void setGlosarioActividadEntidad(GlosarioActividadEntidad glosarioActividadEntidad) {
+        this.glosarioActividadEntidad = glosarioActividadEntidad;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         TareaGlosarioActividadEntidadPK that = (TareaGlosarioActividadEntidadPK) o;
         return tareaEntidad.equals(that.tareaEntidad) &&
-                glosarioEntidad.equals(that.glosarioEntidad) &&
-                actividadEntidad.equals(that.actividadEntidad);
+                glosarioActividadEntidad.equals(that.glosarioActividadEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEntidad, glosarioEntidad, actividadEntidad);
+        return Objects.hash(tareaEntidad, glosarioActividadEntidad);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", TareaGlosarioActividadEntidadPK.class.getSimpleName() + "[", "]")
                 .add("tareaEntidad=" + tareaEntidad)
-                .add("glosarioEntidad=" + glosarioEntidad)
-                .add("actividadEntidad=" + actividadEntidad)
+                .add("glosarioActividadEntidad=" + glosarioActividadEntidad)
                 .toString();
     }
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "actividad", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad"
+        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a LEFT JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad"
         )
 })
 public class ActividadEntidad {

@@ -10,13 +10,15 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "glosario", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g")
+        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.claseGlosarioEntidad")
 })
 public class GlosarioEntidad {
+
     private ClaseGlosarioEntidad claseGlosarioEntidad;
     private String palabra;
     private byte[] imagen;
     private String significado;
+    private List<GlosarioActividadEntidad> glosarioActividadEntidadLista;
 
     @Id
     public String getPalabra() {
@@ -61,11 +63,19 @@ public class GlosarioEntidad {
         this.claseGlosarioEntidad = claseGlosarioEntidad;
     }
 
+    @OneToMany(mappedBy = "glosarioActividadEntidadPK.glosarioEntidad", fetch = FetchType.LAZY)
+    public List<GlosarioActividadEntidad> getGlosarioActividadEntidadLista() {
+        return glosarioActividadEntidadLista;
+    }
+
+    public void setGlosarioActividadEntidadLista(List<GlosarioActividadEntidad> glosarioActividadEntidadLista) {
+        this.glosarioActividadEntidadLista = glosarioActividadEntidadLista;
+    }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", GlosarioEntidad.class.getSimpleName() + "[", "]")
-                .add("claseGlosarioEntidad=" + claseGlosarioEntidad)
+                .add("glosarioEntidad=" + claseGlosarioEntidad.toString())
                 .add("palabra='" + palabra + "'")
                 .add("imagen=" + Arrays.toString(imagen))
                 .add("significado='" + significado + "'")

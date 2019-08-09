@@ -3,19 +3,25 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.StringJoiner;
 
 @Entity
 @Table(name = "escribir", schema = "alumno")
+@SequenceGenerator(name = "generador", schema = "alumnos", sequenceName = "escribir_seq")
 @NamedQueries({
-        @NamedQuery(name = "EscribirEntidad.busca", query = "SELECT a FROM EscribirEntidad a")
+        @NamedQuery(
+                name = "EscribirEntidad.buscaPorActivdad",
+                query = "SELECT e FROM EscribirEntidad e JOIN e.escribirActividadEntidadLista ea WHERE ea.escribirActividadEntidadPK.actividadEntidad.id = :idActividad")
 })
 public class EscribirEntidad {
+
     private Integer id;
     private String pregunta;
-    private EscribirActividadEntidad escribirActividadEntidad;
+    private List<EscribirActividadEntidad> escribirActividadEntidadLista;
 
     @Id
+    @GeneratedValue(generator = "generador", strategy = GenerationType.SEQUENCE)
     public Integer getId() {
         return id;
     }
@@ -27,7 +33,7 @@ public class EscribirEntidad {
     @Basic
     @Column(name = "pregunta")
     @NotNull
-    @Size(min = 2, max = 100)
+    @Size(min = 2, max = 200)
     public String getPregunta() {
         return pregunta;
     }
@@ -36,13 +42,13 @@ public class EscribirEntidad {
         this.pregunta = pregunta;
     }
 
-    @OneToMany
-    public EscribirActividadEntidad getEscribirActividadEntidad() {
-        return escribirActividadEntidad;
+    @OneToMany(mappedBy = "escribirActividadEntidadPK.escribirEntidad")
+    public List<EscribirActividadEntidad> getEscribirActividadEntidadLista() {
+        return escribirActividadEntidadLista;
     }
 
-    public void setEscribirActividadEntidad(EscribirActividadEntidad escribirActividadEntidad) {
-        this.escribirActividadEntidad = escribirActividadEntidad;
+    public void setEscribirActividadEntidadLista(List<EscribirActividadEntidad> escribirActividadEntidadLista) {
+        this.escribirActividadEntidadLista = escribirActividadEntidadLista;
     }
 
     @Override
@@ -50,7 +56,6 @@ public class EscribirEntidad {
         return new StringJoiner(", ", EscribirEntidad.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("pregunta='" + pregunta + "'")
-                .add("escribirActividadEntidad=" + escribirActividadEntidad)
                 .toString();
     }
 }

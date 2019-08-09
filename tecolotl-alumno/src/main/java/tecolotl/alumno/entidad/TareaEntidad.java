@@ -3,6 +3,7 @@ package tecolotl.alumno.entidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.StringJoiner;
 
 @Entity
@@ -16,7 +17,7 @@ public class TareaEntidad {
     private Integer id;
     private Date asignacion;
     private TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad;
-    private TareaEscribirActividadEntidad tareaEscribirActividadEntidad;
+    private List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista;
     private TareaVideoEntidad tareaVideoEntidad;
 
     public TareaEntidad() {
@@ -57,33 +58,33 @@ public class TareaEntidad {
         this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
     }
 
-    //TODO esta parte aún contiene errpres también.
-    /*@OneToMany(mappedBy = "tareaEscribirActividadPK.tareaEntidad")
-    public TareaEscribirActividadEntidad getTareaEscribirActividadEntidad() {
-        return tareaEscribirActividadEntidad;
+    @OneToMany(mappedBy = "tareaEscribirActividadEntidadPK.tareaEntidad")
+    public List<TareaEscribirActividadEntidad> getTareaEscribirActividadEntidadLista() {
+        return tareaEscribirActividadEntidadLista;
     }
 
-    public void setTareaEscribirActividadEntidad(TareaEscribirActividadEntidad tareaEscribirActividadEntidad) {
-        this.tareaEscribirActividadEntidad = tareaEscribirActividadEntidad;
-    }*/
-
-
-    /*@OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad")
-    public TareaVideoEntidad getTareaVideoEntidad() {
-        return tareaVideoEntidad;
+    public void setTareaEscribirActividadEntidadLista(List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista) {
+        this.tareaEscribirActividadEntidadLista = tareaEscribirActividadEntidadLista;
     }
 
-    public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
-        this.tareaVideoEntidad = tareaVideoEntidad;
-    }*/
+    /*
+        //TODO Verificar si el Mappedby es correcto.
+        @OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad")
+        public TareaVideoEntidad getTareaVideoEntidad() {
+            return tareaVideoEntidad;
+        }
 
+        public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
+            this.tareaVideoEntidad = tareaVideoEntidad;
+        }
+    */
     @Override
     public String toString() {
         return new StringJoiner(", ", TareaEntidad.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("asignacion=" + asignacion)
                 .add("tareaGlosarioActividadEntidad=" + tareaGlosarioActividadEntidad)
-                .add("tareaEscribirActividadEntidad=" + tareaEscribirActividadEntidad)
+                .add("tareaEscribirActividadEntidad=" + tareaEscribirActividadEntidadLista)
                 .add("tareaVideoEntidad=" + tareaVideoEntidad)
                 .toString();
     }

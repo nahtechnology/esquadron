@@ -12,7 +12,7 @@ public class TareaVideoEntidadPK implements Serializable {
     private ActividadEntidad actividadEntidad;
 
     @OneToOne
-    @JoinColumn(name = "id_tarea", referencedColumnName = "id")
+    @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
         return tareaEntidad;
     }
@@ -22,7 +22,7 @@ public class TareaVideoEntidadPK implements Serializable {
     }
 
     @OneToOne
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id")
+    @JoinColumn(name = "id_actividad", referencedColumnName = "id_video")
     public ActividadEntidad getActividadEntidad() {
         return actividadEntidad;
     }
