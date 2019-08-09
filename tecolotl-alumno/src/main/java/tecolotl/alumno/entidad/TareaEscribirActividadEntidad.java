@@ -2,7 +2,6 @@ package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -11,14 +10,13 @@ import java.util.StringJoiner;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "TareaEscribirActividadEntidad.buscaEscribir",
-                query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH  tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad " +
-                        "WHERE tea.tareaEscribirActividadEntidadPK.tareaEntidad = :idTerea AND ea.escribirActividadEntidadPK.actividadEntidad.id = :idActividad"
+                query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad e"
         )
 })
 public class TareaEscribirActividadEntidad {
 
     private TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK;
-    private String respuesta;
+    private String textoRespuesta;
     private Date horaRespuesta;
 
     @EmbeddedId
@@ -31,13 +29,13 @@ public class TareaEscribirActividadEntidad {
     }
 
     @Basic
-    @Column(name = "respuesta")
-    public String getRespuesta() {
-        return respuesta;
+    @Column(name = "texto_respuesta")
+    public String getTextoRespuesta() {
+        return textoRespuesta;
     }
 
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
+    public void setTextoRespuesta(String textoRespuesta) {
+        this.textoRespuesta = textoRespuesta;
     }
 
     @Basic
@@ -56,20 +54,20 @@ public class TareaEscribirActividadEntidad {
         if (o == null || getClass() != o.getClass()) return false;
         TareaEscribirActividadEntidad that = (TareaEscribirActividadEntidad) o;
         return tareaEscribirActividadEntidadPK.equals(that.tareaEscribirActividadEntidadPK) &&
-                respuesta.equals(that.respuesta) &&
+                textoRespuesta.equals(that.textoRespuesta) &&
                 horaRespuesta.equals(that.horaRespuesta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEscribirActividadEntidadPK, respuesta, horaRespuesta);
+        return Objects.hash(tareaEscribirActividadEntidadPK, textoRespuesta, horaRespuesta);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", TareaEscribirActividadEntidad.class.getSimpleName() + "[", "]")
                 .add("tareaEscribirActividadEntidadPK=" + tareaEscribirActividadEntidadPK.toString())
-                .add("respuesta='" + respuesta + "'")
+                .add("respuesta='" + textoRespuesta + "'")
                 .add("horaRespuesta=" + horaRespuesta)
                 .toString();
     }

@@ -1,9 +1,6 @@
 package tecolotl.alumno.entidad;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -14,7 +11,7 @@ public class TareaEscribirActividadEntidadPK implements Serializable {
     private EscribirActividadEntidad escribirActividadEntidad;
     private TareaEntidad tareaEntidad;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
             @JoinColumn(name = "id_escribir", referencedColumnName = "id_escribir"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
@@ -27,7 +24,7 @@ public class TareaEscribirActividadEntidadPK implements Serializable {
         this.escribirActividadEntidad = escribirActividadEntidad;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
         return tareaEntidad;

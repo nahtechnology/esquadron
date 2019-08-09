@@ -20,7 +20,7 @@ public class EscribirActividadEntidadPK implements Serializable {
         this.actividadEntidad = actividadEntidad;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_escribir")
     public EscribirEntidad getEscribirEntidad() {
         return escribirEntidad;
@@ -30,7 +30,7 @@ public class EscribirActividadEntidadPK implements Serializable {
         this.escribirEntidad = escribirEntidad;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_actividad")
     public ActividadEntidad getActividadEntidad() {
         return actividadEntidad;

@@ -37,14 +37,14 @@ public class TareaEscribirActividadEntidadTest {
     @Test
     public void busca() {
         TypedQuery<TareaEscribirActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaEscribirActividadEntidad.buscaEscribir", TareaEscribirActividadEntidad.class);
-        typedQuery.setParameter("idActividad", "JcMtWwiyzpU");
-        typedQuery.setParameter("idTerea", 1);
+    //    typedQuery.setParameter("idActividad", "JcMtWwiyzpU");
+    //    typedQuery.setParameter("idTarea", 1);
         List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista = typedQuery.getResultList();
         assertNotNull(tareaEscribirActividadEntidadLista);
         assertFalse(tareaEscribirActividadEntidadLista.isEmpty());
         tareaEscribirActividadEntidadLista.forEach(t -> {
             assertNotNull(t);
-            assertNotNull(t.getRespuesta());
+            assertNotNull(t.getTextoRespuesta());
             assertNotNull(t.getHoraRespuesta());
             assertNotNull(t.getTareaEscribirActividadEntidadPK().getEscribirActividadEntidad().getEscribirActividadEntidadPK().getEscribirEntidad().getPregunta());
         });
