@@ -6,7 +6,10 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "escribir_actividad", schema = "alumno")
-@NamedQuery(name = "EscribirActividadEntidad.busca", query = "SELECT ea FROM EscribirActividadEntidad ea")
+@NamedQuery(
+        name = "EscribirActividadEntidad.buscaActivdad",
+        query = "SELECT ea FROM EscribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad e WHERE ea.escribirActividadEntidadPK.actividadEntidad.id = :idActividad"
+)
 public class EscribirActividadEntidad {
 
     private EscribirActividadEntidadPK escribirActividadEntidadPK;
