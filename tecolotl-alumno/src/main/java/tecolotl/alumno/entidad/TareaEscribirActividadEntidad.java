@@ -8,10 +8,10 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "tarea_escribir_actividad", schema = "alumno")
 @NamedQueries(value = {
-        @NamedQuery(
-                name = "TareaEscribirActividadEntidad.buscaEscribir",
-                query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad e"
-        )
+    @NamedQuery(
+        name = "TareaEscribirActividadEntidad.buscaEscribir",
+        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad e"
+    )
 })
 public class TareaEscribirActividadEntidad {
 
@@ -29,7 +29,7 @@ public class TareaEscribirActividadEntidad {
     }
 
     @Basic
-    @Column(name = "texto_respuesta")
+    @Column(name = "texto_respuesta", insertable = false)
     public String getTextoRespuesta() {
         return textoRespuesta;
     }
@@ -39,7 +39,7 @@ public class TareaEscribirActividadEntidad {
     }
 
     @Basic
-    @Column(name = "hora_respuesta")
+    @Column(name = "hora_respuesta", insertable = false)
     public Date getHoraRespuesta() {
         return horaRespuesta;
     }
@@ -53,14 +53,12 @@ public class TareaEscribirActividadEntidad {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TareaEscribirActividadEntidad that = (TareaEscribirActividadEntidad) o;
-        return tareaEscribirActividadEntidadPK.equals(that.tareaEscribirActividadEntidadPK) &&
-                textoRespuesta.equals(that.textoRespuesta) &&
-                horaRespuesta.equals(that.horaRespuesta);
+        return tareaEscribirActividadEntidadPK.equals(that.tareaEscribirActividadEntidadPK);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEscribirActividadEntidadPK, textoRespuesta, horaRespuesta);
+        return tareaEscribirActividadEntidadPK.hashCode()
     }
 
     @Override

@@ -5,6 +5,7 @@ import tecolotl.alumno.entidad.EscribirEntidad;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.StringJoiner;
 
 public class EscribirBaseModelo {
 
@@ -37,5 +38,13 @@ public class EscribirBaseModelo {
 
     public void setPregunta(String pregunta) {
         this.pregunta = pregunta;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EscribirBaseModelo.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("pregunta='" + pregunta + "'")
+                .toString();
     }
 }

@@ -20,6 +20,13 @@ public class EscribirEntidad {
     private String pregunta;
     private List<EscribirActividadEntidad> escribirActividadEntidadLista;
 
+    public EscribirEntidad() {
+    }
+
+    public EscribirEntidad(Integer id) {
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(generator = "generador", strategy = GenerationType.SEQUENCE)
     public Integer getId() {

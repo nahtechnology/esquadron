@@ -1,8 +1,7 @@
 package tecolotl.alumno.sesion;
 
+import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.modelo.TareaModelo;
-import tecolotl.alumno.entidad.AlumnoEntidad;
-import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -34,11 +33,32 @@ public class TareaSesionBean {
     /**
      * Inserta una tarea.
      * @param idAlumno datos de la tarea.
-     *
      */
     public Integer inserta(@NotNull Integer idAlumno){
         TareaEntidad tareaEntidad = new TareaEntidad();
         tareaEntidad.setAsignacion(new Date());
+        entityManager.persist(tareaEntidad);
+        return tareaEntidad.getId();
+    }
+
+    public Integer inserta(@NotNull TareaModelo tareaModelo, @NotNull String idActividad) {
+        logger.fine(tareaModelo.toString());
+        validadorSessionBean.validacion(tareaModelo);
+        TareaEntidad tareaEntidad = new TareaEntidad();
+        tareaEntidad.setTareaEscribirActividadEntidadLista(
+            tareaModelo.getEscribirBaseModeloLista().stream().map(escribirBaseModelo -> {
+                TareaEscribirActividadEntidad tareaEscribirActividadEntidad = new TareaEscribirActividadEntidad();
+                TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK = new TareaEscribirActividadEntidadPK();
+                EscribirActividadEntidad escribirActividadEntidad = new EscribirActividadEntidad();
+                EscribirActividadEntidadPK escribirActividadEntidadPK = new EscribirActividadEntidadPK();
+                escribirActividadEntidadPK.setActividadEntidad(new ActividadEntidad(idActividad));
+                escribirActividadEntidadPK.setEscribirEntidad(new EscribirEntidad(escribirBaseModelo.getId()));
+                escribirActividadEntidad.setEscribirActividadEntidadPK(escribirActividadEntidadPK);
+                tareaEscribirActividadEntidadPK.setEscribirActividadEntidad(escribirActividadEntidad);
+                tareaEscribirActividadEntidad.setTareaEscribirActividadEntidadPK(tareaEscribirActividadEntidadPK);
+                return tareaEscribirActividadEntidad;
+            }).collect(Collectors.toList())
+        );
         entityManager.persist(tareaEntidad);
         return tareaEntidad.getId();
     }
@@ -58,11 +78,11 @@ public class TareaSesionBean {
      * @param idAlumno Identificador del alumno
      * @return
      */
-    public List<TareaModelo> busca(@NotNull Integer idAlumno){
+/*    public List<TareaModelo> busca(@NotNull Integer idAlumno){
         TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaPorAlumno", TareaEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);
         return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
-    }
+    }*/
 
     /**
      * Busca una traea por llave primaria

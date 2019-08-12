@@ -38,9 +38,8 @@ public class TareaEntidad {
     }
 
     @Basic
-    @Column(name = "asignacion")
+    @Column(name = "asignacion", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     public Date getAsignacion() {
         return asignacion;
     }

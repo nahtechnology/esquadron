@@ -53,41 +53,15 @@ public class TareaSesionBeanTest {
         Assert.assertFalse(tareaModeloLista.isEmpty());
         for (TareaModelo tareaModelo : tareaModeloLista){
             Assert.assertNotNull(tareaModelo);
-        /*    Assert.assertNotNull(tareaModelo.getId());
-            Assert.assertNotNull(tareaModelo.getAlumnoModelo());
-            Assert.assertNotNull(tareaModelo.getAsignacion());*/
         }
     }
 
     @Test
-    public void buscaID(){
-        List<TareaModelo> tareaModeloLista = tareaSesionBean.busca(5);
-        Assert.assertNotNull(tareaModeloLista);
-        Assert.assertFalse(tareaModeloLista.isEmpty());
-
-    }
-
-/*   @Test
     public void inserta(){
-        TareaModelo tareaModelo = new TareaModelo(11);
+        TareaModelo tareaModelo = new TareaModelo();
         tareaSesionBean.inserta(tareaModelo.getId());
         Assert.assertNotNull(tareaModelo);
         Assert.assertNotNull(tareaModelo.getId());
     }
 
-    @Test
-    public void elimina(){
-        TareaModelo tareaModelo = new TareaModelo(new TareaEntidad());
-        tareaSesionBean.elimina(6);
-        Assert.assertNotNull(tareaModelo);
-    }
-
-    @Test
-    public void actualiza(){
-        TareaModelo tareaModelo = new TareaModelo(2);
-        tareaModelo.setAsignacion(new Date());
-        int elemModificados = tareaSesionBean.actualiza(tareaModelo.getId());
-        Assert.assertFalse(elemModificados == 0);
-
-    }*/
 }

@@ -24,6 +24,13 @@ public class ActividadEntidad {
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
 
+    public ActividadEntidad() {
+    }
+
+    public ActividadEntidad(String id) {
+        this.id = id;
+    }
+
     @Id
     @Column(name = "id_video")
     public String getId() {

@@ -24,7 +24,7 @@ public class TareaEscribirActividadEntidadPK implements Serializable {
         this.escribirActividadEntidad = escribirActividadEntidad;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
         return tareaEntidad;
