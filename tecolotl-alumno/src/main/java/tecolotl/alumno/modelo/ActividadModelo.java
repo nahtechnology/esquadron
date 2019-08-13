@@ -11,7 +11,6 @@ public class ActividadModelo {
     private String lenguaje;
     private Integer tiempo;
     private String preguntaDetonadora;
-    private String lenguaje;
     private String transcripcion;
 
     public String getIdVideo() {
