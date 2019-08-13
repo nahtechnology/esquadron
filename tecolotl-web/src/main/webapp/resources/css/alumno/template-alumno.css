@@ -1,0 +1,428 @@
+body{
+    background-color: black;
+    background-image: url("#{resource['img/estrellas-alumno.jpg']}");
+    /*background-repeat: no-repeat;*/
+    background-size: 30% auto;
+    background-attachment: fixed;
+}
+
+#top-head {
+    z-index: 9;
+    top: 0;
+    left:0;
+    right:0;
+}
+.botton-footer{
+  z-index: 9;
+  bottom:0;
+  left:0;
+  right:0;
+}
+#left-col {
+    position: fixed;
+    left: 0;
+    top:0;
+    bottom:0;
+
+    background-color: rgba(255,255,255,0.3);
+    width: 100px;
+    z-index:2;
+    transition: height 0.3s ease-out;
+}
+/* Left bar links */
+#left-col ul.uk-nav-default > li > a {
+    padding: 8px 20px;
+    border-left: 2px solid transparent;
+    transition: all 0.15s ease-out;
+}
+#left-col ul.uk-nav-default li.uk-nav-header {
+    padding:  20px 20px 8px 20px;
+}
+
+#left-col ul.uk-nav-default > li > a:hover, #left-col ul.uk-nav-default > li.uk-open > a {
+    border-left: 2px solid #39f;
+    padding-left: 30px;
+    color: white;
+    background-color: rgba(0,0,0,0.1);
+}
+#left-col ul.uk-nav-default li .uk-nav-sub {
+    padding-left: 34px;
+}
+#left-col .uk-dropdown.user-drop {
+    min-width: 160px;
+    max-width: 160px;
+    padding: 0.75rem;
+}
+#left-col .uk-dropdown ul{
+    list-style: none;
+    padding-left: 0 !important;
+}
+/* Drop arrow */
+#left-col .uk-dropdown.user-drop:after {
+    bottom: 100%;
+    left: 50%;
+    border: solid ;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+
+    border-color: rgba(255, 255, 255, 0);
+    border-bottom-color: #fff;
+    border-width: 4px;
+    margin-left: -4px;
+    /*z-index: 9999 ;*/
+}
+.left-content-box {
+    padding: 0.75rem 20px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: -1px;
+}
+.left-nav-wrap {
+    padding-bottom: 60px;
+}
+.content-box-dark {
+    background-color: rgba(0,0,0,0.09);
+}
+.text-light {
+    font-weight: 200;
+    font-size: 1.25rem;
+}
+.bar-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding: 15px 0;
+    background-color: #222A30;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    bottom: 0;
+    width: 170px;
+}
+#content {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 30px 0 0 0;
+    /* background-color: #f7f7f7; */
+    /*background-image: url('../img/space2.jpg');*/
+    /*background-size: 100% 100%;*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
+    margin-left: 0;
+    transition: margin 0.2s cubic-bezier(.4,0,.2,1);
+}
+#content2 {
+    margin-top: 0px;
+    padding: 30px 0 0 0;
+    background-color: #f7f7f7;
+    margin-left: 0;
+    transition: margin 0.2s cubic-bezier(.4,0,.2,1);
+}
+.color-nav{
+    /* background-color: #76448A; */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f6f6+0,dbdce2+21,b8bac6+49,dddfe3+80,f5f6f6+100;Grey+Pipe */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f6f6+0,dbdce2+8,b8bac6+49,dddfe3+93,f5f6f6+100 */
+    background: #f5f6f6; /* Old browsers */
+    background: -moz-linear-gradient(left, #f5f6f6 0%, #dbdce2 8%, #b8bac6 49%, #dddfe3 93%, #f5f6f6 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #f5f6f6 0%,#dbdce2 8%,#b8bac6 49%,#dddfe3 93%,#f5f6f6 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #f5f6f6 0%,#dbdce2 8%,#b8bac6 49%,#dddfe3 93%,#f5f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=1 ); /* IE6-9 */
+    height: 50px;
+}
+@media screen and (min-width: 960px){
+    #content {
+        /* equal to left-col width */
+        margin-left: 100px;
+    }
+    #top-head {
+        /* equal to left-col width */
+        left:100px;
+    }
+    .nave-inferior {
+        /* equal to left-col width */
+        left:100px;
+    }
+    .color-nav{
+        height: 30px;
+    }
+}
+
+@media screen and (min-width: 1367px){
+    .nave-superior > img{
+       width: 350px;
+       height: auto;}
+    .nave-inferior > div > img{
+        width: 350px;
+        height: auto;
+    }
+}
+
+
+.uk-thumbnav > * > *::after {
+
+    background: transparent;
+    transition: background-color 0.1s ease-in-out;
+}
+/* Hover + Focus */
+.uk-thumbnav > * > :hover,
+.uk-thumbnav > * > :focus {
+    outline: none;
+}
+.uk-thumbnav > * > :hover::after,
+.uk-thumbnav > * > :focus::after {
+    /*background-color: transparent;*/
+    background: rgba(233, 255, 255, 0.4);
+
+}
+/* Active */
+.uk-thumbnav > .uk-active > *::after {
+    background-color: rgba(233, 255, 255, 0.4);
+}
+.profile-img {
+	width: 60px;
+	margin: 0 auto 10px auto;
+	display: block;
+}
+
+footer{
+  /* background-color:#76448A; */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eeeeee+0,cccccc+100;Gren+3D */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fcfff4+0,dfe5d7+1,b3bead+100 */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f6f6+0,dbdce2+21,b8bac6+49,dddfe3+80,f5f6f6+100;Grey+Pipe */
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f5f6f6+0,dbdce2+8,b8bac6+49,dddfe3+93,f5f6f6+100 */
+  background: #f5f6f6; /* Old browsers */
+  background: -moz-linear-gradient(left, #f5f6f6 0%, #dbdce2 8%, #b8bac6 49%, #dddfe3 93%, #f5f6f6 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #f5f6f6 0%,#dbdce2 8%,#b8bac6 49%,#dddfe3 93%,#f5f6f6 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #f5f6f6 0%,#dbdce2 8%,#b8bac6 49%,#dddfe3 93%,#f5f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f6f6', endColorstr='#f5f6f6',GradientType=1 ); /* IE6-9 */
+  height: 30px;
+}
+
+header{
+  height: 30px;
+}
+.nave-superior>img{
+  transform: rotate(180deg);
+}
+
+.margen-superior{
+    margin-top:80px;
+}
+
+
+.padding-superior{
+    padding-top: 100px;
+}
+.padding-inferior{
+    padding-bottom: 100px;
+}
+.padding-contenido-inferior{
+    padding-bottom: 100px;
+}
+
+
+.border-section{
+ border-width: 6px;
+ border-style: solid;
+
+}
+
+.videoContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+iframe {
+    /* optional */
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    /*height: 100vh;        !* Viewport-relative units *!*/
+    /*width: 100vw;*/
+}
+
+.alto-video{
+    height: 200px;
+}
+.border-grosor{
+    border-width: 6px !important;
+}
+
+.fondo-color{
+    background-color: rgba(255,255,255,0.5);
+}
+.fondo-comic{
+    /*background-img: url("/resources/img/fonfo1.png");*/
+    background-image: url("#{resource['img/alumno/lineas-rojas.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+}
+
+.fondo-comic2{
+    /*background-image: url('/resources/img/alumno/fondoart2.jpg');*/
+    background-image: url("#{resource['img/alumno/fondoart2.jpg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+}
+.fondo-comic3{
+    /*background-image: url('/resources/img/alumno/fondoart3.jpg');*/
+    background-image: url("#{resource['img/alumno/fondoart3.jpg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+}
+.fondo-comic4{
+    /*background-image: url('/resources/img/alumno/fondoart4.jpg');*/
+    background-image: url("#{resource['img/alumno/fondoart4.jpg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.fondo-comic5{
+    /*background-image: url('/resources/img/alumno/fondo5.jpg');*/
+    background-image: url("#{resource['img/alumno/fondo5.jpg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.paddind-barra{
+ padding-left: 80px;
+ padding-right:80px;
+}
+
+ .color1::-webkit-progress-value {
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+}
+ .color1::-moz-progress-bar {
+    background-color: var(--naranja-primary-color) !important;
+}
+ .color1::-ms-fill {
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.color2::-webkit-progress-value {
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+}
+.color2::-webkit-progress-value {
+    background-color: var(--naranja-primary-color) !important;
+
+}
+.color2::-ms-fill{
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.color3::-webkit-progress-value {
+    background-color: var(--color-peligro) !important;
+    transition: width 0.6s ease;
+}
+.color3::-webkit-progress-value {
+    background-color: var(--card-color-border) !important;
+
+}
+.color3::-ms-fill{
+    background-color: var(--turquesa-primary-color) !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.color4::-webkit-progress-value {
+    background-color: var(--nsecundary-option-two) !important;
+    transition: width 0.6s ease;
+}
+.color4::-webkit-progress-value {
+    background-color: var(--psecundary-option-one) !important;
+
+}
+.color4::-ms-fill{
+    background-color: var(--psecundary-option-three) !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.color5::-webkit-progress-value {
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+}
+.color5::-webkit-progress-value {
+    background-color: var(--naranja-primary-color) !important;
+
+}
+.color5::-ms-fill{
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.barra-padding{
+    margin-top: 5px;
+}
+
+
+.color-card-dashboard-alumno{
+    border-color: #76448A !important;
+}
+
+.uk-thumbnav > * > :hover::after,
+.uk-thumbnav > * > :focus::after {
+    /*background-color: rgba(101,41,205,0.6);*/
+    border-style: solid;
+    border-width: 4px;
+    border-color: var(--turquesa-primary-color);
+    border-radius: 50%;
+}
+/* Active */
+.uk-thumbnav > .uk-active > *::after {
+    /*background-color: rgba(101,41,205,0.8);*/
+    border-style: solid;
+    border-width: 4px;
+    border-color: var(--turquesa-primary-color);
+    border-radius: 50%;
+}
+.uk-navbar-toggle {
+    /* 1 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 2 */
+    box-sizing: border-box;
+    min-height: 40px;
+    padding: 0 15px;
+    /* 3 */
+    font-size: 0.875rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    /* 4 */
+    text-decoration: none;
+}
+
+.uk-offcanvas-bar {
+
+    width: 100px;
+
+}

@@ -1,6 +1,7 @@
 package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.TareaEntidad;
+import tecolotl.alumno.validacion.EscribirNuevoValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -41,9 +42,9 @@ public class TareaModelo {
         this.asignacion = asignacion;
     }
 
-    @NotNull
+    @NotNull(groups = {EscribirNuevoValidacion.class})
     @Valid
-    @Size(min = 1)
+    @Size(min = 1, groups = {EscribirNuevoValidacion.class})
     public List<EscribirBaseModelo> getEscribirBaseModeloLista() {
         return escribirBaseModeloLista;
     }

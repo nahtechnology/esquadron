@@ -1,0 +1,110 @@
+@media (min-width: 960px) {
+    .uk-form-horizontal .uk-form-label {
+        width: 50px;
+        margin-top: 7px;
+        float: left;
+    }
+}
+    .uk-form-horizontal .uk-form-controls {
+        margin-left: 50px;
+    }
+
+.caja{
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+
+.margen-mapa{
+    margin-top: 25%;
+}
+
+.imagen-mapa{
+    width: 300px;
+    height: auto;
+    position: absolute;
+    left: 55%;
+    top: 0%;
+    z-index: 2;
+}
+
+.dialogo{
+    width: 350px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.sobrepuesto{
+    z-index: 3;
+}
+@media screen and (min-width: 1024px ){
+    .margen-mapa{
+        margin-top: 25%;
+    }
+    .imagen-mapa{
+        width: 200px;
+        height: auto;
+        position: absolute;
+        left: 55%;
+        top: 0%;
+        z-index: 2;
+    }
+    .dialogo{
+        width: 250px;
+    }
+}
+@media  screen and (max-width: 768px) {
+    .imagen-mapa{
+        width: 200px;
+        height: auto;
+        position: absolute;
+        left: 55%;
+        top: 0%;
+        z-index: 2;
+    }
+    .dialogo{
+        width: 220px;
+    }
+}
+
+@media  screen and (min-width: 1200px) {
+    .imagen-mapa{
+        width: 300px;
+        height: auto;
+        position: absolute;
+        left: 55%;
+        top: 0%;
+        z-index: 2;
+    }
+}
+@media  screen and (max-width: 638px) {
+    .imagen-mapa{
+        width: 300px;
+        height: auto;
+        position: absolute;
+        left: 55%;
+        top: 0%;
+        z-index: 2;
+    }
+}
+
+.posicion-contenedor{
+ position: relative;
+}
+.margen-cronologico{
+    margin-left: auto;
+    margin-right: auto;
+}
+@media  screen and (max-width: 1499px){
+    .margen-cronologico{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+.imagen-mapa-small{
+    width: 60%;
+    margin: auto;
+}
+.dialogo-small{
+    width: 60%;
+    margin: auto;
+}

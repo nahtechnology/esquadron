@@ -58,6 +58,14 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/alumno/inicio-sesion.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>dashboard</from-outcome>
+			<to-view-id>/alumno/dashboard.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 	<!-- traduccion de las vistas -->
 
 	<application>

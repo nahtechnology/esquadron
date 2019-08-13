@@ -1,0 +1,124 @@
+.fondo-idea{
+    background-image: url("#{resource['img/alumno/lineas-amarillas.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.titulo-mapa-idea{
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+    top: 8%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    z-index: 2;
+}
+
+.text-area-idea{
+    min-height: 400px;
+    max-height: 600px;
+    border-width: 22px 12px 22px 12px !important;
+    border-radius: 15% !important;
+    padding-left: 15px;
+    margin-top: 120px;
+    box-sizing: border-box;
+    z-index: 3;
+    position: relative;
+    font-size: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+.text-area-color1{
+    border-color: #32d296 !important;
+}
+.text-area-color2{
+    border-color: #ED1C24 !important;
+}
+.text-area-color3{
+    border-color: #842484 !important;
+}
+.text-area-color4{
+    border-color: #0068B0 !important;
+}
+.imagen-ard{
+    width: 40%;
+    height:auto;
+    margin: auto;
+}
+
+.color-gancho1 .gancho{
+    fill: #32d296;
+}
+.color-gancho2 .gancho{
+    fill: #ED1C24;
+}
+.color-gancho3 .gancho{
+    fill: #842484;
+}
+.color-gancho4 .gancho{
+    fill: #0068B0;
+}
+
+.tam-gancho svg{
+    width: 120px;
+}
+
+.posicion-gancho1{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    -webkit-transform: translate(-50%, 0%);
+    z-index: 1;
+}
+
+.tam-contenido-mapa{
+    height: auto;
+    /*background-color: #81b442;*/
+}
+.imagen-centrada{
+    width: 35%;
+    margin: auto;
+}
+@media screen and (max-width: 768px){
+    .imagen-ard{
+        width: 100%;
+    }
+    .titulo-mapa-idea{
+        top:5%;
+        font-size: 60px;
+    }
+    .imagen-centrada{
+        width: 100%;
+        /*margin: auto;*/
+    }
+}
+
+@media screen and (max-width: 500px){
+    .imagen-ard{
+        width: 100%;
+    }
+    .titulo-mapa-idea{
+        top:3%;
+        font-size: 25px;
+    }
+    .imagen-centrada{
+        width: 100%;
+        /*margin: auto;*/
+    }
+}
+
+.margen-idea{
+    margin-left: auto;
+    margin-right: auto;
+}
+@media  screen and (max-width: 1499px){
+    .margen-idea{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+

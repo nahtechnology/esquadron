@@ -1,0 +1,123 @@
+
+/*Navegacion biblioteca*/
+.nav-default-profesor {
+    /*border-bottom: 10px solid;*/
+    position: relative;
+    transition: box-shadow 0.15s ease-out;
+    border-radius: 3px;
+    /*border-bottom-color: var(--color-barra-nav);*/
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+.color-borde{
+    border-bottom-color: var(--psecundary-option-one);
+}
+
+.uk-subnav-alumno > .uk-disabled > a {
+    color: #000000;
+}
+.nav-default-profesor>li>a{
+    font-family: 'Sniglet', "Arial Black";
+    font-size: 15px !important;
+    padding: 7px 10px 7px 10px;
+    color:#000;
+
+}
+
+.nav-default-profesor>li>a:hover{
+    /*color: var(--turquesa-primary-color);*/
+    background-color:var(--inactivo-fondo-navbar);
+    color:var(--inactivo-letra-navbar);
+}
+
+.nav-default-profesor>a{
+    color: var(--turquesa-primary-color) !important;
+    border: solid;
+    border-width: 3px;
+    border-radius: 5px;
+    border-color: var(--turquesa-primary-color);}
+
+.section-color{
+    background-color: #f4f3ed;
+}
+.uk-subnav-alumno li a {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color:#FFFFFF;
+}
+
+/*navegacion detalle-alumno*/
+.nav-default-profesor2 {
+    border-bottom: 10px solid;
+    position: relative;
+    transition: box-shadow 0.15s ease-out;
+    border-radius: 3px;
+    border-bottom-color: var(--activo-fondo-navbar);
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.nav-default-profesor2>li>a{
+    font-family: 'Sniglet', "Arial Black";
+    font-size: 15px !important;
+    padding: 7px 10px 7px 10px;
+    color:#000;
+
+}
+.uk-subnav-alumno2 > .uk-disabled > a {
+    color: #000000;
+}
+.uk-subnav-alumno2 li a {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color:var(--activo-fondo-navbar);
+}
+.uk-subnav-alumno2 li a {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color:#FFFFFF;
+}
+.uk-subnav-alumno2 li.uk-active:nth-child(1) a {
+    background-color:var(--activo-fondo-navbar);
+
+}.uk-subnav-alumno2 li.uk-active:nth-child(2) a {
+     background-color:var(--activo-fondo-navbar);
+ }.uk-subnav-alumno2 li.uk-active:nth-child(3) a {
+      background-color:var(--activo-fondo-navbar);
+  }
+.uk-subnav-alumno2 li.uk-active:nth-child(4) a {
+    background-color:var(--activo-fondo-navbar);
+}
+.uk-subnav-alumno2 li.uk-active:nth-child(5) a {
+    background-color:var(--activo-fondo-navbar);
+}
+uk-subnav-alumno2 li.uk-active:nth-child(6) a {
+    background-color:var(--activo-fondo-navbar);
+}
+.nav-default-profesor2>li>a{
+    font-family: 'Sniglet', "Arial Black";
+    font-size: 15px !important;
+    padding: 7px 10px 7px 10px;
+    color:#000;
+}
+
+.nav-default-profesor2>li>a:hover{
+    color: var(--turquesa-primary-color);
+    background-color:var(--inactivo-fondo-navbar);
+
+}
+
+.nav-default-profesor2>a{
+    color: var(--turquesa-primary-color) !important;
+    border: solid;
+    border-width: 3px;
+    border-radius: 5px;
+    border-color: var(--turquesa-primary-color);}
+
+.section-color{
+    background-color: #f4f3ed;
+}

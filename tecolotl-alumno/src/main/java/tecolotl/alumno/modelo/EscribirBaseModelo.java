@@ -1,6 +1,7 @@
 package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.EscribirEntidad;
+import tecolotl.alumno.validacion.EscribirNuevoValidacion;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -15,13 +16,17 @@ public class EscribirBaseModelo {
     public EscribirBaseModelo() {
     }
 
+    public EscribirBaseModelo(Integer id) {
+        this.id = id;
+    }
+
     public EscribirBaseModelo(EscribirEntidad escribirEntidad) {
         this.id = escribirEntidad.getId();
         this.pregunta = escribirEntidad.getPregunta();
     }
 
-    @NotNull
-    @Min(1)
+    @NotNull(groups = {EscribirNuevoValidacion.class})
+    @Min(value = 1, groups = {EscribirNuevoValidacion.class})
     public Integer getId() {
         return id;
     }

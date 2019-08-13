@@ -58,7 +58,7 @@ public class TareaEscribirActividadEntidad {
 
     @Override
     public int hashCode() {
-        return tareaEscribirActividadEntidadPK.hashCode()
+        return tareaEscribirActividadEntidadPK.hashCode();
     }
 
     @Override

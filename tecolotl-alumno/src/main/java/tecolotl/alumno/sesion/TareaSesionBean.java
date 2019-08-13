@@ -2,6 +2,7 @@ package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.modelo.TareaModelo;
+import tecolotl.alumno.validacion.EscribirNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -36,14 +37,13 @@ public class TareaSesionBean {
      */
     public Integer inserta(@NotNull Integer idAlumno){
         TareaEntidad tareaEntidad = new TareaEntidad();
-        tareaEntidad.setAsignacion(new Date());
         entityManager.persist(tareaEntidad);
         return tareaEntidad.getId();
     }
 
     public Integer inserta(@NotNull TareaModelo tareaModelo, @NotNull String idActividad) {
         logger.fine(tareaModelo.toString());
-        validadorSessionBean.validacion(tareaModelo);
+        validadorSessionBean.validacion(tareaModelo, EscribirNuevoValidacion.class);
         TareaEntidad tareaEntidad = new TareaEntidad();
         tareaEntidad.setTareaEscribirActividadEntidadLista(
             tareaModelo.getEscribirBaseModeloLista().stream().map(escribirBaseModelo -> {
@@ -60,6 +60,7 @@ public class TareaSesionBean {
             }).collect(Collectors.toList())
         );
         entityManager.persist(tareaEntidad);
+        tareaModelo.setId(tareaEntidad.getId());
         return tareaEntidad.getId();
     }
 

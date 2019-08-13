@@ -1,7 +1,6 @@
 package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.StringJoiner;
@@ -28,7 +27,7 @@ public class TareaEntidad {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador_automatico")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador_automatico")
     public Integer getId() {
         return id;
     }
@@ -57,7 +56,7 @@ public class TareaEntidad {
         this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
     }
 
-    @OneToMany(mappedBy = "tareaEscribirActividadEntidadPK.tareaEntidad")
+    @OneToMany(mappedBy = "tareaEscribirActividadEntidadPK.tareaEntidad", cascade = CascadeType.ALL)
     public List<TareaEscribirActividadEntidad> getTareaEscribirActividadEntidadLista() {
         return tareaEscribirActividadEntidadLista;
     }

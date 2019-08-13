@@ -1,0 +1,32 @@
+.fondo-mapa-arbol{
+    background-image: url("#{resource['img/alumno/lineas-moradas.svg']}");
+    background-size: cover;
+    background-position: center center;
+}
+
+svg .arbol{
+    fill: saddlebrown;
+}
+
+.imagen-arbol{
+    background-color: #81b442;
+    margin: auto;
+}
+.imagen-arbol svg{
+    width: 100%;
+}
+
+.text-area-arbol{
+    width: 150px;
+    height: 150px;
+    background-color:#E89E0C;
+}
+.posicion-text-area1{
+    top:0;
+    left: 0;
+}
+.contenedor-arbol{
+    width: 70%;
+    height: auto;
+    position: relative;
+}

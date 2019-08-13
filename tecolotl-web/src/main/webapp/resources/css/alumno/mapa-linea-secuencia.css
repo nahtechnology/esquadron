@@ -1,0 +1,158 @@
+.cuadro-padre1{
+    /*height: 1000px;*/
+    padding: 0;
+}
+
+.cuadro-padre2{
+    /*height: 1000px;*/
+    padding: 0;
+}
+
+.cuadro-hijo1{
+    border: 5px solid black;
+    background-image: url("#{resource['img/fondo/puntos-naranjas2.svg']}");
+    background-position: center center;
+    background-size: 150%;
+    position: relative;
+}
+.cuadro-hijo2{
+    border: 5px solid black;
+    background-image: url("#{resource['img/fondo/puntos-naranjas.svg']}");
+    background-position: center center;
+    background-size: 150%;
+    position: relative;
+}
+.cuadro-hijo3{
+    border: 5px solid black;
+    background-color: #FEC309;
+    position: relative;
+    overflow: hidden ;
+}
+.cuadro-hijo4{
+    border: 5px solid black;
+    background-image: url("#{resource['img/fondo/puntos-amarillos.svg']}");
+    background-position: center center;
+    background-size: 150%;
+    position: relative;
+    overflow: hidden;
+}
+.img-hijo1{
+    position: absolute;
+    width: 50%;
+    height: auto;
+    left: 0;
+    right: 0;
+    top: 15%;
+    bottom: 0;
+    margin: auto;
+}
+.img-hijo2{
+    width: 50%;
+    height: auto;
+    margin: auto;
+}
+.img-hijo3{
+    width: 80%;
+    position: absolute;
+    top:-15%;
+    left: -10%;
+}
+.img-hijo3>img{
+    transform: rotatey(180deg);
+}
+.img-who{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.img-whom{
+    width: 80%;
+    position: absolute;
+    right: -5%;
+    bottom: -80%;
+}
+@media screen and (max-width: 500px) {
+    .cuadro-hijo1{
+        height: 200px;
+    }
+    .cuadro-hijo2{
+        height: 500px;
+    }
+    .cuadro-hijo3{
+        height: 500px;
+    }
+    .cuadro-hijo4{
+        height: 200px;
+    }
+
+}
+@media screen and (min-width: 640px) {
+    .cuadro-hijo1{
+        height: 250px;
+    }
+    .cuadro-hijo2{
+        height: 650px;
+    }
+    .cuadro-hijo3{
+        height: 650px;
+    }
+    .cuadro-hijo4{
+        height: 250px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .cuadro-hijo1{
+        height: 250px;
+    }
+    .cuadro-hijo2{
+        height: 650px;
+    }
+    .cuadro-hijo3{
+        height: 720px;
+    }
+    .cuadro-hijo4{
+        height: 300px;
+    }
+
+    .img-whom{
+        width: 65%;
+    }
+}
+@media screen and (min-width: 960px) {
+    .cuadro-hijo1{
+        height: 200px;
+    }
+    .cuadro-hijo2{
+        height: 550px;
+    }
+    .cuadro-hijo3{
+        height: 550px;
+    }
+    .cuadro-hijo4{
+        height: 200px;
+    }
+    .img-whom{
+        width: 75%;
+    }
+    .img-hijo1,.img-hijo2{
+        width: 47%;
+    }
+    .img-who{
+        width: 55%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .cuadro-hijo1{
+        height: 300px;
+    }
+    .cuadro-hijo2{
+        height: 700px;
+    }
+    .cuadro-hijo3{
+        height: 700px;
+    }
+    .cuadro-hijo4{
+        height: 300px;
+    }
+}

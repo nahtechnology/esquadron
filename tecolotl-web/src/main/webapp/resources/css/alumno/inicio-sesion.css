@@ -1,0 +1,92 @@
+.contenedor {
+    display: grid;
+    grid-template-columns: 37px 37px 37px 37px 37px 37px 37px;
+    grid-template-rows: 37px 37px 37px 37px 37px;
+    justify-items: center;
+    align-items: center;
+    grid-column-gap: 8px;
+    grid-row-gap: 8px;
+}
+
+
+.contenedor img {
+    width: 40px;
+    height: 40px;
+    transition: height 1s, width 1s;
+    cursor: pointer;
+
+}
+
+.contenedor img:hover {
+    width: 70px;
+    height: 70px;
+}
+
+.seleccionado {
+    width: 70px;
+    height: 70px;
+}
+
+.nombre-alumno {
+    grid-area: 1 / 1 / 1 / 8;
+    justify-self: center;
+}
+
+.boton {
+    grid-area: 1 / 1 / 1 / 8;
+    justify-self: center;
+}
+
+.boton-centrado{
+
+}
+.letra-inicio {
+    font-family: Sniglet, 'Arial Black';
+    font-size: 20px !important;
+    color:#000;
+}
+
+.link{
+    color: white;
+}
+.link:hover{
+    text-decoration: none;
+}
+
+@media screen and (min-width: 768px){
+    .contenedor{
+        display: grid;
+        grid-template-columns: 70px 70px 70px 70px 70px 70px 70px;
+        grid-template-rows: 70px 70px 70px 70px 70px;
+        justify-items: center;
+        align-items: center;
+        grid-column-gap: 20px;
+        grid-row-gap: 20px;
+    }
+    .letra-inicio{
+        font-size: 45px !important;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .contenedor img {
+        width: 27px;
+        height: 27px;
+        transition: height 1s, width 1s;
+        cursor: pointer;
+
+    }
+
+}
+
+.centrado{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.centrado-boton{
+    margin: auto;
+}

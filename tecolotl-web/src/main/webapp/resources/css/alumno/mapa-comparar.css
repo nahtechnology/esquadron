@@ -1,0 +1,55 @@
+.fondo-comparar{
+     background-color: #81b442;
+
+
+}
+.nube-superior>img{
+    display: block;
+    width: 100%;
+    top: 0;
+}
+.nube-inferior>img{
+    display: block;
+    width: 100%;
+    bottom: 0;
+}
+.imagen-nube-popart{
+    width: 100%;
+    height: auto;
+}
+.nube-medio{
+    width: 100%;
+    height: auto;
+}
+.area-borde{
+    box-sizing: border-box;
+}
+.posicion-texarea-comparar{
+    position: absolute;
+    width: 78%;
+    left: 15%;
+    bottom: 42%;
+    box-sizing: border-box;
+}
+.imagen-comparar{
+    width: 30%;
+    bottom: 0;
+    left: 35%;
+}
+.letra-posicion{
+    bottom: 40%;
+    left: 38%;
+    font-weight: bold;
+
+}
+@media screen and (max-width: 658px) {
+    .letra-posicion{
+        bottom: 10%;
+        left: 19%;
+    }
+}
+
+.fondo-pop{
+    background-color: #FFF200;
+    border: 2px solid black;
+}

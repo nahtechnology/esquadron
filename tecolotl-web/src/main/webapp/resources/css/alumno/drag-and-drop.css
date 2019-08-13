@@ -1,0 +1,52 @@
+body {
+    background-image: url('#{resource["img/fondobueno.jpg"]}');
+}
+#panel-navegacion {
+    position: fixed;
+    right: 0;
+    top:0;
+    bottom:0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: white;
+    width: max-content;
+    z-index:2;
+    transition: height 0.3s ease-out;
+}
+#top-head {
+    z-index: 9;
+    top: 0;
+    left:0;
+    right:0;
+}
+.uk-grid > * {
+    padding-left: 0px;
+}
+.area-drop {
+    min-height: 100px;
+    border: 2px  #B9B9B9;
+    padding: 10px;
+    background: #efefef;
+    overflow: hidden;
+    border-radius: 10px;
+    opacity: 0.4;
+}
+.parallelogram {
+    position: absolute;
+    transition: all 2s;
+     background-color: #81b442;
+     width: 64px;
+     height: 70px;
+
+ }
+.pregunta {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    border-style: dotted
+}
+.imagen-solotar {
+    background-image: url('#{resource["img/fonfo1.png"]}');
+}

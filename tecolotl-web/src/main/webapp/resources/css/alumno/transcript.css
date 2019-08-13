@@ -1,0 +1,103 @@
+
+.tamContenedor{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+}
+.tamContenido{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.tamElemento{
+    position: relative;
+    display: block;
+    flex: none;
+    width: 40vw;
+    height: 67vh;
+    margin: 10vh 2vw;
+}
+.borde-guion{
+    border-radius: 8px;
+}
+.centElementos{
+    background-color: rgba(255,255,255,0.8);
+    position: relative;
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    justify-content: right;
+    align-items: center;
+    width: inherit;
+    height: inherit;
+}
+
+@media screen and (max-device-width: 1024px){
+    .tamElemento{
+        width: 80vw;
+        height: 40vh;
+        margin: 5vh 2vw;
+    }
+}
+
+.letra-guion{
+    color: black;
+
+    font-weight: bold;
+
+}
+.letra-perdonaje{
+    color: #5F8DD3;
+    font-weight: bold;
+}
+.padding-guion{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.palabra-glosario{
+ color: #ec2147;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.uk-tooltip {
+    /* 1 */
+    max-width: 300px;
+    padding: 4px 7px;
+    /* 4 */
+    background: var(--naranja-primary-color) !important;
+    border:solid 1px;
+    border-color: black;
+    border-radius: 3px;
+    color: #fff !important;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'Sniglet', "Arial Black";
+}
+
+/* width */
+.scroll-alumno::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.scroll-alumno::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 8px black;
+    border-radius: 10px;
+}
+
+/* Handle */
+.scroll-alumno::-webkit-scrollbar-thumb {
+    background: rgb(64,5,73);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.scroll-alumno::-webkit-scrollbar-thumb:hover {
+    background: rgb(129,9,147);
+}

@@ -1,0 +1,16 @@
+.uk-card {
+    /*border-left: 2px solid;*/
+    /*border-right: 2px solid;*/
+    border: 2px solid;
+    position: relative;
+    transition: box-shadow 0.15s ease-out;
+    border-radius: 8px;
+}
+
+.letra-glosario{
+    color:black !important;
+}
+
+.sombra-titulo{
+    text-shadow: 3px 3px 6px  var(--azul-primary-color);
+}

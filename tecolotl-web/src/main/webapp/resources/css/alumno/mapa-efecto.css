@@ -1,0 +1,91 @@
+.fondo-mapa-efecto{
+    background-image: url("#{resource['img/alumno/lineas-azules.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.imagen-pez{
+    width: 60%;
+    height: auto;
+    margin: 50px auto !important;
+}
+.margen-mapa-efecto{
+    margin-left: auto;
+    margin-right: auto;
+}
+.contenedor-efecto{
+    position: relative;
+
+}
+form textarea{
+    display: inline-block;
+    width: 12%;
+    height: 80px;
+    border-top: 12px solid black !important;
+    border-left: 2px solid black !important;
+    border-right: 5px solid black !important;
+    border-bottom: 6px solid black!important;
+    border-radius: 9px !important;
+    background-color: #00A859;
+}
+
+.caja1{
+    position: absolute;
+    top: 1%;
+    left: 25%;
+}
+.caja2{
+    position: absolute;
+    top: 1%;
+    left: 43%;
+}
+
+.caja3{
+    position: absolute;
+    top: 1%;
+    left: 63%;
+}
+.caja4{
+    position: absolute;
+    bottom: 6%;
+    left: 40%;
+}
+.caja5{
+    position: absolute;
+    bottom: 8%;
+    right: 23%;
+}
+@media  screen and (max-width: 1499px){
+    .margen-mapa-efecto{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+}
+
+@media screen and (max-width: 639px){
+    .imagen-pez{
+        display: none;
+    }
+}
+
+.caja-pez{
+    width: 60%;
+    margin: auto;
+}
+
+.caja-pez textarea{
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom:5px;
+}
+
+@media screen and  (max-width: 769px) {
+    textarea {
+         width: 10% !important;
+     }
+    .caja-pez textarea{
+        width: 100% !important;
+
+    }
+}

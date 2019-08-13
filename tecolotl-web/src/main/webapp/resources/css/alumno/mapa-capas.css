@@ -1,0 +1,105 @@
+.fondo-capas{
+    background-image: url("#{resource['img/fondo/puntos-naranjas3.svg']}");
+    background-size: cover;
+    background-position: center center;
+}
+.caja-capas{
+    width: 90%;
+    height: 800px;
+    background-color: #0f7ae5;
+    margin-top: 20%;
+    margin-bottom: 20px !important;
+    -webkit-clip-path: polygon(0 0, 65% 9%, 80% 100%, 0% 100%);
+    clip-path: polygon(0 0, 65% 9%, 80% 100%, 0% 100%);
+}
+.caja-capas-small{
+    width: 90%;
+    height: auto;
+    margin: auto;
+    background-color: #0f7ae5;
+}
+
+.posicion-relativa{
+    position: relative;
+}
+
+.imagen-who{
+    width: 22%;
+    height: auto;
+    position: absolute;
+    top:5%;
+    right: 8%;
+}
+.imagen-who-small{
+    width: 80%;
+    height: auto;
+   display: block;
+    margin: auto;
+}
+.imagen-hamburguesa>img{
+    width: 50%;
+    position: absolute;
+    bottom: 1%;
+    left: 1%;
+
+}
+.imagen-hamburguesa-small{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.texto-posicion{
+    width: 40%;
+    /*background-color: #81b442;*/
+    top: 23%;
+    left: 6%;
+}
+.texto-posicion-small{
+    width: 100%;
+    /*background-color: #81b442;*/
+    top: 0;
+}
+.texto-posicion textarea{
+    display: block;
+    width: 80%;
+    box-sizing: border-box;
+    margin: auto;
+}
+.texto-posicion-small textarea{
+    display: block;
+    width: 80%;
+    box-sizing: border-box;
+    margin: auto;
+}
+.texto-posicion h3{
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1024px){
+    .caja-capas{
+        width: 90%;
+        height: 600px;
+        margin-top: 15%;
+    }
+    .texto-posicion textarea{
+        padding: 1px 2px !important;
+        height: 32px;
+
+    }
+    .texto-posicion .margen-small{
+        margin-top: 5px !important;
+    }
+}
+
+@media screen and (max-width: 959px){
+    .caja-capas{
+        width: 90%;
+        height: 500px;
+        margin-top: 15%;
+    }
+    .texto-posicion textarea{
+        padding: 1px 2px !important;
+        height: 32px;
+        margin-bottom: 12px !important;
+    }
+}
