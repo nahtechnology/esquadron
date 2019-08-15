@@ -15,9 +15,9 @@ public class TareaEntidad {
 
     private Integer id;
     private Date asignacion;
-    private TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad;
+    //    private TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad;
     private List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista;
-    private TareaVideoEntidad tareaVideoEntidad;
+//    private TareaVideoEntidad tareaVideoEntidad;
 
     public TareaEntidad() {
     }
@@ -47,16 +47,17 @@ public class TareaEntidad {
         this.asignacion = asignacion;
     }
 
-    @OneToOne(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad")
-    public TareaGlosarioActividadEntidad getTareaGlosarioActividadEntidad() {
-        return tareaGlosarioActividadEntidad;
-    }
+    /*
+        @OneToOne(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad")
+        public TareaGlosarioActividadEntidad getTareaGlosarioActividadEntidad() {
+            return tareaGlosarioActividadEntidad;
+        }
 
-    public void setTareaGlosarioActividadEntidad(TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad) {
-        this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
-    }
-
-    @OneToMany(mappedBy = "tareaEscribirActividadEntidadPK.tareaEntidad", cascade = CascadeType.ALL)
+        public void setTareaGlosarioActividadEntidad(TareaGlosarioActividadEntidad tareaGlosarioActividadEntidad) {
+            this.tareaGlosarioActividadEntidad = tareaGlosarioActividadEntidad;
+        }
+    */
+    @OneToMany(mappedBy = "tareaEntidad", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     public List<TareaEscribirActividadEntidad> getTareaEscribirActividadEntidadLista() {
         return tareaEscribirActividadEntidadLista;
     }
@@ -65,25 +66,4 @@ public class TareaEntidad {
         this.tareaEscribirActividadEntidadLista = tareaEscribirActividadEntidadLista;
     }
 
-    /*
-        //TODO Verificar si el Mappedby es correcto.
-        @OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad")
-        public TareaVideoEntidad getTareaVideoEntidad() {
-            return tareaVideoEntidad;
-        }
-
-        public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
-            this.tareaVideoEntidad = tareaVideoEntidad;
-        }
-    */
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", TareaEntidad.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("asignacion=" + asignacion)
-                .add("tareaGlosarioActividadEntidad=" + tareaGlosarioActividadEntidad)
-                .add("tareaEscribirActividadEntidad=" + tareaEscribirActividadEntidadLista)
-                .add("tareaVideoEntidad=" + tareaVideoEntidad)
-                .toString();
-    }
 }

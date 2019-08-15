@@ -1,6 +1,7 @@
 package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.modelo.EscribirBaseModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.validacion.EscribirNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -14,6 +15,7 @@ import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -45,20 +47,14 @@ public class TareaSesionBean {
         logger.fine(tareaModelo.toString());
         validadorSessionBean.validacion(tareaModelo, EscribirNuevoValidacion.class);
         TareaEntidad tareaEntidad = new TareaEntidad();
-        tareaEntidad.setTareaEscribirActividadEntidadLista(
-            tareaModelo.getEscribirBaseModeloLista().stream().map(escribirBaseModelo -> {
-                TareaEscribirActividadEntidad tareaEscribirActividadEntidad = new TareaEscribirActividadEntidad();
-                TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK = new TareaEscribirActividadEntidadPK();
-                EscribirActividadEntidad escribirActividadEntidad = new EscribirActividadEntidad();
-                EscribirActividadEntidadPK escribirActividadEntidadPK = new EscribirActividadEntidadPK();
-                escribirActividadEntidadPK.setActividadEntidad(new ActividadEntidad(idActividad));
-                escribirActividadEntidadPK.setEscribirEntidad(new EscribirEntidad(escribirBaseModelo.getId()));
-                escribirActividadEntidad.setEscribirActividadEntidadPK(escribirActividadEntidadPK);
-                tareaEscribirActividadEntidadPK.setEscribirActividadEntidad(escribirActividadEntidad);
-                tareaEscribirActividadEntidad.setTareaEscribirActividadEntidadPK(tareaEscribirActividadEntidadPK);
-                return tareaEscribirActividadEntidad;
-            }).collect(Collectors.toList())
-        );
+        tareaEntidad.setTareaEscribirActividadEntidadLista(new ArrayList<>());
+        for (EscribirBaseModelo escribirBaseModelo : tareaModelo.getEscribirBaseModeloLista()) {
+            EscribirActividadEntidad escribirActividadEntidad = new EscribirActividadEntidad(
+                    new EscribirEntidad(escribirBaseModelo.getId()), new ActividadEntidad(idActividad));
+            TareaEscribirActividadEntidad tareaEscribirActividadEntidad = new TareaEscribirActividadEntidad(
+                    tareaEntidad, new TareaEscribirActividadEntidadPK(escribirActividadEntidad));
+            tareaEntidad.getTareaEscribirActividadEntidadLista().add(tareaEscribirActividadEntidad);
+        }
         entityManager.persist(tareaEntidad);
         tareaModelo.setId(tareaEntidad.getId());
         return tareaEntidad.getId();

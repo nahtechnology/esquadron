@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 @NamedQueries({
         @NamedQuery(
                 name = "EscribirEntidad.buscaPorActivdad",
-                query = "SELECT e FROM EscribirEntidad e JOIN e.escribirActividadEntidadLista ea WHERE ea.escribirActividadEntidadPK.actividadEntidad.id = :idActividad")
+                query = "SELECT e FROM EscribirEntidad e JOIN e.escribirActividadEntidadLista ea WHERE ea.actividadEntidad.id = :idActividad")
 })
 public class EscribirEntidad {
 
@@ -49,7 +49,7 @@ public class EscribirEntidad {
         this.pregunta = pregunta;
     }
 
-    @OneToMany(mappedBy = "escribirActividadEntidadPK.escribirEntidad")
+    @OneToMany(mappedBy = "escribirEntidad")
     public List<EscribirActividadEntidad> getEscribirActividadEntidadLista() {
         return escribirActividadEntidadLista;
     }

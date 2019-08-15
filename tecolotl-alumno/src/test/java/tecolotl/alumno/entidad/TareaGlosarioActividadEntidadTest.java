@@ -28,7 +28,7 @@ public class TareaGlosarioActividadEntidadTest {
                         TareaGlosarioActividadEntidadPK.class, NivelLenguajeEntidad.class, ActividadEntidad.class,
                         CatalagoEntidad.class, TipoEstudianteEntidad.class, TareaVideoEntidad.class,
                         TareaVideoEntidadPK.class, TareaGlosarioActividadEntidad.class, TareaEscribirActividadEntidad.class,
-                        TareaEscribirActividadEntidadPK.class, EscribirActividadEntidad.class, EscribirEntidad.class, EscribirActividadEntidadPK.class)
+                        EscribirActividadEntidad.class, EscribirEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

@@ -8,6 +8,7 @@
 			<property name="hibernate.format_sql" value="true"/>
 			<property name="hibernate.use_sql_comments" value="true"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
+			<property name="hibernate.order_inserts" value="true"/>
 		</properties>
 	</persistence-unit>
 </persistence>

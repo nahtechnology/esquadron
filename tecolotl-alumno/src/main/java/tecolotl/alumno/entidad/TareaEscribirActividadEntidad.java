@@ -1,6 +1,7 @@
 package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -10,14 +11,32 @@ import java.util.StringJoiner;
 @NamedQueries(value = {
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.buscaEscribir",
-        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad e"
+        query = "SELECT tea FROM TareaEscribirActividadEntidad tea "
     )
 })
-public class TareaEscribirActividadEntidad {
+public class TareaEscribirActividadEntidad implements Serializable {
 
+    private TareaEntidad tareaEntidad;
     private TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK;
-    private String textoRespuesta;
-    private Date horaRespuesta;
+
+    public TareaEscribirActividadEntidad() {
+    }
+
+    public TareaEscribirActividadEntidad(TareaEntidad tareaEntidad, TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK) {
+        this.tareaEntidad = tareaEntidad;
+        this.tareaEscribirActividadEntidadPK = tareaEscribirActividadEntidadPK;
+    }
+
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tarea")
+    public TareaEntidad getTareaEntidad() {
+        return tareaEntidad;
+    }
+
+    public void setTareaEntidad(TareaEntidad tareaEntidad) {
+        this.tareaEntidad = tareaEntidad;
+    }
 
     @EmbeddedId
     public TareaEscribirActividadEntidadPK getTareaEscribirActividadEntidadPK() {
@@ -28,45 +47,18 @@ public class TareaEscribirActividadEntidad {
         this.tareaEscribirActividadEntidadPK = tareaEscribirActividadEntidadPK;
     }
 
-    @Basic
-    @Column(name = "texto_respuesta", insertable = false)
-    public String getTextoRespuesta() {
-        return textoRespuesta;
-    }
-
-    public void setTextoRespuesta(String textoRespuesta) {
-        this.textoRespuesta = textoRespuesta;
-    }
-
-    @Basic
-    @Column(name = "hora_respuesta", insertable = false)
-    public Date getHoraRespuesta() {
-        return horaRespuesta;
-    }
-
-    public void setHoraRespuesta(Date horaRespuesta) {
-        this.horaRespuesta = horaRespuesta;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TareaEscribirActividadEntidad that = (TareaEscribirActividadEntidad) o;
-        return tareaEscribirActividadEntidadPK.equals(that.tareaEscribirActividadEntidadPK);
+        return tareaEntidad.equals(that.tareaEntidad) &&
+                tareaEscribirActividadEntidadPK.equals(that.tareaEscribirActividadEntidadPK);
     }
 
     @Override
     public int hashCode() {
-        return tareaEscribirActividadEntidadPK.hashCode();
+        return Objects.hash(tareaEntidad, tareaEscribirActividadEntidadPK);
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", TareaEscribirActividadEntidad.class.getSimpleName() + "[", "]")
-                .add("tareaEscribirActividadEntidadPK=" + tareaEscribirActividadEntidadPK.toString())
-                .add("respuesta='" + textoRespuesta + "'")
-                .add("horaRespuesta=" + horaRespuesta)
-                .toString();
-    }
 }
