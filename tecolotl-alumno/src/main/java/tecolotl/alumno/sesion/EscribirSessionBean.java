@@ -30,7 +30,7 @@ public class EscribirSessionBean {
         typedQuery.setParameter("idActividad", idActividad);
         List<EscribirActividadEntidad> escribirActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Escrbir total localizados:".concat(String.valueOf(escribirActividadEntidadLista.size())));
-        return escribirActividadEntidadLista.stream().map(ea -> new EscribirBaseModelo(ea.getEscribirActividadEntidadPK().getEscribirEntidad())).collect(Collectors.toList());
+        return escribirActividadEntidadLista.stream().map(ea -> new EscribirBaseModelo(ea.getEscribirEntidad())).collect(Collectors.toList());
     }
 
     public int registraTarea(@NotNull @Min(1) Integer idTarea, @NotNull @Size(min = 11, max = 11) String idActividad) {

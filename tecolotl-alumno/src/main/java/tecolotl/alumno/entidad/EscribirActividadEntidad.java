@@ -1,6 +1,7 @@
 package tecolotl.alumno.entidad;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -8,26 +9,41 @@ import java.util.StringJoiner;
 @Table(name = "escribir_actividad", schema = "alumno")
 @NamedQuery(
         name = "EscribirActividadEntidad.buscaActivdad",
-        query = "SELECT ea FROM EscribirActividadEntidad ea JOIN FETCH ea.escribirActividadEntidadPK.escribirEntidad e WHERE ea.escribirActividadEntidadPK.actividadEntidad.id = :idActividad"
+        query = "SELECT ea FROM EscribirActividadEntidad ea JOIN FETCH ea.escribirEntidad e WHERE ea.actividadEntidad.id = :idActividad"
 )
-public class EscribirActividadEntidad {
+public class EscribirActividadEntidad implements Serializable {
 
-    private EscribirActividadEntidadPK escribirActividadEntidadPK;
+    private EscribirEntidad escribirEntidad;
+    private ActividadEntidad actividadEntidad;
 
     public EscribirActividadEntidad() {
     }
 
-    public EscribirActividadEntidad(EscribirActividadEntidadPK escribirActividadEntidadPK) {
-        this.escribirActividadEntidadPK = escribirActividadEntidadPK;
+    public EscribirActividadEntidad(EscribirEntidad escribirEntidad, ActividadEntidad actividadEntidad) {
+        this.escribirEntidad = escribirEntidad;
+        this.actividadEntidad = actividadEntidad;
     }
 
-    @EmbeddedId
-    public EscribirActividadEntidadPK getEscribirActividadEntidadPK() {
-        return escribirActividadEntidadPK;
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_escribir")
+    public EscribirEntidad getEscribirEntidad() {
+        return escribirEntidad;
     }
 
-    public void setEscribirActividadEntidadPK(EscribirActividadEntidadPK escribirActividadEntidadPK) {
-        this.escribirActividadEntidadPK = escribirActividadEntidadPK;
+    public void setEscribirEntidad(EscribirEntidad escribirEntidad) {
+        this.escribirEntidad = escribirEntidad;
+    }
+
+    @Id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_actividad")
+    public ActividadEntidad getActividadEntidad() {
+        return actividadEntidad;
+    }
+
+    public void setActividadEntidad(ActividadEntidad actividadEntidad) {
+        this.actividadEntidad = actividadEntidad;
     }
 
     @Override
@@ -35,18 +51,13 @@ public class EscribirActividadEntidad {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EscribirActividadEntidad that = (EscribirActividadEntidad) o;
-        return escribirActividadEntidadPK.equals(that.escribirActividadEntidadPK);
+        return escribirEntidad.equals(that.escribirEntidad) &&
+                actividadEntidad.equals(that.actividadEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(escribirActividadEntidadPK);
+        return Objects.hash(escribirEntidad, actividadEntidad);
     }
 
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", EscribirActividadEntidad.class.getSimpleName() + "[", "]")
-                .add("escribirActividadEntidadPK=" + escribirActividadEntidadPK)
-                .toString();
-    }
 }

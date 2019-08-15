@@ -40,12 +40,12 @@ public class TareaSesionBeanTest {
                 .addPackage(PersonaEntidad.class.getPackage())
                 .addClasses(PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
                         AlumnoEntidad.class, TareaEntidad.class, TipoEstudianteEntidad.class,
-                        TareaGlosarioActividadEntidad.class, TareaVideoEntidad.class,
+                        TareaGlosarioActividadEntidad.class, TareaVideoEntidad.class, TareaEscribirActividadEntidadPK.class,
                         TareaGlosarioActividadEntidadPK.class, TareaVideoEntidadPK.class,
                         NivelLenguajeEntidad.class, PersonaSesionBean.class, AlumnoSesionBean.class,
                         TareaSesionBean.class, GradoEscolarSesionBean.class, LoggerProducer.class, ValidadorSessionBean.class,
-                        GlosarioEntidad.class, ActividadEntidad.class, TareaEscribirActividadEntidad.class, TareaEscribirActividadEntidadPK.class,
-                        EscribirActividadEntidad.class, EscribirActividadEntidadPK.class, ClaseGlosarioEntidad.class, GlosarioActividadEntidad.class,
+                        GlosarioEntidad.class, ActividadEntidad.class, TareaEscribirActividadEntidad.class,
+                        EscribirActividadEntidad.class, ClaseGlosarioEntidad.class, GlosarioActividadEntidad.class,
                         GlosarioActividadEntidadPK.class, EscribirEntidad.class, EscribirNuevoValidacion.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

@@ -44,9 +44,6 @@ public class TareaEscribirActividadEntidadTest {
         assertFalse(tareaEscribirActividadEntidadLista.isEmpty());
         tareaEscribirActividadEntidadLista.forEach(t -> {
             assertNotNull(t);
-            assertNotNull(t.getTextoRespuesta());
-            assertNotNull(t.getHoraRespuesta());
-            assertNotNull(t.getTareaEscribirActividadEntidadPK().getEscribirActividadEntidad().getEscribirActividadEntidadPK().getEscribirEntidad().getPregunta());
         });
     }
 

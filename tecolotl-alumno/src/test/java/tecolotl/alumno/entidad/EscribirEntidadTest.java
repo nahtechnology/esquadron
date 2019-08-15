@@ -26,7 +26,7 @@ public class EscribirEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(EscribirEntidad.class, EscribirActividadEntidad.class, EscribirActividadEntidadPK.class,
+                .addClasses(EscribirEntidad.class, EscribirActividadEntidad.class,
                         ActividadEntidad.class, NivelLenguajeEntidad.class, TipoEstudianteEntidad.class, CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
