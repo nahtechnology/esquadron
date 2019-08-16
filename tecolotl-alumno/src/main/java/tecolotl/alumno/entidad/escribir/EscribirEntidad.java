@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.escribir;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

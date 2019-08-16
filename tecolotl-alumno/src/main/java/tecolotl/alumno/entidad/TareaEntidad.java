@@ -1,15 +1,19 @@
 package tecolotl.alumno.entidad;
 
+import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.StringJoiner;
 
 @Entity
 @Table(name = "tarea", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", sequenceName = "tarea_seq", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "TareaEntidad.busca", query = "SELECT t FROM TareaEntidad t"),
+    @NamedQuery(name = "TareaEntidad.busca", query = "SELECT t FROM TareaEntidad t"),
+    @NamedQuery(
+        name = "TareaEntidad.buscaId",
+        query = "SELECT t FROM TareaEntidad t WHERE t.id = :idTarea")
 })
 public class TareaEntidad {
 

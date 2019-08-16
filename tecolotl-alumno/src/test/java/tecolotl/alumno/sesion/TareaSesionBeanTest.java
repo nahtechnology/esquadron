@@ -9,11 +9,15 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.escribir.EscribirEntidad;
+import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidadPK;
 import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.alumno.modelo.EscribirBaseModelo;
+import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.entidad.*;
-import tecolotl.alumno.validacion.EscribirNuevoValidacion;
+import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.PersonaModelo;
@@ -24,7 +28,6 @@ import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
 import javax.inject.Inject;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(Arquillian.class)

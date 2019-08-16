@@ -1,4 +1,6 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.escribir;
+
+import tecolotl.alumno.entidad.ActividadEntidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,10 +9,12 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "escribir_actividad", schema = "alumno")
-@NamedQuery(
+@NamedQueries(value = {
+    @NamedQuery(
         name = "EscribirActividadEntidad.buscaActivdad",
         query = "SELECT ea FROM EscribirActividadEntidad ea JOIN FETCH ea.escribirEntidad e WHERE ea.actividadEntidad.id = :idActividad"
-)
+    )
+})
 public class EscribirActividadEntidad implements Serializable {
 
     private EscribirEntidad escribirEntidad;
@@ -60,4 +64,11 @@ public class EscribirActividadEntidad implements Serializable {
         return Objects.hash(escribirEntidad, actividadEntidad);
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", EscribirActividadEntidad.class.getSimpleName() + "[", "]")
+                .add("escribirEntidad=" + escribirEntidad)
+                .add("actividadEntidad=" + actividadEntidad)
+                .toString();
+    }
 }

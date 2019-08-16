@@ -1,7 +1,8 @@
 package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.TareaEntidad;
-import tecolotl.alumno.validacion.EscribirNuevoValidacion;
+import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
+import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

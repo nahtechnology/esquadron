@@ -9,11 +9,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.nucleo.herramienta.CorreoEnum;
-import tecolotl.nucleo.modelo.CatalogoModelo;
+import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.escribir.EscribirEntidad;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
-import tecolotl.nucleo.sesion.CatalogoSesionBean;
-import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

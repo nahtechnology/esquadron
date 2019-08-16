@@ -1,4 +1,4 @@
-package tecolotl.alumno.validacion;
+package tecolotl.alumno.validacion.escribir;
 
 public interface EscribirNuevoValidacion {
 }

@@ -1,9 +1,13 @@
 package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
-import tecolotl.alumno.modelo.EscribirBaseModelo;
+import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.escribir.EscribirEntidad;
+import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidadPK;
+import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
 import tecolotl.alumno.modelo.TareaModelo;
-import tecolotl.alumno.validacion.EscribirNuevoValidacion;
+import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -12,11 +16,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -61,7 +63,7 @@ public class TareaSesionBean {
     }
 
     /**
-     * Busca uan tarea.
+     * Busca todas las tareas.
      * @return todas las tareas encontradas.
      */
     public List<TareaModelo> busca(){
@@ -71,39 +73,14 @@ public class TareaSesionBean {
     }
 
     /**
-     * Busca todas las tareas de un alumno
-     * @param idAlumno Identificador del alumno
+     * Busca una tarea por identificador
+     * @param idTarea Identificador del alumno
      * @return
      */
-/*    public List<TareaModelo> busca(@NotNull Integer idAlumno){
-        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaPorAlumno", TareaEntidad.class);
-        typedQuery.setParameter("idAlumno", idAlumno);
+    public List<TareaModelo> busca(@NotNull Integer idTarea){
+        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaId", TareaEntidad.class);
+        typedQuery.setParameter("idTarea", idTarea);
         return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
-    }*/
-
-    /**
-     * Busca una traea por llave primaria
-     * @param id dato para buscar una tarea
-     * @return retorna la tarea encontrada.
-     */
-    /*public TareaModelo busca(@NotNull @Min(1) Integer id){
-        return new TareaModelo(entityManager.find(TareaEntidad.class, id));
-    }*/
-
-    /**
-     * Modifica una tarea
-     * @param idTarea dato para modificar la tarea.
-     * @return numero de elementos modificados, 0 en caso de no existir.
-     */
-    public Integer actualiza(@NotNull @Valid Integer idTarea){
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaUpdate<TareaEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(TareaEntidad.class);
-        Root<TareaEntidad> root = criteriaUpdate.from(TareaEntidad.class);
-        Predicate predicate = criteriaBuilder.equal(root.get("id"), idTarea);
-        //criteriaUpdate.set(root.get("alumnoEntidad"), tareaModelo.getAlumnoModelo());
-        criteriaUpdate.set(root.get("asignacion"), new Date());
-        criteriaUpdate.where(predicate);
-        return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
 
     /**

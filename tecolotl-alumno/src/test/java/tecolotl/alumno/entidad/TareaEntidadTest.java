@@ -9,6 +9,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.escribir.EscribirEntidad;
+import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
