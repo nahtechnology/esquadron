@@ -1,0 +1,28 @@
+<svg width="200" height="200" viewBox="0 0 53 53" xmlns="http://www.w3.org/2000/svg">
+
+ <g transform="translate(0 -244.08)">
+  <g stroke="#000000" stroke-linecap="round" stroke-linejoin="round">
+   <path d="m11.234 278.7a7.0176 7.0176 0 0 1-6.0774-3.5088 7.0176 7.0176 0 0 1 0-7.0176 7.0176 7.0176 0 0 1 6.0774-3.5088v7.0176z"
+         fill="#00a8ec"
+         stroke-width="1"/>
+   <path d="m-40.719 278.01a7.0176 7.0176 0 0 1-6.0774-3.5088 7.0176 7.0176 0 0 1 0-7.0176 7.0176 7.0176 0 0 1 6.0774-3.5088l-1e-6 7.0176z"
+         transform="scale(-1,1)"
+         fill="#00a8ec"
+         stroke-width="1"/>
+   <path d="m265.4 45.606a19.292 19.292 0 0 1-16.708-9.6462 19.292 19.292 0 0 1 0-19.292 19.292 19.292 0 0 1 16.708-9.6462"
+         transform="matrix(0,1,1,0,0,0)"
+         fill="none"
+         stroke-width="2"/>
+  </g>
+  <g stroke="#040000" stroke-width="1">
+   <path d="m26.078 288.45v0.0113a3.4115 3.3193 0 0 0-0.15256-7e-3 3.4115 3.3193 0 0 0-3.4116 3.3194 3.4115 3.3193 0 0 0 3.4116 3.3194 3.4115 3.3193 0 0 0 0.23293-8e-3h5.9673v-6.6348z"
+         fill="#e8641b" stroke-linecap="round" stroke-linejoin="round"/>
+   <rect x="12.553" y="264.71" width="2.6121" height="13.97" ry="1.2439" fill="#00a49d" stroke-linecap="square"/>
+   <rect x="36.574" y="264.08" width="2.6121" height="13.97" ry="1.2439" fill="#00a49d" stroke-linecap="square"/>
+  </g>
+  <path d="m32.267 292.11s14.366 0.4009 15.635-20.914c1.2695-21.315 0 0.53454 0 0.53454"
+        fill="none"
+        stroke="#000"
+        stroke-width="1"/>
+ </g>
+</svg>

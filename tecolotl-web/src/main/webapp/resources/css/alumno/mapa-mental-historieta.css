@@ -1,0 +1,10 @@
+.fondo-historieta{
+    background-image: url("#{resource['img/fondo/fondo-6.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.caja-historieta{
+    width:  80%;
+    height: 600px;
+    background-color: #0e6ecd;
+}

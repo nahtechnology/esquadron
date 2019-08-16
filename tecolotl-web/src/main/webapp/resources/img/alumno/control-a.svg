@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg width="508" height="178" version="1.1" viewBox="0 0 134.41 47.096" xmlns="http://www.w3.org/2000/svg">
+
+ <g transform="translate(-41.731 -99.693)">
+  <g transform="translate(5.1932 -75.73)">
+   <g>
+    <rect x="50.067" y="180.1" width="107.06" height="28.088" fill="#161650"/>
+    <path d="m50.067 180.11 10.069-3.3838h86.811l10.179 3.3838" fill="#5f8dd3"/>
+    <path d="m37.779 221.22 12.408-13.016h106.98l12.543 13.016" fill="#5f8dd3"/>
+
+    <circle cx="53.715" cy="183.87" r="2.7781" fill="#ff0">
+      <animate
+        attributeName="fill"
+        attributeType="css"
+        values="#ff0;#f00;#ff0"
+        dur="5s"
+        repeatCount="indefinite"/>
+    </circle>
+
+    <circle cx="153.55" cy="183.74" r="2.7781" fill="#ff0">
+    <animate
+      attributeName="fill"
+      attributeType="css"
+      values="#ff0;#f00;#ff0"
+      dur="5s"
+      repeatCount="indefinite"/>
+    </circle>
+
+    <rect x="59.523" y="183.54" width="19.844" height="19.844" fill="#ac9393"/>
+    <rect x="60.962" y="185.01" width="16.933" height="16.933"/>
+
+    <rect x="62.015" y="186" width="14.776" height="1.3152" fill="#ff0">
+      <animate
+        attributeName="width"
+        values="2;14.776;2"
+        begin="0s"
+        dur="5s"
+        repeatCount="indefinite"/>
+    </rect>
+
+    <rect x="62.015" y="188.37" width="14.776" height="1.3152" fill="#f60">
+      <animate
+        attributeName="width"
+        values="2;14.776;2"
+        begin="0.2s"
+        dur="4s"
+        repeatCount="indefinite"/>
+   </rect>
+
+    <rect x="62.015" y="190.75" width="14.776" height="1.3152" fill="#c87137">
+      <animate
+        attributeName="width"
+        values="2;14.776;2"
+        begin="0.4s"
+        dur="3s"
+        repeatCount="indefinite"/>
+    </rect>
+
+    <rect x="62.015" y="193.12" width="14.776" height="1.3152" fill="#f00">
+      <animate
+     attributeName="width"
+     values="2;14.776;2"
+     begin="0.6s"
+     dur="2s"
+     repeatCount="indefinite"/>
+    </rect>
+
+    <rect x="62.015" y="195.49" width="14.776" height="5.4928" fill="#fc0"/>
+   </g>
+   <path d="m63.019 198.32s3.0127-2.6084 3.0388-0.013c0.02609 2.5953 3.3648-0.76947 3.3648-0.76947s1.8911-2.0606 2.178-0.0522c0.28692 2.0084 3.7952 0.14346 3.7952 0.14346"
+     fill="none"
+     stroke="#00a8ec"
+     stroke-width=".26458px"/>
+   <g transform="translate(3.0938 94.969)">
+    <rect x="124.96" y="88.567" width="19.844" height="19.844" fill="#ac9393"/>
+    <rect x="126.47" y="90.077" width="16.933" height="16.933"/>
+
+    <rect x="127.38" y="91.017" width="2.7067" height="2.0465" fill="#fc0">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#fc0;blue;#fc0"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="131.47" y="90.961" width="2.7067" height="2.0465" fill="#ff0">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#ff0;#E30E22;#ff0"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="135.6" y="90.961" width="2.7067" height="2.0465" fill="#55d400">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#55d400;#FE642E;#55d400"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="139.69" y="90.994" width="2.7067" height="2.0465" fill="#c83771">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#c83771;#FF00FF;#c83771"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="127.45" y="94.27" width="2.7067" height="2.0465" fill="#800000">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#800000;#FFBF00;#800000"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="127.37" y="97.543" width="2.7067" height="2.0465" fill="#008000">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#008000;#0080FF;#008000"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="127.31" y="100.68" width="2.7067" height="2.0465" fill="#f0f">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#f0f;	#7FFF00;#f0f"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="127.35" y="103.91" width="2.7067" height="2.0465" fill="#f60">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#f60;#F8F8FF;#f60"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="131.51" y="94.163" width="2.7067" height="2.0465" fill="#8a0">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#8a0;#90EE90;#8a0"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="135.63" y="94.196" width="2.7067" height="2.0465" fill="#00d4aa">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#00d4aa;#4B0082;#00d4aa"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="139.66" y="94.13" width="2.7067" height="2.0465" fill="#916f8a">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#916f8a;#FF6347;#916f8a"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="131.51" y="97.464" width="2.7067" height="2.0465" fill="#6c6753">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#916f8a;#FF6347;#916f8a"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="135.66" y="97.431" width="2.7067" height="2.0465" fill="#7f2aff">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#7f2aff;#00FF7F;#7f2aff"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="139.69" y="97.398" width="2.7067" height="2.0465" fill="#ab37c8">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#ab37c8;#4169E1;#ab37c8"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="131.54" y="100.73" width="2.7067" height="2.0465" fill="#a05a2c">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#a05a2c;#FF8C00;#a05a2c"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="135.66" y="100.73" width="2.7067" height="2.0465" fill="#06f">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#06f;	#191970;#06f"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="139.72" y="100.73" width="2.7067" height="2.0465" fill="#7137c8">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#7137c8;#FFDEAD;#7137c8"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="131.47" y="103.9" width="2.7067" height="2.0465" fill="#a0892c">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#a0892c;green;#a0892c"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="135.66" y="103.9" width="2.7067" height="2.0465" fill="#00aad4">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#00aad4;purple;#00aad4"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+    <rect x="139.69" y="103.9" width="2.7067" height="2.0465" fill="#fc0">
+      <animate attributeName="fill"
+      attributeType="css"
+      values="#fc0;brown;#fc0"
+      dur="1s"
+      repeatCount="indefinite"/>
+    </rect>
+   </g>
+   <rect x="85.245" y="183.54" width="37.042" height="20.108" fill="#ac9393"/>
+   <rect x="87.138" y="185.53" width="33.073" height="16.14"/>
+   <g fill="none">
+    <g stroke-width=".21167">
+     <path d="m92.072 188.79v-2.8158h3.0927" stroke="#f00"/>
+     <path d="m112.33 186.01 3.0927-0.0462v2.9081" stroke="#fe0000"/>
+     <path d="m92.103 198.23 0.04616 2.9542 3.0927-0.0462" stroke="#f00"/>
+     <path d="m115.68 198.03v3.0927l-3.0004 0.0462" stroke="#fe0000"/>
+    </g>
+    <g stroke="#a59e9d">
+     <rect x="92.973" y="186.83" width="21.662" height="13.445" stroke-width=".13229"/>
+     <path d="m96.672 186.81 0.04617 13.433" stroke-width=".13229"/>
+     <path d="m94.812 186.82 0.0462 13.433" stroke-width=".13229"/>
+     <path d="m98.605 186.82 0.0462 13.433" stroke-width=".13229"/>
+     <g stroke-width=".13229">
+      <path d="m100.6 186.82 0.0462 13.433"/>
+      <path d="m102.62 186.81 0.0462 13.433"/>
+      <path d="m104.71 186.85 0.0462 13.433"/>
+      <path d="m106.89 186.85 0.0462 13.433"/>
+      <path d="m108.96 186.84 0.0462 13.433"/>
+      <path d="m110.98 186.88 0.0462 13.433"/>
+      <path d="m112.76 186.77 0.0462 13.433"/>
+     </g>
+     <g stroke-width=".16691">
+      <path d="m92.984 188.5 21.641-0.0456"/>
+      <path d="m92.935 190.17 21.641-0.0456"/>
+      <path d="m92.989 191.96 21.641-0.0456"/>
+      <path d="m92.954 193.72 21.641-0.0456"/>
+      <path d="m92.954 195.44 21.641-0.0456"/>
+      <path d="m92.954 197.01 21.641-0.0456"/>
+      <path d="m93.045 198.55 21.641-0.0456"/>
+     </g>
+    </g>
+    <g>
+     <circle cx="103.77" cy="193.7" r="6.1099" stroke="#00b600" stroke-width=".13229">
+       <animate attributeName="r"
+       dur="6s"
+       from="0"
+       to="7"
+       repeatCount="indefinite"
+       begin="0.25s"/>
+     </circle>
+    <circle cx="103.7" cy="193.67" r="5.2315" stroke="#00b600" stroke-width=".13229">
+      <animate attributeName="r"
+        dur="6s"
+        from="0"
+        to="7"
+        repeatCount="indefinite"
+        begin="1.25s"/>
+     </circle>
+    <circle cx="103.67" cy="193.67" r="3.698" stroke="#00b600" stroke-width=".13229">
+       <animate attributeName="r"
+       dur="6s"
+       from="0"
+       to="7"
+       repeatCount="indefinite"
+       begin="2.25s"/>
+    </circle>
+    </g>
+   </g>
+   <circle cx="103.76" cy="193.73" r=".93449" fill="red">
+     <animate attributeName="fill"
+     attributeType="css"
+     values="red;white;red"
+     dur=".5s"
+     repeatCount="indefinite"/>
+   </circle>
+   <g transform="translate(-22.602 64.753)">
+    <ellipse cx="78.79" cy="139.96" rx="2.2762" ry="1.7513" fill="#c9bdbd"/>
+    <ellipse cx="78.71" cy="139.76" rx="1.1619" ry=".89396" fill="#4d4d4d"/>
+   </g>
+   <g transform="translate(-22.496 66.527)">
+    <ellipse cx="78.456" cy="144.22" rx="2.1068" ry="1.3047" fill="#b6aeb2"/>
+    <ellipse cx="78.447" cy="144.13" rx="1.6878" ry="1.0453" fill="#9c9393"/>
+   </g>
+   <g transform="translate(-1.7612 67.857)">
+    <path d="m56.738 141.1c-7e-3 -0.85602 0.01847-2.5681 0.01847-2.5681s0.19135 0.10704 0.29103 0.15238c0.10472 0.0476 0.21189 0.0906 0.3216 0.12525 0.12526 0.0395 0.25222 0.079 0.38276 0.0936 0.13831 0.0154 0.27905 7e-3 0.41742-8e-3 0.18219-0.0195 0.36416-0.0527 0.53923-0.10679 0.10239-0.0317 0.19821-0.0817 0.29561-0.1264 0.07698-0.0353 0.22808-0.112 0.22808-0.112s-0.06355 0.55585-0.11085 0.8314c-0.04047 0.2357-0.09149 0.46964-0.1478 0.70207-0.07669 0.31655-0.19519 0.6228-0.25866 0.94225-0.11611 0.5844-0.2217 1.7736-0.2217 1.7736s-0.20459 0.1005-0.31408 0.12933c-0.19206 0.0506-0.39261 0.0747-0.59122 0.0739-0.18639-7.6e-4 -0.38716 9e-3 -0.55426-0.0739-0.10931-0.054-0.25365-0.13683-0.25866-0.25866-0.0213-0.51833-0.03267-1.0468-0.03695-1.5704z" fill="#c8bcbc"/>
+    <path d="m57.962 139.37-0.31157 1.6443 0.26132 1.5704 0.18091-1.7552z" fill="#817c7c"/>
+   </g>
+   <path d="m61.09 219.82 8.0365-10.528h69.287l8.124 10.528"/>
+   <g transform="translate(89.36 64.602)">
+    <g transform="translate(-16.702)">
+     <ellipse cx="78.79" cy="139.96" rx="2.2762" ry="1.7513" fill="#c9bdbd"/>
+     <ellipse cx="78.71" cy="139.76" rx="1.1619" ry=".89396" fill="#4d4d4d"/>
+    </g>
+    <g transform="translate(-16.48 1.7736)">
+     <ellipse cx="78.456" cy="144.22" rx="2.1068" ry="1.3047" fill="#b6aeb2"/>
+     <ellipse cx="78.447" cy="144.13" rx="1.6878" ry="1.0453" fill="#9c9393"/>
+    </g>
+    <g transform="translate(4.1385 3.1039)">
+     <path d="m56.738 141.1c-7e-3 -0.85602 0.01847-2.5681 0.01847-2.5681s0.19135 0.10704 0.29103 0.15238c0.10472 0.0476 0.21189 0.0906 0.3216 0.12525 0.12526 0.0395 0.25222 0.079 0.38276 0.0936 0.13831 0.0154 0.27905 7e-3 0.41742-8e-3 0.18219-0.0195 0.36416-0.0527 0.53923-0.10679 0.10239-0.0317 0.19821-0.0817 0.29561-0.1264 0.07698-0.0353 0.22808-0.112 0.22808-0.112s-0.06355 0.55585-0.11085 0.8314c-0.04047 0.2357-0.09149 0.46964-0.1478 0.70207-0.07669 0.31655-0.19519 0.6228-0.25866 0.94225-0.11611 0.5844-0.2217 1.7736-0.2217 1.7736s-0.20459 0.1005-0.31408 0.12933c-0.19206 0.0506-0.39261 0.0747-0.59122 0.0739-0.18639-7.6e-4 -0.38716 9e-3 -0.55426-0.0739-0.10931-0.054-0.25365-0.13683-0.25866-0.25866-0.0213-0.51833-0.03267-1.0468-0.03695-1.5704z" fill="#c8bcbc"/>
+     <path d="m57.962 139.37-0.31157 1.6443 0.26132 1.5704 0.18091-1.7552z" fill="#817c7c"/>
+    </g>
+   </g>
+   <path d="m92.798 216.08 2.3668-3.5646 9.6643 0.16203 1.9723 3.4026z" fill="none" stroke="#fff" stroke-width=".3287px"/>
+   <g transform="matrix(1.1509 0 0 1.1509 -21.022 -30.989)">
+    <ellipse cx="116.78" cy="213.35" rx="1.4155" ry="1.2493" fill="#0f0"/>
+    <path d="m116.62 213.55 0.93543-1.0979" fill="none" stroke="#000" stroke-width=".35573px"/>
+   </g>
+   <g transform="translate(5.0953 54.178)">
+    <rect x="114.15" y="160.24" width="6.4859" height="1.9609" fill="#2aabe2"/>
+    <ellipse cx="114.79" cy="159.19" rx=".71646" ry=".67876" fill="#29abe2"/>
+    <ellipse cx="116.9" cy="159.08" rx=".79188" ry=".56563" fill="#ff0"/>
+    <ellipse cx="119.73" cy="159.08" rx=".67876" ry=".64105" fill="#f0f"/>
+   </g>
+   <g transform="translate(-4.8176 58.257)" stroke="#f00" stroke-linecap="round">
+    <path d="m88.424 154.16h3.5493" fill="none" stroke-width=".2984"/>
+    <g fill="#f00">
+     <circle cx="88.56" cy="154.81" r=".18547" stroke-width=".2376"/>
+     <circle cx="89.445" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="90.425" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="91.255" cy="154.84" r=".18547" stroke-width=".2376"/>
+    </g>
+    <g transform="translate(-.53787 .84202)" fill="#f00">
+     <circle cx="88.56" cy="154.81" r=".18547" stroke-width=".2376"/>
+     <circle cx="89.445" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="90.425" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="91.255" cy="154.84" r=".18547" stroke-width=".2376"/>
+    </g>
+    <g transform="translate(-1.0658 1.6716)" fill="#f00">
+     <circle cx="88.56" cy="154.81" r=".18547" stroke-width=".2376"/>
+     <circle cx="89.445" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="90.425" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="91.255" cy="154.84" r=".18547" stroke-width=".2376"/>
+    </g>
+    <g transform="translate(-1.5937 2.5012)" fill="#f00">
+     <circle cx="88.56" cy="154.81" r=".18547" stroke-width=".2376"/>
+     <circle cx="89.445" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="90.425" cy="154.84" r=".18547" stroke-width=".2376"/>
+     <circle cx="91.255" cy="154.84" r=".18547" stroke-width=".2376"/>
+    </g>
+   </g>
+   <path d="m95.965 213.58s0.41319 0.23324 0.53328 0.42663c0.15359 0.24733 0.06686 0.58789 0.18665 0.85325 0.06802 0.15068 0.14442 0.32808 0.2933 0.39996 0.20826 0.10054 0.47737 0.0562 0.69326-0.0267 0.19442-0.0746 0.37637-0.2193 0.47996-0.39996 0.16135-0.28141 0.0277-0.6637 0.15998-0.9599 0.0696-0.1559 0.15778-0.34662 0.31997-0.39996 0.13107-0.0431 0.28514 0.0301 0.39996 0.10665 0.12131 0.0808 0.21423 0.21061 0.26664 0.34664 0.0801 0.20801-0.0436 0.46587 0.0533 0.6666 0.0793 0.16422 0.23425 0.29714 0.39996 0.37329 0.14626 0.0672 0.32324 0.0901 0.47996 0.0533 0.14401-0.0338 0.26936-0.13471 0.37329-0.23997 0.11782-0.11933 0.18864-0.27817 0.26664-0.42663 0.13516-0.25725 0.1324-0.60358 0.34664-0.79992 0.16577-0.15191 0.41956-0.25797 0.63993-0.21331 0.29009 0.0588 0.48205 0.35521 0.66661 0.58661 0.2207 0.27673 0.28815 0.65474 0.50661 0.93324 0.0816 0.10396 0.1613 0.27223 0.29331 0.26664 0.16965-7e-3 0.19966-0.28825 0.34663-0.3733 0.10263-0.0594 0.36005 0.0378 0.34663-0.08-1e-3 -9e-3 -0.0267 0-0.0267 0" fill="none" stroke="#00e400" stroke-width=".13229"/>
+   <g>
+    <ellipse cx="74.32" cy="214.34" rx="3.2183" ry="1.9931" fill="#95f"/>
+    <ellipse cx="74.306" cy="214.2" rx="2.5783" ry="1.5967" fill="#5500d4"/>
+    <ellipse cx="133.63" cy="214.5" rx="3.2183" ry="1.9931" fill="#95f"/>
+    <ellipse cx="133.62" cy="214.36" rx="2.5783" ry="1.5967" fill="#5500d4"/>
+   </g>
+  </g>
+ </g>
+</svg>

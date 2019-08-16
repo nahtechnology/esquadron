@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<svg width="1029" height="535" version="1.1" viewBox="0 0 1029 535" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+     <radialGradient id="grad1" cx="50%" cy="50%" r="65%" fx="50%" fy="50%">
+       <stop offset="0%" style="stop-color:rgb(255,255,255);
+       stop-opacity:2" />
+       <stop class="color-lineas" offset="100%" style="stop-color:rgb(255,148,0);stop-opacity:1" />
+     </radialGradient>
+   </defs>
+ <rect x="0" y="0" width="1029" height="535" fill="url(#grad1)" stroke=""/>
+
+ <polyline fill="gold" opacity=".10" points="0,0 30,0 514.5,267.5 0,30"/>
+ <polyline fill="gold" opacity=".10" points="100,0 514.5,267.5 175,0"/>
+ <polyline fill="gold" opacity=".10" points="240,0 514.5,267.5 300,0"/>
+ <polyline fill="gold" opacity=".10" points="360,0 514.5,267.5 420,0"/>
+ <polyline fill="gold" opacity=".10" points="480,0 514.5,267.5 540,0"/>
+ <polyline fill="gold" opacity=".10" points="600,0 514.5,267.5 670,0"/>
+ <polyline fill="gold" opacity=".10" points="730,0 514.5,267.5 800,0"/>
+ <polyline fill="gold" opacity=".10" points="870,0 514.5,267.5 940,0"/>
+ <polyline fill="gold" opacity=".10" points="1010,0 514.5,267.5 1029,35 1029,0"/>
+ <polyline fill="gold" opacity=".10" points="1029,85 514.5,267.5 1029,140"/>
+ <polyline fill="gold" opacity=".10" points="1029,190 514.5,267.5 1029,250"/>
+ <polyline fill="gold" opacity=".10" points="1029,300 514.5,267.5 1029,360"/>
+ <polyline fill="gold" opacity=".10" points="1029,410 514.5,267.5 1029,470"/>
+ <polyline fill="gold" opacity=".10" points="1029,510 514.5,267.5 1000,535 1029,535"/>
+ <polyline fill="gold" opacity=".10" points="840,535 514.5,267.5 920,535"/>
+ <polyline fill="gold" opacity=".10" points="690,535 514.5,267.5 770,535"/>
+ <polyline fill="gold" opacity=".10" points="550,535 514.5,267.5 620,535"/>
+ <polyline fill="gold" opacity=".10" points="410,535 514.5,267.5 480,535"/>
+ <polyline fill="gold" opacity=".10" points="350,535 514.5,267.5 270,535"/>
+ <polyline fill="gold" opacity=".10" points="199,535 514.5,267.5 110,535"/>
+ <polyline fill="gold" opacity=".10" points="30,535 514.5,267.5 0,500 0,535"/>
+ <polyline fill="gold" opacity=".10" points="0,390 514.5,267.5 0,450"/>
+ <polyline fill="gold" opacity=".10" points="0,340 514.5,267.5 0,280"/>
+ <polyline fill="gold" opacity=".10" points="0,170 514.5,267.5 0,230"/>
+ <polyline fill="gold" opacity=".10" points="0,70 514.5,267.5 0,120"/>
+
+</svg>
