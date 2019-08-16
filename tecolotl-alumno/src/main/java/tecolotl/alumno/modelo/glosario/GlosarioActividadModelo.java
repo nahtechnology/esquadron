@@ -1,4 +1,6 @@
-package tecolotl.alumno.modelo;
+package tecolotl.alumno.modelo.glosario;
+
+import tecolotl.alumno.modelo.ActividadModelo;
 
 import java.util.StringJoiner;
 

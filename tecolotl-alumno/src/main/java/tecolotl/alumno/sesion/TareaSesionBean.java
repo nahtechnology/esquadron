@@ -5,9 +5,12 @@ import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
 import tecolotl.alumno.entidad.escribir.EscribirEntidad;
 import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
 import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidadPK;
+import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
 import tecolotl.alumno.modelo.TareaModelo;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -47,15 +50,25 @@ public class TareaSesionBean {
 
     public Integer inserta(@NotNull TareaModelo tareaModelo, @NotNull String idActividad) {
         logger.fine(tareaModelo.toString());
-        validadorSessionBean.validacion(tareaModelo, EscribirNuevoValidacion.class);
+        validadorSessionBean.validacion(tareaModelo, EscribirNuevoValidacion.class, GlosarioNuevoValidacion.class);
         TareaEntidad tareaEntidad = new TareaEntidad();
+        ActividadEntidad actividadEntidad = new ActividadEntidad(idActividad);
         tareaEntidad.setTareaEscribirActividadEntidadLista(new ArrayList<>());
         for (EscribirBaseModelo escribirBaseModelo : tareaModelo.getEscribirBaseModeloLista()) {
             EscribirActividadEntidad escribirActividadEntidad = new EscribirActividadEntidad(
-                    new EscribirEntidad(escribirBaseModelo.getId()), new ActividadEntidad(idActividad));
+                    new EscribirEntidad(escribirBaseModelo.getId()), actividadEntidad);
             TareaEscribirActividadEntidad tareaEscribirActividadEntidad = new TareaEscribirActividadEntidad(
                     tareaEntidad, new TareaEscribirActividadEntidadPK(escribirActividadEntidad));
             tareaEntidad.getTareaEscribirActividadEntidadLista().add(tareaEscribirActividadEntidad);
+        }
+        tareaEntidad.setTareaGlosarioActividadEntidadLista(new ArrayList<>());
+        for (GlosarioModelo glosarioModelo : tareaModelo.getGlosarioModeloLista()) {
+            GlosarioActividadEntidadPK glosarioActividadEntidadPK = new GlosarioActividadEntidadPK(
+                    new GlosarioEntidad(glosarioModelo.getPalabra()),actividadEntidad);
+            TareaGlosarioActividadEntidadPK tareaGlosarioActividadEntidadPK =
+                    new TareaGlosarioActividadEntidadPK(tareaEntidad, new GlosarioActividadEntidad(glosarioActividadEntidadPK));
+            tareaEntidad.getTareaGlosarioActividadEntidadLista().add(
+                    new TareaGlosarioActividadEntidad(tareaGlosarioActividadEntidadPK));
         }
         entityManager.persist(tareaEntidad);
         tareaModelo.setId(tareaEntidad.getId());

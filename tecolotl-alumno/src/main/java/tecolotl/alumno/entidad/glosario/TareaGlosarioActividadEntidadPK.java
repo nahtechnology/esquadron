@@ -1,4 +1,6 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.glosario;
+
+import tecolotl.alumno.entidad.TareaEntidad;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +13,14 @@ public class TareaGlosarioActividadEntidadPK implements Serializable {
 
     private TareaEntidad tareaEntidad;
     private GlosarioActividadEntidad glosarioActividadEntidad;
+
+    public TareaGlosarioActividadEntidadPK() {
+    }
+
+    public TareaGlosarioActividadEntidadPK(TareaEntidad tareaEntidad, GlosarioActividadEntidad glosarioActividadEntidad) {
+        this.tareaEntidad = tareaEntidad;
+        this.glosarioActividadEntidad = glosarioActividadEntidad;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull

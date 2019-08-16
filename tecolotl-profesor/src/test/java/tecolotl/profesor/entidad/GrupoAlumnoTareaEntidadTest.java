@@ -10,6 +10,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.persistencia.entidad.*;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidadPK;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 

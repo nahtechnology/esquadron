@@ -1,14 +1,28 @@
-package tecolotl.alumno.modelo;
+package tecolotl.alumno.modelo.glosario;
 
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Arrays;
 import java.util.StringJoiner;
 
 public class GlosarioModelo {
+
     private String palabra;
     private ClaseGlosarioModelo claseGlosarioModelo;
     private byte[] imagen;
     private String significado;
 
+    public GlosarioModelo() {
+    }
+
+    public GlosarioModelo(String palabra) {
+        this.palabra = palabra;
+    }
+
+    @NotNull(groups = {GlosarioNuevoValidacion.class})
+    @Size(max = 20, groups = {GlosarioNuevoValidacion.class})
     public String getPalabra() {
         return palabra;
     }

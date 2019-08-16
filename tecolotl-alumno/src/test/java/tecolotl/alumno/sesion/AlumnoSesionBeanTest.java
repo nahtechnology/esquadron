@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.GradoEscolarEntidad;
-import tecolotl.alumno.entidad.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;

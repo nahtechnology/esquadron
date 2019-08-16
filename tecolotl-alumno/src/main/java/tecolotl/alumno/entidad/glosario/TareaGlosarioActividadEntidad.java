@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.glosario;
 
 import javax.persistence.*;
 import java.util.StringJoiner;
@@ -11,6 +11,13 @@ import java.util.StringJoiner;
 public class TareaGlosarioActividadEntidad {
 
     private TareaGlosarioActividadEntidadPK tareaGlosarioActividadEntidadPK;
+
+    public TareaGlosarioActividadEntidad() {
+    }
+
+    public TareaGlosarioActividadEntidad(TareaGlosarioActividadEntidadPK tareaGlosarioActividadEntidadPK) {
+        this.tareaGlosarioActividadEntidadPK = tareaGlosarioActividadEntidadPK;
+    }
 
     @EmbeddedId
     public TareaGlosarioActividadEntidadPK getTareaGlosarioActividadEntidadPK() {

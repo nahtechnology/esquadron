@@ -2,7 +2,9 @@ package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -16,6 +18,7 @@ public class TareaModelo {
     private Integer id;
     private Date asignacion;
     private List<EscribirBaseModelo> escribirBaseModeloLista;
+    private List<GlosarioModelo> glosarioModeloLista;
 
     public TareaModelo() {
     }
@@ -52,6 +55,17 @@ public class TareaModelo {
 
     public void setEscribirBaseModeloLista(List<EscribirBaseModelo> escribirBaseModeloLista) {
         this.escribirBaseModeloLista = escribirBaseModeloLista;
+    }
+
+    @NotNull(groups = {GlosarioNuevoValidacion.class})
+    @Valid
+    @Size(min = 1, groups = {GlosarioNuevoValidacion.class})
+    public List<GlosarioModelo> getGlosarioModeloLista() {
+        return glosarioModeloLista;
+    }
+
+    public void setGlosarioModeloLista(List<GlosarioModelo> glosarioModeloLista) {
+        this.glosarioModeloLista = glosarioModeloLista;
     }
 
     @Override

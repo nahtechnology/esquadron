@@ -1,6 +1,7 @@
-package tecolotl.alumno.modelo;
+package tecolotl.alumno.modelo.glosario;
 
-import tecolotl.alumno.entidad.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.modelo.TareaModelo;
 
 public class TareaGlosarioModelo {
 

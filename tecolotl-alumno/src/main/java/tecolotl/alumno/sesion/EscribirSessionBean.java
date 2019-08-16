@@ -20,6 +20,11 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * Escribir son preguntas abiertas las cuales deben tener una respuesta por alumno. Están asignadas por actividad y por tarea
+ * @author Antonio Francisco Alonso Valerdi
+ * @since 0.1
+ */
 @Stateless
 public class EscribirSessionBean {
 
@@ -32,6 +37,11 @@ public class EscribirSessionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Busca todos las preguntas por actividad
+     * @param idActividad Identificador de la actividad
+     * @return coleción de {@link EscribirBaseModelo}
+     */
     public List<EscribirBaseModelo> busca(@NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine("Buscando por:".concat(idActividad));
         TypedQuery<EscribirActividadEntidad> typedQuery = entityManager.createNamedQuery("EscribirActividadEntidad.buscaActivdad", EscribirActividadEntidad.class);
@@ -41,6 +51,11 @@ public class EscribirSessionBean {
         return escribirActividadEntidadLista.stream().map(ea -> new EscribirBaseModelo(ea.getEscribirEntidad())).collect(Collectors.toList());
     }
 
+    /**
+     * Busca todas las preguntas asignadas a una tarea
+     * @param idTarea Identificador de la tarea
+     * @return Coleción de {@link EscribirModelo}
+     */
     public List<EscribirModelo> busca(@NotNull Integer idTarea) {
         logger.finer(idTarea.toString());
         TypedQuery<TareaEscribirActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaEscribirActividadEntidad.buscaTarea", TareaEscribirActividadEntidad.class);
@@ -55,6 +70,12 @@ public class EscribirSessionBean {
         return escribirModeloLista;
     }
 
+    /**
+     * Escribe la respuesta a una pregunta
+     * @param escribirModelo Modelo con los datos: id pregunta y la respuesta
+     * @param idTarea Identificador de la tarea
+     * @param idActividad Identificador de la actvidad
+     */
     public void respuesta(@NotNull EscribirModelo escribirModelo,
                          @NotNull Integer idTarea,
                          @NotNull @Size(min = 11, max = 11) String idActividad) {

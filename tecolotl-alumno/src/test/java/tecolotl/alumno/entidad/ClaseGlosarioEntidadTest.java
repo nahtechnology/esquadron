@@ -9,12 +9,12 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.validation.constraints.Max;
 import java.util.List;
 
 @RunWith(Arquillian.class)

@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.glosario;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -19,6 +19,13 @@ public class GlosarioEntidad {
     private byte[] imagen;
     private String significado;
     private List<GlosarioActividadEntidad> glosarioActividadEntidadLista;
+
+    public GlosarioEntidad() {
+    }
+
+    public GlosarioEntidad(String palabra) {
+        this.palabra = palabra;
+    }
 
     @Id
     public String getPalabra() {

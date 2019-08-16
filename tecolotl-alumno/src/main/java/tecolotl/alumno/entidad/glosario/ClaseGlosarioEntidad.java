@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.glosario;
 
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 

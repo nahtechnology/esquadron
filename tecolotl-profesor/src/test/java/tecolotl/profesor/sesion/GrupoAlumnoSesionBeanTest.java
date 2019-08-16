@@ -3,7 +3,6 @@ package tecolotl.profesor.sesion;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.asset.Asset;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
@@ -19,6 +18,9 @@ import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidadPK;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -32,7 +34,6 @@ import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @RunWith(Arquillian.class)

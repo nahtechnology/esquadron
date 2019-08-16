@@ -18,6 +18,9 @@ import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidadPK;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -33,7 +36,6 @@ import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
-import java.sql.Timestamp;
 import java.util.List;
 
 @RunWith(Arquillian.class)

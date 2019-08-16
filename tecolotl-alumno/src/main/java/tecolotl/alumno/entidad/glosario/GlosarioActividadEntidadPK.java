@@ -1,4 +1,6 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.entidad.glosario;
+
+import tecolotl.alumno.entidad.ActividadEntidad;
 
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
@@ -14,6 +16,14 @@ public class GlosarioActividadEntidadPK implements Serializable {
 
     private GlosarioEntidad glosarioEntidad;
     private ActividadEntidad actividadEntidad;
+
+    public GlosarioActividadEntidadPK() {
+    }
+
+    public GlosarioActividadEntidadPK(GlosarioEntidad glosarioEntidad, ActividadEntidad actividadEntidad) {
+        this.glosarioEntidad = glosarioEntidad;
+        this.actividadEntidad = actividadEntidad;
+    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull

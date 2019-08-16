@@ -1,4 +1,4 @@
-package tecolotl.alumno.modelo;
+package tecolotl.alumno.modelo.glosario;
 
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;

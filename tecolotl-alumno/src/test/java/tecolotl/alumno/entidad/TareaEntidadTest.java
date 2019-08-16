@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
 import tecolotl.alumno.entidad.escribir.EscribirEntidad;
 import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
@@ -53,11 +54,5 @@ public class TareaEntidadTest {
         }
     }
 
-    @Test
-    public void buscaPorAlumno() {
-        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaPorAlumno", TareaEntidad.class);
-        typedQuery.setParameter("idAlumno", 5);
-        TareaEntidad tareaEntidad = typedQuery.getSingleResult();
-        Assert.assertNotNull(tareaEntidad);
-    }
+
 }
