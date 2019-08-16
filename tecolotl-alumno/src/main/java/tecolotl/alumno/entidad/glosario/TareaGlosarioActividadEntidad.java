@@ -5,8 +5,13 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "tarea_glosario_actividad", schema = "alumno")
-@NamedQueries({
-        @NamedQuery(name = "TareaGlosarioActividadEntidad.busca", query = "SELECT tga FROM TareaGlosarioActividadEntidad tga")
+@NamedQueries(value = {
+        @NamedQuery(name = "TareaGlosarioActividadEntidad.busca", query = "SELECT tga FROM TareaGlosarioActividadEntidad tga"),
+        @NamedQuery(
+                name = "TareaGlosarioActividadEntidad.buscaTarea",
+                query = "SELECT tga FROM TareaGlosarioActividadEntidad tga JOIN FETCH tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad ga " +
+                        "JOIN FETCH ga.glosarioActividadEntidadPK.glosarioEntidad g JOIN FETCH g.claseGlosarioEntidad cg " +
+                        "WHERE tga.tareaGlosarioActividadEntidadPK.tareaEntidad.id = :idTarea")
 })
 public class TareaGlosarioActividadEntidad {
 

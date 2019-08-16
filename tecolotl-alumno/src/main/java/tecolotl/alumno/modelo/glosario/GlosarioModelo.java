@@ -1,5 +1,6 @@
 package tecolotl.alumno.modelo.glosario;
 
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 
 import javax.validation.constraints.NotNull;
@@ -19,6 +20,13 @@ public class GlosarioModelo {
 
     public GlosarioModelo(String palabra) {
         this.palabra = palabra;
+    }
+
+    public GlosarioModelo(GlosarioEntidad glosarioEntidad) {
+        this.palabra = glosarioEntidad.getPalabra();
+        this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getClaseGlosarioEntidad());
+        this.imagen = glosarioEntidad.getImagen();
+        this.significado = glosarioEntidad.getSignificado();
     }
 
     @NotNull(groups = {GlosarioNuevoValidacion.class})
