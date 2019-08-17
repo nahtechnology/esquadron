@@ -22,7 +22,7 @@ public class TareaEntidad {
     private Date asignacion;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista;
-//    private TareaVideoEntidad tareaVideoEntidad;
+    private TareaVideoEntidad tareaVideoEntidad;
 
     public TareaEntidad() {
     }
@@ -70,4 +70,12 @@ public class TareaEntidad {
         this.tareaEscribirActividadEntidadLista = tareaEscribirActividadEntidadLista;
     }
 
+    @OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad", cascade = CascadeType.PERSIST)
+    public TareaVideoEntidad getTareaVideoEntidad() {
+        return tareaVideoEntidad;
+    }
+
+    public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
+        this.tareaVideoEntidad = tareaVideoEntidad;
+    }
 }

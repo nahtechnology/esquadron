@@ -11,7 +11,7 @@ public class TareaVideoEntidadPK implements Serializable {
     private TareaEntidad tareaEntidad;
     private ActividadEntidad actividadEntidad;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tarea")
     public TareaEntidad getTareaEntidad() {
         return tareaEntidad;
@@ -21,7 +21,7 @@ public class TareaVideoEntidadPK implements Serializable {
         this.tareaEntidad = tareaEntidad;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_actividad", referencedColumnName = "id_video")
     public ActividadEntidad getActividadEntidad() {
         return actividadEntidad;
