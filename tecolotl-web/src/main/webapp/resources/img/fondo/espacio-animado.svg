@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 10290 5350"  xmlns="http://www.w3.org/2000/svg">
+  <rect width="10290" height="5350"/>
+<g transform="translate(9000 2150) scale(2)"><!--1-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="blue;white;blue"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;blue;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(5500 990) scale(2)"><!--2-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="green;white;green"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;green;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(1100 1950) scale(2)"><!--3-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="red;white;red"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;red;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(7010 4000) scale(2)"><!--4-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="yellow;white;yellow"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;yellow;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(5000 2500) scale(1)"><!--5-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="purple;white;purple"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;purple;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(3000 450) scale(1)"><!--6-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="#27EDD5;white;#27EDD5"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;#27EDD5;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(3500 4450) scale(2)"><!--7-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="FUCHSIA;white;FUCHSIA"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;FUCHSIA;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(8500 450) scale(1)"><!--8-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="#F39C12;white;#F39C12"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;#F39C12;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(800 4400) scale(1)"><!--9-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="#8AED27;white;#8AED27"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;#8AED27;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+<g transform="translate(8500 4500) scale(1)"><!--10-->
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="#279CED;white;#279CED"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+ <polygon points="80,80 0,100 80,120 100,200 120,120 200,100 120,80 100,0"
+   stroke="none"
+   transform="rotate(45 100 100)">
+   <animate attributeName="fill"
+     attributeType="css"
+     values="white;#279CED;white"
+     dur="3s"
+     repeatCount="indefinite"/>
+ </polygon>
+</g>
+</svg>

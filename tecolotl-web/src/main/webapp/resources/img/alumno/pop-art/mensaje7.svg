@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="439" height="389" version="1.1" viewBox="0 0 116.15 102.92" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-49.135 -89.816)">
+  <g transform="translate(1.2481 -.69332)">
+   <circle cx="130.63" cy="126.06" r="19.391" stroke="#000" stroke-linecap="square" stroke-width=".28736" style="paint-order:fill markers stroke"/>
+   <circle cx="130.14" cy="126.45" r="17.412" fill="#fff" style="paint-order:fill markers stroke"/>
+   <circle cx="131.71" cy="144.49" r="16.465" stroke="#000500" stroke-linecap="square" stroke-width=".244" style="paint-order:fill markers stroke"/>
+   <circle cx="131.36" cy="144.66" r="13.969" fill="#fff" style="paint-order:fill markers stroke"/>
+   <g stroke-linecap="square">
+    <circle cx="104.13" cy="142.84" r="34.195" stroke="#000400" stroke-width=".50674" style="paint-order:fill markers stroke"/>
+    <circle cx="68.15" cy="142.14" r="18.875" stroke="#000" stroke-width=".27971" style="paint-order:fill markers stroke"/>
+    <circle cx="79.595" cy="118.91" r="15.949" stroke="#000" stroke-width=".23635" style="paint-order:fill markers stroke"/>
+   </g>
+   <g fill="#fff">
+    <circle cx="101.71" cy="142.06" r="31.355" style="paint-order:fill markers stroke"/>
+    <circle cx="80.202" cy="120.73" r="15.002" style="paint-order:fill markers stroke"/>
+    <circle cx="71.358" cy="141.54" r="17.584" style="paint-order:fill markers stroke"/>
+   </g>
+   <circle cx="60.347" cy="99.832" r="8.4699" stroke="#000" stroke-linecap="round" stroke-width=".31909"/>
+   <circle cx="60.694" cy="100.01" r="6.9113" fill="#fff"/>
+   <circle cx="138.29" cy="173.97" r="11.158" stroke="#000" stroke-linecap="round" stroke-width=".31822"/>
+   <circle cx="138.38" cy="173.53" r="8.8232" fill="#fff"/>
+   <circle cx="154.77" cy="184.72" r="7.8793" stroke="#000100" stroke-linecap="round" stroke-width=".28624"/>
+   <circle cx="155.12" cy="184.72" r="5.9633" fill="#fff"/>
+  </g>
+ </g>
+</svg>

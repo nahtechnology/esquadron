@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template/escolar/template-alumno.xhtml">
+    <ui:define name="menu">
+        <div class="left-content-box  content-box-dark">
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+
+            <div class="uk-position-relative uk-text-center uk-display-block">
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <!-- user dropdown -->
+                <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+                    <ul >
+                        <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Chat</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+                <!-- /user dropdown -->
+            </div>
+        </div>
+
+        <div class="left-nav-wrap  uk-visible@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+                <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
+                <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
+            </ul>
+
+        </div>
+        <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
+                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li ><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active" ><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+            </ul>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="/alumno/mapa-idea.css"/>
+        <div class="uk-section margen-superior">
+            <div class="uk-container fondo-idea uk-position-relative margen-idea  ">
+                <p class="uk-position-absolute titulo-mapa-idea">Main idea:</p>
+                <div class="uk-margin-small-top">
+                    <h:graphicImage library="img" name="alumno/pop-art/mensaje11.svg" styleClass="uk-display-block imagen-ard"/>
+                </div>
+
+                <form action="" class="uk-form-stacked">
+
+                <div class="uk-grid uk-child-width-1-4@m uk-position-relative uk-margin-large-top" uk-grid="">
+                    <div class="uk-position-relative tam-contenido-mapa">
+                        <div class="tam-gancho color-gancho1 posicion-gancho1">
+                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                        </div>
+                        <div class="uk-form-controls">
+                            <textarea rows="" cols=""  class="uk-textarea text-area-idea text-area-color1" placeholder="Details:"/>
+                        </div>
+                    </div>
+                    <div class="uk-position-relative tam-contenido-mapa">
+                        <div class="tam-gancho color-gancho2 posicion-gancho1">
+                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                        </div>
+                        <div class="uk-form-controls">
+                            <textarea rows="" cols="" class="uk-textarea text-area-idea text-area-color2" placeholder="Details:"/>
+                        </div>
+                    </div>
+                    <div class="uk-position-relative tam-contenido-mapa">
+                        <div class="tam-gancho color-gancho3  posicion-gancho1">
+                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                        </div>
+                        <div class="uk-form-controls">
+                            <textarea rows="" cols=""  class="uk-textarea text-area-idea text-area-color3" placeholder="Details:"/>
+                        </div>
+                    </div>
+                    <div class="uk-position-relative tam-contenido-mapa">
+                        <div class="tam-gancho color-gancho4 posicion-gancho1">
+                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                        </div>
+                        <div class="uk-form-controls">
+                            <textarea rows="" cols=""  class="uk-textarea text-area-idea text-area-color4" placeholder="Details:"/>
+                        </div>
+                    </div>
+                </div>
+                </form>
+                <div class="imagen-centrada">
+                    <h:graphicImage library="img" name="mounstro/whom.svg" />
+                </div>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

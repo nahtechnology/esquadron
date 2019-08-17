@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="226" height="282" version="1.1" viewBox="0 0 59.796 74.613" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-79.583 -49.516)">
+  <g transform="translate(22.3 -7.2283)">
+   <g transform="translate(-12.832 -16.404)">
+    <g transform="matrix(.10326 0 0 .10326 57.969 136.19)">
+     <circle cx="180.41" cy="71.561" r="27.991" stroke="#000" stroke-linecap="round" stroke-width=".99395"/>
+     <circle cx="181.58" cy="69.222" r="24.751" fill="#fff"/>
+    </g>
+    <g transform="matrix(.22864 0 0 .22864 39.714 122.15)">
+     <circle cx="180.41" cy="71.561" r="27.991" stroke="#000" stroke-linecap="round" stroke-width=".99395"/>
+     <circle cx="181.58" cy="69.222" r="24.751" fill="#fff"/>
+    </g>
+    <ellipse transform="matrix(.88338 .46866 -.4445 .89578 0 0)" cx="134.24" cy="82.256" rx="5.8836" ry="3.4282" fill="#ccc"/>
+   </g>
+   <g transform="translate(-2.5135 -.92604)">
+    <g transform="matrix(.42136 0 0 .42136 .64662 81.97)">
+     <circle cx="180.41" cy="71.561" r="27.991" stroke="#000" stroke-linecap="round" stroke-width=".99395"/>
+     <circle cx="181.58" cy="69.222" r="24.751" fill="#fff"/>
+    </g>
+    <ellipse transform="matrix(.89584 .44438 -.46878 .88331 0 0)" cx="120.5" cy="64.345" rx="10.903" ry="6.1089" fill="#ccc"/>
+   </g>
+   <g transform="translate(-35.586 -11.112)">
+    <g transform="matrix(1.0065 0 0 1.0065 -58.81 25.744)">
+     <circle cx="180.41" cy="71.561" r="27.991" stroke="#000" stroke-linecap="round" stroke-width=".99395"/>
+     <circle cx="181.58" cy="69.222" r="24.751" fill="#fff"/>
+    </g>
+    <ellipse transform="matrix(.96092 .27682 -.20018 .97976 0 0)" cx="143.96" cy="40.077" rx="8.303" ry="6.1158" fill="#ccc"/>
+    <ellipse transform="rotate(45.109)" cx="160.83" cy="-38.094" rx="3.9688" ry="2.9104" fill="#ccc"/>
+   </g>
+  </g>
+ </g>
+</svg>

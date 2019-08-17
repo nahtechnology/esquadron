@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/template/escolar/template-alumno.xhtml">
+    <ui:define name="menu">
+        <div class="left-content-box  content-box-dark">
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+
+            <div class="uk-position-relative uk-text-center uk-display-block">
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <!-- user dropdown -->
+                <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+                    <ul >
+                        <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Chat</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+                <!-- /user dropdown -->
+            </div>
+        </div>
+
+        <div class="left-nav-wrap  uk-visible@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+                <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
+                <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
+                <li ><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
+            </ul>
+
+        </div>
+        <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
+                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li ><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+            </ul>
+
+        </div>
+    </ui:define>
+      <ui:define name="contenido">
+          <h:outputStylesheet library="css" name="alumno/glosario.css"/>
+          <h:outputStylesheet library="css" name="letra.css"/>
+        <div class="uk-section margen-superior ">
+
+            <div class="uk-container  uk-margin-auto" >
+                <h1 class="lescuadron letra-titulo sombra-titulo">Glossary</h1>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                    <div class="uk-card-media-left uk-cover-container">
+                        <h:graphicImage library="img" name="alumno/glosario/ladron.jpeg"  alt="" pt:uk-cover=""/>
+                        <canvas  height="350"/>
+                    </div>
+                    <div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-text-center letra-glosario">Word</h3>
+                            <p class="uk-text-center">Thief.</p>
+                            <h3 class="uk-text-center letra-glosario">Concept</h3>
+                            <p class="uk-text-center">Noun. A person who steals, a robber.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                    <div class="uk-card-media-left uk-cover-container">
+                        <h:graphicImage library="img" name="alumno/glosario/scumble.jpg" alt="" pt:uk-cover=""/>
+                        <canvas  height="350"/>
+                    </div>
+                    <div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-text-center letra-glosario">Word</h3>
+                            <p class="uk-text-center">Stumble.</p>
+                            <h3 class="uk-text-center letra-glosario">Concept</h3>
+                            <p class="uk-text-center">Verb. To strike the foot against something, as in walking or running</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                    <div class="uk-card-media-left uk-cover-container">
+                        <h:graphicImage library="img" name="alumno/glosario/dizzy.jpg" alt="" pt:uk-cover=""/>
+                        <canvas  height="350"/>
+                    </div>
+                    <div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-text-center letra-glosario">Word</h3>
+                            <p class="uk-text-center">Dizzy.</p>
+                            <h3 class="uk-text-center letra-glosario">Concept</h3>
+                            <p class="uk-text-center">Adjective. Having a sensation of whirling and a tendency to fall</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                    <div class="uk-card-media-left uk-cover-container">
+                        <h:graphicImage library="img" name="alumno/glosario/summon.jpg" alt="" pt:uk-cover=""/>
+                        <canvas  height="350"/>
+                    </div>
+                    <div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-text-center letra-glosario">Word</h3>
+                            <p class="uk-text-center">Summon</p>
+                            <h3 class="uk-text-center letra-glosario">Concept</h3>
+                            <p class="uk-text-center">Verb. To call or notify to appear at a specified place,
+                                especially before a court</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                    <div class="uk-card-media-left uk-cover-container">
+                        <h:graphicImage library="img" name="alumno/glosario/oath.jpg"  alt="" pt:uk-cover=""/>
+                        <canvas  height="350"/>
+                    </div>
+                    <div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-text-center letra-glosario">Word</h3>
+                            <p class="uk-text-center">Oath.</p>
+                            <h3 class="uk-text-center letra-glosario">Concept</h3>
+                            <p class="uk-text-center">Noun. A formally affirmed statement or promise accepted as an equivalent of an appeal to a deity or to a revered
+                                person or thing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                    <div class="uk-card-media-left uk-cover-container">
+                        <h:graphicImage library="img" name="alumno/glosario/dare.jpg" alt="" pt:uk-cover=""/>
+                        <canvas  height="350"/>
+                    </div>
+                    <div>
+                        <div class="uk-card-body">
+                            <h3 class="uk-text-center letra-glosario">Word</h3>
+                            <p class="uk-text-center">Dare.</p>
+                            <h3 class="uk-text-center letra-glosario">Concept</h3>
+                            <p class="uk-text-center">Verb. To have the necessary courage or boldness for something; be bold enough</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+      </ui:define>
+
+</ui:composition>
+</html>

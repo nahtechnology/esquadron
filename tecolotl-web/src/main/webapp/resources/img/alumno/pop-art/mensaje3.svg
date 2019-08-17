@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="267" height="236" version="1.1" viewBox="0 0 70.644 62.442" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+ <metadata>
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:title/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <g transform="translate(-58.998 -121.6)">
+  <circle cx="89.108" cy="140.86" r="17.979"/>
+  <circle cx="87.883" cy="140.64" r="15.491" fill="#fff"/>
+  <g transform="translate(-11.257,48.392)" fill="#000005">
+   <circle cx="119.08" cy="98.389" r="20.496"/>
+   <path d="m135.99 109.89c0.8685 1.9952 1.2253 4.9398 1.0855 7.4432-0.16293 2.9166-0.89157 5.8767-2.2226 8.477-1.2213 2.3859-3.1217 4.4132-5.1172 6.2027-1.0282 0.92206-3.4632 2.2743-3.4632 2.2743s1.5881-2.9817 2.0159-4.6003c0.63742-2.4117 0.92606-4.9533 0.77533-7.4432-0.11213-1.8524-0.56771-3.7813-1.2405-5.4274-0.87252-2.1346-0.93887-5.3321 0.77534-6.8746 1.8315-1.6481 6.4082-2.3108 7.3915-0.0517z" stroke="#000" stroke-width=".066146"/>
+  </g>
+  <g transform="matrix(1.0925 0 0 .98983 -22.642 49.793)" fill="#fff">
+   <ellipse cx="118.27" cy="96.927" rx="18.561" ry="18.341" stroke="#fff" stroke-linecap="round" stroke-width=".079502"/>
+   <path d="m133.05 107.97c0.87293 1.9704 1.1888 4.4059 1.3439 6.6679 0.15237 2.2217 0.089 4.4984-0.41352 6.6679-0.39566 1.7082-1.1199 3.3515-2.0159 4.8588-0.58851 0.98997-2.1709 2.6878-2.1709 2.6878s0.74205-2.6277 0.82702-3.9801c0.0954-1.518-0.0414-3.0618-0.36182-4.5486-0.34331-1.593-0.86938-3.1721-1.654-4.6003-0.51445-0.93636-1.3512-1.6283-1.9642-2.5328-1.1504-1.6976-1.6412-4.7945-0.10337-6.151 1.6446-1.4507 5.6246-1.0746 6.5128 0.93041z" stroke="#fffffd" stroke-width=".066146"/>
+  </g>
+  <g>
+   <circle cx="73.836" cy="152.39" r="8.7484" stroke="#000" stroke-linecap="round" stroke-width=".082435"/>
+   <circle cx="72.911" cy="151.88" r="7.2927" fill="#fff"/>
+   <circle cx="64.663" cy="147.88" r="4.3419"/>
+   <circle cx="64.249" cy="147.68" r="3.6332" fill="#fff"/>
+  </g>
+ </g>
+</svg>
