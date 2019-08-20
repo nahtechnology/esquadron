@@ -4,42 +4,38 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
-@SequenceGenerator(name = "GeneradorATM", schema = "profesor", sequenceName = "grupo_seq")
 @NamedQueries({
-    @NamedQuery(name ="GrupoEntidad.busca",query = "SELECT g FROM GrupoEntidad g")
+    @NamedQuery(name ="GrupoEntidad.busca", query = "SELECT g FROM GrupoEntidad g"),
+    @NamedQuery(
+        name = "GrupoEntidad.buscaProfesor",
+        query = "SELECT g FROM GrupoEntidad g WHERE g.grupoEntidadPK.profesorEntidad.id = :idProfesor")
 })
 public class GrupoEntidad {
 
-    private Integer id;
+    private GrupoEntidadPK grupoEntidadPK;
     private Short grado;
     private Character grupo;
-    private Date inicio;
-    private Date fin;
-    private ProfesorEntidad profesorEntidad;
-    private List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista;
 
     public GrupoEntidad() {
     }
 
-    public GrupoEntidad(Integer id) {
-        this.id = id;
+    @EmbeddedId
+    public GrupoEntidadPK getGrupoEntidadPK() {
+        return grupoEntidadPK;
     }
 
-    @Id
-    @GeneratedValue(generator = "GeneradorATM", strategy = GenerationType.IDENTITY)
-    public Integer getId() {
-        return id;
+    public void setGrupoEntidadPK(GrupoEntidadPK grupoEntidadPK) {
+        this.grupoEntidadPK = grupoEntidadPK;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
+    @Basic
     @NotNull
+    @Column(name = "grado")
     public Short getGrado() {
         return grado;
     }
@@ -49,6 +45,8 @@ public class GrupoEntidad {
     }
 
     @NotNull
+    @Basic
+    @Column(name = "grupo")
     public Character getGrupo() {
         return grupo;
     }
@@ -57,54 +55,28 @@ public class GrupoEntidad {
         this.grupo = grupo;
     }
 
-    @NotNull
-    public Date getInicio() {
-        return inicio;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GrupoEntidad that = (GrupoEntidad) o;
+        return grupoEntidadPK.equals(that.grupoEntidadPK) &&
+                grado.equals(that.grado) &&
+                grupo.equals(that.grupo);
     }
 
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    @NotNull
-    public Date getFin() {
-        return fin;
-    }
-
-    public void setFin(Date fin) {
-        this.fin = fin;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotNull
-    @JoinColumn(name = "id_profesor")
-    public ProfesorEntidad getProfesorEntidad() {
-        return profesorEntidad;
-    }
-
-    public void setProfesorEntidad(ProfesorEntidad profesorEntidad) {
-        this.profesorEntidad = profesorEntidad;
-    }
-
-    @OneToMany(mappedBy = "grupoAlumnoEntidadPK.grupoEntidad")
-    public List<GrupoAlumnoEntidad> getGrupoAlumnoEntidadLista() {
-        return grupoAlumnoEntidadLista;
-    }
-
-    public void setGrupoAlumnoEntidadLista(List<GrupoAlumnoEntidad> grupoAlumnoEntidadLista) {
-        this.grupoAlumnoEntidadLista = grupoAlumnoEntidadLista;
+    @Override
+    public int hashCode() {
+        return Objects.hash(grupoEntidadPK, grado, grupo);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", GrupoEntidad.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
+                .add("grupoEntidadPK=" + grupoEntidadPK)
                 .add("grado=" + grado)
                 .add("grupo=" + grupo)
-                .add("inicio=" + inicio)
-                .add("fin=" + fin)
-                .add("profesorEntidad=" + profesorEntidad)
-                .add("grupoAlumnoEntidadLista=" + grupoAlumnoEntidadLista)
                 .toString();
     }
+
 }

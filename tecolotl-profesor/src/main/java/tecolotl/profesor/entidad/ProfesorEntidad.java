@@ -21,18 +21,8 @@ import java.util.StringJoiner;
             query = "SELECT p FROM ProfesorEntidad p WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
         ),
         @NamedQuery(
-            name = "ProfesorEntidad.buscaTotalGrupos" ,
-            query = "SELECT COUNT(g.profesorEntidad.id), p.id FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
-                    "WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo GROUP BY g.profesorEntidad.id, p.id"
-        ),
-        @NamedQuery(
-                name = "ProfesorEntidad.totalAlumnosPorEscuela",
-                query = "SELECT COUNT(g.profesorEntidad.id) FROM ProfesorEntidad p LEFT JOIN p.grupoEntidadLista g " +
-                    "LEFT JOIN g.grupoAlumnoEntidadLista ga WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo GROUP BY g.profesorEntidad.id"
-        ),
-        @NamedQuery(
-                name = "ProfesorEntidad.totalProfesores",
-                query = "SELECT COUNT(p.id) FROM ProfesorEntidad p WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+            name = "ProfesorEntidad.buscaDetalle" ,
+            query = "SELECT p FROM ProfesorEntidad p JOIN FETCH p.grupoEntidadLista ge WHERE p.id = :id"
         )
 })
 public class ProfesorEntidad extends PersonaEntidad {
@@ -69,7 +59,7 @@ public class ProfesorEntidad extends PersonaEntidad {
         this.escuelaEntidad = escuelaEntidad;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profesorEntidad")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "grupoEntidadPK.profesorEntidad")
     public List<GrupoEntidad> getGrupoEntidadLista() {
         return grupoEntidadLista;
     }

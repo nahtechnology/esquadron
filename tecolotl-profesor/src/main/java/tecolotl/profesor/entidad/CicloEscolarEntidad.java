@@ -7,23 +7,26 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
-@Table(name = "ciclo_escolar",schema = "profesor")
-public class CicloEscolar {
+@Table(name = "ciclo_escolar", schema = "profesor")
+@NamedQueries(value = {
+        @NamedQuery(name = "CicloEscolarEntidad.busca", query = "SELECT ce FROM CicloEscolarEntidad ce")
+})
+public class CicloEscolarEntidad {
 
-    private CicloEscolarPK cicloEscolarPK;
+    private CicloEscolarEntidadPK cicloEscolarPK;
     private EscuelaEntidad escuelaEntidad;
     private String descripcion;
 
     @EmbeddedId
-    public CicloEscolarPK getCicloEscolarPK() {
+    public CicloEscolarEntidadPK getCicloEscolarPK() {
         return cicloEscolarPK;
     }
 
-    public void setCicloEscolarPK(CicloEscolarPK cicloEscolarPK) {
+    public void setCicloEscolarPK(CicloEscolarEntidadPK cicloEscolarPK) {
         this.cicloEscolarPK = cicloEscolarPK;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_escuela")
     public EscuelaEntidad getEscuelaEntidad() {
         return escuelaEntidad;
@@ -47,7 +50,7 @@ public class CicloEscolar {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CicloEscolar that = (CicloEscolar) o;
+        CicloEscolarEntidad that = (CicloEscolarEntidad) o;
         return cicloEscolarPK.equals(that.cicloEscolarPK) &&
                 escuelaEntidad.equals(that.escuelaEntidad) &&
                 descripcion.equals(that.descripcion);
@@ -60,7 +63,7 @@ public class CicloEscolar {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", CicloEscolar.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", CicloEscolarEntidad.class.getSimpleName() + "[", "]")
                 .add("cicloEscolarPK=" + cicloEscolarPK)
                 .add("escuelaEntidad=" + escuelaEntidad)
                 .add("descripcion='" + descripcion + "'")

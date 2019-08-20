@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 @Embeddable
-public class CicloEscolarPK implements Serializable {
+public class CicloEscolarEntidadPK implements Serializable {
 
     private Date inicio;
     private Date fin;
@@ -38,7 +38,7 @@ public class CicloEscolarPK implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CicloEscolarPK that = (CicloEscolarPK) o;
+        CicloEscolarEntidadPK that = (CicloEscolarEntidadPK) o;
         return inicio.equals(that.inicio) &&
                 fin.equals(that.fin);
     }
@@ -50,7 +50,7 @@ public class CicloEscolarPK implements Serializable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", CicloEscolarPK.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", CicloEscolarEntidadPK.class.getSimpleName() + "[", "]")
                 .add("inicio=" + inicio)
                 .add("fin=" + fin)
                 .toString();

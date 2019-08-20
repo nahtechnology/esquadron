@@ -70,12 +70,5 @@ public class TareaEntidad {
         this.tareaEscribirActividadEntidadLista = tareaEscribirActividadEntidadLista;
     }
 
-    @OneToMany(mappedBy = "tareaVideoEntidadPK.tareaEntidad", cascade = CascadeType.PERSIST)
-    public TareaVideoEntidad getTareaVideoEntidad() {
-        return tareaVideoEntidad;
-    }
 
-    public void setTareaVideoEntidad(TareaVideoEntidad tareaVideoEntidad) {
-        this.tareaVideoEntidad = tareaVideoEntidad;
-    }
 }

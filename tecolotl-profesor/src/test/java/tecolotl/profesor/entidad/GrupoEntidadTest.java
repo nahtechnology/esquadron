@@ -8,14 +8,36 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
+import tecolotl.administracion.modelo.direccion.ColoniaModelo;
+import tecolotl.administracion.modelo.escuela.ContactoModelo;
+import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+import tecolotl.administracion.sesion.ContactoSesionBean;
+import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
+import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidadPK;
+import tecolotl.alumno.modelo.ActividadModelo;
+import tecolotl.alumno.modelo.escribir.EscribirModelo;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
+import tecolotl.alumno.sesion.ActividadSesionBean;
+import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
+import tecolotl.nucleo.herramienta.CorreoEnum;
 import tecolotl.nucleo.herramienta.LoggerProducer;
+import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.sesion.CatalogoSesionBean;
+import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
+import tecolotl.profesor.modelo.GrupoAlumnoModelo;
+import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
+import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -24,18 +46,27 @@ import java.util.List;
 
 @RunWith(Arquillian.class)
 public class GrupoEntidadTest {
+
     @Deployment
-    public static WebArchive createDeployment(){
-        return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(ProfesorEntidad.class, PersonaEntidad.class, LoggerProducer.class, CatalagoEntidad.class,
-                        GrupoEntidad.class, GrupoEntidad.class, AlumnoEntidad.class, NivelLenguajeEntidad.class,
-                        GradoEscolarEntidad.class, TareaEntidad.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class,
-                        GlosarioEntidad.class, ActividadEntidad.class, TipoEstudianteEntidad.class)
-                .addPackage(EscuelaEntidad.class.getPackage())
-                .addPackage(ProfesorEntidad.class.getPackage())
-                .addPackage(GrupoEntidad.class.getPackage())
-                .addAsResource("META-INF/persistence.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
+    public static WebArchive createDeployment() {
+        return ShrinkWrap.create(WebArchive.class, "prueba.war")
+                //nucleo
+                .addPackage(CorreoEnum.class.getPackage()).addPackage(CatalogoModelo.class.getPackage()).addPackage(CatalagoEntidad.class.getPackage())
+                .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
+                //administracion
+                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ColoniaModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
+                .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
+                .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+                //alumno
+                .addPackage(EscribirActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
+                .addPackage(ActividadEntidad.class.getPackage()).addPackage(EscribirModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
+                .addPackage(ActividadModelo.class.getPackage()).addPackage(ActividadSesionBean.class.getPackage())
+                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage()).addClass(GlosarioNuevoValidacion.class)
+                //profesor
+                .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
+                .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
+                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+                .addAsResource("META-INF/persistence.xml");
     }
 
     @PersistenceContext
@@ -49,12 +80,9 @@ public class GrupoEntidadTest {
         Assert.assertFalse(grupoEntidadLista.isEmpty());
         for(GrupoEntidad grupoEntidad: grupoEntidadLista){
             Assert.assertNotNull(grupoEntidad);
-            Assert.assertNotNull(grupoEntidad.getId());
             Assert.assertNotNull(grupoEntidad.getGrado());
             Assert.assertNotNull(grupoEntidad.getGrupo());
-            Assert.assertNotNull(grupoEntidad.getInicio());
-            Assert.assertNotNull(grupoEntidad.getFin());
-            Assert.assertNotNull(grupoEntidad.getProfesorEntidad());
+            Assert.assertNotNull(grupoEntidad.getGrupoEntidadPK());
         }
     }
 }

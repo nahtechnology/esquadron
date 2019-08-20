@@ -35,10 +35,6 @@ public class ProfesorModelo extends PersonaModelo {
     public ProfesorModelo() {
     }
 
-    public ProfesorModelo(PersonaEntidad personaEntidad) {
-        super(personaEntidad);
-    }
-
     public ProfesorModelo(ProfesorEntidad profesorEntidad){
         super(profesorEntidad);
         this.id = profesorEntidad.getId();

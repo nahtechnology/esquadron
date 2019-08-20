@@ -37,21 +37,27 @@ public class GrupoSesionBean {
      */
     public void inserta(@NotNull GrupoModelo grupoModelo){
         logger.fine(grupoModelo.toString());
-        GrupoEntidad grupoEntidad = new GrupoEntidad();
-        grupoEntidad.setGrupo(grupoModelo.getGrupo());
-        grupoEntidad.setGrado(grupoModelo.getGrado());
-        grupoEntidad.setInicio(grupoModelo.getInicio());
-        grupoEntidad.setFin(grupoModelo.getFin());
-        grupoEntidad.setProfesorEntidad(new ProfesorEntidad(grupoModelo.getProfesorModelo().getId()));
-        entityManager.persist(grupoEntidad);
+
     }
 
     /**
-     * Busca un Grupo.
+     * Busca todos los grupos.
      * @return Lista de todos los Grupos.
      */
     public List<GrupoModelo> busca(){
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.busca", GrupoEntidad.class);
+        List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
+        logger.finer("Numero de grupos encontrados: ".concat(String.valueOf(grupoEntidadLista.size())));
+        return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca todos los grupos perteneciente a un profesor.
+     * @return Lista de todos los Grupos.
+     */
+    public List<GrupoModelo> busca(@NotNull Integer idProfesor){
+        TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaProfesor", GrupoEntidad.class);
+        typedQuery.setParameter("idProfesor", idProfesor);
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
         logger.finer("Numero de grupos encontrados: ".concat(String.valueOf(grupoEntidadLista.size())));
         return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
@@ -68,8 +74,8 @@ public class GrupoSesionBean {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate criteriaUpdate = criteriaBuilder.createCriteriaUpdate(GrupoEntidad.class);
         Root<GrupoEntidad> root = criteriaUpdate.from(GrupoEntidad.class);
-        Predicate predicate = criteriaBuilder.equal(root.get("id"), grupoModelo.getId());
-        criteriaUpdate.set(root.get("grupo"), grupoModelo.getGrupo());
+        Predicate predicate = criteriaBuilder.equal(root.get("id"), grupoModelo);
+        criteriaUpdate.set(root.get("grupo"), grupoModelo);
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
@@ -87,4 +93,5 @@ public class GrupoSesionBean {
         criteriaDelete.where(criteriaBuilder.equal(root.get("id"), idGrupo));
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
+
 }

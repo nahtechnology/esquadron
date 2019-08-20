@@ -5,38 +5,15 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Embeddable
 public class GrupoEntidadPK implements Serializable {
 
-    private Short grado;
-    private Character grupo;
     private ProfesorEntidad profesorEntidad;
+    private CicloEscolarEntidad cicloEscolarEntidad;
 
-    @Basic
-    @NotNull
-    @Min(0)
-    @JoinColumn(name = "grado")
-    public Short getGrado() {
-        return grado;
-    }
-
-    public void setGrado(Short grado) {
-        this.grado = grado;
-    }
-
-    @Basic
-    @NotNull
-    @JoinColumn(name = "grupo")
-    public Character getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Character grupo) {
-        this.grupo = grupo;
-    }
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "id_profesor")
     public ProfesorEntidad getProfesorEntidad() {
@@ -47,19 +24,39 @@ public class GrupoEntidadPK implements Serializable {
         this.profesorEntidad = profesorEntidad;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotNull
+    @JoinColumns(value = {
+            @JoinColumn(name = "inicio"),
+            @JoinColumn(name = "fin")
+    })
+    public CicloEscolarEntidad getCicloEscolarEntidad() {
+        return cicloEscolarEntidad;
+    }
+
+    public void setCicloEscolarEntidad(CicloEscolarEntidad cicloEscolarEntidad) {
+        this.cicloEscolarEntidad = cicloEscolarEntidad;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GrupoEntidadPK that = (GrupoEntidadPK) o;
-        return grado.equals(that.grado) &&
-                grupo.equals(that.grupo) &&
-                profesorEntidad.equals(that.profesorEntidad);
+        return profesorEntidad.equals(that.profesorEntidad) &&
+                cicloEscolarEntidad.equals(that.cicloEscolarEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(grado, grupo, profesorEntidad);
+        return Objects.hash(profesorEntidad, cicloEscolarEntidad);
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", GrupoEntidadPK.class.getSimpleName() + "[", "]")
+                .add("profesorEntidad=" + profesorEntidad)
+                .add("cicloEscolarEntidad=" + cicloEscolarEntidad)
+                .toString();
+    }
 }

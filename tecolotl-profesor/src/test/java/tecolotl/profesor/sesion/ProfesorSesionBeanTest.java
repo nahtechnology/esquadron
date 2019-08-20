@@ -88,9 +88,10 @@ public class ProfesorSesionBeanTest {
         }
     }
 
+
     @Test
     public void buscaContrasenia(){
-        ProfesorModelo profesorModelo = profesorSesionBean.buscaID(-38);
+        ProfesorModelo profesorModelo = profesorSesionBean.busca(-38);
         Assert.assertNotNull(profesorModelo);
         Assert.assertNotNull(profesorModelo.getNombre());
         Assert.assertNotNull(profesorModelo.getContrasenia());
@@ -98,23 +99,6 @@ public class ProfesorSesionBeanTest {
         String str1 = encriptadorContrasenia.decrypt(profesorModelo.getContrasenia());
         System.out.println("Cieñit0L1ñd0#/5200*[]{}?¿~!¡€".equals(str1)+"\n Lo lograste!!");
         System.out.println(str1);
-    }
-
-    @Test
-    public void buscaClaveCen(){
-        Map<Integer, ProfesorDashboardModelo> profesorModeloLista = profesorSesionBean.busca("21DBS0029K");
-        Assert.assertNotNull(profesorModeloLista);
-        Assert.assertFalse(profesorModeloLista.isEmpty());
-        for(Map.Entry<Integer, ProfesorDashboardModelo> profesorModeloEntry : profesorModeloLista.entrySet()){
-            Assert.assertNotNull(profesorModeloEntry.getValue());
-            Assert.assertNotNull(profesorModeloEntry.getValue().getId());
-            Assert.assertNotNull(profesorModeloEntry.getValue().getApodo());
-            Assert.assertNotNull(profesorModeloEntry.getValue().getNombre());
-            Assert.assertNotNull(profesorModeloEntry.getValue().getApellidoPaterno());
-            Assert.assertNotNull(profesorModeloEntry.getValue().getApellidoMaterno());
-            Assert.assertNotNull(profesorModeloEntry.getValue().getContrasenia());
-            Assert.assertFalse(profesorModeloEntry.getValue().getTotalGrupos() < 0);
-        }
     }
 
     @Test
@@ -171,10 +155,4 @@ public class ProfesorSesionBeanTest {
         Assert.assertFalse(profesorEliminado == 0);
     }
 
-    @Test
-    public void buscaTotal() {
-        EscuelaPoblacionModelo escuelaPoblacionModelo = profesorSesionBean.total("21DBA0010N");
-        Assert.assertNotEquals(escuelaPoblacionModelo.getTotalAlumnos(), 0);
-        Assert.assertNotEquals(escuelaPoblacionModelo.getTotalProfesores(), 0);
-    }
 }

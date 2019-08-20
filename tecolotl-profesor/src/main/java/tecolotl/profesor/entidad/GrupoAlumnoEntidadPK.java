@@ -1,6 +1,7 @@
 package tecolotl.profesor.entidad;
 
 import tecolotl.alumno.entidad.AlumnoEntidad;
+import tecolotl.alumno.entidad.TareaEntidad;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -10,12 +11,17 @@ import java.util.StringJoiner;
 
 @Embeddable
 public class GrupoAlumnoEntidadPK implements Serializable {
+
     private GrupoEntidad grupoEntidad;
     private AlumnoEntidad alumnoEntidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    @JoinColumn(name = "id_grupo")
+    @JoinColumns(value = {
+            @JoinColumn(name = "id_profesor"),
+            @JoinColumn(name = "inicio"),
+            @JoinColumn(name = "fin")
+    })
     public GrupoEntidad getGrupoEntidad() {
         return grupoEntidad;
     }
@@ -56,4 +62,5 @@ public class GrupoAlumnoEntidadPK implements Serializable {
                 .add("alumnoEntidad=" + alumnoEntidad)
                 .toString();
     }
+
 }

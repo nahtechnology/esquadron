@@ -40,7 +40,7 @@ public class GrupoAlumnoSesionBean {
         logger.fine(grupoAlumnoModelo.toString());
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
-        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
+
         GrupoAlumnoEntidad grupoAlumnoEntidad = new GrupoAlumnoEntidad();
         grupoAlumnoEntidad.setGrupoAlumnoEntidadPK(grupoAlumnoEntidadPK);
         entityManager.persist(grupoAlumnoEntidad);
@@ -65,7 +65,7 @@ public class GrupoAlumnoSesionBean {
     public Integer elimina(@NotNull GrupoAlumnoModelo grupoAlumnoModelo){
         logger.fine(grupoAlumnoModelo.toString());
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
-        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
+
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete criteriaDelete = criteriaBuilder.createCriteriaDelete(GrupoAlumnoEntidad.class);

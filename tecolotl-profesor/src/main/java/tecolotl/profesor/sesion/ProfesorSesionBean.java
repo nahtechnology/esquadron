@@ -70,32 +70,16 @@ public class ProfesorSesionBean {
 
     /**
      * Método para buscar un profesor por ID.
-     * @param ID ID del profesor.
+     * @param Id Identificado del profesor.
      * @return un profesor.
      */
-    public ProfesorModelo buscaID(@NotNull Integer ID){
-        ProfesorModelo profesorModelo = new ProfesorModelo(entityManager.find(ProfesorEntidad.class, ID));
+    public ProfesorModelo busca(@NotNull Integer Id){
+        ProfesorModelo profesorModelo = new ProfesorModelo(entityManager.find(ProfesorEntidad.class, Id));
         logger.finer("Profesor encontrado por ID: ".concat(profesorModelo.toString()));
         return profesorModelo;
 
     }
 
-    /**
-     * Busca profesores por escuela
-     * @param claveCentrodeTrabajo id de la escuela para listar los profesores.
-     * @return Lista de ProfesorModelo.
-     */
-    public Map<Integer, ProfesorDashboardModelo> busca(@NotNull String claveCentrodeTrabajo){
-        TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaIdEscuela", ProfesorEntidad.class);
-        typedQuery.setParameter("claveCentroTrabajo", claveCentrodeTrabajo);
-        Map<Integer, ProfesorDashboardModelo> profesorDashboardModeloMapa = typedQuery.getResultList().stream()
-                .map(ProfesorDashboardModelo::new).collect(Collectors.toMap(ProfesorDashboardModelo::getId, Function.identity()));
-        entityManager.createNamedQuery("ProfesorEntidad.buscaTotalGrupos", Object[].class)
-                .setParameter("claveCentroTrabajo", claveCentrodeTrabajo).getResultList().forEach(objects -> {
-            profesorDashboardModeloMapa.get(objects[1]).setTotalGrupos(((Long)objects[0]).intValue());
-        });
-        return profesorDashboardModeloMapa;
-    }
     /**
      * Actualiza los datos de un profesor
      * @param profesorModelo datos para poder modificar un profesor
@@ -131,22 +115,5 @@ public class ProfesorSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
-    /**
-     * Busca el total de población de una escuela
-     * @param claveCentroTrabajo
-     * @return
-     */
-    public EscuelaPoblacionModelo total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
-        EscuelaPoblacionModelo escuelaPoblacionModelo = new EscuelaPoblacionModelo();
-        try {
-            escuelaPoblacionModelo.setTotalProfesores(entityManager.createNamedQuery("ProfesorEntidad.totalProfesores", Long.class)
-                    .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
-            escuelaPoblacionModelo.setTotalAlumnos(entityManager.createNamedQuery("ProfesorEntidad.totalAlumnosPorEscuela", Long.class)
-                    .setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue());
-        } catch (NoResultException ex) {
-            logger.fine("Escuela poblacion sin datos para la escuela:".concat(claveCentroTrabajo));
-        }
-        return escuelaPoblacionModelo;
-    }
 
 }
