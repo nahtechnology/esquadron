@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+        <ui:define name="menu">
+            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+                <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                <li class="uk-text-uppercase nav-sub-active"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+            </ul>
+            <div class="uk-navbar-left uk-hidden@m">
+                <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+            </div>
+            <div id="menu" uk-offcanvas="overlay: true">
+                <div class="uk-offcanvas-bar  ">
+
+                    <button class="uk-offcanvas-close" type="button" uk-close=""/>
+
+                    <ul class="uk-nav  nav-sub-offcanvas ">
+                        <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                        <!--<li class="uk-text-uppercase "><a href="#" class="letra-color-subnav">Group Details</a></li>-->
+                        <!--<li class="uk-text-uppercase "><a href="#" class="letra-color-subnav">Student Details</a></li>-->
+                        <li class="uk-text-uppercase nav-sub-active"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                        <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </ui:define>
+        <ui:define name="contenido">
+            <h:outputStylesheet library="css" name="profesor/biblioteca-profesor.css"/>
+            <div class="uk-container">
+                <div class="uk-width-1-1@m uk-margin-medium-top">
+                    <form id="search-form" action="">
+                        <div class="uk-inline uk-width-1-1">
+                            <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: search"/>
+                            <input class="uk-input uk-width-1-1 search-fld" type="text" placeholder="Type your search" autofocus=""/>
+                            <a href="#" class="search-filter" data-uk-filter-control="[data-tags*='']" hidden="">Search</a>
+                        </div>
+                    </form>
+                </div>
+                <div data-uk-filter="target: .js-filter">
+                <ul class="uk-subnav nav-default-profesor uk-subnav-alumno uk-margin-medium-top">
+                    <li class="uk-active" data-uk-filter-control=""><a href="#">Show All</a></li>
+                    <li data-uk-filter-control=".A1" ><a href="#">Level A1</a></li>
+                    <li data-uk-filter-control=".A1-A2" ><a href="#">Level A1-A2</a></li>
+                    <li data-uk-filter-control=".A2"><a href="#">Level A2</a></li>
+                    <li data-uk-filter-control=".B1"><a href="#">Level B1</a></li>
+                    <li data-uk-filter-control=".B2"><a href="#">Level B2</a></li>
+                    <li data-uk-filter-control=".C1"><a href="#">Level C1</a></li>
+                    <li data-uk-filter-control=".C2"><a href="#">Level C2</a></li>
+                </ul>
+
+                <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
+                    <ui:repeat value="#{actividadesControlador.actividadesModeloLista}" var="actividadModelo">
+                        <h:panelGroup layout="block" styleClass="uk-width-1-3@m #{actividadModelo.languageLevel}" pt:data-tags="a beautiful landscape - nature outdoor">
+                            <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border #{actividadModelo.languageLevel}">
+                                <div class="uk-card-header border-card">
+                                    <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
+                                        <div class="uk-width-expand">
+                                            <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="30" height="30" />
+                                            <span class="cat-txt">#{actividadModelo.topic}</span>
+                                        </div>
+                                        <div class="uk-width-auto uk-text-right uk-text-muted">
+                                            <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>#{actividadModelo.time}
+                                        </div>
+                                    </h:panelGroup>
+                                </div>
+                                <div class="uk-card-media-top">
+                                    <div uk-spinner=""></div>
+                                    <div class="video">#{actividadModelo.idVideo}</div>
+                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>
+                                </div>
+                                <div class="uk-card-body">
+                                    <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.question}</h6>
+                                    <p class="uk-text-small uk-text-muted ">#{actividadModelo.learnersType}</p>
+                                </div>
+                                <div class="uk-card-footer">
+                                    <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
+                                        <div class="uk-width-auto uk-text-small text-color-level1 uk-text-bold">
+                                            <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
+                                                <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Download" styleClass="uk-icon-image uk-svg" library="img" name="escuela.svg" /></div>
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Didactic Guide" styleClass="uk-icon-image uk-svg" library="img" name="decarga.svg" /></div>
+                                                <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
+                                            </h:panelGroup>
+                                        </div>
+                                        <div class="uk-width-expand ">
+                                            <div class="uk-grid uk-grid-small uk-child-width-1-5" uk-grid="">
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image uk-svg" library="img" name="listen.svg" /></div>
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Transcript" styleClass="uk-icon-image uk-svg " library="img" name="transcript1.svg" /></div>
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image uk-svg " library="img" name="reading.svg" /></div>
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image uk-svg " library="img" name="gramatica.svg" /></div>
+                                                <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="quizcalifica.svg" /></div>
+                                            </div>
+                                        </div>
+
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </ui:repeat>
+                </h:panelGroup>
+                </div>
+            </div>
+            <h:outputScript library="js" name="profesor/biblioteca-profesor.js"/>
+        </ui:define>
+    </ui:composition>
+</html>

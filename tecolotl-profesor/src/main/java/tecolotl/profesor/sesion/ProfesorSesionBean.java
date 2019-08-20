@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 
 
 @Stateless
-public class ProfesorSesionBean {
+public class    ProfesorSesionBean {
 
     @PersistenceContext
     private EntityManager entityManager;

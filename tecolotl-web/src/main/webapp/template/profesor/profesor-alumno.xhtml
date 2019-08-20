@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:include src="header-profesor-alumno.xhtml"/>
+<h:body pt:data-uk-filter="target: .js-filter">
+   <ui:include src="nav1.xhtml"/>
+   <aside id="left-col" class="uk-light uk-visible@m">
+      <ui:include src="nav2.xhtml"/>
+      <div class="left-nav-wrap">
+         <ui:insert name="menu"/>
+         <ui:include src="barras-menu.xhtml"/>
+      </div>
+      <ui:include src="botones.xhtml"/>
+   </aside>
+      <div id="content" data-uk-height-viewport="expand: true">
+         <div class="uk-container uk-container-expand">
+            <ui:insert name="contenido">Sin contenido</ui:insert>
+         </div>
+      </div>
+   <ui:include src="footer.xhtml"/>
+</h:body>
+</html>
