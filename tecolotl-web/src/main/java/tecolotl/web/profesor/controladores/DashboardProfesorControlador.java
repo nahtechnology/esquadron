@@ -44,7 +44,7 @@ public class DashboardProfesorControlador {
     @PostConstruct
     public void init(){
         logger.info("Construyendo el controlador Dashboard Profesor");
-        profesorModelo = profesorSesionBean.buscaID(134);
+        profesorModelo = profesorSesionBean.busca(134);
         profesorDashboardModeloMap = profesorSesionBean.busca("12eqwdqwe23ed");
         numero = 1;
     }

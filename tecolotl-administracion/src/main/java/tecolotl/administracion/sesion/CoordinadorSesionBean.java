@@ -156,48 +156,6 @@ public class CoordinadorSesionBean {
      * Metodo que envia el correo y lee un archivo con BufferedReader y FileReader
      * lo cual no lo hace apto más que para ver eñ contenido del archivo y así procesarlo.
      */
-    public void enviaCorreo(){
-    /*    StringBuilder resultStringBuilder = new StringBuilder();
-        correoSessionBean.setAsunto("Bienvenido a Squadrón ".concat("Jesús Reyes"));
-        correoSessionBean.setDestinatario("jesus.cab.lun@gmail.com");
-        correoSessionBean.setRemitente("squadron@tecolotl.com");
-        logger.fine("Ocurrio un evento: ".concat(correoSessionBean.toString()));
-        try{
-                String cadena;
-                String aux;
-                FileReader f = new FileReader("D:/Proyectos/Tecolotl/tecolotl/tecolotl-administracion/src/main/resources/ConfirmacionNuevoCoordinador.html");
-                BufferedReader b = new BufferedReader(f);
-                while((cadena = b.readLine())!=null) {
-                    System.out.println(cadena);
-                    System.out.println(cadena);
-                    aux = cadena.replaceFirst("correo@correo", "solucionesT67@gmail.com");
-                    System.out.println(aux);
-                    aux = (cadena.matches("(.*)correo@correo(.*)")) ? cadena.replaceFirst("correo@correo", "solucionesT67@gmail.com"): null;
-                    System.out.println(aux);
-                    if(cadena.matches("(.*)NombreCompleto(.*)")){
-                        aux = cadena.replaceFirst("NombreCompleto","Jesus Reyes Reyes");
-                        resultStringBuilder.append(aux).append("\n");
-                    }else if(cadena.matches("(.*)ApodoA(.*)")){
-                        aux = cadena.replaceFirst("ApodoA","Juanito");
-                        resultStringBuilder.append(aux).append("\n");
-                    }else if(cadena.matches("(.*)correo@correo(.*)")){
-                        aux = cadena.replaceFirst("correo@correo","solucionesT67@gmail.com");
-                        resultStringBuilder.append(aux).append("\n");
-                    }else if(cadena.matches("(.*)contrasenia(.*)")){
-                        aux = cadena.replaceFirst("contrasenia","123456");
-                        resultStringBuilder.append(aux).append("\n");
-                    }else {
-                        resultStringBuilder.append(cadena).append("\n");
-                    }
-                }
-                b.close();
-                System.out.println(resultStringBuilder.toString());
-        }catch (Exception e){
-            logger.log(Level.SEVERE, "Ocurrio un error al leer el archivo: ".concat(e.toString()));
-        }
-        correoSessionBean.setMensaje(resultStringBuilder.toString());
-        //correoSessionBean.setMensaje(correoSessionBean.getCuerpoMail(CoordinadorSesionBean.class));
-        correoSessionBean.enviar();
-        */
+    public void enviaCorreo() {
     }
 }

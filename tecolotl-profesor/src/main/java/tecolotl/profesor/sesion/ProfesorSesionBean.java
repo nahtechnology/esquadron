@@ -57,6 +57,10 @@ public class    ProfesorSesionBean {
         profesorModelo.setId(profesorEntidad.getId());
     }
 
+    public EscuelaPoblacionModelo total(String claveCentroTrabajo) {
+        return null;
+    }
+
     /**
      * Busca un profesor.
      * @return una lista de todos los profesores.
@@ -78,6 +82,10 @@ public class    ProfesorSesionBean {
         logger.finer("Profesor encontrado por ID: ".concat(profesorModelo.toString()));
         return profesorModelo;
 
+    }
+
+    public Map<Integer, ProfesorDashboardModelo> busca(@NotNull String IdEscuela){
+        return null;
     }
 
     /**
