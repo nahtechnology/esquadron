@@ -82,4 +82,5 @@ public class GrupoAlumnoEntidadTest {
             Assert.assertNotNull(grupoAlumnoEntidad.getGrupoAlumnoEntidadPK());
         }
     }
+
 }

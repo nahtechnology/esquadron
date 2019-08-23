@@ -17,11 +17,7 @@ public class GrupoAlumnoEntidadPK implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    @JoinColumns(value = {
-            @JoinColumn(name = "id_profesor"),
-            @JoinColumn(name = "inicio"),
-            @JoinColumn(name = "fin")
-    })
+    @JoinColumn(name = "id_grupo")
     public GrupoEntidad getGrupoEntidad() {
         return grupoEntidad;
     }
@@ -47,7 +43,7 @@ public class GrupoAlumnoEntidadPK implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         GrupoAlumnoEntidadPK that = (GrupoAlumnoEntidadPK) o;
         return grupoEntidad.equals(that.grupoEntidad) &&
-            alumnoEntidad.equals(that.alumnoEntidad);
+                alumnoEntidad.equals(that.alumnoEntidad);
     }
 
     @Override
@@ -57,10 +53,10 @@ public class GrupoAlumnoEntidadPK implements Serializable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", GrupoAlumnoEntidadPK.class.getSimpleName() + "[", "]")
-                .add("grupoEntidad=" + grupoEntidad)
-                .add("alumnoEntidad=" + alumnoEntidad)
-                .toString();
+        return "GrupoAlumnoEntidadPK{" +
+                "grupoEntidad=" + grupoEntidad +
+                ", alumnoEntidad=" + alumnoEntidad +
+                '}';
     }
 
 }

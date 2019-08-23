@@ -5,10 +5,7 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.StringJoiner;
+import java.util.*;
 
 @Entity
 @Table(name = "alumno", schema = "alumno")
@@ -96,6 +93,26 @@ public class AlumnoEntidad extends PersonaEntidad {
 
     public void setContraseniaPadreFamilia(byte[] contraseniaPadreFamilia) {
         this.contraseniaPadreFamilia = contraseniaPadreFamilia;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AlumnoEntidad that = (AlumnoEntidad) o;
+        return id.equals(that.id) &&
+                nivelLenguajeEntidad.equals(that.nivelLenguajeEntidad) &&
+                gradoEscolarEntidad.equals(that.gradoEscolarEntidad) &&
+                nacimiento.equals(that.nacimiento) &&
+                correoPadreFamilia.equals(that.correoPadreFamilia) &&
+                Arrays.equals(contraseniaPadreFamilia, that.contraseniaPadreFamilia);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(id, nivelLenguajeEntidad, gradoEscolarEntidad, nacimiento, correoPadreFamilia);
+        result = 31 * result + Arrays.hashCode(contraseniaPadreFamilia);
+        return result;
     }
 
     @Override

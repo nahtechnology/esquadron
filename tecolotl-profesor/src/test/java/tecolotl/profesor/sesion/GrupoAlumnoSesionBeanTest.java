@@ -55,7 +55,7 @@ public class GrupoAlumnoSesionBeanTest {
                         EstadoEntidad.class, MotivoBloqueoEntidad.class, CatalagoEntidad.class,
                         CatalogoModelo.class, ContactoEntidad.class, ContactoEntidadPK.class,
                         TipoContactoEntidad.class, LicenciaEntidad.class, LicenciaEntidadPk.class,
-                        AlumnoEntidad.class, GrupoEntidad.class, GrupoEntidadPK.class,
+                        AlumnoEntidad.class, GrupoEntidad.class,
                         NivelLenguajeEntidad.class, GradoEscolarEntidad.class, EscuelaDashboardModelo.class,
                         LoggerProducer.class, TareaEntidad.class, TareaGlosarioActividadEntidad.class,
                         TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,

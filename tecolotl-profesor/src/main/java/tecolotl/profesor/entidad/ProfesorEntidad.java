@@ -15,15 +15,19 @@ import java.util.StringJoiner;
 })
 @SequenceGenerator(name = "secuencia", schema = "profesor", sequenceName = "profesor_seq")
 @NamedQueries({
-        @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p"),
-        @NamedQuery(
-            name = "ProfesorEntidad.buscaIdEscuela",
-            query = "SELECT p FROM ProfesorEntidad p WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
-        ),
-        @NamedQuery(
-            name = "ProfesorEntidad.buscaDetalle" ,
-            query = "SELECT p FROM ProfesorEntidad p JOIN FETCH p.grupoEntidadLista ge WHERE p.id = :id"
-        )
+    @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p"),
+    @NamedQuery(
+        name = "ProfesorEntidad.buscaIdEscuela",
+        query = "SELECT p FROM ProfesorEntidad p WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+    ),
+    @NamedQuery(
+        name = "ProfesorEntidad.buscaDetalle" ,
+        query = "SELECT p FROM ProfesorEntidad p JOIN FETCH p.grupoEntidadLista ge WHERE p.id = :id"
+    ),
+    @NamedQuery(
+        name = "ProfesorEntidad.buscaTotalEscuela",
+        query = "SELECT COUNT (p) FROM ProfesorEntidad p WHERE p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+    )
 })
 public class ProfesorEntidad extends PersonaEntidad {
 
@@ -59,7 +63,7 @@ public class ProfesorEntidad extends PersonaEntidad {
         this.escuelaEntidad = escuelaEntidad;
     }
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "grupoEntidadPK.profesorEntidad")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "profesorEntidad")
     public List<GrupoEntidad> getGrupoEntidadLista() {
         return grupoEntidadLista;
     }

@@ -26,9 +26,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-
 @Stateless
-public class    ProfesorSesionBean {
+public class ProfesorSesionBean {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -57,8 +56,20 @@ public class    ProfesorSesionBean {
         profesorModelo.setId(profesorEntidad.getId());
     }
 
-    public EscuelaPoblacionModelo total(String claveCentroTrabajo) {
-        return null;
+    /**
+     * Busca el total de profesores y de alumnos de una escuela.
+     * @param claveCentroTrabajo Clave centro de la escuela
+     * @return EscuelaPoblacionModelo con los datos
+     */
+    public EscuelaPoblacionModelo total(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        logger.fine(claveCentroTrabajo);
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaTotalEscuela", Long.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+        Long totalProfesores = typedQuery.getSingleResult();
+        EscuelaPoblacionModelo escuelaPoblacionModelo = new EscuelaPoblacionModelo();
+        escuelaPoblacionModelo.setTotalProfesores(totalProfesores.intValue());
+        //TODO conteo de los alumnos
+        return escuelaPoblacionModelo;
     }
 
     /**

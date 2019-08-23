@@ -9,28 +9,36 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
+@SequenceGenerator(name = "generador_secuencia", sequenceName = "grupo_seq", schema = "profesor")
 @NamedQueries({
     @NamedQuery(name ="GrupoEntidad.busca", query = "SELECT g FROM GrupoEntidad g"),
     @NamedQuery(
         name = "GrupoEntidad.buscaProfesor",
-        query = "SELECT g FROM GrupoEntidad g WHERE g.grupoEntidadPK.profesorEntidad.id = :idProfesor")
+        query = "SELECT g FROM GrupoEntidad g WHERE g.profesorEntidad.id = :idProfesor")
 })
 public class GrupoEntidad {
 
-    private GrupoEntidadPK grupoEntidadPK;
+    private Integer id;
     private Short grado;
     private Character grupo;
+    private ProfesorEntidad profesorEntidad;
+    private CicloEscolarEntidad cicloEscolarEntidad;
 
     public GrupoEntidad() {
     }
 
-    @EmbeddedId
-    public GrupoEntidadPK getGrupoEntidadPK() {
-        return grupoEntidadPK;
+    public GrupoEntidad(Integer id) {
+        this.id = id;
     }
 
-    public void setGrupoEntidadPK(GrupoEntidadPK grupoEntidadPK) {
-        this.grupoEntidadPK = grupoEntidadPK;
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador_secuencia")
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     @Basic
@@ -55,28 +63,55 @@ public class GrupoEntidad {
         this.grupo = grupo;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_profesor")
+    public ProfesorEntidad getProfesorEntidad() {
+        return profesorEntidad;
+    }
+
+    public void setProfesorEntidad(ProfesorEntidad profesorEntidad) {
+        this.profesorEntidad = profesorEntidad;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns(value = {
+            @JoinColumn(name = "inicio"),
+            @JoinColumn(name = "fin"),
+            @JoinColumn(name = "id_escuela")
+    })
+    public CicloEscolarEntidad getCicloEscolarEntidad() {
+        return cicloEscolarEntidad;
+    }
+
+    public void setCicloEscolarEntidad(CicloEscolarEntidad cicloEscolarEntidad) {
+        this.cicloEscolarEntidad = cicloEscolarEntidad;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         GrupoEntidad that = (GrupoEntidad) o;
-        return grupoEntidadPK.equals(that.grupoEntidadPK) &&
+        return id.equals(that.id) &&
                 grado.equals(that.grado) &&
-                grupo.equals(that.grupo);
+                grupo.equals(that.grupo) &&
+                profesorEntidad.equals(that.profesorEntidad) &&
+                cicloEscolarEntidad.equals(that.cicloEscolarEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(grupoEntidadPK, grado, grupo);
+        return Objects.hash(id, grado, grupo, profesorEntidad, cicloEscolarEntidad);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", GrupoEntidad.class.getSimpleName() + "[", "]")
-                .add("grupoEntidadPK=" + grupoEntidadPK)
-                .add("grado=" + grado)
-                .add("grupo=" + grupo)
-                .toString();
+        return "GrupoEntidad{" +
+                "id=" + id +
+                ", grado=" + grado +
+                ", grupo=" + grupo +
+                ", profesorEntidad=" + profesorEntidad +
+                ", cicloEscolarEntidad=" + cicloEscolarEntidad +
+                '}';
     }
-
 }
