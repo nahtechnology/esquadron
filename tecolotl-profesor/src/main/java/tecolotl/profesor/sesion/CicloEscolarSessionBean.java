@@ -90,12 +90,13 @@ public class CicloEscolarSessionBean {
     }
 
     /**
-     * Cambia la descripcion de un ciclo escolar
+     * Cambia la descripcion y estatus de un ciclo escolar
      * @param cicloEscolarModelo Datos del ciclo escolar
      */
     public void actualiza(@NotNull @Valid CicloEscolarModelo cicloEscolarModelo) {
         CicloEscolarEntidad cicloEscolarEntidad = entityManager.find(CicloEscolarEntidad.class, llavePrimaria(cicloEscolarModelo));
         cicloEscolarEntidad.setDescripcion(cicloEscolarModelo.getDescripcion());
+        cicloEscolarEntidad.setActivo(cicloEscolarModelo.isActivo());
     }
 
     /**

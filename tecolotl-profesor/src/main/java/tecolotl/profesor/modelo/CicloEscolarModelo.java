@@ -13,6 +13,7 @@ public class CicloEscolarModelo {
     private Date inicio;
     private Date fin;
     private String descripcion;
+    private Boolean activo;
     private String idEscuela;
 
     public CicloEscolarModelo() {
@@ -28,6 +29,7 @@ public class CicloEscolarModelo {
         this.inicio = cicloEscolarEntidad.getCicloEscolarPK().getInicio();
         this.fin = cicloEscolarEntidad.getCicloEscolarPK().getFin();
         this.descripcion = cicloEscolarEntidad.getDescripcion();
+        this.activo = cicloEscolarEntidad.getActivo();
     }
 
     @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class})
@@ -66,6 +68,15 @@ public class CicloEscolarModelo {
 
     public void setIdEscuela(String idEscuela) {
         this.idEscuela = idEscuela;
+    }
+
+
+    public Boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
     }
 
     @Override

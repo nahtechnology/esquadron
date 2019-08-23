@@ -119,6 +119,7 @@ public class CicloEscolarSessionBeanTest {
         cicloEscolarModelo.setIdEscuela("21DBA0051N");
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
+        cicloEscolarModelo.setActivo(Boolean.TRUE);
         cicloEscolarModelo.setDescripcion(cambios);
         cicloEscolarSessionBean.actualiza(cicloEscolarModelo);
         cicloEscolarModelo.setDescripcion(null);

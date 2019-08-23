@@ -20,6 +20,7 @@ import java.util.StringJoiner;
 public class CicloEscolarEntidad {
 
     private CicloEscolarEntidadPK cicloEscolarPK;
+    private Boolean activo;
     private String descripcion;
 
     public CicloEscolarEntidad() {
@@ -55,26 +56,28 @@ public class CicloEscolarEntidad {
         this.descripcion = descripcion;
     }
 
+    @Basic
+    @Column(name = "activo", insertable = false)
+    public Boolean getActivo() {
+        return activo;
+    }
+
+    public void setActivo(Boolean activo) {
+        this.activo = activo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CicloEscolarEntidad that = (CicloEscolarEntidad) o;
         return cicloEscolarPK.equals(that.cicloEscolarPK) &&
+                activo.equals(that.activo) &&
                 descripcion.equals(that.descripcion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cicloEscolarPK, descripcion);
+        return Objects.hash(cicloEscolarPK, activo, descripcion);
     }
-
-    @Override
-    public String toString() {
-        return "CicloEscolarEntidad{" +
-                "cicloEscolarPK=" + cicloEscolarPK +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
-    }
-
 }
