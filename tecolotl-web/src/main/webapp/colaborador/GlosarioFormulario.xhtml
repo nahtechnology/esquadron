@@ -12,16 +12,55 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html">
-
 <h:head>
-    <title>Title</title>
+    <title>Actividades</title>
+    <h:outputStylesheet library="css" name="uikit.css"/>
+    <h:outputStylesheet library="css" name="tablas.css"/>
 </h:head>
 
 <h:body>
-    <h:form>
-        <h:inputText value="Texto"/>
-        <h:inputTextarea value="transcript"/>
-    </h:form>
+
+        <div class="uk-container uk-container-small">
+
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                        <div class="uk-width-auto">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h3 class="uk-card-title uk-margin-remove-bottom">Lista de Actividades</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body">
+                    <h:dataTable id="tabla-actividades"
+                                 value="#{}"
+                </div>
+                <div class="uk-card-footer">
+                    <a href="#modal-agregar" class="uk-button uk-button-text">Modal</a>
+                </div>
+            </div>
+
+
+        </div>
+
+
+    <div id="modal-agregar" uk-modal="">
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close=""/>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Headline 1</h2>
+            </div>
+            <div class="uk-modal-body">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-primary uk-modal-close" type="button">Cancel</button>
+                <a href="#modal-group-2" class="uk-button uk-button-primary" uk-toggle="">Next</a>
+            </div>
+        </div>
+    </div>
+
 </h:body>
 
 </html>
