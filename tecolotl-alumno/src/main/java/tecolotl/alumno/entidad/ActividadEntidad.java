@@ -10,7 +10,22 @@ import java.util.Objects;
 @Entity
 @Table(name = "actividad", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "ActividadEntidad.busca", query = "SELECT a FROM ActividadEntidad a LEFT JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad"
+        @NamedQuery(
+                name = "ActividadEntidad.busca",
+                query = "SELECT a FROM ActividadEntidad a LEFT JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad"
+        ),
+        @NamedQuery(
+                name = "ActividadEntidad.buscaNivelLenguaje",
+                query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.temaEntidad t " +
+                        "JOIN FETCH a.nivelLenguajeEntidad nl WHERE nl.valor = :nivelLenguaje"
+        ),
+        @NamedQuery(
+                name = "ActividadEntidad.transcripcion" ,
+                query = "SELECT a.trasncripcion FROM ActividadEntidad a WHERE a.id = :idActividad"
+        ),
+        @NamedQuery(
+                name = "ActividadEntidad.elimina",
+                query = "DELETE FROM ActividadEntidad a WHERE a.id = :idAvtividad"
         )
 })
 public class ActividadEntidad {
@@ -20,8 +35,9 @@ public class ActividadEntidad {
     private Integer tiempo;
     private String preguntaDetonadora;
     private String lenguaje;
-    private String trasncipcion;
+    private String trasncripcion;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
+    private TemaEntidad temaEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
 
     public ActividadEntidad() {
@@ -88,16 +104,16 @@ public class ActividadEntidad {
         this.lenguaje = lenguaje;
     }
 
-    @Basic
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "transcripcion")
     @NotNull
     @Size(min = 2)
-    public String getTrasncipcion() {
-        return trasncipcion;
+    public String getTrasncripcion() {
+        return trasncripcion;
     }
 
-    public void setTrasncipcion(String trasncipcion) {
-        this.trasncipcion = trasncipcion;
+    public void setTrasncripcion(String trasncripcion) {
+        this.trasncripcion = trasncripcion;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -123,16 +139,17 @@ public class ActividadEntidad {
     public void setNivelLenguajeEntidad(List<NivelLenguajeEntidad> nivelLenguajeEntidad) {
         this.nivelLenguajeEntidad = nivelLenguajeEntidad;
     }
-/*
-    @OneToMany(mappedBy = "actividadEntidad")
-    public List<GlosarioEntidad> getGlosarioEntidadLista() {
-        return glosarioEntidadLista;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tema")
+    public TemaEntidad getTemaEntidad() {
+        return temaEntidad;
     }
 
-    public void setGlosarioEntidadLista(List<GlosarioEntidad> glosarioEntidadLista) {
-        this.glosarioEntidadLista = glosarioEntidadLista;
+    public void setTemaEntidad(TemaEntidad temaEntidad) {
+        this.temaEntidad = temaEntidad;
     }
-*/
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -1,6 +1,7 @@
 package tecolotl.nucleo.modelo;
 
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.validacion.CatalogoLlavePrimariaValidacion;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.validation.constraints.Min;
@@ -10,8 +11,8 @@ import java.util.Objects;
 
 public class CatalogoModelo implements Comparable<CatalogoModelo>{
 
-    @NotNull
-    @Min(-1)
+    @NotNull(groups = {CatalogoLlavePrimariaValidacion.class})
+    @Min(value = -1, groups = {CatalogoLlavePrimariaValidacion.class})
     private Short clave;
 
     @NotNull(groups = {CatalogoNuevoValidacion.class})
