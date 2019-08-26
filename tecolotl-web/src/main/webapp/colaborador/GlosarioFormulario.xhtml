@@ -11,7 +11,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Actividades</title>
     <h:outputStylesheet library="css" name="uikit.css"/>
@@ -34,10 +34,18 @@
                 </div>
                 <div class="uk-card-body">
                     <h:dataTable id="tabla-actividades"
-                                 value="#{}"
+                                 value="#{colaboradorDashboardControlador.collectionDataModel}"
+                                 var="actividad"
+                                    >
+                        <h:column>
+                            <f:facet name="header">Id video</f:facet>
+                            #{actividad.idVideo}
+
+                        </h:column>
+                    </h:dataTable>
                 </div>
                 <div class="uk-card-footer">
-                    <a href="#modal-agregar" class="uk-button uk-button-text">Modal</a>
+                    <a href="#modal-agregar" class="uk-button uk-button-primary">Modal</a>
                 </div>
             </div>
 
@@ -56,7 +64,7 @@
             </div>
             <div class="uk-modal-footer uk-text-right">
                 <button class="uk-button uk-button-primary uk-modal-close" type="button">Cancel</button>
-                <a href="#modal-group-2" class="uk-button uk-button-primary" uk-toggle="">Next</a>
+
             </div>
         </div>
     </div>
