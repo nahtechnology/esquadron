@@ -20,6 +20,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Stateless
 public class ActividadSesionBean {
@@ -32,6 +33,11 @@ public class ActividadSesionBean {
 
     @Inject
     private Logger logger;
+
+    public List<ActividadModelo> busca() {
+        TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.busca", ActividadEntidad.class);
+        return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
+    }
 
     public List<ActividadModelo> busca(@NotNull @Size(min = 2, max = 2) String nivelLenguaje) {
         logger.fine(nivelLenguaje);
@@ -48,7 +54,7 @@ public class ActividadSesionBean {
     }
 
     public String transcripcion(@NotNull @Size(min = 11, max = 11) String idActividad) {
-        logger.fine(idActividad.toString());
+        logger.fine(idActividad);
         return entityManager.createNamedQuery("ActividadEntidad.transcripcion", String.class)
                 .setParameter("idActividad", idActividad).getSingleResult();
     }
