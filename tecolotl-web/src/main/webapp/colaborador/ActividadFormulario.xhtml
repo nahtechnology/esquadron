@@ -11,16 +11,34 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <h:head>
-    <title>
-        Title</title>
+    <title>Title</title>
 </h:head>
 
 <h:body>
-    <h:inputText value=""/>
-    <h:inputTextarea value="Transcript"/>
+    <h:form>
+
+        <h:inputText label="ID Vídeo: " value=""/>
+        <h:inputText label="Puntaje: " value=""/>
+        <h:inputText label="Tipo Estudiante: " value=""/>
+        <h:inputText label="Tiempo (en minutos): " value="" />
+        <h:inputText label="Pregunta detonadora: " value="" />
+        <h:inputText label="Lenguaje: " value="" pt:placeholder=""/>
+        <h:inputTextarea cols="50" rows="30" pt:placeholder="Transcript here, please"/>
+        <h:inputText pt:placeholder="Topic"/>
+        <h:selectManyCheckbox>
+            <h:selectBooleanCheckbox value="true"/>
+            <h:selectBooleanCheckbox/>
+            <h:selectBooleanCheckbox/>
+            <h:selectBooleanCheckbox/>
+            <h:selectBooleanCheckbox/>
+        </h:selectManyCheckbox>
+
+
+    </h:form>
     Id video
     puntaje
     tipo estudiante catalogo

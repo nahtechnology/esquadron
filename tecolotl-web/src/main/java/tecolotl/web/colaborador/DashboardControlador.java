@@ -1,7 +1,13 @@
 package tecolotl.web.colaborador;
 
 import tecolotl.alumno.modelo.ActividadModelo;
+import tecolotl.alumno.modelo.NivelLenguajeModelo;
+import tecolotl.alumno.modelo.TemaModelo;
+import tecolotl.alumno.modelo.TipoEstudianteModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
+import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
+import tecolotl.alumno.sesion.TemaSesionBean;
+import tecolotl.alumno.sesion.TipoEstudianteSesionBean;
 import tecolotl.web.alumno.ActividadesModelo;
 
 import javax.annotation.PostConstruct;
@@ -10,6 +16,8 @@ import javax.faces.component.html.HtmlDataTable;
 import javax.faces.model.CollectionDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.sql.ClientInfoStatus;
+import java.util.List;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -18,14 +26,31 @@ public class DashboardControlador  {
     private HtmlDataTable htmlDataTable;
     private CollectionDataModel<ActividadModelo> collectionDataModel;
     private ActividadModelo actividadModelo;
+    private List<TipoEstudianteModelo> tipoEstudianteModeloLista;
+    private List<TemaModelo> temaModeloLista;
+    private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
 
     @Inject
     private ActividadSesionBean actividadSesionBean;
+
+    @Inject
+    private TipoEstudianteSesionBean tipoEstudianteSesionBean;
+
+    @Inject
+    private TemaSesionBean temaSesionBean;
+
+    @Inject
+    private NivelLenguajeSesionBean nivelLenguajeSesionBean;
+
     @Inject
     private Logger logger;
+
     @PostConstruct
     public void  init(){
         collectionDataModel = new CollectionDataModel<>(actividadSesionBean.busca());
+        tipoEstudianteModeloLista = tipoEstudianteSesionBean.busca();
+        temaModeloLista = temaSesionBean.busca();
+        nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
     }
 
     public HtmlDataTable getHtmlDataTable() {
@@ -50,5 +75,21 @@ public class DashboardControlador  {
 
     public void setActividadModelo(ActividadModelo actividadModelo) {
         this.actividadModelo = actividadModelo;
+    }
+
+    public List<TipoEstudianteModelo> getTipoEstudianteModeloLista() {
+        return tipoEstudianteModeloLista;
+    }
+
+    public void setTipoEstudianteModeloLista(List<TipoEstudianteModelo> tipoEstudianteModeloLista) {
+        this.tipoEstudianteModeloLista = tipoEstudianteModeloLista;
+    }
+
+    public List<TemaModelo> getTemaModeloLista() {
+        return temaModeloLista;
+    }
+
+    public void setTemaModeloLista(List<TemaModelo> temaModeloLista) {
+        this.temaModeloLista = temaModeloLista;
     }
 }
