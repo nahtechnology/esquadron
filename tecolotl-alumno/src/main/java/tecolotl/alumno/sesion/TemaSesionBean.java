@@ -1,11 +1,11 @@
 package tecolotl.alumno.sesion;
 
-import tecolotl.alumno.entidad.TipoEstudianteEntidad;
-import tecolotl.alumno.modelo.TipoEstudianteModelo;
+import tecolotl.alumno.entidad.TemaEntidad;
+import tecolotl.alumno.modelo.TemaModelo;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 
 import javax.ejb.Stateless;
 
 @Stateless
-public class TemaSesionBean extends CatalogoSesionBean<TipoEstudianteModelo, TipoEstudianteEntidad> {
+public class TemaSesionBean extends CatalogoSesionBean<TemaModelo, TemaEntidad> {
 }
