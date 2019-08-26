@@ -40,12 +40,11 @@
                         <h:column>
                             <f:facet name="header">Id video</f:facet>
                             #{actividad.idVideo}
-
                         </h:column>
                     </h:dataTable>
                 </div>
                 <div class="uk-card-footer">
-                    <a href="#modal-agregar" class="uk-button uk-button-primary">Modal</a>
+                    <a href="#modal-agregar" class="uk-button uk-button-primary" uk-toggle="">Modal</a>
                 </div>
             </div>
 
@@ -68,7 +67,8 @@
             </div>
         </div>
     </div>
-
+    <h:outputScript library="js" name="uikit.js"/>
 </h:body>
+
 
 </html>
