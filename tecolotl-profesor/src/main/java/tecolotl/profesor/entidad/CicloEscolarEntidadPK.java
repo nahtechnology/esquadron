@@ -16,8 +16,18 @@ public class CicloEscolarEntidadPK implements Serializable {
     private Date fin;
     private EscuelaEntidad escuelaEntidad;
 
+    public CicloEscolarEntidadPK() {
+    }
+
+    public CicloEscolarEntidadPK(Date inicio, Date fin, String claveCentroTrabajo) {
+        this.inicio = inicio;
+        this.fin = fin;
+        this.escuelaEntidad = new EscuelaEntidad(claveCentroTrabajo);
+    }
+
     @Basic
     @Column(name = "inicio")
+    @Temporal(TemporalType.DATE)
     @NotNull
     public Date getInicio() {
         return inicio;
@@ -29,6 +39,7 @@ public class CicloEscolarEntidadPK implements Serializable {
 
     @Basic
     @Column(name = "fin")
+    @Temporal(TemporalType.DATE)
     @NotNull
     public Date getFin() {
         return fin;

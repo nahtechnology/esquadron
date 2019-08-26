@@ -5,6 +5,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -22,6 +23,7 @@ public class CicloEscolarEntidad {
     private CicloEscolarEntidadPK cicloEscolarPK;
     private Boolean activo;
     private String descripcion;
+    private List<GrupoEntidad> grupoEntidadLista;
 
     public CicloEscolarEntidad() {
     }
@@ -64,6 +66,15 @@ public class CicloEscolarEntidad {
 
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    @OneToMany(mappedBy = "cicloEscolarEntidad")
+    public List<GrupoEntidad> getGrupoEntidadLista() {
+        return grupoEntidadLista;
+    }
+
+    public void setGrupoEntidadLista(List<GrupoEntidad> grupoEntidadLista) {
+        this.grupoEntidadLista = grupoEntidadLista;
     }
 
     @Override

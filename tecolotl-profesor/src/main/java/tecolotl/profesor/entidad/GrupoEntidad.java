@@ -75,8 +75,8 @@ public class GrupoEntidad {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
-            @JoinColumn(name = "inicio"),
-            @JoinColumn(name = "fin"),
+            @JoinColumn(name = "inicio", columnDefinition = "DATE NOT NULL"),
+            @JoinColumn(name = "fin", columnDefinition = "DATE NOT NULL"),
             @JoinColumn(name = "id_escuela")
     })
     public CicloEscolarEntidad getCicloEscolarEntidad() {

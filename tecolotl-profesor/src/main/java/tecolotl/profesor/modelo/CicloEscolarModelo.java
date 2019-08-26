@@ -2,6 +2,7 @@ package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.CicloEscolarEntidad;
 import tecolotl.profesor.validacion.CicloEscolarLlavePrimariaValidacion;
+import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,7 +33,7 @@ public class CicloEscolarModelo {
         this.activo = cicloEscolarEntidad.getActivo();
     }
 
-    @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class})
+    @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class, GrupoNuevoValidacion.class})
     public Date getInicio() {
         return inicio;
     }
@@ -41,7 +42,7 @@ public class CicloEscolarModelo {
         this.inicio = inicio;
     }
 
-    @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class})
+    @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class, GrupoNuevoValidacion.class})
     public Date getFin() {
         return fin;
     }
@@ -60,7 +61,7 @@ public class CicloEscolarModelo {
         this.descripcion = descripcion;
     }
 
-    @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class})
+    @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class, GrupoNuevoValidacion.class})
     @Size(min = 10, max = 14, groups = {CicloEscolarLlavePrimariaValidacion.class})
     public String getIdEscuela() {
         return idEscuela;

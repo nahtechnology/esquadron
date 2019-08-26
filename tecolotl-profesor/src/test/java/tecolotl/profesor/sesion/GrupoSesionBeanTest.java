@@ -41,12 +41,15 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.profesor.entidad.*;
+import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -103,9 +106,20 @@ public class GrupoSesionBeanTest {
     }
 
     @Test
-    public void inserta(){
+    public void inserta() throws ParseException {
+        //TODO revisar las pruebas unitrias para las fechas
         GrupoModelo grupoModelo = new GrupoModelo();
-
+        grupoModelo.setGrado((short)1);
+        grupoModelo.setGrupo('A');
+        CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
+        cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2019"));
+        cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2020"));
+        cicloEscolarModelo.setIdEscuela("21DBA0051N");
+        grupoModelo.setCicloEscolarModelo(cicloEscolarModelo);
+        grupoModelo.setIdProfesor(1);
+        grupoSesionBean.inserta(grupoModelo);
+        Assert.assertNotNull(grupoModelo.getId());
+        Assert.assertNotEquals(grupoModelo.getId().intValue(), 0);
     }
 
     @Test

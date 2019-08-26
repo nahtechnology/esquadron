@@ -1,10 +1,11 @@
 package tecolotl.profesor.sesion;
 
-import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.profesor.entidad.CicloEscolarEntidad;
+import tecolotl.profesor.entidad.CicloEscolarEntidadPK;
 import tecolotl.profesor.entidad.GrupoEntidad;
-import tecolotl.profesor.entidad.ProfesorEntidad;
 import tecolotl.profesor.modelo.GrupoModelo;
+import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.ejb.Stateless;
@@ -32,12 +33,22 @@ public class GrupoSesionBean {
 
 
     /**
-     * Inserta un nuevo Grupo.
+     * Inserta un nuevo Grupo. La llave del nuevo grupo es pasada al modelo
      * @param grupoModelo datos para insertar el nuevo Grupo.
      */
     public void inserta(@NotNull GrupoModelo grupoModelo){
         logger.fine(grupoModelo.toString());
-
+        validadorSessionBean.validacion(grupoModelo, GrupoNuevoValidacion.class);
+        GrupoEntidad grupoEntidad = new GrupoEntidad();
+        grupoEntidad.setGrado(grupoModelo.getGrado());
+        grupoEntidad.setGrupo(grupoModelo.getGrupo());
+        grupoEntidad.setCicloEscolarEntidad(new CicloEscolarEntidad(
+                new CicloEscolarEntidadPK(
+                        grupoModelo.getCicloEscolarModelo().getInicio(),
+                        grupoModelo.getCicloEscolarModelo().getFin(),
+                        grupoModelo.getCicloEscolarModelo().getIdEscuela())));
+        entityManager.persist(grupoEntidad);
+        grupoModelo.setId(grupoEntidad.getId());
     }
 
     /**
@@ -64,7 +75,7 @@ public class GrupoSesionBean {
     }
 
     /**
-     *  Actualiza la información de un Grupo.
+     * Actualiza la información de un Grupo.
      * @param grupoModelo  datos para poder actualizar el Grupo.
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
@@ -72,7 +83,7 @@ public class GrupoSesionBean {
         validadorSessionBean.validacion(grupoModelo, GrupoProfesorValidacion.class);
         logger.fine(grupoModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaUpdate criteriaUpdate = criteriaBuilder.createCriteriaUpdate(GrupoEntidad.class);
+        CriteriaUpdate<GrupoEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(GrupoEntidad.class);
         Root<GrupoEntidad> root = criteriaUpdate.from(GrupoEntidad.class);
         Predicate predicate = criteriaBuilder.equal(root.get("id"), grupoModelo);
         criteriaUpdate.set(root.get("grupo"), grupoModelo);
