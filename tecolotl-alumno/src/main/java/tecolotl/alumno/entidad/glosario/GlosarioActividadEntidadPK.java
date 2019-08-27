@@ -2,10 +2,7 @@ package tecolotl.alumno.entidad.glosario;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
 
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
@@ -27,7 +24,10 @@ public class GlosarioActividadEntidadPK implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    @JoinColumn(name = "id_glosario")
+    @JoinColumns(value = {
+            @JoinColumn(name = "id_glosario", referencedColumnName = "palabra"),
+            @JoinColumn(name = "id_clase_glosario", referencedColumnName = "id_clase_glosario")
+    })
     public GlosarioEntidad getGlosarioEntidad() {
         return glosarioEntidad;
     }
@@ -38,7 +38,7 @@ public class GlosarioActividadEntidadPK implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
-    @JoinColumn(name = "id_actividad", referencedColumnName = "id_video")
+    @JoinColumn(name = "id_actividad")
     public ActividadEntidad getActividadEntidad() {
         return actividadEntidad;
     }

@@ -9,11 +9,23 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.escribir.EscribirEntidad;
 import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioActividadEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioActividadEntidadPK;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.modelo.ActividadModelo;
+import tecolotl.alumno.modelo.escribir.EscribirModelo;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
+import tecolotl.alumno.sesion.ActividadSesionBean;
+import tecolotl.alumno.validacion.ActividadNuevaValidacion;
+import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.sesion.CatalogoSesionBean;
+import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -26,9 +38,20 @@ public class GlosarioActividadEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(CatalagoEntidad.class, ClaseGlosarioEntidad.class, GlosarioEntidad.class,
-                            ActividadEntidad.class, NivelLenguajeEntidad.class, TipoEstudianteEntidad.class,
-                            GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class)
+                .addPackage(EscribirEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
+                .addPackage(ActividadEntidad.class.getPackage())
+                .addPackage(EscribirModelo.class.getPackage())
+                .addPackage(GlosarioModelo.class.getPackage())
+                .addPackage(ActividadModelo.class.getPackage())
+                .addPackage(ActividadSesionBean.class.getPackage())
+                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
+                .addPackage(ValidadorSessionBean.class.getPackage())
+                .addPackage(GlosarioNuevoValidacion.class.getPackage())
+                .addPackage(ActividadNuevaValidacion.class.getPackage())
+                .addPackage(CatalogoNuevoValidacion.class.getPackage())
+                .addPackage(CatalagoEntidad.class.getPackage())
+                .addPackage(CatalogoSesionBean.class.getPackage())
+                .addPackage(CatalogoModelo.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

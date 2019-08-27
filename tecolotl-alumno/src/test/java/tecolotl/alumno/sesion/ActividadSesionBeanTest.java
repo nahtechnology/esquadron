@@ -5,7 +5,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,7 @@ import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.modelo.TemaModelo;
 import tecolotl.alumno.modelo.TipoEstudianteModelo;
-import tecolotl.alumno.validacion.ActividadNuevoValidacion;
+import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -44,7 +43,7 @@ public class ActividadSesionBeanTest {
                         CatalagoEntidad.class)
                 .addClasses(ActividadModelo.class, TipoEstudianteModelo.class, TemaModelo.class, NivelLenguajeModelo.class,
                         CatalogoModelo.class)
-                .addClasses(ActividadNuevoValidacion.class)
+                .addClasses(ActividadNuevaValidacion.class)
                 .addClasses(ActividadSesionBean.class, ValidadorSessionBean.class, LoggerProducer.class, CatalogoNuevoValidacion.class,
                         CatalogoLlavePrimariaValidacion.class)
                 .addAsResource("META-INF/persistence.xml")

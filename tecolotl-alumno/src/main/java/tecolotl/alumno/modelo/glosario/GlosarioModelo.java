@@ -23,8 +23,8 @@ public class GlosarioModelo {
     }
 
     public GlosarioModelo(GlosarioEntidad glosarioEntidad) {
-        this.palabra = glosarioEntidad.getPalabra();
-        this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getClaseGlosarioEntidad());
+        this.palabra = glosarioEntidad.getGlosarioEntidadPK().getPalabra();
+        this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
         this.imagen = glosarioEntidad.getImagen();
         this.significado = glosarioEntidad.getSignificado();
     }

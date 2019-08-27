@@ -18,11 +18,14 @@ import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.escribir.EscribirModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
+import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
+import tecolotl.nucleo.validacion.CatalogoLlavePrimariaValidacion;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.persistence.EntityManager;
@@ -40,11 +43,12 @@ public class GlosarioEntidadTest {
                 .addPackage(ActividadEntidad.class.getPackage())
                 .addPackage(EscribirModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
-                .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
                 .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
+                .addPackage(GlosarioNuevoValidacion.class.getPackage())
+                .addPackage(ActividadNuevaValidacion.class.getPackage())
                 .addPackage(CatalogoNuevoValidacion.class.getPackage())
                 .addPackage(CatalagoEntidad.class.getPackage())
                 .addPackage(CatalogoSesionBean.class.getPackage())
@@ -64,9 +68,10 @@ public class GlosarioEntidadTest {
         Assert.assertFalse(glosarioEntidadsLista.isEmpty());
         for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
             Assert.assertNotNull(glosarioEntidad);
-            Assert.assertNotNull(glosarioEntidad.getPalabra());
-            Assert.assertNotNull(glosarioEntidad.getClaseGlosarioEntidad());
-            Assert.assertNotNull(glosarioEntidad.getClaseGlosarioEntidad().getValor());
+            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getPalabra());
+            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
+            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave());
+            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getValor());
             Assert.assertNotNull(glosarioEntidad.getImagen());
             Assert.assertNotNull(glosarioEntidad.getSignificado());
         }

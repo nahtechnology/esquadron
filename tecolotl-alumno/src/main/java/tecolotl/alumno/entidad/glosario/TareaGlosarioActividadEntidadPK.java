@@ -36,7 +36,8 @@ public class TareaGlosarioActividadEntidadPK implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
             @JoinColumn(name = "id_glosario", referencedColumnName = "id_glosario"),
-            @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
+            @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
+            @JoinColumn(name = "id_clase_glosario", referencedColumnName = "id_clase_glosario")
     })
     public GlosarioActividadEntidad getGlosarioActividadEntidad() {
         return glosarioActividadEntidad;

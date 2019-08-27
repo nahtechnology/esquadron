@@ -52,24 +52,7 @@ public class TareaSesionBean {
         logger.fine(tareaModelo.toString());
         validadorSessionBean.validacion(tareaModelo, EscribirNuevoValidacion.class, GlosarioNuevoValidacion.class);
         TareaEntidad tareaEntidad = new TareaEntidad();
-        ActividadEntidad actividadEntidad = new ActividadEntidad(idActividad);
-        tareaEntidad.setTareaEscribirActividadEntidadLista(new ArrayList<>());
-        for (EscribirBaseModelo escribirBaseModelo : tareaModelo.getEscribirBaseModeloLista()) {
-            EscribirActividadEntidad escribirActividadEntidad = new EscribirActividadEntidad(
-                    new EscribirEntidad(escribirBaseModelo.getId()), actividadEntidad);
-            TareaEscribirActividadEntidad tareaEscribirActividadEntidad = new TareaEscribirActividadEntidad(
-                    tareaEntidad, new TareaEscribirActividadEntidadPK(escribirActividadEntidad));
-            tareaEntidad.getTareaEscribirActividadEntidadLista().add(tareaEscribirActividadEntidad);
-        }
-        tareaEntidad.setTareaGlosarioActividadEntidadLista(new ArrayList<>());
-        for (GlosarioModelo glosarioModelo : tareaModelo.getGlosarioModeloLista()) {
-            GlosarioActividadEntidadPK glosarioActividadEntidadPK = new GlosarioActividadEntidadPK(
-                    new GlosarioEntidad(glosarioModelo.getPalabra()),actividadEntidad);
-            TareaGlosarioActividadEntidadPK tareaGlosarioActividadEntidadPK =
-                    new TareaGlosarioActividadEntidadPK(tareaEntidad, new GlosarioActividadEntidad(glosarioActividadEntidadPK));
-            tareaEntidad.getTareaGlosarioActividadEntidadLista().add(
-                    new TareaGlosarioActividadEntidad(tareaGlosarioActividadEntidadPK));
-        }
+
         entityManager.persist(tareaEntidad);
         tareaModelo.setId(tareaEntidad.getId());
         return tareaEntidad.getId();

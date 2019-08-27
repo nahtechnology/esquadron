@@ -2,7 +2,7 @@ package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
-import tecolotl.alumno.validacion.ActividadNuevoValidacion;
+import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -55,8 +55,8 @@ public class ActividadModelo {
         this.idVideo = idVideo;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
-    @Min(value = 1, groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
+    @Min(value = 1, groups = {ActividadNuevaValidacion.class})
     public Short getPuntaje() {
         return puntaje;
     }
@@ -65,8 +65,8 @@ public class ActividadModelo {
         this.puntaje = puntaje;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
-    @Size(min = 1, groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
+    @Size(min = 1, groups = {ActividadNuevaValidacion.class})
     public List<NivelLenguajeModelo> getNivelLenguajeModeloLista() {
         return nivelLenguajeModeloLista;
     }
@@ -75,7 +75,7 @@ public class ActividadModelo {
         this.nivelLenguajeModeloLista = nivelLenguajeModeloLista;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
     @Valid
     public TipoEstudianteModelo getTipoEstudianteModelo() {
         return tipoEstudianteModelo;
@@ -85,8 +85,8 @@ public class ActividadModelo {
         this.tipoEstudianteModelo = tipoEstudianteModelo;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
-    @Size(min = 2, max = 200, groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
+    @Size(min = 2, max = 200, groups = {ActividadNuevaValidacion.class})
     public String getLenguaje() {
         return lenguaje;
     }
@@ -95,8 +95,8 @@ public class ActividadModelo {
         this.lenguaje = lenguaje;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
-    @Size(min = 2, groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
+    @Size(min = 2, groups = {ActividadNuevaValidacion.class})
     public String getTranscripcion() {
         return transcripcion;
     }
@@ -105,8 +105,8 @@ public class ActividadModelo {
         this.transcripcion = transcripcion;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
-    @Min(value = 0, groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
+    @Min(value = 0, groups = {ActividadNuevaValidacion.class})
     public Integer getTiempo() {
         return tiempo;
     }
@@ -115,8 +115,8 @@ public class ActividadModelo {
         this.tiempo = tiempo;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
-    @Size(min = 2, max = 100, groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
+    @Size(min = 2, max = 100, groups = {ActividadNuevaValidacion.class})
     public String getPreguntaDetonadora() {
         return preguntaDetonadora;
     }
@@ -125,7 +125,7 @@ public class ActividadModelo {
         this.preguntaDetonadora = preguntaDetonadora;
     }
 
-    @NotNull(groups = {ActividadNuevoValidacion.class})
+    @NotNull(groups = {ActividadNuevaValidacion.class})
     @Valid
     public TemaModelo getTemaModelo() {
         return temaModelo;

@@ -10,12 +10,11 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "glosario", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.claseGlosarioEntidad")
+        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg")
 })
 public class GlosarioEntidad {
 
-    private ClaseGlosarioEntidad claseGlosarioEntidad;
-    private String palabra;
+    private GlosarioEntidadPK glosarioEntidadPK;
     private byte[] imagen;
     private String significado;
     private List<GlosarioActividadEntidad> glosarioActividadEntidadLista;
@@ -23,17 +22,17 @@ public class GlosarioEntidad {
     public GlosarioEntidad() {
     }
 
-    public GlosarioEntidad(String palabra) {
-        this.palabra = palabra;
+    public GlosarioEntidad(GlosarioEntidadPK glosarioEntidadPK) {
+        this.glosarioEntidadPK = glosarioEntidadPK;
     }
 
-    @Id
-    public String getPalabra() {
-        return palabra;
+    @EmbeddedId
+    public GlosarioEntidadPK getGlosarioEntidadPK() {
+        return glosarioEntidadPK;
     }
 
-    public void setPalabra(String palabra) {
-        this.palabra = palabra;
+    public void setGlosarioEntidadPK(GlosarioEntidadPK glosarioEntidadPK) {
+        this.glosarioEntidadPK = glosarioEntidadPK;
     }
 
     @Basic
@@ -59,17 +58,6 @@ public class GlosarioEntidad {
         this.significado = significado;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_clase_glosario")
-    @NotNull
-    public ClaseGlosarioEntidad getClaseGlosarioEntidad() {
-        return claseGlosarioEntidad;
-    }
-
-    public void setClaseGlosarioEntidad(ClaseGlosarioEntidad claseGlosarioEntidad) {
-        this.claseGlosarioEntidad = claseGlosarioEntidad;
-    }
-
     @OneToMany(mappedBy = "glosarioActividadEntidadPK.glosarioEntidad", fetch = FetchType.LAZY)
     public List<GlosarioActividadEntidad> getGlosarioActividadEntidadLista() {
         return glosarioActividadEntidadLista;
@@ -82,8 +70,8 @@ public class GlosarioEntidad {
     @Override
     public String toString() {
         return new StringJoiner(", ", GlosarioEntidad.class.getSimpleName() + "[", "]")
-                .add("glosarioEntidad=" + claseGlosarioEntidad.toString())
-                .add("palabra='" + palabra + "'")
+                .add("glosarioEntidad=" + glosarioEntidadPK.toString())
+                .add("palabra='" + glosarioEntidadPK + "'")
                 .add("imagen=" + Arrays.toString(imagen))
                 .add("significado='" + significado + "'")
                 .toString();
