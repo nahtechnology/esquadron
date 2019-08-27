@@ -19,6 +19,7 @@
     <title>Actividades</title>
     <h:outputStylesheet library="css" name="uikit.css"/>
     <h:outputStylesheet library="css" name="tablas.css"/>
+    <h:outputStylesheet library="css" name="colaborador/actividad.css"/>
 </h:head>
 
 <h:body>
@@ -84,7 +85,7 @@
 
 
     <div id="modal-agregar" uk-modal="">
-        <div class="uk-modal-dialog">
+        <div class="uk-modal-dialog modal-tam scroll-actividad scroller">
             <button class="uk-modal-close-default" type="button" uk-close=""/>
             <div class="uk-modal-header">
                 <h2 class="uk-modal-title">Actividad</h2>
@@ -146,7 +147,7 @@
                     <div class="uk-margin">
                         <label class="uk-form-label" for="form-LanguageLevel">Language Level</label>
                         <div class="uk-form-controls">
-                            <h:selectManyCheckbox value="#{colaboradorDashboardControlador.}">
+                            <h:selectManyCheckbox value="#{colaboradorDashboardControlador.collectionDataModel}">
 
                             </h:selectManyCheckbox>
                         </div>
