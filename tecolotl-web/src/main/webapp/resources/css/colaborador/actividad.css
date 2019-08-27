@@ -25,5 +25,5 @@
 }
 .scroller {
     overflow-y: scroll;
-    scrollbar-color: #0e6ecd #00a8ec;
+    scrollbar-color: #0e6ecd rgba(0,0,0,0.2);
     scrollbar-width: thin;}
