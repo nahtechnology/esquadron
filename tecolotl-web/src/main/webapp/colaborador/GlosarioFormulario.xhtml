@@ -90,80 +90,118 @@
             <div class="uk-modal-header">
                 <h2 class="uk-modal-title">Actividad</h2>
             </div>
-            <div class="uk-modal-body">
-                <h:form styleClass="uk-form-stacked">
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-IdVideo">ID Video</label>
-                        <div class="uk-form-controls">
-                            <h:inputText styleClass="uk-input" id="form-IdVideo" pt:placeholder="ID Video"/>
+            <h:form styleClass="uk-form-stacked" >
+                <div class="uk-modal-body">
+
+                    <div class="uk-grid" uk-grid="">
+                        <div class="uk-width-1-3">
+                            <label class="uk-form-label" for="form-IdVideo">ID Video</label>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input uk-form-width-small" id="form-IdVideo" pt:placeholder="ID Video" value="#{colaboradorDashboardControlador.actividadModelo.idVideo}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="11" maximum="11"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="form-IdVideo" styleClass="uk-text-danger"/>
+                        </div>
+                        <div class="uk-width-1-3">
+                            <label class="uk-form-label" for="form-Score">Score</label>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input uk-form-width-small" id="form-Score" pt:placeholder="100" value="#{colaboradorDashboardControlador.actividadModelo.puntaje}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="1"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="form-Score" styleClass="uk-text-danger"/>
+                        </div>
+                        <div class="uk-width-1-3">
+                            <label class="uk-form-label" for="form-Time">Time</label>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input uk-form-width-small" id="form-Time" pt:placeholder="90" value="#{colaboradorDashboardControlador.actividadModelo.tiempo}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="0"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="form-Time" styleClass="uk-text-danger"/>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <label class="uk-form-label" for="form-learnersType">Learners Type -Select-</label>
+                            <div class="uk-form-controls">
+                                <h:selectOneMenu  styleClass="uk-select uk-form-width-medium" id="form-learnersType" value="#{colaboradorDashboardControlador.actividadModelo.tipoEstudianteModelo.clave}">
+                                    <f:selectItems value="#{colaboradorDashboardControlador.tipoEstudianteModeloLista}"
+                                                   var="tipoEstudiante"
+                                                   itemLabel="#{tipoEstudiante.valor}"
+                                                   itemValue="#{tipoEstudiante.clave}"/>
+                                    <f:validateRequired/>
+                                </h:selectOneMenu>
+                            </div>
+                            <h:message for="form-learnersType" styleClass="uk-text-danger"/>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <label class="uk-form-label" for="form-Topic">Topic -Select-</label>
+                            <div class="uk-form-controls">
+                                <h:selectOneMenu  styleClass="uk-select uk-form-width-medium" id="form-Topic" value="#{colaboradorDashboardControlador.actividadModelo.temaModelo.clave}">
+                                    <f:selectItems value="#{colaboradorDashboardControlador.temaModeloLista}"
+                                                   var="tipoTema"
+                                                   itemLabel="#{tipoTema.valor}"
+                                                   itemValue="#{tipoTema.clave}"/>
+                                    <f:validateRequired/>
+                                </h:selectOneMenu>
+                            </div>
+                            <h:message for="form-Topic" styleClass="uk-text-danger"/>
                         </div>
                     </div>
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-Score">Score</label>
-                        <div class="uk-form-controls">
-                            <h:inputText styleClass="uk-input" id="form-Score" pt:placeholder="Example: 100"/>
+                    <div class="uk-grid" uk-grid="">
+                        <div class="uk-width-1-2">
+                            <label class="uk-form-label" for="form-Language">Language</label>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input uk-form-width-large" id="form-Language" pt:placeholder="e.g. Adverbs of Frequency" value="#{colaboradorDashboardControlador.actividadModelo.lenguaje}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="2" maximum="200"/>
+                                </h:inputText>
+                            </div>
+                            <h:message for="form-Language" styleClass="uk-text-danger"/>
                         </div>
-                    </div>
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-learnersType">Learners Type -Select-</label>
-                        <div class="uk-form-controls">
-                            <h:selectOneMenu  styleClass="uk-select" id="form-learnersType" value="#{colaboradorDashboardControlador.actividadModelo.tipoEstudianteModelo.clave}">
-                                <f:selectItems value="#{colaboradorDashboardControlador.tipoEstudianteModeloLista}"
-                                               var="tipoEstudiante"
-                                               itemLabel="#{tipoEstudiante.valor}"
-                                               itemValue="#{tipoEstudiante.clave}"/>
-                            </h:selectOneMenu>
-                        </div>
-                    </div>
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-Time">Time</label>
-                        <div class="uk-form-controls">
-                            <h:inputText styleClass="uk-input" id="form-Time" pt:placeholder="Time in minutes, example: 90"/>
+                        <div class="uk-width-1-2">
+                            <label class="uk-form-label" for="form-LanguageLevel">Language Level</label>
+                            <div class="uk-form-controls">
+                                <h:selectManyCheckbox  styleClass="uk-form-width-medium" id="form-LanguageLevel" value="#{colaboradorDashboardControlador.actividadModelo.nivelLenguajeModeloLista}">
+                                    <f:selectItems value="#{colaboradorDashboardControlador.nivelLenguajeModeloLista}"
+                                                   var="nivelLeanguaje"
+                                                   itemValue="#{nivelLeanguaje.clave}" itemLabel="#{nivelLeanguaje.valor}"/>
+                                    <f:validateRequired/>
+                                </h:selectManyCheckbox>
+                            </div>
+                            <h:message for="form-LanguageLevel" styleClass="uk-text-danger"/>
                         </div>
                     </div>
                     <div class="uk-margin">
                         <label class="uk-form-label" for="form-Question">Question</label>
                         <div class="uk-form-controls">
-                            <h:inputText styleClass="uk-input" id="form-Question" pt:placeholder="Example: Who is the president of Russia?"/>
+                            <h:inputText styleClass="uk-input uk-form-width-large" id="form-Question" pt:placeholder="e.g. Who is the president of Russia?" value="#{colaboradorDashboardControlador.actividadModelo.preguntaDetonadora}">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="2" maximum="100"/>
+                            </h:inputText>
                         </div>
+                        <h:message for="form-Question" styleClass="uk-text-danger"/>
                     </div>
                     <div class="uk-margin">
-                        <label class="uk-form-label" for="form-Language">Language</label>
+                        <label class="uk-form-label" for="form-Transcript">Transcript</label>
                         <div class="uk-form-controls">
-                            <h:inputText styleClass="uk-input" id="form-Language" pt:placeholder="Example: Adverbs of Frequency"/>
+                            <h:inputTextarea styleClass="uk-textarea" rows="20" id="form-Transcript" pt:placeholder="Transcript here, please" value="#{colaboradorDashboardControlador.actividadModelo.transcripcion}">
+                                <f:validateRequired/>
+                                <f:validateLength minimum="2"/>
+                            </h:inputTextarea>
                         </div>
+                        <h:message for="form-Transcript" styleClass="uk-text-danger"/>
                     </div>
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-Topic">Topic -Select-</label>
-                        <div class="uk-form-controls">
-                            <h:selectOneMenu  styleClass="uk-select" id="form-Topic" value="#{colaboradorDashboardControlador.actividadModelo.temaModelo.clave}">
-                                <f:selectItems value="#{colaboradorDashboardControlador.temaModeloLista}"
-                                               var="tipoTema"
-                                               itemLabel="#{tipoTema.valor}"
-                                               itemValue="#{tipoTema.clave}"/>
-                            </h:selectOneMenu>
-                        </div>
-                    </div>
-                    <div class="uk-margin">
-                        <label class="uk-form-label" for="form-LanguageLevel">Language Level</label>
-                        <div class="uk-form-controls">
-                            <h:selectManyCheckbox value="#{colaboradorDashboardControlador.collectionDataModel}">
-
-                            </h:selectManyCheckbox>
-                        </div>
-                    </div>
-                    <div class="uk-margin">
-                        <label class="uk-form-label">Transcript</label>
-                        <div class="uk-form-controls">
-                            <h:inputTextarea styleClass="uk-textarea" rows="30" pt:placeholder="Transcript here, please"/>
-                        </div>
-                    </div>
-                </h:form>
-            </div>
-            <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-primary uk-modal-close" type="button">Cancel</button>
-
-            </div>
+                </div>
+                <div class="uk-modal-footer uk-text-right">
+                    <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar" >
+                        <f:ajax execute="@form" listener="#{colaboradorDashboardControlador.agregarActividad}" render="@form"/>
+                    </h:commandButton>
+                </div>
+            </h:form>
         </div>
     </div>
     <h:outputScript library="js" name="uikit.js"/>

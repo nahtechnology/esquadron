@@ -17,6 +17,7 @@ import javax.faces.model.CollectionDataModel;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.sql.ClientInfoStatus;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -29,6 +30,8 @@ public class DashboardControlador  {
     private List<TipoEstudianteModelo> tipoEstudianteModeloLista;
     private List<TemaModelo> temaModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
+    private List<NivelLenguajeModelo> nuevaLista;
+
 
     @Inject
     private ActividadSesionBean actividadSesionBean;
@@ -51,6 +54,14 @@ public class DashboardControlador  {
         tipoEstudianteModeloLista = tipoEstudianteSesionBean.busca();
         temaModeloLista = temaSesionBean.busca();
         nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
+        actividadModelo = new ActividadModelo();
+        actividadModelo.setTipoEstudianteModelo(new TipoEstudianteModelo());
+        actividadModelo.setTemaModelo(new TemaModelo());
+        actividadModelo.setNivelLenguajeModeloLista(new ArrayList<>());
+    }
+
+    public void agregarActividad(){
+        actividadSesionBean.inserta(actividadModelo);
     }
 
     public HtmlDataTable getHtmlDataTable() {
@@ -91,5 +102,21 @@ public class DashboardControlador  {
 
     public void setTemaModeloLista(List<TemaModelo> temaModeloLista) {
         this.temaModeloLista = temaModeloLista;
+    }
+
+    public List<NivelLenguajeModelo> getNivelLenguajeModeloLista() {
+        return nivelLenguajeModeloLista;
+    }
+
+    public void setNivelLenguajeModeloLista(List<NivelLenguajeModelo> nivelLenguajeModeloLista) {
+        this.nivelLenguajeModeloLista = nivelLenguajeModeloLista;
+    }
+
+    public List<NivelLenguajeModelo> getNuevaLista() {
+        return nuevaLista;
+    }
+
+    public void setNuevaLista(List<NivelLenguajeModelo> nuevaLista) {
+        this.nuevaLista = nuevaLista;
     }
 }
