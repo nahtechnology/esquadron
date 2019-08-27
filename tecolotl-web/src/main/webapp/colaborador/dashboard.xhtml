@@ -79,7 +79,10 @@
                                 <a class="uk-icon-button uk-margin-small-right" uk-icon="more-vertical"/>
                                 <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click;boundary: .opcion">
                                     <ul class="uk-nav uk-dropdown-nav">
-                                        <li><a href="#" class="uk-text-primary">Detalles</a></li>
+                                        <li><h:link styleClass="uk-text-primary" value="Detalle" >
+                                            <f:param value="#{actividad.idVideo}" name="video"/>
+                                        </h:link>
+                                        </li>
                                         <li><a href="#" class="uk-text-primary"
                                         >Modificar</a></li>
                                     </ul>

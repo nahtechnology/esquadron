@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <title>Dashboard</title>
+    <h:outputStylesheet library="css" name="uikit.css"/>
+</h:head>
+
+<h:body>
+    <div class="uk-container uk-margin-medium-top">
+        <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
+            <div>
+                <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                    <h3 class="uk-card-title">Small</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                    <h3 class="uk-card-title">Small</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                    <h3 class="uk-card-title">Glosario</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <button class="uk-button uk-button-small uk-button-primary" uk-toggle="target: #modal-glosario">Nuevo</button>
+                </div>
+            </div>
+            <div>
+                <div class="uk-card uk-card-default uk-card-small uk-card-body">
+                    <h3 class="uk-card-title">Small</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </div>
+            </div>
+
+        </h:panelGroup>
+    </div>
+
+    <h:panelGroup layout="block" id="modal-glosario" pt:uk-modal="">
+        <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close="">
+
+            </button>
+            <div class="uk-modal-header">
+                <h2 class="uk-modal-title">Nuevo glosario</h2>
+            </div>
+            <div class="uk-modal-body">
+
+            </div>
+            <div class="uk-modal-footer">
+
+            </div>
+        </div>
+    </h:panelGroup>
+    <h:outputScript library="js" name="uikit.js"/>
+    <h:outputScript library="js" name="uikit-icons.js"/>
+</h:body>
+</html>
