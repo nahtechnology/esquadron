@@ -40,7 +40,7 @@
                     <h:dataTable id="tabla-actividades"
                                  value="#{colaboradorDashboardControlador.collectionDataModel}"
                                  var="actividad"
-                                 styleClass="uk-table uk-table-justify uk-text-center uk-table-striped tabla-borde letra-contenido-tabla"
+                                 styleClass="uk-table uk-table-justify uk-text-center uk-table-striped tabla-borde letra-contenido-tabla opcion"
                                  columnClasses=""
                                  headerClass="uk-background-primary letra-titulo uk-text-bold uk-text-center">
                         <h:column>
@@ -72,6 +72,19 @@
                         <h:column>
                             <f:facet name="header">Pregunta</f:facet>
                             #{actividad.preguntaDetonadora}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Opciones</f:facet>
+                            <div class="uk-inline ">
+                                <a class="uk-icon-button uk-margin-small-right" uk-icon="more-vertical"/>
+                                <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click;boundary: .opcion">
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li><a href="#" class="uk-text-primary">Detalles</a></li>
+                                        <li><a href="#" class="uk-text-primary"
+                                        >Modificar</a></li>
+                                    </ul>
+                                </h:panelGroup>
+                            </div>
                         </h:column>
                     </h:dataTable>
                 </div>
@@ -205,6 +218,7 @@
         </div>
     </div>
     <h:outputScript library="js" name="uikit.js"/>
+    <h:outputScript library="js" name="uikit-icons.js"/>
 </h:body>
 
 
