@@ -1,14 +1,14 @@
 package tecolotl.alumno.modelo.glosario;
 
+import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.nucleo.modelo.CatalogoModelo;
-import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 
 public class ClaseGlosarioModelo extends CatalogoModelo {
     public ClaseGlosarioModelo() {
     }
 
-    public ClaseGlosarioModelo(CatalagoEntidad catalagoEntidad) {
-        super(catalagoEntidad);
+    public ClaseGlosarioModelo(ClaseGlosarioEntidad claseGlosarioEntidad) {
+        super(claseGlosarioEntidad);
     }
 
     public ClaseGlosarioModelo(Short clave) {
