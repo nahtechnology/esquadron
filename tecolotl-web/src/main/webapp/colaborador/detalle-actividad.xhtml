@@ -89,10 +89,49 @@
                 <h2 class="uk-modal-title">Nuevo glosario</h2>
             </div>
             <div class="uk-modal-body">
+                <h:form styleClass="uk-form-stacked">
+                    <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
+                       <div class="uk-width-auto">
+                            <h:panelGroup layout="block" styleClass="js-upload " pt:uk-form-custom="" >
+                                <label class="uk-form-label" for="imagen">Imagen</label>
+                                <h:inputFile  multiple="" id="imagen"/>
+                                <button class="uk-button uk-button-default" type="button" tabindex="-1">Cargar Imagen</button>
+                            </h:panelGroup>
+                       </div>
+                        <div class="uk-width-expand">
+                            <label class="uk-form-label" for="form-Score">Nombre</label>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input" id="form-Score" >
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1">
+                            <label class="uk-form-label" for="palabra">Palabra</label>
+                            <div class="uk-form-controls">
+                                <h:inputText styleClass="uk-input" id="palabra" >
 
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1">
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-significado">Significado</label>
+                                <div class="uk-form-controls">
+                                    <h:inputTextarea styleClass="uk-textarea" rows="5" id="form-significado" pt:placeholder="Signicado">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="2"/>
+                                    </h:inputTextarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </h:panelGroup>
+                </h:form>
             </div>
             <div class="uk-modal-footer">
-
+                <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar" >
+<!--                    <f:ajax execute="@form" listener="" render=""/>-->
+                </h:commandButton>
             </div>
         </div>
     </h:panelGroup>
