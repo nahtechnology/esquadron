@@ -91,31 +91,36 @@
 
             </button>
             <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Nuevo glosario</h2>
+                <h2 class="uk-modal-title">Nuevo Glosario</h2>
             </div>
-            <div class="uk-modal-body">
-                <h:form styleClass="uk-form-stacked">
+            <h:form styleClass="uk-form-stacked">
+                <div class="uk-modal-body">
                     <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                        <div class="uk-width-auto">
                             <h:panelGroup layout="block" styleClass="js-upload " pt:uk-form-custom="" >
                                 <label class="uk-form-label" for="imagen">Imagen</label>
-                                <h:inputFile  multiple="" id="imagen"/>
+                                <h:inputFile  multiple="" id="imagen" value="#{detalleActividadControlador.glosarioModelo.imagen}"/>
                                 <button class="uk-button uk-button-default" type="button" tabindex="-1">Cargar Imagen</button>
                             </h:panelGroup>
                        </div>
                         <div class="uk-width-expand">
-                            <label class="uk-form-label" for="form-Score">Nombre</label>
+                            <label class="uk-form-label" for="form-ClaseGlosario">Clase Glosario</label>
                             <div class="uk-form-controls">
-                                <h:inputText styleClass="uk-input" id="form-Score" >
-                                </h:inputText>
+                                <h:selectOneMenu styleClass="uk-select uk-form-width-medium" id="form-ClaseGlosario" value="#{detalleActividadControlador.glosarioModelo.claseGlosarioModelo.clave}">
+                                    <f:selectItems value="#{detalleActividadControlador.claseGlosarioModeloLista}"
+                                                    var="claseLista"
+                                                    itemLabel="#{claseLista.valor}"
+                                                    itemValue="#{claseLista.clave}"/>
+                                    <f:validateRequired/>
+                                </h:selectOneMenu>
                             </div>
                         </div>
-
                         <div class="uk-width-1-1">
-                            <label class="uk-form-label" for="palabra">Palabra</label>
+                            <label class="uk-form-label" for="form-Palabra">Palabra</label>
                             <div class="uk-form-controls">
-                                <h:inputText styleClass="uk-input" id="palabra" >
-
+                                <h:inputText styleClass="uk-input" id="form-Palabra" value="#{detalleActividadControlador.glosarioModelo.palabra}">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="2" maximum="20"/>
                                 </h:inputText>
                             </div>
                         </div>
@@ -123,23 +128,22 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-significado">Significado</label>
                                 <div class="uk-form-controls">
-                                    <h:inputTextarea styleClass="uk-textarea" rows="5" id="form-significado" pt:placeholder="Signicado">
+                                    <h:inputTextarea styleClass="uk-textarea" rows="5" id="form-significado" pt:placeholder="Signicado"  value="#{detalleActividadControlador.glosarioModelo.significado}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="2"/>
+                                        <f:validateLength maximum="300"/>
                                     </h:inputTextarea>
                                 </div>
                             </div>
                         </div>
 
                     </h:panelGroup>
-                </h:form>
-            </div>
-            <div class="uk-modal-footer">
-                <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar" >
-<!--                    <f:ajax execute="@form" listener="" render=""/>-->
-                </h:commandButton>
-
-            </div>
+                </div>
+                <div class="uk-modal-footer">
+                    <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar" >
+                        <f:ajax execute="@form" listener="#{detalleActividadControlador.agregaGlosario}" render="@form"/>
+                    </h:commandButton>
+                </div>
+            </h:form>
         </div>
     </h:panelGroup>
     <h:outputScript library="js" name="uikit.js"/>

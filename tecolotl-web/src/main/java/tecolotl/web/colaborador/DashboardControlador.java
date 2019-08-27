@@ -30,7 +30,7 @@ public class DashboardControlador  {
     private List<TipoEstudianteModelo> tipoEstudianteModeloLista;
     private List<TemaModelo> temaModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
-    private List<NivelLenguajeModelo> nuevaLista;
+    private String[] checkBox;
 
 
     @Inject
@@ -61,7 +61,13 @@ public class DashboardControlador  {
     }
 
     public void agregarActividad(){
+        logger.info(actividadModelo.toString());
+        logger.info(actividadModelo.getNivelLenguajeModeloLista().toString());
+        for (int i = 0; i < checkBox.length; i++) {
+            actividadModelo.getNivelLenguajeModeloLista().add(new NivelLenguajeModelo(Short.parseShort(checkBox[i])));
+        }
         actividadSesionBean.inserta(actividadModelo);
+
     }
 
     public HtmlDataTable getHtmlDataTable() {
@@ -112,11 +118,11 @@ public class DashboardControlador  {
         this.nivelLenguajeModeloLista = nivelLenguajeModeloLista;
     }
 
-    public List<NivelLenguajeModelo> getNuevaLista() {
-        return nuevaLista;
+    public String[] getCheckBox() {
+        return checkBox;
     }
 
-    public void setNuevaLista(List<NivelLenguajeModelo> nuevaLista) {
-        this.nuevaLista = nuevaLista;
+    public void setCheckBox(String[] checkBox) {
+        this.checkBox = checkBox;
     }
 }

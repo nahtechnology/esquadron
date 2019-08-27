@@ -181,7 +181,7 @@
                         <div class="uk-width-1-2">
                             <label class="uk-form-label" for="form-LanguageLevel">Language Level</label>
                             <div class="uk-form-controls">
-                                <h:selectManyCheckbox  styleClass="uk-form-width-medium" id="form-LanguageLevel" value="#{colaboradorDashboardControlador.actividadModelo.nivelLenguajeModeloLista}">
+                                <h:selectManyCheckbox  styleClass="uk-form-width-medium" id="form-LanguageLevel" value="#{colaboradorDashboardControlador.checkBox}">
                                     <f:selectItems value="#{colaboradorDashboardControlador.nivelLenguajeModeloLista}"
                                                    var="nivelLeanguaje"
                                                    itemValue="#{nivelLeanguaje.clave}" itemLabel="#{nivelLeanguaje.valor}"/>
