@@ -69,6 +69,7 @@ public class GlosarioSesionBean {
         ).collect(Collectors.toList());
     }
 
+
     /**
      * Agreaga un nuevo glosario con su relacion en cascada de la actividad que pertenece.
      * @param glosarioModelo Datos del glosario a insertar.
