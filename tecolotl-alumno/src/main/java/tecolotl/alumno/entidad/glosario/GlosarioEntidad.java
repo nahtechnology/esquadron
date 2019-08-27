@@ -58,7 +58,7 @@ public class GlosarioEntidad {
         this.significado = significado;
     }
 
-    @OneToMany(mappedBy = "glosarioActividadEntidadPK.glosarioEntidad", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "glosarioActividadEntidadPK.glosarioEntidad", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     public List<GlosarioActividadEntidad> getGlosarioActividadEntidadLista() {
         return glosarioActividadEntidadLista;
     }

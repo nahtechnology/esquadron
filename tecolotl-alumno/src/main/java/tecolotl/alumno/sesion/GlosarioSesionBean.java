@@ -1,17 +1,21 @@
 package tecolotl.alumno.sesion;
 
-import tecolotl.alumno.entidad.glosario.GlosarioActividadEntidad;
-import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
+import tecolotl.alumno.validacion.glosario.GlosarioLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.validacion.CatalogoLlavePrimariaValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -26,6 +30,9 @@ public class GlosarioSesionBean {
 
     @Inject
     private Logger logger;
+
+    @Inject
+    private ValidadorSessionBean validadorSessionBean;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -60,6 +67,40 @@ public class GlosarioSesionBean {
         return tareaGlosarioActividadEntidadLista.stream().map(tareaGlosarioActividadEntidad ->
             new GlosarioModelo(tareaGlosarioActividadEntidad.getTareaGlosarioActividadEntidadPK().getGlosarioActividadEntidad().getGlosarioActividadEntidadPK().getGlosarioEntidad())
         ).collect(Collectors.toList());
+    }
+
+    /**
+     * Agreaga un nuevo glosario con su relacion en cascada de la actividad que pertenece.
+     * @param glosarioModelo Datos del glosario a insertar.
+     * @param idActividad Activdad a la que pertenece.
+     */
+    public void agregar(@NotNull GlosarioModelo glosarioModelo, @NotNull @Size(min = 11, max = 11) String idActividad) {
+        logger.fine(glosarioModelo.toString());
+        GlosarioEntidad glosarioEntidad = new GlosarioEntidad(llavePrimaria(glosarioModelo));
+        glosarioEntidad.setImagen(glosarioModelo.getImagen());
+        glosarioEntidad.setSignificado(glosarioModelo.getSignificado());
+        GlosarioActividadEntidad glosarioActividadEntidad = new GlosarioActividadEntidad(llavePrimaria(glosarioEntidad, idActividad));
+        glosarioEntidad.setGlosarioActividadEntidadLista(Arrays.asList(glosarioActividadEntidad));
+        if (glosarioEntidad.getSignificado() == null || glosarioEntidad.getSignificado().isEmpty()) {
+            entityManager.persist(glosarioEntidad);
+        } else {
+            entityManager.persist(glosarioActividadEntidad);
+        }
+    }
+
+
+    protected GlosarioEntidadPK llavePrimaria(GlosarioModelo glosarioModelo) {
+        GlosarioEntidadPK glosarioEntidadPK = new GlosarioEntidadPK();
+        glosarioEntidadPK.setPalabra(glosarioModelo.getPalabra());
+        glosarioEntidadPK.setClaseGlosarioEntidad(new ClaseGlosarioEntidad(glosarioModelo.getClaseGlosarioModelo().getClave()));
+        return glosarioEntidadPK;
+    }
+
+    protected GlosarioActividadEntidadPK llavePrimaria(GlosarioEntidad glosarioEntidad, String idActividad) {
+        GlosarioActividadEntidadPK glosarioActividadEntidadPK = new GlosarioActividadEntidadPK();
+        glosarioActividadEntidadPK.setActividadEntidad(new ActividadEntidad(idActividad));
+        glosarioActividadEntidadPK.setGlosarioEntidad(glosarioEntidad);
+        return glosarioActividadEntidadPK;
     }
 
 }

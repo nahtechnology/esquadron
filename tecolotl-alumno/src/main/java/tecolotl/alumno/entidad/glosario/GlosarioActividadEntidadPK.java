@@ -22,7 +22,7 @@ public class GlosarioActividadEntidadPK implements Serializable {
         this.actividadEntidad = actividadEntidad;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST})
     @NotNull
     @JoinColumns(value = {
             @JoinColumn(name = "id_glosario", referencedColumnName = "palabra"),

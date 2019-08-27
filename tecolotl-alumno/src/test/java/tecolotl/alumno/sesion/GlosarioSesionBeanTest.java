@@ -14,6 +14,7 @@ import tecolotl.alumno.entidad.escribir.EscribirEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.escribir.EscribirModelo;
+import tecolotl.alumno.modelo.glosario.ClaseGlosarioModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
@@ -68,8 +69,8 @@ public class GlosarioSesionBeanTest {
             assertNotNull(glosarioModelo.getPalabra());
             assertNotNull(glosarioModelo.getImagen());
             assertNotNull(glosarioModelo.getSignificado());
-        //    assertNotNull(glosarioModelo.getClaseGlosarioModelo());
-        //    assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
+            assertNotNull(glosarioModelo.getClaseGlosarioModelo());
+            assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
         });
     }
 
@@ -86,5 +87,16 @@ public class GlosarioSesionBeanTest {
             assertNotNull(glosarioModelo.getClaseGlosarioModelo());
             assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
         });
+    }
+
+    @Test
+    public void inserta() {
+        GlosarioModelo glosarioModelo = new GlosarioModelo();
+        glosarioModelo.setSignificado("Significado");
+        glosarioModelo.setPalabra("palabra");
+        glosarioModelo.setClaseGlosarioModelo(new ClaseGlosarioModelo((short)2));
+        glosarioModelo.setImagen("palabra".getBytes());
+        glosarioSesionBean.agregar(glosarioModelo, "DNHmujbuC74");
+        assertNotNull(glosarioModelo);
     }
 }

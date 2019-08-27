@@ -1,8 +1,10 @@
 package tecolotl.alumno.modelo.glosario;
 
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.validacion.glosario.GlosarioLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
@@ -29,8 +31,8 @@ public class GlosarioModelo {
         this.significado = glosarioEntidad.getSignificado();
     }
 
-    @NotNull(groups = {GlosarioNuevoValidacion.class})
-    @Size(max = 20, groups = {GlosarioNuevoValidacion.class})
+    @NotNull(groups = {GlosarioNuevoValidacion.class, GlosarioLlavePrimariaValidacion.class})
+    @Size(max = 20, groups = {GlosarioNuevoValidacion.class, GlosarioLlavePrimariaValidacion.class})
     public String getPalabra() {
         return palabra;
     }
@@ -39,6 +41,8 @@ public class GlosarioModelo {
         this.palabra = palabra;
     }
 
+    @NotNull(groups = {GlosarioLlavePrimariaValidacion.class})
+    @Valid
     public ClaseGlosarioModelo getClaseGlosarioModelo() {
         return claseGlosarioModelo;
     }
@@ -47,6 +51,7 @@ public class GlosarioModelo {
         this.claseGlosarioModelo = claseGlosarioModelo;
     }
 
+    @NotNull
     public byte[] getImagen() {
         return imagen;
     }
@@ -55,6 +60,8 @@ public class GlosarioModelo {
         this.imagen = imagen;
     }
 
+    @NotNull
+    @Size(max = 300)
     public String getSignificado() {
         return significado;
     }
