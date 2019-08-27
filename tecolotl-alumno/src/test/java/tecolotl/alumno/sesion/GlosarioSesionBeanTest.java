@@ -76,7 +76,7 @@ public class GlosarioSesionBeanTest {
 
     @Test
     public void buscaPalabra() {
-        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.buscaPalabra("palabra");
+        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca("pala", "g9WDeud275U");
         assertNotNull(glosarioModeloLista);
         assertFalse(glosarioModeloLista.isEmpty());
         glosarioModeloLista.forEach(glosarioModelo -> {

@@ -12,6 +12,11 @@ import java.util.StringJoiner;
                 name = "GlosarioActividadEntidad.buscaActividad",
                 query = "SELECT ga FROM GlosarioActividadEntidad ga JOIN FETCH ga.glosarioActividadEntidadPK.glosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg " +
                         "WHERE ga.glosarioActividadEntidadPK.actividadEntidad.id = :idActivdad"
+        ),
+        @NamedQuery(
+                name = "GlosarioActividadEntidad.buscaPalabraNoActividad",
+                query = "SELECT ga FROM GlosarioActividadEntidad ga JOIN FETCH ga.glosarioActividadEntidadPK.glosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg " +
+                        "WHERE ga.glosarioActividadEntidadPK.actividadEntidad.id <> :idActivdad AND g.glosarioEntidadPK.palabra LIKE :palabra"
         )
 })
 public class GlosarioActividadEntidad {
