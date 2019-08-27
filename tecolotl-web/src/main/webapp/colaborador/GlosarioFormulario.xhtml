@@ -13,7 +13,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>Actividades</title>
     <h:outputStylesheet library="css" name="uikit.css"/>
@@ -22,7 +23,7 @@
 
 <h:body>
 
-        <div class="uk-container uk-container-small">
+        <div class="uk-container uk-container-small uk-margin-medium-top">
 
             <div class="uk-card uk-card-default">
                 <div class="uk-card-header">
@@ -34,19 +35,47 @@
                         </div>
                     </div>
                 </div>
-                <div class="uk-card-body">
+                <div class="uk-card-body uk-overflow-auto">
                     <h:dataTable id="tabla-actividades"
                                  value="#{colaboradorDashboardControlador.collectionDataModel}"
                                  var="actividad"
-                                    >
+                                 styleClass="uk-table uk-table-justify uk-text-center uk-table-striped tabla-borde letra-contenido-tabla"
+                                 columnClasses=""
+                                 headerClass="uk-background-primary letra-titulo uk-text-bold uk-text-center">
                         <h:column>
                             <f:facet name="header">Id video</f:facet>
                             #{actividad.idVideo}
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Nivel Lenguaje</f:facet>
+                            <ui:repeat value="#{actividad.nivelLenguajeModeloLista}" var="nivelLenguaje" varStatus="variable">
+                                #{nivelLenguaje.valor}<h:outputText value="," rendered="#{not variable.last}"/>
+                            </ui:repeat>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tipo de aprendizaje</f:facet>
+                            #{actividad.tipoEstudianteModelo.valor}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tiempo</f:facet>
+                            #{actividad.tiempo}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Topico</f:facet>
+                            #{actividad.temaModelo.valor}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Lenguaje</f:facet>
+                            #{actividad.lenguaje}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Pregunta</f:facet>
+                            #{actividad.preguntaDetonadora}
+                        </h:column>
                     </h:dataTable>
                 </div>
                 <div class="uk-card-footer">
-                    <a href="#modal-agregar" class="uk-button uk-button-primary" uk-toggle="">Modal</a>
+                    <a href="#modal-agregar" class="uk-button uk-button-primary" uk-toggle="">Nuevo</a>
                 </div>
             </div>
 

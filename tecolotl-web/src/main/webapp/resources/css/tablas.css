@@ -74,4 +74,16 @@
 .module {
      stroke: black;
  }
+.letra-titulo{
+    color: white !important;
+    font-weight: bold !important;
+}
+.tabla-borde{
+    border:1px solid black;
+}
+.letra-contenido-tabla{
+    font-family: "Century Gothic";
+    font-size: 12px;
+    font-weight: normal;
+}
 
