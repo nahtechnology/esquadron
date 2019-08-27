@@ -9,6 +9,7 @@
 <h:head>
     <title>Dashboard</title>
     <h:outputStylesheet library="css" name="uikit.css"/>
+    <h:outputStylesheet library="css" name="tablas.css"/>
 </h:head>
 
 <h:body>
@@ -30,8 +31,43 @@
             <div>
                 <div class="uk-card uk-card-default uk-card-small uk-card-body">
                     <h3 class="uk-card-title">Glosario</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <button class="uk-button uk-button-small uk-button-primary" uk-toggle="target: #modal-glosario">Nuevo</button>
+                    <ui:fragment rendered="#{empty detalleActividadControlador.glosarioModeloLista}">
+                        <table class="uk-table uk-table-middle">
+                            <thead class="uk-background-primary letra-titulo ">
+                            <tr>
+                                <th><span class="letra-titulo  uk-text-bold uk-text-center">ID imagen</span></th>
+                                <th><span class="letra-titulo uk-text-bold uk-text-center ">Significado</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    <div class="uk-flex uk-flex-center">
+                                        <h:graphicImage library="img" name="vacio.svg" height="auto" width="auto" alt="vacio"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </ui:fragment>
+
+                    <h:dataTable id="tabla-glosario"
+                                 value="#{detalleActividadControlador.glosarioModeloLista}"
+                                 rendered="#{not empty detalleActividadControlador.glosarioModeloLista}"
+                                 var="glosario"
+                                 styleClass="uk-table uk-table-justify uk-text-center uk-table-striped tabla-borde letra-contenido-tabla opcion"
+                                 columnClasses=""
+                                 headerClass="uk-background-primary letra-titulo uk-text-bold uk-text-center">
+                        <h:column>
+                            <f:facet name="header">ID imagen</f:facet>
+                            #{glosario.palabra}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Significado</f:facet>
+                            #{glosario.significado}
+                        </h:column>
+                    </h:dataTable>
+                    <button class="uk-button uk-button-small uk-button-primary" uk-toggle="target: #modal-glosario">Agregar</button>
                 </div>
             </div>
             <div>
