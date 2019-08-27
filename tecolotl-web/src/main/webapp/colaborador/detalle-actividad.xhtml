@@ -66,8 +66,13 @@
                             <f:facet name="header">Significado</f:facet>
                             #{glosario.significado}
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Clase</f:facet>
+                            #{glosario.claseGlosarioModelo.valor}
+                        </h:column>
                     </h:dataTable>
                     <button class="uk-button uk-button-small uk-button-primary" uk-toggle="target: #modal-glosario">Agregar</button>
+                    <button class="uk-button uk-button-small uk-button-primary">Existente</button>
                 </div>
             </div>
             <div>
@@ -105,6 +110,7 @@
                                 </h:inputText>
                             </div>
                         </div>
+
                         <div class="uk-width-1-1">
                             <label class="uk-form-label" for="palabra">Palabra</label>
                             <div class="uk-form-controls">
@@ -132,6 +138,7 @@
                 <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar" >
 <!--                    <f:ajax execute="@form" listener="" render=""/>-->
                 </h:commandButton>
+
             </div>
         </div>
     </h:panelGroup>
