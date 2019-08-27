@@ -31,9 +31,6 @@ public class GlosarioSesionBean {
     @Inject
     private Logger logger;
 
-    @Inject
-    private ValidadorSessionBean validadorSessionBean;
-
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -51,6 +48,21 @@ public class GlosarioSesionBean {
         return glosarioActividadEntidadLista.stream().map(
                 glosarioActividadEntidad -> new GlosarioModelo(glosarioActividadEntidad.getGlosarioActividadEntidadPK().getGlosarioEntidad())
         ).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca glosarios por una palabra clave.
+     * @param palabra Palabra a busca dentro del glosario
+     * @return Colección de {@link GlosarioModelo}
+     */
+    public List<GlosarioModelo> buscaPalabra(@NotNull  @Size(min = 1, max = 20) String palabra) {
+        logger.fine(palabra);
+        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaPalabra", GlosarioEntidad.class);
+        typedQuery.setParameter("palabra", "%".concat(palabra).concat("%"));
+        List<GlosarioEntidad> glosarioEntidadLista = typedQuery.getResultList();
+        logger.finer("Glosario encontrados".concat(String.valueOf(glosarioEntidadLista.size())));
+        return glosarioEntidadLista.stream().map(
+                glosarioEntidad -> new GlosarioModelo(glosarioEntidad)).collect(Collectors.toList());
     }
 
     /**

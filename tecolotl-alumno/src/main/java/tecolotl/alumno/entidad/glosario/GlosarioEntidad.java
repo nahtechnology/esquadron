@@ -13,7 +13,7 @@ import java.util.StringJoiner;
         @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg"),
         @NamedQuery(
                 name = "GlosarioEntidad.buscaPalabra",
-                query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg WHERE g.glosarioEntidadPK.palabra LIKE '%:palabra%'"
+                query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg WHERE g.glosarioEntidadPK.palabra LIKE :palabra"
         )
 })
 public class GlosarioEntidad {

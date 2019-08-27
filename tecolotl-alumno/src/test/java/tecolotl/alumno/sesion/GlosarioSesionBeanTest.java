@@ -75,6 +75,21 @@ public class GlosarioSesionBeanTest {
     }
 
     @Test
+    public void buscaPalabra() {
+        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.buscaPalabra("palabra");
+        assertNotNull(glosarioModeloLista);
+        assertFalse(glosarioModeloLista.isEmpty());
+        glosarioModeloLista.forEach(glosarioModelo -> {
+            assertNotNull(glosarioModelo);
+            assertNotNull(glosarioModelo.getPalabra());
+            assertNotNull(glosarioModelo.getImagen());
+            assertNotNull(glosarioModelo.getSignificado());
+            assertNotNull(glosarioModelo.getClaseGlosarioModelo());
+            assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
+        });
+    }
+
+    @Test
     public void buscaTarea() {
         List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(-20);
         assertNotNull(glosarioModeloLista);
