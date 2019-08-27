@@ -11,16 +11,20 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
     <title>Actividades</title>
     <h:outputStylesheet library="css" name="uikit.css"/>
     <h:outputStylesheet library="css" name="tablas.css"/>
+    <h:outputStylesheet library="css" name="colaborador/actividad.css"/>
 </h:head>
 
 <h:body>
 
-        <div class="uk-container uk-container-small">
+        <div class="uk-container uk-container-small uk-margin-medium-top">
 
             <div class="uk-card uk-card-default">
                 <div class="uk-card-header">
@@ -32,19 +36,47 @@
                         </div>
                     </div>
                 </div>
-                <div class="uk-card-body">
+                <div class="uk-card-body uk-overflow-auto">
                     <h:dataTable id="tabla-actividades"
                                  value="#{colaboradorDashboardControlador.collectionDataModel}"
                                  var="actividad"
-                                    >
+                                 styleClass="uk-table uk-table-justify uk-text-center uk-table-striped tabla-borde letra-contenido-tabla"
+                                 columnClasses=""
+                                 headerClass="uk-background-primary letra-titulo uk-text-bold uk-text-center">
                         <h:column>
                             <f:facet name="header">Id video</f:facet>
                             #{actividad.idVideo}
                         </h:column>
+                        <h:column>
+                            <f:facet name="header">Nivel Lenguaje</f:facet>
+                            <ui:repeat value="#{actividad.nivelLenguajeModeloLista}" var="nivelLenguaje" varStatus="variable">
+                                #{nivelLenguaje.valor}<h:outputText value="," rendered="#{not variable.last}"/>
+                            </ui:repeat>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tipo de aprendizaje</f:facet>
+                            #{actividad.tipoEstudianteModelo.valor}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tiempo</f:facet>
+                            #{actividad.tiempo}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Topico</f:facet>
+                            #{actividad.temaModelo.valor}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Lenguaje</f:facet>
+                            #{actividad.lenguaje}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Pregunta</f:facet>
+                            #{actividad.preguntaDetonadora}
+                        </h:column>
                     </h:dataTable>
                 </div>
                 <div class="uk-card-footer">
-                    <a href="#modal-agregar" class="uk-button uk-button-primary" uk-toggle="">Modal</a>
+                    <a href="#modal-agregar" class="uk-button uk-button-primary" uk-toggle="">Nuevo</a>
                 </div>
             </div>
 
@@ -53,13 +85,80 @@
 
 
     <div id="modal-agregar" uk-modal="">
-        <div class="uk-modal-dialog">
+        <div class="uk-modal-dialog modal-tam scroll-actividad scroller">
             <button class="uk-modal-close-default" type="button" uk-close=""/>
             <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Headline 1</h2>
+                <h2 class="uk-modal-title">Actividad</h2>
             </div>
             <div class="uk-modal-body">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <h:form styleClass="uk-form-stacked">
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-IdVideo">ID Video</label>
+                        <div class="uk-form-controls">
+                            <h:inputText styleClass="uk-input" id="form-IdVideo" pt:placeholder="ID Video"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-Score">Score</label>
+                        <div class="uk-form-controls">
+                            <h:inputText styleClass="uk-input" id="form-Score" pt:placeholder="Example: 100"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-learnersType">Learners Type -Select-</label>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu  styleClass="uk-select" id="form-learnersType" value="#{colaboradorDashboardControlador.actividadModelo.tipoEstudianteModelo.clave}">
+                                <f:selectItems value="#{colaboradorDashboardControlador.tipoEstudianteModeloLista}"
+                                               var="tipoEstudiante"
+                                               itemLabel="#{tipoEstudiante.valor}"
+                                               itemValue="#{tipoEstudiante.clave}"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-Time">Time</label>
+                        <div class="uk-form-controls">
+                            <h:inputText styleClass="uk-input" id="form-Time" pt:placeholder="Time in minutes, example: 90"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-Question">Question</label>
+                        <div class="uk-form-controls">
+                            <h:inputText styleClass="uk-input" id="form-Question" pt:placeholder="Example: Who is the president of Russia?"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-Language">Language</label>
+                        <div class="uk-form-controls">
+                            <h:inputText styleClass="uk-input" id="form-Language" pt:placeholder="Example: Adverbs of Frequency"/>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-Topic">Topic -Select-</label>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu  styleClass="uk-select" id="form-Topic" value="#{colaboradorDashboardControlador.actividadModelo.temaModelo.clave}">
+                                <f:selectItems value="#{colaboradorDashboardControlador.temaModeloLista}"
+                                               var="tipoTema"
+                                               itemLabel="#{tipoTema.valor}"
+                                               itemValue="#{tipoTema.clave}"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-LanguageLevel">Language Level</label>
+                        <div class="uk-form-controls">
+                            <h:selectManyCheckbox value="#{colaboradorDashboardControlador.collectionDataModel}">
+
+                            </h:selectManyCheckbox>
+                        </div>
+                    </div>
+                    <div class="uk-margin">
+                        <label class="uk-form-label">Transcript</label>
+                        <div class="uk-form-controls">
+                            <h:inputTextarea styleClass="uk-textarea" rows="30" pt:placeholder="Transcript here, please"/>
+                        </div>
+                    </div>
+                </h:form>
             </div>
             <div class="uk-modal-footer uk-text-right">
                 <button class="uk-button uk-button-primary uk-modal-close" type="button">Cancel</button>
