@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad.escribir;
+package tecolotl.alumno.entidad.mapamental;
 
 import tecolotl.alumno.entidad.TareaEntidad;
 
@@ -9,23 +9,23 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
-@Table(name = "tarea_escribir_actividad", schema = "alumno")
+@Table(name = "mapamental_actividad", schema = "alumno")
 @NamedQueries(value = {
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.buscaEscribir",
-        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea " +
-                "JOIN ea.escribirEntidad e WHERE tea.tareaEntidad.id = :idTarea"
+        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad ea " +
+                "JOIN ea.mapaMentalEntidad e WHERE tea.tareaEntidad.id = :idTarea"
     ),
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.buscaTarea",
-        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad ea" +
-                " JOIN FETCH ea.escribirEntidad e WHERE tea.tareaEntidad.id = :idTarea"
+        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad ea" +
+                " JOIN FETCH ea.mapaMentalEntidad e WHERE tea.tareaEntidad.id = :idTarea"
     ),
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.busca",
         query = "SELECT tea FROM TareaEscribirActividadEntidad tea WHERE tea.tareaEntidad.id = :idTarea AND " +
-                "tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad.escribirEntidad.id = :idEscribir AND " +
-                "tea.tareaEscribirActividadEntidadPK.escribirActividadEntidad.actividadEntidad.id = :idActividad"
+                "tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalEntidad.id = :idEscribir AND " +
+                "tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad.actividadEntidad.id = :idActividad"
     )
 })
 public class TareaEscribirActividadEntidad implements Serializable {

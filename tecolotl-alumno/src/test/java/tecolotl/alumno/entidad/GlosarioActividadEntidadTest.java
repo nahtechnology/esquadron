@@ -9,13 +9,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.entidad.escribir.EscribirEntidad;
-import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioActividadEntidad;
-import tecolotl.alumno.entidad.glosario.GlosarioActividadEntidadPK;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
-import tecolotl.alumno.modelo.escribir.EscribirModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
@@ -38,9 +36,9 @@ public class GlosarioActividadEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addPackage(EscribirEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
+                .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
                 .addPackage(ActividadEntidad.class.getPackage())
-                .addPackage(EscribirModelo.class.getPackage())
+                .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())

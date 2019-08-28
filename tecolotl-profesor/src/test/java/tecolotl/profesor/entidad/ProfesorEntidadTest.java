@@ -11,29 +11,23 @@ import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
-import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.alumno.entidad.ActividadEntidad;
-import tecolotl.alumno.entidad.AlumnoEntidad;
-import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
-import tecolotl.alumno.modelo.escribir.EscribirModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.CorreoEnum;
-import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
-import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
-import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
@@ -60,8 +54,8 @@ public class ProfesorEntidadTest {
                 .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 //alumno
-                .addPackage(EscribirActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
-                .addPackage(ActividadEntidad.class.getPackage()).addPackage(EscribirModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
+                .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
+                .addPackage(ActividadEntidad.class.getPackage()).addPackage(MapaMentalModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage()).addPackage(ActividadSesionBean.class.getPackage())
                 .addPackage(EscribirLlavePrimariaValidacion.class.getPackage()).addClass(GlosarioNuevoValidacion.class)
                 //profesor

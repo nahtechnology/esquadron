@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad.escribir;
+package tecolotl.alumno.entidad.mapamental;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,26 +8,26 @@ import java.util.StringJoiner;
 @Embeddable
 public class TareaEscribirActividadEntidadPK implements Serializable {
 
-    private EscribirActividadEntidad escribirActividadEntidad;
+    private MapaMentalActividadEntidad mapaMentalActividadEntidad;
 
     public TareaEscribirActividadEntidadPK() {
     }
 
-    public TareaEscribirActividadEntidadPK(EscribirActividadEntidad escribirActividadEntidad) {
-        this.escribirActividadEntidad = escribirActividadEntidad;
+    public TareaEscribirActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad) {
+        this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
-            @JoinColumn(name = "id_escribir", referencedColumnName = "id_escribir"),
+            @JoinColumn(name = "id_mapamental", referencedColumnName = "id_mapamental"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     })
-    public EscribirActividadEntidad getEscribirActividadEntidad() {
-        return escribirActividadEntidad;
+    public MapaMentalActividadEntidad getMapaMentalActividadEntidad() {
+        return mapaMentalActividadEntidad;
     }
 
-    public void setEscribirActividadEntidad(EscribirActividadEntidad escribirActividadEntidad) {
-        this.escribirActividadEntidad = escribirActividadEntidad;
+    public void setMapaMentalActividadEntidad(MapaMentalActividadEntidad mapaMentalActividadEntidad) {
+        this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
     }
 
     @Override
@@ -35,18 +35,18 @@ public class TareaEscribirActividadEntidadPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TareaEscribirActividadEntidadPK that = (TareaEscribirActividadEntidadPK) o;
-        return escribirActividadEntidad.equals(that.escribirActividadEntidad);
+        return mapaMentalActividadEntidad.equals(that.mapaMentalActividadEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(escribirActividadEntidad);
+        return Objects.hash(mapaMentalActividadEntidad);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", TareaEscribirActividadEntidadPK.class.getSimpleName() + "[", "]")
-                .add("escribirActividadEntidad=" + escribirActividadEntidad)
+                .add("escribirActividadEntidad=" + mapaMentalActividadEntidad)
                 .toString();
     }
 }

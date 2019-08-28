@@ -30,7 +30,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class GlosarioEntidadTest {
+public class MapaMentalEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment(){
@@ -58,18 +58,15 @@ public class GlosarioEntidadTest {
 
     @Test
     public void busca(){
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
-        List<GlosarioEntidad> glosarioEntidadsLista = typedQuery.getResultList();
-        Assert.assertNotNull(glosarioEntidadsLista);
-        Assert.assertFalse(glosarioEntidadsLista.isEmpty());
-        for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
-            Assert.assertNotNull(glosarioEntidad);
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getPalabra());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getValor());
-            Assert.assertNotNull(glosarioEntidad.getImagen());
-            Assert.assertNotNull(glosarioEntidad.getSignificado());
+        TypedQuery<MapaMentalEntidad> typedQuery = entityManager.createNamedQuery("EscribirEntidad.buscaPorActivdad", MapaMentalEntidad.class);
+        typedQuery.setParameter("idActividad", "0_1NU60qHWs");
+        List<MapaMentalEntidad> mapaMentalEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(mapaMentalEntidadLista);
+        Assert.assertFalse(mapaMentalEntidadLista.isEmpty());
+        for(MapaMentalEntidad mapaMentalEntidad : mapaMentalEntidadLista){
+            Assert.assertNotNull(mapaMentalEntidad);
+            Assert.assertNotNull(mapaMentalEntidad.getPregunta());
+            Assert.assertNotNull(mapaMentalEntidad.getId());
         }
     }
 }

@@ -1,7 +1,7 @@
 package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.TareaEntidad;
-import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
@@ -17,7 +17,7 @@ public class TareaModelo {
 
     private Integer id;
     private Date asignacion;
-    private List<EscribirBaseModelo> escribirBaseModeloLista;
+    private List<MapaMentalBaseModelo> mapaMentalBaseModeloLista;
     private List<GlosarioModelo> glosarioModeloLista;
 
     public TareaModelo() {
@@ -49,12 +49,12 @@ public class TareaModelo {
     @NotNull(groups = {EscribirNuevoValidacion.class})
     @Valid
     @Size(min = 1, groups = {EscribirNuevoValidacion.class})
-    public List<EscribirBaseModelo> getEscribirBaseModeloLista() {
-        return escribirBaseModeloLista;
+    public List<MapaMentalBaseModelo> getMapaMentalBaseModeloLista() {
+        return mapaMentalBaseModeloLista;
     }
 
-    public void setEscribirBaseModeloLista(List<EscribirBaseModelo> escribirBaseModeloLista) {
-        this.escribirBaseModeloLista = escribirBaseModeloLista;
+    public void setMapaMentalBaseModeloLista(List<MapaMentalBaseModelo> mapaMentalBaseModeloLista) {
+        this.mapaMentalBaseModeloLista = mapaMentalBaseModeloLista;
     }
 
     @NotNull(groups = {GlosarioNuevoValidacion.class})
@@ -75,12 +75,12 @@ public class TareaModelo {
         TareaModelo that = (TareaModelo) o;
         return id.equals(that.id) &&
                 asignacion.equals(that.asignacion) &&
-                escribirBaseModeloLista.equals(that.escribirBaseModeloLista);
+                mapaMentalBaseModeloLista.equals(that.mapaMentalBaseModeloLista);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, asignacion, escribirBaseModeloLista);
+        return Objects.hash(id, asignacion, mapaMentalBaseModeloLista);
     }
 
     @Override
@@ -90,8 +90,8 @@ public class TareaModelo {
                 .append("id=").append(id).append(',')
                 .append(" asignacion=").append(asignacion).append(',')
                 .append(" escribirBaseModeloLista=[");
-        for (EscribirBaseModelo escribirBaseModelo: escribirBaseModeloLista) {
-            stringBuilder.append(escribirBaseModelo.toString());
+        for (MapaMentalBaseModelo mapaMentalBaseModelo : mapaMentalBaseModeloLista) {
+            stringBuilder.append(mapaMentalBaseModelo.toString());
         }
         stringBuilder.append(']').append(']');
         return stringBuilder.toString();

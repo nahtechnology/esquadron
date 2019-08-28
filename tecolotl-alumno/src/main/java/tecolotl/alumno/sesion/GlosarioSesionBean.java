@@ -3,16 +3,12 @@ package tecolotl.alumno.sesion;
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
-import tecolotl.alumno.validacion.glosario.GlosarioLlavePrimariaValidacion;
-import tecolotl.nucleo.herramienta.ValidadorSessionBean;
-import tecolotl.nucleo.validacion.CatalogoLlavePrimariaValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;

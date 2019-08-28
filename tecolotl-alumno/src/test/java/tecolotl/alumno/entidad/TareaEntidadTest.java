@@ -9,9 +9,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
-import tecolotl.alumno.entidad.escribir.EscribirEntidad;
-import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
 import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
@@ -31,8 +31,8 @@ public class TareaEntidadTest {
                         TipoEstudianteEntidad.class, ClaseGlosarioEntidad.class, TareaGlosarioActividadEntidad.class,
                         TareaGlosarioActividadEntidadPK.class, GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class,
                         TareaEscribirActividadEntidad.class, TareaGlosarioActividadEntidadPK.class, TareaVideoEntidad.class,
-                        TareaVideoEntidadPK.class, EscribirActividadEntidad.class,
-                        EscribirEntidad.class,
+                        TareaVideoEntidadPK.class, MapaMentalActividadEntidad.class,
+                        MapaMentalEntidad.class,
                         NivelLenguajeEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

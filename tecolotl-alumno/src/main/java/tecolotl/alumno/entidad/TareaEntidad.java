@@ -1,6 +1,6 @@
 package tecolotl.alumno.entidad;
 
-import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 
 import javax.persistence.*;

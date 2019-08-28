@@ -13,44 +13,31 @@ import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.*;
 import tecolotl.administracion.persistencia.entidad.*;
 import tecolotl.administracion.sesion.ContactoSesionBean;
-import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
-import tecolotl.administracion.validacion.escuela.ProfesorValidacion;
 import tecolotl.alumno.entidad.*;
-import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
-import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
-import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
-import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidadPK;
 import tecolotl.alumno.modelo.ActividadModelo;
-import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.alumno.modelo.escribir.EscribirModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
-import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.CorreoEnum;
-import tecolotl.nucleo.herramienta.LoggerProducer;
-import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
-import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.profesor.entidad.*;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
-import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -67,8 +54,8 @@ public class GrupoSesionBeanTest {
                 .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 //alumno
-                .addPackage(EscribirActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
-                .addPackage(ActividadEntidad.class.getPackage()).addPackage(EscribirModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
+                .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
+                .addPackage(ActividadEntidad.class.getPackage()).addPackage(MapaMentalModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage()).addPackage(ActividadSesionBean.class.getPackage())
                 .addPackage(EscribirLlavePrimariaValidacion.class.getPackage()).addClass(GlosarioNuevoValidacion.class)
                 //profesor

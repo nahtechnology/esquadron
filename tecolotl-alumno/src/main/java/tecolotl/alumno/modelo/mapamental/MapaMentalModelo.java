@@ -1,7 +1,7 @@
-package tecolotl.alumno.modelo.escribir;
+package tecolotl.alumno.modelo.mapamental;
 
-import tecolotl.alumno.entidad.escribir.EscribirEntidad;
-import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
 import tecolotl.alumno.validacion.escribir.EscribirRespuestaValidacion;
 
 import javax.validation.constraints.NotNull;
@@ -10,24 +10,24 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-public class EscribirModelo extends EscribirBaseModelo {
+public class MapaMentalModelo extends MapaMentalBaseModelo {
 
     private String textoRespuesta;
     private Date fechaRespuesta;
 
-    public EscribirModelo() {
+    public MapaMentalModelo() {
     }
 
-    public EscribirModelo(Integer id) {
+    public MapaMentalModelo(Integer id) {
         super(id);
     }
 
-    public EscribirModelo(EscribirEntidad escribirEntidad) {
-        super(escribirEntidad);
+    public MapaMentalModelo(MapaMentalEntidad mapaMentalEntidad) {
+        super(mapaMentalEntidad);
     }
 
-    public EscribirModelo(TareaEscribirActividadEntidad tareaEscribirActividadEntidad) {
-        this(tareaEscribirActividadEntidad.getTareaEscribirActividadEntidadPK().getEscribirActividadEntidad().getEscribirEntidad());
+    public MapaMentalModelo(TareaEscribirActividadEntidad tareaEscribirActividadEntidad) {
+        this(tareaEscribirActividadEntidad.getTareaEscribirActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalEntidad());
         this.textoRespuesta = tareaEscribirActividadEntidad.getTextRespuesta();
         this.fechaRespuesta = tareaEscribirActividadEntidad.getHoraRespuesta();
     }
@@ -54,7 +54,7 @@ public class EscribirModelo extends EscribirBaseModelo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EscribirModelo that = (EscribirModelo) o;
+        MapaMentalModelo that = (MapaMentalModelo) o;
         return textoRespuesta.equals(that.textoRespuesta);
     }
 
@@ -65,7 +65,7 @@ public class EscribirModelo extends EscribirBaseModelo {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", EscribirModelo.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", MapaMentalModelo.class.getSimpleName() + "[", "]")
                 .add("textoRespuesta='" + textoRespuesta + "'")
                 .add("fechaRespuesta=" + fechaRespuesta)
                 .toString();

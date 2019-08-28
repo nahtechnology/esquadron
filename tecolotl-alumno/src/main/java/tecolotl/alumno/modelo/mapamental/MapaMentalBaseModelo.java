@@ -1,6 +1,6 @@
-package tecolotl.alumno.modelo.escribir;
+package tecolotl.alumno.modelo.mapamental;
 
-import tecolotl.alumno.entidad.escribir.EscribirEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 
@@ -9,21 +9,21 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.StringJoiner;
 
-public class EscribirBaseModelo {
+public class MapaMentalBaseModelo {
 
     private Integer id;
     private String pregunta;
 
-    public EscribirBaseModelo() {
+    public MapaMentalBaseModelo() {
     }
 
-    public EscribirBaseModelo(Integer id) {
+    public MapaMentalBaseModelo(Integer id) {
         this.id = id;
     }
 
-    public EscribirBaseModelo(EscribirEntidad escribirEntidad) {
-        this.id = escribirEntidad.getId();
-        this.pregunta = escribirEntidad.getPregunta();
+    public MapaMentalBaseModelo(MapaMentalEntidad mapaMentalEntidad) {
+        this.id = mapaMentalEntidad.getId();
+        this.pregunta = mapaMentalEntidad.getPregunta();
     }
 
     @NotNull(groups = {EscribirNuevoValidacion.class, EscribirLlavePrimariaValidacion.class})
@@ -48,7 +48,7 @@ public class EscribirBaseModelo {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", EscribirBaseModelo.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", MapaMentalBaseModelo.class.getSimpleName() + "[", "]")
                 .add("id=" + id)
                 .add("pregunta='" + pregunta + "'")
                 .toString();

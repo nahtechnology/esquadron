@@ -1,14 +1,7 @@
 package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
-import tecolotl.alumno.entidad.escribir.EscribirActividadEntidad;
-import tecolotl.alumno.entidad.escribir.EscribirEntidad;
-import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
-import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidadPK;
-import tecolotl.alumno.entidad.glosario.*;
-import tecolotl.alumno.modelo.escribir.EscribirBaseModelo;
 import tecolotl.alumno.modelo.TareaModelo;
-import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -21,7 +14,6 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;

@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.entidad.escribir.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
@@ -21,7 +21,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class TareaEscribirActividadEntidadTest {
+public class TareaMapaMentalActividadEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment(){

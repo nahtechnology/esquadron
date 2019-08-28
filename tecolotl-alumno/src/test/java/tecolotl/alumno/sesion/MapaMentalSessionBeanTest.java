@@ -1,4 +1,4 @@
-package tecolotl.alumno.entidad;
+package tecolotl.alumno.sesion;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -6,31 +6,36 @@ import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
+import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
-import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
-import tecolotl.alumno.sesion.ActividadSesionBean;
+import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
+import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
+import tecolotl.alumno.validacion.escribir.EscribirRespuestaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
+import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.inject.Inject;
+
 import java.util.List;
 
+import static org.junit.Assert.*;
+
 @RunWith(Arquillian.class)
-public class GlosarioEntidadTest {
+public class MapaMentalSessionBeanTest {
 
     @Deployment
     public static Archive<?> createDeployment(){
@@ -53,23 +58,51 @@ public class GlosarioEntidadTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Inject
+    private MapaMentalSessionBean mapaMentalSessionBean;
 
     @Test
-    public void busca(){
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
-        List<GlosarioEntidad> glosarioEntidadsLista = typedQuery.getResultList();
-        Assert.assertNotNull(glosarioEntidadsLista);
-        Assert.assertFalse(glosarioEntidadsLista.isEmpty());
-        for(GlosarioEntidad glosarioEntidad : glosarioEntidadsLista){
-            Assert.assertNotNull(glosarioEntidad);
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getPalabra());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave());
-            Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getValor());
-            Assert.assertNotNull(glosarioEntidad.getImagen());
-            Assert.assertNotNull(glosarioEntidad.getSignificado());
-        }
+    public void buscaActividad() {
+        List<MapaMentalBaseModelo> mapaMentalBaseModeloLista = mapaMentalSessionBean.busca("0_1NU60qHWs");
+        assertNotNull(mapaMentalBaseModeloLista);
+        assertFalse(mapaMentalBaseModeloLista.isEmpty());
+        mapaMentalBaseModeloLista.forEach(escribirBaseModelo -> {
+            assertNotNull(escribirBaseModelo);
+            assertNotNull(escribirBaseModelo.getId());
+            assertNotNull(escribirBaseModelo.getPregunta());
+        });
     }
+
+    @Test
+    public void buscaTarea() {
+        List<MapaMentalModelo> escribirModeloLista = mapaMentalSessionBean.busca(1);
+        assertNotNull(escribirModeloLista);
+        assertFalse(escribirModeloLista.isEmpty());
+        escribirModeloLista.forEach(escribirModelo -> {
+            assertNotNull(escribirModelo);
+            assertNotNull(escribirModelo.getPregunta());
+            assertNotNull(escribirModelo.getFechaRespuesta());
+            assertNotNull(escribirModelo.getTextoRespuesta());
+        });
+    }
+
+    @Test
+    public void respuesta() {
+        MapaMentalModelo escribirModelo = new MapaMentalModelo();
+        escribirModelo.setId(2);
+        escribirModelo.setTextoRespuesta("Respuesta desde el servicio");
+        mapaMentalSessionBean.respuesta(escribirModelo, -21, "JcMtWwiyzpU");
+    }
+
+    @Test
+    public void agregaNuevo() {
+        Integer agregar = mapaMentalSessionBean.agregar("Pregunta detonadora?", "0_1NU60qHWs");
+        assertNotNull(agregar);
+    }
+
+    @Test
+    public void asignaActividad() {
+        mapaMentalSessionBean.agregar("DNHmujbuC74", -46);
+    }
+
 }
