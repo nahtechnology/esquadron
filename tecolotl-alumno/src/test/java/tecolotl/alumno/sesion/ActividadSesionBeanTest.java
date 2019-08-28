@@ -54,6 +54,31 @@ public class ActividadSesionBeanTest {
     private ActividadSesionBean actividadSesionBean;
 
     @Test
+    public void buscaTodos() {
+        List<ActividadModelo> actividadModeloLista = actividadSesionBean.busca();
+        assertNotNull(actividadModeloLista);
+        assertFalse(actividadModeloLista.isEmpty());
+        actividadModeloLista.forEach(actividadModelo -> {
+            assertNotNull(actividadModelo);
+            assertNotNull(actividadModelo.getIdVideo());
+            assertNotNull(actividadModelo.getLenguaje());
+            assertNotNull(actividadModelo.getPreguntaDetonadora());
+            assertNotNull(actividadModelo.getTiempo());
+            assertNotNull(actividadModelo.getPuntaje());
+            assertNotNull(actividadModelo.getTemaModelo());
+            assertNotNull(actividadModelo.getTemaModelo().getValor());
+            assertNotNull(actividadModelo.getTipoEstudianteModelo());
+            assertNotNull(actividadModelo.getTipoEstudianteModelo().getValor());
+            assertNotNull(actividadModelo.getNivelLenguajeModeloLista());
+            actividadModelo.getNivelLenguajeModeloLista().forEach(nivelLenguajeModelo -> {
+                assertNotNull(nivelLenguajeModelo);
+                assertNotNull(nivelLenguajeModelo.getValor());
+            });
+        });
+    }
+
+
+    @Test
     public void busca() {
         List<ActividadModelo> actividadModeloLista = actividadSesionBean.busca("A1");
         assertNotNull(actividadModeloLista);
