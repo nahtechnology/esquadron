@@ -31,12 +31,15 @@ public class DetalleActividadControlador {
     private Logger logger;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         video = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("video");
         logger.info(video);
         glosarioModeloLista = glosarioSesionBean.busca(video);
+        logger.info(glosarioModeloLista.toString());
         claseGlosarioModeloLista = claseGlosarioSesionBean.busca();
+        logger.info(claseGlosarioModeloLista.toString());
         glosarioModelo = new GlosarioModelo();
+        logger.info(glosarioModelo.toString());
     }
 
     public void agregaGlosario(){

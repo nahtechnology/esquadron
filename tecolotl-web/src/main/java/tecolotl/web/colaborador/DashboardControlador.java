@@ -12,18 +12,23 @@ import tecolotl.web.alumno.ActividadesModelo;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.component.html.HtmlInputText;
+import javax.faces.context.FacesContext;
 import javax.faces.model.CollectionDataModel;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.sql.ClientInfoStatus;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named("colaboradorDashboardControlador")
-public class DashboardControlador  {
+public class DashboardControlador implements Serializable {
     private HtmlDataTable htmlDataTable;
     private CollectionDataModel<ActividadModelo> collectionDataModel;
     private ActividadModelo actividadModelo;
@@ -31,6 +36,7 @@ public class DashboardControlador  {
     private List<TemaModelo> temaModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private String[] checkBox;
+    private HtmlInputText htmlInputText;
 
 
     @Inject
@@ -58,15 +64,30 @@ public class DashboardControlador  {
         actividadModelo.setTipoEstudianteModelo(new TipoEstudianteModelo());
         actividadModelo.setTemaModelo(new TemaModelo());
         actividadModelo.setNivelLenguajeModeloLista(new ArrayList<>());
+        for (ActividadModelo actividadModelo :
+                (List<ActividadModelo>)collectionDataModel.getWrappedData()) {
+            logger.info(actividadModelo.toString());
+        }
     }
 
     public void agregarActividad(){
         logger.info(actividadModelo.toString());
         logger.info(actividadModelo.getNivelLenguajeModeloLista().toString());
-        for (int i = 0; i < checkBox.length; i++) {
-            actividadModelo.getNivelLenguajeModeloLista().add(new NivelLenguajeModelo(Short.parseShort(checkBox[i])));
+        ActividadModelo ac = ((List<ActividadModelo>)collectionDataModel.getWrappedData()).stream().filter(actividadModelo -> actividadModelo.getIdVideo().equals(actividadModelo.getIdVideo())).findAny().orElse(null);
+        if (ac != null){
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesMessage  facesMessage = new FacesMessage();
+            facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
+            facesMessage.setSummary("Ya existe la actividad: ".concat(actividadModelo.getIdVideo()));
+            facesMessage.setDetail("Ya existe la actividad: ".concat(actividadModelo.getIdVideo()));
+            facesContext.addMessage(htmlInputText.getClientId(facesContext),facesMessage);
+        }else{
+            for (int i = 0; i < checkBox.length; i++) {
+                actividadModelo.getNivelLenguajeModeloLista().add(new NivelLenguajeModelo(Short.parseShort(checkBox[i])));
+            }
+            actividadSesionBean.inserta(actividadModelo);
+            ((List<ActividadModelo>)collectionDataModel.getWrappedData()).add(actividadModelo);
         }
-        actividadSesionBean.inserta(actividadModelo);
 
     }
 
@@ -124,5 +145,13 @@ public class DashboardControlador  {
 
     public void setCheckBox(String[] checkBox) {
         this.checkBox = checkBox;
+    }
+
+    public HtmlInputText getHtmlInputText() {
+        return htmlInputText;
+    }
+
+    public void setHtmlInputText(HtmlInputText htmlInputText) {
+        this.htmlInputText = htmlInputText;
     }
 }
