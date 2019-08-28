@@ -12,7 +12,7 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(
                 name = "ActividadEntidad.busca",
-                query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad JOIN FETCH a.temaEntidad"
+                query = "SELECT DISTINCT (a) FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad JOIN FETCH a.temaEntidad"
         ),
         @NamedQuery(
                 name = "ActividadEntidad.buscaNivelLenguaje",
