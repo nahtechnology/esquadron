@@ -102,17 +102,19 @@
 <!--                        <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">-->
 
                            <div class="uk-width-1-2">
-                                   <div class="margen-imagen-cargar">
-                                       <h:inputFile   id="file-glosario" styleClass="inputfile inputfile-glosario" pt:data-multiple-caption="{count} files selected" pt:multiple="" value="#{detalleActividadControlador.glosarioModelo.imagen}" />
-                                       <h:outputLabel for="file-glosario"><span/> <strong>Cargar..</strong></h:outputLabel>
-                                   </div>
+                               <div class="margen-imagen-cargar">
+                                   <h:inputFile   id="file-glosario" styleClass="inputfile inputfile-glosario" pt:data-multiple-caption="{count} files selected"  value="#{detalleActividadControlador.glosarioModelo.imagen}" />
+                                   <h:outputLabel for="file-glosario"><span/><strong>Cargar..</strong></h:outputLabel>
+                                   <p id="demo"/>
 
+                               </div>
                            </div>
                             <div class="uk-width-1-2">
                                 <label class="uk-form-label" for="form-ClaseGlosario">Clase Glosario</label>
                                 <div class="uk-form-controls">
                                     <h:selectOneMenu styleClass="uk-select uk-form-width-medium" id="form-ClaseGlosario" value="#{detalleActividadControlador.glosarioModelo.claseGlosarioModelo.clave}">
-                                        <f:selectItems value="#{detalleActividadControlador.claseGlosarioModeloLista}"
+                                        <f:selectItems
+                                                value="#{detalleActividadControlador.claseGlosarioModeloLista}"
                                                         var="claseLista"
                                                         itemLabel="#{claseLista.valor}"
                                                         itemValue="#{claseLista.clave}"/>
@@ -154,7 +156,9 @@
     </h:panelGroup>
     <h:outputScript library="js" name="uikit.js"/>
     <h:outputScript library="js" name="uikit-icons.js"/>
+<!--    <h:outputScript library="js" name="colaborador/tam-archivo.js"/>-->
     <h:outputScript library="js" name="/colaborador/custom-file-input.js"/>
+
 
 </h:body>
 </html>
