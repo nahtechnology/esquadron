@@ -3,7 +3,7 @@ package tecolotl.alumno.sesion;
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
-import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
@@ -78,14 +78,14 @@ public class MapaMentalSessionBean {
      */
     public List<MapaMentalModelo> busca(@NotNull Integer idTarea) {
         logger.finer(idTarea.toString());
-        TypedQuery<TareaEscribirActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaEscribirActividadEntidad.buscaTarea", TareaEscribirActividadEntidad.class);
+        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaEscribirActividadEntidad.buscaTarea", TareaMapaMentalActividadEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
-        List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista = typedQuery.getResultList();
-        logger.finer("Tarea escribir encontrados:"+tareaEscribirActividadEntidadLista.size());
+        List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista = typedQuery.getResultList();
+        logger.finer("Tarea escribir encontrados:"+ tareaMapaMentalActividadEntidadLista.size());
         List<MapaMentalModelo> escribirModeloLista = new ArrayList<>();
-        for (TareaEscribirActividadEntidad tareaEscribirActividadEntidad : tareaEscribirActividadEntidadLista) {
-            logger.finer(tareaEscribirActividadEntidad.toString());
-            escribirModeloLista.add(new MapaMentalModelo(tareaEscribirActividadEntidad));
+        for (TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad : tareaMapaMentalActividadEntidadLista) {
+            logger.finer(tareaMapaMentalActividadEntidad.toString());
+            escribirModeloLista.add(new MapaMentalModelo(tareaMapaMentalActividadEntidad));
         }
         return escribirModeloLista;
     }
@@ -101,10 +101,10 @@ public class MapaMentalSessionBean {
                          @NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine(escribirModelo.toString()); logger.fine(idTarea.toString()); logger.fine(idActividad);
         validadorSessionBean.validacion(escribirModelo, EscribirLlavePrimariaValidacion.class, EscribirRespuestaValidacion.class);
-        TareaEscribirActividadEntidad tareaEscribirActividadEntidad = entityManager.createNamedQuery("TareaEscribirActividadEntidad.busca", TareaEscribirActividadEntidad.class)
+        TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad = entityManager.createNamedQuery("TareaEscribirActividadEntidad.busca", TareaMapaMentalActividadEntidad.class)
                 .setParameter("idTarea", idTarea).setParameter("idActividad", idActividad).setParameter("idEscribir", escribirModelo.getId())
                 .getSingleResult();
-        tareaEscribirActividadEntidad.setTextRespuesta(escribirModelo.getTextoRespuesta());
+        tareaMapaMentalActividadEntidad.setTextRespuesta(escribirModelo.getTextoRespuesta());
     }
 
     /**

@@ -1,6 +1,6 @@
 package tecolotl.alumno.entidad;
 
-import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 
 import javax.persistence.*;
@@ -21,7 +21,7 @@ public class TareaEntidad {
     private Integer id;
     private Date asignacion;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
-    private List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista;
+    private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
     private TareaVideoEntidad tareaVideoEntidad;
 
     public TareaEntidad() {
@@ -62,12 +62,12 @@ public class TareaEntidad {
     }
 
     @OneToMany(mappedBy = "tareaEntidad", cascade = CascadeType.PERSIST)
-    public List<TareaEscribirActividadEntidad> getTareaEscribirActividadEntidadLista() {
-        return tareaEscribirActividadEntidadLista;
+    public List<TareaMapaMentalActividadEntidad> getTareaMapaMentalActividadEntidadLista() {
+        return tareaMapaMentalActividadEntidadLista;
     }
 
-    public void setTareaEscribirActividadEntidadLista(List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista) {
-        this.tareaEscribirActividadEntidadLista = tareaEscribirActividadEntidadLista;
+    public void setTareaMapaMentalActividadEntidadLista(List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista) {
+        this.tareaMapaMentalActividadEntidadLista = tareaMapaMentalActividadEntidadLista;
     }
 
 

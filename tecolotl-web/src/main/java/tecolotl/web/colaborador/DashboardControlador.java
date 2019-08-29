@@ -4,10 +4,8 @@ import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.modelo.TemaModelo;
 import tecolotl.alumno.modelo.TipoEstudianteModelo;
-import tecolotl.alumno.sesion.ActividadSesionBean;
-import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
-import tecolotl.alumno.sesion.TemaSesionBean;
-import tecolotl.alumno.sesion.TipoEstudianteSesionBean;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
+import tecolotl.alumno.sesion.*;
 import tecolotl.web.alumno.ActividadesModelo;
 
 import javax.annotation.PostConstruct;
@@ -36,6 +34,7 @@ public class DashboardControlador implements Serializable {
     private List<TemaModelo> temaModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private String[] checkBox;
+    private List<GlosarioModelo> glosarioModeloLista;
     private HtmlInputText htmlInputText;
 
 
@@ -50,6 +49,9 @@ public class DashboardControlador implements Serializable {
 
     @Inject
     private NivelLenguajeSesionBean nivelLenguajeSesionBean;
+
+    @Inject
+    private GlosarioSesionBean glosarioSesionBean;
 
     @Inject
     private Logger logger;
@@ -68,6 +70,7 @@ public class DashboardControlador implements Serializable {
                 (List<ActividadModelo>)collectionDataModel.getWrappedData()) {
             logger.info(actividadModelo.toString());
         }
+        glosarioModeloLista = glosarioSesionBean.busca("Cgp644Walyk");
     }
 
     public void agregarActividad(){
@@ -153,5 +156,13 @@ public class DashboardControlador implements Serializable {
 
     public void setHtmlInputText(HtmlInputText htmlInputText) {
         this.htmlInputText = htmlInputText;
+    }
+
+    public List<GlosarioModelo> getGlosarioModeloLista() {
+        return glosarioModeloLista;
+    }
+
+    public void setGlosarioModeloLista(List<GlosarioModelo> glosarioModeloLista) {
+        this.glosarioModeloLista = glosarioModeloLista;
     }
 }

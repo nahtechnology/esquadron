@@ -9,38 +9,38 @@ import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
-@Table(name = "mapamental_actividad", schema = "alumno")
+@Table(name = "tarea_mapamental_actividad", schema = "alumno")
 @NamedQueries(value = {
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.buscaEscribir",
-        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad ea " +
+        query = "SELECT tea FROM TareaMapaMentalActividadEntidad tea JOIN tea.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad ea " +
                 "JOIN ea.mapaMentalEntidad e WHERE tea.tareaEntidad.id = :idTarea"
     ),
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.buscaTarea",
-        query = "SELECT tea FROM TareaEscribirActividadEntidad tea JOIN FETCH tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad ea" +
+        query = "SELECT tea FROM TareaMapaMentalActividadEntidad tea JOIN FETCH tea.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad ea" +
                 " JOIN FETCH ea.mapaMentalEntidad e WHERE tea.tareaEntidad.id = :idTarea"
     ),
     @NamedQuery(
         name = "TareaEscribirActividadEntidad.busca",
-        query = "SELECT tea FROM TareaEscribirActividadEntidad tea WHERE tea.tareaEntidad.id = :idTarea AND " +
-                "tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalEntidad.id = :idEscribir AND " +
-                "tea.tareaEscribirActividadEntidadPK.mapaMentalActividadEntidad.actividadEntidad.id = :idActividad"
+        query = "SELECT tea FROM TareaMapaMentalActividadEntidad tea WHERE tea.tareaEntidad.id = :idTarea AND " +
+                "tea.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalEntidad.id = :idEscribir AND " +
+                "tea.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.actividadEntidad.id = :idActividad"
     )
 })
-public class TareaEscribirActividadEntidad implements Serializable {
+public class TareaMapaMentalActividadEntidad implements Serializable {
 
     private TareaEntidad tareaEntidad;
-    private TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK;
+    private TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK;
     private String textRespuesta;
     private Date horaRespuesta;
 
-    public TareaEscribirActividadEntidad() {
+    public TareaMapaMentalActividadEntidad() {
     }
 
-    public TareaEscribirActividadEntidad(TareaEntidad tareaEntidad, TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK) {
+    public TareaMapaMentalActividadEntidad(TareaEntidad tareaEntidad, TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK) {
         this.tareaEntidad = tareaEntidad;
-        this.tareaEscribirActividadEntidadPK = tareaEscribirActividadEntidadPK;
+        this.tareaMapaMentalActividadEntidadPK = tareaMapaMentalActividadEntidadPK;
     }
 
     @Id
@@ -55,12 +55,12 @@ public class TareaEscribirActividadEntidad implements Serializable {
     }
 
     @EmbeddedId
-    public TareaEscribirActividadEntidadPK getTareaEscribirActividadEntidadPK() {
-        return tareaEscribirActividadEntidadPK;
+    public TareaMapaMentalActividadEntidadPK getTareaMapaMentalActividadEntidadPK() {
+        return tareaMapaMentalActividadEntidadPK;
     }
 
-    public void setTareaEscribirActividadEntidadPK(TareaEscribirActividadEntidadPK tareaEscribirActividadEntidadPK) {
-        this.tareaEscribirActividadEntidadPK = tareaEscribirActividadEntidadPK;
+    public void setTareaMapaMentalActividadEntidadPK(TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK) {
+        this.tareaMapaMentalActividadEntidadPK = tareaMapaMentalActividadEntidadPK;
     }
 
     @Basic
@@ -87,21 +87,21 @@ public class TareaEscribirActividadEntidad implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TareaEscribirActividadEntidad that = (TareaEscribirActividadEntidad) o;
+        TareaMapaMentalActividadEntidad that = (TareaMapaMentalActividadEntidad) o;
         return tareaEntidad.equals(that.tareaEntidad) &&
-                tareaEscribirActividadEntidadPK.equals(that.tareaEscribirActividadEntidadPK);
+                tareaMapaMentalActividadEntidadPK.equals(that.tareaMapaMentalActividadEntidadPK);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEntidad, tareaEscribirActividadEntidadPK);
+        return Objects.hash(tareaEntidad, tareaMapaMentalActividadEntidadPK);
     }
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", TareaEscribirActividadEntidad.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", TareaMapaMentalActividadEntidad.class.getSimpleName() + "[", "]")
                 .add("tareaEntidad=" + tareaEntidad)
-                .add("tareaEscribirActividadEntidadPK=" + tareaEscribirActividadEntidadPK)
+                .add("tareaEscribirActividadEntidadPK=" + tareaMapaMentalActividadEntidadPK)
                 .add("textRespuesta='" + textRespuesta + "'")
                 .add("horaRespuesta=" + horaRespuesta)
                 .toString();

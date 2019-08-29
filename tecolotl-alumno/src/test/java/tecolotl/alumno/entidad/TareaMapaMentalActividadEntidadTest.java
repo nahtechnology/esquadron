@@ -8,7 +8,7 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
@@ -36,13 +36,13 @@ public class TareaMapaMentalActividadEntidadTest {
 
     @Test
     public void busca() {
-        TypedQuery<TareaEscribirActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaEscribirActividadEntidad.buscaEscribir", TareaEscribirActividadEntidad.class);
+        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaEscribirActividadEntidad.buscaEscribir", TareaMapaMentalActividadEntidad.class);
     //    typedQuery.setParameter("idActividad", "JcMtWwiyzpU");
     //    typedQuery.setParameter("idTarea", 1);
-        List<TareaEscribirActividadEntidad> tareaEscribirActividadEntidadLista = typedQuery.getResultList();
-        assertNotNull(tareaEscribirActividadEntidadLista);
-        assertFalse(tareaEscribirActividadEntidadLista.isEmpty());
-        tareaEscribirActividadEntidadLista.forEach(t -> {
+        List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista = typedQuery.getResultList();
+        assertNotNull(tareaMapaMentalActividadEntidadLista);
+        assertFalse(tareaMapaMentalActividadEntidadLista.isEmpty());
+        tareaMapaMentalActividadEntidadLista.forEach(t -> {
             assertNotNull(t);
         });
     }

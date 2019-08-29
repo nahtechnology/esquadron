@@ -15,9 +15,9 @@ import java.util.StringJoiner;
         query = "SELECT ea FROM MapaMentalActividadEntidad ea JOIN FETCH ea.mapaMentalEntidad e WHERE ea.actividadEntidad.id = :idActividad"
     ),
     @NamedQuery(
-            name = "MapaMentalActividadEntidad.buscaPreguntaNoActividad",
-            query = "SELECT mma FROM MapaMentalActividadEntidad mma JOIN FETCH mma.mapaMentalEntidad mm WHERE mm.pregunta LIKE :pregunta " +
-                    "AND mma.actividadEntidad <> :idActividad"
+        name = "MapaMentalActividadEntidad.buscaPreguntaNoActividad",
+        query = "SELECT mma FROM MapaMentalActividadEntidad mma JOIN FETCH mma.mapaMentalEntidad mm WHERE mm.pregunta LIKE :pregunta " +
+                "AND mma.actividadEntidad <> :idActividad"
     )
 })
 public class MapaMentalActividadEntidad implements Serializable {
@@ -35,7 +35,7 @@ public class MapaMentalActividadEntidad implements Serializable {
 
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_mapamental")
+    @JoinColumn(name = "id_mapamental", referencedColumnName = "id")
     public MapaMentalEntidad getMapaMentalEntidad() {
         return mapaMentalEntidad;
     }

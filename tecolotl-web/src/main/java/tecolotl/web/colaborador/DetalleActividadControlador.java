@@ -43,8 +43,6 @@ public class DetalleActividadControlador {
     }
 
     public void agregaGlosario(){
-        logger.info("-------------------");
-        logger.info(glosarioModelo.toString());
         glosarioSesionBean.agregar(glosarioModelo, video);
     }
 
@@ -70,5 +68,13 @@ public class DetalleActividadControlador {
 
     public void setGlosarioModelo(GlosarioModelo glosarioModelo) {
         this.glosarioModelo = glosarioModelo;
+    }
+
+    public String getVideo() {
+        return video;
+    }
+
+    public void setVideo(String video) {
+        this.video = video;
     }
 }

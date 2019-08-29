@@ -114,7 +114,11 @@
                         <div class="uk-width-1-3">
                             <label class="uk-form-label" for="form-IdVideo">ID Video</label>
                             <div class="uk-form-controls">
-                                <h:inputText styleClass="uk-input uk-form-width-small" id="form-IdVideo" pt:placeholder="ID Video" value="#{colaboradorDashboardControlador.actividadModelo.idVideo}" binding="#{colaboradorDashboardControlador.htmlInputText}">
+                                <h:inputText styleClass="uk-input uk-form-width-small"
+                                             id="form-IdVideo"
+                                             pt:placeholder="ID Video"
+                                             value="#{colaboradorDashboardControlador.actividadModelo.idVideo}"
+                                             binding="#{colaboradorDashboardControlador.htmlInputText}">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="11" maximum="11"/>
                                 </h:inputText>

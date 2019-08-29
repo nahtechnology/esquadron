@@ -75,14 +75,14 @@ public class MapaMentalSessionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<MapaMentalModelo> escribirModeloLista = mapaMentalSessionBean.busca(1);
-        assertNotNull(escribirModeloLista);
-        assertFalse(escribirModeloLista.isEmpty());
-        escribirModeloLista.forEach(escribirModelo -> {
-            assertNotNull(escribirModelo);
-            assertNotNull(escribirModelo.getPregunta());
-            assertNotNull(escribirModelo.getFechaRespuesta());
-            assertNotNull(escribirModelo.getTextoRespuesta());
+        List<MapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(1);
+        assertNotNull(mapaMentalModeloLista);
+        assertFalse(mapaMentalModeloLista.isEmpty());
+        mapaMentalModeloLista.forEach(mapaMentalModelo -> {
+            assertNotNull(mapaMentalModelo);
+            assertNotNull(mapaMentalModelo.getPregunta());
+            assertNotNull(mapaMentalModelo.getFechaRespuesta());
+            assertNotNull(mapaMentalModelo.getTextoRespuesta());
         });
     }
 

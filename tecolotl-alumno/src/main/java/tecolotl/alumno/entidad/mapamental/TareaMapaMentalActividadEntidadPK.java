@@ -1,19 +1,22 @@
 package tecolotl.alumno.entidad.mapamental;
 
+import tecolotl.alumno.entidad.TareaEntidad;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 @Embeddable
-public class TareaEscribirActividadEntidadPK implements Serializable {
+public class TareaMapaMentalActividadEntidadPK implements Serializable {
 
     private MapaMentalActividadEntidad mapaMentalActividadEntidad;
+    private TareaEntidad tareaEntidad;
 
-    public TareaEscribirActividadEntidadPK() {
+    public TareaMapaMentalActividadEntidadPK() {
     }
 
-    public TareaEscribirActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad) {
+    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad) {
         this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
     }
 
@@ -30,11 +33,21 @@ public class TareaEscribirActividadEntidadPK implements Serializable {
         this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_tarea")
+    public TareaEntidad getTareaEntidad() {
+        return tareaEntidad;
+    }
+
+    public void setTareaEntidad(TareaEntidad tareaEntidad) {
+        this.tareaEntidad = tareaEntidad;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TareaEscribirActividadEntidadPK that = (TareaEscribirActividadEntidadPK) o;
+        TareaMapaMentalActividadEntidadPK that = (TareaMapaMentalActividadEntidadPK) o;
         return mapaMentalActividadEntidad.equals(that.mapaMentalActividadEntidad);
     }
 
@@ -45,7 +58,7 @@ public class TareaEscribirActividadEntidadPK implements Serializable {
 
     @Override
     public String toString() {
-        return new StringJoiner(", ", TareaEscribirActividadEntidadPK.class.getSimpleName() + "[", "]")
+        return new StringJoiner(", ", TareaMapaMentalActividadEntidadPK.class.getSimpleName() + "[", "]")
                 .add("escribirActividadEntidad=" + mapaMentalActividadEntidad)
                 .toString();
     }

@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
-import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
@@ -30,7 +30,7 @@ public class TareaEntidadTest {
                         TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
                         TipoEstudianteEntidad.class, ClaseGlosarioEntidad.class, TareaGlosarioActividadEntidad.class,
                         TareaGlosarioActividadEntidadPK.class, GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class,
-                        TareaEscribirActividadEntidad.class, TareaGlosarioActividadEntidadPK.class, TareaVideoEntidad.class,
+                        TareaMapaMentalActividadEntidad.class, TareaGlosarioActividadEntidadPK.class, TareaVideoEntidad.class,
                         TareaVideoEntidadPK.class, MapaMentalActividadEntidad.class,
                         MapaMentalEntidad.class,
                         NivelLenguajeEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class)

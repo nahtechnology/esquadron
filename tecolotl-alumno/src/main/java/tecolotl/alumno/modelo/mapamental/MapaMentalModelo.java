@@ -1,7 +1,7 @@
 package tecolotl.alumno.modelo.mapamental;
 
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
-import tecolotl.alumno.entidad.mapamental.TareaEscribirActividadEntidad;
+import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.validacion.escribir.EscribirRespuestaValidacion;
 
 import javax.validation.constraints.NotNull;
@@ -26,10 +26,10 @@ public class MapaMentalModelo extends MapaMentalBaseModelo {
         super(mapaMentalEntidad);
     }
 
-    public MapaMentalModelo(TareaEscribirActividadEntidad tareaEscribirActividadEntidad) {
-        this(tareaEscribirActividadEntidad.getTareaEscribirActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalEntidad());
-        this.textoRespuesta = tareaEscribirActividadEntidad.getTextRespuesta();
-        this.fechaRespuesta = tareaEscribirActividadEntidad.getHoraRespuesta();
+    public MapaMentalModelo(TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad) {
+        this(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalEntidad());
+        this.textoRespuesta = tareaMapaMentalActividadEntidad.getTextRespuesta();
+        this.fechaRespuesta = tareaMapaMentalActividadEntidad.getHoraRespuesta();
     }
 
     @NotNull(groups = {EscribirRespuestaValidacion.class})
