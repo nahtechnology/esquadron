@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
@@ -30,23 +29,23 @@
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
-                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
                 <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
                 <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
                 <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
-                <li class="uk-active"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
-                <li ><h:link outcome="actividades-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></h:link></li>
+                <li ><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="actividades-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></h:link></li>
             </ul>
 
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li class="uk-active"><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
                 <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
                 <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
                 <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
-                <li class="uk-active"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
-                <li ><h:link outcome="actividades-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="actividades-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></h:link></li>
             </ul>
 
         </div>
@@ -80,7 +79,7 @@
 
                 <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
                     <ui:repeat value="#{actividadesControlador.actividadesModeloLista}" var="actividadModelo">
-                        <h:panelGroup layout="block" styleClass="uk-width-1-3@m #{actividadModelo.languageLevel}" pt:data-tags="a beautiful landscape - nature outdoor">
+                        <h:panelGroup layout="block" styleClass="uk-width-1-3@l uk-width-1-2@m uk-width-1-1@s #{actividadModelo.languageLevel}" pt:data-tags="a beautiful landscape - nature outdoor">
                             <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border #{actividadModelo.languageLevel}">
                                 <div class="uk-card-header border-card">
                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
@@ -104,12 +103,9 @@
                                 </div>
                                 <div class="uk-card-footer">
                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
-                                        <div class="uk-width-auto uk-text-small text-color-level1 uk-text-bold">
+                                        <div class="uk-width-auto uk-text-small text-color-level1 uk-text-bold ">
                                             <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
-                                                <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Download" styleClass="uk-icon-image uk-svg" library="img" name="icono/escuela.svg" /></div>
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Didactic Guide" styleClass="uk-icon-image uk-svg" library="img" name="icono/decarga.svg" /></div>
-                                                <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
+                                                <button class="uk-button uk-button-small uk-button-primary uk-border-rounded">Ready!</button>
                                             </h:panelGroup>
                                         </div>
                                         <div class="uk-width-expand ">

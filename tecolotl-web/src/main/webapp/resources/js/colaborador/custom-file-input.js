@@ -30,7 +30,7 @@
 
 			if( fileName ){
 				label.querySelector( 'span' ).innerHTML = fileName ;
-				document.getElementById("demo").innerHTML = tama +" bytes";}
+				document.getElementById("demo").innerHTML = (tama)/1000 +" bytes";}
 			else
 				label.innerHTML = labelVal;
 		});
