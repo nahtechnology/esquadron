@@ -73,7 +73,7 @@
                                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Grupos</h5>
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">8</h1>-->
                                    <div class="uk-flex uk-flex-center">
-                                        <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.numero} Grupos; pos: right">
+                                        <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Grupos; pos: right">
                                                 <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="maestra.svg"   pt:uk-svg=""/>
                                         </div>
                                    </div>
@@ -82,7 +82,7 @@
                                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Nro. Alumnos</h5>
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">180</h1>-->
                                 <div class="uk-flex uk-flex-center">
-                                    <div class="tamaño-imagen"  uk-tooltip="title:#{dashboardProfesorControlador.numero} Alumnos; pos: right">
+                                    <div class="tamaño-imagen"  uk-tooltip="title:#{dashboardProfesorControlador.profesorModelo.id} Alumnos; pos: right">
                                         <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="maestra.svg"   pt:uk-svg=""/>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Horas de Conexión</h5>
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">30<small class="uk-text-small">HR</small></h1>-->
                                 <div class="uk-flex uk-flex-center">
-                                    <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.numero} Horas; pos: right">
+                                    <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Horas; pos: right">
                                         <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="administrador.svg"   pt:uk-svg=""/>
                                     </div>
                                 </div>
@@ -100,7 +100,7 @@
                                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Ejecicios revisión</h5>
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">38</h1>-->
                                 <div class="uk-flex uk-flex-center">
-                                    <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.numero} Pendientes; pos: left">
+                                    <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Pendientes; pos: left">
                                         <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="coordinador.svg"   pt:uk-svg=""/>
                                     </div>
                                 </div>
@@ -165,8 +165,7 @@
                 <div class="uk-overflow-auto uk-margin-small-top">
                     <!--  Modificar aqui de acuerdo al profesor  -->
                     <h:dataTable
-                            value="#{detalleProfesorControlador.collectionDataModel}"
-                            binding="#{detalleProfesorControlador.htmlDataTable}"
+                            value="#{dashboardProfesorControlador.grupoModeloLista}"
                             id="tabla-detalle-profesor"
                             var="profesor"
                             first="0"
@@ -222,14 +221,9 @@
                                 </div>
                             </div>
                         </h:column>
-                        <f:facet name="footer">
-                            <pa:pie-tabla htmlDataTable="#{detalleProfesorControlador.htmlDataTable}"/>
-                        </f:facet>
                     </h:dataTable>
                 </div>
             </h:form>
-
-
         </div>
 
 
