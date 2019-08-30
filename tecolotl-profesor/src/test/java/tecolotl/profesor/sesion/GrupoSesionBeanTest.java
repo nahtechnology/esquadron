@@ -96,10 +96,9 @@ public class GrupoSesionBeanTest {
 
     @Test
     public void inserta() throws ParseException {
-        //TODO revisar las pruebas unitrias para las fechas
         GrupoModelo grupoModelo = new GrupoModelo();
         grupoModelo.setGrado((short)1);
-        grupoModelo.setGrupo('A');
+        grupoModelo.setGrupo('B');
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2019"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2020"));
@@ -113,12 +112,15 @@ public class GrupoSesionBeanTest {
 
     @Test
     public void actualiza(){
-
+        GrupoModelo grupoModelo = new GrupoModelo(-38);
+        grupoModelo.setGrado((short)2);
+        grupoModelo.setGrupo('C');
+        grupoSesionBean.actualiza(grupoModelo);
     }
 
     @Test
     public void elimina(){
-        int grupoEl = grupoSesionBean.elimina(-44);
+        int grupoEl = grupoSesionBean.elimina(-38);
         Assert.assertFalse(grupoEl == 0);
     }
 }

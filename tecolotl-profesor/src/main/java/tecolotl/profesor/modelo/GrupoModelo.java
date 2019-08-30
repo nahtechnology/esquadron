@@ -1,6 +1,7 @@
 package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.GrupoEntidad;
+import tecolotl.profesor.validacion.GrupoLlavePrimariaValidacion;
 import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 
 import javax.validation.Valid;
@@ -20,13 +21,17 @@ public class GrupoModelo {
     public GrupoModelo() {
     }
 
+    public GrupoModelo(Integer id) {
+        this.id = id;
+    }
+
     public GrupoModelo(GrupoEntidad grupoEntidad) {
         this.id = grupoEntidad.getId();
         this.grado = grupoEntidad.getGrado();
         this.grupo = grupoEntidad.getGrupo();
     }
 
-    @NotNull(groups = {GrupoNuevoValidacion.class})
+    @NotNull(groups = {GrupoNuevoValidacion.class, GrupoLlavePrimariaValidacion.class})
     public Short getGrado() {
         return grado;
     }

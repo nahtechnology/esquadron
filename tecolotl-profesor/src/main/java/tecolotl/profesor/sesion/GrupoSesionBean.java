@@ -4,7 +4,9 @@ import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.profesor.entidad.CicloEscolarEntidad;
 import tecolotl.profesor.entidad.CicloEscolarEntidadPK;
 import tecolotl.profesor.entidad.GrupoEntidad;
+import tecolotl.profesor.entidad.ProfesorEntidad;
 import tecolotl.profesor.modelo.GrupoModelo;
+import tecolotl.profesor.validacion.GrupoLlavePrimariaValidacion;
 import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
@@ -14,6 +16,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.logging.Logger;
@@ -42,6 +45,7 @@ public class GrupoSesionBean {
         GrupoEntidad grupoEntidad = new GrupoEntidad();
         grupoEntidad.setGrado(grupoModelo.getGrado());
         grupoEntidad.setGrupo(grupoModelo.getGrupo());
+        grupoEntidad.setProfesorEntidad(new ProfesorEntidad(grupoModelo.getIdProfesor()));
         grupoEntidad.setCicloEscolarEntidad(new CicloEscolarEntidad(
                 new CicloEscolarEntidadPK(
                         grupoModelo.getCicloEscolarModelo().getInicio(),
@@ -79,14 +83,15 @@ public class GrupoSesionBean {
      * @param grupoModelo  datos para poder actualizar el Grupo.
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
-    public Integer actualiza(@NotNull GrupoModelo grupoModelo){
-        validadorSessionBean.validacion(grupoModelo, GrupoProfesorValidacion.class);
+    public Integer actualiza(@NotNull @Valid GrupoModelo grupoModelo){
+        validadorSessionBean.validacion(grupoModelo, GrupoLlavePrimariaValidacion.class);
         logger.fine(grupoModelo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaUpdate<GrupoEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(GrupoEntidad.class);
         Root<GrupoEntidad> root = criteriaUpdate.from(GrupoEntidad.class);
-        Predicate predicate = criteriaBuilder.equal(root.get("id"), grupoModelo);
-        criteriaUpdate.set(root.get("grupo"), grupoModelo);
+        Predicate predicate = criteriaBuilder.equal(root.get("id"), grupoModelo.getId());
+        criteriaUpdate.set(root.get("grupo"), grupoModelo.getGrupo());
+        criteriaUpdate.set(root.get("grado"), grupoModelo.getGrado());
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
     }
