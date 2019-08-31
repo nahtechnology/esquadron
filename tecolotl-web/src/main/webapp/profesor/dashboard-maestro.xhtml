@@ -41,15 +41,15 @@
                     <div class="uk-card-header border-card">
                         <div class="uk-grid-small uk-flex-middle" uk-grid="">
                             <div class="uk-width-auto">
-                                <h:graphicImage styleClass="uk-border-circle" library="img" name="monstruo.svg" width="50" height="50"/>
+                                <h:graphicImage styleClass="uk-border-circle" library="img" name="avatar/monstruo-rosa.svg" width="50" height="50"/>
                             </div>
                             <div class="uk-width-expand">
                                 <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">maugg</h3>
                                 <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>el mau</span></p>
                             </div>
                             <div class="uk-width-1-1@s">
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname</span>#{dashboardProfesorControlador.apodo}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email:</span>#{dashboardProfesorControlador.correo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname</span>#{dashboardProfesorControlador.profesorModelo.apodo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email:</span>#{dashboardProfesorControlador.profesorModelo.correoEletronico}</p>
                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">State:</span>Puebla</p>
                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile</span></p>
                             </div>
@@ -74,7 +74,7 @@
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">8</h1>-->
                                    <div class="uk-flex uk-flex-center">
                                         <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Grupos; pos: right">
-                                                <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="maestra.svg"   pt:uk-svg=""/>
+                                                <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="avatar/maestra.svg"   pt:uk-svg=""/>
                                         </div>
                                    </div>
                             </div>
@@ -83,7 +83,7 @@
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">180</h1>-->
                                 <div class="uk-flex uk-flex-center">
                                     <div class="tamaño-imagen"  uk-tooltip="title:#{dashboardProfesorControlador.profesorModelo.id} Alumnos; pos: right">
-                                        <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="maestra.svg"   pt:uk-svg=""/>
+                                        <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="avatar/maestra.svg"   pt:uk-svg=""/>
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +92,7 @@
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">30<small class="uk-text-small">HR</small></h1>-->
                                 <div class="uk-flex uk-flex-center">
                                     <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Horas; pos: right">
-                                        <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="administrador.svg"   pt:uk-svg=""/>
+                                        <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="avatar/administrador.svg"   pt:uk-svg=""/>
                                     </div>
                                 </div>
                             </div>
@@ -101,7 +101,7 @@
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">38</h1>-->
                                 <div class="uk-flex uk-flex-center">
                                     <div class="tamaño-imagen"  uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Pendientes; pos: left">
-                                        <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="coordinador.svg"   pt:uk-svg=""/>
+                                        <h:graphicImage styleClass="uk-border-circle imagen-card-section uk-svg " library="img" name="avatar/coordinador.svg"   pt:uk-svg=""/>
                                     </div>
                                 </div>
                             </div>
@@ -128,12 +128,12 @@
 
         </div>
         <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
-            <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
+            <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="70" height="70"/></div>
             <div class="uk-margin-small-left esquadron-paddin"><h3 class="letra-cards lescuadron ">Premia el esfuerzo de tus alumnos</h3></div>
         </div>
 
         <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
-            <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
+            <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="70" height="70"/></div>
             <div class="uk-text-center"><h3 class="letra-cards lescuadron ">Premia el ezfuerzo de tus alumnos</h3></div>
         </div>
 
