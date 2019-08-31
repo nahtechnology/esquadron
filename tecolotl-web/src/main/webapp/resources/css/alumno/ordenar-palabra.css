@@ -1,0 +1,30 @@
+.centrado-contenedor{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+}
+
+.estilo-contenedor{
+    background-color: var(--color-oscuro);
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+
+.palabra{
+    background-color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px white;
+    width: 100%;
+}
+.imagen-ordenar{
+    width: 150px;
+    height: auto;
+    margin: auto;
+}

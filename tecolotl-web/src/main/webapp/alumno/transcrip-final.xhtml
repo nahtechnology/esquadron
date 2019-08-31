@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template/template-alumno.xhtml">
+    <ui:define name="menu">
+        <div class="left-content-box  content-box-dark">
+            <h:graphicImage library="img" name="astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+
+            <div class="uk-position-relative uk-text-center uk-display-block">
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <!-- user dropdown -->
+                <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+                    <ul >
+                        <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Chat</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+                <!-- /user dropdown -->
+            </div>
+        </div>
+
+        <div class="left-nav-wrap  uk-visible@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+                <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
+                <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
+            </ul>
+        </div>
+        <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
+                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+            </ul>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="alumno/transcript.css"/>
+        <h:outputStylesheet library="css" name="/alumno/variables-alumno.css"/>
+        <h:outputStylesheet library="css" name="/alumno/lista-ordenar.css"/>
+        <h:outputStylesheet library="css" name="/alumno/ordenar-palabra.css"/>
+        <h:outputStylesheet library="css" name="/alumno/transcript-drag.css"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
+        <div class="uk-section margen-superior"  style="box-sizing: border-box">
+            <div class="uk-container padding-contenedor">
+                <h:panelGroup layout="block" styleClass="" pt:uk-filter="target: .js-filter">
+                    <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center ">
+                        <li uk-filter-control=".transcrip" class="uk-active"><h:graphicImage library="img" name="coordinador.svg" width="70" height="70"  alt="" styleClass="uk-border-circle"/></li>
+                        <li uk-filter-control=".listening"><h:graphicImage library="img" name="maestra.svg" width="70" height="70" styleClass="uk-border-circle"/></li>
+                        <li uk-filter-control=".order-words"><h:graphicImage library="img" name="maestro.svg" width="70" height="70" styleClass="uk-border-circle"/></li>
+                        <li uk-filter-control=".answer"><h:graphicImage library="img" name="administrador.svg" width="70" height="70" styleClass="uk-border-circle"/></li>
+                    </ul>
+
+                    <ul class="js-filter  uk-text-center" >
+                        <li class="transcrip">
+                           <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
+                               <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left ">
+                                   <iframe class="" width="100%" height="100%" src="https://www.youtube.com/embed/JcMtWwiyzpU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                               </div>
+                               <div class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion" >
+                                   <p>
+                                       <span class="letra-perdonaje">Will Smith:</span> I know you guys have been waiting and here&#39;s the very first trailer for Aladdin. It is the
+                                       very first trailer. Don&#39;t get <h:outputText styleClass="palabra-glosario" value="dizzy" pt:uk-tooltip="title:Adjective: Mareado"/> though; don&#39;t get dizzy before we start to trailer. Don&#39;t get dizzy!</p>
+                                   <p><span class="letra-perdonaje">Crowd:</span> Stop, <h:outputText styleClass="palabra-glosario" value="thief!" pt:uk-tooltip="title:Noun: Ladrón"/>  Vandal! Street rat! Get him! Stop that boy! Up, there!</p>
+                                   <p><span class="letra-perdonaje">Guard:</span> He’s on the roof! Watch out!</p>
+                                   <p><span class="letra-perdonaje">Jafar:</span> You <h:outputText styleClass="palabra-glosario" value="stumbled" pt:uk-tooltip="title:Verb(Stumble):Tropezón"/> upon an opportunity. I can make you rich… rich enough to impress a
+                                       princess</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> What would I have to do?</p>
+                                   <p><span class="letra-perdonaje">Jafar:</span> There&#39;s a Cave of Wonders. Bring me the lamp.</p>
+                                   <p><span class="letra-perdonaje">Genie:</span> Oh, great one who <h:outputText styleClass="palabra-glosario" value="summons" pt:uk-tooltip="title:Verb(Summon):Convocar"/> me. I stand by my <h:outputText styleClass="palabra-glosario" value="oath " pt:uk-tooltip="title:Noun:Juramento"/> <h:outputText styleClass="palabra-glosario" value="loyalty" pt:uk-tooltip="title:Noun:Lealtad"/> two wishes three. I&#39;m kidding
+                                       Russians.
+                                       Watch out! You have woken me up! You ain’t never had a friend like me</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> Hey, can you make me a prince.</p>
+                                   <p><span class="letra-perdonaje">Genie:</span> There is a lot of gray area in make me a prince. I could just make you a prince</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> Oh, no!</p>
+                                   <p><span class="letra-perdonaje">Genie:</span> Have you seen my palace?
+                                       You look like a prince on the outside but I didn&#39;t change anything on the inside. Showtime!</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> No, I&#39;m <h:outputText styleClass="palabra-glosario" value="in charge" pt:uk-tooltip="title:Adverb:Encargado"/>. Okay, I say when it&#39;s time…Really?
+                                       I thought a princess could go anywhere…</p>
+                                   <p><span class="letra-perdonaje">Jasmine:</span> Not this princess.</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> Do you trust me?</p>
+                                   <p><span class="letra-perdonaje">Jasmine:</span> A whole new world.</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> Don’t you <h:outputText styleClass="palabra-glosario" value="dare" pt:uk-tooltip="title:Verb:Osar/Atreverse"/>close your eyes</p>
+                                   <p><span class="letra-perdonaje">Jasmine:</span> A hundred thousand things to see</p>
+                                   <p><span class="letra-perdonaje">Aladdin:</span> Hold your <h:outputText styleClass="palabra-glosario" value="breath" pt:uk-tooltip="title:Noun:Respiración"/>. It gets better.</p>
+                                   <p><span class="letra-perdonaje">Jasmine:</span> I’m like a <h:outputText styleClass="palabra-glosario" value="shooting star" pt:uk-tooltip="title:Noun:Estrella fugaz"/>. I’ve come so far
+                                       Aladdin and Jasmine: Let me share this whole new world with you.</p>
+                               </div>
+                           </h:panelGroup>
+                        </li>
+                        <li class="listening  uk-margin-small-top ">
+                            <h1 class="uk-text-center lescuadron" style="color: white">Coloca la respuesta correcta</h1>
+
+                            <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="">
+                                <div class="columna-pregunta uk-width-expand">
+                                    <table class="tabla-ordenar uk-table-middle">
+                                        <thead class="titulo-tabla uk-text-center">
+                                        <tr>
+                                            <th>Pregunta</th>
+                                            <th>Respuesta</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="cuerpo-tabla uk-text-center">
+                                        <tr>
+                                            <td>Who is your favorite super hero? Why?</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Pregunta 2</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Pregunta 3</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Pregunta 4</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Pregunta 5</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Pregunta 6</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        <tr>
+                                            <td>Pregunta 7</td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <h:panelGroup layout="block" styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
+                                    <div class="respuesta">uno</div>
+                                    <div class="respuesta">dos</div>
+                                    <div class="respuesta">what happen with you </div>
+                                    <div class="respuesta">cuatro</div>
+                                    <div class="respuesta">cinco</div>
+                                    <div class="respuesta">seis</div>
+                                    <div class="respuesta">siete</div>
+                                </h:panelGroup>
+                            </h:panelGroup>
+                        </li>
+                        <li class="order-words">
+                                <h1 class="uk-text-center lescuadron" style="color: white">Ordenas las palabras en el orden correspondiente</h1>
+                                <div class="imagen-ordenar">
+                                    <h:graphicImage library="img" name="Whom1.svg"/>
+                                </div>
+                                <h:panelGroup layout="block" styleClass="uk-container   padding-contenedor estilo-contenedor " >
+
+                                    <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid " pt:uk-grid="" pt:uk-sortable="">
+                                        <div>
+                                            <div class="palabra uk-text-center">1</div>
+                                        </div>
+                                        <div>
+                                            <div class="palabra uk-text-center">2</div>
+                                        </div>
+                                        <div>
+                                            <div class="palabra uk-text-center">3</div>
+                                        </div>
+                                        <div>
+                                            <div class="palabra uk-text-center">4</div>
+                                        </div>
+                                        <div>
+                                            <div class="palabra uk-text-center">5</div>
+                                        </div>
+                                        <div>
+                                            <div class="palabra uk-text-center">6</div>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+
+                        </li>
+                        <li class="answer">
+                            <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
+                                <h:panelGroup layout="block" >
+                                    <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta">
+                                        <div class="respuesta">uno</div>
+                                        <div class="respuesta">dos</div>
+                                        <div class="respuesta">tres</div>
+                                        <div class="respuesta">cuatro</div>
+                                        <div class="respuesta">cinco</div>
+                                        <div class="respuesta">seis</div>
+                                        <div class="respuesta">siete</div>
+                                        <div class="respuesta">ocho</div>
+                                        <div class="respuesta">nueve</div>
+                                    </h:panelGroup>
+                                </h:panelGroup>
+                                <div class="trancript-contenedor scroll-drag">
+                                    <p>
+                                        <span class="personaje">Will Smith:</span> I know you guys have been waiting and here&#39;s the very first trailer for Aladdin. It is the
+                                        very first trailer. Don&#39;t get <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> though; don&#39;t get dizzy before we start to trailer. Don&#39;t get dizzy!</p>
+
+                                    <p><span class="personaje">Crowd:</span> Stop,<h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>  Vandal! Street rat! Get him! Stop that boy! Up, there!</p>
+                                    <p><span class="personaje">Guard:</span> He’s on the roof! Watch out!</p>
+                                    <p><span class="personaje">Jafar:</span> You <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> upon an opportunity. I can make you rich… rich enough to impress a
+                                        princess</p>
+                                    <p><span class="personaje">Aladdin:</span> What would I have to do?</p>
+                                    <p><span class="personaje">Jafar:</span> There&#39;s a Cave of Wonders. Bring me the lamp.</p>
+                                    <p><span class="personaje">Genie:</span> Oh, great one who <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> me. I stand by my <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> two wishes three. I&#39;m kidding
+                                        Russians.
+                                        Watch out! You have woken me up! You ain’t never had a friend like me</p>
+                                    <p><span class="personaje">Aladdin:</span> Hey, can you make me a prince.</p>
+                                    <p><span class="personaje">Genie:</span> There is a lot of gray area in make me a prince. I could just make you a prince</p>
+                                    <p><span class="personaje">Aladdin:</span> Oh, no!</p>
+                                    <p><span class="personaje">Genie:</span> Have you seen my palace?
+                                        You look like a prince on the outside but I didn&#39;t change anything on the inside. Showtime!</p>
+                                    <p><span class="personaje">Aladdin:</span> No, I&#39;m <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. Okay, I say when it&#39;s time…Really?
+                                        I thought a princess could go anywhere…</p>
+                                    <p><span class="personaje">Jasmine:</span> Not this princess.</p>
+                                    <p><span class="personaje">Aladdin:</span> Do you trust me?</p>
+                                    <p><span class="personaje">Jasmine:</span> A whole new world.</p>
+                                    <p><span class="personaje">Aladdin:</span> Don’t you <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>close your eyes</p>
+                                    <p><span class="personaje">Jasmine:</span> A hundred thousand things to see</p>
+                                    <p><span class="personaje">Aladdin:</span> Hold your <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. It gets better.</p>
+                                    <p><span class="personaje">Jasmine:</span> I’m like a <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. I’ve come so far
+                                        Aladdin and Jasmine: Let me share this whole new world with you.</p>
+                                </div>
+                            </h:panelGroup>
+                        </li>
+                    </ul>
+                </h:panelGroup>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

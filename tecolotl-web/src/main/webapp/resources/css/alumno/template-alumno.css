@@ -1,8 +1,8 @@
 body{
     background-color: black;
-    background-image: url("#{resource['img/estrellas-alumno.jpg']}");
-    /*background-repeat: no-repeat;*/
-    background-size: 30% auto;
+    background-image: url("#{resource['img/alumno/fondo-alumno.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
     background-attachment: fixed;
 }
 
@@ -288,14 +288,14 @@ iframe {
 }
 .fondo-comic4{
     /*background-image: url('/resources/img/alumno/fondoart4.jpg');*/
-    background-image: url("#{resource['img/alumno/fondoart4.jpg']}");
+    background-image: url("#{resource['img/alumno/fondo-popart2.svg']}");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 .fondo-comic5{
     /*background-image: url('/resources/img/alumno/fondo5.jpg');*/
-    background-image: url("#{resource['img/alumno/fondo5.jpg']}");
+    background-image: url("#{resource['img/alumno/fondo-popart1.svg']}");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

@@ -145,3 +145,16 @@
     color:black;
     font-weight: bold;
 }
+
+.modal-contenedor-transcrip{
+    overflow: auto;
+    height: 60vh;
+}
+span.personaje{
+    color: #0e6ecd;
+    font-weight: bold;
+}
+
+#transcripcion strong{
+    color: #E89E0C;
+}

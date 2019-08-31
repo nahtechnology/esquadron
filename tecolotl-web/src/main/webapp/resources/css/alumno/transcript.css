@@ -1,49 +1,12 @@
 
-.tamContenedor{
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    padding: 0;
-}
-.tamContenido{
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100vw;
-    height: 100vh;
-}
-.tamElemento{
-    position: relative;
-    display: block;
-    flex: none;
-    width: 40vw;
-    height: 67vh;
-    margin: 10vh 2vw;
-}
+
 .borde-guion{
-    border-radius: 8px;
+    border-radius: 0 8px 8px 0;
 }
-.centElementos{
-    background-color: rgba(255,255,255,0.8);
-    position: relative;
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
-    justify-content: right;
-    align-items: center;
-    width: inherit;
-    height: inherit;
+.border-video{
+    border-radius: 8px 0 0 8px;
 }
 
-@media screen and (max-device-width: 1024px){
-    .tamElemento{
-        width: 80vw;
-        height: 40vh;
-        margin: 5vh 2vw;
-    }
-}
 
 .letra-guion{
     color: black;
@@ -101,3 +64,12 @@
 .scroll-alumno::-webkit-scrollbar-thumb:hover {
     background: rgb(129,9,147);
 }
+.tam-contenido{
+    max-height:52vh;
+    background-color: white;
+}
+.transcrip-contenedor{
+    overflow: auto;
+}
+
+
