@@ -29,6 +29,7 @@ public class GrupoModelo {
         this.id = grupoEntidad.getId();
         this.grado = grupoEntidad.getGrado();
         this.grupo = grupoEntidad.getGrupo();
+        this.cicloEscolarModelo = new CicloEscolarModelo(grupoEntidad.getCicloEscolarEntidad());
     }
 
     @NotNull(groups = {GrupoNuevoValidacion.class, GrupoLlavePrimariaValidacion.class})

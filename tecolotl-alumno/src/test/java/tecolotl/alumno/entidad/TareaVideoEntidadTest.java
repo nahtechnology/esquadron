@@ -23,7 +23,7 @@ public class TareaVideoEntidadTest {
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addClasses(TareaVideoEntidad.class, TareaVideoEntidadPK.class, TareaEntidad.class,
-                        AlumnoEntidad.class, GradoEscolarEntidad.class, PersonaEntidad.class,
+                        AlumnoEntidad.class, PersonaEntidad.class,
                         ActividadEntidad.class, NivelLenguajeEntidad.class, TipoEstudianteEntidad.class,
                         CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")

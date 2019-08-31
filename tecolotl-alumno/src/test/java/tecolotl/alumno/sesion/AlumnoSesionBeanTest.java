@@ -11,7 +11,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
-import tecolotl.alumno.entidad.GradoEscolarEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
@@ -30,7 +29,7 @@ public class AlumnoSesionBeanTest {
             .addPackage(PersonaEntidad.class.getPackage())
             .addPackage(PersonaModelo.class.getPackage())
             .addPackage(AlumnoEntidad.class.getPackage())
-            .addClasses(AlumnoEntidad.class, PersonaEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class,
+            .addClasses(AlumnoEntidad.class, PersonaEntidad.class, CatalagoEntidad.class,
             AlumnoSesionBean.class, PersonaSesionBean.class, TareaGlosarioActividadEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

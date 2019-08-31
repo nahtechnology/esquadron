@@ -88,7 +88,7 @@ public class DashboardControlador implements Serializable {
             for (int i = 0; i < checkBox.length; i++) {
                 actividadModelo.getNivelLenguajeModeloLista().add(new NivelLenguajeModelo(Short.parseShort(checkBox[i])));
             }
-            actividadSesionBean.inserta(actividadModelo);
+            actividadSesionBean.agrega(actividadModelo);
             ((List<ActividadModelo>)collectionDataModel.getWrappedData()).add(actividadModelo);
         }
 

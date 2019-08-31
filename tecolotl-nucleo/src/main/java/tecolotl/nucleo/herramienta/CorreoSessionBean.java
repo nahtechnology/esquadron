@@ -27,7 +27,7 @@ public class CorreoSessionBean implements Serializable {
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
-    @Resource(mappedName = "java:jboss/mail/MyOtherMail")
+//    @Resource(mappedName = "java:jboss/mail/MyOtherMail")
     private Session session;
 
     /**

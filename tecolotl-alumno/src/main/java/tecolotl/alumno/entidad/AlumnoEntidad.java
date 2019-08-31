@@ -11,14 +11,13 @@ import java.util.*;
 @Table(name = "alumno", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", schema = "alumno", sequenceName = "alumno.alumno_seq")
 @NamedQueries({
-        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle LEFT JOIN FETCH a.gradoEscolarEntidad gee"),
+        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle"),
         @NamedQuery(name = "AlumnoEntidad.actualizaNivel", query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
     private Integer id;
     private NivelLenguajeEntidad nivelLenguajeEntidad;
-    private GradoEscolarEntidad gradoEscolarEntidad;
     private Date nacimiento;
     private String correoPadreFamilia;
     private byte[] contraseniaPadreFamilia;
@@ -49,16 +48,6 @@ public class AlumnoEntidad extends PersonaEntidad {
 
     public void setNivelLenguajeEntidad(NivelLenguajeEntidad nivelLenguajeEntidad) {
         this.nivelLenguajeEntidad = nivelLenguajeEntidad;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_grado_escolar")
-    public GradoEscolarEntidad getGradoEscolarEntidad() {
-        return gradoEscolarEntidad;
-    }
-
-    public void setGradoEscolarEntidad(GradoEscolarEntidad gradoEscolarEntidad) {
-        this.gradoEscolarEntidad = gradoEscolarEntidad;
     }
 
     @Basic
@@ -102,7 +91,6 @@ public class AlumnoEntidad extends PersonaEntidad {
         AlumnoEntidad that = (AlumnoEntidad) o;
         return id.equals(that.id) &&
                 nivelLenguajeEntidad.equals(that.nivelLenguajeEntidad) &&
-                gradoEscolarEntidad.equals(that.gradoEscolarEntidad) &&
                 nacimiento.equals(that.nacimiento) &&
                 correoPadreFamilia.equals(that.correoPadreFamilia) &&
                 Arrays.equals(contraseniaPadreFamilia, that.contraseniaPadreFamilia);
@@ -110,20 +98,8 @@ public class AlumnoEntidad extends PersonaEntidad {
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id, nivelLenguajeEntidad, gradoEscolarEntidad, nacimiento, correoPadreFamilia);
+        int result = Objects.hash(id, nivelLenguajeEntidad, nacimiento, correoPadreFamilia);
         result = 31 * result + Arrays.hashCode(contraseniaPadreFamilia);
         return result;
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", AlumnoEntidad.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
-                .add("nivelLenguajeEntidad=" + nivelLenguajeEntidad)
-                .add("gradoEscolarEntidad=" + gradoEscolarEntidad)
-                .add("nacimiento=" + nacimiento)
-                .add("correoPadreFamilia='" + correoPadreFamilia + "'")
-                .add("contraseniaPadreFamilia=" + Arrays.toString(contraseniaPadreFamilia))
-                .toString();
     }
 }

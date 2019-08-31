@@ -21,6 +21,9 @@ import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * Permite la manipulación de las avtividades
+ */
 @Stateless
 public class ActividadSesionBean {
 
@@ -33,11 +36,20 @@ public class ActividadSesionBean {
     @Inject
     private Logger logger;
 
+    /**
+     * Busca todas las actividades.
+     * @return Coleción de {@link ActividadModelo}
+     */
     public List<ActividadModelo> busca() {
         TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.busca", ActividadEntidad.class);
         return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Busca actividades que tengan una nivel de lenguaje relacionado
+     * @param nivelLenguaje Nivel de lenguaje a buscaa, por ejemplo A1
+     * @return Coleción de {@link ActividadModelo}
+     */
     public List<ActividadModelo> busca(@NotNull @Size(min = 2, max = 2) String nivelLenguaje) {
         logger.fine(nivelLenguaje);
         TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaNivelLenguaje", ActividadEntidad.class);
@@ -52,13 +64,22 @@ public class ActividadSesionBean {
         return actividadModeloLista;
     }
 
+    /**
+     * Recupera la transcripcion de una actividad.
+     * @param idActividad Identidicador de la actividad a recuperar.
+     * @return La transcripción.
+     */
     public String transcripcion(@NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine(idActividad);
         return entityManager.createNamedQuery("ActividadEntidad.transcripcion", String.class)
                 .setParameter("idActividad", idActividad).getSingleResult();
     }
 
-    public void inserta(@NotNull ActividadModelo actividadModelo) {
+    /**
+     * Agrega una nueva actividad
+     * @param actividadModelo Datos de la nueva actividad
+     */
+    public void agrega(@NotNull ActividadModelo actividadModelo) {
         logger.fine(actividadModelo.toString());
         validadorSessionBean.validacion(actividadModelo, CatalogoLlavePrimariaValidacion.class);
         ActividadEntidad actividadEntidad = new ActividadEntidad();
@@ -78,6 +99,10 @@ public class ActividadSesionBean {
         actividadModelo.setIdVideo(actividadEntidad.getId());
     }
 
+    /**
+     * Borra una actividad
+     * @param idActividad Identificador de la actividad a ser borrado
+     */
     public void elimina(@NotNull @Size(min = 11, max = 11) String idActividad) {
         ActividadEntidad actividadEntidad = entityManager.find(ActividadEntidad.class, idActividad);
         entityManager.remove(actividadEntidad);

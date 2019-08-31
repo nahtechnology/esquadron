@@ -110,7 +110,7 @@ public class ActividadSesionBeanTest {
     }
 
     @Test
-    public void inserta() {
+    public void agrega() {
         ActividadModelo actividadModelo = new ActividadModelo();
         actividadModelo.setIdVideo("JcMtWwidzpU");
         actividadModelo.setPuntaje((short)100);
@@ -122,7 +122,7 @@ public class ActividadSesionBeanTest {
         actividadModelo.setTemaModelo(new TemaModelo((short)1));
         NivelLenguajeModelo nivelLenguajeModelo = new NivelLenguajeModelo((short)1);
         actividadModelo.setNivelLenguajeModeloLista(Arrays.asList(nivelLenguajeModelo));
-        actividadSesionBean.inserta(actividadModelo);
+        actividadSesionBean.agrega(actividadModelo);
         assertNotNull(actividadModelo.getIdVideo());
     }
 

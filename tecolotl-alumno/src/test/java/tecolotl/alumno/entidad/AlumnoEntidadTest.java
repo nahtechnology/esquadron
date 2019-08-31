@@ -26,7 +26,7 @@ public class AlumnoEntidadTest {
                 .addClasses(CatalagoEntidad.class, AlumnoEntidad.class, PersonaEntidad.class,
                         /*TareaEntidad.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class,
                         TipoEstudianteEntidad.class, ActividadEntidad.class, GlosarioEntidad.class,*/
-                        NivelLenguajeEntidad.class, GradoEscolarEntidad.class)
+                        NivelLenguajeEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

@@ -33,7 +33,7 @@ public class TareaEntidadTest {
                         TareaMapaMentalActividadEntidad.class, TareaGlosarioActividadEntidadPK.class, TareaVideoEntidad.class,
                         TareaVideoEntidadPK.class, MapaMentalActividadEntidad.class,
                         MapaMentalEntidad.class,
-                        NivelLenguajeEntidad.class, CatalagoEntidad.class, GradoEscolarEntidad.class)
+                        NivelLenguajeEntidad.class, CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }

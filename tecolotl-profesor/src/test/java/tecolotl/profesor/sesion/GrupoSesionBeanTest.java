@@ -52,7 +52,7 @@ public class GrupoSesionBeanTest {
                 .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
                 //administracion
                 .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ColoniaModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
-                .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
+                .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addPackage(ColoniaNuevaValidacion.class.getPackage())
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
@@ -91,6 +91,9 @@ public class GrupoSesionBeanTest {
             Assert.assertNotNull(grupoModelo);
             Assert.assertNotNull(grupoModelo.getGrado());
             Assert.assertNotNull(grupoModelo.getGrupo());
+            Assert.assertNotNull(grupoModelo.getCicloEscolarModelo());
+            Assert.assertNotNull(grupoModelo.getCicloEscolarModelo().getInicio());
+            Assert.assertNotNull(grupoModelo.getCicloEscolarModelo().getFin());
         });
     }
 
