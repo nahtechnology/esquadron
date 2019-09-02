@@ -26,6 +26,10 @@ import java.util.Objects;
         @NamedQuery(
                 name = "ActividadEntidad.elimina",
                 query = "DELETE FROM ActividadEntidad a WHERE a.id = :idAvtividad"
+        ),
+        @NamedQuery(
+                name = "ActividadEntidad.buscaImagen",
+                query = "SELECT a.vistaPrevia FROM ActividadEntidad a WHERE a.id = :idAvtividad"
         )
 })
 public class ActividadEntidad {
@@ -36,6 +40,7 @@ public class ActividadEntidad {
     private String preguntaDetonadora;
     private String lenguaje;
     private String trasncripcion;
+    private byte[] vistaPrevia;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private TemaEntidad temaEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
@@ -114,6 +119,17 @@ public class ActividadEntidad {
 
     public void setTrasncripcion(String trasncripcion) {
         this.trasncripcion = trasncripcion;
+    }
+
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "vista_previa")
+    @NotNull
+    public byte[] getVistaPrevia() {
+        return vistaPrevia;
+    }
+
+    public void setVistaPrevia(byte[] vistaPrevia) {
+        this.vistaPrevia = vistaPrevia;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
