@@ -84,8 +84,11 @@
                                 </div>
                                 <div class="uk-card-media-top">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
-                                    <div class="video">#{actividadModelo.idVideo}</div>
-                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>
+                                        <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
+                                            <img src="https://i.ytimg.com/vi/#{actividadModelo.idVideo}/mqdefault.jpg"/>
+                                            <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{actividadModelo.idVideo}"/>
+                                        </h:panelGroup>
+<!--                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>-->
                                 </div>
                                 <div class="uk-card-body">
                                     <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
@@ -148,7 +151,7 @@
                 </div>
 
             </h:panelGroup>
-            <h:outputScript library="js" name="profesor/biblioteca-profesor.js"/>
+<!--            <h:outputScript library="js" name="profesor/biblioteca-profesor.js"/>-->
         </ui:define>
     </ui:composition>
 </html>

@@ -58,92 +58,22 @@
 
             <div class="uk-container  uk-margin-auto" >
                 <h1 class="lescuadron letra-titulo sombra-titulo">Glossary</h1>
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
-                    <div class="uk-card-media-left uk-cover-container">
-                        <h:graphicImage library="img" name="alumno/glosario/ladron.jpeg"  alt="" pt:uk-cover=""/>
-                        <canvas  height="350"/>
-                    </div>
-                    <div>
-                        <div class="uk-card-body">
-                            <h3 class="uk-text-center letra-glosario">Word</h3>
-                            <p class="uk-text-center">Thief.</p>
-                            <h3 class="uk-text-center letra-glosario">Concept</h3>
-                            <p class="uk-text-center">Noun. A person who steals, a robber.</p>
+                <ui:repeat value="#{glosarioControlador.glosarioModeloLista}" var="glosario">
+                    <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
+                        <div class="uk-card-media-left uk-cover-container">
+                            <h:graphicImage value="#{glosario.imagen}"  alt="" pt:uk-cover=""/>
+                            <canvas  height="350"/>
+                        </div>
+                        <div>
+                            <div class="uk-card-body">
+                                <h3 class="uk-text-center letra-glosario">Word</h3>
+                                <p class="uk-text-center">#{glosario.palabra}</p>
+                                <h3 class="uk-text-center letra-glosario">Concept</h3>
+                                <p class="uk-text-center">#{glosario.significado}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
-                    <div class="uk-card-media-left uk-cover-container">
-                        <h:graphicImage library="img" name="alumno/glosario/scumble.jpg" alt="" pt:uk-cover=""/>
-                        <canvas  height="350"/>
-                    </div>
-                    <div>
-                        <div class="uk-card-body">
-                            <h3 class="uk-text-center letra-glosario">Word</h3>
-                            <p class="uk-text-center">Stumble.</p>
-                            <h3 class="uk-text-center letra-glosario">Concept</h3>
-                            <p class="uk-text-center">Verb. To strike the foot against something, as in walking or running</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
-                    <div class="uk-card-media-left uk-cover-container">
-                        <h:graphicImage library="img" name="alumno/glosario/dizzy.jpg" alt="" pt:uk-cover=""/>
-                        <canvas  height="350"/>
-                    </div>
-                    <div>
-                        <div class="uk-card-body">
-                            <h3 class="uk-text-center letra-glosario">Word</h3>
-                            <p class="uk-text-center">Dizzy.</p>
-                            <h3 class="uk-text-center letra-glosario">Concept</h3>
-                            <p class="uk-text-center">Adjective. Having a sensation of whirling and a tendency to fall</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
-                    <div class="uk-card-media-left uk-cover-container">
-                        <h:graphicImage library="img" name="alumno/glosario/summon.jpg" alt="" pt:uk-cover=""/>
-                        <canvas  height="350"/>
-                    </div>
-                    <div>
-                        <div class="uk-card-body">
-                            <h3 class="uk-text-center letra-glosario">Word</h3>
-                            <p class="uk-text-center">Summon</p>
-                            <h3 class="uk-text-center letra-glosario">Concept</h3>
-                            <p class="uk-text-center">Verb. To call or notify to appear at a specified place,
-                                especially before a court</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
-                    <div class="uk-card-media-left uk-cover-container">
-                        <h:graphicImage library="img" name="alumno/glosario/oath.jpg"  alt="" pt:uk-cover=""/>
-                        <canvas  height="350"/>
-                    </div>
-                    <div>
-                        <div class="uk-card-body">
-                            <h3 class="uk-text-center letra-glosario">Word</h3>
-                            <p class="uk-text-center">Oath.</p>
-                            <h3 class="uk-text-center letra-glosario">Concept</h3>
-                            <p class="uk-text-center">Noun. A formally affirmed statement or promise accepted as an equivalent of an appeal to a deity or to a revered
-                                person or thing</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
-                    <div class="uk-card-media-left uk-cover-container">
-                        <h:graphicImage library="img" name="alumno/glosario/dare.jpg" alt="" pt:uk-cover=""/>
-                        <canvas  height="350"/>
-                    </div>
-                    <div>
-                        <div class="uk-card-body">
-                            <h3 class="uk-text-center letra-glosario">Word</h3>
-                            <p class="uk-text-center">Dare.</p>
-                            <h3 class="uk-text-center letra-glosario">Concept</h3>
-                            <p class="uk-text-center">Verb. To have the necessary courage or boldness for something; be bold enough</p>
-                        </div>
-                    </div>
-                </div>
+                </ui:repeat>
             </div>
 
         </div>
