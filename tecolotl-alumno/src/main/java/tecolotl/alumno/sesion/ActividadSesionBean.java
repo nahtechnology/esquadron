@@ -65,6 +65,18 @@ public class ActividadSesionBean {
     }
 
     /**
+     * Recupera la imagen de una actividad.
+     * @param idActvidad Identificador de la actividad.
+     * @return Imagen en bytes.
+     */
+    public byte[] imagen(@NotNull @Size(min = 11, max = 11) String idActvidad) {
+        logger.fine(idActvidad);
+        TypedQuery<byte[]> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaImagen", byte[].class);
+        typedQuery.setParameter("idAvtividad", idActvidad);
+        return typedQuery.getSingleResult();
+    }
+
+    /**
      * Recupera la transcripcion de una actividad.
      * @param idActividad Identidicador de la actividad a recuperar.
      * @return La transcripción.
