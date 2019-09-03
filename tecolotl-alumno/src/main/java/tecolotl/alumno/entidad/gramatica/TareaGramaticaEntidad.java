@@ -26,7 +26,6 @@ public class TareaGramaticaEntidad {
     }
 
     @NotNull
-    @Max(32)
     public String getRespuesta() {
         return respuesta;
     }
