@@ -62,6 +62,20 @@ public class GlosarioSesionBean {
     }
 
     /**
+     * Busca la imagen de una glosario.
+     * @param palabra Palabra a la pertence la imagen
+     * @param idClave Identificador de la clase
+     * @return Arreglo de bytes
+     */
+    public byte[] imagen(@NotNull @Size(min = 2, max = 20) String palabra, @NotNull Short idClave) {
+        logger.fine(palabra);
+        logger.fine(idClave.toString());
+        TypedQuery<byte[]> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaImagen", byte[].class);
+        typedQuery.setParameter("palabra", palabra).setParameter("clave", idClave);
+        return typedQuery.getSingleResult();
+    }
+
+    /**
      * Busca todos los glosarios asignados a una tarea la cual corresponde a un alumno.
      * @param idTarea Identificador de la tarea
      * @return Colección de {@link GlosarioModelo}

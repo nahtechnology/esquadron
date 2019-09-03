@@ -14,6 +14,10 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "GlosarioEntidad.buscaPalabra",
                 query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg WHERE g.glosarioEntidadPK.palabra LIKE :palabra"
+        ),
+        @NamedQuery(
+                name = "GlosarioEntidad.buscaImagen",
+                query = "SELECT g.imagen FROM GlosarioEntidad g WHERE g.glosarioEntidadPK.palabra = :palabra AND g.glosarioEntidadPK.claseGlosarioEntidad.clave = :clave"
         )
 })
 public class GlosarioEntidad {
@@ -39,7 +43,7 @@ public class GlosarioEntidad {
         this.glosarioEntidadPK = glosarioEntidadPK;
     }
 
-    @Basic
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "imagen")
     @NotNull
     public byte[] getImagen() {
