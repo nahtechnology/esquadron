@@ -22,7 +22,6 @@ public class TareaEntidad {
     private Date asignacion;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
-    private TareaVideoEntidad tareaVideoEntidad;
 
     public TareaEntidad() {
     }

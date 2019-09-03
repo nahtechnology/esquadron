@@ -2,6 +2,7 @@ package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
+import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 
 import javax.validation.Valid;

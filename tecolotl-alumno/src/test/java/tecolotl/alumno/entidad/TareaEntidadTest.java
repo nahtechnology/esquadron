@@ -30,8 +30,7 @@ public class TareaEntidadTest {
                         TareaGlosarioActividadEntidadPK.class, GlosarioEntidad.class, ActividadEntidad.class,
                         TipoEstudianteEntidad.class, ClaseGlosarioEntidad.class, TareaGlosarioActividadEntidad.class,
                         TareaGlosarioActividadEntidadPK.class, GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class,
-                        TareaMapaMentalActividadEntidad.class, TareaGlosarioActividadEntidadPK.class, TareaVideoEntidad.class,
-                        TareaVideoEntidadPK.class, MapaMentalActividadEntidad.class,
+                        TareaMapaMentalActividadEntidad.class, TareaGlosarioActividadEntidadPK.class, MapaMentalActividadEntidad.class,
                         MapaMentalEntidad.class,
                         NivelLenguajeEntidad.class, CatalagoEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
