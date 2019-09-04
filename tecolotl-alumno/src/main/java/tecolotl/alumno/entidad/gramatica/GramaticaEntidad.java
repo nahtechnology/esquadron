@@ -34,6 +34,7 @@ public class GramaticaEntidad {
 
     @NotNull
     @Basic(fetch = FetchType.LAZY)
+    @Column(name = "palabra")
     public String getPalabra() {
         return palabra;
     }

@@ -34,6 +34,7 @@ public class OracionesEntidad {
 
     @NotNull
     @Basic(fetch = FetchType.LAZY)
+    @Column(name = "oracion")
     public String getOracion() {
         return oracion;
     }

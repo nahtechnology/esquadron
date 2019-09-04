@@ -8,8 +8,10 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "tarea_gramatica", schema = "alumno")
-@NamedQueries(
-        @NamedQuery(name = "TareaGramaticaEntidad.busca", query = "SELECT tge FROM TareaGramaticaEntidad tge")
+@NamedQueries({
+        @NamedQuery(name = "TareaGramaticaEntidad.busca", query = "SELECT tge FROM TareaGramaticaEntidad tge"),
+        @NamedQuery(name = "TareaGramaticaEntidad.buscaid_tarea", query = "SELECT tge FROM TareaGramaticaEntidad tge where tge.tareaGramaticaEntidadPK.tareaEntidad.id = :id_tarea")
+}
 )
 public class TareaGramaticaEntidad {
     private TareaGramaticaEntidadPK tareaGramaticaEntidadPK;
@@ -26,6 +28,7 @@ public class TareaGramaticaEntidad {
     }
 
     @NotNull
+    @Column(name = "respuesta")
     public String getRespuesta() {
         return respuesta;
     }
