@@ -11,8 +11,16 @@ import java.util.*;
 @Table(name = "alumno", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", schema = "alumno", sequenceName = "alumno.alumno_seq")
 @NamedQueries({
-        @NamedQuery(name = "AlumnoEntidad.busca", query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle"),
-        @NamedQuery(name = "AlumnoEntidad.actualizaNivel", query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
+        @NamedQuery(
+                name = "AlumnoEntidad.busca",
+                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle"),
+        @NamedQuery(
+                name = "AlumnoEntidad.actualizaNivel",
+                query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
+        @NamedQuery(
+                name = "AlumnoEntidad.buscaId",
+                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno"
+        )
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
@@ -40,7 +48,7 @@ public class AlumnoEntidad extends PersonaEntidad {
         this.id = id;
     }
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_nivel_lenguaje")
     public NivelLenguajeEntidad getNivelLenguajeEntidad() {
         return nivelLenguajeEntidad;
@@ -74,7 +82,7 @@ public class AlumnoEntidad extends PersonaEntidad {
         this.correoPadreFamilia = correoPadreFamilia;
     }
 
-    @Basic
+    @Basic(fetch =  FetchType.LAZY)
     @Column(name = "contrasenia_padre_familia")
     public byte[] getContraseniaPadreFamilia() {
         return contraseniaPadreFamilia;
@@ -101,5 +109,17 @@ public class AlumnoEntidad extends PersonaEntidad {
         int result = Objects.hash(id, nivelLenguajeEntidad, nacimiento, correoPadreFamilia);
         result = 31 * result + Arrays.hashCode(contraseniaPadreFamilia);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", AlumnoEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("nivelLenguajeEntidad=" + nivelLenguajeEntidad)
+                .add("nacimiento=" + nacimiento)
+                .add("correoPadreFamilia='" + correoPadreFamilia + "'")
+                .add("contraseniaPadreFamilia=" + Arrays.toString(contraseniaPadreFamilia))
+                .add("super=" + super.toString())
+                .toString();
     }
 }

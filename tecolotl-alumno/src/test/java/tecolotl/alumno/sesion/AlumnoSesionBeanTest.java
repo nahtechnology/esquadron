@@ -9,13 +9,31 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
+import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
+import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
+import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
+import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
+import tecolotl.alumno.validacion.ActividadNuevaValidacion;
+import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
+import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
+import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
+import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.modelo.PersonaModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
+import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.sesion.PersonaSesionBean;
+import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -25,12 +43,26 @@ public class AlumnoSesionBeanTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-            .addPackage(AlumnoModelo.class.getPackage())
-            .addPackage(PersonaEntidad.class.getPackage())
-            .addPackage(PersonaModelo.class.getPackage())
-            .addPackage(AlumnoEntidad.class.getPackage())
-            .addClasses(AlumnoEntidad.class, PersonaEntidad.class, CatalagoEntidad.class,
-            AlumnoSesionBean.class, PersonaSesionBean.class, TareaGlosarioActividadEntidad.class)
+                .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
+                .addPackage(ActividadEntidad.class.getPackage())
+                .addPackage(TareaGramaticaEntidad.class.getPackage())
+                .addPackage(GramaticaModelo.class.getPackage())
+                .addPackage(MapaMentalModelo.class.getPackage())
+                .addPackage(GlosarioModelo.class.getPackage())
+                .addPackage(GlosarioEntidad.class.getPackage())
+                .addPackage(RelacionarEntidad.class.getPackage())
+                .addPackage(RelacionarModelo.class.getPackage())
+                .addPackage(GlosarioNuevoValidacion.class.getPackage())
+                .addPackage(ActividadModelo.class.getPackage())
+                .addPackage(ActividadSesionBean.class.getPackage())
+                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
+                .addPackage(ValidadorSessionBean.class.getPackage())
+                .addPackage(CatalogoNuevoValidacion.class.getPackage())
+                .addPackage(CatalagoEntidad.class.getPackage())
+                .addPackage(CatalogoSesionBean.class.getPackage())
+                .addPackage(CatalogoModelo.class.getPackage())
+                .addPackage(RelacionarLlavePrimariaValidacion.class.getPackage())
+                .addPackage(ActividadNuevaValidacion.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -44,7 +76,7 @@ public class AlumnoSesionBeanTest {
         Assert.assertNotNull(alumnoModeloLista);
         Assert.assertFalse(alumnoModeloLista.isEmpty());
         for (AlumnoModelo alumnoModelo : alumnoModeloLista){
-        /*    Assert.assertNotNull(alumnoModelo);
+            Assert.assertNotNull(alumnoModelo);
             Assert.assertNotNull(alumnoModelo.getId());
             Assert.assertNotNull(alumnoModelo.getNombre());
             Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
@@ -53,12 +85,11 @@ public class AlumnoSesionBeanTest {
             Assert.assertNotNull(alumnoModelo.getContrasenia());
             Assert.assertNotNull(alumnoModelo.getNacimiento());
             Assert.assertNotNull(alumnoModelo.getCorreoPadreFamilia());
-            Assert.assertNotNull(alumnoModelo.getContraseniaPadreFamilia());
             Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
             Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
-            Assert.assertNotNull(alumnoModelo.getGradoEscolarModelo());
-            Assert.assertNotNull(alumnoModelo.getGradoEscolarModelo().getGrado());
-            Assert.assertNotNull(alumnoModelo.getGradoEscolarModelo().getNivel()); */
+            Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
+            Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getClave());
+            Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
         }
     }
 

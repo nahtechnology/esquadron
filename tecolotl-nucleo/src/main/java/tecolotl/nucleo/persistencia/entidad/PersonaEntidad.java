@@ -4,6 +4,7 @@ import org.hibernate.annotations.ColumnTransformer;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -65,7 +66,7 @@ public class PersonaEntidad {
         this.apodo = apodo;
     }
 
-    @Basic
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "contrasenia")
     @ColumnTransformer(
             read = "pgp_sym_decrypt_bytea(contrasenia, 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256')",
