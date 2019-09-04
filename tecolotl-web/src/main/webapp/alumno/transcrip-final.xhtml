@@ -10,10 +10,10 @@
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
-            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+            <h6 class="uk-text-center uk-text-capitalize nombre-usuario uk-margin-remove-vertical text-light">#{alumnoControlador.alumnoModelo.apodo}</h6>
 
             <div class="uk-position-relative uk-text-center uk-display-block">
-                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Alumno</a>
                 <!-- user dropdown -->
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                     <ul >
@@ -59,11 +59,11 @@
         <div class="uk-section margen-superior"  style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" styleClass="" pt:uk-filter="target: .js-filter">
-                    <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center ">
-                        <li uk-filter-control=".transcrip" uk-tooltip="Video" class="uk-active"><h:graphicImage library="img" name="mounstro/morado.svg" width="70" height="70"  alt="" styleClass="uk-border-circle"/></li>
-                        <li uk-filter-control=".listening" uk-tooltip="Listening"><h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle"/></li>
-                        <li uk-filter-control=".order-words" uk-tooltip="Order Words"><h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle"/></li>
-                        <li uk-filter-control=".answer" uk-tooltip="Transcript"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle"/></li>
+                    <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center "  >
+                        <li uk-filter-control=".transcrip" uk-tooltip="Video" class="uk-active uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/morado.svg" width="70" height="70"  alt="" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".listening" uk-tooltip="Listening" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".order-words" uk-tooltip="Order Words" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".answer" uk-tooltip="Transcript" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
                     </ul>
 
                     <ul class="js-filter  uk-text-center" >

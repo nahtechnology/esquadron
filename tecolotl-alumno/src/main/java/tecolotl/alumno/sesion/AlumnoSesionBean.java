@@ -3,6 +3,7 @@ package tecolotl.alumno.sesion;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ import javax.validation.constraints.NotNull;
  * Session Bean implementation class AlumnoSesionBean
  */
 @Stateless
-public class AlumnoSesionBean {
+public class AlumnoSesionBean implements Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;

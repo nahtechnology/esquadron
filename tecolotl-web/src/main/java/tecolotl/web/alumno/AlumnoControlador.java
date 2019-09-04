@@ -1,8 +1,11 @@
 package tecolotl.web.alumno;
 
+import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 
@@ -10,31 +13,21 @@ import java.io.Serializable;
 @Named
 public class AlumnoControlador implements Serializable {
 
-    /**
-     * true = niño, false = niña
-     */
+    @Inject
     private AlumnoSesionBean alumnoSesionBean;
 
-    private boolean sexo;
-    private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
+    private AlumnoModelo alumnoModelo;
 
-
-    public String getNombre() {
-        return nombre;
+    @PostConstruct
+    public void init(){
+        alumnoModelo = alumnoSesionBean.busca(2);
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public AlumnoModelo getAlumnoModelo() {
+        return alumnoModelo;
     }
 
-    public boolean isSexo() {
-        return sexo;
+    public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
+        this.alumnoModelo = alumnoModelo;
     }
-
-    public void setSexo(boolean sexo) {
-        this.sexo = sexo;
-    }
-
 }

@@ -10,13 +10,13 @@
     <ui:composition template="/template/escolar/template-alumno.xhtml">
         <ui:define name="menu">
             <div class="left-content-box  content-box-dark">
-                <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img" rendered="#{alumnoControlador.sexo}"/>
-                <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="" class="uk-border-circle profile-img" rendered="#{not alumnoControlador.sexo}"/>
-                <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+                <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img" rendered="#{true}"/>
+                <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="" class="uk-border-circle profile-img" rendered="#{false}"/>
+                <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo}</h6>
 
                 <div class="uk-position-relative uk-text-center uk-display-block">
                     <!--Modificar los datos para mostrar en el Alumno-->
-                    <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                    <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Alumno</a>
                     <!-- user dropdown -->
                     <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                         <ul >
@@ -69,13 +69,14 @@
                                         <h:graphicImage styleClass="uk-border-circle" width="50" height="50" library="img" name="mounstro/morado.svg"/>
                                     </div>
                                     <div class="uk-width-expand">
-                                        <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">maugg</h3>
-                                        <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>el mau</span></p>
+                                        <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold"> #{alumnoControlador.alumnoModelo.nombre} #{alumnoControlador.alumnoModelo.apellidoPaterno} #{alumnoControlador.alumnoModelo.apellidoMaterno}</h3>
+                                        <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span> #{alumnoControlador.alumnoModelo.apodo}</span></p>
                                     </div>
                                     <div class="uk-width-1-1@s">
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Email:</span>maugg76@gmail.com</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top  uk-text-small "><span class="uk-text-bold" >Grade:</span>2</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">State:</span>Puebla</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Email:</span> #{alumnoControlador.alumnoModelo.correoPadreFamilia}</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top  uk-text-small "><span class="uk-text-bold" >Grade:</span> 2</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Group:</span> B</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Nivel:</span> #{alumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
                                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile</span></p>
                                     </div>
                                 </div>
