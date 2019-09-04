@@ -57,15 +57,17 @@ public class TareaSesionBean {
     }
 
     /**
-     * Busca una tarea por identificador
-     * @param idTarea Identificador del alumno
-     * @return
+     * Busca todas la tareas asignadas a un alumno.
+     * @param idAlumno Identificador del alumno
+     * @return Colección de {@link TareaModelo}
      */
-    public List<TareaModelo> busca(@NotNull Integer idTarea){
-        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaId", TareaEntidad.class);
-        typedQuery.setParameter("idTarea", idTarea);
+    public List<TareaModelo> busca(@NotNull Integer idAlumno) {
+        logger.fine(idAlumno.toString());
+        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaActividad", TareaEntidad.class);
+        typedQuery.setParameter("IdAlumno", idAlumno);
         return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
     }
+
 
     /**
      * Elimina una tarea por llave primaria

@@ -10,25 +10,23 @@ import java.util.List;
 @Entity
 @Table(name = "tarea", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", sequenceName = "tarea_seq", schema = "alumno")
-@NamedQueries({
-    @NamedQuery(name = "TareaEntidad.busca", query = "SELECT t FROM TareaEntidad t"),
-    @NamedQuery(
-        name = "TareaEntidad.buscaId",
-        query = "SELECT t FROM TareaEntidad t WHERE t.id = :idTarea")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "TareaEntidad.busca",
+                query = "SELECT t FROM TareaEntidad t"
+        ),
+        @NamedQuery(
+                name = "TareaEntidad.buscaActividad",
+                query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
+                        "t.alumnoEntidad.id = :IdAlumno GROUP BY t.id"
+        )
 })
-@NamedStoredProcedureQuery(
-        name = "TareaEntidad.agregarTarea",
-        procedureName = "profesor.creartarea",
-        parameters = {
-                @StoredProcedureParameter(name = "grupo", type = Integer.class),
-                @StoredProcedureParameter(name = "alumno", type = Integer.class),
-                @StoredProcedureParameter(name = "actividad", type = String.class)
-        }
-)
 public class TareaEntidad {
 
     private Integer id;
+    private Short reproducciones;
     private Date asignacion;
+    private AlumnoEntidad alumnoEntidad;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
 
@@ -50,6 +48,16 @@ public class TareaEntidad {
     }
 
     @Basic
+    @Column(name = "reproducciones")
+    public Short getReproducciones() {
+        return reproducciones;
+    }
+
+    public void setReproducciones(Short reproducciones) {
+        this.reproducciones = reproducciones;
+    }
+
+    @Basic
     @Column(name = "asignacion", insertable = false)
     @Temporal(TemporalType.TIMESTAMP)
     public Date getAsignacion() {
@@ -58,6 +66,16 @@ public class TareaEntidad {
 
     public void setAsignacion(Date asignacion) {
         this.asignacion = asignacion;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_alumno")
+    public AlumnoEntidad getAlumnoEntidad() {
+        return alumnoEntidad;
+    }
+
+    public void setAlumnoEntidad(AlumnoEntidad alumnoEntidad) {
+        this.alumnoEntidad = alumnoEntidad;
     }
 
     @OneToMany(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad", cascade = {CascadeType.PERSIST})
