@@ -10,10 +10,12 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.StoredProcedureQuery;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -34,20 +36,14 @@ public class TareaSesionBean {
      * Inserta una tarea.
      * @param idAlumno datos de la tarea.
      */
-    public Integer inserta(@NotNull Integer idAlumno){
-        TareaEntidad tareaEntidad = new TareaEntidad();
-        entityManager.persist(tareaEntidad);
-        return tareaEntidad.getId();
-    }
-
-    public Integer inserta(@NotNull TareaModelo tareaModelo, @NotNull String idActividad) {
-        logger.fine(tareaModelo.toString());
-        validadorSessionBean.validacion(tareaModelo, EscribirNuevoValidacion.class, GlosarioNuevoValidacion.class);
-        TareaEntidad tareaEntidad = new TareaEntidad();
-
-        entityManager.persist(tareaEntidad);
-        tareaModelo.setId(tareaEntidad.getId());
-        return tareaEntidad.getId();
+    public boolean inserta(@NotNull Integer idAlumno,
+                           @NotNull Integer idGrupo,
+                           @NotNull @Size(min = 11, max = 11) String idActividad){
+        StoredProcedureQuery storedProcedureQuery = entityManager.createNamedStoredProcedureQuery("TareaEntidad.agregarTarea");
+        storedProcedureQuery.setParameter("grupo", idGrupo);
+        storedProcedureQuery.setParameter("alumno", idAlumno);
+        storedProcedureQuery.setParameter("actividad", idActividad);
+        return storedProcedureQuery.execute();
     }
 
     /**

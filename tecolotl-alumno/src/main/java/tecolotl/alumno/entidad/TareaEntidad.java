@@ -16,6 +16,15 @@ import java.util.List;
         name = "TareaEntidad.buscaId",
         query = "SELECT t FROM TareaEntidad t WHERE t.id = :idTarea")
 })
+@NamedStoredProcedureQuery(
+        name = "TareaEntidad.agregarTarea",
+        procedureName = "profesor.creartarea",
+        parameters = {
+                @StoredProcedureParameter(name = "grupo", type = Integer.class),
+                @StoredProcedureParameter(name = "alumno", type = Integer.class),
+                @StoredProcedureParameter(name = "actividad", type = String.class)
+        }
+)
 public class TareaEntidad {
 
     private Integer id;

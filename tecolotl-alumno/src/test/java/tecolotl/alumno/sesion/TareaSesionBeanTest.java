@@ -68,23 +68,8 @@ public class TareaSesionBeanTest {
 
     @Test
     public void inserta(){
-        TareaModelo tareaModelo = new TareaModelo();
-        tareaSesionBean.inserta(tareaModelo.getId());
-        Assert.assertNotNull(tareaModelo);
-        Assert.assertNotNull(tareaModelo.getId());
+        tareaSesionBean.inserta(null, null, null);
     }
 
-    @Test
-    public void insertaCascada() {
-        MapaMentalBaseModelo mapaMentalBaseModelo1 = new MapaMentalBaseModelo(1);
-        MapaMentalBaseModelo mapaMentalBaseModelo2 = new MapaMentalBaseModelo(2);
-        GlosarioModelo glosarioModelo1 = new GlosarioModelo("bandit");
-        GlosarioModelo glosarioModelo2 = new GlosarioModelo("tipper");
-        TareaModelo tareaModelo = new TareaModelo();
-        tareaModelo.setMapaMentalBaseModeloLista(Arrays.asList(mapaMentalBaseModelo1, mapaMentalBaseModelo2));
-        tareaModelo.setGlosarioModeloLista(Arrays.asList(glosarioModelo1, glosarioModelo2));
-        tareaSesionBean.inserta(tareaModelo, "JcMtWwiyzpU");
-        Assert.assertNotNull(tareaModelo.getId());
-        Assert.assertNotEquals(tareaModelo.getId(), Long.valueOf(0));
-    }
+
 }
