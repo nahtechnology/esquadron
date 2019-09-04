@@ -1,5 +1,5 @@
 .columna-pregunta{
-    background-color: white;
+    background-color: #2AABE2;
     padding-left: 0;
 }
 .tabla-ordenar{
@@ -23,16 +23,16 @@
 
 }
 .cuerpo-tabla>tr>td:nth-child(1){
-    background-color: #16A085;
+    background-color: #9955FF;
 }
 .cuerpo-tabla>tr>td:nth-child(2){
-    background-color: #0e6dcd;
+    background-color: #5500D4;
     border-bottom:1px solid white;
 }
 
 
 .respuestas-ordenar{
-    background-color: var(--color-oscuro);
+    background-color: #4d4d4d;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;

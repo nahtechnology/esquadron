@@ -7,18 +7,18 @@
 }
 
 .estilo-contenedor{
-    background-color: var(--color-oscuro);
+    background-color: #600051;
     border-radius: 10px;
-    padding-top: 20px;
     padding-bottom: 20px;
-    width: 100%;
+    padding-top: 20px;
+    /*width: 100%;*/
 }
 
 
 .palabra{
     background-color: white;
-    padding-top: 5px;
     padding-bottom: 5px;
+    padding-top: 5px;
     border-radius: 8px;
     box-shadow: 2px 2px 5px white;
     width: 100%;
@@ -28,3 +28,4 @@
     height: auto;
     margin: auto;
 }
+

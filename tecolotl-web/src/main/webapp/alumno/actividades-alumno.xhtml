@@ -78,7 +78,7 @@
                 </ul>
 
                 <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
-                    <ui:repeat value="#{actividadesControlador.actividadesModeloLista}" var="actividadModelo">
+                    <ui:repeat value="#{actividadControlador.actividadModeloLista}" var="actividadModelo">
                         <h:panelGroup layout="block" styleClass="uk-width-1-3@l uk-width-1-2@m uk-width-1-1@s #{actividadModelo.languageLevel}" pt:data-tags="a beautiful landscape - nature outdoor">
                             <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border #{actividadModelo.languageLevel}">
                                 <div class="uk-card-header border-card">
@@ -92,10 +92,11 @@
                                         </div>
                                     </h:panelGroup>
                                 </div>
-                                <div class="uk-card-media-top">
-                                    <div uk-spinner=""></div>
-                                    <div class="video">#{actividadModelo.idVideo}</div>
-                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>
+                                <div class="uk-card-media-top" >
+                                    <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
+                                        <img src="https://i.ytimg.com/vi/#{actividadModelo.idVideo}/mqdefault.jpg"/>
+                                        <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{actividadModelo.idVideo}"/>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="uk-card-body">
                                     <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.question}</h6>
@@ -117,7 +118,6 @@
                                                 <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="icono/quizcalifica.svg" /></div>
                                             </div>
                                         </div>
-
                                     </h:panelGroup>
                                 </div>
                             </div>
@@ -126,7 +126,7 @@
                 </h:panelGroup>
             </div>
         </div>
-        <h:outputScript library="js" name="/alumno/biblioteca-alumno.js"/>
+<!--        <h:outputScript library="js" name="/alumno/biblioteca-alumno.js"/>-->
     </ui:define>
 </ui:composition>
 </html>

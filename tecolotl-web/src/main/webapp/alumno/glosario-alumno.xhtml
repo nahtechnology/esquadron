@@ -61,7 +61,8 @@
                 <ui:repeat value="#{glosarioControlador.glosarioModeloLista}" var="glosario">
                     <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
                         <div class="uk-card-media-left uk-cover-container">
-                            <h:graphicImage value="#{glosario.imagen}"  alt="" pt:uk-cover=""/>
+<!--                            <h:graphicImage value="#{glosario.imagen}"  alt="" pt:uk-cover=""/>-->
+                            <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(glosario.palabra).concat('&amp;clave=').concat(glosario.claseGlosarioModelo.clave))}" uk-cover="" alt="imagen"/>
                             <canvas  height="350"/>
                         </div>
                         <div>
@@ -69,7 +70,7 @@
                                 <h3 class="uk-text-center letra-glosario">Word</h3>
                                 <p class="uk-text-center">#{glosario.palabra}</p>
                                 <h3 class="uk-text-center letra-glosario">Concept</h3>
-                                <p class="uk-text-center">#{glosario.significado}</p>
+                                <p class="uk-text-center"><span class="uk-text-bold uk-text-capitalize">#{glosario.claseGlosarioModelo.valor}</span> #{glosario.significado}</p>
                             </div>
                         </div>
                     </div>

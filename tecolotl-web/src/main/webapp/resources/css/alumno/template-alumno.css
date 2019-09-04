@@ -1,6 +1,6 @@
 body{
     background-color: black;
-    background-image: url("#{resource['img/alumno/fondo-alumno.svg']}");
+    background-image: url("#{resource['img/alumno/fondo-general.svg']}");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

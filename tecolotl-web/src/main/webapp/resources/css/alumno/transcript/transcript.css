@@ -31,9 +31,10 @@
 .uk-tooltip {
     /* 1 */
     max-width: 300px;
-    padding: 4px 7px;
+    padding: 7px 5px;
     /* 4 */
     background: var(--naranja-primary-color) !important;
+
     border:solid 1px;
     border-color: black;
     border-radius: 3px;
@@ -43,6 +44,8 @@
     font-family: 'Sniglet', "Arial Black";
 }
 
+
+
 /* width */
 .scroll-alumno::-webkit-scrollbar {
     width: 10px;
@@ -50,19 +53,20 @@
 
 /* Track */
 .scroll-alumno::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 8px black;
+    box-shadow: inset 0 0 8px #5F8DD3;
+    /*background: rgb(95,141,211);*/
     border-radius: 10px;
 }
 
 /* Handle */
 .scroll-alumno::-webkit-scrollbar-thumb {
-    background: rgb(64,5,73);
+    background: rgb(22,22,80);
     border-radius: 10px;
 }
 
 /* Handle on hover */
 .scroll-alumno::-webkit-scrollbar-thumb:hover {
-    background: rgb(129,9,147);
+    background: rgb(0,163,106);
 }
 .tam-contenido{
     max-height:52vh;

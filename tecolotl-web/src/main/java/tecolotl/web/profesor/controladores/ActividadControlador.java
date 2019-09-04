@@ -29,13 +29,16 @@ public class ActividadControlador implements Serializable {
     @PostConstruct
     public void init(){
         String nivelLenguaje = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nivelLenguaje");
-        actividadModeloLista = actividadSesionBean.busca(nivelLenguaje);
+        if(nivelLenguaje != null){
+            actividadModeloLista = actividadSesionBean.busca(nivelLenguaje);
+        }
      }
 
     public void buscaTranscripcion(ActividadModelo actividadModelo){
-        logger.info(actividadModelo.getIdVideo());
         trasncrip = actividadSesionBean.transcripcion(actividadModelo.getIdVideo());
-        logger.info(trasncrip);
+    }
+    public String buscaTranscripcion(String idActividad){
+        return actividadSesionBean.transcripcion(idActividad);
     }
 
     public List<ActividadModelo> getActividadModeloLista() {

@@ -20,6 +20,7 @@ public class AlumnoControlador implements Serializable {
     private String apellidoPaterno;
     private String apellidoMaterno;
 
+
     public String getNombre() {
         return nombre;
     }
