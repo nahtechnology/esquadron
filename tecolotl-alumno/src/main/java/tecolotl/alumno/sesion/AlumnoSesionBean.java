@@ -36,6 +36,7 @@ public class AlumnoSesionBean {
     public AlumnoModelo busca(@NotNull @Min(1) Integer idAlumno){
         logger.fine(idAlumno.toString());
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscaId", AlumnoEntidad.class);
+        typedQuery.setParameter("idAlumno", idAlumno);
         AlumnoEntidad alumnoEntidad = typedQuery.getSingleResult();
         logger.finer(alumnoEntidad.toString());
         return new AlumnoModelo(alumnoEntidad);
