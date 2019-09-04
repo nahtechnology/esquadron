@@ -76,4 +76,6 @@
     overflow: auto;
 }
 
-
+.remover{
+    color: red;
+}
