@@ -4,6 +4,7 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.StringJoiner;
 
 @Entity
 @Immutable
@@ -98,5 +99,20 @@ public class TareaAlumnoVistaEntidad {
 
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaAlumnoVistaEntidad.class.getSimpleName() + "[", "]")
+                .add("totalTareas=" + totalTareas)
+                .add("idAlumno=" + idAlumno)
+                .add("grupo=" + grupo)
+                .add("grado=" + grado)
+                .add("inicio=" + inicio)
+                .add("fin=" + fin)
+                .add("nombre='" + nombre + "'")
+                .add("apellidoPaterno='" + apellidoPaterno + "'")
+                .add("apellidoMaterno='" + apellidoMaterno + "'")
+                .toString();
     }
 }
