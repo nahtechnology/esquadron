@@ -1,5 +1,7 @@
 package tecolotl.profesor.entidad;
 
+import tecolotl.alumno.modelo.AlumnoModelo;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -14,7 +16,11 @@ import java.util.StringJoiner;
     @NamedQuery(name ="GrupoEntidad.busca", query = "SELECT g FROM GrupoEntidad g"),
     @NamedQuery(
         name = "GrupoEntidad.buscaProfesor",
-        query = "SELECT g FROM GrupoEntidad g JOIN FETCH g.cicloEscolarEntidad ce WHERE g.profesorEntidad.id = :idProfesor AND g.cicloEscolarEntidad.activo = TRUE")
+        query = "SELECT g FROM GrupoEntidad g JOIN FETCH g.cicloEscolarEntidad ce WHERE g.profesorEntidad.id = :idProfesor AND g.cicloEscolarEntidad.activo = TRUE"),
+    @NamedQuery(
+        name = "GrupoAlumnoEntidad.buscaAlumno",
+        query = "SELECT g FROM GrupoEntidad g JOIN g.profesorEntidad"
+    )
 })
 public class GrupoEntidad {
 
