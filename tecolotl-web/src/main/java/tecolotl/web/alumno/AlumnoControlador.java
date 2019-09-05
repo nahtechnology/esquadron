@@ -20,7 +20,8 @@ public class AlumnoControlador implements Serializable {
 
     @PostConstruct
     public void init(){
-        alumnoModelo = alumnoSesionBean.busca(2);
+        alumnoModelo = alumnoSesionBean.busca(1);
+
     }
 
     public AlumnoModelo getAlumnoModelo() {

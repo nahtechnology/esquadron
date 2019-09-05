@@ -71,8 +71,11 @@
 .tam-contenido{
     max-height:52vh;
     background-color: white;
+
+
 }
 .transcrip-contenedor{
+    padding-right: 20px;
     overflow: auto;
 }
 
