@@ -70,10 +70,10 @@
                         <li class="transcrip">
                            <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left ">
-                                   <iframe class="" width="100%" height="100%" src="https://www.youtube.com/embed/0_1NU60qHWs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                   <iframe class="" width="100%" height="100%" src="https://www.youtube.com/embed/#{param['idVideo']}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                                </div>
                                <div class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion">
-                                   <h:outputText value="#{actividadControlador.buscaTranscripcion('0_1NU60qHWs')}" escape="false"/>
+                                   <h:outputText value="#{actividadControlador.buscaTranscripcion(param['idVideo'])}" escape="false"/>
                                </div>
                            </h:panelGroup>
                         </li>
