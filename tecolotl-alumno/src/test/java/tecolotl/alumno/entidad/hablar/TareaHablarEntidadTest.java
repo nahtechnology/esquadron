@@ -1,5 +1,6 @@
 package tecolotl.alumno.entidad.hablar;
 
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
@@ -32,12 +33,13 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class HablarEntidadTest {
+public class TareaHablarEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(PersonaEntidad.class,AlumnoEntidad.class, HablarEntidad.class, TareaHablarEntidad.class, TareaHablarEntidadPK.class,
+                .addClasses(TareaHablarEntidad.class, TareaHablarEntidadPK.class, AlumnoEntidad.class,
+                        PersonaEntidad.class, HablarEntidad.class,
                         TareaCompletarEntidad.class, TareaCompletarEntidadPK.class, CompletarEntidad.class,
                         TareaOracionesEntidad.class, TareaOracionesEntidadPK.class, TareaEntidad.class, OracionesEntidad.class,
                         OracionesEntidadPK.class, ActividadEntidad.class, NivelLenguajeEntidad.class, TipoEstudianteEntidad.class,
@@ -53,16 +55,29 @@ public class HablarEntidadTest {
     private EntityManager entityManager;
 
     @Test
-    public void busca() {
-        TypedQuery<HablarEntidad> typedQuery = entityManager.createNamedQuery("HablarEntidad.busca", HablarEntidad.class);
-        List<HablarEntidad> hablarEntidadLista = typedQuery.getResultList();
-        Assert.assertNotNull(hablarEntidadLista);
-        Assert.assertFalse(hablarEntidadLista.isEmpty());
-        for (HablarEntidad hablarEntidad : hablarEntidadLista){
-            Assert.assertNotNull(hablarEntidad);
-            Assert.assertNotNull(hablarEntidad.getId());
-            Assert.assertNotNull(hablarEntidad.getActividadEntidad().getId());
-            Assert.assertNotNull(hablarEntidad.getTarjeta());
+    public void busca(){
+        TypedQuery<TareaHablarEntidad> typedQuery = entityManager.createNamedQuery("TareaHablarEntidad.busca", TareaHablarEntidad.class);
+        List<TareaHablarEntidad> tareaHablarEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(tareaHablarEntidadLista);
+        Assert.assertFalse(tareaHablarEntidadLista.isEmpty());
+        for (TareaHablarEntidad tareaHablarEntidad: tareaHablarEntidadLista){
+            Assert.assertNotNull(tareaHablarEntidad);
+            Assert.assertNotNull(tareaHablarEntidad.getTareaHablarEntidadPK().getTareaEntidad().getId());
+            Assert.assertNotNull(tareaHablarEntidad.getTareaHablarEntidadPK().getHablarEntidad().getId());
+        }
+    }
+
+    @Test
+    public void buscaTarea_id(){
+        TypedQuery<TareaHablarEntidad> typedQuery = entityManager.createNamedQuery("TareaHablarEntidad.buscaid_tarea", TareaHablarEntidad.class);
+        typedQuery.setParameter("id_tarea", 2);
+        List<TareaHablarEntidad> tareaHablarEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(tareaHablarEntidadLista);
+        Assert.assertFalse(tareaHablarEntidadLista.isEmpty());
+        for (TareaHablarEntidad tareaHablarEntidad: tareaHablarEntidadLista){
+            Assert.assertNotNull(tareaHablarEntidad);
+            Assert.assertNotNull(tareaHablarEntidad.getTareaHablarEntidadPK().getTareaEntidad().getId());
+            Assert.assertNotNull(tareaHablarEntidad.getTareaHablarEntidadPK().getHablarEntidad().getId());
         }
     }
 }
