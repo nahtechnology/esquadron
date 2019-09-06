@@ -1,15 +1,15 @@
 package tecolotl.web.alumno;
 
 
-import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
-import tecolotl.alumno.sesion.TareaSesionBean;
+        import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
+        import tecolotl.alumno.sesion.TareaSesionBean;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Inject;
-import java.io.Serializable;
-import java.util.List;
-import java.util.logging.Logger;
+        import javax.annotation.PostConstruct;
+        import javax.enterprise.context.RequestScoped;
+        import javax.inject.Inject;
+        import java.io.Serializable;
+        import java.util.List;
+        import java.util.logging.Logger;
 
 @RequestScoped
 public class ActividadesAlumnoControlador {
