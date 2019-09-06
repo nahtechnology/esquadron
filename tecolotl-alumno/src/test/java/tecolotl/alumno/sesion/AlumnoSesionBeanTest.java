@@ -95,7 +95,20 @@ public class AlumnoSesionBeanTest {
 
     @Test
     public void buscaID(){
-        AlumnoModelo alumnoModelo = alumnoSesionBean.busca(5);
-
+        AlumnoModelo alumnoModelo = alumnoSesionBean.busca(1);
+        Assert.assertNotNull(alumnoModelo);
+        Assert.assertNotNull(alumnoModelo.getId());
+        Assert.assertNotNull(alumnoModelo.getNombre());
+        Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
+        Assert.assertNotNull(alumnoModelo.getApellidoMaterno());
+        Assert.assertNotNull(alumnoModelo.getApodo());
+        Assert.assertNotNull(alumnoModelo.getContrasenia());
+        Assert.assertNotNull(alumnoModelo.getNacimiento());
+        Assert.assertNotNull(alumnoModelo.getCorreoPadreFamilia());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getClave());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
     }
 }

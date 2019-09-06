@@ -1,17 +1,16 @@
 package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.TareaModelo;
+import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.StoredProcedureQuery;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -68,6 +67,12 @@ public class TareaSesionBean {
         return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
     }
 
+    public List<TareaResuetasModelo> tareasResuelta(@NotNull Integer idTarea) {
+        logger.fine(idTarea.toString());
+        Query query = entityManager.createNativeQuery("SELECT * FROM alumno.busca_tarea(?)", TareasResueltasEntidad.class);
+        query.setParameter(1, idTarea);
+        return (List<TareaResuetasModelo>) query.getResultList().stream().map(o -> new TareaResuetasModelo((TareasResueltasEntidad)o)).collect(Collectors.toList());
+    }
 
     /**
      * Elimina una tarea por llave primaria

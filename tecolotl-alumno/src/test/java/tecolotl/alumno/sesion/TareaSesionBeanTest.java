@@ -13,6 +13,7 @@ import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
+import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
@@ -21,6 +22,7 @@ import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
+import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
@@ -61,6 +63,8 @@ public class TareaSesionBeanTest {
                 .addPackage(CatalogoModelo.class.getPackage())
                 .addPackage(RelacionarLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ActividadNuevaValidacion.class.getPackage())
+                .addPackage(TareaResuetasModelo.class.getPackage())
+                .addPackage(TareasResueltasEntidad.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -81,5 +85,17 @@ public class TareaSesionBeanTest {
         }
     }
 
+    @Test
+    public void buscaTareas() {
+        List<TareaResuetasModelo> tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(5);
+        Assert.assertNotNull(tareaResuetasModeloLista);
+        Assert.assertFalse(tareaResuetasModeloLista.isEmpty());
+        tareaResuetasModeloLista.forEach(tareaResuetasModelo -> {
+            Assert.assertNotNull(tareaResuetasModelo);
+            Assert.assertNotNull(tareaResuetasModelo.getRespuesta());
+            Assert.assertNotNull(tareaResuetasModelo.getTarea());
+            Assert.assertNotNull(tareaResuetasModelo.getTotal());
+        });
+    }
 
 }
