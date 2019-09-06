@@ -31,12 +31,13 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @RunWith(Arquillian.class)
-public class MapaMentalEntidadTest {
+public class MapaMentalActividadEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(MapaMentalEntidad.class, MapaMentalEntidadPK.class, MapaMentalActividadEntidad.class, MapaMentalActividadEntidadPK.class,
+                .addClasses(MapaMentalActividadEntidad.class, MapaMentalActividadEntidadPK.class,
+                        MapaMentalEntidad.class, MapaMentalEntidadPK.class, MapaMentalActividadEntidad.class, MapaMentalActividadEntidadPK.class,
                         TareaMapaMentalActividadEntidad.class, TareaMapaMentalActividadEntidadPK.class,
                         TareaHablarEntidad.class, TareaHablarEntidadPK.class, AlumnoEntidad.class,
                         PersonaEntidad.class, HablarEntidad.class,
@@ -47,19 +48,6 @@ public class MapaMentalEntidadTest {
                         GlosarioActividadEntidadPK.class, TemaEntidad.class, CatalagoEntidad.class, LoggerProducer.class,
                         TareaMapaMentalActividadEntidad.class, TareaMapaMentalActividadEntidadPK.class, MapaMentalEntidad.class,
                         MapaMentalActividadEntidad.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class)
-                .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
-                .addPackage(ActividadEntidad.class.getPackage())
-                //.addPackage(MapaMentalModelo.class.getPackage())
-                //.addPackage(GlosarioModelo.class.getPackage())
-                //.addPackage(ActividadModelo.class.getPackage())
-                //.addPackage(ActividadSesionBean.class.getPackage())
-                //.addPackage(ValidadorSessionBean.class.getPackage())
-                //.addPackage(GlosarioNuevoValidacion.class.getPackage())
-                //.addPackage(ActividadNuevaValidacion.class.getPackage())
-                //.addPackage(CatalogoNuevoValidacion.class.getPackage())
-                .addPackage(CatalagoEntidad.class.getPackage())
-                //.addPackage(CatalogoSesionBean.class.getPackage())
-                //.addPackage(CatalogoModelo.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -69,15 +57,15 @@ public class MapaMentalEntidadTest {
 
     @Test
     public void busca(){
-        TypedQuery<MapaMentalEntidad> typedQuery = entityManager.createNamedQuery("MapaMentalEntidad.busca", MapaMentalEntidad.class);
-        List<MapaMentalEntidad> mapaMentalEntidadLista = typedQuery.getResultList();
-        Assert.assertNotNull(mapaMentalEntidadLista);
-        Assert.assertFalse(mapaMentalEntidadLista.isEmpty());
-        for(MapaMentalEntidad mapaMentalEntidad : mapaMentalEntidadLista){
-            Assert.assertNotNull(mapaMentalEntidad);
-            Assert.assertNotNull(mapaMentalEntidad.getMapaMentalEntidadPK().getCodigo());
-            Assert.assertNotNull(mapaMentalEntidad.getMapaMentalEntidadPK().getCardinalidad());
-            Assert.assertNotNull(mapaMentalEntidad.getPregunta());
+        TypedQuery<MapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("MapaMentalActividadEntidad.busca", MapaMentalActividadEntidad.class);
+        List<MapaMentalActividadEntidad> mapaMentalActividadEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(mapaMentalActividadEntidadLista);
+        Assert.assertFalse(mapaMentalActividadEntidadLista.isEmpty());
+        for(MapaMentalActividadEntidad mapaMentalActividadEntidad: mapaMentalActividadEntidadLista){
+            Assert.assertNotNull(mapaMentalActividadEntidad);
+            Assert.assertNotNull(mapaMentalActividadEntidad.getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCodigo());
+            Assert.assertNotNull(mapaMentalActividadEntidad.getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCardinalidad());
+            Assert.assertNotNull(mapaMentalActividadEntidad.getMapaMentalActividadPK().getActividadEntidad().getId());
         }
     }
 }

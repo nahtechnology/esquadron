@@ -22,7 +22,8 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
-            @JoinColumn(name = "id_mapamental", referencedColumnName = "id_mapamental"),
+            @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
+            @JoinColumn(name = "cardinalidad", referencedColumnName = "cardinalidad"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     })
     public MapaMentalActividadEntidad getMapaMentalActividadEntidad() {

@@ -87,4 +87,6 @@ public class TareaSesionBean {
         return entityManager.createQuery(tareaEntidadCriteriaDelete).executeUpdate();
     }
 
+
+
 }

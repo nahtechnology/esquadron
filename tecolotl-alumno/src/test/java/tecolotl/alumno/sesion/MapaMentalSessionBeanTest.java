@@ -13,18 +13,13 @@ import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
-import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
-import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
-import tecolotl.alumno.validacion.escribir.EscribirRespuestaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
-import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
@@ -60,7 +55,7 @@ public class MapaMentalSessionBeanTest {
 
     @Inject
     private MapaMentalSessionBean mapaMentalSessionBean;
-
+/*
     @Test
     public void buscaActividad() {
         List<MapaMentalBaseModelo> mapaMentalBaseModeloLista = mapaMentalSessionBean.busca("0_1NU60qHWs");
@@ -103,6 +98,6 @@ public class MapaMentalSessionBeanTest {
     @Test
     public void asignaActividad() {
         mapaMentalSessionBean.agregar("DNHmujbuC74", -46);
-    }
+    }*/
 
 }

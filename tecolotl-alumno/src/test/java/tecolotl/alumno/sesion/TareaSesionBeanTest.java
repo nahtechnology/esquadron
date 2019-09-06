@@ -16,7 +16,6 @@ import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
-import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
@@ -34,7 +33,6 @@ import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(Arquillian.class)

@@ -89,7 +89,7 @@ public class TareaEntidad {
         this.tareaGlosarioActividadEntidadLista = tareaGlosarioActividadEntidadLista;
     }
 
-    @OneToMany(mappedBy = "tareaEntidad", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "tareaMapaMentalActividadEntidadPK.tareaEntidad", cascade = CascadeType.PERSIST)
     public List<TareaMapaMentalActividadEntidad> getTareaMapaMentalActividadEntidadLista() {
         return tareaMapaMentalActividadEntidadLista;
     }
