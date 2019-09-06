@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Entity
-@Table(name = "hablat", schema = "alumno")
+@Table(name = "hablar", schema = "alumno")
 @SequenceGenerator(name = "generador", sequenceName = "hablar_seq", schema = "alumno")
 @NamedQueries(value = {
         @NamedQuery(name = "HablarEntidad.busca", query = "SELECT h FROM HablarEntidad h")
@@ -39,7 +39,7 @@ public class HablarEntidad {
         this.tarjeta = tarjeta;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_actividad")
     public ActividadEntidad getActividadEntidad() {
         return actividadEntidad;

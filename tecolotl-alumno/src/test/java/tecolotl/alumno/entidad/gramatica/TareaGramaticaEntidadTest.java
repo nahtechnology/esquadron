@@ -16,6 +16,7 @@ import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidadPK;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,7 +29,8 @@ public class TareaGramaticaEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(TareaGramaticaEntidad.class, TareaGramaticaEntidadPK.class, TareaEntidad.class, ActividadEntidad.class,
+                .addClasses(PersonaEntidad.class, AlumnoEntidad.class,
+                        TareaGramaticaEntidad.class, TareaGramaticaEntidadPK.class, TareaEntidad.class, ActividadEntidad.class,
                         TipoEstudianteEntidad.class, NivelLenguajeEntidad.class, CatalagoEntidad.class, TemaEntidad.class,
                         TareaMapaMentalActividadEntidad.class, TareaMapaMentalActividadEntidadPK.class, GlosarioActividadEntidad.class,
                         GlosarioEntidad.class, ClaseGlosarioEntidad.class, GlosarioEntidadPK.class, TareaGlosarioActividadEntidad.class,
@@ -60,7 +62,7 @@ public class TareaGramaticaEntidadTest {
     @Test
     public void buscaTarea_id(){
         TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaid_tarea", TareaGramaticaEntidad.class);
-        typedQuery.setParameter("id_tarea", 1);
+        typedQuery.setParameter("id_tarea", 3);
         List<TareaGramaticaEntidad> tareaGramaticaEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaGramaticaEntidadLista);
         Assert.assertFalse(tareaGramaticaEntidadLista.isEmpty());

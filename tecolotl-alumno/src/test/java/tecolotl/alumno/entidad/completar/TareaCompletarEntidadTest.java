@@ -22,6 +22,7 @@ import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidadPK;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
 import javax.persistence.EmbeddedId;
 import javax.persistence.EntityManager;
@@ -35,7 +36,8 @@ public class TareaCompletarEntidadTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addClasses(TareaCompletarEntidad.class, TareaCompletarEntidadPK.class, CompletarEntidad.class,
+                .addClasses(PersonaEntidad.class, AlumnoEntidad.class,
+                        TareaCompletarEntidad.class, TareaCompletarEntidadPK.class, CompletarEntidad.class,
                         TareaOracionesEntidad.class, TareaOracionesEntidadPK.class, TareaEntidad.class, OracionesEntidad.class,
                         OracionesEntidadPK.class, ActividadEntidad.class, NivelLenguajeEntidad.class, TipoEstudianteEntidad.class,
                         ClaseGlosarioEntidad.class, GlosarioEntidad.class, GlosarioEntidadPK.class, GlosarioActividadEntidad.class,
@@ -67,7 +69,7 @@ public class TareaCompletarEntidadTest {
     @Test
     public void buscaTarea_id(){
         TypedQuery<TareaCompletarEntidad> typedQuery = entityManager.createNamedQuery("TareaCompletarEntidad.buscaid_tarea", TareaCompletarEntidad.class);
-        typedQuery.setParameter("id_tarea", 3);
+        typedQuery.setParameter("id_tarea", 4);
         List<TareaCompletarEntidad> tareaCompletarEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaCompletarEntidadLista);
         Assert.assertFalse(tareaCompletarEntidadLista.isEmpty());
