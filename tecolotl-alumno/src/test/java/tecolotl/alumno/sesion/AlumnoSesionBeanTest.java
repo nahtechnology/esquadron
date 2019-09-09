@@ -14,14 +14,17 @@ import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
+import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.modelo.DetalleAlumnoModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
+import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
@@ -63,6 +66,8 @@ public class AlumnoSesionBeanTest {
                 .addPackage(CatalogoModelo.class.getPackage())
                 .addPackage(RelacionarLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ActividadNuevaValidacion.class.getPackage())
+                .addPackage(TareasResueltasEntidad.class.getPackage())
+                .addPackage(TareaResuetasModelo.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -110,5 +115,19 @@ public class AlumnoSesionBeanTest {
         Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
         Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getClave());
         Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
+    }
+
+    @Test
+    public void detalle() {
+        DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(1);
+        Assert.assertNotNull(detalleAlumnoModelo);
+        Assert.assertNotNull(detalleAlumnoModelo.getTotalTareas());
+        Assert.assertNotNull(detalleAlumnoModelo.getGrado());
+        Assert.assertNotNull(detalleAlumnoModelo.getGrado());
+        Assert.assertNotNull(detalleAlumnoModelo.getInicio());
+        Assert.assertNotNull(detalleAlumnoModelo.getFin());
+        Assert.assertNotNull(detalleAlumnoModelo.getNombre());
+        Assert.assertNotNull(detalleAlumnoModelo.getApellidoPaterno());
+        Assert.assertNotNull(detalleAlumnoModelo.getApellidoMaterno());
     }
 }

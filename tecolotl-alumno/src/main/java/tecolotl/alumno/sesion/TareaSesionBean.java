@@ -15,12 +15,13 @@ import javax.persistence.criteria.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class TareaSesionBean {
+public class TareaSesionBean implements Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;
