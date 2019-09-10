@@ -24,11 +24,13 @@ public class AlumnoControlador implements Serializable {
 
     private AlumnoModelo alumnoModelo;
     private List<TareaModelo> tareaModeloLista;
+    private TareaModelo tareaModelo;
 
     @PostConstruct
-    public void init(){
+    public void init() {
         alumnoModelo = alumnoSesionBean.busca(1);
         tareaModeloLista = tareaSesionBean.busca(1);
+        tareaModelo = tareaModeloLista.get(1);
     }
 
     public AlumnoModelo getAlumnoModelo() {
@@ -45,5 +47,13 @@ public class AlumnoControlador implements Serializable {
 
     public void setTareaModeloLista(List<TareaModelo> tareaModeloLista) {
         this.tareaModeloLista = tareaModeloLista;
+    }
+
+    public TareaModelo getTareaModelo() {
+        return tareaModelo;
+    }
+
+    public void setTareaModelo(TareaModelo tareaModelo) {
+        this.tareaModelo = tareaModelo;
     }
 }
