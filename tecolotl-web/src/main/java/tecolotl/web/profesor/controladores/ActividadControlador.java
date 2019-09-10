@@ -31,6 +31,7 @@ public class ActividadControlador implements Serializable {
         String nivelLenguaje = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nivelLenguaje");
         if(nivelLenguaje != null){
             actividadModeloLista = actividadSesionBean.busca(nivelLenguaje);
+            logger.info(actividadModeloLista.toString());
         }
      }
 

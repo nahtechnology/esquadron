@@ -2,6 +2,8 @@ package tecolotl.alumno.modelo.vista;
 
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 
+import java.util.StringJoiner;
+
 public class TareaResuetasModelo {
 
     private String tarea;
@@ -41,4 +43,12 @@ public class TareaResuetasModelo {
         this.respuesta = respuesta;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaResuetasModelo.class.getSimpleName() + "[", "]")
+                .add("tarea='" + tarea + "'")
+                .add("total=" + total)
+                .add("respuesta=" + respuesta)
+                .toString();
+    }
 }

@@ -426,3 +426,7 @@ iframe {
     width: 100px;
 
 }
+
+.planetas{
+    display: none;
+}

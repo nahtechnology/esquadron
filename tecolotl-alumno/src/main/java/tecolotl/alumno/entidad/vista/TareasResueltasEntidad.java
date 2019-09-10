@@ -3,6 +3,7 @@ package tecolotl.alumno.entidad.vista;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
+import java.util.StringJoiner;
 
 @Entity
 public class TareasResueltasEntidad {
@@ -34,5 +35,14 @@ public class TareasResueltasEntidad {
 
     public void setRespuesta(Integer respuesta) {
         this.respuesta = respuesta;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareasResueltasEntidad.class.getSimpleName() + "[", "]")
+                .add("tarea='" + tarea + "'")
+                .add("total=" + total)
+                .add("respuesta=" + respuesta)
+                .toString();
     }
 }

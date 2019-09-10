@@ -140,8 +140,8 @@
                                 <div class="uk-overflow-auto">
                                 <h:form id="formulario-tabla-actividades">
                                     <h:dataTable id="tabla-actividades"
-                                                 value="#{actividadesAlumnoControlador.collectionDataModel}"
-                                                 binding="#{actividadesAlumnoControlador.htmlDataTable}"
+                                                 value="#{tareasAlumnoControlador.collectionDataModel}"
+                                                 binding="#{tareasAlumnoControlador.htmlDataTable}"
                                                  var="dato"
                                                  first="0"
                                                  rows="5"
@@ -205,7 +205,7 @@
                                             #{dato.actividades}
                                         </h:column>
                                         <f:facet name="footer">
-                                            <pa:pie-tabla htmlDataTable="#{actividadesAlumnoControlador.htmlDataTable}"/>
+                                            <pa:pie-tabla htmlDataTable="#{tareasAlumnoControlador.htmlDataTable}"/>
                                         </f:facet>
                                     </h:dataTable>
                                 </h:form>
@@ -216,7 +216,7 @@
                                     <div class="uk-width-auto ">
                                         <f:ajax render="formulario-tabla-actividades:tabla-actividades formulario-boton-actividades">
                                             <h:form id="formulario-boton-actividades" styleClass="uk-form-horizontal">
-                                                <pa:boton-minimizado htmlDataTable="#{actividadesAlumnoControlador.htmlDataTable}"/>
+                                                <pa:boton-minimizado htmlDataTable="#{tareasAlumnoControlador.htmlDataTable}"/>
                                             </h:form>
                                         </f:ajax>
 

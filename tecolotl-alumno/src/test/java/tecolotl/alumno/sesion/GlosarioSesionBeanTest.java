@@ -103,7 +103,7 @@ public class GlosarioSesionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(5);
+        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(4);
         assertNotNull(glosarioModeloLista);
         assertFalse(glosarioModeloLista.isEmpty());
         glosarioModeloLista.forEach(glosarioModelo -> {
