@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
 @SessionScoped
 @Named
@@ -31,6 +32,11 @@ public class AlumnoControlador implements Serializable {
         alumnoModelo = alumnoSesionBean.busca(1);
         tareaModeloLista = tareaSesionBean.busca(1);
         tareaModelo = tareaModeloLista.get(1);
+    }
+
+    public void seleccion(TareaModelo tareaModelo){
+        this.tareaModelo = tareaModelo;
+
     }
 
     public AlumnoModelo getAlumnoModelo() {

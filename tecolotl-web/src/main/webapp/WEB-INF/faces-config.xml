@@ -66,6 +66,14 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/alumno/tareas-alumno.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>transcript-final</from-outcome>
+			<to-view-id>/alumno/transcrip-final.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 	<!-- traduccion de las vistas -->
 
 	<application>

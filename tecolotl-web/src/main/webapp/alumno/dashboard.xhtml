@@ -93,19 +93,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <script type="application/javascript">
-                        var planetasOcultos = document.querySelectorAll('.planetas');
-                        console.log(planetasOcultos);
-                        planetasOcultos.forEach(removerClase);
-                        function removerClase(el) {
-                            if (el.class.has('planetas') === true){
-                                el.class.remove('planetas');
-                            }else{
-                                el.class.add('planetas');
-                            }
-                        }
-                    </script>
                     <div class="uk-width-2-3@m">
                         <div class="uk-section uk-border-rounded border-section uk-padding-remove color-card-dashboard-alumno" style="position:relative;padding-top:52.25%;">
                             <div style="position:relative;padding-top:52.25%;" class="uk-margin-auto">
@@ -138,13 +125,13 @@
                     </div>
                     <div class="uk-width-1-1@m " style="margin-left: 40px; ">
                         <div class="uk-grid uk-child-width-1-2@m " uk-grid="">
-                            <div class="fondo-comic" style=";border: 6px solid white; padding: 20px 0;">
+                            <div class="fondo-comic" style="border: 6px solid white; padding: 20px 0;">
                                 <div class="uk-flex uk-flex-center uk-grid" >
                                     <h:graphicImage styleClass="img-alumno-dashboard "  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: Writing ; pos: right "/>
                                     <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color4" value="60" max="100"/></div>
                                 </div>
                             </div>
-                            <div class="fondo-comic4 " style=";border: 6px solid white; padding: 20px 0;">
+                            <div class="fondo-comic4 " style="border: 6px solid white; padding: 20px 0;">
                                 <div class="uk-flex uk-flex-center  uk-grid" >
                                     <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: Mental map; pos: right "/>
                                     <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color5" value="60" max="100"/></div>
@@ -152,27 +139,25 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-        </ui:define>
+            <h:form>
+                <h:inputText>
 
-        <script type="application/javascript">
-            var planetasOcultos = document.querySelectorAll('.planetas');
-            console.log(planetasOcultos);
-            planetasOcultos.forEach(removerClase);
-            function removerClase(el) {
-                if (el.class.has('planetas') === true){
-                    el.class.remove('planetas');
-                }else{
-                    el.class.add('planetas');
+                </h:inputText>
+            </h:form>
+            <!--script type="application/javascript">
+                var planetasOcultos = document.querySelectorAll('.planetas');
+                planetasOcultos.forEach(removerClase);
+                function removerClase(el) {
+                    if (el.classList.contains('planetas') !== true){
+                        el.classList.remove('planetas');
+                    }else{
+                        el.classList.add('planetas');
+                    }
                 }
-            }
-        </script>
-
-
-
+            </script-->
+        </ui:define>
     </ui:composition>
 
 </html>
