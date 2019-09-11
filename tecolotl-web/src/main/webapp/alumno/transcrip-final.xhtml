@@ -84,53 +84,36 @@
                                     <table class="tabla-ordenar uk-table-middle">
                                         <thead class="titulo-tabla uk-text-center">
                                         <tr>
-                                            <th>Pregunta</th>
-                                            <th>Respuesta</th>
+                                            <th>Question</th>
+                                            <th>Answer</th>
                                         </tr>
                                         </thead>
                                         <tbody class="cuerpo-tabla uk-text-center">
-                                        <tr>
-                                            <td>Who is your favorite super hero? Why?</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
-                                        <tr>
-                                            <td>Pregunta 2</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
-                                        <tr>
-                                            <td>Pregunta 3</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
-                                        <tr>
-                                            <td>Pregunta 4</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
-                                        <tr>
-                                            <td>Pregunta 5</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
-                                        <tr>
-                                            <td>Pregunta 6</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
-                                        <tr>
-                                            <td>Pregunta 7</td>
-                                            <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                        </tr>
+                                            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
+                                                <tr>
+                                                    <td>#{relacionarOracion.relacionarOracionModelo.pregunta}</td>
+                                                    <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                                    <h:inputHidden value="#{relacionarOracion.relacionarOracionModelo.id}"/>
+                                                </tr>
+                                            </ui:repeat>
                                         </tbody>
                                     </table>
                                 </div>
 
                                 <h:panelGroup layout="block" styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
-                                    <div class="respuesta">uno</div>
-                                    <div class="respuesta">dos</div>
-                                    <div class="respuesta">what happen with you </div>
-                                    <div class="respuesta">cuatro</div>
-                                    <div class="respuesta">cinco</div>
-                                    <div class="respuesta">seis</div>
-                                    <div class="respuesta">siete</div>
+                                    <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="preRespuestas">
+                                        <div class="respuesta">#{preRespuestas.relacionarOracionModelo.respuesta}</div>
+                                    </ui:repeat>
                                 </h:panelGroup>
                             </h:panelGroup>
+                            <script type="application/javascript">
+                                function recuperaDatos() {
+                                    var respuestas = document.querySelectorAll('.respuesta');
+                                    console.log(respuestas.forEach(function (value) { value.innerHTML}));
+                                }
+                            </script>
+                            <h:inputHidden value=""/>
+                            <h:commandButton onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer"/>
                         </li>
                         <li class="order-words">
                             <h1 class="uk-text-center lescuadron" style="color: white">Ordenas las palabras en el orden correspondiente</h1>

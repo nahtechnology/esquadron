@@ -36,7 +36,6 @@ public class AlumnoControlador implements Serializable {
 
     public void seleccion(TareaModelo tareaModelo){
         this.tareaModelo = tareaModelo;
-
     }
 
     public AlumnoModelo getAlumnoModelo() {

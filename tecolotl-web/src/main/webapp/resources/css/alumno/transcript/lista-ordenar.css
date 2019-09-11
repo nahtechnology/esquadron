@@ -50,7 +50,7 @@
     /*border: 2px solid black;*/
     border-radius: 4px;
     padding: 2px 4px;
-    min-width:100px;
+    min-width:300px !important;
     box-sizing: border-box;
     text-align: center;
     margin-top: 10px;
