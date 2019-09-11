@@ -9,13 +9,16 @@ import java.util.StringJoiner;
 @Table(name = "tarea_relacionar_oracion", schema = "alumno")
 @NamedQueries({
         @NamedQuery(name = "TareaRelacionarOracionesEntidad.busca", query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe"),
-        @NamedQuery(name = "TareaRelacionarOracionesEntidad.buscaid_tarea", query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe where troe.tareaRelacionarOracionesEntidadPK.tareaEntidad.id =  :id_tarea")
+        @NamedQuery(
+                name = "TareaRelacionarOracionesEntidad.buscaidTarea",
+                query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe JOIN FETCH troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad " +
+                        "WHERE troe.tareaRelacionarOracionesEntidadPK.tareaEntidad.id =  :idTarea")
 }
 )
 public class TareaRelacionarOracionesEntidad {
     private TareaRelacionarOracionesEntidadPK tareaRelacionarOracionesEntidadPK;
-    private String respuesta;
-    private Date hora_respuesta;
+    private Integer respuesta;
+    private Date horaRespuesta;
 
     public TareaRelacionarOracionesEntidad() {
     }
@@ -36,24 +39,23 @@ public class TareaRelacionarOracionesEntidad {
     @NotNull
     @Basic
     @Column(name = "respuesta")
-    public String getRespuesta() {
+    public Integer getRespuesta() {
         return respuesta;
     }
 
-    public void setRespuesta(String respuesta) {
+    public void setRespuesta(Integer respuesta) {
         this.respuesta = respuesta;
     }
 
-    @NotNull
     @Basic
     @Temporal(TemporalType.DATE)
     @Column(name = "hora_respuesta", insertable = false)
-    public Date getHora_respuesta() {
-        return hora_respuesta;
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
     }
 
-    public void setHora_respuesta(Date hora_respuesta) {
-        this.hora_respuesta = hora_respuesta;
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
 
     @Override
@@ -61,10 +63,7 @@ public class TareaRelacionarOracionesEntidad {
         return new StringJoiner(", ", TareaRelacionarOracionesEntidad.class.getSimpleName() + "[", "]")
                 .add("tareaRelacionarOracionesEntidadPK=" + tareaRelacionarOracionesEntidadPK)
                 .add("respuesta='" + respuesta + "'")
-                .add("hora_respuesta=" + hora_respuesta)
+                .add("hora_respuesta=" + horaRespuesta)
                 .toString();
     }
 }
-
-
-
