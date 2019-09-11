@@ -30,22 +30,22 @@
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
-                <li uk-tooltip="title: Dashboard; pos: right"><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: Activity; pos: right" class="uk-active"><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: Dashboard; pos: right"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: Activity; pos: right" ><h:link outcome="tareas-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
                 <li uk-tooltip="title: Glossary; pos: right"><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Grammar; pos: right"><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Map Mental; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: Library; pos: right"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></a></li>
+                <li uk-tooltip="title: Grammar; pos: right"  class="uk-active"><h:link outcome="transcrip-final"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: Map Mental; pos: right"><h:link outcome="mapa-capas"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
-                <li class="uk-active"><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
-                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
-                <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
-                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
-                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+                <li uk-tooltip="title: Dashboard; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Activity; pos: right" ><h:link outcome="tareas-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Glossary; pos: right" ><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Grammar; pos: right" class="uk-active"><h:link outcome="transcrip-final"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Map Mental; pos: right"><h:link outcome="mapa-capas"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -61,9 +61,9 @@
                 <h:panelGroup layout="block" styleClass="" pt:uk-filter="target: .js-filter">
                     <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center "  >
                         <li uk-filter-control=".transcrip" uk-tooltip="Video" class="uk-active uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/morado.svg" width="70" height="70"  alt="" styleClass="uk-border-circle uk-animation-shake"/></li>
-                        <li uk-filter-control=".listening" uk-tooltip="Listening" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".listening" uk-tooltip="Listening" class="uk-animation-toggle  " tabindex="0"><h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
                         <li uk-filter-control=".order-words" uk-tooltip="Order Words" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
-                        <li uk-filter-control=".answer" uk-tooltip="Transcript" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".answer" uk-tooltip="Transcript" class="uk-animation-toggle " tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
                     </ul>
 
                     <ul class="js-filter  uk-text-center" >
@@ -179,35 +179,38 @@
                                         <div class="respuesta">nueve</div>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <div class="trancript-contenedor scroll-drag ">
-                                    <p>
-                                        <span class="personaje">Will Smith:</span> I know you guys have been waiting and here&#39;s the very first trailer for Aladdin. It is the
-                                        very first trailer. Don&#39;t get <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> though; don&#39;t get dizzy before we start to trailer. Don&#39;t get dizzy!</p>
+                                <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify ">
 
-                                    <p><span class="personaje">Crowd:</span> Stop,<h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>  Vandal! Street rat! Get him! Stop that boy! Up, there!</p>
-                                    <p><span class="personaje">Guard:</span> He’s on the roof! Watch out!</p>
-                                    <p><span class="personaje">Jafar:</span> You <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> upon an opportunity. I can make you rich… rich enough to impress a
-                                        princess</p>
-                                    <p><span class="personaje">Aladdin:</span> What would I have to do?</p>
-                                    <p><span class="personaje">Jafar:</span> There&#39;s a Cave of Wonders. Bring me the lamp.</p>
-                                    <p><span class="personaje">Genie:</span> Oh, great one who <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> me. I stand by my <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> two wishes three. I&#39;m kidding
-                                        Russians.
-                                        Watch out! You have woken me up! You ain’t never had a friend like me</p>
-                                    <p><span class="personaje">Aladdin:</span> Hey, can you make me a prince.</p>
-                                    <p><span class="personaje">Genie:</span> There is a lot of gray area in make me a prince. I could just make you a prince</p>
-                                    <p><span class="personaje">Aladdin:</span> Oh, no!</p>
-                                    <p><span class="personaje">Genie:</span> Have you seen my palace?
-                                        You look like a prince on the outside but I didn&#39;t change anything on the inside. Showtime!</p>
-                                    <p><span class="personaje">Aladdin:</span> No, I&#39;m <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. Okay, I say when it&#39;s time…Really?
-                                        I thought a princess could go anywhere…</p>
-                                    <p><span class="personaje">Jasmine:</span> Not this princess.</p>
-                                    <p><span class="personaje">Aladdin:</span> Do you trust me?</p>
-                                    <p><span class="personaje">Jasmine:</span> A whole new world.</p>
-                                    <p><span class="personaje">Aladdin:</span> Don’t you <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>close your eyes</p>
-                                    <p><span class="personaje">Jasmine:</span> A hundred thousand things to see</p>
-                                    <p><span class="personaje">Aladdin:</span> Hold your <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. It gets better.</p>
-                                    <p><span class="personaje">Jasmine:</span> I’m like a <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. I’ve come so far
-                                        Aladdin and Jasmine: Let me share this whole new world with you.</p>
+                                    <h:outputText value="#{actividadControlador.buscaTranscripcion(param['idVideo'])}" escape="false"/>
+
+<!--                                    <p>-->
+<!--                                        <span class="personaje">Will Smith:</span> I know you guys have been waiting and here&#39;s the very first trailer for Aladdin. It is the-->
+<!--                                        very first trailer. Don&#39;t get <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> though; don&#39;t get dizzy before we start to trailer. Don&#39;t get dizzy!</p>-->
+
+<!--                                    <p><span class="personaje">Crowd:</span> Stop,<h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>  Vandal! Street rat! Get him! Stop that boy! Up, there!</p>-->
+<!--                                    <p><span class="personaje">Guard:</span> He’s on the roof! Watch out!</p>-->
+<!--                                    <p><span class="personaje">Jafar:</span> You <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> upon an opportunity. I can make you rich… rich enough to impress a-->
+<!--                                        princess</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> What would I have to do?</p>-->
+<!--                                    <p><span class="personaje">Jafar:</span> There&#39;s a Cave of Wonders. Bring me the lamp.</p>-->
+<!--                                    <p><span class="personaje">Genie:</span> Oh, great one who <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> me. I stand by my <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/> two wishes three. I&#39;m kidding-->
+<!--                                        Russians.-->
+<!--                                        Watch out! You have woken me up! You ain’t never had a friend like me</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> Hey, can you make me a prince.</p>-->
+<!--                                    <p><span class="personaje">Genie:</span> There is a lot of gray area in make me a prince. I could just make you a prince</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> Oh, no!</p>-->
+<!--                                    <p><span class="personaje">Genie:</span> Have you seen my palace?-->
+<!--                                        You look like a prince on the outside but I didn&#39;t change anything on the inside. Showtime!</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> No, I&#39;m <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. Okay, I say when it&#39;s time…Really?-->
+<!--                                        I thought a princess could go anywhere…</p>-->
+<!--                                    <p><span class="personaje">Jasmine:</span> Not this princess.</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> Do you trust me?</p>-->
+<!--                                    <p><span class="personaje">Jasmine:</span> A whole new world.</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> Don’t you <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>close your eyes</p>-->
+<!--                                    <p><span class="personaje">Jasmine:</span> A hundred thousand things to see</p>-->
+<!--                                    <p><span class="personaje">Aladdin:</span> Hold your <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. It gets better.</p>-->
+<!--                                    <p><span class="personaje">Jasmine:</span> I’m like a <h:outputText styleClass="uk-sortable respuesta-transcript" pt:uk-sortable="group: respuesta"/>. I’ve come so far-->
+<!--                                        Aladdin and Jasmine: Let me share this whole new world with you.</p>-->
                                 </div>
                             </h:panelGroup>
                         </li>
@@ -261,6 +264,10 @@
                     data.source.disabled = true;
                 }
             }
+        </script>
+        <script type="text/javascript">
+           palabrasRemover = document.querySelectorAll('.arrastrar .remover')
+            if (var i =0)
         </script>
 
     </ui:define>

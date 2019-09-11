@@ -63,6 +63,8 @@
     overflow: auto;
     font-family: 'Sniglet', "Arial Black";
     border-radius: 0 5px 5px 0;
+    padding-right: 40px;
+    overflow: auto;
 }
 .uk-sortable-empty{
     min-height: 20px;
@@ -97,4 +99,7 @@
     width: 50%;
     transform: scale(1);
 
+}
+.ocultar{
+    display: none;
 }
