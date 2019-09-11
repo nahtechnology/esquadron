@@ -49,7 +49,7 @@ public class TareaRelacionarOracionesEntidad {
 
     @Basic
     @Temporal(TemporalType.DATE)
-    @Column(name = "hora_respuesta", insertable = false)
+    @Column(name = "hora_respuesta", insertable = false, updatable = false)
     public Date getHoraRespuesta() {
         return horaRespuesta;
     }

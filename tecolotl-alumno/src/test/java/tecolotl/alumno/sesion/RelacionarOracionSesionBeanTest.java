@@ -25,6 +25,7 @@ import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.RelacionarOracionModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
+import tecolotl.alumno.scope.RelacionOracionRespuestaScope;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
@@ -74,12 +75,16 @@ public class RelacionarOracionSesionBeanTest {
                 .addPackage(TareaRelacionarOracionesEntidad.class.getPackage())
                 .addPackage(TareaRelacionarOracionModelo.class.getPackage())
                 .addPackage(RelacionarOracionLlavePrimariaValidacion.class.getPackage())
+                .addPackage(RelacionOracionRespuestaScope.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Inject
     private RelacionarOracionSesionBean relacionarOracionSesionBean;
+
+    @Inject
+    private RelacionOracionRespuestaScope relacionOracionRespuestaScope;
 
     @Test
     public void busca() {
@@ -117,6 +122,6 @@ public class RelacionarOracionSesionBeanTest {
         tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(80, 5);
         tareaRelacionarOracionModelo.setRespuesta(75);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
-        relacionarOracionSesionBean.respuesta(tareaRelacionarOracionModeloLista);
+        relacionOracionRespuestaScope.respuesta(tareaRelacionarOracionModeloLista);
     }
 }
