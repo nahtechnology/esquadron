@@ -23,7 +23,7 @@ public class DetalleAlumnoControlador {
 
     @PostConstruct
     public void init(){
-        detalleAlumnoModelo = alumnoSesionBean.destalle(1);
+        detalleAlumnoModelo = alumnoSesionBean.detalle(1);
     }
 
     public DetalleAlumnoModelo getDetalleAlumnoModelo() {

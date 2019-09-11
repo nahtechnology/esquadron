@@ -15,10 +15,8 @@ import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidadPK;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidadPK;
-import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
-import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
-import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
-import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidadPK;
+import tecolotl.alumno.entidad.mapamental.*;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.modelo.TemaModelo;
@@ -33,6 +31,7 @@ import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
@@ -55,7 +54,8 @@ public class GramaticaSesionBeanTest {
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ActividadNuevaValidacion.class.getPackage())
-                .addPackage(CatalogoNuevoValidacion.class.getPackage())
+                .addPackage(CatalogoNuevoValidacion.class.getPackage()).addPackage(MapaMentalEntidadPK.class.getPackage())
+                .addPackage(AlumnoEntidad.class.getPackage()).addPackage(PersonaEntidad.class.getPackage()).addPackage(TareaRelacionarActividadEntidad.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -91,7 +91,7 @@ public class GramaticaSesionBeanTest {
 
     @Test
     public void buscarTareaGramatica(){
-        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.buscaTarea("0_1NU60qHWs");
+        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(5);
         Assert.assertNotNull(gramaticaModeloLista);
         Assert.assertFalse(gramaticaModeloLista.isEmpty());
         for (GramaticaModelo gramaticaModelo : gramaticaModeloLista){

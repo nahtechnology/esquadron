@@ -1,10 +1,12 @@
 package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidadPK;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
+import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidadPK;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
@@ -24,6 +26,7 @@ import java.util.stream.Collectors;
 
 @Stateless
 public class GramaticaSesionBean {
+
     @Inject
     private Logger logger;
 
@@ -45,26 +48,36 @@ public class GramaticaSesionBean {
 
     /**
      * Busca todas las actividades de gramatica
-     * @param id_actividad ID_Actividad a buscar relacionada con Gramatica
+     * @param idActividad ID_Actividad a buscar relacionada con Gramatica
      * @return una coleccion de {@link GramaticaModelo}
      */
-    public List<GramaticaModelo> busca(@NotNull @Size(min = 11, max = 11)String id_actividad){
-        TypedQuery<GramaticaEntidad> typedQuery = entityManager.createNamedQuery("GramaticaEntidad.buscaID", GramaticaEntidad.class);
-        typedQuery.setParameter("idActividad",id_actividad);
+    public List<GramaticaModelo> busca(@NotNull @Size(min = 11, max = 11) String idActividad){
+        TypedQuery<GramaticaEntidad> typedQuery = entityManager.createNamedQuery("GramaticaEntidad.buscaActvidad", GramaticaEntidad.class);
+        typedQuery.setParameter("idActividad", idActividad);
         List<GramaticaEntidad> gramaticaEntidadLista = typedQuery.getResultList();
         return gramaticaEntidadLista.stream().map(GramaticaModelo::new).collect(Collectors.toList());
     }
 
     /**
      * Busca todas las tareas de gramatica que tengan el mismo ID_Actividad
-     * @param id_actividad ID_Actividad a buscar en TareaGramatica
+     * @param idTarea ID_Actividad a buscar en TareaGramatica
      * @return una colección de {@link GramaticaModelo}
      */
-    public List<GramaticaModelo> buscaTarea(@NotNull @Size(min = 11, max = 11)String id_actividad){
-        TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("GramaticaEntidad.buscaTareas", TareaGramaticaEntidad.class);
-        typedQuery.setParameter("idActividad", id_actividad);
+    public List<GramaticaModelo> busca(@NotNull Integer idTarea){
+        TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaTarea", TareaGramaticaEntidad.class);
+        typedQuery.setParameter("idTarea", idTarea);
         List<TareaGramaticaEntidad> tareaGramaticaEntidadLista = typedQuery.getResultList();
-        return tareaGramaticaEntidadLista.stream().map(tareaGramaticaEntidad -> new GramaticaModelo(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getGramaticaEntidad())).collect(Collectors.toList());
+        return tareaGramaticaEntidadLista.stream().map(tareaGramaticaEntidad -> new GramaticaModelo(tareaGramaticaEntidad)).collect(Collectors.toList());
+    }
+
+    /**
+     * Aplica la respuesta de una gramatica
+     * @param gramaticaModelo Datos de gramatica
+     * @param idTarea Identidificador de la tarea
+     */
+    public void respuesta(@NotNull GramaticaModelo gramaticaModelo, @NotNull Integer idTarea) {
+        TareaGramaticaEntidad tareaGramaticaEntidad = entityManager.find(TareaGramaticaEntidad.class, llavePrimaria(gramaticaModelo, idTarea));
+        tareaGramaticaEntidad.setRespuesta(gramaticaModelo.getRespuesta());
     }
 
     /**
@@ -80,4 +93,13 @@ public class GramaticaSesionBean {
         entityManager.persist(gramaticaEntidad);
     }
 
+    private TareaGramaticaEntidadPK llavePrimaria(GramaticaModelo gramaticaModelo, Integer idTarea) {
+        TareaGramaticaEntidadPK tareaGramaticaEntidadPK = new TareaGramaticaEntidadPK();
+        tareaGramaticaEntidadPK.setTareaEntidad(new TareaEntidad(idTarea));
+        GramaticaEntidadPK gramaticaEntidadPK = new GramaticaEntidadPK();
+        gramaticaEntidadPK.setCodigo(gramaticaModelo.getCodigo());
+        gramaticaEntidadPK.setActividadEntidad(new ActividadEntidad(gramaticaModelo.getActividadModelo().getIdVideo()));
+        tareaGramaticaEntidadPK.setGramaticaEntidad(new GramaticaEntidad(gramaticaEntidadPK));
+        return tareaGramaticaEntidadPK;
+    }
 }

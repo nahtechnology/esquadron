@@ -10,13 +10,13 @@ import java.util.StringJoiner;
 @Table(name = "tarea_gramatica", schema = "alumno")
 @NamedQueries({
         @NamedQuery(name = "TareaGramaticaEntidad.busca", query = "SELECT tge FROM TareaGramaticaEntidad tge"),
-        @NamedQuery(name = "TareaGramaticaEntidad.buscaTarea", query = "SELECT tge FROM TareaGramaticaEntidad tge where tge.tareaGramaticaEntidadPK.tareaEntidad.id = :id_tarea")
-}
-)
+        @NamedQuery(name = "TareaGramaticaEntidad.buscaTarea", query = "SELECT tge FROM TareaGramaticaEntidad tge " +
+                "JOIN FETCH tge.tareaGramaticaEntidadPK.gramaticaEntidad g WHERE tge.tareaGramaticaEntidadPK.tareaEntidad.id = :idTarea")
+})
 public class TareaGramaticaEntidad {
     private TareaGramaticaEntidadPK tareaGramaticaEntidadPK;
     private String respuesta;
-    private Date hora_respuesta;
+    private Date horaRespuesta;
 
     @EmbeddedId
     public TareaGramaticaEntidadPK getTareaGramaticaEntidadPK() {
@@ -37,16 +37,15 @@ public class TareaGramaticaEntidad {
         this.respuesta = respuesta;
     }
 
-    @NotNull
     @Basic
     @Temporal(TemporalType.DATE)
     @Column(name = "hora_respuesta", insertable = false)
-    public Date getHora_respuesta() {
-        return hora_respuesta;
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
     }
 
-    public void setHora_respuesta(Date hora_respuesta) {
-        this.hora_respuesta = hora_respuesta;
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
 
     @Override
@@ -54,7 +53,7 @@ public class TareaGramaticaEntidad {
         return new StringJoiner(", ", TareaGramaticaEntidad.class.getSimpleName() + "[", "]")
                 .add("tareaGramaticaEntidadPK=" + tareaGramaticaEntidadPK)
                 .add("respuesta='" + respuesta + "'")
-                .add("hora_respuesta=" + hora_respuesta)
+                .add("hora_respuesta=" + horaRespuesta)
                 .toString();
     }
 }
