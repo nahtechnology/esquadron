@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.entidad.mapamental.*;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalResueltoModelo;
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
 import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -43,7 +44,8 @@ public class MapaMentalSessionBean {
      */
     public List<MapaMentalModelo> busca(@NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine("Buscando por:".concat(idActividad));
-        TypedQuery<MapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("MapaMentalActividadEntidad.buscaIdActivdad", MapaMentalActividadEntidad.class);
+        TypedQuery<MapaMentalActividadEntidad> typedQuery =
+                entityManager.createNamedQuery("MapaMentalActividadEntidad.buscaIdActivdad", MapaMentalActividadEntidad.class);
         typedQuery.setParameter("idActividad", idActividad);
         List<MapaMentalActividadEntidad> mapaMentalActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Escrbir total localizados:".concat(String.valueOf(mapaMentalActividadEntidadLista.size())));
@@ -54,12 +56,13 @@ public class MapaMentalSessionBean {
     /**
      * Busca todas las preguntas asignadas a una tarea
      * @param idTarea Identificador de la tarea
-     * @return Coleción de {@link MapaMentalModelo}
+     * @return Coleción de {@link TareaMapaMentalModelo}
      *
      */
-    public List<MapaMentalModelo> busca(@NotNull Integer idTarea) {
+    public List<TareaMapaMentalModelo> busca(@NotNull Integer idTarea) {
         logger.finer(idTarea.toString());
-        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaidTarea", TareaMapaMentalActividadEntidad.class);
+        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery =
+                entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaidTarea", TareaMapaMentalActividadEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
         List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Tarea escribir encontrados:"+ tareaMapaMentalActividadEntidadLista.size());
@@ -73,13 +76,26 @@ public class MapaMentalSessionBean {
      * @param idActividad Identificador de la actvidad
      */
     public void respuesta(@NotNull TareaMapaMentalModelo tareaMapaMentalModelo,
-                         @NotNull Integer idTarea,
-                         @NotNull @Size(min = 11, max = 11) String idActividad) {
+                          @NotNull Integer idTarea,
+                          @NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine(tareaMapaMentalModelo.toString()); logger.fine(idTarea.toString()); logger.fine(idActividad);
         validadorSessionBean.validacion(tareaMapaMentalModelo, MapaMentalLlavePrimariaValidacion.class);
         TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad =
                 entityManager.find(TareaMapaMentalActividadEntidad.class, llavePrimaria(tareaMapaMentalModelo, idTarea, idActividad));
         tareaMapaMentalActividadEntidad.setTextoRespuesta(tareaMapaMentalModelo.getRespuesta());
+    }
+
+    /**
+     * Busca los mapa mentales de una tarea y el total de ejercicios resueltos.
+     * @param idTarea Identificador de las tareas.
+     * @return {@link MapaMentalResueltoModelo} con los datos.
+     */
+    public List<MapaMentalResueltoModelo> buscaResuelto(@NotNull Integer idTarea) {
+        logger.fine(idTarea.toString());
+        TypedQuery<Object[]> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaResueltos", Object[].class);
+        typedQuery.setParameter("idTarea", idTarea);
+        return typedQuery.getResultList().stream().map(objects ->
+                new MapaMentalResueltoModelo(((Short)objects[0]), ((Long)objects[1]).intValue())).collect(Collectors.toList());
     }
 
     private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelo, Integer idTarea, String idActividad) {

@@ -18,6 +18,8 @@ import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalResueltoModelo;
+import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
@@ -88,37 +90,39 @@ public class MapaMentalSessionBeanTest {
             assertNotNull(escribirBaseModelo.getPregunta());
         });
     }
-/*
+
     @Test
     public void buscaTarea() {
-        List<MapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(1);
+        List<TareaMapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(5);
         assertNotNull(mapaMentalModeloLista);
         assertFalse(mapaMentalModeloLista.isEmpty());
         mapaMentalModeloLista.forEach(mapaMentalModelo -> {
             assertNotNull(mapaMentalModelo);
             assertNotNull(mapaMentalModelo.getPregunta());
-            assertNotNull(mapaMentalModelo.getFechaRespuesta());
-            assertNotNull(mapaMentalModelo.getTextoRespuesta());
+            assertNotNull(mapaMentalModelo.getCardinalidad());
+            assertNotNull(mapaMentalModelo.getCodigo());
         });
     }
 
     @Test
     public void respuesta() {
-        MapaMentalModelo escribirModelo = new MapaMentalModelo();
-        escribirModelo.setId(2);
-        escribirModelo.setTextoRespuesta("Respuesta desde el servicio");
-        mapaMentalSessionBean.respuesta(escribirModelo, -21, "JcMtWwiyzpU");
+        TareaMapaMentalModelo tareaMapaMentalModelo = new TareaMapaMentalModelo();
+        tareaMapaMentalModelo.setCodigo("e3f5ee64f2daf5919d752d107749155a");
+        tareaMapaMentalModelo.setRespuesta("Respuesta");
+        tareaMapaMentalModelo.setCardinalidad((short)6);
+        mapaMentalSessionBean.respuesta(tareaMapaMentalModelo, 5, "00000000000");
     }
 
     @Test
-    public void agregaNuevo() {
-        Integer agregar = mapaMentalSessionBean.agregar("Pregunta detonadora?", "0_1NU60qHWs");
-        assertNotNull(agregar);
+    public void buscaResuelto() {
+        List<MapaMentalResueltoModelo> mapaMentalResueltoModeloLista = mapaMentalSessionBean.buscaResuelto(1);
+        assertNotNull(mapaMentalResueltoModeloLista);
+        assertFalse(mapaMentalResueltoModeloLista.isEmpty());
+        mapaMentalResueltoModeloLista.forEach(mapaMentalResueltoModelo -> {
+            assertNotNull(mapaMentalResueltoModelo);
+            assertTrue(mapaMentalResueltoModelo.getCardinalidad() > 0);
+            assertTrue(mapaMentalResueltoModelo.getTotalResueltos() > -1);
+        });
     }
-
-    @Test
-    public void asignaActividad() {
-        mapaMentalSessionBean.agregar("DNHmujbuC74", -46);
-    }*/
 
 }

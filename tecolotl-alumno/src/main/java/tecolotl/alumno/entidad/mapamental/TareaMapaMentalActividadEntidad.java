@@ -16,13 +16,19 @@ import java.util.StringJoiner;
         @NamedQuery(name = "TareaMapaMentalActividadEntidad.busca", query = "SELECT tmmae FROM TareaMapaMentalActividadEntidad tmmae"),
         @NamedQuery(
                 name = "TareaMapaMentalActividadEntidad.buscaidTarea",
-                query = "SELECT tmmae FROM TareaMapaMentalActividadEntidad tmmae JOIN tmmae.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad mma " +
-                        "JOIN mma.mapaMentalActividadPK.mapaMentalEntidad mm WHERE tmmae.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
+                query = "SELECT tmmae FROM TareaMapaMentalActividadEntidad tmmae JOIN FETCH tmmae.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad mma " +
+                        "JOIN FETCH mma.mapaMentalActividadPK.mapaMentalEntidad mm WHERE tmmae.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
         ),
         @NamedQuery(
                 name = "TareaMapaMentalActividadEntidad.buscaIdMapaMental",
                 query = "SELECT DISTINCT tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad " +
                         "FROM TareaMapaMentalActividadEntidad tmma WHERE tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
+        ),
+        @NamedQuery(
+                name = "TareaMapaMentalActividadEntidad.buscaResueltos",
+                query = "SELECT tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad, COUNT(tmma.textoRespuesta) " +
+                        "FROM TareaMapaMentalActividadEntidad tmma WHERE tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea " +
+                        "GROUP BY tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad"
         )
 })
 public class TareaMapaMentalActividadEntidad implements Serializable {
@@ -49,6 +55,7 @@ public class TareaMapaMentalActividadEntidad implements Serializable {
     @Basic
     @NotNull
     @Size(max = 300)
+    @Column(name = "texto_respuesta")
     public String getTextoRespuesta() {
         return textoRespuesta;
     }
@@ -59,7 +66,7 @@ public class TareaMapaMentalActividadEntidad implements Serializable {
 
     @Basic
     @Temporal(TemporalType.DATE)
-    @Column(name = "horaRespuesta", insertable = false, updatable = false)
+    @Column(name = "hora_respuesta", insertable = false, updatable = false)
     public Date getHoraRespuesta() {
         return horaRespuesta;
     }
