@@ -13,6 +13,14 @@ public class MapaMentalActividadEntidadPK implements Serializable {
     private MapaMentalEntidad mapaMentalEntidad;
     private ActividadEntidad actividadEntidad;
 
+    public MapaMentalActividadEntidadPK() {
+    }
+
+    public MapaMentalActividadEntidadPK(MapaMentalEntidad mapaMentalEntidad, ActividadEntidad actividadEntidad) {
+        this.mapaMentalEntidad = mapaMentalEntidad;
+        this.actividadEntidad = actividadEntidad;
+    }
+
     @JoinColumns(
             value = {
                     @JoinColumn(name = "codigo", referencedColumnName = "codigo"),

@@ -1,4 +1,4 @@
-package tecolotl.alumno.validacion.escribir;
+package tecolotl.alumno.validacion.mapamental;
 
 public interface EscribirRespuestaValidacion {
 }

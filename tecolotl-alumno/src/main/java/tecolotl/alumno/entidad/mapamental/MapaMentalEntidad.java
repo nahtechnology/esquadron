@@ -14,6 +14,7 @@ import java.util.StringJoiner;
                 query = "SELECT mme FROM MapaMentalEntidad mme")
 })
 public class MapaMentalEntidad {
+
     private MapaMentalEntidadPK mapaMentalEntidadPK;
     private String pregunta;
 

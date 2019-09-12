@@ -4,8 +4,6 @@ import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
-import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
-import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;

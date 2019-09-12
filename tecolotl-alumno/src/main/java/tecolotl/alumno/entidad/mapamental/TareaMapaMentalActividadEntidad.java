@@ -15,14 +15,20 @@ import java.util.StringJoiner;
 @NamedQueries(value = {
         @NamedQuery(name = "TareaMapaMentalActividadEntidad.busca", query = "SELECT tmmae FROM TareaMapaMentalActividadEntidad tmmae"),
         @NamedQuery(
-                name = "TareaMapaMentalActividadEntidad.buscaid_tarea",
-                query = "SELECT tmmae FROM TareaMapaMentalActividadEntidad tmmae WHERE tmmae.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :id_tarea"
+                name = "TareaMapaMentalActividadEntidad.buscaidTarea",
+                query = "SELECT tmmae FROM TareaMapaMentalActividadEntidad tmmae JOIN tmmae.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad mma " +
+                        "JOIN mma.mapaMentalActividadPK.mapaMentalEntidad mm WHERE tmmae.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
+        ),
+        @NamedQuery(
+                name = "TareaMapaMentalActividadEntidad.buscaIdMapaMental",
+                query = "SELECT DISTINCT tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad " +
+                        "FROM TareaMapaMentalActividadEntidad tmma WHERE tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
         )
 })
 public class TareaMapaMentalActividadEntidad implements Serializable {
     private TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK;
-    private String texto_respuesta;
-    private Date hora_respuesta;
+    private String textoRespuesta;
+    private Date horaRespuesta;
 
     public TareaMapaMentalActividadEntidad() {
     }
@@ -43,31 +49,31 @@ public class TareaMapaMentalActividadEntidad implements Serializable {
     @Basic
     @NotNull
     @Size(max = 300)
-    public String getTexto_respuesta() {
-        return texto_respuesta;
+    public String getTextoRespuesta() {
+        return textoRespuesta;
     }
 
-    public void setTexto_respuesta(String texto_respuesta) {
-        this.texto_respuesta = texto_respuesta;
+    public void setTextoRespuesta(String textoRespuesta) {
+        this.textoRespuesta = textoRespuesta;
     }
 
     @Basic
     @Temporal(TemporalType.DATE)
-    @Column(name = "hora_respuesta", insertable = false)
-    public Date getHora_respuesta() {
-        return hora_respuesta;
+    @Column(name = "horaRespuesta", insertable = false, updatable = false)
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
     }
 
-    public void setHora_respuesta(Date hora_respuesta) {
-        this.hora_respuesta = hora_respuesta;
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", TareaMapaMentalActividadEntidad.class.getSimpleName() + "[", "]")
                 .add("tareaMapaMentalActividadEntidadPK=" + tareaMapaMentalActividadEntidadPK)
-                .add("texto_respuesta='" + texto_respuesta + "'")
-                .add("hora_respuesta=" + hora_respuesta)
+                .add("textoRespuesta='" + textoRespuesta + "'")
+                .add("horaRespuesta=" + horaRespuesta)
                 .toString();
     }
 }
