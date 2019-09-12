@@ -22,10 +22,8 @@ import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.modelo.TemaModelo;
 import tecolotl.alumno.modelo.TipoEstudianteModelo;
 import tecolotl.alumno.modelo.glosario.ClaseGlosarioModelo;
-import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
-import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -36,7 +34,6 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
 public class GramaticaSesionBeanTest {
@@ -52,7 +49,6 @@ public class GramaticaSesionBeanTest {
                         TareaMapaMentalActividadEntidadPK.class, MapaMentalActividadEntidad.class, GlosarioActividadEntidad.class, GlosarioActividadEntidadPK.class,
                         MapaMentalEntidad.class, GlosarioEntidad.class, GlosarioEntidadPK.class)
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
-                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ActividadNuevaValidacion.class.getPackage())
                 .addPackage(CatalogoNuevoValidacion.class.getPackage()).addPackage(MapaMentalEntidadPK.class.getPackage())
                 .addPackage(AlumnoEntidad.class.getPackage()).addPackage(PersonaEntidad.class.getPackage()).addPackage(TareaRelacionarActividadEntidad.class.getPackage())

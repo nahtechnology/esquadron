@@ -17,7 +17,6 @@ import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
-import tecolotl.alumno.validacion.mapamental.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -27,10 +26,10 @@ import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
-
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 public class RelacionarSesionBeanTest {
@@ -46,7 +45,6 @@ public class RelacionarSesionBeanTest {
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
-                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadNuevaValidacion.class.getPackage())

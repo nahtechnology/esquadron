@@ -5,7 +5,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +13,6 @@ import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
-import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -22,12 +20,10 @@ import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
-import tecolotl.alumno.modelo.relacionar_oraciones.RelacionarOracionModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.scope.RelacionOracionRespuestaScope;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
-import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar_oraciones.RelacionarOracionLlavePrimariaValidacion;
@@ -38,11 +34,11 @@ import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 public class RelacionarOracionSesionBeanTest {
@@ -62,7 +58,6 @@ public class RelacionarOracionSesionBeanTest {
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
-                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
                 .addPackage(CatalogoNuevoValidacion.class.getPackage())
                 .addPackage(CatalagoEntidad.class.getPackage())

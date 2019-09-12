@@ -5,8 +5,6 @@ import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.entidad.mapamental.*;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
-import tecolotl.alumno.validacion.mapamental.EscribirLlavePrimariaValidacion;
-import tecolotl.alumno.validacion.mapamental.EscribirRespuestaValidacion;
 import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 

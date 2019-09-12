@@ -71,15 +71,15 @@ public class TareaMapaMentalActividadEntidadTest {
             Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCardinalidad());
             Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getActividadEntidad().getId());
             Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getTareaEntidad().getId());
-            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTexto_respuesta());
-            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getHora_respuesta());
+            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTextoRespuesta());
+            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getHoraRespuesta());
         }
     }
 
     @Test
     public void buscaTarea_id(){
-        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaid_tarea", TareaMapaMentalActividadEntidad.class);
-        typedQuery.setParameter("id_tarea",4);
+        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaidTarea", TareaMapaMentalActividadEntidad.class);
+        typedQuery.setParameter("idTarea",4);
         List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaMapaMentalActividadEntidadLista);
         Assert.assertFalse(tareaMapaMentalActividadEntidadLista.isEmpty());
@@ -89,8 +89,8 @@ public class TareaMapaMentalActividadEntidadTest {
             Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCardinalidad());
             Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getActividadEntidad().getId());
             Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getTareaEntidad().getId());
-            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTexto_respuesta());
-            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getHora_respuesta());
+            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getTextoRespuesta());
+            Assert.assertNotNull(tareaMapaMentalActividadEntidad.getHoraRespuesta());
         }
     }
 

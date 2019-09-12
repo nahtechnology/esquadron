@@ -9,13 +9,14 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidadPK;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
-import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.alumno.modelo.ActividadModelo;
-import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
+import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
-import tecolotl.alumno.validacion.mapamental.EscribirLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
@@ -40,7 +41,6 @@ public class TareaGlosarioActividadEntidadTest {
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
-                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
                 .addPackage(CatalogoNuevoValidacion.class.getPackage())
                 .addPackage(CatalagoEntidad.class.getPackage())
