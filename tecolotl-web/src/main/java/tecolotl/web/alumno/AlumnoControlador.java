@@ -31,7 +31,7 @@ public class AlumnoControlador implements Serializable {
     public void init() {
         alumnoModelo = alumnoSesionBean.busca(1);
         tareaModeloLista = tareaSesionBean.busca(1);
-        tareaModelo = tareaModeloLista.get(1);
+        tareaModelo = tareaModeloLista.get(0);
     }
 
     public void seleccion(TareaModelo tareaModelo){

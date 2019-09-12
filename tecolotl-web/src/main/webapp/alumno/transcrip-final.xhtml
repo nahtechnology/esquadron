@@ -78,42 +78,49 @@
                            </h:panelGroup>
                         </li>
                         <li class="match uk-margin-small-top ">
-                            <h1 class="uk-text-center lescuadron" style="color: white">Relacionar respuesta</h1>
-                            <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="">
-                                <div class="columna-pregunta uk-width-expand">
-                                    <table class="tabla-ordenar uk-table-middle">
-                                        <thead class="titulo-tabla uk-text-center">
-                                        <tr>
-                                            <th>Question</th>
-                                            <th>Answer</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody class="cuerpo-tabla uk-text-center">
-                                            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
-                                                <tr>
-                                                    <td>#{relacionarOracion.relacionarOracionModelo.pregunta}</td>
-                                                    <td class="uk-sortable" uk-sortable="group: respuesta"/>
-                                                    <h:inputHidden value="#{relacionarOracion.relacionarOracionModelo.id}"/>
-                                                </tr>
-                                            </ui:repeat>
-                                        </tbody>
-                                    </table>
-                                </div>
-
-                                <h:panelGroup layout="block" styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
-                                    <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="preRespuestas">
-                                        <div class="respuesta">#{preRespuestas.relacionarOracionModelo.respuesta}</div>
+                            <h:form>
+                                <h1 class="uk-text-center lescuadron" style="color: white">Relacionar respuesta</h1>
+                                <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="">
+                                    <div class="columna-pregunta uk-width-expand">
+                                        <table id="tabla" class="tabla-ordenar uk-table-middle">
+                                            <thead class="titulo-tabla uk-text-center">
+                                            <tr>
+                                                <th>Question</th>
+                                                <th>Answer</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="cuerpo-tabla uk-text-center">
+                                                <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
+                                                    <tr>
+                                                        <td>#{relacionarOracion.relacionarOracionModelo.pregunta}</td>
+                                                        <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                                    </tr>
+                                                </ui:repeat>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <h:panelGroup layout="block" styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
+                                        <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="preRespuestas">
+                                        <div class="respuesta">#{preRespuestas.relacionarOracionModelo.respuesta}<h:inputText style="display: none;" value="#{preRespuestas.relacionarOracionModelo.id}"/></div>
                                     </ui:repeat>
+                                    </h:panelGroup>
                                 </h:panelGroup>
-                            </h:panelGroup>
-                            <script type="application/javascript">
-                                function recuperaDatos() {
-                                    var respuestas = document.querySelectorAll('.respuesta');
-                                    console.log(respuestas.forEach(function (value) { value.innerHTML}));
-                                }
-                            </script>
-                            <h:inputHidden value=""/>
-                            <h:commandButton onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer"/>
+                                <script type="application/javascript" >
+                                    function recuperaDatos() {
+                                        //Obtiene las etiquetas inputText
+                                        var idRelacionarmodelos = document.querySelectorAll('input[type=text]');
+                                        var getId = [];
+                                        //Obtiene el valor de value=""
+                                        idRelacionarmodelos.forEach(function (value) { getId.push(value.getAttribute('value')) });
+                                        //Se espera un resultado = "72, 75, 80, 76"
+                                        document.getElementById('respuestaOraciones').value = getId.join();
+                                    }
+                                </script>
+                                <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
+                                <h:commandButton onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer">
+                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo(relacionarOracionControlador.idRespuesta)}" execute="@form"/>
+                                </h:commandButton>
+                            </h:form>
                         </li>
                         <li class="order-words">
                             <h1 class="uk-text-center lescuadron" style="color: white">Ordenas las palabras en el orden correspondiente</h1>

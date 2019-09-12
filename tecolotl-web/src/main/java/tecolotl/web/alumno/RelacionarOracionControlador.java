@@ -24,7 +24,8 @@ public class RelacionarOracionControlador {
     @Inject
     private AlumnoControlador alumnoControlador;
 
-    private String respuesta;
+    private String idRespuesta;
+
 
 
     private List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista;
@@ -42,12 +43,18 @@ public class RelacionarOracionControlador {
         this.tareaRelacionarOracionModeloLista = tareaRelacionarOracionModeloLista;
     }
 
-    public String getRespuesta() {
-        return respuesta;
+    public String getIdRespuesta() {
+        return idRespuesta;
     }
 
-    public void setRespuesta(String respuesta) {
-        this.respuesta = respuesta;
+    public void setIdRespuesta(String idRespuesta) {
+        this.idRespuesta = idRespuesta;
+    }
+
+    public void llenarTareaModelo(String idRespuesta){
+        logger.info(idRespuesta.toString());
+        //alumnoControlador.
+        //alumnoControlador.setTareaModeloLista();
     }
 }
 
