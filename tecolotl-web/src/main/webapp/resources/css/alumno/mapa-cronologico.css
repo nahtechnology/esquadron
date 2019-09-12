@@ -27,6 +27,12 @@
     z-index: 2;
 }
 
+.fondo-mapa-orden{
+    background-image: url("#{resource['img/alumno/mapa-mental/puntos-purpura.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 .dialogo{
     width: 350px;
     position: absolute;

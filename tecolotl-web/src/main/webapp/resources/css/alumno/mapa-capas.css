@@ -1,5 +1,5 @@
 .fondo-capas{
-    background-image: url("#{resource['img/fondo/puntos-naranjas3.svg']}");
+    background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas3.svg']}");
     background-size: cover;
     background-position: center center;
 }

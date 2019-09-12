@@ -1,5 +1,5 @@
 .fondo-mapa-efecto{
-    background-image: url("#{resource['img/alumno/lineas-azules.svg']}");
+    background-image: url("#{resource['img/alumno/mapa-mental/lineas-azules.svg']}");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

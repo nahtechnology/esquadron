@@ -2,7 +2,7 @@ body{
     box-sizing: border-box;
 }
 .fondo-mapa3{
-    background-image: url("#{resource['img/fondo/fondo-mapa7.svg']}");
+    background-image: url("#{resource['img/alumno/mapa-mental/fondo-mapa7.svg']}");
     /*background-repeat: repeat-x;*/
     background-size: cover;
     /*background-position:5% 5%;*/
