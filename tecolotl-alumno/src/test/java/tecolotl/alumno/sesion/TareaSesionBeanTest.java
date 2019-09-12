@@ -52,6 +52,7 @@ public class TareaSesionBeanTest {
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
+//                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
                 .addPackage(CatalogoNuevoValidacion.class.getPackage())
                 .addPackage(CatalagoEntidad.class.getPackage())

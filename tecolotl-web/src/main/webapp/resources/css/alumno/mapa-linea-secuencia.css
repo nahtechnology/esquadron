@@ -8,19 +8,30 @@
     padding: 0;
 }
 
+input[type="text"]{
+    height: 25px;
+    margin-top: 3px;
+}
 .cuadro-hijo1{
     border: 5px solid black;
     background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas2.svg']}");
     background-position: center center;
     background-size: 150%;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .cuadro-hijo2{
     border: 5px solid black;
     background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas.svg']}");
     background-position: center center;
     background-size: 150%;
-    position: relative;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-direction: column;
 }
 .cuadro-hijo3{
     border: 5px solid black;
@@ -37,19 +48,28 @@
     overflow: hidden;
 }
 .img-hijo1{
-    position: absolute;
-    width: 50%;
-    height: auto;
-    left: 0;
-    right: 0;
-    top: 15%;
-    bottom: 0;
-    margin: auto;
+    background-image: url("#{resource['img/alumno/pop-art/nube.svg']}");
+    width: 60%;
+    height: 60%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 .img-hijo2{
-    width: 50%;
-    height: auto;
-    margin: auto;
+    background-image: url("#{resource['img/alumno/pop-art/nube.svg']}");
+    width: 60%;
+    height: 60%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
 }
 .img-hijo3{
     width: 80%;
@@ -72,6 +92,12 @@
     right: -5%;
     bottom: -80%;
 }
+.titulo-mapa-12{
+    z-index: 4;
+    top:0;
+    left: 5%;
+    color: #2AABE2;
+}
 @media screen and (max-width: 500px) {
     .cuadro-hijo1{
         height: 200px;
@@ -84,6 +110,11 @@
     }
     .cuadro-hijo4{
         height: 200px;
+    }
+    .titulo-mapa-12{
+        top:-10px;
+        left: 5%;
+        font-size: 19px;
     }
 
 }
@@ -141,6 +172,9 @@
     .img-who{
         width: 55%;
     }
+    .titulo-mapa-12{
+        font-size: 22px;
+    }
 }
 @media screen and (min-width: 1200px) {
     .cuadro-hijo1{
@@ -155,4 +189,5 @@
     .cuadro-hijo4{
         height: 300px;
     }
+
 }

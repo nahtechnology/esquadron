@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
@@ -54,31 +55,35 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-linea-secuencia.css"/>
         <div class="uk-section">
             <div class="uk-container margen-superior">
-                <div class="uk-child-width-1-2@m uk-margin-remove" uk-grid="">
+                <div class="uk-child-width-1-2@m uk-margin-remove uk-visible@m" uk-grid="">
                     <div class="cuadro-padre1" >
                         <div class="uk-width-1-1@s cuadro-hijo1">
-
                             <div class="img-hijo1">
-                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass=""/>
+                                <input type="text"  placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
                             </div>
                         </div>
-                        <div class="uk-width-1-1@s cuadro-hijo2">
+                        <div class="cuadro-hijo2">
                             <div class="img-hijo2">
-                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass=""/>
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
                             </div>
                             <div class="img-hijo2">
-                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass=""/>
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
                             </div>
                             <div class="img-hijo2">
-                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass=""/>
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
                             </div>
                             <div class="img-hijo2">
-                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass=""/>
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
                             </div>
 
                         </div>
                     </div>
-                    <div class="cuadro-padre2">
+                    <div class="cuadro-padre2 ">
                         <div class="uk-width-1-1@s cuadro-hijo3">
                             <div class="img-hijo3">
                                 <h:graphicImage library="img" name="alumno/pop-art/pop-art.svg" styleClass=""/>
@@ -86,6 +91,7 @@
                             <div class="img-who">
                                 <h:graphicImage library="img" name="mounstro/who.svg" styleClass=""/>
                             </div>
+                            <h2 class="uk-display-inline-block uk-position-absolute titulo-mapa-12">Sequencing Timeline</h2>
                         </div >
                         <div class="uk-width-1-1@s cuadro-hijo4 ">
                             <div class="img-whom">
@@ -93,7 +99,53 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
+                <div class="uk-child-width-1-2@m uk-margin-remove uk-hidden@m" uk-grid="">
+
+                    <div class="cuadro-padre2 ">
+                        <div class="uk-width-1-1@s cuadro-hijo3">
+                            <div class="img-hijo3">
+                                <h:graphicImage library="img" name="alumno/pop-art/pop-art.svg" styleClass=""/>
+                            </div>
+                            <div class="img-who">
+                                <h:graphicImage library="img" name="mounstro/who.svg" styleClass=""/>
+                            </div>
+                            <h2 class="uk-display-inline-block uk-position-absolute titulo-mapa-12">Sequencing Timeline</h2>
+                        </div >
+                        <div class="uk-width-1-1@s cuadro-hijo4 ">
+                            <div class="img-whom">
+                                <h:graphicImage library="img" name="mounstro/whom.svg" styleClass=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cuadro-padre1" >
+                        <div class="uk-width-1-1@s cuadro-hijo1">
+                            <div class="img-hijo1">
+                                <input type="text"  placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
+                            </div>
+                        </div>
+                        <div class="cuadro-hijo2">
+                            <div class="img-hijo2">
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
+                            </div>
+                            <div class="img-hijo2">
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
+                            </div>
+                            <div class="img-hijo2">
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
+                            </div>
+                            <div class="img-hijo2">
+                                <input type="text" placeholder="Time" />
+                                <input type="text" placeholder="Event"/>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
 
             </div>

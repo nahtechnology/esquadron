@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="menu">
@@ -48,71 +48,49 @@
                 <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
                 <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
             </ul>
-
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="/alumno/mapa-experimento.css"/>
+        <h:outputStylesheet library="css" name="/alumno/mapa-10.css"/>
         <div class="uk-section margen-superior">
-            <div class="uk-container fondo-mapa3 padding-contenedor posicion-contenedor">
-                <div class="imagen-whose">
-                    <h:graphicImage library="img" name="mounstro/whose.svg"/>
-                </div>
-                <div class="imagen-who uk-visible@m">
-                    <h:graphicImage library="img" name="mounstro/whom.svg"/>
-                </div>
-                <div class="imagen-popart fondo-pop-7 uk-visible@m">
-                        <h3 class="titulo-mapa-7">Steps to Do an Experiment</h3>
-                </div>
-                <div class="uk-hidden@m">
-                    <h3 class="titulo-mapa-7 uk-text-center" style="color: black; ">Steps to Do an Experiment</h3>
-                </div>
-
-                <div class="margen-contenido">
-                    <form action="" class="uk-form-stacked">
-                        <div class="uk-child-width-1-1@s area-texto2 uk-padding-remove " uk-grid=""  >
-                            <div class="tam-contenedor uk-margin-auto">
-                                    <label for="label" class="uk-form-label mapa-label">Put forward a problemor ask a question</label>
-                                    <div class="uk-form-controls">
-                                        <textarea rows="" cols="" id="label"/>
-                                    </div>
-                            </div>
-                            <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe2" class="uk-form-label mapa-label">Do background research</label>
-                                <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe2"/>
-                                </div>
-                            </div>
-                            <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe3" class="uk-form-label mapa-label">State your hypothesis</label>
-                                <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe3"/>
-                                </div>
-                            </div>
-                            <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe4" class="uk-form-label mapa-label">Test your hypothesis by doing an experiment</label>
-                                <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe4"/>
-                                </div>
-                            </div>
-                            <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe5" class="uk-form-label mapa-label">Collect and analize data</label>
-                                <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe5"/>
-                                </div>
-                            </div>
-                            <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe6" class="uk-form-label mapa-label">Draw conclusion</label>
-                                <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe6"/>
-                                </div>
-                            </div>
+            <div class="uk-container padding-contenedor fondo-mapa-10">
+                    <h:panelGroup layout="block" class="uk-grid" pt:uk-grid="">
+                        <div class="globo-10 uk-width-1-3@m">
 
                         </div>
-                    </form>
-                </div>
+                        <div class="globo-10 uk-width-1-3@m">
+
+                        </div>
+                        <div class="globo-10 uk-width-1-3@m">
+
+                        </div>
+                    </h:panelGroup>
+                <h:panelGroup layout="block" class="uk-grid" pt:uk-grid="">
+                    <div class="globo-10 uk-width-1-3@m">
+
+                    </div>
+                    <div class="globo-10 uk-width-1-3@m">
+
+                    </div>
+                    <div class="globo-10 uk-width-1-3@m">
+
+                    </div>
+                </h:panelGroup>
+                <h:panelGroup layout="block" class="uk-grid" pt:uk-grid="">
+                    <div class="globo-10 uk-width-1-3@m">
+
+                    </div>
+                    <div class="globo-10 uk-width-1-3@m">
+
+                    </div>
+                    <div class="globo-10 uk-width-1-3@m">
+
+                    </div>
+                </h:panelGroup>
+
             </div>
         </div>
     </ui:define>
 </ui:composition>
+
 </html>

@@ -36,12 +36,18 @@
     left: 3%;
     z-index: 2;
 }
-.imagen-globo>img{
-   width: 38%;
-    height: auto;
+.imagen-globo{
+    background-image: url("#{resource['img/alumno/pop-art/mensaje9.svg']}");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 38%;
+    height: 27%;
     position: absolute;
     top:0;
     right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .area-texto>textarea{
     min-width: 100%;
@@ -54,7 +60,11 @@
     font-weight: bold;
     font-size: 20px;
 }
-
+.titulo-mapa-11{
+    color: mediumpurple;
+    font-weight: bold;
+    font-size: 30px;
+}
 .margen-secuencia{
     margin-right: auto;
     margin-left: auto;
@@ -63,6 +73,11 @@
     .margen-secuencia{
         margin-left: 20px;
         margin-right: 20px;
+    }
+}
+@media screen and (max-width:500px ){
+    .caja1{
+        margin-top: 250px;
     }
 }
 .imagen-secuencia-small{
