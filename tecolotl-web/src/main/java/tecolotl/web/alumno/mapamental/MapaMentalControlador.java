@@ -1,11 +1,10 @@
 package tecolotl.web.alumno.mapamental;
 
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
+import tecolotl.alumno.scope.MapaMentalRespuestaScope;
 import tecolotl.alumno.sesion.MapaMentalSessionBean;
 import tecolotl.web.alumno.AlumnoControlador;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,13 +14,16 @@ import java.util.logging.Logger;
 
 @ViewScoped
 @Named
-public class MapaMental1Controlador implements Serializable {
+public class MapaMentalControlador implements Serializable {
 
     @Inject
     private AlumnoControlador alumnoControlador;
 
     @Inject
     private MapaMentalSessionBean mapaMentalSessionBean;
+
+    @Inject
+    private MapaMentalRespuestaScope mapaMentalRespuestaScope;
 
     @Inject
     private Logger logger;
@@ -33,10 +35,12 @@ public class MapaMental1Controlador implements Serializable {
         tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(alumnoControlador.getTareaActividadModelo().getId(), Short.parseShort(cardinalidad));
     }
 
-    public void respondeMapaMental() {
-        tareaMapaMentalModeloLista.forEach(tareaMapaMentalModelo -> {
-            logger.info(tareaMapaMentalModelo.getRespuesta());
-        });
+    public String respondeMapaMental() {
+        mapaMentalRespuestaScope.respuesta(
+                tareaMapaMentalModeloLista,
+                alumnoControlador.getTareaActividadModelo().getId(),
+                alumnoControlador.getTareaActividadModelo().getIdActividad());
+        return "/alumno/seleccion-mapamental.xhtml";
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {

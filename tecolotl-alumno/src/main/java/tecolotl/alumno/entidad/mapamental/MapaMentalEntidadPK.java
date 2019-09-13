@@ -13,6 +13,14 @@ public class MapaMentalEntidadPK implements Serializable {
     private String codigo;
     private Short cardinalidad;
 
+    public MapaMentalEntidadPK() {
+    }
+
+    public MapaMentalEntidadPK(String codigo, Short cardinalidad) {
+        this.codigo = codigo;
+        this.cardinalidad = cardinalidad;
+    }
+
     @JoinColumn(name = "codigo")
     public String getCodigo() {
         return codigo;

@@ -7,8 +7,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <f:metadata>
-        <f:viewParam name="cardinalidad" value="#{mapaMental1Controlador.cardinalidad}" required="true"/>
-        <f:event type="preRenderView" listener="#{mapaMental1Controlador.llenaLista}"/>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
     </f:metadata>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
@@ -60,12 +60,18 @@
                 <div class="uk-light">
                     <div class="uk-container uk-container-small fondo-mapa contorno">
                         <h1><span class="lescuadron">Mapa mental</span></h1>
+                        <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                         <h:form class="uk-form-stacked" id="formulario-mapa-mental">
                             <div class="uk-margin uk-grid" uk-grid="" >
                                 <div class="uk-width-expand">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-0" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[0].pregunta}"/>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                                   for="pregunta-0"
+                                                   value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-0" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[0].respuesta}">
+                                        <h:inputTextarea styleClass="uk-textarea"
+                                                         id="pregunta-0" rows="3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
@@ -77,9 +83,14 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-1" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[1].pregunta}"/>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                                   for="pregunta-1"
+                                                   value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-1" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[1].respuesta}">
+                                        <h:inputTextarea styleClass="uk-textarea"
+                                                         id="pregunta-1" rows="3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}">
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
@@ -91,9 +102,12 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-2" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[2].pregunta}"/>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-2" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-2" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[2].respuesta}">
+                                        <h:inputTextarea styleClass="uk-textarea"
+                                                         id="pregunta-2" rows="3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}">
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
@@ -105,9 +119,14 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[3].pregunta}"/>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                                   for="pregunta-3"
+                                                   value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-3" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[3].respuesta}">
+                                        <h:inputTextarea styleClass="uk-textarea"
+                                                         id="pregunta-3" rows="3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}">
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
@@ -119,9 +138,14 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-4" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[4].pregunta}"/>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                                   for="pregunta-4"
+                                                   value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-4" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[4].respuesta}">
+                                        <h:inputTextarea styleClass="uk-textarea"
+                                                         id="pregunta-4" rows="3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}">
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
@@ -132,7 +156,10 @@
                                 </div>
                             </div>
                             <div>
-                                <h:commandButton id="boton-enviar-mapa-mental" value="Send" />
+                                <h:commandButton id="boton-enviar-mapa-mental" 
+                                                 value="Send" 
+                                                 rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 action="#{mapaMentalControlador.respondeMapaMental}"/>
                             </div>
                         </h:form>
                     </div>

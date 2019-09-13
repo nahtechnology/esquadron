@@ -16,8 +16,9 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
     public TareaMapaMentalActividadEntidadPK() {
     }
 
-    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad) {
+    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad, TareaEntidad tareaEntidad) {
         this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
+        this.tareaEntidad = tareaEntidad;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
