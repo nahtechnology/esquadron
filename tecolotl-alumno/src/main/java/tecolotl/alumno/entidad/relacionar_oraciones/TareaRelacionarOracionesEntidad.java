@@ -12,7 +12,7 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "TareaRelacionarOracionesEntidad.buscaidTarea",
                 query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe JOIN FETCH troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad " +
-                        "WHERE troe.tareaRelacionarOracionesEntidadPK.tareaEntidad.id =  :idTarea")
+                        "WHERE troe.tareaRelacionarOracionesEntidadPK.tareaEntidad.id =  :idTarea ORDER BY troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad.id")
 }
 )
 public class TareaRelacionarOracionesEntidad {

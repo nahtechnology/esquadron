@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
  * @author Antonio Francisco Alonso Valerdi
  */
 @Stateless
-public class GlosarioSesionBean {
+public class GlosarioSesionBean implements Serializable {
 
     @Inject
     private Logger logger;
@@ -111,6 +112,17 @@ public class GlosarioSesionBean {
         }
     }
 
+    /**
+     * Busca el id de una actividad.
+     * @param idTarea Identificador de la tarea.
+     * @return {@link String} con el identificador de la actividad
+     */
+    public String buscaActividad(@NotNull Integer idTarea) {
+        logger.fine(idTarea.toString());
+        TypedQuery<String> typedQuery = entityManager.createNamedQuery("TareaGlosarioActividadEntidad.buscaActividadPorTarea", String.class);
+        typedQuery.setParameter("idTarea", idTarea);
+        return typedQuery.getSingleResult();
+    }
 
     protected GlosarioEntidadPK llavePrimaria(GlosarioModelo glosarioModelo) {
         GlosarioEntidadPK glosarioEntidadPK = new GlosarioEntidadPK();

@@ -29,7 +29,7 @@ public class TareaGramaticaControlador {
         gramaticaModelo.setCodigo(codigo);
         gramaticaModelo.setActividadModelo(new ActividadModelo(idActividad));
         gramaticaModelo.setRespuesta(respuesta.trim());
-        gramaticaSesionBean.respuesta(gramaticaModelo, alumnoControlador.getTareaModelo().getId());
+        gramaticaSesionBean.respuesta(gramaticaModelo, alumnoControlador.getTareaActividadModelo().getId());
     }
 
     public String getRespuesta() {

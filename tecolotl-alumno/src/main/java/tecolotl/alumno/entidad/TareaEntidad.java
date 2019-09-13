@@ -19,7 +19,7 @@ import java.util.List;
         @NamedQuery(
                 name = "TareaEntidad.buscaActividad",
                 query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
-                        "t.alumnoEntidad.id = :IdAlumno GROUP BY t.id"
+                        "t.alumnoEntidad.id = :IdAlumno GROUP BY t"
         )
 })
 public class TareaEntidad {

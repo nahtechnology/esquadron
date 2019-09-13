@@ -70,15 +70,15 @@
                         <li class="transcrip">
                            <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left ">
-                                   <iframe class="" width="100%" height="100%" src="https://www.youtube.com/embed/#{param['idVideo']}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                                   <iframe class="" width="100%" height="100%" src="https://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
                                </div>
                                <div class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion transcripcion">
-                                   <h:outputText value="#{actividadControlador.buscaTranscripcion(param['idVideo'])}" escape="false"/>
+                                   <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
                                </div>
                            </h:panelGroup>
                         </li>
                         <li class="match uk-margin-small-top ">
-                            <h:form>
+                            <h:form id="formulario-relacionar">
                                 <h1 class="uk-text-center lescuadron" style="color: white">Relacionar respuesta</h1>
                                 <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="">
                                     <div class="columna-pregunta uk-width-expand">
@@ -101,24 +101,13 @@
                                     </div>
                                     <h:panelGroup layout="block" styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="preRespuestas">
-                                        <div class="respuesta">#{preRespuestas.relacionarOracionModelo.respuesta}<h:inputText style="display: none;" value="#{preRespuestas.relacionarOracionModelo.id}"/></div>
-                                    </ui:repeat>
+                                            <div class="respuesta" data-id="#{preRespuestas.relacionarOracionModelo.id}">#{preRespuestas.relacionarOracionModelo.respuesta}</div>
+                                        </ui:repeat>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <script type="application/javascript" >
-                                    function recuperaDatos() {
-                                        //Obtiene las etiquetas inputText
-                                        var idRelacionarmodelos = document.querySelectorAll('input[type=text]');
-                                        var getId = [];
-                                        //Obtiene el valor de value=""
-                                        idRelacionarmodelos.forEach(function (value) { getId.push(value.getAttribute('value')) });
-                                        //Se espera un resultado = "72, 75, 80, 76"
-                                        document.getElementById('respuestaOraciones').value = getId.join();
-                                    }
-                                </script>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
                                 <h:commandButton onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer">
-                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo(relacionarOracionControlador.idRespuesta)}" execute="@form"/>
+                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
@@ -169,7 +158,7 @@
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar ">
-                                    <h:outputText value="#{actividadControlador.buscaTranscripcion(param['idVideo'])}" escape="false"/>
+                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
                                 </div>
                             </h:panelGroup>
                         </li>
@@ -223,15 +212,21 @@
                     data.source.disabled = true;
                 }
             }
+
+            function recuperaDatos() {
+                var idRelacionarmodelos = document.querySelectorAll('.match tbody .respuesta');
+                var getId = [];
+                idRelacionarmodelos.forEach(function (input) {
+                    getId.push(input.dataset.id);
+                });
+                document.getElementById('formulario-relacionar:respuestaOraciones').value = getId.join();
+            }
         </script>
         <script type="text/javascript">
             document.querySelectorAll('.remplazar .remover').forEach(function (value) {
                 value.setAttribute("uk-sortable","group: respuesta");
                 value.setAttribute('class','uk-sortable respuesta-transcript');
                 value.innerHTML=" ";
-            });
-            document.querySelectorAll('.transcripcion .remover').forEach(function (value) {
-
             });
         </script>
 

@@ -2,6 +2,7 @@ package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
+import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -14,6 +15,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -63,9 +66,37 @@ public class TareaSesionBean implements Serializable {
         logger.fine(idAlumno.toString());
         TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaActividad", TareaEntidad.class);
         typedQuery.setParameter("IdAlumno", idAlumno);
+        List<TareaModelo> tareaModeloLista = new ArrayList<>();
         return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Busca todos los tareas asignadas de un alumno, pero tambien agrega el id de la actividad.
+     * @param idAlumno Identificador del alumno.
+     * @return Colección de {@link TareaActividadModelo}
+     */
+    public List<TareaActividadModelo> buscaActividad(@NotNull Integer idAlumno) {
+        logger.fine(idAlumno.toString());
+        Query query = entityManager.createNativeQuery("select t.id,t.id_alumno,t.asignacion,t.reproducciones, tga.id_actividad " +
+            "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea where t.id_alumno=? group by t.id, tga.id_actividad");
+        query.setParameter(1, idAlumno);
+        List<TareaActividadModelo> tareaActividadModeloLista = new ArrayList<>();
+        for (Object[] objetos : (List<Object[]>)query.getResultList()) {
+            TareaActividadModelo tareaActividadModelo = new TareaActividadModelo();
+            tareaActividadModelo.setId((Integer) objetos[0]);
+            tareaActividadModelo.setAsignacion((Date)objetos[2]);
+            tareaActividadModelo.setReproducciones((Short)objetos[3]);
+            tareaActividadModelo.setIdActividad((String)objetos[4]);
+            tareaActividadModeloLista.add(tareaActividadModelo);
+        }
+        return tareaActividadModeloLista;
+    }
+
+    /**
+     * Busca todas las tareas de, clasificadas por tarea asignada y con las totales ya realizadas.
+     * @param idTarea Identificador de la tarea.
+     * @return Colección de {@link TareaResuetasModelo}
+     */
     public List<TareaResuetasModelo> tareasResuelta(@NotNull Integer idTarea) {
         logger.fine(idTarea.toString());
         Query query = entityManager.createNativeQuery("SELECT * FROM alumno.busca_tarea(?)", TareasResueltasEntidad.class);

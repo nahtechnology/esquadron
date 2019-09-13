@@ -1,6 +1,7 @@
 package tecolotl.web.alumno;
 
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
+import tecolotl.alumno.scope.RelacionOracionRespuestaScope;
 import tecolotl.alumno.sesion.RelacionarOracionSesionBean;
 import tecolotl.alumno.sesion.RelacionarSesionBean;
 
@@ -22,17 +23,25 @@ public class RelacionarOracionControlador {
     private RelacionarOracionSesionBean relacionarOracionSesionBean;
 
     @Inject
+    private RelacionOracionRespuestaScope relacionOracionRespuestaScope;
+
+    @Inject
     private AlumnoControlador alumnoControlador;
 
     private String idRespuesta;
-
-
-
     private List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista;
 
     @PostConstruct
     public void init() {
-        tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaModelo().getId());
+        tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+    }
+
+    public void llenarTareaModelo(){
+        String[] respuestas = idRespuesta.split(",");
+        for (int i = 0; i < respuestas.length; i++) {
+            tareaRelacionarOracionModeloLista.get(i).setRespuesta(Integer.parseInt(respuestas[i]));
+        }
+        relacionOracionRespuestaScope.respuesta(tareaRelacionarOracionModeloLista);
     }
 
     public List<TareaRelacionarOracionModelo> getTareaRelacionarOracionModeloLista() {
@@ -51,10 +60,5 @@ public class RelacionarOracionControlador {
         this.idRespuesta = idRespuesta;
     }
 
-    public void llenarTareaModelo(String idRespuesta){
-        logger.info(idRespuesta.toString());
-        //alumnoControlador.
-        //alumnoControlador.setTareaModeloLista();
-    }
 }
 

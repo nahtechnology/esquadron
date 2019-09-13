@@ -1,8 +1,10 @@
 package tecolotl.web.alumno;
 
 import tecolotl.alumno.modelo.AlumnoModelo;
+import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
+import tecolotl.alumno.sesion.GlosarioSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;
 
 import javax.annotation.PostConstruct;
@@ -24,18 +26,18 @@ public class AlumnoControlador implements Serializable {
     private TareaSesionBean tareaSesionBean;
 
     private AlumnoModelo alumnoModelo;
-    private List<TareaModelo> tareaModeloLista;
-    private TareaModelo tareaModelo;
+    private List<TareaActividadModelo> tareaActvidadModeloLista;
+    private TareaActividadModelo tareaActividadModelo;
 
     @PostConstruct
     public void init() {
         alumnoModelo = alumnoSesionBean.busca(1);
-        tareaModeloLista = tareaSesionBean.busca(1);
-        tareaModelo = tareaModeloLista.get(0);
+        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(1);
     }
 
-    public void seleccion(TareaModelo tareaModelo){
-        this.tareaModelo = tareaModelo;
+    public String seleccion(TareaActividadModelo tareaActividadModelo){
+        this.tareaActividadModelo = tareaActividadModelo;
+        return "transcript-final";
     }
 
     public AlumnoModelo getAlumnoModelo() {
@@ -46,19 +48,19 @@ public class AlumnoControlador implements Serializable {
         this.alumnoModelo = alumnoModelo;
     }
 
-    public List<TareaModelo> getTareaModeloLista() {
-        return tareaModeloLista;
+    public List<TareaActividadModelo> getTareaActvidadModeloLista() {
+        return tareaActvidadModeloLista;
     }
 
-    public void setTareaModeloLista(List<TareaModelo> tareaModeloLista) {
-        this.tareaModeloLista = tareaModeloLista;
+    public void setTareaActvidadModeloLista(List<TareaActividadModelo> tareaActvidadModeloLista) {
+        this.tareaActvidadModeloLista = tareaActvidadModeloLista;
     }
 
-    public TareaModelo getTareaModelo() {
-        return tareaModelo;
+    public TareaActividadModelo getTareaActividadModelo() {
+        return tareaActividadModelo;
     }
 
-    public void setTareaModelo(TareaModelo tareaModelo) {
-        this.tareaModelo = tareaModelo;
+    public void setTareaActividadModelo(TareaActividadModelo tareaActividadModelo) {
+        this.tareaActividadModelo = tareaActividadModelo;
     }
 }

@@ -27,8 +27,8 @@ public class GramaticaControlador {
 
     @PostConstruct
     public void init() {
-        logger.info(alumnoControlador.getTareaModelo().getId().toString());
-        gramaticaModeloLista = gramaticaSesionBean.busca(alumnoControlador.getTareaModelo().getId());
+        logger.info(alumnoControlador.getTareaActividadModelo().getId().toString());
+        gramaticaModeloLista = gramaticaSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
     }
 
     public List<GramaticaModelo> getGramaticaModeloLista() {
