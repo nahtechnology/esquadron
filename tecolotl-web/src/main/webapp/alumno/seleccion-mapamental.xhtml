@@ -10,14 +10,18 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="contenido">
         <div class="uk-section margen-superior">
             <div class="uk-container padding-contenedor">
                 <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental">
-                    Cardinalidad: <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}" value="MapaMental#{mapaMental.cardinalidad}"/>
+                    Cardinalidad:
+                    <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}" value="Mapa Mental #{mapaMental.cardinalidad}">
+                        <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
+                    </h:link>
                     Respondidos:#{mapaMental.totalResueltos}<br/>
                 </ui:repeat>
             </div>

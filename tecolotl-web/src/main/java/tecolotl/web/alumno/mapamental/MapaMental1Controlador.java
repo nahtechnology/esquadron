@@ -6,13 +6,16 @@ import tecolotl.web.alumno.AlumnoControlador;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class MapaMental1Controlador {
+public class MapaMental1Controlador implements Serializable {
 
     @Inject
     private AlumnoControlador alumnoControlador;
@@ -20,11 +23,20 @@ public class MapaMental1Controlador {
     @Inject
     private MapaMentalSessionBean mapaMentalSessionBean;
 
-    private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
+    @Inject
+    private Logger logger;
 
-    @PostConstruct
-    public void inicio() {
-         tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(alumnoControlador.getTareaActividadModelo().getId(), (short)1);
+    private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
+    private String cardinalidad;
+
+    public void llenaLista() {
+        tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(alumnoControlador.getTareaActividadModelo().getId(), Short.parseShort(cardinalidad));
+    }
+
+    public void respondeMapaMental() {
+        tareaMapaMentalModeloLista.forEach(tareaMapaMentalModelo -> {
+            logger.info(tareaMapaMentalModelo.getRespuesta());
+        });
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {
@@ -34,4 +46,13 @@ public class MapaMental1Controlador {
     public void setTareaMapaMentalModeloLista(List<TareaMapaMentalModelo> tareaMapaMentalModeloLista) {
         this.tareaMapaMentalModeloLista = tareaMapaMentalModeloLista;
     }
+
+    public String getCardinalidad() {
+        return cardinalidad;
+    }
+
+    public void setCardinalidad(String cardinalidad) {
+        this.cardinalidad = cardinalidad;
+    }
+
 }
