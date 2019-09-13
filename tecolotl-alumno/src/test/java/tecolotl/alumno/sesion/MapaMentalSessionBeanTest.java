@@ -125,4 +125,17 @@ public class MapaMentalSessionBeanTest {
         });
     }
 
+    @Test
+    public void buscaIdTareaCardinalidad() {
+        List<TareaMapaMentalModelo> tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(1, (short)1);
+        assertNotNull(tareaMapaMentalModeloLista);
+        assertFalse(tareaMapaMentalModeloLista.isEmpty());
+        tareaMapaMentalModeloLista.forEach(tareaMapaMentalModelo -> {
+            assertNotNull(tareaMapaMentalModelo);
+            assertNotNull(tareaMapaMentalModelo.getCodigo());
+            assertNotNull(tareaMapaMentalModelo.getCardinalidad());
+            assertNotNull(tareaMapaMentalModelo.getPregunta());
+        });
+    }
+
 }

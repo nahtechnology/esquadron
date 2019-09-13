@@ -52,21 +52,16 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/mapa-mental.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
-
-            <div class="padding-superior "    >
+            <div class="padding-superior ">
                 <div class="uk-light">
                     <div class="uk-container uk-container-small fondo-mapa contorno">
                         <h1><span class="lescuadron">Mapa mental</span></h1>
-
-                        <form class="uk-form-stacked">
-
+                        <h:form class="uk-form-stacked">
                             <div class="uk-margin uk-grid" uk-grid="" >
-
-                                <div class="uk-width-expand  ">
-                                    <label class="uk-form-label uk-text-bold" for="form-stacked-text">Who was involved?</label>
+                                <div class="uk-width-expand">
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-0" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <!--<input class="uk-input" id="form-stacked-text" type="text" placeholder="Some text..."/>-->
-                                        <textarea class="uk-textarea" id="form-stacked-text" rows="3" placeholder="Textarea"/>
+                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-0" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                                     </div>
                                 </div>
                                 <div class="uk-width-auto uk-visible@m" >
@@ -74,12 +69,10 @@
                                 </div>
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
-
                                 <div class="uk-width-expand  ">
-                                    <label class="uk-form-label uk-text-bold" for="form-stacked-text2">What happened?</label>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-1" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[1].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <!--<input class="uk-input" id="form-stacked-text2" type="text" placeholder="Some text..."/>-->
-                                        <textarea class="uk-textarea" id="form-stacked-text2" rows="3" placeholder="Textarea"/>
+                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-1" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[1].respuesta}"/>
                                     </div>
                                 </div>
                                 <div class="uk-width-auto uk-visible@m">
@@ -88,10 +81,9 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <label class="uk-form-label uk-text-bold" for="form-stacked-text3">When did it happen?</label>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-2" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[2].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <!--<input class="uk-input" id="form-stacked-text3" type="text" placeholder="Some text..."/>-->
-                                        <textarea class="uk-textarea" id="form-stacked-text3" rows="3" placeholder="Textarea"/>
+                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-2" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[2].respuesta}"/>
                                     </div>
                                 </div>
                                 <div class="uk-width-auto uk-visible@m">
@@ -100,10 +92,9 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <label class="uk-form-label uk-text-bold" for="form-stacked-text4">Where did it happen?</label>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[3].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <!--<input class="uk-input" id="form-stacked-text4" type="text" placeholder="Some text..."/>-->
-                                        <textarea class="uk-textarea" id="form-stacked-text4" rows="3" placeholder="Textarea"/>
+                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-3" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[3].respuesta}"/>
                                     </div>
                                 </div>
                                 <div class="uk-width-auto uk-visible@m">
@@ -112,25 +103,19 @@
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <label class="uk-form-label uk-text-bold" for="form-stacked-text5">Why did it happen?</label>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-4" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[4].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <!--<input class="uk-input" id="form-stacked-text5" type="text" placeholder="Some text..."/>-->
-                                        <textarea class="uk-textarea" id="form-stacked-text5" rows="3" placeholder="Textarea"/>
+                                        <h:inputTextarea styleClass="uk-textarea" id="pregunta-4" rows="3" value="#{mapaMental1Controlador.tareaMapaMentalModeloLista[4].respuesta}"/>
                                     </div>
                                 </div>
                                 <div class="uk-width-auto uk-visible@m">
                                     <h:graphicImage library="img" name="mounstro/morado.svg" styleClass="uk-svg posicion-img" width="70" height="70"/>
                                 </div>
                             </div>
-
-                        </form>
+                        </h:form>
                     </div>
                 </div>
             </div>
-
-
-
-
     </ui:define>
 </ui:composition>
 </html>

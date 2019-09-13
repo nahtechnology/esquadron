@@ -2,6 +2,7 @@ package tecolotl.alumno.entidad.mapamental;
 
 import tecolotl.alumno.entidad.TareaEntidad;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -29,6 +30,12 @@ import java.util.StringJoiner;
                 query = "SELECT tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad, COUNT(tmma.textoRespuesta) " +
                         "FROM TareaMapaMentalActividadEntidad tmma WHERE tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea " +
                         "GROUP BY tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad"
+        ),
+        @NamedQuery(
+                name = "TareaMapaMentalActividadEntidad.buscaMapaMental",
+                query = "SELECT tmma FROM TareaMapaMentalActividadEntidad tmma JOIN FETCH tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad mma JOIN FETCH mma.mapaMentalActividadPK.mapaMentalEntidad " +
+                        "WHERE tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad = :cardinalidad AND " +
+                        "tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
         )
 })
 public class TareaMapaMentalActividadEntidad implements Serializable {

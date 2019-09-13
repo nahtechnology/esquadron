@@ -99,6 +99,20 @@ public class MapaMentalSessionBean {
                 new MapaMentalResueltoModelo(((Short)objects[0]), ((Long)objects[1]).intValue())).collect(Collectors.toList());
     }
 
+    /**
+     * Busca las preguntas y respuesta de un mapa mental.
+     * @param idTarea Tarea a la que pertenece mapa mental.
+     * @param cardinalidad cardinalidad del mapa mental.
+     * @return Colección de {@link TareaMapaMentalModelo}
+     */
+    public List<TareaMapaMentalModelo> busca(@NotNull Integer idTarea, @NotNull Short cardinalidad) {
+        logger.fine(idTarea.toString());
+        logger.fine(cardinalidad.toString());
+        TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaMapaMental", TareaMapaMentalActividadEntidad.class);
+        typedQuery.setParameter("idTarea", idTarea).setParameter("cardinalidad", cardinalidad);
+        return typedQuery.getResultList().stream().map(TareaMapaMentalModelo::new).collect(Collectors.toList());
+    }
+
     private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelo, Integer idTarea, String idActividad) {
         TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK = new TareaMapaMentalActividadEntidadPK();
         tareaMapaMentalActividadEntidadPK.setTareaEntidad(new TareaEntidad(idTarea));
@@ -112,35 +126,5 @@ public class MapaMentalSessionBean {
         );
         return tareaMapaMentalActividadEntidadPK;
     }
-/*
-    /**
-     * Agrega una oregunta de un mapa mental a una actividad
-     * @param pregunta Pregunta detonadora
-     * @param idActividad Identificador de la actividad
-     * @return Identificador del mapa mental generado
-     *
-    public Integer agregar(@NotNull @Size(max = 100, min = 2) String pregunta, @NotNull @Size(min = 11, max = 11) String idActividad) {
-        logger.fine(pregunta);
-        logger.fine(idActividad);
-        MapaMentalEntidad mapaMentalEntidad = new MapaMentalEntidad();
-        mapaMentalEntidad.setPregunta(pregunta);
-        MapaMentalActividadEntidad mapaMentalActividadEntidad =
-                new MapaMentalActividadEntidad(mapaMentalEntidad, new ActividadEntidad(idActividad));
-        mapaMentalEntidad.setMapaMentalActividadEntidadLista(Arrays.asList(mapaMentalActividadEntidad));
-        entityManager.persist(mapaMentalEntidad);
-        return mapaMentalEntidad.getId();
-    }
 
-    /**
-     * Asinga una pregunta detonadora a una actividad.
-     * @param idActividad Identificador de la actividad.
-     * @param idMapaMental Identificador del mapa mental.
-     *
-    public void agregar(@NotNull @Size(min = 11, max = 11) String idActividad, @NotNull Integer idMapaMental) {
-        logger.fine(idActividad);
-        logger.fine(idMapaMental.toString());
-        MapaMentalActividadEntidad mapaMentalActividadEntidad =
-                new MapaMentalActividadEntidad(new MapaMentalEntidad(idMapaMental), new ActividadEntidad(idActividad));
-        entityManager.persist(mapaMentalActividadEntidad);
-    }*/
 }

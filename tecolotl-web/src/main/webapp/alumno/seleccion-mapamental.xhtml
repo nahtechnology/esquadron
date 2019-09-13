@@ -17,7 +17,7 @@
         <div class="uk-section margen-superior">
             <div class="uk-container padding-contenedor">
                 <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental">
-                    Cardinalidad:#{mapaMental.cardinalidad}
+                    Cardinalidad: <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}" value="MapaMental#{mapaMental.cardinalidad}"/>
                     Respondidos:#{mapaMental.totalResueltos}<br/>
                 </ui:repeat>
             </div>
