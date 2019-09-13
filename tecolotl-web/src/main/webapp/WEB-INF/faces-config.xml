@@ -74,6 +74,14 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/alumno/transcrip-final.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>mapa-mental</from-outcome>
+			<to-view-id>/alumno/seleccion-mapamental.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 	<!-- traduccion de las vistas -->
 
 	<application>
