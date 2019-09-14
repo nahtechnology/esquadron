@@ -6,6 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="/avatar/astronauta-nina.svg" alt="" class="uk-border-circle profile-img"/>
@@ -54,27 +58,97 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-efecto.css"/>
         <div class="uk-section margen-superior">
             <h1 class="uk-text-center titulo-mapa-2">Blank cause and effect Diagram</h1>
+            <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
             <div class="uk-container fondo-mapa-efecto margen-mapa-efecto contenedor-efecto ">
-
                 <div class="imagen-pez uk-margin-auto">
                     <h:graphicImage library="img" name="/alumno/pescado.svg"/>
                 </div>
-                <form action="" class="uk-form-stacked">
+                <h:form id="formulario-mapa-mental-escritorio" class="uk-form-stacked">
                     <div class="uk-visible@s">
-                        <textarea rows="" cols="" class="caja1" />
-                        <textarea rows="" cols="" class="caja2"/>
-                        <textarea rows="" cols="" class="caja3"/>
-                        <textarea rows="" cols="" class="caja4"/>
-                        <textarea rows="" cols="" class="caja5"/>
+                        <h:inputTextarea id="texto-respuesta-1"
+                                         styleClass="caja1"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-1" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-2"
+                                         styleClass="caja2"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-2" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-3"
+                                         styleClass="caja3"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-3" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-4"
+                                         styleClass="caja4"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-4" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-5"
+                                         styleClass="caja5"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-5" styleClass=""/>
+                        <h:commandButton id="boton-enviar-mapa-mental-escritorio"
+                                     value="Send"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"/>
                     </div>
+                </h:form>
+                <h:form id="formulario-mapa-mental-movil">
                     <div class="uk-hidden@s caja-pez">
-                        <textarea rows="" cols="" class="uk-display-block uk-margin-small-top"/>
-                        <textarea rows="" cols="" class="uk-display-block" />
-                        <textarea rows="" cols="" class="uk-display-block"/>
-                        <textarea rows="" cols="" class="uk-display-block"/>
-                        <textarea rows="" cols="" class="uk-display-block"/>
+                        <h:inputTextarea id="texto-respuesta-movil1"
+                                         styleClass="uk-display-block uk-margin-small-top"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-movil1" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-movil2"
+                                         styleClass="uk-display-block"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-movil2" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-movil3"
+                                         styleClass="uk-display-block"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-movil3" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-movil4"
+                                         styleClass="uk-display-block"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-movil4" styleClass=""/>
+                        <h:inputTextarea id="texto-respuesta-movil5"
+                                         styleClass="uk-display-block"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                        <h:message for="texto-respuesta-movil5" styleClass=""/>
+                        <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="Send"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"/>
                     </div>
-                </form>
+                </h:form>
             </div>
         </div>
 

@@ -7,6 +7,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
@@ -67,49 +71,82 @@
                 <div class="uk-hidden@m">
                     <h3 class="titulo-mapa-7 uk-text-center" style="color: black; ">Steps to Do an Experiment</h3>
                 </div>
-
                 <div class="margen-contenido">
-                    <form action="" class="uk-form-stacked">
-                        <div class="uk-child-width-1-1@s area-texto2 uk-padding-remove " uk-grid=""  >
+                    <h:form id="formulario-mapa-mental" class="uk-form-stacked">
+                        <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                        <div class="uk-child-width-1-1@s area-texto2 uk-padding-remove " uk-grid="">
                             <div class="tam-contenedor uk-margin-auto">
-                                    <label for="label" class="uk-form-label mapa-label">Put forward a problemor ask a question</label>
-                                    <div class="uk-form-controls">
-                                        <textarea rows="" cols="" id="label"/>
-                                    </div>
-                            </div>
-                            <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe2" class="uk-form-label mapa-label">Do background research</label>
+                                <h:outputLabel for="uno" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                 <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe2"/>
+                                    <h:inputTextarea id="uno"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                                        <f:validateRequired/>
+                                    </h:inputTextarea>
                                 </div>
+                                <h:message for="uno" styleClass=""/>
                             </div>
                             <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe3" class="uk-form-label mapa-label">State your hypothesis</label>
+                                <h:outputLabel for="dos" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                 <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe3"/>
+                                    <h:inputTextarea id="dos"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}">
+                                        <f:validateRequired/>
+                                    </h:inputTextarea>
                                 </div>
+                                <h:message for="dos" styleClass=""/>
                             </div>
                             <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe4" class="uk-form-label mapa-label">Test your hypothesis by doing an experiment</label>
+                                <h:outputLabel for="tres" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
                                 <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe4"/>
+                                    <h:inputTextarea id="tres"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}">
+                                        <f:validateRequired/>
+                                    </h:inputTextarea>
                                 </div>
+                                <h:message for="tres" styleClass=""/>
                             </div>
                             <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe5" class="uk-form-label mapa-label">Collect and analize data</label>
+                                <h:outputLabel for="cuatro" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
                                 <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe5"/>
+                                    <h:inputTextarea id="cuatro"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}">
+                                        <f:validateRequired/>
+                                    </h:inputTextarea>
                                 </div>
+                                <h:message for="cuatro" styleClass=""/>
                             </div>
                             <div class="tam-contenedor uk-margin-auto">
-                                <label for="labe6" class="uk-form-label mapa-label">Draw conclusion</label>
+                                <h:outputLabel for="cinco" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
                                 <div class="uk-form-controls">
-                                    <textarea rows="" cols="" id="labe6"/>
+                                    <h:inputTextarea id="cinco"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}">
+                                        <f:validateRequired/>
+                                    </h:inputTextarea>
                                 </div>
+                                <h:message for="cinco" styleClass=""/>
                             </div>
-
+                            <div class="tam-contenedor uk-margin-auto">
+                                <h:outputLabel for="seis" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputTextarea id="seis"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}">
+                                        <f:validateRequired/>
+                                    </h:inputTextarea>
+                                </div>
+                                <h:message for="seis" styleClass=""/>
+                            </div>
+                            <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                             value="Send"
+                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>
-                    </form>
+                    </h:form>
                 </div>
             </div>
         </div>

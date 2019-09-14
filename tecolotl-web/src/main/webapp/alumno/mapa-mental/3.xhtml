@@ -7,6 +7,10 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
@@ -56,15 +60,12 @@
         <h:outputStylesheet library="css" name="letra.css"/>
             <div class="uk-section  margen-superior">
                 <div class="uk-container fondo-mapa-orden contorno posicion-contenedor margen-cronologico">
-
                     <div class="dialogo uk-visible@s">
                         <div class="uk-position-relative">
                             <h3 class="uk-position-absolute titulo-mapa-3">Cronological Order Writing</h3>
                             <h:graphicImage library="img" name="alumno/pop-art/pop-art.svg" style="transform: rotateY(180deg)"/>
-
                         </div>
                     </div>
-
                     <div class="imagen-mapa uk-visible@s">
                         <h:graphicImage library="img" name="mounstro/who.svg" />
                     </div>
@@ -79,55 +80,112 @@
                             <h:graphicImage library="img" name="mounstro/who.svg" />
                         </div>
                     </div>
-                            <form class="uk-form-horizontal uk-margin-small-top " action="">
-
-                                <div class="uk-grid uk-margin-remove " uk-grid="">
-                                    <div class="margen-mapa"></div>
-                                    <div class="uk-margin mapa-caja margen-caja1 uk-width-1-1@s sobrepuesto">
-                                        <label class="uk-form-label" for="uno">Date:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="uno" type="text" placeholder="Some text..."/>
-                                        </div>
-                                        <label class="uk-form-label" for="uno1">Event:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="uno1" type="text" placeholder="Some text..."/>
-                                        </div>
-
-                                    </div>
-                                    <div class="uk-margin mapa-caja margen-caja2 uk-width-1-1@s">
-                                        <label class="uk-form-label" for="dos">Date:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="dos" type="text" placeholder="Some text..."/>
-                                        </div>
-                                        <label class="uk-form-label" for="dos1">Event:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="dos1" type="text" placeholder="Some text..."/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-margin mapa-caja uk-width-1-1@s">
-                                        <label class="uk-form-label" for="tres">Date:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="tres" type="text" placeholder="Some text..."/>
-                                        </div>
-                                        <label class="uk-form-label" for="tres1">Event:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="tres1" type="text" placeholder="Some text..."/>
-                                        </div>
-                                    </div>
-                                    <div class="uk-margin mapa-caja margen-caja3 uk-width-1-1@s">
-                                        <label class="uk-form-label" for="cuatro">Date:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="cuatro" type="text" placeholder="Some text..."/>
-                                        </div>
-                                        <label class="uk-form-label" for="cuatro1">Event:</label>
-                                        <div class="uk-form-controls">
-                                            <input class="uk-input" id="cuatro1" type="text" placeholder="Some text..."/>
-                                        </div>
-                                    </div>
+                    <h:form class="uk-form-horizontal uk-margin-small-top">
+                        <div class="uk-grid uk-margin-remove" uk-grid="">
+                            <div class="margen-mapa"></div>
+                            <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                            <div class="uk-margin mapa-caja margen-caja1 uk-width-1-1@s sobrepuesto">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="unoa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="unoa"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
                                 </div>
-
-                            </form>
-
+                                <h:message for="unoa" styleClass=""/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="unob" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="unob"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="unob" styleClass=""/>
+                            </div>
+                            <div class="uk-margin mapa-caja margen-caja2 uk-width-1-1@s">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="dosa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="dosa"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="dosa" styleClass=""/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="dosb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="dosb"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="dosb" styleClass=""/>
+                            </div>
+                            <div class="uk-margin mapa-caja uk-width-1-1@s">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="tresa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="tresa"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="tresa" styleClass=""/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="tresb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="tresb"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="tresb" styleClass=""/>
+                            </div>
+                            <div class="uk-margin mapa-caja margen-caja3 uk-width-1-1@s">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="cuatroa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="cuatroa"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="cuatroa" styleClass=""/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="cuatrob" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].pregunta}"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText styleClass="uk-input"
+                                                 id="cuatrob"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                                 pt:placeholder="Some text...">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="cuatrob" styleClass=""/>
+                            </div>
+                            <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                             value="Send"
+                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             action="#{mapaMentalControlador.respondeMapaMental}"/>
+                        </div>
+                    </h:form>
                 </div>
             </div>
     </ui:define>

@@ -7,6 +7,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
@@ -26,7 +30,6 @@
                 <!-- /user dropdown -->
             </div>
         </div>
-
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
@@ -36,7 +39,6 @@
                 <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
                 <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
             </ul>
-
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
@@ -57,44 +59,75 @@
                 <div class="uk-margin-small-top">
                     <h:graphicImage library="img" name="alumno/pop-art/mensaje11.svg" styleClass="uk-display-block imagen-ard"/>
                 </div>
-
-                <form action="" class="uk-form-stacked">
-
-                <div class="uk-grid uk-child-width-1-4@m uk-position-relative uk-margin-large-top" uk-grid="">
-                    <div class="uk-position-relative tam-contenido-mapa">
-                        <div class="tam-gancho color-gancho1 posicion-gancho1">
-                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                <h:form id="formulario-mapa_mental" class="uk-form-stacked">
+                    <div class="uk-grid uk-child-width-1-4@m uk-position-relative uk-margin-large-top" uk-grid="">
+                        <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                        <div class="uk-position-relative tam-contenido-mapa">
+                            <div class="tam-gancho color-gancho1 posicion-gancho1">
+                                <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                            </div>
+                            <div class="uk-form-controls">
+                                <h:inputTextarea styleClass="uk-textarea text-area-idea text-area-color1"
+                                                 id="detallea"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
+                                    <f:validateRequired/>
+                                </h:inputTextarea>
+                                <h:message for="detallea" styleClass=""/>
+                            </div>
                         </div>
-                        <div class="uk-form-controls">
-                            <textarea rows="" cols=""  class="uk-textarea text-area-idea text-area-color1" placeholder="Details:"/>
+                        <div class="uk-position-relative tam-contenido-mapa">
+                            <div class="tam-gancho color-gancho2 posicion-gancho1">
+                                <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                            </div>
+                            <div class="uk-form-controls">
+                                <h:inputTextarea styleClass="uk-textarea text-area-idea text-area-color2"
+                                                 id="detalleb"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
+                                    <f:validateRequired/>
+                                </h:inputTextarea>
+                                <h:message for="detalleb" styleClass=""/>
+                            </div>
                         </div>
+                        <div class="uk-position-relative tam-contenido-mapa">
+                            <div class="tam-gancho color-gancho3  posicion-gancho1">
+                                <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                            </div>
+                            <div class="uk-form-controls">
+                                <h:inputTextarea styleClass="uk-textarea text-area-idea text-area-color3"
+                                                 id="detallec"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
+                                    <f:validateRequired/>
+                                </h:inputTextarea>
+                                <h:message for="detallec" styleClass=""/>
+                            </div>
+                        </div>
+                        <div class="uk-position-relative tam-contenido-mapa">
+                            <div class="tam-gancho color-gancho4 posicion-gancho1">
+                                <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
+                            </div>
+                            <div class="uk-form-controls">
+                                <h:inputTextarea styleClass="uk-textarea text-area-idea text-area-color4"
+                                                 id="detalled"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
+                                    <f:validateRequired/>
+                                </h:inputTextarea>
+                                <h:message for="detalled" styleClass=""/>
+                            </div>
+                        </div>
+                        <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                         value="Send"
+                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         action="#{mapaMentalControlador.respondeMapaMental}"/>
                     </div>
-                    <div class="uk-position-relative tam-contenido-mapa">
-                        <div class="tam-gancho color-gancho2 posicion-gancho1">
-                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
-                        </div>
-                        <div class="uk-form-controls">
-                            <textarea rows="" cols="" class="uk-textarea text-area-idea text-area-color2" placeholder="Details:"/>
-                        </div>
-                    </div>
-                    <div class="uk-position-relative tam-contenido-mapa">
-                        <div class="tam-gancho color-gancho3  posicion-gancho1">
-                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
-                        </div>
-                        <div class="uk-form-controls">
-                            <textarea rows="" cols=""  class="uk-textarea text-area-idea text-area-color3" placeholder="Details:"/>
-                        </div>
-                    </div>
-                    <div class="uk-position-relative tam-contenido-mapa">
-                        <div class="tam-gancho color-gancho4 posicion-gancho1">
-                            <h:graphicImage library="img" name="alumno/pop-art/gancho.svg" styleClass="uk-svg" pt:uk-svg="" />
-                        </div>
-                        <div class="uk-form-controls">
-                            <textarea rows="" cols=""  class="uk-textarea text-area-idea text-area-color4" placeholder="Details:"/>
-                        </div>
-                    </div>
-                </div>
-                </form>
+                </h:form>
                 <div class="imagen-centrada">
                     <h:graphicImage library="img" name="mounstro/whom.svg" />
                 </div>
