@@ -30,9 +30,9 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <li uk-tooltip="title: Dashboard; pos: right"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
                 <li uk-tooltip="title: Activity; pos: right" class="uk-active" ><h:link outcome="tareas-alumno"><f:param name="idActividad" value="fs"/><f:param name="tarea" value="1"/><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Glossary; pos: right"><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Grammar; pos: right"><h:link outcome="transcrip-final"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Map Mental; pos: right" ><h:link outcome="mapa-capas"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: Glossary; pos: right" class="planetas"><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: Grammar; pos: right" class="planetas"><h:link outcome="transcrip-final"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: Map Mental; pos: right" class="planetas" ><h:link outcome="mapa-capas"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
                 <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
@@ -40,9 +40,9 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
                 <li uk-tooltip="title: Dashboard; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
                 <li uk-tooltip="title: Activity; pos: right" class="uk-active"><h:link outcome="tareas-alumno"><f:param name="idActividad" value="fs"/><f:param name="idActividad" value="fs"/><f:param name="tarea" value="1"/><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Glossary; pos: right" ><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Grammar; pos: right"><h:link outcome="transcrip-final"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Map Mental; pos: right" class="uk-active"><h:link outcome="mapa-capas"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Glossary; pos: right" class="planetas" ><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Grammar; pos: right" class="planetas"><h:link outcome="transcrip-final"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Map Mental; pos: right" class="planetas"><h:link outcome="mapa-capas"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
                 <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
             </ul>
         </div>
@@ -76,9 +76,12 @@
                                 </div>
                                 <div class="uk-card-media-top">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
-                                    <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
-                                        <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
-                                        <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
+                                    <h:panelGroup layout="block"  styleClass="uk-inline">
+                                        <object id="videoYoutube" type="application/x-shockwave-flash" style="width:100%; height:100%;" data="//www.youtube.com/v/#{tareaActvidadModelo.idActividad}?color2=FBE9EC&amp;version=3">
+                                            <param name="movie" value="//www.youtube.com/v/#{tareaActvidadModelo.idActividad}?color2=FBE9EC&amp;version=3" />
+                                            <param name="allowFullScreen" value="true" />
+                                            <param name="allowscriptaccess" value="always" />
+                                        </object>
                                     </h:panelGroup>
                                     <!--                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>-->
                                 </div>
@@ -128,6 +131,33 @@
                 </h:panelGroup>
             </div>
         </div>
+        <script type="application/javascript">
+            var tag = document.createElement('script');
+
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+            var player = [];
+            var videosYoutube = document.querySelectorAll('object');
+            console.log(videosYoutube, onYouTubeIframeAPIReady());
+            function onYouTubeIframeAPIReady() {
+                for ( i = 0 ; i &lt; videosYoutube.length; i++){
+                    player[i].push(new YT.Player(videosYoutube[i],{
+                        events: {
+                            "onStageChange": activaPlanetas
+                        }
+                    }));
+                }
+            }
+            
+            function activaPlanetas(evt) {
+                var planetas = document.querySelectorAll('.planetas');
+                planetas.forEach(function (value) {
+                    value.classList.remove('planetas');
+                });
+            }
+        </script>
     </ui:define>
 </ui:composition>
 </html>
