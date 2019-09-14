@@ -1,0 +1,103 @@
+.fondo-mapa-5{
+    background: url("#{resource['img/mounstro/whose.svg']}") no-repeat right top/20% , url("#{resource['img/alumno/pop-art/bomba.svg']}") no-repeat left top/32%,
+    url("#{resource['img/alumno/mapa-mental/lineas-azules.svg']}") no-repeat center center/cover;
+}
+.titulo-mapa-5{
+    position: absolute;
+    top: 15%;
+    left:6%;
+    font-weight: bold;
+}
+
+.contenido-5{
+    margin-top:400px;
+}
+.imagen-nube-5{
+    background: url("#{resource['img/alumno/pop-art/nube.svg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
+    width: calc(100% / 3);
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.nube-5{
+    background: url("#{resource['img/alumno/pop-art/nube.svg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nube-5 > input{
+    height: calc(200px / 4);
+}
+.nave-5{
+    background: url("#{resource['img/alumno/pop-art/Nave-1.svg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
+    height: 200px;
+}
+.nave-5-2{
+    background: url("#{resource['img/alumno/pop-art/Nave-2.svg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
+    height: 200px;
+}
+.nave-5-1{
+    background: url("#{resource['img/alumno/pop-art/Nave-principal.svg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
+    height: 200px;
+}
+.input-5{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center ;
+}
+.input-5 >input{
+    height: calc((200px / 3) - 3px);
+    margin-top: 3px;
+}
+@media screen and (max-width: 1025px){
+
+    .titulo-mapa-5{
+        position: absolute;
+        top: 9%;
+        left:4%;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    .contenido-5{
+        margin-top:300px;
+    }
+}
+@media screen and (max-width: 770px){
+    .imagen-nube-5{
+        width: 100%;
+    }
+    .titulo-mapa-5{
+        position: relative;
+        top: 200px;
+        left:0;
+        text-align: center;
+        font-size: 30px;
+    }
+    .contenido-5{
+        margin-top:300px;
+    }
+}
+@media screen and (max-width: 600px){
+    .imagen-nube-5{
+      width: 100%;
+    }
+    .titulo-mapa-5{
+        position: relative;
+        top: 200px;
+        left:0;
+        text-align: center;
+    }
+    .contenido-5{
+        margin-top:300px;
+    }
+}
