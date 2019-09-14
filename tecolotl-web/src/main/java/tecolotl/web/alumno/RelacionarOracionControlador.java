@@ -1,5 +1,6 @@
 package tecolotl.web.alumno;
 
+import com.sun.org.apache.xerces.internal.xs.ItemPSVI;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.scope.RelacionOracionRespuestaScope;
 import tecolotl.alumno.sesion.RelacionarOracionSesionBean;
@@ -9,6 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -31,9 +34,11 @@ public class RelacionarOracionControlador {
     private String idRespuesta;
     private List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista;
 
+
     @PostConstruct
     public void init() {
         tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+
     }
 
     public void llenarTareaModelo(){
@@ -42,6 +47,22 @@ public class RelacionarOracionControlador {
             tareaRelacionarOracionModeloLista.get(i).setRespuesta(Integer.parseInt(respuestas[i]));
         }
         relacionOracionRespuestaScope.respuesta(tareaRelacionarOracionModeloLista);
+    }
+
+    public String respuestaVal(Integer id){
+        String resp = "";
+        for (TareaRelacionarOracionModelo tareaRelacionarOracionModelo : tareaRelacionarOracionModeloLista){
+            if (tareaRelacionarOracionModelo.getRelacionarOracionModelo().getId().equals(id)){
+                resp = tareaRelacionarOracionModelo.getRelacionarOracionModelo().getRespuesta();
+                break;
+            }
+        }
+        return resp;
+    }
+    public List<TareaRelacionarOracionModelo> desordenaLista(List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista){
+        List<TareaRelacionarOracionModelo> temporal = tareaRelacionarOracionModeloLista;
+        Collections.shuffle(temporal);
+        return temporal;
     }
 
     public List<TareaRelacionarOracionModelo> getTareaRelacionarOracionModeloLista() {

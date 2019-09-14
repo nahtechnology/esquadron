@@ -77,7 +77,7 @@
                                </div>
                            </h:panelGroup>
                         </li>
-                        <li class="match uk-margin-small-top ">
+                        <li class="match uk-margin-small-top " value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista.get(0).respuesta != null ? true : false}">
                             <h:form id="formulario-relacionar">
                                 <h1 class="uk-text-center lescuadron" style="color: white">Relacionar respuesta</h1>
                                 <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="">
@@ -93,20 +93,20 @@
                                                 <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
                                                     <tr>
                                                         <td>#{relacionarOracion.relacionarOracionModelo.pregunta}</td>
-                                                        <td class="uk-sortable" uk-sortable="group: respuesta"/>
+                                                        <td class="uk-sortable" uk-sortable="group: respuesta">#{relacionarOracion.respuesta != null ? relacionarOracionControlador.respuestaVal(relacionarOracion.respuesta) : ""}</td>
                                                     </tr>
                                                 </ui:repeat>
                                             </tbody>
                                         </table>
                                     </div>
-                                    <h:panelGroup layout="block" styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
-                                        <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="preRespuestas">
-                                            <div class="respuesta" data-id="#{preRespuestas.relacionarOracionModelo.id}">#{preRespuestas.relacionarOracionModelo.respuesta}</div>
+                                    <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
+                                        <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas">
+                                            <div class="respuesta" data-id="#{preRespuestas.relacionarOracionModelo.id}">#{relacionarOracion.respuesta != null ? preRespuestas.relacionarOracionModelo.respuesta : preRespuestas.relacionarOracionModelo.respuesta}</div>
                                         </ui:repeat>
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer">
+                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form"/>
                                 </h:commandButton>
                             </h:form>
@@ -220,6 +220,17 @@
                     getId.push(input.dataset.id);
                 });
                 document.getElementById('formulario-relacionar:respuestaOraciones').value = getId.join();
+                document.querySelector('input[type=submit]').disabled = true;
+            }
+
+            document.addEventListener('DOMContentLoaded', estaResuelto);
+            function estaResuelto() {
+                if (document.querySelector('.match').getAttribute('value') === 'true'){
+                    var boton = document.getElementById('formulario-relacionar:buttonEnviar');
+                    var tabla = document.getElementById('formulario-relacionar:tablaRespuestas');
+                    boton.style.display = 'none';
+                    tabla.style.display = 'none';
+                }
             }
         </script>
         <script type="text/javascript">
