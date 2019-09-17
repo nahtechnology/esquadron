@@ -53,6 +53,7 @@
         <h:outputStylesheet library="css" name="/alumno/transcript/ordenar-palabra.css"/>
         <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
+        <script src="https://www.youtube.com/iframe_api"></script>
         <div class="uk-section margen-superior"  style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" styleClass="" pt:uk-filter="target: .js-filter">
@@ -67,9 +68,10 @@
                         <li class="transcrip">
                            <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left ">
-                                   <iframe class="" width="100%" height="100%" src="https://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+                                   <div id="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
                                </div>
-                               <div class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion transcripcion">
+                               <div id="scrollTranscript" class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion transcripcion">
                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
                                </div>
                            </h:panelGroup>
@@ -237,7 +239,40 @@
                 value.innerHTML=" ";
             });
         </script>
+        <script type="application/javascript">
+            var videoPlayer = document.querySelector('.scrollFinal');
+            var player;
+            function onYouTubeIframeAPIReady() {
+                console.log(videoPlayer, videoPlayer.getAttribute('id'));
+                player = new YT.Player( videoPlayer, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoPlayer.getAttribute('id'),
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
 
+            function onPlayerReady(event) {
+                console.log(event, 'Evento Listo!!');
+            }
+
+            var done = false;
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING &amp;&amp; !done) {
+                    console.log('Ocurrio el evento! ');
+                    pageScroll();
+                    done = true;
+                }
+            }
+            function pageScroll() {
+                var objDiv = document.getElementById('scrollTranscript');
+                objDiv.scrollTop = objDiv.scrollTop + 1;
+                time = setTimeout('pageScroll()', 500);
+            }
+        </script>
     </ui:define>
 </ui:composition>
 </html>
