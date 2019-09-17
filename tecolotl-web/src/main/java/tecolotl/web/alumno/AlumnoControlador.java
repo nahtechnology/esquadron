@@ -37,7 +37,7 @@ public class AlumnoControlador implements Serializable {
 
     public String seleccion(TareaActividadModelo tareaActividadModelo){
         this.tareaActividadModelo = tareaActividadModelo;
-        return "transcript-final";
+        return "transcript";
     }
 
     public AlumnoModelo getAlumnoModelo() {

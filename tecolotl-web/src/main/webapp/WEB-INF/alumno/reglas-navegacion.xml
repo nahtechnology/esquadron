@@ -16,7 +16,7 @@
         <from-view-id>/alumno/dashboard.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>tareas-alumno</from-outcome>
-            <to-view-id>/alumno/activity.xhtml</to-view-id>
+            <to-view-id>/alumno/activities.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>biblioteca-alumno</from-outcome>
@@ -33,10 +33,10 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/alumno/activity.xhtml</from-view-id>
+        <from-view-id>/alumno/activities.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>transcript-final</from-outcome>
-            <to-view-id>/alumno/transcrip-final.xhtml</to-view-id>
+            <from-outcome>transcript</from-outcome>
+            <to-view-id>/alumno/activity.xhtml.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>biblioteca-alumno</from-outcome>
@@ -53,7 +53,15 @@
     </navigation-rule>
 
     <navigation-rule>
-        <from-view-id>/alumno/transcrip-final.xhtml</from-view-id>
+        <from-view-id>/alumno/free-library.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome></from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/alumno/activity.xhtml.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>mapa-mental</from-outcome>
             <to-view-id>/alumno/seleccion-mapamental.xhtml</to-view-id>
