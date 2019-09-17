@@ -280,7 +280,6 @@ iframe {
     background-color: rgba(255,255,255,0.5);
 }
 .fondo-comic{
-    /*background-img: url("/resources/img/fonfo1.png");*/
     background-image: url("#{resource['img/alumno/lineas-rojas.svg']}");
     background-repeat: no-repeat;
     background-size: cover;
@@ -289,7 +288,6 @@ iframe {
 }
 
 .fondo-comic2{
-    /*background-image: url('/resources/img/alumno/fondoart2.jpg');*/
     background-image: url("#{resource['img/alumno/fondoart2.jpg']}");
     background-repeat: no-repeat;
     background-size: cover;
@@ -297,7 +295,6 @@ iframe {
 
 }
 .fondo-comic3{
-    /*background-image: url('/resources/img/alumno/fondoart3.jpg');*/
     background-image: url("#{resource['img/alumno/fondoart3.jpg']}");
     background-repeat: no-repeat;
     background-size: cover;
@@ -305,14 +302,12 @@ iframe {
 
 }
 .fondo-comic4{
-    /*background-image: url('/resources/img/alumno/fondoart4.jpg');*/
     background-image: url("#{resource['img/alumno/fondo-popart2.svg']}");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 .fondo-comic5{
-    /*background-image: url('/resources/img/alumno/fondo5.jpg');*/
     background-image: url("#{resource['img/alumno/fondo-popart1.svg']}");
     background-repeat: no-repeat;
     background-size: cover;

@@ -37,14 +37,14 @@
     <g class="luna">
         <circle cx="2800" cy="420" r="200"/>
         <circle cx="3085" cy="425" r="40">
-            <animateTransform
-                    attributeName="transform"
-                    begin="0s"
-                    dur="60s"
-                    type="rotate"
-                    from="0 2785 425"
-                    to="360 2785 425"
-                    repeatCount="indefinite"/>
+<!--            <animateTransform-->
+<!--                    attributeName="transform"-->
+<!--                    begin="0s"-->
+<!--                    dur="60s"-->
+<!--                    type="rotate"-->
+<!--                    from="0 2785 425"-->
+<!--                    to="360 2785 425"-->
+<!--                    repeatCount="indefinite"/>-->
         </circle>
     </g>
 
