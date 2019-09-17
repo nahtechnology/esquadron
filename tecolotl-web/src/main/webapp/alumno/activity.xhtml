@@ -69,8 +69,7 @@
                     <ul class="js-filter  uk-text-center" >
                         <li class="transcrip">
                            <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
-                               <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left ">
-
+                               <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left">
                                    <div id="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
                                </div>
                                <div id="scrollTranscript" class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion transcripcion">
@@ -168,6 +167,42 @@
 
             </div>
         </div>
+        <script type="application/javascript">
+            var videoPlayer = document.querySelector('.scrollFinal');
+            var player;
+            function onYouTubeIframeAPIReady() {
+                console.log(videoPlayer, videoPlayer.getAttribute('id'));
+                player = new YT.Player( videoPlayer, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoPlayer.getAttribute('id'),
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+
+            function onPlayerReady(event) {
+                console.log(event, 'Evento Listo!!');
+            }
+
+            var done = false;
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING &amp;&amp; !done) {
+                    console.log('Ocurrio el evento! ');
+                    pageScroll();
+                    done = true;
+                }else {
+                    done = false;
+                }
+            }
+            function pageScroll() {
+                var objDiv = document.getElementById('scrollTranscript');
+                objDiv.scrollTop = objDiv.scrollTop + 1;
+                time = setTimeout('pageScroll()', 500);
+            }
+        </script>
         <script type="text/javascript">
             document.querySelectorAll('.estilo-contenedor input[type=hidden]').forEach(function (palabra) {
                 subPalabra = palabra.value.split(" ");
@@ -240,40 +275,6 @@
                 value.setAttribute('class','uk-sortable respuesta-transcript');
                 value.innerHTML=" ";
             });
-        </script>
-        <script type="application/javascript">
-            var videoPlayer = document.querySelector('.scrollFinal');
-            var player;
-            function onYouTubeIframeAPIReady() {
-                console.log(videoPlayer, videoPlayer.getAttribute('id'));
-                player = new YT.Player( videoPlayer, {
-                    height: '100%',
-                    width: '100%',
-                    videoId: videoPlayer.getAttribute('id'),
-                    events: {
-                        'onReady': onPlayerReady,
-                        'onStateChange': onPlayerStateChange
-                    }
-                });
-            }
-
-            function onPlayerReady(event) {
-                console.log(event, 'Evento Listo!!');
-            }
-
-            var done = false;
-            function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.PLAYING &amp;&amp; !done) {
-                    console.log('Ocurrio el evento! ');
-                    pageScroll();
-                    done = true;
-                }
-            }
-            function pageScroll() {
-                var objDiv = document.getElementById('scrollTranscript');
-                objDiv.scrollTop = objDiv.scrollTop + 1;
-                time = setTimeout('pageScroll()', 500);
-            }
         </script>
     </ui:define>
 </ui:composition>
