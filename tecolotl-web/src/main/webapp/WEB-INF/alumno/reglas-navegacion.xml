@@ -20,7 +20,15 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>biblioteca-alumno</from-outcome>
-            <to-view-id>/alumno/biblioteca-alumno.xhtml</to-view-id>
+            <to-view-id>/alumno/free-library.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>mapametal-movil</from-outcome>
+            <to-view-id>/alumno/seleccion-mapamental.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
@@ -29,6 +37,18 @@
         <navigation-case>
             <from-outcome>transcript-final</from-outcome>
             <to-view-id>/alumno/transcrip-final.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>biblioteca-alumno</from-outcome>
+            <to-view-id>/alumno/free-library.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>mapametal-movil</from-outcome>
+            <to-view-id>/alumno/seleccion-mapamental.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
