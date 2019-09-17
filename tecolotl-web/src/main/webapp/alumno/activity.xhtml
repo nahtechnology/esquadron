@@ -77,11 +77,7 @@
                                 <div class="uk-card-media-top">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
                                     <h:panelGroup layout="block"  styleClass="uk-inline">
-                                        <object id="videoYoutube" type="application/x-shockwave-flash" style="width:100%; height:100%;" data="//www.youtube.com/v/#{tareaActvidadModelo.idActividad}?color2=FBE9EC&amp;version=3">
-                                            <param name="movie" value="//www.youtube.com/v/#{tareaActvidadModelo.idActividad}?color2=FBE9EC&amp;version=3" />
-                                            <param name="allowFullScreen" value="true" />
-                                            <param name="allowscriptaccess" value="always" />
-                                        </object>
+                                        <div id="#{tareaActvidadModelo.idActividad}" class="videoPlayer">Hola</div>
                                     </h:panelGroup>
                                     <!--                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>-->
                                 </div>
@@ -131,26 +127,49 @@
                 </h:panelGroup>
             </div>
         </div>
+        <script src="https://www.youtube.com/iframe_api"></script>
         <script type="application/javascript">
-            var tag = document.createElement('script');
-
-            tag.src = "https://www.youtube.com/iframe_api";
-            var firstScriptTag = document.getElementsByTagName('script')[0];
-            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-            var player = [];
-            var videosYoutube = document.querySelectorAll('object');
-            console.log(videosYoutube, onYouTubeIframeAPIReady());
+            var videos = document.querySelectorAll('.videoPlayer');
+            var players = [];
+            console.log(videos);
+            var player;
             function onYouTubeIframeAPIReady() {
-                for ( i = 0 ; i &lt; videosYoutube.length; i++){
-                    player[i].push(new YT.Player(videosYoutube[i],{
+                videos.forEach(function (value) {
+                    console.log(value.getAttribute('id'));
+                    player = new YT.Player(value, {
+                        height: '100%',
+                        width: '100%',
+                        videoId: value.getAttribute('id'),
                         events: {
-                            "onStageChange": activaPlanetas
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
                         }
-                    }));
+                    });
+                    players.push(player);
+                });
+            }
+
+            // 4. The API will call this function when the video player is ready.
+            function onPlayerReady(event) {
+                event.target.playVideo();
+                console.log(event, ' Ocurrio el evento!')
+            }
+
+            // 5. The API calls this function when the player's state changes.
+            //    The function indicates that when playing a video (state=1),
+            //    the player should play for six seconds and then stop.
+            var done = false;
+            function onPlayerStateChange(event) {
+                if (event.data == YT.PlayerState.PLAYING &amp;&amp; !done) {
+                    setTimeout(stopVideo, 6000);
+                    console.log('El video de youtube tiene un cambio');
+                    done = true;
                 }
             }
-            
+            function stopVideo() {
+                player.stopVideo();
+            }
+
             function activaPlanetas(evt) {
                 var planetas = document.querySelectorAll('.planetas');
                 planetas.forEach(function (value) {
