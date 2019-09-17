@@ -27,16 +27,16 @@
 
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: Dashboard; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: Activity; pos: right" class="uk-active" ><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></li>
-                <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active" ><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: Dashboard; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Activity; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></li>
-                <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
             </ul>
         </div>
     </ui:define>
