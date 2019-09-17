@@ -1,5 +1,6 @@
 package tecolotl.web.herramienta;
 
+import tecolotl.alumno.scope.ImagenGlosarioScope;
 import tecolotl.alumno.sesion.GlosarioSesionBean;
 
 import javax.inject.Inject;
@@ -17,7 +18,7 @@ import java.io.OutputStream;
 public class ImagenGlosarioServlet extends HttpServlet {
 
     @Inject
-    private GlosarioSesionBean glosarioSesionBean;
+    private ImagenGlosarioScope imagenGlosarioScope;
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest,
@@ -25,7 +26,7 @@ public class ImagenGlosarioServlet extends HttpServlet {
         byte[] buffer = new byte[1024]; int byteLeidos;
         httpServletResponse.setContentType("image/jpeg");
         try(OutputStream outputStream = httpServletResponse.getOutputStream();
-            InputStream inputStream = new ByteArrayInputStream(glosarioSesionBean.imagen(
+            InputStream inputStream = new ByteArrayInputStream(imagenGlosarioScope.imagen(
                     httpServletRequest.getParameter("palabra"),
                     Short.parseShort(httpServletRequest.getParameter("clave"))))) {
             while ((byteLeidos = inputStream.read(buffer)) > -1) {

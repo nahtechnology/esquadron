@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/escolar/template-alumno.xhtml">
+    <ui:define name="menu">
+        <div class="left-content-box  content-box-dark">
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+
+            <div class="uk-position-relative uk-text-center uk-display-block">
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <!-- user dropdown -->
+                <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+                    <ul >
+                        <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Chat</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+                <!-- /user dropdown -->
+            </div>
+        </div>
+
+        <div class="left-nav-wrap  uk-visible@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+                <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
+            </ul>
+
+        </div>
+        <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
+                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li ><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active" ><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+            </ul>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="/alumno/mapa-10.css"/>
+        <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left ">
+            <div class="uk-container padding-contenedor fondo-mapa-10">
+                    <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="fondo-imagen-10 ">
+                            <div class="titulo-imagen-10 ">
+                                <h3 class="titulo-10">Main idea</h3>
+                            </div>
+                        </div>
+                        <div class="globo-10">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                        <div class="globo-10 ">
+                            <textarea class="caja-texto-10" rows="" cols=""/>
+                        </div>
+                    </h:panelGroup>
+
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+
+</html>

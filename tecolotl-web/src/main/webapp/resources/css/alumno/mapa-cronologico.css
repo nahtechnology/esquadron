@@ -27,6 +27,12 @@
     z-index: 2;
 }
 
+.fondo-mapa-orden{
+    background-image: url("#{resource['img/alumno/mapa-mental/puntos-purpura.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
 .dialogo{
     width: 350px;
     position: absolute;
@@ -35,6 +41,22 @@
 }
 .sobrepuesto{
     z-index: 3;
+}
+
+.titulo-mapa-3{
+    z-index: 2;
+    top: 60px;
+    left: 15px;
+    color: rebeccapurple;
+    font-weight: bold;
+}
+.dialogo-small{
+    width: 60%;
+    margin: auto;
+}
+.imagen-mapa-small{
+    width: 60%;
+    margin: auto;
 }
 @media screen and (min-width: 1024px ){
     .margen-mapa{
@@ -64,6 +86,9 @@
     .dialogo{
         width: 220px;
     }
+    .titulo-mapa-3{
+        font-size: 20px;
+    }
 }
 
 @media  screen and (min-width: 1200px) {
@@ -85,6 +110,24 @@
         top: 0%;
         z-index: 2;
     }
+    .titulo-mapa-3{
+        font-size: 22px;
+        top: 45px;
+        left: 20px;
+    }
+    .dialogo-small{
+        width: 80%;
+    }
+}
+@media  screen and (max-width: 330px) {
+    .dialogo-small{
+        width: 80%;
+    }
+    .titulo-mapa-3{
+        font-size: 15px;
+        top: 45px;
+        left: 15px;
+    }
 }
 
 .posicion-contenedor{
@@ -100,11 +143,4 @@
         margin-right: 20px;
     }
 }
-.imagen-mapa-small{
-    width: 60%;
-    margin: auto;
-}
-.dialogo-small{
-    width: 60%;
-    margin: auto;
-}
+

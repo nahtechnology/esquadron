@@ -62,14 +62,14 @@ public class TareaRelacionarOracionesEntidadTest {
             Assert.assertNotNull(tareaRelacionarOracionesEntidad.getTareaRelacionarOracionesEntidadPK().getRelacionarOracionesEntidad().getId());
             Assert.assertNotNull(tareaRelacionarOracionesEntidad.getTareaRelacionarOracionesEntidadPK().getTareaEntidad().getId());
             Assert.assertNotNull(tareaRelacionarOracionesEntidad.getRespuesta());
-            Assert.assertNotNull(tareaRelacionarOracionesEntidad.getHora_respuesta());
+            Assert.assertNotNull(tareaRelacionarOracionesEntidad.getHoraRespuesta());
         }
     }
 
     @Test
     public void buscaTarea_id(){
-        TypedQuery<TareaRelacionarOracionesEntidad> typedQuery = entityManager.createNamedQuery("TareaRelacionarOracionesEntidad.buscaid_tarea", TareaRelacionarOracionesEntidad.class);
-        typedQuery.setParameter("id_tarea", 3);
+        TypedQuery<TareaRelacionarOracionesEntidad> typedQuery = entityManager.createNamedQuery("TareaRelacionarOracionesEntidad.buscaidTarea", TareaRelacionarOracionesEntidad.class);
+        typedQuery.setParameter("idTarea", 3);
         List<TareaRelacionarOracionesEntidad> tareaRelacionarOracionesEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaRelacionarOracionesEntidadLista);
         Assert.assertFalse(tareaRelacionarOracionesEntidadLista.isEmpty());
@@ -78,7 +78,7 @@ public class TareaRelacionarOracionesEntidadTest {
             Assert.assertNotNull(tareaRelacionarOracionesEntidad.getTareaRelacionarOracionesEntidadPK().getTareaEntidad().getId());
             Assert.assertNotNull(tareaRelacionarOracionesEntidad.getTareaRelacionarOracionesEntidadPK().getRelacionarOracionesEntidad().getId());
             Assert.assertNotNull(tareaRelacionarOracionesEntidad.getRespuesta());
-            Assert.assertNotNull(tareaRelacionarOracionesEntidad.getHora_respuesta());
+            Assert.assertNotNull(tareaRelacionarOracionesEntidad.getHoraRespuesta());
         }
     }
 }

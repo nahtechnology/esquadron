@@ -9,9 +9,13 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "gramatica", schema = "alumno")
-@NamedQueries(
-        @NamedQuery(name = "GramaticaEntidad.busca", query = "SELECT ge from GramaticaEntidad ge")
-)
+@NamedQueries( value = {
+        @NamedQuery(name = "GramaticaEntidad.busca", query = "SELECT ge from GramaticaEntidad ge"),
+        @NamedQuery(
+                name = "GramaticaEntidad.buscaActvidad",
+                query = "SELECT g FROM GramaticaEntidad g WHERE g.gramaticaEntidadPK.actividadEntidad.id = :idActividad"
+        )
+})
 public class GramaticaEntidad {
     private GramaticaEntidadPK gramaticaEntidadPK;
     private String palabra;

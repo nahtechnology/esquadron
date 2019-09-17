@@ -24,9 +24,9 @@
     overflow: hidden;
 
 }
-.respuesta{
+.respuesta-drag{
     background-color: goldenrod;
-    color: black;
+    color: red;
     font-style: italic;
     font-weight: bolder;
     /*border: 2px solid black;*/
@@ -36,11 +36,13 @@
     box-sizing: border-box;
     text-align: center;
     z-index: 2;
+    margin-top: 0;
 
 }
-.contenedor-respuesta > .respuesta{
+.contenedor-respuesta > .respuesta-drag{
     margin-top: 10px;
     box-shadow: 1.5px 1.5px 8px white;
+    color: black;
 }
 
 .respuesta-transcript{
@@ -63,6 +65,9 @@
     overflow: auto;
     font-family: 'Sniglet', "Arial Black";
     border-radius: 0 5px 5px 0;
+    padding-right: 40px;
+    padding-top: 10px;
+
 }
 .uk-sortable-empty{
     min-height: 20px;
@@ -97,4 +102,7 @@
     width: 50%;
     transform: scale(1);
 
+}
+.ocultar{
+    display: none;
 }

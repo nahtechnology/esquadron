@@ -2,6 +2,7 @@ package tecolotl.alumno.entidad;
 
 import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.List;
         @NamedQuery(
                 name = "TareaEntidad.buscaActividad",
                 query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
-                        "t.alumnoEntidad.id = :IdAlumno GROUP BY t.id"
+                        "t.alumnoEntidad.id = :IdAlumno GROUP BY t"
         )
 })
 public class TareaEntidad {
@@ -29,6 +30,7 @@ public class TareaEntidad {
     private AlumnoEntidad alumnoEntidad;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
+    private List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista;
 
     public TareaEntidad() {
     }
@@ -87,7 +89,7 @@ public class TareaEntidad {
         this.tareaGlosarioActividadEntidadLista = tareaGlosarioActividadEntidadLista;
     }
 
-    @OneToMany(mappedBy = "tareaEntidad", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "tareaMapaMentalActividadEntidadPK.tareaEntidad", cascade = CascadeType.PERSIST)
     public List<TareaMapaMentalActividadEntidad> getTareaMapaMentalActividadEntidadLista() {
         return tareaMapaMentalActividadEntidadLista;
     }
@@ -96,5 +98,12 @@ public class TareaEntidad {
         this.tareaMapaMentalActividadEntidadLista = tareaMapaMentalActividadEntidadLista;
     }
 
+    @OneToMany(mappedBy = "tareaRelacionarActividadEntidadPK.tareaEntidad")
+    public List<TareaRelacionarActividadEntidad> getTareaRelacionarActividadEntidadLista() {
+        return tareaRelacionarActividadEntidadLista;
+    }
 
+    public void setTareaRelacionarActividadEntidadLista(List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista) {
+        this.tareaRelacionarActividadEntidadLista = tareaRelacionarActividadEntidadLista;
+    }
 }

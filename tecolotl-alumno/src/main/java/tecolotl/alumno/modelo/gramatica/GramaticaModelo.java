@@ -1,23 +1,33 @@
 package tecolotl.alumno.modelo.gramatica;
 
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
+import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 
+import java.util.Date;
 import java.util.StringJoiner;
 
 public class GramaticaModelo {
+
     private ActividadModelo actividadModelo;
     private String codigo;
     private String palabra;
+    private String respuesta;
+    private Date horaRespuesta;
 
     public GramaticaModelo() {
     }
-
 
     public GramaticaModelo(GramaticaEntidad gramaticaEntidad){
         this.actividadModelo = new ActividadModelo(gramaticaEntidad.getGramaticaEntidadPK().getActividadEntidad().getId());
         this.codigo = gramaticaEntidad.getGramaticaEntidadPK().getCodigo();
         this.palabra = gramaticaEntidad.getPalabra();
+    }
+
+    public GramaticaModelo(TareaGramaticaEntidad tareaGramaticaEntidad) {
+        this(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getGramaticaEntidad());
+        this.respuesta = tareaGramaticaEntidad.getRespuesta();
+        this.horaRespuesta = tareaGramaticaEntidad.getHoraRespuesta();
     }
 
     public ActividadModelo getActividadModelo() {
@@ -42,6 +52,22 @@ public class GramaticaModelo {
 
     public void setPalabra(String palabra) {
         this.palabra = palabra;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
+    }
+
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
 
     @Override

@@ -14,23 +14,26 @@ import java.util.List;
 
 @RequestScoped
 @Named
-public class ActividadAlumnoControlador implements Serializable {
-    private List<ActividadModelo> actividadModeloLista;
+public class ActividadAlumnoControlador {
 
     @Inject
     private ActividadSesionBean actividadSesionBean;
 
+    @Inject
+    private AlumnoControlador alumnoControlador;
+
+    private String transcripcion;
+
     @PostConstruct
-    public void init(){
-        String nivelLenguaje = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("nivelLenguaje");
-        actividadModeloLista = actividadSesionBean.busca(nivelLenguaje);
+    public void inicio() {
+        transcripcion = actividadSesionBean.transcripcion(alumnoControlador.getTareaActividadModelo().getIdActividad());
     }
 
-    public List<ActividadModelo> getActividadModeloLista() {
-        return actividadModeloLista;
+    public String getTranscripcion() {
+        return transcripcion;
     }
 
-    public void setActividadModeloLista(List<ActividadModelo> actividadModeloLista) {
-        this.actividadModeloLista = actividadModeloLista;
+    public void setTranscripcion(String transcripcion) {
+        this.transcripcion = transcripcion;
     }
 }

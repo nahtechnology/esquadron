@@ -1,0 +1,74 @@
+.fondo-13{
+    background:url("#{resource['img/alumno/fondo-13.png']}") no-repeat center/100% 100%;
+    height: 1300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.caja-padre-5{
+    width: 100%;
+    height: 1050px;
+    margin-right: 0;
+    margin-left: 0;
+
+}
+.caja-mapa-uno{
+    background-color: rgba(255,255,255,0.5);
+    height: 100%;
+}
+.caja-mapa-dos{
+    background-color: rgba(255,255,0,0.3);
+    height: 100%;
+}
+.caja-mapa-tres{
+    background-color: rgba(255,170,0,0.3);
+    width: 100%;
+    height: 250px;
+}
+
+.uk-form-horizontal .uk-form-controls {
+    margin-left: 50px;
+}
+.uk-form-horizontal .uk-form-label {
+    width: 50px;
+    margin-top: 7px;
+    float: left;
+}
+.uk-form-horizontal input[type="text"]{
+    width: 100%;
+}
+
+.label-13{
+    box-sizing: border-box;
+    background-color: #F4F6F7 ;
+    border: 2px solid #BFC9CA;
+    border-radius: 50px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+}
+.formulario-verde{
+    left: 30px;
+    top: calc((1300px - 250px) - 650px);
+
+}
+
+.formulario-amarillo{
+    right: 20px;
+    top: 70px;
+}
+
+.formulario-morado{
+    right: 20px;
+    bottom: 80px;
+}
+.formulario-azul{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 250px;
+}

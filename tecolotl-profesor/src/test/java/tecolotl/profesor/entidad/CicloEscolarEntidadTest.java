@@ -21,7 +21,7 @@ import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
-import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
+import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.CorreoEnum;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -57,7 +57,7 @@ public class CicloEscolarEntidadTest {
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
                 .addPackage(ActividadEntidad.class.getPackage()).addPackage(MapaMentalModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage()).addPackage(ActividadSesionBean.class.getPackage())
-                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage()).addClass(GlosarioNuevoValidacion.class)
+                .addPackage(MapaMentalLlavePrimariaValidacion.class.getPackage()).addClass(GlosarioNuevoValidacion.class)
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())

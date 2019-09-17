@@ -55,14 +55,14 @@ public class TareaGramaticaEntidadTest {
             Assert.assertNotNull(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getGramaticaEntidad().getGramaticaEntidadPK().getCodigo());
             Assert.assertNotNull(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getTareaEntidad().getId());
             Assert.assertNotNull(tareaGramaticaEntidad.getRespuesta());
-            Assert.assertNotNull(tareaGramaticaEntidad.getHora_respuesta());
+            Assert.assertNotNull(tareaGramaticaEntidad.getHoraRespuesta());
         }
     }
 
     @Test
     public void buscaTarea_id(){
-        TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaid_tarea", TareaGramaticaEntidad.class);
-        typedQuery.setParameter("id_tarea", 3);
+        TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaTarea", TareaGramaticaEntidad.class);
+        typedQuery.setParameter("idTarea", 3);
         List<TareaGramaticaEntidad> tareaGramaticaEntidadLista = typedQuery.getResultList();
         Assert.assertNotNull(tareaGramaticaEntidadLista);
         Assert.assertFalse(tareaGramaticaEntidadLista.isEmpty());
@@ -72,7 +72,7 @@ public class TareaGramaticaEntidadTest {
             Assert.assertNotNull(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getGramaticaEntidad().getGramaticaEntidadPK().getCodigo());
             Assert.assertNotNull(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getTareaEntidad().getId());
             Assert.assertNotNull(tareaGramaticaEntidad.getRespuesta());
-            Assert.assertNotNull(tareaGramaticaEntidad.getHora_respuesta());
+            Assert.assertNotNull(tareaGramaticaEntidad.getHoraRespuesta());
         }
     }
 }

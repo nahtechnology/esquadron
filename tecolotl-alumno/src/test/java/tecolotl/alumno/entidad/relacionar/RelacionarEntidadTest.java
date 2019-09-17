@@ -5,7 +5,6 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +16,6 @@ import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
-import tecolotl.alumno.validacion.escribir.EscribirLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -28,10 +26,10 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(Arquillian.class)
 public class RelacionarEntidadTest {
@@ -46,7 +44,6 @@ public class RelacionarEntidadTest {
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
-                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadNuevaValidacion.class.getPackage())

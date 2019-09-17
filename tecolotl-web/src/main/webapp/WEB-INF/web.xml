@@ -45,45 +45,60 @@
 		<error-code>404</error-code>
 		<location>/error/no-encontrado.xhtml</location>
 	</error-page>
-<!--
-	<security-constraint>
 
-		<web-resource-collection>
-			<web-resource-name>Paginas administrativas</web-resource-name>
-			<description>Proteccion para las vistas de la administracion</description>
-			<url-pattern>/administracion/*</url-pattern>
-			<http-method>GET</http-method>
-			<http-method>POST</http-method>
-			<http-method>PUT</http-method>
-			<http-method>DELETE</http-method>
-			<http-method>OPTIONS</http-method>
-		</web-resource-collection>
+	<!--  Project Stage	-->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
 
-		<auth-constraint>
-			<description>Rol para al administracion</description>
-			<role-name>administrador</role-name>
-		</auth-constraint>
+	<context-param>
+		<description>Multiples archivos de configuración para la navegación</description>
+		<param-name>javax.faces.CONFIG_FILES</param-name>
+		<param-value>
+			/WEB-INF/alumno/reglas-navegacion.xml,
+			/WEB-INF/faces-config.xml
+		</param-value>
+	</context-param>
+	<!--
+        <security-constraint>
 
-		<user-data-constraint>
-			<description>Como los datos del usuario deben ser transmitidos</description>
-			<transport-guarantee>NONE</transport-guarantee>
-		</user-data-constraint>
+            <web-resource-collection>
+                <web-resource-name>Paginas administrativas</web-resource-name>
+                <description>Proteccion para las vistas de la administracion</description>
+                <url-pattern>/administracion/*</url-pattern>
+                <http-method>GET</http-method>
+                <http-method>POST</http-method>
+                <http-method>PUT</http-method>
+                <http-method>DELETE</http-method>
+                <http-method>OPTIONS</http-method>
+            </web-resource-collection>
 
-	</security-constraint>
+            <auth-constraint>
+                <description>Rol para al administracion</description>
+                <role-name>administrador</role-name>
+            </auth-constraint>
 
-	<login-config>
+            <user-data-constraint>
+                <description>Como los datos del usuario deben ser transmitidos</description>
+                <transport-guarantee>NONE</transport-guarantee>
+            </user-data-constraint>
 
-		<auth-method>FORM</auth-method>
+        </security-constraint>
 
-		<form-login-config>
-			<form-login-page>/ingreso.xhtml</form-login-page>
-			<form-error-page>/ingreso.xhtml</form-error-page>
-		</form-login-config>
+        <login-config>
 
-	</login-config>
+            <auth-method>FORM</auth-method>
 
-	<security-role>
-		<role-name>administrador</role-name>
-	</security-role>
-	-->
+            <form-login-config>
+                <form-login-page>/ingreso.xhtml</form-login-page>
+                <form-error-page>/ingreso.xhtml</form-error-page>
+            </form-login-config>
+
+        </login-config>
+
+        <security-role>
+            <role-name>administrador</role-name>
+        </security-role>
+        -->
 </web-app>

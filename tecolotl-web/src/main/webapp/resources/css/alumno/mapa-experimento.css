@@ -2,7 +2,7 @@ body{
     box-sizing: border-box;
 }
 .fondo-mapa3{
-    background-image: url("#{resource['img/fondo/fondo-mapa7.svg']}");
+    background-image: url("#{resource['img/alumno/mapa-mental/fondo-mapa7.svg']}");
     /*background-repeat: repeat-x;*/
     background-size: cover;
     /*background-position:5% 5%;*/
@@ -59,14 +59,29 @@ body{
     top:0;
     z-index: 3;
 }
-.imagen-popart>img{
-    width: 42%;
-    height: auto;
+.imagen-popart{
+    background-image: url("#{resource['img/alumno/pop-art/mensaje2.svg']}");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 40%;
+    height: 25%;
     position: absolute;
     left: 0;
     top:0;
-    z-index: 2;
 }
 .posicion-contenedor{
  position: relative;
+}
+.titulo-mapa-7{
+    position: relative;
+    z-index: 5;
+    font-weight: bold;
+    font-size: 22px;
+    color: #B31F0C;
+}
+.fondo-pop-7{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
 }

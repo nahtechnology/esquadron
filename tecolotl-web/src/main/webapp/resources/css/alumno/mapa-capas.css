@@ -1,5 +1,5 @@
 .fondo-capas{
-    background-image: url("#{resource['img/fondo/puntos-naranjas3.svg']}");
+    background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas3.svg']}");
     background-size: cover;
     background-position: center center;
 }
@@ -62,13 +62,16 @@
 .texto-posicion textarea{
     display: block;
     width: 80%;
+    height: 50px;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     margin: auto;
 }
 .texto-posicion-small textarea{
     display: block;
     width: 80%;
     box-sizing: border-box;
+    -moz-box-sizing: border-box;
     margin: auto;
 }
 .texto-posicion h3{
@@ -83,7 +86,7 @@
     }
     .texto-posicion textarea{
         padding: 1px 2px !important;
-        height: 32px;
+        height: 25px;
 
     }
     .texto-posicion .margen-small{
@@ -99,7 +102,7 @@
     }
     .texto-posicion textarea{
         padding: 1px 2px !important;
-        height: 32px;
+        height: 25px;
         margin-bottom: 12px !important;
     }
 }

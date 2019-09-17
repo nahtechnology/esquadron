@@ -16,14 +16,12 @@
 
                 <div class="uk-position-relative uk-text-center uk-display-block">
                     <!--Modificar los datos para mostrar en el Alumno-->
-                    <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Alumno</a>
+                    <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
                     <!-- user dropdown -->
                     <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                         <ul >
-                            <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
-                            <li><a href="#">Perfil</a></li>
-                            <li><a href="#">Chat</a></li>
-                            <li><a href="#">Cerrar Sesion</a></li>
+                            <li><a href="#" class="uk-text-capitalize">#{alumno['profile']}</a></li>
+                            <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
                         </ul>
                     </div>
                     <!-- /user dropdown -->
@@ -32,33 +30,24 @@
 
             <div class="left-nav-wrap  uk-visible@xl ">
                 <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                    <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
-                    <li class="uk-active"><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                    <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
-                    <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
-                    <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
-                    <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
-                    <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="90 planeta"/></a></li>
+                    <li uk-tooltip="title: #{alumno['dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                    <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="tareas-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
+                    <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
                 </ul>
-
             </div>
             <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
                 <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                    <li class="uk-active"><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
-                    <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
-                    <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
-                    <li><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
-                    <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
-                    <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+                    <li uk-tooltip="title: #{alumno['dashboard']}; pos: right" class="uk-active"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                    <li uk-tooltip="title: #{alumno['activity']}; pos: right" ><h:link outcome="tareas-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                    <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
                 </ul>
-
             </div>
 
         </ui:define>
         <ui:define name="contenido">
             <h:outputStylesheet library="css" name="letra.css"/>
             <div class="uk-container margen-superior  padding-superior padding-inferior uk-border-rounded">
-                <h1 class="lescuadron letra-titulo">Completa tus aventuras</h1>
+                <h1 class="lescuadron letra-titulo primera-mayuscula">#{alumno['dashboard.title']}</h1>
                 <div class="uk-grid " uk-grid="">
 
                     <div class="uk-width-1-3@m">
@@ -73,31 +62,28 @@
                                         <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span> #{alumnoControlador.alumnoModelo.apodo}</span></p>
                                     </div>
                                     <div class="uk-width-1-1@s">
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Email:</span> #{alumnoControlador.alumnoModelo.correoPadreFamilia}</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top  uk-text-small "><span class="uk-text-bold" >Grade:</span> 2 <span class="uk-text-bold">Group:</span> B</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Nivel:</span> #{alumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Academic Year:</span>2019 </p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-capitalize">#{alumno['dashboard.email']}:</span> #{alumnoControlador.alumnoModelo.correoPadreFamilia}</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top  uk-text-small "><span class="uk-text-bold uk-text-capitalize">#{alumno['dashboard.grade']}:</span> #{detalleAlumnoControlador.detalleAlumnoModelo.grado} <span class="uk-text-bold">&nbsp;Group:</span> #{detalleAlumnoControlador.detalleAlumnoModelo.grupo}</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-capitalize">#{alumno['dashboard.nivel']}:</span> #{alumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p><p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Academic Year: </span><h:outputText value="#{detalleAlumnoControlador.detalleAlumnoModelo.inicio}"><f:convertDateTime type="date" pattern="yyyy/MM/dd"/></h:outputText> </p>
                                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile</span></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-card-body padding-card-body">
-                                <h3 class="uk-text-uppercase uk-text-bold ">english level</h3>
+                                <h3 class="uk-text-uppercase uk-text-bold">#{alumno['dashboard.homework']}</h3>
                                 <div  uk-grid="" class="">
-                                    <div class="uk-width-1-1@m uk-margin-remove-top"><div class="uk-text-center">A1</div></div>
+                                    <div class="uk-width-1-1@m uk-margin-remove-top"><div class="uk-text-center">#{alumno['dashboard.total.activities']}</div></div>
                                     <div class="uk-width-auto uk-margin-remove-top " style="font-weight: bold; color:black;" >0%</div>
-                                    <div class="uk-width-expand uk-padding-remove-left uk-margin-remove-top"><progress class="uk-progress " value="60" max="100"/></div>
+                                    <div class="uk-width-expand uk-padding-remove-left uk-margin-remove-top"><progress class="uk-progress " value="#{detalleAlumnoControlador.detalleAlumnoModelo.totalTareas}" max="5"/></div>
                                     <div class="uk-width-auto uk-padding-remove-left uk-margin-remove-top" style="font-weight: bold;color:black;">100%</div>
                                 </div>
                             </div>
                             <div class="uk-card-footer">
-                                <h3 class="uk-text-uppercase uk-text-bold">Teacher</h3>
-                                <p>#{detalleAlumnoControlador.detalleAlumnoModelo.nombre}</p>
-
+                                <h3 class="uk-text-uppercase uk-text-bold">#{alumno['dashboard.teacher']}</h3>
+                                <p>#{detalleAlumnoControlador.detalleAlumnoModelo.nombre} #{detalleAlumnoControlador.detalleAlumnoModelo.apellidoPaterno} #{detalleAlumnoControlador.detalleAlumnoModelo.apellidoMaterno}</p>
                             </div>
                         </div>
                     </div>
-
                     <div class="uk-width-2-3@m">
                         <div class="uk-section uk-border-rounded border-section uk-padding-remove color-card-dashboard-alumno" style="position:relative;padding-top:52.25%;">
                             <div style="position:relative;padding-top:52.25%;" class="uk-margin-auto">
@@ -106,23 +92,24 @@
                             </div>
                         </div>
                     </div>
-                    <div class="uk-margin-auto"><h1 class="lescuadron letra-titulo">Realiza tus tareas</h1></div>
+                    <div class="uk-margin-auto"><h1 class="lescuadron letra-titulo">#{alumno['dashboard.homework.done']}</h1></div>
                     <div class="uk-width-1-1@m fondo-comic5" style="margin-left: 40px; padding: 40px 0; border: 6px solid white;">
                         <div class="uk-grid uk-child-width-1-3@m" uk-grid="">
                             <div>
                                 <div class="uk-flex uk-flex-center uk-grid"  >
-                                    <h:graphicImage styleClass="img-alumno-dashboard  " library="img" name="mounstro/who.svg" alt="moustrou naranja" pt:uk-tooltip="title: Grammar; pos: right "  />
+                                    <h:graphicImage styleClass="img-alumno-dashboard" library="img" name="mounstro/who.svg" alt="moustrou naranja" pt:uk-tooltip="title: #{alumno['grammar']}; pos: right"/>
                                     <div class="uk-width-1-1@m paddind-barra " ><progress class="uk-progress color1" value="60" max="100"/></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="uk-flex uk-flex-center uk-grid" >
-                                    <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: Listening; pos: right "  />
-                                    <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color2" value="60" max="100"/></div>                                    </div>
+                                    <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['listening']}; pos: right "  />
+                                    <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color2" value="60" max="100"/></div>
+                                </div>
                             </div>
                             <div>
                                 <div class="uk-flex uk-flex-center  uk-grid"  >
-                                    <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: Reading; pos: right "  />
+                                    <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['reading']}; pos: right "  />
                                     <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color3" value="60" max="100"/></div>
                                 </div>
                             </div>
@@ -130,28 +117,22 @@
                     </div>
                     <div class="uk-width-1-1@m " style="margin-left: 40px; ">
                         <div class="uk-grid uk-child-width-1-2@m " uk-grid="">
-                            <div class="fondo-comic" style=";border: 6px solid white; padding: 20px 0;">
+                            <div class="fondo-comic" style="border: 6px solid white; padding: 20px 0;">
                                 <div class="uk-flex uk-flex-center uk-grid" >
-                                    <h:graphicImage styleClass="img-alumno-dashboard "  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: Writing ; pos: right "/>
+                                    <h:graphicImage styleClass="img-alumno-dashboard "  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['writing']}; pos: right "/>
                                     <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color4" value="60" max="100"/></div>
                                 </div>
                             </div>
-                            <div class="fondo-comic4 " style=";border: 6px solid white; padding: 20px 0;">
+                            <div class="fondo-comic4 " style="border: 6px solid white; padding: 20px 0;">
                                 <div class="uk-flex uk-flex-center  uk-grid" >
-                                    <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: Mental map; pos: right "/>
+                                    <h:graphicImage styleClass="img-alumno-dashboard " library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['mental.map']}; pos: right "/>
                                     <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color5" value="60" max="100"/></div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </ui:define>
-
-
-
     </ui:composition>
-
 </html>

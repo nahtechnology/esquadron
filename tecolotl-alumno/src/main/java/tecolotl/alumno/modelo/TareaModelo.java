@@ -1,17 +1,10 @@
 package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.TareaEntidad;
-import tecolotl.alumno.modelo.mapamental.MapaMentalBaseModelo;
-import tecolotl.alumno.modelo.glosario.GlosarioModelo;
-import tecolotl.alumno.validacion.escribir.EscribirNuevoValidacion;
-import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
 
-import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 

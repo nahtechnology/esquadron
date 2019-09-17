@@ -8,39 +8,35 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "mapamental", schema = "alumno")
-@SequenceGenerator(name = "generador", schema = "alumno", sequenceName = "mapamental_seq")
 @NamedQueries({
         @NamedQuery(
-                name = "EscribirEntidad.buscaPorActivdad",
-                query = "SELECT e FROM MapaMentalEntidad e JOIN e.mapaMentalActividadEntidadLista mm WHERE mm.actividadEntidad.id = :idActividad")
+                name = "MapaMentalEntidad.busca",
+                query = "SELECT mme FROM MapaMentalEntidad mme")
 })
 public class MapaMentalEntidad {
 
-    private Integer id;
+    private MapaMentalEntidadPK mapaMentalEntidadPK;
     private String pregunta;
-    private List<MapaMentalActividadEntidad> mapaMentalActividadEntidadLista;
 
     public MapaMentalEntidad() {
     }
 
-    public MapaMentalEntidad(Integer id) {
-        this.id = id;
+    public MapaMentalEntidad(MapaMentalEntidadPK mapaMentalEntidadPK) {
+        this.mapaMentalEntidadPK = mapaMentalEntidadPK;
     }
 
-    @Id
-    @GeneratedValue(generator = "generador", strategy = GenerationType.SEQUENCE)
-    public Integer getId() {
-        return id;
+    @EmbeddedId
+    public MapaMentalEntidadPK getMapaMentalEntidadPK() {
+        return mapaMentalEntidadPK;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMapaMentalEntidadPK(MapaMentalEntidadPK mapaMentalEntidadPK) {
+        this.mapaMentalEntidadPK = mapaMentalEntidadPK;
     }
 
     @Basic
-    @Column(name = "pregunta")
     @NotNull
-    @Size(min = 2, max = 200)
+    @Size(max = 200)
     public String getPregunta() {
         return pregunta;
     }
@@ -49,19 +45,10 @@ public class MapaMentalEntidad {
         this.pregunta = pregunta;
     }
 
-    @OneToMany(mappedBy = "mapaMentalEntidad", cascade = {CascadeType.PERSIST})
-    public List<MapaMentalActividadEntidad> getMapaMentalActividadEntidadLista() {
-        return mapaMentalActividadEntidadLista;
-    }
-
-    public void setMapaMentalActividadEntidadLista(List<MapaMentalActividadEntidad> mapaMentalActividadEntidadLista) {
-        this.mapaMentalActividadEntidadLista = mapaMentalActividadEntidadLista;
-    }
-
     @Override
     public String toString() {
         return new StringJoiner(", ", MapaMentalEntidad.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
+                .add("mapaMentalEntidadPK=" + mapaMentalEntidadPK)
                 .add("pregunta='" + pregunta + "'")
                 .toString();
     }

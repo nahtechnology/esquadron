@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
+    <ui:define name="menu">
+        <div class="left-content-box  content-box-dark">
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+
+            <div class="uk-position-relative uk-text-center uk-display-block">
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <!-- user dropdown -->
+                <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+                    <ul >
+                        <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Chat</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
+                    </ul>
+                </div>
+                <!-- /user dropdown -->
+            </div>
+        </div>
+
+        <div class="left-nav-wrap  uk-visible@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+                <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
+                <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
+                <li class="uk-active"><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
+            </ul>
+
+        </div>
+        <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
+                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li ><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li class="uk-active" ><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
+                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+            </ul>
+
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="alumno/mapa-mental-historieta.css"/>
+        <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left">
+            <div  class="uk-container padding-contenedor fondo-6">
+                <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                <h:panelGroup layout="block" styleClass=" contenedor-seis uk-grid " pt:uk-grid="">
+                    <h:form id="formulñario-mapa-mental">
+                        <div class="uk-width-2-5@m">
+                            <h3 class="subtitulo-6">Fact:</h3>
+                            <div class="respuestas uk-padding-small">
+                                <h:outputLabel for="facta" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="facta"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="facta" styleClass=""/>
+                                <h:outputLabel for="factb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="factb"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="factb" styleClass=""/>
+                                <h:outputLabel for="factc" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="factc"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="factc" styleClass=""/>
+                                <h:outputLabel for="factd" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="factd"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="factd" styleClass=""/>
+                                <h:outputLabel for="facte" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="facte"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="facte" styleClass=""/>
+                                <h:outputLabel for="factf" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="factf"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="factf" styleClass=""/>
+                                <h:outputLabel for="factg" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="factg"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="factg" styleClass=""/>
+                            </div>
+                        </div>
+                        <div class="uk-width-3-5@m">
+                            <h3 class="subtitulo-6">Opinion:</h3>
+                            <div class="respuestas uk-padding-small">
+                                <h:outputLabel for="opiniona" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opiniona"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opiniona" styleClass=""/>
+                                <h:outputLabel for="opinionb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opinionb"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opinionb" styleClass=""/>
+                                <h:outputLabel for="opinionc" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opinionc"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[9].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opinionc" styleClass=""/>
+                                <h:outputLabel for="opiniond" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[10].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opiniond"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[10].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[10].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opiniond" styleClass=""/>
+                                <h:outputLabel for="opinione" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[11].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opinione"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[11].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[11].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opinione" styleClass=""/>
+                                <h:outputLabel for="opinionf" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[12].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opinionf"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[12].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[12].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opinionf" styleClass=""/>
+                                <h:outputLabel for="opiniong" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[13].pregunta}"/>
+                                <h:inputText styleClass="uk-input"
+                                             id="opiniong"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[13].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[13].respuesta}"
+                                             pt:placeholder="Some text...">
+                                    <f:validateRequired/>
+                                </h:inputText>
+                                <h:message for="opiniong" styleClass=""/>
+                            </div>
+                            <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                             value="Send"
+                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             action="#{mapaMentalControlador.respondeMapaMental}"/>
+                        </div>
+                    </h:form>
+                </h:panelGroup>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

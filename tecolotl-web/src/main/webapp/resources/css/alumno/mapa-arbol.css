@@ -1,5 +1,5 @@
 .fondo-mapa-arbol{
-    background-image: url("#{resource['img/alumno/lineas-moradas.svg']}");
+    background-image: url("#{resource['img/alumno/lineas-rosas.svg']}");
     background-size: cover;
     background-position: center center;
 }

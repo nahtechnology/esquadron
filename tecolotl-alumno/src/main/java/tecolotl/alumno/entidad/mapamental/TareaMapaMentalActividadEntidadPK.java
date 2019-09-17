@@ -16,13 +16,15 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
     public TareaMapaMentalActividadEntidadPK() {
     }
 
-    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad) {
+    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad, TareaEntidad tareaEntidad) {
         this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
+        this.tareaEntidad = tareaEntidad;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
-            @JoinColumn(name = "id_mapamental", referencedColumnName = "id_mapamental"),
+            @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
+            @JoinColumn(name = "cardinalidad", referencedColumnName = "cardinalidad"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
     })
     public MapaMentalActividadEntidad getMapaMentalActividadEntidad() {
