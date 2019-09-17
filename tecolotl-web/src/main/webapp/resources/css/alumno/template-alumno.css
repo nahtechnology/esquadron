@@ -287,20 +287,6 @@ iframe {
 
 }
 
-.fondo-comic2{
-    background-image: url("#{resource['img/alumno/fondoart2.jpg']}");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-
-}
-.fondo-comic3{
-    background-image: url("#{resource['img/alumno/fondoart3.jpg']}");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
-
-}
 .fondo-comic4{
     background-image: url("#{resource['img/alumno/fondo-popart2.svg']}");
     background-repeat: no-repeat;

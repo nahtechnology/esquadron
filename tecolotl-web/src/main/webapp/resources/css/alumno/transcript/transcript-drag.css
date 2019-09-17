@@ -8,12 +8,6 @@
 
 }
 .contenedor-respuesta{
-    /*background-image: url("#{resource['img/pop-art/mensaje9.svg']}");*/
-    /*background-repeat: no-repeat;*/
-    /*background-size: 100% 100%;*/
-    /*background-position: center center;*/
-
-    /*background-color: rgba(36, 44, 51,0.94);*/
     position: relative;
     display: flex;
     flex-direction: column;
@@ -29,7 +23,6 @@
     color: red;
     font-style: italic;
     font-weight: bolder;
-    /*border: 2px solid black;*/
     border-radius: 4px;
     padding: 2px 4px;
     width:100px;
@@ -46,7 +39,6 @@
 }
 
 .respuesta-transcript{
-    /*background-color: rgba(108, 52, 131,0.4);*/
     background-color: rgba(52, 73, 94, 0.5);
     box-shadow: 3px 3px 5px black;
     padding: 2px 0;

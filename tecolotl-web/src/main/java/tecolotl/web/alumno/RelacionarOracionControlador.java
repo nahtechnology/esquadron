@@ -38,7 +38,6 @@ public class RelacionarOracionControlador {
     @PostConstruct
     public void init() {
         tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
-
     }
 
     public void llenarTareaModelo(){

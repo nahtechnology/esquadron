@@ -27,22 +27,22 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: Dashboard; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: Activity; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Glossary; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Grammar; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></li>
-                <li uk-tooltip="title: Map Mental; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: Dashboard; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Activity; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Glossary; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Grammar; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></li>
-                <li uk-tooltip="title: Map Mental; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Library; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -59,7 +59,9 @@
                 <h:panelGroup layout="block" styleClass="" pt:uk-filter="target: .js-filter">
                     <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center "  >
                         <li uk-filter-control=".transcrip" uk-tooltip="Video" class="uk-active uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/morado.svg" width="70" height="70"  alt="" styleClass="uk-border-circle uk-animation-shake"/></li>
-                        <li uk-filter-control=".match" uk-tooltip="Match" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".match" uk-tooltip="Match" class="uk-animation-toggle" tabindex="0" style="display: #{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista ? 'none' : 'block'}">
+                            <h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
+                        </li>
                         <li uk-filter-control=".order-words" uk-tooltip="Order Words" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
                         <li uk-filter-control=".answer" uk-tooltip="Transcript" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
                     </ul>
@@ -76,10 +78,10 @@
                                </div>
                            </h:panelGroup>
                         </li>
-                        <li class="match uk-margin-small-top " value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista.get(0).respuesta != null ? true : false}">
+                        <li class="match uk-margin-small-top " value="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista and not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                             <h:form id="formulario-relacionar">
                                 <h1 class="uk-text-center lescuadron" style="color: white">Relacionar respuesta</h1>
-                                <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="">
+                                <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                                     <div class="columna-pregunta uk-width-expand">
                                         <table id="tabla" class="tabla-ordenar uk-table-middle">
                                             <thead class="titulo-tabla uk-text-center">
