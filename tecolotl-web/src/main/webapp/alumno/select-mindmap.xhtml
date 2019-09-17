@@ -26,9 +26,10 @@
                     Respondidos:#{mapaMental.totalResueltos}<br/>
                 </ui:repeat>
                 <div  uk-grid="">
-                        <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental">
-                            <div class="card-mapa uk-width-1-3@m mapa-#{i}">
-
+                        <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental" >
+                            <div class="uk-width-1-3@m card-mapa uk-position-relative">
+                                    <h:graphicImage library="img" name="/alumno/mapa-mental/preview/#{mapaMental.cardinalidad}.jpg"/>
+                                    <h3 class="respondido"> Respondidos:#{mapaMental.totalResueltos}</h3>
                             </div>
                         </ui:repeat>
 
