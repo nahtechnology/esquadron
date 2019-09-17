@@ -44,6 +44,8 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="navegacion.css"/>
         <h:outputStylesheet library="css" name="biblioteca.css"/>
+        <script src="https://www.youtube.com/iframe_api"></script>
+
         <div class="uk-container  margen-superior  padding-inferior">
             <div data-uk-filter="target: .js-filter">
                 <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
@@ -107,15 +109,12 @@
                 </h:panelGroup>
             </div>
         </div>
-        <script src="https://www.youtube.com/iframe_api"></script>
         <script type="application/javascript">
             var videos = document.querySelectorAll('.videoPlayer');
-            var players = [];
-            console.log(videos);
+            var players = new Array();
             var player;
             function onYouTubeIframeAPIReady() {
                 videos.forEach(function (value) {
-                    console.log(value.getAttribute('id'));
                     player = new YT.Player(value, {
                         height: '100%',
                         width: '100%',
@@ -131,8 +130,8 @@
 
             // 4. The API will call this function when the video player is ready.
             function onPlayerReady(event) {
-                event.target.playVideo();
-                console.log(event, ' Ocurrio el evento!')
+                //event.target.playVideo();
+                console.log(event, 'Reproductor listo.')
             }
 
             // 5. The API calls this function when the player's state changes.
@@ -141,14 +140,14 @@
             var done = false;
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.PLAYING &amp;&amp; !done) {
-                    setTimeout(stopVideo, 6000);
+
                     console.log('El video de youtube tiene un cambio');
                     done = true;
+                }else {
+                    done = false;
                 }
             }
-            function stopVideo() {
-                player.stopVideo();
-            }
+
 
             function activaPlanetas(evt) {
                 var planetas = document.querySelectorAll('.planetas');
