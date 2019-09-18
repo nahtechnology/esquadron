@@ -109,7 +109,15 @@
             </div>
         </div>
         <script type="application/javascript">
+            //var reproduccionesAlumno = document.querySelector('Agregar aquí la etiqueta que contiene las reprocucciones.');
             var videos = document.querySelectorAll('.videoPlayer');
+            var linksTareas = document.querySelectorAll('.uk-card-footer');
+            var i = 0;
+            linksTareas.forEach(function (value) {
+                value.dataset.id = videos[i].getAttribute('id');
+                value.style.visibility = 'hidden';
+                i++;
+            });
             var players = new Array();
             var player;
             function onYouTubeIframeAPIReady() {
@@ -127,25 +135,28 @@
                 });
             }
 
-            // 4. The API will call this function when the video player is ready.
             function onPlayerReady(event) {
-                //event.target.playVideo();
-                console.log(event, 'Reproductor listo.')
+                //event.target.playVideo();g
+                console.log('Reproductor listo.')
             }
 
-            // 5. The API calls this function when the player's state changes.
-            //    The function indicates that when playing a video (state=1),
-            //    the player should play for six seconds and then stop.
             var done = false;
             function onPlayerStateChange(event) {
                 if (event.data == YT.PlayerState.ENDED &amp;&amp; !done) {
-                    console.log('El video de youtube tiene un cambio');
+                    var urlVideoYT = event.target.getVideoUrl();
+                    var idVideoYT = urlVideoYT.split('v=');
+                    linksTareas.forEach(function (value) {
+                        if(value.getAttribute('data-id') === idVideoYT[1]){
+                            value.style.visibility = 'visible';
+                        }
+                    });
+                    //Parsear el valor por un Integer y hacer la suma correspontiente y almacenarlo.
+                    //Agregue aquí el codigo para el numero de reproduccionesdel alumno.
                     done = true;
                 }else {
                     done = false;
                 }
             }
-
         </script>
     </ui:define>
 </ui:composition>
