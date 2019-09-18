@@ -6,340 +6,334 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
-            <h6 class="uk-text-center uk-margin-remove-vertical text-light">John Doe</h6>
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img" rendered="#{true}"/>
+            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="" class="uk-border-circle profile-img" rendered="#{false}"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo}</h6>
 
             <div class="uk-position-relative uk-text-center uk-display-block">
-                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Admin</a>
+                <!--Modificar los datos para mostrar en el Alumno-->
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
                 <!-- user dropdown -->
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                     <ul >
-                        <!--<li class="uk-active"><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></a></li>-->
-                        <li><a href="#">Perfil</a></li>
-                        <li><a href="#">Chat</a></li>
-                        <li><a href="#">Cerrar Sesion</a></li>
+                        <li><a href="#" class="uk-text-capitalize">#{alumno['profile']}</a></li>
+                        <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
                     </ul>
                 </div>
                 <!-- /user dropdown -->
             </div>
         </div>
-
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <!--<li class="uk-active"><a href="#"><img src="img/alumno/iconos-login/1.svg" width="80" alt=""></a></li>-->
-                <li><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt=""/></h:link></li>
-                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt=""/></h:link></li>
-                <li class="uk-active"><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt=""/></h:link></li>
-                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt=""/></h:link></li>
-                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt=""/></a></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" alt=""/></h:link></li>
             </ul>
-
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li ><h:link outcome="dashboard-alumno" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
-                <li ><h:link outcome="transcrip-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
-                <li><h:link outcome="glosario-alumno" ><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
-                <li class="uk-active" ><h:link outcome="mapa-metal-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
-                <li><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
-                <li><a href="#"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></a></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
             </ul>
-
         </div>
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/mapa-13.css"/>
         <div class="uk-section margen-superior uk-margin-small-left uk-margin-small-right">
             <div class="uk-container padding-contenedor fondo-13" >
-                   <h:form styleClass="uk-grid contenedor-formularios uk-visible@m" pt:uk-grid="">
-                        <div class="caja-mapa-uno uk-position-relative uk-width-1-2@m caja-padre-5">
+                <h:form id="formulario-mapamental" styleClass="uk-form-horizontal">
+                    <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                    <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@m caja-padre-5" pt:uk-grid="">
+                        <div class="caja-mapa-uno uk-position-relative">
                             <div class="uk-position-absolute formulario-verde">
-                                <div class="uk-form-horizontal uk-margin-large">
+                                <div class="uk-margin-large">
                                     <div class="uk-margin">
                                         <label class="uk-form-label " for="verde-1"><span class="label-13">1</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="verde-1" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="verde-1"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="verde-1" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="verde-2"><span class="label-13">2</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="verde-2" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="verde-2"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="verde-2" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="verde-3"><span class="label-13">3</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="verde-3" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="verde-3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="verde-3" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="verde-4"><span class="label-13">4</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="verde-4" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="verde-4"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="verde-4" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="verde-5"><span class="label-13">5</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="verde-5" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="verde-5"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[9].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="verde-5" styleClass=""/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="caja-mapa-dos uno uk-position-relative uk-width-1-2@m caja-padre-5">
+                        <div class="caja-mapa-dos uno uk-position-relative">
                             <div class="uk-position-absolute formulario-amarillo">
-                                <div class="uk-form-horizontal uk-margin-large">
+                                <div class="uk-margin-large">
                                     <div class="uk-margin">
                                         <label class="uk-form-label " for="amarillo-1"><span class="label-13">1</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="amarillo-1" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[10].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="amarillo-1"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[10].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[10].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="amarillo-1" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="amarillo-2"><span class="label-13">2</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="amarillo-2" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[11].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="amarillo-2"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[11].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[11].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="amarillo-2" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="amarillo-3"><span class="label-13">3</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="amarillo-3" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[12].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="amarillo-3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[12].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[12].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="amarillo-3" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="amarillo-4"><span class="label-13">4</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="amarillo-4" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[13].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="amarillo-4"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[13].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[13].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="amarillo-4" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="amarillo-5"><span class="label-13">5</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="amarillo-5" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[14].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="amarillo-5"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[14].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[14].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="amarillo-5" styleClass=""/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-position-absolute formulario-morado">
-                                <div class="uk-form-horizontal uk-margin-large">
+                                <div class="uk-margin-large">
                                     <div class="uk-margin">
                                         <label class="uk-form-label " for="morado-1"><span class="label-13">1</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="morado-1" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[15].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="morado-1"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[15].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[15].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="morado-1" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="morado-2"><span class="label-13">2</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="morado-2" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[16].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="morado-2"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[16].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[16].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="morado-2" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="morado-3"><span class="label-13">3</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="morado-3" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[17].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="morado-3"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[17].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[17].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="morado-3" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="morado-4"><span class="label-13">4</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="morado-4" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[18].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="morado-4"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[18].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[18].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="morado-4" styleClass=""/>
                                         </div>
                                     </div>
                                     <div class="uk-margin">
                                         <label class="uk-form-label" for="morado-5"><span class="label-13">5</span></label>
                                         <div class="uk-form-controls">
-                                            <input class="uk-input" id="morado-5" type="text" placeholder="Some text..."/>
+                                            <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[19].respuesta}"
+                                                         styleClass="uk-input"
+                                                         id="morado-5"
+                                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[19].respuesta}"
+                                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[19].pregunta}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="morado-5" styleClass=""/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
-                        <div class="caja-mapa-tres uk-width-1-1@m uk-margin-remove-top">
-                        <div class="uk-form-horizontal uk-margin-large formulario-azul">
+                    </h:panelGroup>
+                    <div class="caja-mapa-tres ">
+                        <div class="uk-margin-large formulario-azul">
                             <div class="uk-margin">
                                 <label class="uk-form-label " for="azul-1"><span class="label-13">1</span></label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-1" type="text" placeholder="Some text..."/>
+                                    <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 styleClass="uk-input"
+                                                 id="azul-1"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    <h:message for="azul-1" styleClass=""/>
                                 </div>
                             </div>
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="azul-2"><span class="label-13">2</span></label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-2" type="text" placeholder="Some text..."/>
+                                    <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 styleClass="uk-input"
+                                                 id="azul-2"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    <h:message for="azul-2" styleClass=""/>
                                 </div>
                             </div>
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="azul-3"><span class="label-13">3</span></label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-3" type="text" placeholder="Some text..."/>
+                                    <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 styleClass="uk-input"
+                                                 id="azul-3"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    <h:message for="azul-3" styleClass=""/>
                                 </div>
                             </div>
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="azul-4"><span class="label-13">4</span></label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-4" type="text" placeholder="Some text..."/>
+                                    <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 styleClass="uk-input"
+                                                 id="azul-4"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    <h:message for="azul-4" styleClass=""/>
                                 </div>
                             </div>
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="azul-5"><span class="label-13">5</span></label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-5" type="text" placeholder="Some text..."/>
+                                    <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                 styleClass="uk-input"
+                                                 id="azul-5"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                    <h:message for="azul-5" styleClass=""/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   </h:form>
-
-                <h:form styleClass="contenedor-formularios uk-hidden@m">
-                    <div class=" uk-position-relative ">
-                        <div class="formulario-verde color-verde uk-padding-small">
-                            <div class="uk-form-horizontal uk-margin-large">
-                                <div class="uk-margin">
-                                    <label class="uk-form-label " for="verde-1"><span class="label-13">1</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="verde-1" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="verde-2"><span class="label-13">2</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="verde-2" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="verde-3"><span class="label-13">3</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="verde-3" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="verde-4"><span class="label-13">4</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="verde-4" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="verde-5"><span class="label-13">5</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="verde-5" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-position-relative ">
-                        <div class="formulario-amarillo color-naranja uk-padding-small">
-                            <div class="uk-form-horizontal uk-margin-large">
-                                <div class="uk-margin">
-                                    <label class="uk-form-label " for="amarillo-1"><span class="label-13">1</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="amarillo-1" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="amarillo-2"><span class="label-13">2</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="amarillo-2" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="amarillo-3"><span class="label-13">3</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="amarillo-3" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="amarillo-4"><span class="label-13">4</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="amarillo-4" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="amarillo-5"><span class="label-13">5</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="amarillo-5" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class=" formulario-morado color-morado uk-padding-small">
-                            <div class="uk-form-horizontal uk-margin-large">
-                                <div class="uk-margin">
-                                    <label class="uk-form-label " for="morado-1"><span class="label-13">1</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="morado-1" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="morado-2"><span class="label-13">2</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="morado-2" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="morado-3"><span class="label-13">3</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="morado-3" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="morado-4"><span class="label-13">4</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="morado-4" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                                <div class="uk-margin">
-                                    <label class="uk-form-label" for="morado-5"><span class="label-13">5</span></label>
-                                    <div class="uk-form-controls">
-                                        <input class="uk-input" id="morado-5" type="text" placeholder="Some text..."/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="caja-mapa-tres uk-width-1-1@m uk-margin-remove-top">
-                        <div class="uk-form-horizontal uk-margin-large color-azul uk-padding-small">
-                            <div class="uk-margin">
-                                <label class="uk-form-label " for="azul-1"><span class="label-13">1</span></label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-1" type="text" placeholder="Some text..."/>
-                                </div>
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="azul-2"><span class="label-13">2</span></label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-2" type="text" placeholder="Some text..."/>
-                                </div>
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="azul-3"><span class="label-13">3</span></label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-3" type="text" placeholder="Some text..."/>
-                                </div>
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="azul-4"><span class="label-13">4</span></label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-4" type="text" placeholder="Some text..."/>
-                                </div>
-                            </div>
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="azul-5"><span class="label-13">5</span></label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="azul-5" type="text" placeholder="Some text..."/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="Send"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"/>
                 </h:form>
             </div>
         </div>
