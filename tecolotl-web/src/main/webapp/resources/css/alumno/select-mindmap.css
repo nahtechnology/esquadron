@@ -4,7 +4,6 @@
 
 .card-mapa{
     height: 300px;
-
 }
 .card-mapa img{
     width: 100%;
@@ -25,64 +24,79 @@
    top: 140px;
     left: calc((100%/3) - (120px/2));
 }
+.link-imagen-mapa{
+    height: 100%;
+    border: 2px solid white;
+}
+.link-imagen-mapa:hover{
+    border-color: #0e6ecd;
+}
+.letra-mapas{
+    top: 140px;
+    left: calc((100%/3)  + 10px);
+    font-weight: bold;
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black;
+    color: #0e6ecd;
+    font-size: 20px;
+}
 
 .mapa-1{
-    background: url("#{resource['img/alumno/mapa-mental/preview/1.jpg']}") no-repeat center/contain;
-    background-clip: content-box;
+    background: url("#{resource['img/alumno/mapa-mental/preview/1.jpg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
 }
 .mapa-2{
-    background: url("#{resource['img/alumno/mapa-mental/preview/2.jpg']}") no-repeat center/cover;
-    background-clip: content-box;
+    background: url("#{resource['img/alumno/mapa-mental/preview/2.jpg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
 }
 .mapa-3{
-    background: url("#{resource['img/alumno/mapa-mental/preview/3.jpg']}") no-repeat center/cover;
-    background-clip: content-box;
+    background: url("#{resource['img/alumno/mapa-mental/preview/3.jpg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
 }
 .mapa-4{
-    background: url("#{resource['img/alumno/mapa-mental/preview/4.jpg']}") no-repeat center/cover;
-    background-clip: content-box;
+    background: url("#{resource['img/alumno/mapa-mental/preview/4.jpg']}") no-repeat center/100% 100%;
+    background-origin: content-box;
 }
 .mapa-5{
-    background: url("#{resource['img/alumno/mapa-mental/preview/5.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background: url("#{resource['img/alumno/mapa-mental/preview/5.jpg']}") no-repeat center/100% 100% ;
+    background-origin: content-box;
 }
 .mapa-6{
     background: url("#{resource['img/alumno/mapa-mental/preview/6.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-7{
     background: url("#{resource['img/alumno/mapa-mental/preview/7.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-8{
     background: url("#{resource['img/alumno/mapa-mental/preview/8.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-9{
     background: url("#{resource['img/alumno/mapa-mental/preview/9.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-10{
     background: url("#{resource['img/alumno/mapa-mental/preview/10.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-11{
     background: url("#{resource['img/alumno/mapa-mental/preview/11.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-12{
     background: url("#{resource['img/alumno/mapa-mental/preview/12.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-13{
     background: url("#{resource['img/alumno/mapa-mental/preview/13.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-14{
     background: url("#{resource['img/alumno/mapa-mental/preview/14.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }
 .mapa-15{
     background: url("#{resource['img/alumno/mapa-mental/preview/15.jpg']}") no-repeat center/100% 100%;
-    background-clip: content-box;
+    background-origin: content-box;
 }

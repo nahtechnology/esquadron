@@ -18,31 +18,16 @@
         <h:outputStylesheet library="css" name="/alumno/select-mindmap.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container padding-contenedor">
-                <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental">
-                    Cardinalidad:
-                    <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}" value="Mapa Mental #{mapaMental.cardinalidad}">
-                        <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
-                    </h:link>
-                    Respondidos:#{mapaMental.totalResueltos}<br/>
-                </ui:repeat>
-                <div  uk-grid="" class="uk-hidden@m">
-                        <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental" >
-                            <div class="uk-width-1-3@m card-mapa uk-position-relative">
-                                <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}">
-                                    <h:graphicImage library="img" name="/alumno/mapa-mental/preview/#{mapaMental.cardinalidad}.jpg"/>
-                                </h:link>
-                                <h3 class="respondido"> Respondidos:#{mapaMental.totalResueltos}</h3>
-                            </div>
-                        </ui:repeat>
-                </div>
+
                 <div  uk-grid="">
                     <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental" >
-                        <div class="uk-width-1-3@m card-mapa mapa-#{mapaMental.cardinalidad}">
-                            <h3 class=""> Respondidos:#{mapaMental.totalResueltos}</h3>
-                        </div>
+                            <div class="uk-width-1-3@m uk-position-relative card-mapa mapa-#{mapaMental.cardinalidad}">
+<!--                                <a href="" class="uk-display-block link-imagen-mapa"/>-->
+                                <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}" styleClass="uk-display-block link-imagen-mapa"/>
+                                <span class="uk-position-absolute letra-mapas"> Respondidos:#{mapaMental.totalResueltos}</span>
+                            </div>
                     </ui:repeat>
                 </div>
-
             </div>
         </div>
     </ui:define>
