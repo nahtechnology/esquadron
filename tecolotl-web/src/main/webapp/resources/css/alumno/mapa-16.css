@@ -1,0 +1,155 @@
+.picture1{
+    background-image: url("#{resource['img/alumno/fondo-16.svg']}");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    height: 1200px;
+    background-color: white;
+}
+
+.titulo-16{
+    position: absolute;
+    right: 25%;
+    margin: 50px;
+}
+
+.titulo1{
+    font-weight: bold;
+    color: white;
+    font-size: 50px;
+    z-index: 2;
+}
+
+.caja-1{
+    height: 400px;
+}
+
+.caja-2{
+    height: 400px;
+}
+
+.caja-3{
+    height: 400px;
+}
+
+[class^="caja"]{
+    margin-top: 0;
+    position: relative;
+}
+
+.contenedor1{
+    position: absolute;
+    width: 250px;
+    top: 30%;
+    right: 22%;
+}
+
+.contenedor2{
+    position: absolute;
+    top: 42%;
+    right: 66%;
+}
+
+.contenedor3{
+    position: absolute;
+    top: 63%;
+    right: 41%;
+}
+
+.contenedor4{
+    position: absolute;
+    top: 35%;
+    right: 5%;
+}
+
+.contenedor5{
+    position: absolute;
+    top: 30%;
+    right: 78%;
+}
+
+.contenedor6{
+    position: absolute;
+    top: 55%;
+    right: 5%;
+}
+
+.contenedor7{
+    position: absolute;
+    top: 80%;
+    right: 5%;
+}
+
+.contenedor8{
+    position: absolute;
+    width: 150px;
+    top: 11%;
+    right: 57%;
+}
+
+.contenedor9{
+    position: absolute;
+    width: 105px;
+    top: 13%;
+    right: 40%;
+}
+
+.contenedor10{
+    position: absolute;
+    width: 105px;
+    top: 13%;
+    right: 25%;
+}
+
+.contenedor11{
+    position: absolute;
+    width: 105px;
+    top: 13%;
+    right: 9%;
+}
+
+.whom1{
+    position: absolute;
+    top: 76%;
+    right: 48%;
+}
+
+input[type=text],input[type=email],input[type=password],select,textarea{
+    border-radius: 8px !important;
+    background-color: transparent;
+    border-width: 2px !important;
+    padding: 0 20px;
+    width: 140px;
+    border-color: var(--form-focul) !important;
+    box-sizing: border-box;
+}
+
+textarea{
+    background-color: transparent !important;
+}
+
+textarea:focus{
+    background-color: white !important;
+}
+
+input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select:focus,textarea:focus{
+    border-color: var(--turquesa-primary-color) !important;
+    border-width: 3px!important;
+}
+
+form label{
+    color: white !important;
+    font-size: 16px;
+    font-weight: bold;
+    /*text-shadow: 1px 1px 0 white, -1px -1px 0 white;*/
+}
+
+.formulario16{
+ width: 100%;
+ height: 100%;
+    background-color: rgba(255, 35, 89, 0.5);
+}
+
+.negrita{
+    color: black !important;
+}
