@@ -94,6 +94,14 @@ background-color: #F5821F;
 .color-azul{
 background-color: #00AEEF;
 }
+.respuesta-13{
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+}
 
 @media screen and (max-width: 900px) {
     .fondo-13{
