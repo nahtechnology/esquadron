@@ -11,7 +11,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="contenido">
@@ -24,7 +24,7 @@
                             <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">
                                 <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
                             </h:link>
-                            <span class="uk-position-absolute letra-mapas"> Respondidos:#{mapaMental.totalResueltos}</span>
+                            <h:outputText styleClass="uk-position-absolute letra-mapas" value="Respondido" rendered="#{mapaMental.totalResueltos > 0}"/>
                         </div>
                     </ui:repeat>
                 </div>
