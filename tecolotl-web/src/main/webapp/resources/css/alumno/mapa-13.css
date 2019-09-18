@@ -83,16 +83,20 @@
     height: 250px;
 }
 .color-verde{
-background-color: #00FE00;
+    background-color: #00FE00;
+    border:3px solid black;
 }
 .color-morado{
-background-color: #842484;
+    background-color: #842484;
+    border:3px solid black;
 }
 .color-naranja{
-background-color: #F5821F;
+    background-color: #F5821F;
+    border:3px solid black;
 }
 .color-azul{
-background-color: #00AEEF;
+    background-color: #00AEEF;
+    border:3px solid black;
 }
 .respuesta-13{
     display: block;
@@ -107,6 +111,12 @@ background-color: #00AEEF;
     .fondo-13{
         background: none;
         height: auto;
+    }
+    .catarina-13{
+        position: relative;
+        width: 80%;
+        top: 0;
+        left:0;
     }
 
 }
