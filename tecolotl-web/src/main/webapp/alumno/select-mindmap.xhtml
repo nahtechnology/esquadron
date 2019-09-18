@@ -18,14 +18,14 @@
         <h:outputStylesheet library="css" name="/alumno/select-mindmap.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container padding-contenedor">
-
                 <div  uk-grid="">
                     <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental" >
-                            <div class="uk-width-1-3@m uk-position-relative card-mapa mapa-#{mapaMental.cardinalidad}">
-<!--                                <a href="" class="uk-display-block link-imagen-mapa"/>-->
-                                <h:link outcome="/alumno/mapa-mental/#{mapaMental.cardinalidad}" styleClass="uk-display-block link-imagen-mapa"/>
-                                <span class="uk-position-absolute letra-mapas"> Respondidos:#{mapaMental.totalResueltos}</span>
-                            </div>
+                        <div class="uk-width-1-3@m uk-position-relative card-mapa mapa-#{mapaMental.cardinalidad}">
+                            <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">
+                                <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
+                            </h:link>
+                            <span class="uk-position-absolute letra-mapas"> Respondidos:#{mapaMental.totalResueltos}</span>
+                        </div>
                     </ui:repeat>
                 </div>
             </div>

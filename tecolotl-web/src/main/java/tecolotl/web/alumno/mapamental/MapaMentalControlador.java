@@ -40,7 +40,7 @@ public class MapaMentalControlador implements Serializable {
                 tareaMapaMentalModeloLista,
                 alumnoControlador.getTareaActividadModelo().getId(),
                 alumnoControlador.getTareaActividadModelo().getIdActividad());
-        return "/alumno/seleccion-mapamental.xhtml";
+        return "success";
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {

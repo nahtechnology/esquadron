@@ -59,6 +59,18 @@
             <to-view-id>/alumno/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/alumno/mindmap/*</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/alumno/select-mindmap.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/alumno/activity.xhtml</from-view-id>
