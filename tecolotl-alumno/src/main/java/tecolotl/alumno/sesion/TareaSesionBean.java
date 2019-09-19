@@ -66,7 +66,6 @@ public class TareaSesionBean implements Serializable {
         logger.fine(idAlumno.toString());
         TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaActividad", TareaEntidad.class);
         typedQuery.setParameter("IdAlumno", idAlumno);
-        List<TareaModelo> tareaModeloLista = new ArrayList<>();
         return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
     }
 
@@ -102,6 +101,18 @@ public class TareaSesionBean implements Serializable {
         Query query = entityManager.createNativeQuery("SELECT * FROM alumno.busca_tarea(?)", TareasResueltasEntidad.class);
         query.setParameter(1, idTarea);
         return (List<TareaResuetasModelo>) query.getResultList().stream().map(o -> new TareaResuetasModelo((TareasResueltasEntidad)o)).collect(Collectors.toList());
+    }
+
+    /**
+     * Incrementa el número de reproducciones de una tarea. El valor puedes ser negativo.
+     * @param incremento cantidad a incrementar las reproducciones.
+     * @param idTarea identificador de la tarea.
+     * @return Número de elementos modificados.
+     */
+    public Integer reproducciones(@NotNull Short incremento, @NotNull Integer idTarea) {
+        Query query = entityManager.createNamedQuery("TareaEntidad.aumentaReprodecciones");
+        query.setParameter("idTarea", idTarea).setParameter("reproducciones", incremento);
+        return query.executeUpdate();
     }
 
     /**
