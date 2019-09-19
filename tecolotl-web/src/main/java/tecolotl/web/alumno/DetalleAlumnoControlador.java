@@ -2,6 +2,7 @@ package tecolotl.web.alumno;
 
 import tecolotl.alumno.modelo.DetalleAlumnoModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
+import tecolotl.alumno.sesion.TareaSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
@@ -19,7 +20,8 @@ public class DetalleAlumnoControlador {
     @Inject
     private AlumnoSesionBean alumnoSesionBean;
 
-
+    @Inject
+    private TareaSesionBean tareaSesionBean;
 
     @PostConstruct
     public void init(){

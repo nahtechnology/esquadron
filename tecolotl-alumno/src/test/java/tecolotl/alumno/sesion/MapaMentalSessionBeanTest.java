@@ -127,7 +127,7 @@ public class MapaMentalSessionBeanTest {
 
     @Test
     public void buscaIdTareaCardinalidad() {
-        List<TareaMapaMentalModelo> tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(1, (short)1);
+        List<TareaMapaMentalModelo> tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(4, (short)14);
         assertNotNull(tareaMapaMentalModeloLista);
         assertFalse(tareaMapaMentalModeloLista.isEmpty());
         tareaMapaMentalModeloLista.forEach(tareaMapaMentalModelo -> {

@@ -33,9 +33,9 @@ import java.util.StringJoiner;
         ),
         @NamedQuery(
                 name = "TareaMapaMentalActividadEntidad.buscaMapaMental",
-                query = "SELECT tmma FROM TareaMapaMentalActividadEntidad tmma JOIN FETCH tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad mma JOIN FETCH mma.mapaMentalActividadPK.mapaMentalEntidad " +
+                query = "SELECT tmma FROM TareaMapaMentalActividadEntidad tmma JOIN FETCH tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad mma JOIN FETCH mma.mapaMentalActividadPK.mapaMentalEntidad mm " +
                         "WHERE tmma.tareaMapaMentalActividadEntidadPK.mapaMentalActividadEntidad.mapaMentalActividadPK.mapaMentalEntidad.mapaMentalEntidadPK.cardinalidad = :cardinalidad AND " +
-                        "tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea"
+                        "tmma.tareaMapaMentalActividadEntidadPK.tareaEntidad.id = :idTarea ORDER BY mm.pregunta"
         )
 })
 public class TareaMapaMentalActividadEntidad implements Serializable {

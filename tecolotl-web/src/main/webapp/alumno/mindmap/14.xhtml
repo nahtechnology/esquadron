@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
@@ -85,37 +85,92 @@
                     <h3>Main idea and details organized</h3>
                 </div>
                 <div class="arbol uk-position-relative uk-visible@m">
-                    <form action="" class="">
+                    <h:form id="formulario--mapamental">
                         <div class="caja-14-uno ">
-                            <input type="text" placeholder="Details:" />
-                            <h:inputText
+                            <h:inputTextarea id="uno"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="uno" styleClass=""/>
                         </div>
                         <div class="caja-14-dos">
-                            <input type="text" placeholder="Details:"/>
+                            <h:inputTextarea id="dos"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="dos" styleClass=""/>
                         </div>
                         <div class="caja-14-tres">
-                            <input type="text" placeholder="Details:"/>
+                            <h:inputTextarea id="tres"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="tres" styleClass=""/>
                         </div>
                         <div class="caja-14-cuatro">
-                            <textarea rows="" cols="" placeholder="Main idea:"/>
+                            <h:inputTextarea id="cuatro"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="cuatro" styleClass=""/>
                         </div>
-                    </form>
+                        <h:commandButton id="boton-enviar-mapa-mental-escritorio"
+                                         value="Send"
+                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         action="#{mapaMentalControlador.respondeMapaMental}"/>
+                    </h:form>
                 </div>
                 <div class="uk-hidden@m">
-                    <form action="" class="">
+                    <h:form id="formulario--mapamental-m">
                         <div class="small-14-uno">
-                            <input type="text" placeholder="Details:" />
+                            <h:inputTextarea id="unom"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="unom" styleClass=""/>
                         </div>
                         <div class="small-14-dos-small">
-                            <input type="text" placeholder="Details:"/>
+                            <h:inputTextarea id="dosm"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="dosm" styleClass=""/>
                         </div>
                         <div class="small-14-tres-small">
-                            <input type="text" placeholder="Details:"/>
+                            <h:inputTextarea id="tresm"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="tresm" styleClass=""/>
                         </div>
                         <div class="small-14-cuatro-small">
-                            <textarea rows="" cols="" placeholder="Main idea:"/>
+                            <h:inputTextarea id="cuatrom"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
+                                <f:validateRequired/>
+                            </h:inputTextarea>
+                            <h:message for="cuatrom" styleClass=""/>
                         </div>
-                    </form>
+                        <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                         value="Send"
+                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         action="#{mapaMentalControlador.respondeMapaMental}"/>
+                    </h:form>
                 </div>
             </div>
         </div>
