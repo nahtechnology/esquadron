@@ -121,3 +121,22 @@ uk-subnav-alumno2 li.uk-active:nth-child(6) a {
 .section-color{
     background-color: #f4f3ed;
 }
+
+.boton{
+    color:black;
+    text-shadow: 1px 1px 2px white, -1px -1px 2px white;
+    text-transform: capitalize;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    font-size: 17px;
+    background-color: #E31A1A;
+    border-radius: 12px;
+    border: 5px solid #AEB6BF;
+    display: inline-block;
+}
+
+.tam-form{
+    width: 180px;
+    margin: auto;
+}
