@@ -46,6 +46,9 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-secuencia.css"/>
         <div class="uk-section">
             <div class="uk-container  margen-superior color-fondo contenedor-padre margen-secuencia ">
+                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                    <span>Respondido</span>
+                </h:panelGroup>
                 <div class="uk-visible@s">
                     <div class="imagen-secuencia">
                         <h:graphicImage library="img" name="mounstro/whose.svg"/>
@@ -61,7 +64,6 @@
                     </div>
                 </div>
                 <div class="caja1 posicion1 uk-padding-small uk-margin-small-bottom">
-                    <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                     <h:form id="formulario-mapa-mental">
                         <div class="uk-child-width-1-3@m " uk-grid="">
                             <div class="area-texto">

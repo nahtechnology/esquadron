@@ -60,6 +60,9 @@
         <h:outputStylesheet library="css" name="letra.css"/>
             <div class="uk-section  margen-superior">
                 <div class="uk-container fondo-mapa-orden contorno posicion-contenedor margen-cronologico">
+                    <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                        <span>Respondido</span>
+                    </h:panelGroup>
                     <div class="dialogo uk-visible@s">
                         <div class="uk-position-relative">
                             <h3 class="uk-position-absolute titulo-mapa-3">Cronological Order Writing</h3>
@@ -83,7 +86,6 @@
                     <h:form class="uk-form-horizontal uk-margin-small-top">
                         <div class="uk-grid uk-margin-remove" uk-grid="">
                             <div class="margen-mapa"></div>
-                            <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                             <div class="uk-margin mapa-caja margen-caja1 uk-width-1-1@s sobrepuesto">
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="unoa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                 <div class="uk-form-controls">

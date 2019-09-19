@@ -59,6 +59,9 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-experimento.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container fondo-mapa3 padding-contenedor posicion-contenedor">
+                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                    <span>Respondido</span>
+                </h:panelGroup>
                 <div class="imagen-whose">
                     <h:graphicImage library="img" name="mounstro/whose.svg"/>
                 </div>
@@ -73,7 +76,6 @@
                 </div>
                 <div class="margen-contenido">
                     <h:form id="formulario-mapa-mental" class="uk-form-stacked">
-                        <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                         <div class="uk-child-width-1-1@s area-texto2 uk-padding-remove " uk-grid="">
                             <div class="tam-contenedor uk-margin-auto">
                                 <h:outputLabel for="uno" styleClass="uk-form-label mapa-label" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>

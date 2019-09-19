@@ -429,3 +429,20 @@ iframe {
 .planetas{
     display: none;
 }
+.realizado{
+    width: 250px;
+    height: 250px;
+    background: url("#{resource['img/alumno/pop-art/popart-rojo.svg']}") no-repeat center/100% 100%;
+    color: white;
+    font-weight: bold;
+    font-size: 25px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 125px);
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+}

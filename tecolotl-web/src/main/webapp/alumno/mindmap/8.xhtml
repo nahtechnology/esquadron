@@ -55,6 +55,9 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-capas.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container fondo-capas posicion-relativa">
+                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                    <span>Respondido</span>
+                </h:panelGroup>
                 <div class="imagen-who uk-visible@s">
                     <h:graphicImage library="img" name="mounstro/who.svg" />
                 </div>
@@ -64,7 +67,6 @@
                     </div>
                     <h:form class="uk-form-stacked-movil">
                         <div class="uk-position-absolute texto-posicion">
-                            <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                             <h3 class="uk-text-center">#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}</h3>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-large-bottom"
                                          id="introduction"

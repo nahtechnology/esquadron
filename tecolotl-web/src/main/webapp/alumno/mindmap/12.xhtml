@@ -46,10 +46,12 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/mapa-linea-secuencia.css"/>
         <div class="uk-section">
-            <div class="uk-container margen-superior">
+            <div class="uk-container margen-superior uk-position-relative">
+                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                    <span>Respondido</span>
+                </h:panelGroup>
                 <div class="uk-child-width-1-2@m uk-margin-remove uk-visible@m" uk-grid="">
                     <div class="cuadro-padre1">
-                        <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                         <h:form id="formulario-mapa-mental-d">
                             <div class="uk-width-1-1@s cuadro-hijo1">
                                 <div class="img-hijo1">

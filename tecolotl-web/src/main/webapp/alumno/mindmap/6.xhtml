@@ -58,7 +58,9 @@
         <h:outputStylesheet library="css" name="alumno/mapa-mental-historieta.css"/>
         <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left">
             <div  class="uk-container padding-contenedor fondo-6">
-                <h:outputText value="Respondido" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                    <span>Respondido</span>
+                </h:panelGroup>
                 <h:panelGroup layout="block" styleClass=" contenedor-seis uk-grid " pt:uk-grid="">
                     <h:form id="formulñario-mapa-mental">
                         <div class="uk-width-2-5@m">
