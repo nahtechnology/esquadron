@@ -8,7 +8,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <ui:include src="head-alumno.xhtml"/>
 <h:body  pt:uk-height-viewport="">
-    <ui:include src="header-alumno.xhtml"/>
+<!--    <ui:include src="header-alumno.xhtml"/>-->
+    <header id="top-head" class="uk-position-fixed">
+        <ui:insert name="hamburguesa"/>
+    </header>
     <aside id="left-col" class="uk-light uk-visible@m">
         <ui:insert name="menu"/>
     </aside>
