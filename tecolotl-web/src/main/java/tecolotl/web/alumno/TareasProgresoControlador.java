@@ -39,7 +39,7 @@ public class TareasProgresoControlador {
         logger.info(this.getTareaResuetasModeloLista().toString().concat(String.valueOf(this.getTareaResuetasModeloLista().size())));
     }
 
-    public void
+//    public void
 
     public List<TareaResuetasModelo> getTareaResuetasModeloLista() {
         return tareaResuetasModeloLista;
