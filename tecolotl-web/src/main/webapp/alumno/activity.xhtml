@@ -149,7 +149,7 @@
                             <div class="imagen-ordenar">
                                 <h:graphicImage library="img" name="mounstro/whom.svg"/>
                             </div>
-                            <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar" uk-switcher="">
+                            <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar " uk-switcher="">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica" varStatus="estatus">
                                     <li><a href="#" >#{estatus.index + 1}</a></li>
                                 </ui:repeat>
@@ -157,7 +157,9 @@
                             <ul class="uk-switcher uk-margin">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica">
                                     <li>
-                                        <h:outputText value="Resuelto" rendered="#{not empty gramatica.respuesta}"/>
+                                        <h:panelGroup layout="block" styleClass="realizado movimiento" rendered="#{not empty gramatica.respuesta}">
+                                            <span>Respondido</span>
+                                        </h:panelGroup>
                                         <h:form>
                                             <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
                                                 <h:inputHidden value="#{empty gramatica.respuesta ? gramatica.palabra : gramatica.respuesta}" pt:data-respuesta="#{empty gramatica.respuesta}"/>
@@ -165,7 +167,7 @@
                                                 <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.respuesta}"/>
                                             </h:panelGroup>
                                             <h:inputHidden value="#{tareaGramaticaControlador.respuesta}"/>
-                                            <h:commandButton value="Send" onclick="completarPalabra(this)" rendered="#{empty gramatica.respuesta}">
+                                            <h:commandButton value="Send" styleClass="boton-enviar" onclick="completarPalabra(this)" rendered="#{empty gramatica.respuesta}">
                                                 <f:ajax listener="#{tareaGramaticaControlador.enviarRespuesta(gramatica.codigo, gramatica.actividadModelo.idVideo)}"
                                                         execute="@form" onevent="function funcion(data) { remueveOrdenador(data) }"/>
                                             </h:commandButton>
