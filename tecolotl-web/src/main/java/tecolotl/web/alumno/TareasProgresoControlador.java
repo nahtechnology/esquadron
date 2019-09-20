@@ -8,10 +8,12 @@ import tecolotl.alumno.sesion.TareaSesionBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.List;
 import java.util.logging.Logger;
 
 @RequestScoped
+@Named
 public class TareasProgresoControlador {
 
     @Inject
@@ -25,17 +27,20 @@ public class TareasProgresoControlador {
 
     private List<TareaActividadModelo> tareaActividadModeloLista;
     private List<TareaResuetasModelo> tareaResuetasModeloLista;
-    private TareaResuetasModelo tareaResuetasModelo;
 
     @PostConstruct
     public void init(){
         tareaActividadModeloLista = alumnoControlador.getTareaActvidadModeloLista();
+        logger.info(tareaActividadModeloLista.toString());
     }
 
-    public void agregaTarea(TareaResuetasModelo tareaResuetasModelo){
-        this.tareaResuetasModelo = tareaResuetasModelo;
+    public void llenaTareas(Integer idTarea){
+        this.setTareaResuetasModeloLista(tareaSesionBean.tareasResuelta(idTarea));
+        logger.info(this.getTareaResuetasModeloLista().toString().concat(String.valueOf(this.getTareaResuetasModeloLista().size())));
     }
-    
+
+    public void
+
     public List<TareaResuetasModelo> getTareaResuetasModeloLista() {
         return tareaResuetasModeloLista;
     }
@@ -44,11 +49,11 @@ public class TareasProgresoControlador {
         this.tareaResuetasModeloLista = tareaResuetasModeloLista;
     }
 
-    public TareaResuetasModelo getTareaResuetasModelo() {
-        return tareaResuetasModelo;
+    public List<TareaActividadModelo> getTareaActividadModeloLista() {
+        return tareaActividadModeloLista;
     }
 
-    public void setTareaResuetasModelo(TareaResuetasModelo tareaResuetasModelo) {
-        this.tareaResuetasModelo = tareaResuetasModelo;
+    public void setTareaActividadModeloLista(List<TareaActividadModelo> tareaActividadModeloLista) {
+        this.tareaActividadModeloLista = tareaActividadModeloLista;
     }
 }
