@@ -477,3 +477,33 @@ iframe {
     font-weight: bold;
     font-size: 16px;
 }
+.uk-modal-dialog{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    text-align: center;
+    color:black;
+    font-weight: bold;
+}
+
+.uk-modal-dialog button{
+    color: white;
+    width: 110px;
+    height: 35px;
+    margin-top: 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0;
+    line-height: 0;
+}
+.uk-modal-dialog .uk-button-default{
+    background-color: #F1C40F;
+}
+
+.uk-modal-footer{
+    border-top: 6px solid #16A085 ;
+}
+
+.uk-modal-dialog .uk-button-primary{
+    background-color: #D35400;
+}
+
