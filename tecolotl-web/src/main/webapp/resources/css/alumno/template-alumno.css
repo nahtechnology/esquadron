@@ -458,13 +458,16 @@ iframe {
     background: #B31F0C;
     color: white;
     width: 110px;
-    height: 35px;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     margin-top: 10px;
     border-radius: 12px;
     border: 2px solid white;
     font-weight: bold;
     font-size: 16px;
+}
+
+.uk-subnav-pill > .uk-active > a{
+    background: #B31F0C;
 }
 
 .boton-enviar:disabled{
