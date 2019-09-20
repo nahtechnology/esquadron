@@ -3,6 +3,7 @@ package tecolotl.web.alumno;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.sesion.GramaticaSesionBean;
+import tecolotl.alumno.sesion.TareaSesionBean;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -20,6 +21,9 @@ public class TareaGramaticaControlador {
     private AlumnoControlador alumnoControlador;
 
     @Inject
+    private TareaSesionBean tareaSesionBean;
+
+    @Inject
     private Logger logger;
 
     private String respuesta;
@@ -30,6 +34,10 @@ public class TareaGramaticaControlador {
         gramaticaModelo.setActividadModelo(new ActividadModelo(idActividad));
         gramaticaModelo.setRespuesta(respuesta.trim());
         gramaticaSesionBean.respuesta(gramaticaModelo, alumnoControlador.getTareaActividadModelo().getId());
+    }
+
+    public void incrementaReporduccion(short reproducciones, Integer idTarea) {
+        tareaSesionBean.reproducciones(reproducciones,idTarea);
     }
 
     public String getRespuesta() {

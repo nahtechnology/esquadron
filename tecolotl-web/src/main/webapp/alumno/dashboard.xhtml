@@ -51,7 +51,6 @@
                         </ul>
                     </div>
                 </div>
-
             </div>
             <div class="left-nav-wrap  uk-visible@xl ">
                 <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
@@ -91,17 +90,6 @@
                                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-capitalize">#{alumno['dashboard.nivel']}:</span> #{alumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p><p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold">Academic Year: </span><h:outputText value="#{detalleAlumnoControlador.detalleAlumnoModelo.inicio}"><f:convertDateTime type="date" pattern="yyyy/MM/dd"/></h:outputText> </p>
                                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile</span></p>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="uk-card-body padding-card-body">
-                                <h3 class="uk-text-uppercase uk-text-bold">#{alumno['dashboard.homework']}</h3>
-                                <div  uk-grid="" class="">
-                                    <div class="uk-width-1-1@m uk-margin-remove-top"><div class="uk-text-center">#{alumno['dashboard.total.activities']}</div></div>
-                                    <div class="uk-width-auto uk-margin-remove-top " style="font-weight: bold; color:black;" >0%</div>
-                                    <div class="uk-width-expand uk-padding-remove-left uk-margin-remove-top">
-                                        <progress class="uk-progress " value="#{detalleAlumnoControlador.detalleAlumnoModelo.totalTareas}" max="5"/>
-                                    </div>
-                                    <div class="uk-width-auto uk-padding-remove-left uk-margin-remove-top" style="font-weight: bold;color:black;">100%</div>
                                 </div>
                             </div>
                             <div class="uk-card-footer">

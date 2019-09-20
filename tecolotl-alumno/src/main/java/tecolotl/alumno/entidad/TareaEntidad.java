@@ -20,6 +20,10 @@ import java.util.List;
                 name = "TareaEntidad.buscaActividad",
                 query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
                         "t.alumnoEntidad.id = :IdAlumno GROUP BY t"
+        ),
+        @NamedQuery(
+                name = "TareaEntidad.aumentaReprodecciones",
+                query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"
         )
 })
 public class TareaEntidad {

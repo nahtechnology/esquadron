@@ -25,8 +25,8 @@
                     <div class="uk-offcanvas-bar  ">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active" ><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></li>
+                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></li>
                             <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
                         </ul>
 
@@ -108,6 +108,11 @@
                                     </h:form>
                                 </div>
                                 <div class="uk-card-footer">
+                                    <h:form>
+                                        <h:commandLink action="#{tareaGramaticaControlador.incrementaReporduccion(1, tareaActvidadModelo.id)}" style="display: none">
+                                            <f:ajax render="@none"/>
+                                        </h:commandLink>
+                                    </h:form>
                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
                                         <div class="uk-width-expand ">
 
@@ -178,8 +183,7 @@
                             value.style.visibility = 'visible';
                         }
                     });
-                    //Parsear el valor por un Integer y hacer la suma correspontiente y almacenarlo.
-                    //Agregue aquí el codigo para el numero de reproduccionesdel alumno.
+                    event.target.a.parentElement.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
                     done = true;
                 }else {
                     done = false;

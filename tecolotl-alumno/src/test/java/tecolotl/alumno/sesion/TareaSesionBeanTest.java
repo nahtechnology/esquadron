@@ -120,4 +120,16 @@ public class TareaSesionBeanTest {
         });
     }
 
+    @Test
+    public void incrementaReproducciones() {
+        int modificaciones = tareaSesionBean.reproducciones((short) 1, 4);
+        Assert.assertNotEquals(modificaciones, 0);
+    }
+
+    @Test
+    public void decrementaReproducciones() {
+        int modificaciones = tareaSesionBean.reproducciones((short) -1, 4);
+        Assert.assertNotEquals(modificaciones, 0);
+    }
+
 }
