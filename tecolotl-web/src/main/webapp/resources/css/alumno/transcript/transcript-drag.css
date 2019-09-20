@@ -21,8 +21,8 @@
     color: white;
 }
 .respuesta-drag{
-    background-color: goldenrod;
-    color: darkgreen;
+    background-color: transparent;
+    color: black;
     font-style: italic;
     font-weight: bolder;
     border-radius: 4px;
@@ -37,8 +37,9 @@
 }
 .contenedor-respuesta > .respuesta-drag{
     margin-top: 10px;
-    box-shadow: 1.5px 1.5px 8px white;
-    color: black;
+        /*box-shadow: 1.5px 1.5px 8px white;*/
+    color: white;
+    background-color: #E74C3C ;
 }
 
 .respuesta-transcript{
@@ -62,6 +63,7 @@
     border-radius: 0 5px 5px 0;
     padding-right: 40px;
     padding-top: 10px;
+
 }
 
 .uk-sortable-empty{
