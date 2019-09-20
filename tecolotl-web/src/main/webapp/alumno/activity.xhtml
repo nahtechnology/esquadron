@@ -179,17 +179,19 @@
                         <li class="answer">
                             <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
                                 <h:panelGroup layout="block" >
-                                    <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta">
+                                    <h:panelGroup layout="block" styleClass=" contenedor-respuesta" >
                                         <h:graphicImage library="img" styleClass="marciano" name="mounstro/verde.svg" />
-                                        <div class="respuesta-drag">uno</div>
-                                        <div class="respuesta-drag">dos</div>
-                                        <div class="respuesta-drag">tres</div>
-                                        <div class="respuesta-drag">cuatro</div>
-                                        <div class="respuesta-drag">cinco</div>
-                                        <div class="respuesta-drag">seis</div>
-                                        <div class="respuesta-drag">siete</div>
-                                        <div class="respuesta-drag">ocho</div>
-                                        <div class="respuesta-drag">nueve</div>
+                                        <h:panelGroup layout="block" styleClass="uk-sortable respuestas-matching" pt:uk-sortable="group: respuesta">
+                                            <div class="respuesta-drag">uno</div>
+                                            <div class="respuesta-drag">dos</div>
+                                            <div class="respuesta-drag">tres</div>
+                                            <div class="respuesta-drag">cuatro</div>
+                                            <div class="respuesta-drag">cinco</div>
+                                            <div class="respuesta-drag">seis</div>
+                                            <div class="respuesta-drag">siete</div>
+                                            <div class="respuesta-drag">ocho</div>
+                                            <div class="respuesta-drag">nueve</div>
+                                        </h:panelGroup>
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar ">

@@ -16,7 +16,6 @@
     justify-content: center;
     border-radius: 5px 0 0 5px;
     overflow: hidden;
-
 }
 .respuesta-drag{
     background-color: goldenrod;
@@ -32,7 +31,7 @@
     margin-top: 0;
 
 }
-.contenedor-respuesta > .respuesta-drag{
+.contenedor-respuesta > .respuestas-matching > .respuesta-drag{
     margin-top: 10px;
     box-shadow: 1.5px 1.5px 8px white;
     color: black;

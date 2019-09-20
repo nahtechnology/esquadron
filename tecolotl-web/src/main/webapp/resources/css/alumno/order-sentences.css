@@ -1,0 +1,18 @@
+.oraciones{
+    width: 80%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid #00A36A;
+    background-color: white;
+    margin-top: 10px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color:black;
+}
+.contenedor-oraciones{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-items: center;
+    height: 90vh;
+    background: url("#{resource['img/mounstro/naranja.svg']}") no-repeat fixed center center/ 90% 90%;
+}

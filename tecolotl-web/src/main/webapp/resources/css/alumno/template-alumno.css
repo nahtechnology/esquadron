@@ -298,6 +298,8 @@ iframe {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+    border:6px solid white;
+    padding: 20px 0;
 }
 
 .paddind-barra{

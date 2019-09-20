@@ -135,6 +135,9 @@ uk-subnav-alumno2 li.uk-active:nth-child(6) a {
     border: 5px solid #AEB6BF;
     display: inline-block;
 }
+.boton:hover{
+    cursor: pointer;
+}
 
 .tam-form{
     width: 180px;

@@ -71,3 +71,7 @@
 .vista{
     display: table;
 }
+
+.filtro-actividades ul{
+    list-style: none;
+}
