@@ -32,6 +32,16 @@ public class GlosarioSesionBean implements Serializable {
     private EntityManager entityManager;
 
     /**
+     *
+     * @param palabra
+     * @param clave
+     * @return
+     */
+    public GlosarioModelo busca(@NotNull String palabra, @NotNull Short clave) {
+        return new GlosarioModelo(entityManager.find(GlosarioEntidad.class, llavePrimaria(palabra, clave)));
+    }
+
+    /**
      * Busca todos los glosarios relacionados con una actividad.
      * @param idActividad Identidicador de la actividad.
      * @return Colección de {@link GlosarioModelo}
@@ -138,4 +148,7 @@ public class GlosarioSesionBean implements Serializable {
         return glosarioActividadEntidadPK;
     }
 
+    protected GlosarioEntidadPK llavePrimaria(String palabra, Short clave) {
+        return new GlosarioEntidadPK(palabra, new ClaseGlosarioEntidad(clave));
+    }
 }

@@ -62,4 +62,5 @@ public class GlosarioEntidadPK implements Serializable {
                 ", claseGlosarioEntidad=" + claseGlosarioEntidad +
                 '}';
     }
+
 }

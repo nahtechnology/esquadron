@@ -77,6 +77,16 @@ public class GlosarioSesionBeanTest {
     private GlosarioSesionBean glosarioSesionBean;
 
     @Test
+    public void buscaId() {
+        GlosarioModelo glosarioModelo = glosarioSesionBean.busca("bandit", (short)0);
+        assertNotNull(glosarioModelo);
+        glosarioModelo = glosarioSesionBean.busca("bandit", (short)0);
+        assertNotNull(glosarioModelo);
+        glosarioModelo = glosarioSesionBean.busca("bandit", (short)0);
+        assertNotNull(glosarioModelo);
+    }
+
+    @Test
     public void buscaActivdad() {
         List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca("DNHmujbuC74");
         assertNotNull(glosarioModeloLista);
