@@ -178,14 +178,14 @@
                         </li>
                         <li class="answer">
                             <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">
-                                <div>
-                                <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
+                                <div class="">
+                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal marco-video"></div>
                                 </div>
 
                                 <h:panelGroup layout="block" styleClass="" >
                                     <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                 </h:panelGroup>
-                                <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar ">
+                                <div class="trancript-contenedor margen-completar arrastrar scroll-drag uk-text-justify remplazar ">
                                     <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
                                 </div>
                             </h:panelGroup>

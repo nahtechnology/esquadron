@@ -22,7 +22,7 @@
 }
 .respuesta-drag{
     background-color: goldenrod;
-    color: red;
+    color: darkgreen;
     font-style: italic;
     font-weight: bolder;
     border-radius: 4px;
@@ -62,7 +62,6 @@
     border-radius: 0 5px 5px 0;
     padding-right: 40px;
     padding-top: 10px;
-
 }
 
 .uk-sortable-empty{
@@ -101,4 +100,18 @@
 }
 .ocultar{
     display: none;
+}
+
+.marco-video{
+    border-width: 5px;
+    border-style: solid;
+    border-color: purple;
+    border-radius: 10px;
+}
+
+.margen-completar{
+    border-width: 5px;
+    border-style: solid;
+    border-color: purple;
+    border-radius: 10px;
 }
