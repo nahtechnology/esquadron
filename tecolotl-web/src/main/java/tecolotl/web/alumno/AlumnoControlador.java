@@ -3,6 +3,7 @@ package tecolotl.web.alumno;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.TareaModelo;
+import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.alumno.sesion.GlosarioSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;

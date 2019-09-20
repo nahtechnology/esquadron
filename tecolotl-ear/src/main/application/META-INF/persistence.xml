@@ -6,9 +6,16 @@
         <jar-file>../tecolotl-alumno.jar</jar-file>
 		<jar-file>../tecolotl-administracion.jar</jar-file>
         <jar-file>../tecolotl-profesor.jar</jar-file>
+		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
         <properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL94Dialect"/>
-			<property name="hibernate.show_sql" value="false"/>
+			<property name="hibernate.show_sql" value="true"/>
+			<property
+					name="hibernate.cache.use_second_level_cache"
+					value="true"/>
+			<property
+					name="hibernate.cache.use_query_cache"
+					value="true"/>
         </properties>
 	</persistence-unit>
 </persistence>

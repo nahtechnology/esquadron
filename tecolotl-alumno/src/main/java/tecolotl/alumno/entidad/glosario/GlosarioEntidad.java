@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 @Entity
+@Cacheable
 @Table(name = "glosario", schema = "alumno")
 @NamedQueries(value = {
         @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg"),
@@ -43,7 +44,7 @@ public class GlosarioEntidad {
         this.glosarioEntidadPK = glosarioEntidadPK;
     }
 
-    @Basic(fetch = FetchType.LAZY)
+    @Basic
     @Column(name = "imagen")
     @NotNull
     public byte[] getImagen() {
