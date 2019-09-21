@@ -463,6 +463,11 @@ iframe {
     transform: rotate(15deg);
 }
 
+.movimiento1{
+    left: 70%;
+    transform: rotate(15deg);
+}
+
 .boton-enviar{
     background: #CB4335;
     color: white;
