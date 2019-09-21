@@ -27,11 +27,11 @@
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
                             <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: Indefinido; pos: right"><h:link outcome="more-activity"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['activity']}; pos: right" ><h:link outcome="activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['glossary']}; pos: right"  class="uk-active"><h:link outcome="glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: Indefinido; pos: right" ><h:link outcome="more-activity"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
                         </ul>
 
                     </div>
@@ -42,15 +42,14 @@
     </ui:define>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img" rendered="#{true}"/>
-            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="" class="uk-border-circle profile-img" rendered="#{false}"/>
-            <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo}</h6>
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light">#{alumnoControlador.alumnoModelo.apodo} </h6>
+
             <div class="uk-position-relative uk-text-center uk-display-block">
-                <!--Modificar los datos para mostrar en el Alumno-->
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
                 <!-- user dropdown -->
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
-                    <ul >
+                    <ul>
                         <li><a href="#" class="uk-text-capitalize">#{alumno['profile']}</a></li>
                         <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
                     </ul>
@@ -61,21 +60,21 @@
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"  class="uk-active"><h:link outcome="glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
                 <li uk-tooltip="title: Indefinido; pos: right"><h:link outcome="more-activity"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:link outcome="more-activity"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="50" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"  class="uk-active"><h:link outcome="glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="50" alt="" /></h:link></li>
+                <li uk-tooltip="title: Indefinido; pos: right"><h:link outcome="more-activity"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="50" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" ><h:link outcome="select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="50" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="50" alt="" /></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -89,7 +88,6 @@
                 <ui:repeat value="#{glosarioControlador.glosarioModeloLista}" var="glosario">
                     <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid="">
                         <div class="uk-card-media-left uk-cover-container">
-<!--                            <h:graphicImage value="#{glosario.imagen}"  alt="" pt:uk-cover=""/>-->
                             <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(glosario.palabra).concat('&amp;clave=').concat(glosario.claseGlosarioModelo.clave))}" uk-cover="" alt="imagen"/>
                             <canvas  height="350"/>
                         </div>

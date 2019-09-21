@@ -19,10 +19,13 @@ public class GlosarioControlador {
     @Inject
     private GlosarioSesionBean glosarioSesionBean;
 
+    @Inject
+    private AlumnoControlador alumnoControlador;
+
     @PostConstruct
     public void init(){
-        String idAvtividad = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idActividad");
-        glosarioModeloLista = glosarioSesionBean.busca(idAvtividad);
+//        String idAvtividad = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idActividad");
+//        glosarioModeloLista = glosarioSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
     }
 
     public List<GlosarioModelo> getGlosarioModeloLista() {
