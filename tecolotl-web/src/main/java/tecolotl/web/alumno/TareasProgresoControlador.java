@@ -36,29 +36,7 @@ public class TareasProgresoControlador {
 
     public void llenaTareas(Integer idTarea){
         this.setTareaResuetasModeloLista(tareaSesionBean.tareasResuelta(idTarea));
-        logger.info(this.getTareaResuetasModeloLista().toString().concat(String.valueOf(this.getTareaResuetasModeloLista().size())));
-    }
-
-    public Integer progresoTareas(String nombreTarea){
-        Integer valor = 0;
-        for(TareaResuetasModelo tareaResuetasModelo : tareaResuetasModeloLista){
-            if(tareaResuetasModelo.getTarea().equals(nombreTarea)){
-                valor = tareaResuetasModelo.getRespuesta();
-                break;
-            }
-        }
-        return valor;
-    }
-
-    public Integer totalTareas(String nombreTarea){
-        Integer total = 0;
-        for (TareaResuetasModelo tareaResuetasModelo : tareaResuetasModeloLista){
-            if(tareaResuetasModelo.getTarea().equals(nombreTarea)){
-                total = tareaResuetasModelo.getTotal();
-                break;
-            }
-        }
-        return total;
+        logger.info(this.getTareaResuetasModeloLista().toString());
     }
 
     public List<TareaResuetasModelo> getTareaResuetasModeloLista() {

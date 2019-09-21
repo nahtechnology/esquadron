@@ -138,19 +138,19 @@
                                     <div>
                                         <div class="uk-flex uk-flex-center uk-grid uk-animation-toggle" tabindex="0"  >
                                             <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/who.svg" alt="moustrou naranja" pt:uk-tooltip="title: #{alumno['grammar']}; pos: right"/>
-                                            <div class="uk-width-1-1@m paddind-barra " ><progress class="uk-progress color1" value="#{tareasProgresoControlador.progresoTareas(alumno['grammar'])}" max="#{tareasProgresoControlador.totalTareas(alumno['grammar'])}"/></div>
+                                            <div class="uk-width-1-1@m paddind-barra " ><progress class="uk-progress color1" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/></div>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="uk-flex uk-flex-center uk-grid uk-animation-toggle" tabindex="0" >
                                             <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['listening']}; pos: right "  />
-                                            <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color2" value="#{tareasProgresoControlador.progresoTareas(alumno['listening'])}" max="#{tareasProgresoControlador.totalTareas(alumno['listening'])}"/></div>
+                                            <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color2" value="#{tareasProgresoControlador.tareaResuetasModeloLista[1].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total}"/></div>
                                         </div>
                                     </div>
                                     <div>
                                         <div class="uk-flex uk-flex-center  uk-grid uk-animation-toggle" tabindex="0">
                                             <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['reading']}; pos: right "  />
-                                            <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color3" value="#{tareasProgresoControlador.progresoTareas(alumno['reading'])}" max="#{tareasProgresoControlador.totalTareas(alumno['reading'])}"/></div>
+                                            <div class="uk-width-1-1@m paddind-barra "><progress class="uk-progress color3" value="#{tareasProgresoControlador.tareaResuetasModeloLista[2].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total}"/></div>
                                         </div>
                                     </div>
                                 </h:panelGroup>
@@ -158,19 +158,19 @@
                                     <div class="fondo-comic" style="border: 6px solid white; padding: 20px 0;">
                                         <div class="uk-flex uk-flex-center uk-grid uk-animation-toggle" tabindex="0">
                                             <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['writing']}; pos: right "/>
-                                            <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color4" value="#{tareasProgresoControlador.progresoTareas(alumno['writing'])}" max="#{tareasProgresoControlador.totalTareas(alumno['writing'])}"/></div>
+                                            <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color4" value="#{tareasProgresoControlador.tareaResuetasModeloLista[3].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total}"/></div>
                                         </div>
                                     </div>
                                     <div class="fondo-comic4 " style="border: 6px solid white; padding: 20px 0;">
                                         <div class="uk-flex uk-flex-center  uk-grid uk-animation-toggle" tabindex="0" >
                                             <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['mental.map']}; pos: right "/>
-                                            <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color5" value="#{tareasProgresoControlador.progresoTareas(alumno['writing'])}" max="#{tareasProgresoControlador.totalTareas(alumno['writing'])}"/></div>
+                                            <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[4].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total}"/></div>
                                         </div>
                                     </div>
                                     <div class="fondo-comic6 " style="border: 6px solid white; padding: 20px 0;">
                                         <div class="uk-flex uk-flex-center  uk-grid uk-animation-toggle" tabindex="0" >
                                             <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/naranja.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['mapa-men']}; pos: right "/>
-                                            <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color5" value="#{tareasProgresoControlador.progresoTareas(alumno['mapa-men'])}" max="#{tareasProgresoControlador.totalTareas(alumno['mapa-men'])}"/></div>
+                                            <div class="uk-width-1-1@m paddind-barra"><progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[5].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total}"/></div>
                                         </div>
                                     </div>
                                 </h:panelGroup>
