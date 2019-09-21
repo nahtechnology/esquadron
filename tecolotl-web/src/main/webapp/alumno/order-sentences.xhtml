@@ -82,27 +82,89 @@
         <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section margen-superior">
-                <h1 class="lescuadron uk-text-center uk-light">Order Sentences</h1>
-            <h:panelGroup layout="block" styleClass="uk-container padding-contenedor contenedor-oraciones uk-sortable "  pt:uk-sortable="">
-<!--                <h:panelGroup layout="block" styleClass="">-->
-                    <div class="oraciones">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, obcaecati!
-                    </div>
-                    <div class="oraciones">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, eius expedita illo, incidunt inventore ipsa libero natus neque quo repellendus soluta sunt tempore vel, vitae.
-                    </div>
-                    <div class="oraciones">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime molestias perferendis soluta tempore.
-                    </div>
-                    <div class="oraciones">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    </div>
-                    <div class="oraciones">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur?
-                    </div>
-<!--                </h:panelGroup>-->
-            </h:panelGroup>
+            <div class="uk-container padding-contenedor">
+                <div uk-filter="target: .js-filter" >
 
+                    <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
+                        <li uk-filter-control=".ordenar" uk-tooltip="Order Words" class="uk-animation-toggle uk-active" tabindex="0"><h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".relacion-imagen" uk-tooltip="palabras" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+
+                    </ul>
+
+                    <ul class="js-filter" style="list-style: none" >
+                        <li class="ordenar">
+                            <h1 class="lescuadron uk-text-center letra-titulo">Order Sentences</h1>
+                            <h:panelGroup layout="block" styleClass="uk-container padding-contenedor contenedor-oraciones uk-sortable "  pt:uk-sortable="">
+                                <div class="oraciones">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus, obcaecati!
+                                </div>
+                                <div class="oraciones">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur, eius expedita illo, incidunt inventore ipsa libero natus neque quo repellendus soluta sunt tempore vel, vitae.
+                                </div>
+                                <div class="oraciones">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime molestias perferendis soluta tempore.
+                                </div>
+                                <div class="oraciones">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                </div>
+                                <div class="oraciones">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur?
+                                </div>
+                            </h:panelGroup>
+                        </li>
+                        <li class="relacion-imagen" >
+                            <h1 class="lescuadron uk-text-center letra-titulo">Matching words</h1>
+                            <div class="uk-grid uk-child-width-1-2@m" uk-grid="">
+                                <div class="contenedor-imagen scroll-drag">
+                                    <table class="tabla-imagenes">
+                                        <thead>
+                                        <tr>
+                                            <th class="" style="width: 50%">Imgen</th>
+                                            <th style="width: 50%">Respuesta</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <h:graphicImage library="img" name="/alumno/glosario/dare.jpg"/>
+                                            </td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta-imagen"/>
+                                        </tr>
+                                        <tr>
+                                            <td><h:graphicImage library="img" name="/alumno/glosario/dare.jpg"/></td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta-imagen"/>
+                                        </tr>
+                                        <tr>
+                                            <td><h:graphicImage library="img" name="/alumno/glosario/dare.jpg"/></td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta-imagen"/>
+                                        </tr>
+                                        <tr>
+                                            <td><h:graphicImage library="img" name="/alumno/glosario/dare.jpg"/></td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta-imagen"/>
+                                        </tr>
+                                        <tr>
+                                            <td><h:graphicImage library="img" name="/alumno/glosario/dare.jpg"/></td>
+                                            <td class="uk-sortable" uk-sortable="group: respuesta-imagen"/>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="respuesta-imagen contenedor-imagen palabras " uk-sortable="group: respuesta-imagen">
+                                    <div class="palabra-imagen">palabra1</div>
+                                    <div class="palabra-imagen" >palabra2</div>
+                                    <div class="palabra-imagen" >palabra3</div>
+                                    <div class="palabra-imagen" >palabra4</div>
+                                    <div class="palabra-imagen" >palabra5</div>
+                                </div>
+                            </div>
+
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
         </div>
     </ui:define>
 </ui:composition>

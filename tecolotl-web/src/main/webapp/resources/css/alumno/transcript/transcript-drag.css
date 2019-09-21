@@ -70,26 +70,7 @@
     min-height: 20px;
 }
 
-.scroll-drag::-webkit-scrollbar {
-    width: 10px;
-}
 
-/* Track */
-.scroll-drag::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 8px black;
-    border-radius: 10px;
-}
-
-/* Handle */
-.scroll-drag::-webkit-scrollbar-thumb {
-    background: rgb(52, 73, 94);
-    border-radius: 10px;
-}
-
-/* Handle on hover */
-.scroll-drag::-webkit-scrollbar-thumb:hover {
-    background: rgba(52, 73, 94, 0.5);
-}
 
 .marciano{
     position:absolute;

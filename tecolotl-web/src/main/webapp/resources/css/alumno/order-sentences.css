@@ -20,5 +20,50 @@
     align-items: center;
     justify-content: center;
 
+}
 
+.contenedor-imagen{
+    height: 600px;
+    overflow: auto;
+}
+
+.tabla-imagenes th{
+    text-align: center;
+    text-transform: capitalize;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: white;
+}
+.palabra-imagen{
+    min-width: 150px;
+    max-width: 150px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px white;
+    background: white;
+    padding: 3px 8px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 20px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+.palabras{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url("#{resource['img/mounstro/morado.svg']}") no-repeat center center/90% 90%;
+}
+.palabras .palabra-imagen{
+    margin-top: 10px;
+}
+.tabla-imagenes tbody > tr > td:nth-child(2){
+    background-color: rgba(255, 255, 255 ,0.3);
+
+}
+
+.tabla-imagenes tbody > tr > td:nth-child(2) > .palabra-imagen{
+    margin: 0 auto;
 }
