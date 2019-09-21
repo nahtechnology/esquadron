@@ -76,7 +76,7 @@ public class TareaSesionBean implements Serializable {
      */
     public List<TareaActividadModelo> buscaActividad(@NotNull Integer idAlumno) {
         logger.fine(idAlumno.toString());
-        Query query = entityManager.createNativeQuery("select t.id,t.id_alumno,t.asignacion,t.reproducciones, tga.id_actividad " +
+        Query query = entityManager.createNativeQuery("select t.id,t.id_alumno,t.asignacion,t.reproducciones, t.respuesta, t.resolviendo_transcript, tga.id_actividad " +
             "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea where t.id_alumno=? group by t.id, tga.id_actividad");
         query.setParameter(1, idAlumno);
         List<TareaActividadModelo> tareaActividadModeloLista = new ArrayList<>();
@@ -85,7 +85,9 @@ public class TareaSesionBean implements Serializable {
             tareaActividadModelo.setId((Integer) objetos[0]);
             tareaActividadModelo.setAsignacion((Date)objetos[2]);
             tareaActividadModelo.setReproducciones((Short)objetos[3]);
-            tareaActividadModelo.setIdActividad((String)objetos[4]);
+            tareaActividadModelo.setRespuesta((String)objetos[4]);
+            tareaActividadModelo.setResolviendoTranscript((Boolean)objetos[5]);
+            tareaActividadModelo.setIdActividad((String)objetos[6]);
             tareaActividadModeloLista.add(tareaActividadModelo);
         }
         return tareaActividadModeloLista;
@@ -137,6 +139,18 @@ public class TareaSesionBean implements Serializable {
     public Integer respuesta(@NotNull @Size(min = 100) String respuesta, @NotNull Integer idTarea) {
         Query query = entityManager.createNamedQuery("TareaEntidad.respuesta");
         query.setParameter("idTarea", idTarea).setParameter("respuesta", respuesta);
+        return query.executeUpdate();
+    }
+
+    /**
+     * Cambia el estatus del la tarea
+     * @param idTarea Identificador de la tarea
+     * @param activo estus de la tarea, true para saber si aun sigue respondiendo, false en caso contrario.
+     * @return Número de elementos modificados.
+     */
+    public Integer estatus(@NotNull Integer idTarea, boolean activo) {
+        Query query = entityManager.createNamedQuery("TareaEntidad.estatusRespondiendo");
+        query.setParameter("idTarea", idTarea).setParameter("estatus", activo);
         return query.executeUpdate();
     }
 

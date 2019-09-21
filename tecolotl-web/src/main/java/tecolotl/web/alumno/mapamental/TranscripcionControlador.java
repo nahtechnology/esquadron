@@ -22,9 +22,16 @@ public class TranscripcionControlador {
     private Logger logger;
 
     private String transcripcion;
+    private String activo;
 
     public  void enviaRespuestas() {
-        tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId());
+        //tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId());
+        logger.info(transcripcion);
+    }
+
+    public void cambiaEstatus() {
+        tareaSesionBean.estatus(alumnoControlador.getTareaActividadModelo().getId(), Boolean.parseBoolean(activo));
+        alumnoControlador.getTareaActividadModelo().setResolviendoTranscript(Boolean.parseBoolean(activo));
     }
 
     public String getTranscripcion() {
@@ -33,5 +40,13 @@ public class TranscripcionControlador {
 
     public void setTranscripcion(String transcripcion) {
         this.transcripcion = transcripcion;
+    }
+
+    public String getActivo() {
+        return activo;
+    }
+
+    public void setActivo(String activo) {
+        this.activo = activo;
     }
 }

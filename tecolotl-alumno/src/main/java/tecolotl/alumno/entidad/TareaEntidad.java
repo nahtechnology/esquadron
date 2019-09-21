@@ -27,7 +27,11 @@ import java.util.List;
         ),
         @NamedQuery(
                 name = "TareaEntidad.respuesta",
-                query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta WHERE t.id = :idTarea"
+                query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta, t.resolviendoTranscript = FALSE WHERE t.id = :idTarea"
+        ),
+        @NamedQuery(
+                name = "TareaEntidad.estatusRespondiendo",
+                query = "UPDATE TareaEntidad t SET t.resolviendoTranscript = :estatus WHERE t.id = :idTarea"
         )
 })
 public class TareaEntidad {
