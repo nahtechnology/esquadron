@@ -16,6 +16,15 @@ public class OracionesEntidadPK implements Serializable {
     private String codigo;
     private Short cardinalidad;
 
+    public OracionesEntidadPK() {
+    }
+
+    public OracionesEntidadPK(ActividadEntidad actividadEntidad, String codigo, Short cardinalidad){
+        this.actividadEntidad = actividadEntidad;
+        this.codigo = codigo;
+        this.cardinalidad = cardinalidad;
+    }
+
     @JoinColumn(name = "id_actividad")
     @ManyToOne(fetch = FetchType.LAZY)
     public ActividadEntidad getActividadEntidad() {

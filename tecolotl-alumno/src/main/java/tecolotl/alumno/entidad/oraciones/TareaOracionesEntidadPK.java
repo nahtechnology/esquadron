@@ -12,6 +12,15 @@ public class TareaOracionesEntidadPK  implements Serializable {
     private OracionesEntidad oracionesEntidad;
     private TareaEntidad tareaEntidad;
 
+    public TareaOracionesEntidadPK() {
+    }
+
+    public TareaOracionesEntidadPK(OracionesEntidad oracionesEntidad, TareaEntidad tareaEntidad) {
+        this.oracionesEntidad = oracionesEntidad;
+        this.tareaEntidad = tareaEntidad;
+    }
+
+
     @JoinColumns(
             value = {
                     @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
