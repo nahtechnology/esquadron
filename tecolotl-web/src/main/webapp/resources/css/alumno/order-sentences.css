@@ -1,3 +1,4 @@
+
 .oraciones{
     width: 80%;
     padding: 9px 5px;
@@ -66,4 +67,52 @@
 
 .tabla-imagenes tbody > tr > td:nth-child(2) > .palabra-imagen{
     margin: 0 auto;
+}
+
+.rombo{
+    --rombo:290px;
+    width: var(--rombo);
+    height: var(--rombo);
+    transform: rotate(45deg);
+    position: absolute;
+    top: calc(50% - (var(--rombo)/2));
+    left: calc(50% - (var(--rombo)/2));
+    z-index: 2;
+    border: 6px solid white;
+
+}
+.rombo-palabra{
+    position: relative;
+    display: inline-block;
+    width: 280px;
+    color: white;
+    font-weight: bold;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 17px;
+    z-index: 4;
+    text-align: center;
+
+}
+
+.talking-contenedor{
+    height: 420px;
+    /*background-color: #650CE8;*/
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.color-uno{
+    background-color: #00a49d;
+}
+.color-dos{
+    background-color: #E8380C;
+}
+.color-tres{
+    background-color: #F1C40F;
+}
+.color-cuatro{
+    background-color: #CA445D;
 }
