@@ -504,5 +504,7 @@ padding-top: 38px;
   height: 200px;
 }
 .nombre-usuario{
-  font-size: 13px;
+  font-size: 13px !important;
+  font-weight: bold;
+  text-transform: capitalize;
 }
