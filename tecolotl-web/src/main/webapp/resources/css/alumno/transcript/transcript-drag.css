@@ -97,4 +97,6 @@
     border-style: solid;
     border-color: purple;
     border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }

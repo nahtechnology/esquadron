@@ -441,10 +441,12 @@ iframe {
 .realizado{
     width: 300px;
     height: 250px;
-    background: url("#{resource['img/alumno/pop-art/popart-rojo.svg']}") no-repeat center/100% 100%;
+    background: url("#{resource['img/alumno/pop-art/mensaje2.svg']}") no-repeat center/100% 100%;
     color: white;
     font-weight: bold;
     font-size: 25px;
+    padding-bottom: 15px;
+    padding-left: 15px;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     position: absolute;
     top: calc(50% - 125px);
@@ -462,7 +464,7 @@ iframe {
 }
 
 .boton-enviar{
-    background: #B31F0C;
+    background: #CB4335;
     color: white;
     width: 110px;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
@@ -474,7 +476,7 @@ iframe {
 }
 
 .uk-subnav-pill > .uk-active > a{
-    background: #B31F0C;
+    background: #CB4335;
 }
 
 .boton-enviar:disabled{
@@ -517,6 +519,18 @@ iframe {
     background-color: #D35400;
 }
 
+.mensaje1{
+    width: 150px;
+    height: 100px;
+    background: url("#{resource['img/alumno/pop-art/mensaje10.svg']}") no-repeat center/100% 100%;
+    background-clip: padding-box;
+    padding: 20px 100px 0px 110px;
+    font-size: 15px;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
 .scroll-drag::-webkit-scrollbar {
     width: 10px;
 }
@@ -536,4 +550,8 @@ iframe {
 /* Handle on hover */
 .scroll-drag::-webkit-scrollbar-thumb:hover {
     background: rgba(52, 73, 94, 0.5);
+}
+
+.mensaje1 > span{
+    display: inline-block;
 }
