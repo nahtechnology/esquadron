@@ -128,6 +128,16 @@ public class TareaSesionBean implements Serializable {
         return entityManager.createQuery(tareaEntidadCriteriaDelete).executeUpdate();
     }
 
-
+    /**
+     * Establece las respuesta de la transcripcion.
+     * @param respuesta Respuesta del usuario.
+     * @param idTarea Identificador de la tarea.
+     * @return Número de elementos modificados.
+     */
+    public Integer respuesta(@NotNull @Size(min = 100) String respuesta, @NotNull Integer idTarea) {
+        Query query = entityManager.createNamedQuery("TareaEntidad.respuesta");
+        query.setParameter("idTarea", idTarea).setParameter("respuesta", respuesta);
+        return query.executeUpdate();
+    }
 
 }

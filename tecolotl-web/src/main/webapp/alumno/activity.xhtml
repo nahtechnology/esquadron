@@ -178,17 +178,23 @@
                         </li>
                         <li class="answer">
                             <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">
-                                <div class="">
-                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal marco-video"></div>
+                                <div>
+                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
                                 </div>
-
-                                <h:panelGroup layout="block" styleClass="" >
+                                <h:panelGroup layout="block" styleClass="" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                 </h:panelGroup>
-                                <div class="trancript-contenedor margen-completar arrastrar scroll-drag uk-text-justify remplazar ">
+                                <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar">
                                     <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
                                 </div>
+                                <h:outputText value="Respondido" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                             </h:panelGroup>
+                            <h:form>
+                                <h:inputHidden value="#{transcripcionControlador.transcripcion}"/>
+                                <h:commandButton styleClass="boton-enviar" style="margin-top: 20px" value="Send" onclick="return validaContenido()">
+                                    <f:ajax listener="#{transcripcionControlador.enviaRespuestas}" execute="@form" onevent="function funcion(data) { transcripcionEnvidad(data); }"/>
+                                </h:commandButton>
+                            </h:form>
                         </li>
                     </ul>
                 </h:panelGroup>
@@ -198,6 +204,7 @@
         <script type="application/javascript">
             var videoPlayer = document.querySelectorAll('.scrollFinal');
             var player;
+            var totalRespuestasTranscripcion = 0;
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
                     console.log(video.dataset.video);
@@ -211,7 +218,7 @@
                         }
                     });
                 });
-            };
+            }
 
             function onPlayerReady(event) {
                 console.log(event, 'Evento Listo!!');
@@ -299,13 +306,38 @@
                 }
             }
 
-            document.querySelector('.uk-container ul li:last-child').addEventListener('click', function (evento) {
-                UIkit.modal.confirm('Al selecionar esta tarea, no podrá selecciona script').then(function() {
-                    console.log('Confirmed.')
+            function transcripcionEnvidad(data) {
+                if (data.status === 'success') {
+                    document.querySelector('.uk-container ul li:first-child').setAttribute('uk-filter-control','.transcrip');
+                    data.source.disabled = true;
+                }
+            }
+
+            function validaContenido() {
+                var respuesta = document.querySelector('.answer');
+                if (((respuesta.querySelectorAll('.contenedor-respuesta div').length * 100) / totalRespuestasTranscripcion) &lt; 15.0)  {
+                    resp = '';
+                    respuesta.querySelectorAll('.remplazar p').forEach(function (respRem) {
+                        resp = resp.concat(respRem.innerHTML);
+                        respuesta.querySelector('input[type=hidden]:nth-child(2)').value = resp;
+                    });
+                    return true;
+                }
+                UIkit.modal.alert('Es necesario relacionar más ejercicios');
+                return false;
+            }
+
+            document.querySelector('.uk-container ul li:last-child').addEventListener('click', eventoClickTransciptcion);
+
+            function eventoClickTransciptcion(evento) {
+                UIkit.modal.confirm('Al selecionar esta tarea, no podrá selecciona la actividad de video o ver algun otro transcript.').then(function() {
+                    //OK
+                    document.querySelector('.uk-container ul li:first-child').removeAttribute('uk-filter-control');
+                    document.querySelector('.uk-container ul li:last-child').removeEventListener('click', eventoClickTransciptcion);
                 }, function () {
-                    console.log('Rejected.')
+                    document.querySelector('.uk-container ul li:first-child').click();
                 })
-            });
+            }
 
         </script>
         <script type="application/javascript">
@@ -328,6 +360,7 @@
                     palabra.setAttribute('class','uk-sortable respuesta-transcript');
                     palabra.innerHTML=" ";
                 });
+                totalRespuestasTranscripcion = respuestas.length;
                 revolver(respuestas).forEach(function (resp) {
                     respuesta = document.createElement('div');
                     respuesta.classList.add('respuesta-drag');

@@ -81,6 +81,19 @@ public class TareaSesionBeanTest {
     private TareaSesionBean tareaSesionBean;
 
     @Test
+    public void buscaId() {
+        List<TareaModelo> tareaModeloLista = tareaSesionBean.busca();
+        Assert.assertNotNull(tareaModeloLista);
+        Assert.assertFalse(tareaModeloLista.isEmpty());
+        tareaModeloLista.forEach(tareaModelo -> {
+            Assert.assertNotNull(tareaModelo);
+            Assert.assertNotNull(tareaModelo.getId());
+            Assert.assertNotNull(tareaModelo.getAsignacion());
+            Assert.assertNotNull(tareaModelo.isResolviendoTranscript());
+        });
+    }
+
+    @Test
     public void busca(){
         List<TareaModelo> tareaModeloLista = tareaSesionBean.busca(1);
         Assert.assertNotNull(tareaModeloLista);

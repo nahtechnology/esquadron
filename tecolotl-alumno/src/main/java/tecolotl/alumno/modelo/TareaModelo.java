@@ -13,6 +13,9 @@ public class TareaModelo {
     private Integer id;
     private Date asignacion;
     private Short reproducciones;
+    private String respuesta;
+    private Date horaRespuesta;
+    private boolean resolviendoTranscript;
 
     public TareaModelo() {
     }
@@ -25,6 +28,9 @@ public class TareaModelo {
         this.id = tareaEntidad.getId();
         this.asignacion = tareaEntidad.getAsignacion();
         this.reproducciones = tareaEntidad.getReproducciones();
+        this.respuesta = tareaEntidad.getRespuesta();
+        this.horaRespuesta = tareaEntidad.getHoraRespuesta();
+        this.resolviendoTranscript = tareaEntidad.isResolviendoTranscript();
     }
 
     @NotNull
@@ -53,6 +59,30 @@ public class TareaModelo {
 
     public void setReproducciones(Short reproducciones) {
         this.reproducciones = reproducciones;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
+    }
+
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
+    }
+
+    public boolean isResolviendoTranscript() {
+        return resolviendoTranscript;
+    }
+
+    public void setResolviendoTranscript(boolean resolviendoTranscript) {
+        this.resolviendoTranscript = resolviendoTranscript;
     }
 
     @Override

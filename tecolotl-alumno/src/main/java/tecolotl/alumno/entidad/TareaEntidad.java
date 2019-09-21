@@ -24,6 +24,10 @@ import java.util.List;
         @NamedQuery(
                 name = "TareaEntidad.aumentaReprodecciones",
                 query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"
+        ),
+        @NamedQuery(
+                name = "TareaEntidad.respuesta",
+                query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta WHERE t.id = :idTarea"
         )
 })
 public class TareaEntidad {
@@ -31,6 +35,9 @@ public class TareaEntidad {
     private Integer id;
     private Short reproducciones;
     private Date asignacion;
+    private String respuesta;
+    private Date horaRespuesta;
+    private boolean resolviendoTranscript;
     private AlumnoEntidad alumnoEntidad;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
@@ -74,6 +81,37 @@ public class TareaEntidad {
         this.asignacion = asignacion;
     }
 
+    @Basic
+    @Column(name = "respuesta")
+    public String getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
+    }
+
+    @Basic
+    @Column(name = "hora_respuesta", insertable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
+    }
+
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
+    }
+
+    @Basic
+    @Column(name = "resolviendo_transcript")
+    public boolean isResolviendoTranscript() {
+        return resolviendoTranscript;
+    }
+
+    public void setResolviendoTranscript(boolean resolviendoTranscript) {
+        this.resolviendoTranscript = resolviendoTranscript;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_alumno")
     public AlumnoEntidad getAlumnoEntidad() {
@@ -110,4 +148,5 @@ public class TareaEntidad {
     public void setTareaRelacionarActividadEntidadLista(List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista) {
         this.tareaRelacionarActividadEntidadLista = tareaRelacionarActividadEntidadLista;
     }
+
 }
