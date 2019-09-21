@@ -103,9 +103,7 @@
                                         <div id="#{tareaActvidadModelo.idActividad}" class="videoPlayer"></div>
                                     </h:panelGroup>
                                 </div>
-                                <div class="uk-card-body">
-                                    Please watch the full video!
-                                </div>
+                                <div class="uk-card-body">Please watch the full video!</div>
                                 <div  class="uk-card-footer">
                                     <h:form>
                                         <h:commandLink  action="#{tareaGramaticaControlador.incrementaReporduccion(1, tareaActvidadModelo.id)}" style="display: none">
@@ -124,12 +122,14 @@
         </div>
         <script type="application/javascript">
             var videos = document.querySelectorAll('.videoPlayer');
+            var mensajes = document.querySelectorAll('.uk-card-body');
             var reproducciones = document.querySelectorAll('.uk-padding-small');
             var linksTareas = document.querySelectorAll('.uk-card-footer');
             var i = 0;
             linksTareas.forEach(function (value) {
                 value.dataset.id = videos[i].getAttribute('id');
                 value.style.visibility = (parseInt(reproducciones[i].innerHTML) !== 0)?'visibility':'hidden';
+                mensajes[i].style.visibility = (parseInt(reproducciones[i].innerHTML) !== 0)?'hidden':'visibility';
                 i++;
             });
             var players = new Array();
