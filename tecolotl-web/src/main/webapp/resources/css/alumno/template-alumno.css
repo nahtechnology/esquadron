@@ -302,6 +302,13 @@ iframe {
     padding: 20px 0;
 }
 
+.fondo-comic6 {
+    background-image: url("#{resource['img/alumno/pop-estrella.svg']}");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
 .paddind-barra{
  padding-left: 80px;
  padding-right:80px;
