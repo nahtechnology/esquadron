@@ -92,7 +92,8 @@
                                             </span>
                                         </div>
                                         <div class="uk-width-auto uk-text-right uk-text-muted">
-                                            <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>#{tareaActvidadModelo.reproducciones}
+                                            <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>
+                                            <span class="uk-padding-small">#{tareaActvidadModelo.reproducciones}</span>
                                         </div>
                                     </h:panelGroup>
                                 </div>
@@ -103,38 +104,17 @@
                                     </h:panelGroup>
                                 </div>
                                 <div class="uk-card-body">
-                                    <h:form styleClass="tam-form">
-                                        <h:commandButton styleClass="boton" action="#{alumnoControlador.seleccion(tareaActvidadModelo)}" value="realizar tarea"/>
-                                    </h:form>
+                                    Please, watch the video till the end.
                                 </div>
-                                <div class="uk-card-footer">
+                                <div  class="uk-card-footer">
                                     <h:form>
-                                        <h:commandLink action="#{tareaGramaticaControlador.incrementaReporduccion(1, tareaActvidadModelo.id)}" style="display: none">
+                                        <h:commandLink  action="#{tareaGramaticaControlador.incrementaReporduccion(1, tareaActvidadModelo.id)}" style="display: none">
                                             <f:ajax render="@none"/>
                                         </h:commandLink>
                                     </h:form>
-                                    <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
-                                        <div class="uk-width-expand ">
-
-                                            <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-child-width-1-5" pt:uk-grid="">
-                                                <div>
-                                                    <h:graphicImage  pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image uk-svg" library="img" name="icono/listen.svg"/>
-                                                </div>
-                                                <div>
-                                                    <h:graphicImage pt:data-uk-tooltip="title: Trasncript" styleClass="uk-icon-image uk-svg" library="img" name="icono/transcript1.svg" />
-                                                </div>
-                                                <div>
-                                                    <h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image uk-svg " library="img" name="icono/reading.svg" />
-                                                </div>
-                                                <div>
-                                                    <h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image uk-svg " library="img" name="icono/gramatica.svg" />
-                                                </div>
-                                                <div>
-                                                    <h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="icono/quizcalifica.svg" />
-                                                </div>
-                                            </h:panelGroup>
-                                        </div>
-                                    </h:panelGroup>
+                                    <h:form styleClass="tam-form">
+                                        <h:commandButton styleClass="boton" action="#{alumnoControlador.seleccion(tareaActvidadModelo)}" value="realizar tarea"/>
+                                    </h:form>
                                 </div>
                             </div>
                         </h:panelGroup>
@@ -143,13 +123,13 @@
             </div>
         </div>
         <script type="application/javascript">
-            //var reproduccionesAlumno = document.querySelector('Agregar aquí la etiqueta que contiene las reprocucciones.');
             var videos = document.querySelectorAll('.videoPlayer');
+            var reproducciones = document.querySelectorAll('.uk-padding-small');
             var linksTareas = document.querySelectorAll('.uk-card-footer');
             var i = 0;
             linksTareas.forEach(function (value) {
                 value.dataset.id = videos[i].getAttribute('id');
-                value.style.visibility = 'visible';
+                value.style.visibility = (parseInt(reproducciones[i].innerHTML) !== 0)?'visibility':'hidden';
                 i++;
             });
             var players = new Array();
@@ -170,7 +150,6 @@
             }
 
             function onPlayerReady(event) {
-                //event.target.playVideo();g
                 console.log('Reproductor listo.')
             }
             var done = false;

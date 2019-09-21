@@ -39,7 +39,27 @@ public class TareasProgresoControlador {
         logger.info(this.getTareaResuetasModeloLista().toString().concat(String.valueOf(this.getTareaResuetasModeloLista().size())));
     }
 
-//    public void
+    public Integer progresoTareas(String nombreTarea){
+        Integer valor = 0;
+        for(TareaResuetasModelo tareaResuetasModelo : tareaResuetasModeloLista){
+            if(tareaResuetasModelo.getTarea().equals(nombreTarea)){
+                valor = tareaResuetasModelo.getRespuesta();
+                break;
+            }
+        }
+        return valor;
+    }
+
+    public Integer totalTareas(String nombreTarea){
+        Integer total = 0;
+        for (TareaResuetasModelo tareaResuetasModelo : tareaResuetasModeloLista){
+            if(tareaResuetasModelo.getTarea().equals(nombreTarea)){
+                total = tareaResuetasModelo.getTotal();
+                break;
+            }
+        }
+        return total;
+    }
 
     public List<TareaResuetasModelo> getTareaResuetasModeloLista() {
         return tareaResuetasModeloLista;
