@@ -193,7 +193,8 @@
                                     <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar">
-                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
+                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </div>
                                 <h:outputText value="Respondido" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                             </h:panelGroup>

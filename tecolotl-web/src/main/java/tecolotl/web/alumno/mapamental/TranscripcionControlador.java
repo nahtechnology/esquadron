@@ -25,8 +25,9 @@ public class TranscripcionControlador {
     private String activo;
 
     public  void enviaRespuestas() {
-        //tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId());
-        logger.info(transcripcion);
+        tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId());
+        alumnoControlador.getTareaActividadModelo().setResolviendoTranscript(false);
+        alumnoControlador.getTareaActividadModelo().setRespuesta(transcripcion);
     }
 
     public void cambiaEstatus() {

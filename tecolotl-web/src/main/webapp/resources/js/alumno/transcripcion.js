@@ -47,7 +47,7 @@ function revolver(arreglo) {
 
 function transcripcionEnvidad(data) {
     if (data.status === 'success') {
-        document.querySelector('.uk-container ul li:first-child').setAttribute('uk-filter-control','.transcrip');
+        menuPrincipal.querySelector('li:first-child').setAttribute('uk-filter-control','.transcrip');
         data.source.disabled = true;
     }
 }
@@ -55,10 +55,11 @@ function transcripcionEnvidad(data) {
 function validaContenido() {
     if (((answer.querySelectorAll('.contenedor-respuesta div').length * 100) / totalRespuestasTranscripcion) < 15.0)  {
         resp = '';
-        respuesta.querySelectorAll('.remplazar p').forEach(function (respRem) {
-            resp = resp.concat(respRem.innerHTML);
-            answer.querySelector('input[type=hidden]:nth-child(2)').value = resp;
+        answer.querySelectorAll('.remplazar p').forEach(function (respRem) {
+            resp = resp.concat(respRem.outerHTML);
+            console.log(resp);
         });
+        answer.querySelector('form input[type=hidden]:nth-child(2)').value = resp;
         return true;
     }
     UIkit.modal.alert('Es necesario relacionar más ejercicios');
