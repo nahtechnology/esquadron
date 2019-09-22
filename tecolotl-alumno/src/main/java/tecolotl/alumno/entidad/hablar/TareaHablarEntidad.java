@@ -7,10 +7,13 @@ import java.util.StringJoiner;
 @Table(name = "tarea_hablar", schema = "alumno")
 @NamedQueries({
         @NamedQuery(name = "TareaHablarEntidad.busca", query = "SELECT the FROm TareaHablarEntidad the"),
-        @NamedQuery(name = "TareaHablarEntidad.buscaid_tarea", query = "SELECT the FROM TareaHablarEntidad the WHERE the.tareaHablarEntidadPK.tareaEntidad.id = :id_tarea")
+        @NamedQuery(
+                name = "TareaHablarEntidad.buscaIdTarea",
+                query = "SELECT the FROM TareaHablarEntidad the JOIN FETCH the.tareaHablarEntidadPK.hablarEntidad WHERE the.tareaHablarEntidadPK.tareaEntidad.id = :idTarea")
 }
 )
 public class TareaHablarEntidad {
+
     private TareaHablarEntidadPK tareaHablarEntidadPK;
 
     public TareaHablarEntidad() {
