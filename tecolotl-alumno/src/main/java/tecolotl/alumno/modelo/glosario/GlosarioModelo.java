@@ -8,9 +8,10 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.StringJoiner;
 
-public class GlosarioModelo {
+public class GlosarioModelo implements Comparable<GlosarioModelo>{
 
     private String palabra;
     private ClaseGlosarioModelo claseGlosarioModelo;
@@ -67,6 +68,13 @@ public class GlosarioModelo {
 
     public void setSignificado(String significado) {
         this.significado = significado;
+    }
+
+    @Override
+    public int compareTo(GlosarioModelo o) {
+        int hash  = this.palabra.compareTo(o.palabra);
+        if(hash == 0) return this.claseGlosarioModelo.getClave().compareTo(o.claseGlosarioModelo.getClave());
+        return 0;
     }
 
     @Override
