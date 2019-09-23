@@ -195,8 +195,9 @@
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar">
                                     <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    <h:outputText styleClass="realizado movimiento1" value="Respondido" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </div>
-                                <h:outputText styleClass="realizado movimiento1" value="Respondido" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+
                             </h:panelGroup>
                             <h:form>
                                 <h:inputHidden value="#{transcripcionControlador.transcripcion}"/>
