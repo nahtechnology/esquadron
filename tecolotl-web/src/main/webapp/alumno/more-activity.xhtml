@@ -79,6 +79,7 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
+        <h:outputStylesheet library="css" name="/alumno/template-alumno.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container padding-contenedor">
@@ -130,10 +131,12 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <h:panelGroup styleClass="respuesta-imagen contenedor-imagen palabras "
+                                    <h:panelGroup styleClass="respuesta-imagen contenedor-imagen palabras"
                                                   rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                   layout="block">
-                                        Respondido
+                                        <div class="movimiento realizado">
+                                            Respondido
+                                        </div>
                                     </h:panelGroup>
                                     <h:panelGroup layout="block"
                                                   styleClass="respuesta-imagen contenedor-imagen palabras "
@@ -144,7 +147,7 @@
                                         </ui:repeat>
                                     </h:panelGroup>
                                 </div>
-                                <h:commandButton value="Send" onclick="enviarRespuesta()" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
+                                <h:commandButton value="Send" styleClass="boton-enviar" onclick="enviarRespuesta()" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax listener="#{relacionarControlador.enviaRespuesta}" execute="@form" onevent="function funcion(data) {respuestaEnvidad(data)}"/>
                                 </h:commandButton>
                             </h:form>
