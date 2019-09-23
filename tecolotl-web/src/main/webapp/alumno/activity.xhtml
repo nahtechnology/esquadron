@@ -159,7 +159,7 @@
                             </div>
                             <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar " uk-switcher="">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica" varStatus="estatus">
-                                    <li><a href="#" >#{estatus.index + 1}</a></li>
+                                    <li class="#{empty gramatica.respuesta ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                 </ui:repeat>
                             </ul>
                             <ul class="uk-switcher uk-margin">
@@ -208,7 +208,6 @@
                         </li>
                     </ul>
                 </h:panelGroup>
-
             </div>
         </div>
         <script type="application/javascript">
@@ -318,6 +317,7 @@
             }
         </script>
         <h:outputScript library="js" name="alumno/transcripcion.js"/>
+        <h:outputScript library="js" name="alumno/activity.js"/>
     </ui:define>
 </ui:composition>
 </html>

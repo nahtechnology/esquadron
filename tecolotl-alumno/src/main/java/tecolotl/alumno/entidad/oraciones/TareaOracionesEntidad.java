@@ -9,10 +9,10 @@ import java.util.StringJoiner;
 @Table(name = "tarea_oraciones", schema = "alumno")
 @NamedQueries(value = {
         @NamedQuery(name = "TareaOracionesEntidad.busca", query = "SELECT toe from TareaOracionesEntidad toe"),
-        @NamedQuery(name = "TareaOracionesEntidad.buscaidTarea",
+        @NamedQuery(
+                name = "TareaOracionesEntidad.buscaidTarea",
                 query = "SELECT toe FROM TareaOracionesEntidad toe JOIN FETCH toe.tareaOracionesEntidadPK.oracionesEntidad oe WHERE toe.tareaOracionesEntidadPK.tareaEntidad.id = :idTarea")
-}
-)
+})
 public class TareaOracionesEntidad {
     private TareaOracionesEntidadPK tareaOracionesEntidadPK;
     private Short respuesta;
