@@ -41,7 +41,11 @@ public class TareaOracionesControlador implements Serializable {
     }
 
     public void llenaDatos(){
-
+        String[] respuestas = respuestaOraciones.split("\\|");
+        for (int i = 0; i < respuestas.length; i++) {
+            tareaOracionesModeloLista.get(i).setRespuesta(respuestas[i]);
+        }
+        oracionesRespuestaScope.respuesta(tareaOracionesModeloLista);
     }
 
     public List<TareaOracionesModelo> desordena(){
