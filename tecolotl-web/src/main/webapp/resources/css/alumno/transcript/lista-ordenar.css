@@ -73,3 +73,15 @@
 .contenedor-relacionar{
     overflow: auto;
 }
+
+.boton-falta{
+    background-color: #00A859;
+    border-radius: 50%;
+    border: 5px solid gray;
+}
+
+.boton-listo{
+    background-color: darkred;
+    border-radius: 50%;
+    border: 5px solid gray;
+}
