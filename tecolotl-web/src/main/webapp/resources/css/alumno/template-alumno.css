@@ -568,11 +568,12 @@ iframe {
 
 @media screen and (max-width: 500px) {
     .movimiento1{
-        right: 0;
-        top: 200px;
+        right: 40%;
+        top: 230px;
     }
     .realizado{
-        width: 100px;
-        height: 75px;
+        width: 90px;
+        height: 65px;
+        font-size: 10px;
     }
 }
