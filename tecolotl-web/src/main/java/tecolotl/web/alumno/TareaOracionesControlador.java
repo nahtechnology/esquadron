@@ -1,7 +1,6 @@
 package tecolotl.web.alumno;
 
 import tecolotl.alumno.modelo.oraciones.TareaOracionesModelo;
-import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.scope.OracionesRespuestaScope;
 import tecolotl.alumno.sesion.OracionesSesionBean;
 
@@ -9,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.validation.groups.ConvertGroup;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
@@ -37,15 +35,14 @@ public class TareaOracionesControlador implements Serializable {
     @PostConstruct
     public void init(){
         tareaOracionesModeloLista = oracionesSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
-        //Collections.shuffle(tareaOracionesModeloLista);
     }
 
     public void llenaDatos(){
         String[] respuestas = respuestaOraciones.split("\\|");
         for (int i = 0; i < respuestas.length; i++) {
-            tareaOracionesModeloLista.get(i).setRespuesta(respuestas[i]);
+            tareaOracionesModeloLista.get(i).setRespuesta(Short.valueOf(respuestas[i]));
         }
-        oracionesRespuestaScope.respuesta(tareaOracionesModeloLista);
+        oracionesRespuestaScope.respuesta(tareaOracionesModeloLista, alumnoControlador.getTareaActividadModelo().getId());
     }
 
     public List<TareaOracionesModelo> desordena(){

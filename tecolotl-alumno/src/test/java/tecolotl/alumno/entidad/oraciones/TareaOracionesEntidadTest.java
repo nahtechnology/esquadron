@@ -57,7 +57,6 @@ public class TareaOracionesEntidadTest {
             Assert.assertNotNull(tareaOracionesEntidad.getTareaOracionesEntidadPK().getOracionesEntidad().getOracionesEntidadPK().getCodigo());
             Assert.assertNotNull(tareaOracionesEntidad.getTareaOracionesEntidadPK().getTareaEntidad());
             Assert.assertNotNull(tareaOracionesEntidad.getRespuesta());
-            Assert.assertNotNull(tareaOracionesEntidad.getHora_Respuesta());
         }
     }
 
@@ -74,7 +73,6 @@ public class TareaOracionesEntidadTest {
             Assert.assertNotNull(tareaOracionesEntidad.getTareaOracionesEntidadPK().getOracionesEntidad().getOracionesEntidadPK().getCodigo());
             Assert.assertNotNull(tareaOracionesEntidad.getTareaOracionesEntidadPK().getTareaEntidad());
             Assert.assertNotNull(tareaOracionesEntidad.getRespuesta());
-            Assert.assertNotNull(tareaOracionesEntidad.getHora_Respuesta());
         }
     }
 }

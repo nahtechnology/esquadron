@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 });
 
 function revuelveRelacionarImagen(palabras) {
-    palabras.sort(function () {  return Math.random() - 0.5 });
+
 }
 
 function enviarRespuesta() {

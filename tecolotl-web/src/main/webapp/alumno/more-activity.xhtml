@@ -94,7 +94,7 @@
                                 <h1 class="lescuadron uk-text-center letra-titulo">Order Sentences</h1>
                                 <h:panelGroup layout="block" styleClass="uk-container padding-contenedor contenedor-oraciones uk-sortable "  pt:uk-sortable="">
                                     <ui:repeat value="#{tareaOracionesControlador.desordena()}" var="oracion">
-                                        <div class="oraciones">#{oracion.oracionesModelo.oracion}</div>
+                                        <div class="oraciones" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
                                     </ui:repeat>
                                 </h:panelGroup>
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
@@ -166,11 +166,8 @@
                                </div>
                             </div>
                         </li>
-
                     </ul>
-
                 </div>
-
             </div>
         </div>
         <script type="application/javascript">
@@ -179,7 +176,7 @@
                 var respuestas = [];
                 console.log(oracionesDesordenadas);
                 oracionesDesordenadas.forEach(function (value) {
-                    respuestas.push(value.innerHTML);
+                    respuestas.push(value.dataset.cardinalidad);
                 });
                 console.log(respuestas.join('|'));
                 document.getElementById('tareaOraciones:tareaOracionesInput').value = respuestas.join('|');

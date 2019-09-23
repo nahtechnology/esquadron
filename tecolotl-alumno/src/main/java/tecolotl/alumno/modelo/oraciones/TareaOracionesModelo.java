@@ -8,8 +8,7 @@ import java.util.StringJoiner;
 
 public class TareaOracionesModelo {
     private OracionesModelo oracionesModelo;
-    private TareaModelo tareaModelo;
-    private String respuesta;
+    private Short respuesta;
     private Date horaRespuesta;
 
     public TareaOracionesModelo() {
@@ -17,14 +16,12 @@ public class TareaOracionesModelo {
 
     public TareaOracionesModelo(TareaOracionesEntidad tareaOracionesEntidad){
         this.oracionesModelo = new OracionesModelo(tareaOracionesEntidad.getTareaOracionesEntidadPK().getOracionesEntidad());
-        this.tareaModelo = new TareaModelo(tareaOracionesEntidad.getTareaOracionesEntidadPK().getTareaEntidad());
         this.respuesta = tareaOracionesEntidad.getRespuesta();
-        this.horaRespuesta = tareaOracionesEntidad.getHora_Respuesta();
+        this.horaRespuesta = tareaOracionesEntidad.getHoraRespuesta();
     }
 
     public TareaOracionesModelo(OracionesModelo oracionesModelo, TareaModelo tareaModelo) {
         this.oracionesModelo = oracionesModelo;
-        this.tareaModelo = tareaModelo;
     }
 
     public OracionesModelo getOracionesModelo() {
@@ -35,19 +32,11 @@ public class TareaOracionesModelo {
         this.oracionesModelo = oracionesModelo;
     }
 
-    public TareaModelo getTareaModelo() {
-        return tareaModelo;
-    }
-
-    public void setTareaModelo(TareaModelo tareaModelo) {
-        this.tareaModelo = tareaModelo;
-    }
-
-    public String getRespuesta() {
+    public Short getRespuesta() {
         return respuesta;
     }
 
-    public void setRespuesta(String respuesta) {
+    public void setRespuesta(Short respuesta) {
         this.respuesta = respuesta;
     }
 
@@ -63,7 +52,6 @@ public class TareaOracionesModelo {
     public String toString() {
         return new StringJoiner(", ", TareaOracionesModelo.class.getSimpleName() + "[", "]")
                 .add("oracionesModelo=" + oracionesModelo)
-                .add("tareaModelo=" + tareaModelo)
                 .add("respuesta='" + respuesta + "'")
                 .add("horaRespuesta=" + horaRespuesta)
                 .toString();

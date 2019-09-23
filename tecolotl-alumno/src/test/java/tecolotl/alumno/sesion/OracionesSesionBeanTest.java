@@ -115,7 +115,6 @@ public class OracionesSesionBeanTest {
             Assert.assertNotNull(tareaOracionesModelo.getOracionesModelo().getCodigo());
             Assert.assertNotNull(tareaOracionesModelo.getOracionesModelo().getCardinalidad());
             Assert.assertNotNull(tareaOracionesModelo.getOracionesModelo().getOracion());
-            Assert.assertNotNull(tareaOracionesModelo.getTareaModelo().getId());
             Assert.assertNotNull(tareaOracionesModelo.getRespuesta());
             Assert.assertNotNull(tareaOracionesModelo.getHoraRespuesta());
         }

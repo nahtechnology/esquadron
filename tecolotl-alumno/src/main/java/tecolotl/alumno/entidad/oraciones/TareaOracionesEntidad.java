@@ -15,8 +15,8 @@ import java.util.StringJoiner;
 )
 public class TareaOracionesEntidad {
     private TareaOracionesEntidadPK tareaOracionesEntidadPK;
-    private String respuesta;
-    private Date hora_Respuesta;
+    private Short respuesta;
+    private Date horaRespuesta;
 
     public TareaOracionesEntidad() {
     }
@@ -36,24 +36,23 @@ public class TareaOracionesEntidad {
 
     @NotNull
     @Column(name = "respuesta")
-    public String getRespuesta() {
+    public Short getRespuesta() {
         return respuesta;
     }
 
-    public void setRespuesta(String respuesta) {
+    public void setRespuesta(Short respuesta) {
         this.respuesta = respuesta;
     }
 
-    @NotNull
     @Basic
     @Temporal(TemporalType.DATE)
     @Column(name = "hora_respuesta", insertable = false)
-    public Date getHora_Respuesta() {
-        return hora_Respuesta;
+    public Date getHoraRespuesta() {
+        return horaRespuesta;
     }
 
-    public void setHora_Respuesta(Date hora_Respuesta) {
-        this.hora_Respuesta = hora_Respuesta;
+    public void setHoraRespuesta(Date horaRespuesta) {
+        this.horaRespuesta = horaRespuesta;
     }
 
     @Override
@@ -61,7 +60,8 @@ public class TareaOracionesEntidad {
         return new StringJoiner(", ", TareaOracionesEntidad.class.getSimpleName() + "[", "]")
                 .add("tareaOracionesEntidadPK=" + tareaOracionesEntidadPK)
                 .add("respuesta='" + respuesta + "'")
-                .add("hora_Respuesta=" + hora_Respuesta)
+                .add("hora_Respuesta=" + horaRespuesta)
                 .toString();
     }
+
 }
