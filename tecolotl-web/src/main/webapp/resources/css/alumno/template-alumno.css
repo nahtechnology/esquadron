@@ -447,7 +447,7 @@ iframe {
     font-size: 25px;
     padding-bottom: 15px;
     padding-left: 15px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: 'Sniglet', sans-serif;
     position: absolute;
     top: calc(50% - 125px);
     left: calc(50% - 125px);
@@ -472,7 +472,7 @@ iframe {
     background: #CB4335;
     color: white;
     width: 110px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family:'Sniglet', sans-serif;
     text-align: center;
     margin-top: 10px;
     border-radius: 12px;
@@ -492,7 +492,7 @@ iframe {
 .boton-enviar:disabled{
     background: orange;
     color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: 'Sniglet', sans-serif;
     margin-top: 10px;
     border-radius: 12px;
     border: 4px solid #AEB6BF;
@@ -500,7 +500,7 @@ iframe {
     font-size: 16px;
 }
 .uk-modal-dialog{
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: 'Sniglet', sans-serif;
     text-align: center;
     color:black;
     font-weight: bold;
@@ -536,7 +536,7 @@ iframe {
     background-clip: padding-box;
     padding: 20px 100px 0px 110px;
     font-size: 15px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: 'Sniglet', sans-serif;
     color: white;
     display: flex;
     justify-content: center;
@@ -564,4 +564,16 @@ iframe {
 
 .mensaje1 > span{
     display: inline-block;
+}
+
+@media screen and (max-width: 500px) {
+    .movimiento1{
+        right: 40%;
+        top: 230px;
+    }
+    .realizado{
+        width: 90px;
+        height: 65px;
+        font-size: 10px;
+    }
 }
