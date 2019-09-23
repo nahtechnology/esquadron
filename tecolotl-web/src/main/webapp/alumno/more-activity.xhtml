@@ -91,7 +91,7 @@
                         <li uk-filter-control=".complete-sentences" uk-tooltip="Hablar" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
 
                     </ul>
-                    <ul class="js-filter" style="list-style: none">
+                    <ul class="js-filter" style="list-style: none; padding-left: 0;">
                         <li class="ordenar">
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">Order Sentences</h1>
@@ -155,7 +155,7 @@
                         <li class="talking" >
                             <h1 class="lescuadron uk-text-center letra-titulo">Habla con tu pareja</h1>
                             <div>
-                               <div class="fondo-more uk-position-relative">
+                               <div class="fondo-more uk-position-relative uk-visible@m">
                                    <div class="more-uno">
                                        <h:outputText value="#{hablarControlador.hablarModeloLista[0].tarjeta}"/>
                                    </div>
@@ -168,8 +168,23 @@
                                    <div class="more-cuatro">
                                        <h:outputText value="#{hablarControlador.hablarModeloLista[3].tarjeta}"/>
                                    </div>
-
                                </div>
+                                <div class="uk-hidden@m">
+                                    <div class="caja-uno-more">
+                                        <h:outputText value="#{hablarControlador.hablarModeloLista[0].tarjeta}"/>
+                                    </div>
+                                    <div class="caja-dos-more">
+                                        <h:outputText value="#{hablarControlador.hablarModeloLista[1].tarjeta}"/>
+                                    </div>
+                                    <div class="caja-tres-more">
+                                        <h:outputText value="#{hablarControlador.hablarModeloLista[2].tarjeta}"/>
+                                    </div>
+                                    <div class="caja-cuatro-more">
+                                        <h:outputText value="#{hablarControlador.hablarModeloLista[3].tarjeta}"/>
+                                    </div>
+
+                                </div>
+
                             </div>
                         </li>
                         <li class="complete-sentences">

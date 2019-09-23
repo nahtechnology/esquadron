@@ -59,8 +59,7 @@
     max-height: 52vh;
     background-color: white;
     overflow: auto;
-    font-family: 'Sniglet', "Arial Black";
-    border-radius: 0 5px 5px 0;
+    font-family: 'Sniglet', "Arial Black", sans-serif;
     border-style: solid;
     border-width: 5px;
     border-color: purple;
@@ -103,4 +102,23 @@
     border-radius: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+ul.js-filter,li{
+    padding-left: 0;
+}
+
+@media screen and (max-width: 500px) {
+    .contenedor-respuesta{
+        display: block;
+        min-height: 250px;
+        max-height: 250px;
+        overflow: auto;
+    }
+    .contenedor-respuesta >.respuesta-drag{
+        margin-left: auto;
+        margin-right: auto;
+    }
+   .trancript-contenedor{
+       margin-left: 20px;
+   }
 }

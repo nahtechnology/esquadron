@@ -130,7 +130,7 @@
     flex-wrap: wrap;
     align-content: center;
     justify-content: center;
-    transform: skew(-20deg);
+
 
 }
 [class^="more-"] span{
@@ -222,5 +222,29 @@
     margin: 0;
 
 }
+[class^="caja-"]{
+    border: 6px solid white;
+    margin-bottom: 10px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+    color: black;
+    font-weight: bold;
+    font-family: 'Sniglet', sans-serif;
+}
 
+.caja-uno-more{
+    background-color: #14ABDE;
+}
+.caja-dos-more{
+    background-color: #2AB149;
+}
+.caja-tres-more{
+    background-color: #FEC309;
+}
+.caja-cuatro-more{
+    background-color: #ED1285;
+}
 
