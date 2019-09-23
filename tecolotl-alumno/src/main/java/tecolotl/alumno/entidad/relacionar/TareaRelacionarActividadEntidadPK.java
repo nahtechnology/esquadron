@@ -13,6 +13,14 @@ public class TareaRelacionarActividadEntidadPK implements Serializable {
     private RelacionarActividadEntidad relacionarActividadEntidad;
     private TareaEntidad tareaEntidad;
 
+    public TareaRelacionarActividadEntidadPK() {
+    }
+
+    public TareaRelacionarActividadEntidadPK(RelacionarActividadEntidad relacionarActividadEntidad, TareaEntidad tareaEntidad) {
+        this.relacionarActividadEntidad = relacionarActividadEntidad;
+        this.tareaEntidad = tareaEntidad;
+    }
+
     @JoinColumns(value = {
             @JoinColumn(name = "id_relacionar", referencedColumnName = "id_relacionar"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad")
