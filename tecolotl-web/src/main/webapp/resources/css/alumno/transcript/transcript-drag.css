@@ -120,5 +120,7 @@ ul.js-filter,li{
     }
    .trancript-contenedor{
        margin-left: 20px;
+       min-height: 250px;
+       max-height: 250px;
    }
 }
