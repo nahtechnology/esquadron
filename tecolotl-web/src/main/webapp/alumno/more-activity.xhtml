@@ -101,7 +101,7 @@
                                     </ui:repeat>
                                 </h:panelGroup>
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
-                                <h:commandButton style="" onclick="getRespuestas()" styleClass="uk-button uk-button-primary uk-margin" value="Submit answer">
+                                <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar uk-margin" value="Send">
                                     <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form"/>
                                 </h:commandButton>
                             </h:form>

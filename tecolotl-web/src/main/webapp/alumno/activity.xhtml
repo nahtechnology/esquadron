@@ -147,7 +147,7 @@
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer">
+                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form"/>
                                 </h:commandButton>
                             </h:form>
