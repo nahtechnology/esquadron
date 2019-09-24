@@ -159,9 +159,12 @@
                 if (event.data == YT.PlayerState.ENDED &amp;&amp; !done) {
                     var urlVideoYT = event.target.getVideoUrl();
                     var idVideoYT = urlVideoYT.split('v=');
+                    var i = 0;
                     linksTareas.forEach(function (value) {
                         if(value.getAttribute('data-id') === idVideoYT[1]){
+
                             value.style.display = '';
+                            mensajes[i].style.display = 'none';
                         }
                     });
                     event.target.a.parentElement.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
