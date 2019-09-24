@@ -44,7 +44,7 @@
                                 <h:graphicImage styleClass="uk-border-circle" library="img" name="avatar/monstruo-rosa.svg" width="50" height="50"/>
                             </div>
                             <div class="uk-width-expand">
-                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">maugg</h3>
+                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">#{dashboardProfesorControlador.profesorModelo.nombre}</h3>
                                 <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>el mau</span></p>
                             </div>
                             <div class="uk-width-1-1@s">
@@ -129,12 +129,12 @@
         </div>
         <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
             <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="70" height="70"/></div>
-            <div class="uk-margin-small-left esquadron-paddin"><h3 class="letra-cards lescuadron ">Premia el esfuerzo de tus alumnos</h3></div>
+            <div class="uk-margin-small-left esquadron-paddin"><h3 class="letra-cards lescuadron ">¡Observa el rendimiento de tus alumnos!</h3></div>
         </div>
 
         <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
             <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="70" height="70"/></div>
-            <div class="uk-text-center"><h3 class="letra-cards lescuadron ">Premia el ezfuerzo de tus alumnos</h3></div>
+            <div class="uk-text-center"><h3 class="letra-cards lescuadron ">¡Observa el rendimiento de tus alumnos!</h3></div>
         </div>
 
         <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@m uk-section uk-section-default uk-padding-remove-top uk-padding-remove-bottom" pt:uk-grid="" >
@@ -158,8 +158,7 @@
         </h:panelGroup>
 
         <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
-
-            <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Grupos de Jose</h5>
+            <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Grupos de Tzotencomani</h5>
             <h:form id="formulario-detalle-profesor" styleClass="uk-form-stacked">
 
                 <div class=" uk-margin-small-top">
@@ -225,8 +224,6 @@
                 </div>
             </h:form>
         </div>
-
-
     <!-- modal reporte-->
         <h:panelGroup layout="block" id="modal-reporte" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
@@ -236,27 +233,16 @@
                 <div class="barra-modal"></div>
                 <h:form styleClass="uk-form-stacked">
                     <div class="uk-modal-body">
-
-
-
                         <h:outputLabel for="select-descarga" styleClass="  uk-form-label" value="Selecciona Descarga"/>
-
                         <h:selectOneRadio id="select-descarga" StyleClass="uk-checkbox" type="checkbox"  >
                             <f:selectItem styleClass="checked" itemValue = "1" itemLabel = "Reporte Cualitativo" />
                             <f:selectItem itemValue = "2" itemLabel = "Reporte Cuantitativo" />
                         </h:selectOneRadio>
-
-
-
-
-
                         <ui:fragment rendered="#{facesContext.validationFailed}">
                             <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
                                 <h:messages styleClass="uk-list"/>
                             </h:panelGroup>
                         </ui:fragment>
-
-
                     </div>
                     <div class="uk-modal-footer uk-text-right">
                         <button class="boton-escuadron-base-secundary uk-modal-close" type="button">Cancel</button>
@@ -265,11 +251,8 @@
                         </h:commandButton>
                     </div>
                 </h:form>
-
             </div>
-
         </h:panelGroup>
-
     <h:outputScript library="js" name="Chart.js"/>
         <script type="text/javascript">
             var i;
@@ -280,8 +263,6 @@
             document.addEventListener("DOMContentLoaded", function (evt) {
                 limpiaSelect("undefined");
                 // modalAgregar = document.querySelector('#modal-contacto');
-
-
             });
             document.addEventListener('DOMContentLoaded', function (evt) {
                 limpiaSelect();
@@ -363,8 +344,6 @@
                     }
                 }
             });
-
-
         </script>
         <script type="text/javascript">
 
@@ -392,8 +371,6 @@
                 });
 
             });
-
-
             function cierraModal(data,modal) {
                 if (data.status === "success"){
                     switch (modal) {
@@ -418,18 +395,11 @@
                             break;
 
                         default: console.error(modal);
-
                     }
                 }
-
-
             }
 
         </script>
     </ui:define>
-
 </ui:composition>
-
-
-
 </html>

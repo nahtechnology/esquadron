@@ -92,7 +92,6 @@ public class ProfesorSesionBean {
         ProfesorModelo profesorModelo = new ProfesorModelo(entityManager.find(ProfesorEntidad.class, Id));
         logger.finer("Profesor encontrado por ID: ".concat(profesorModelo.toString()));
         return profesorModelo;
-
     }
 
     public Map<Integer, ProfesorDashboardModelo> busca(@NotNull String IdEscuela){
