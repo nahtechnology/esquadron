@@ -89,11 +89,11 @@
             <div class="uk-section  margen-superior">
                 <div class="uk-container fondo-mapa-orden contorno posicion-contenedor margen-cronologico">
                     <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                        <span>Respondido</span>
+                        <span>#{alumno['map2.title.answered']}</span>
                     </h:panelGroup>
                     <div class="dialogo uk-visible@s">
                         <div class="uk-position-relative">
-                            <h3 class="uk-position-absolute titulo-mapa-3">Cronological Order Writing</h3>
+                            <h3 class="uk-position-absolute titulo-mapa-3">#{alumno['map3.title.description']}</h3>
                             <h:graphicImage library="img" name="alumno/pop-art/pop-art.svg" style="transform: rotateY(180deg)"/>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                     <div class="uk-hidden@s">
                         <div class="dialogo-small">
                             <div class="uk-position-relative">
-                                <h3 class="uk-position-absolute titulo-mapa-3">Cronological Order Writing</h3>
+                                <h3 class="uk-position-absolute titulo-mapa-3">#{alumno['map3.title.description']}</h3>
                                 <h:graphicImage library="img" name="alumno/pop-art/pop-art.svg" style="transform: rotateY(180deg)"/>
                             </div>
                         </div>
@@ -211,7 +211,7 @@
                                 <h:message for="cuatrob" styleClass=""/>
                             </div>
                             <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="Send"
+                                             value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>

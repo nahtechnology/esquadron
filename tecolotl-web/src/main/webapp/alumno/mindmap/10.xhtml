@@ -87,7 +87,7 @@
         <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left ">
             <div class="uk-container padding-contenedor fondo-mapa-10">
                 <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>Respondido</span>
+                    <span>#{alumno['map2.title.answered']}</span>
                 </h:panelGroup>
                 <h:form id="formulario-mapa-mental">
                     <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">
@@ -177,7 +177,7 @@
                             <h:message for="ocho" styleClass=""/>
                         </div>
                         <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                         value="Send"
+                                         value="#{boton['submit']}"
                                          rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                          action="#{mapaMentalControlador.respondeMapaMental}"/>
                     </h:panelGroup>

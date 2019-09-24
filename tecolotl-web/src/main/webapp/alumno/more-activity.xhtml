@@ -94,7 +94,7 @@
                     <ul class="js-filter" style="list-style: none; padding-left: 0;">
                         <li class="ordenar">
                             <h:form id="tareaOraciones">
-                                <h1 class="lescuadron uk-text-center letra-titulo">Order Sentences</h1>
+                                <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.order.sentences']}</h1>
                                 <h:panelGroup layout="block" styleClass="uk-container padding-contenedor contenedor-oraciones uk-sortable "  pt:uk-sortable="">
                                     <ui:repeat value="#{tareaOracionesControlador.desordena()}" var="oracion">
                                         <div class="oraciones" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
@@ -115,7 +115,7 @@
                                             <thead>
                                             <tr>
                                                 <th class="" style="width: 50%">Imgen</th>
-                                                <th style="width: 50%">Respuesta</th>
+                                                <th style="width: 50%">answer.order.sentences</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -188,7 +188,7 @@
                             </div>
                         </li>
                         <li class="complete-sentences">
-                            <h1 class="lescuadron uk-text-center letra-titulo">Complete all Sentences</h1>
+                            <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="uk-sortable contedor-oraciones" pt:uk-sortable="group: oracion">
                                 <div class="respuesta-oracion">palabra</div>
                                 <div class="respuesta-oracion">palabra</div>

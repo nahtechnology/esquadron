@@ -87,7 +87,7 @@
         <div class="uk-section margen-superior">
             <div class="uk-container fondo-mapa3 padding-contenedor posicion-contenedor">
                 <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>Respondido</span>
+                    <span>#{alumno['map2.title.answered']}</span>
                 </h:panelGroup>
                 <div class="imagen-whose">
                     <h:graphicImage library="img" name="mounstro/whose.svg"/>
@@ -96,10 +96,10 @@
                     <h:graphicImage library="img" name="mounstro/whom.svg"/>
                 </div>
                 <div class="imagen-popart fondo-pop-7 uk-visible@m">
-                        <h3 class="titulo-mapa-7">Steps to Do an Experiment</h3>
+                        <h3 class="titulo-mapa-7">#{alumno['map7.title.steps']}</h3>
                 </div>
                 <div class="uk-hidden@m">
-                    <h3 class="titulo-mapa-7 uk-text-center" style="color: black; ">Steps to Do an Experiment</h3>
+                    <h3 class="titulo-mapa-7 uk-text-center" style="color: black; ">#{alumno['map7.title.steps']}</h3>
                 </div>
                 <div class="margen-contenido">
                     <h:form id="formulario-mapa-mental" class="uk-form-stacked">
@@ -171,7 +171,7 @@
                                 <h:message for="seis" styleClass=""/>
                             </div>
                             <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="Send"
+                                             value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>

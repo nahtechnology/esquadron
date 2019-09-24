@@ -93,12 +93,12 @@
                 <div class="uk-flex uk-flex-center uk-position-relative">
                     <h:graphicImage library="img" name="alumno/pop-art/popart-amarillo.svg" styleClass="uk-visible@m"/>
                     <div class="uk-position-absolute letra-posicion uk-visible@m">
-                        <h3 class="uk-text-uppercase">Compare and contrast</h3>
-                        <p>How two thigs are a like and how they are diferent</p>
+                        <h3 class="uk-text-uppercase">#{alumno['map4.title.description.compare']}</h3>
+                        <p>#{alumno['map4.title.description.how']}</p>
                     </div>
                     <div class="letra-posicion uk-hidden@m fondo-pop">
-                        <h6 class="uk-text-uppercase uk-text-center">Compare and contrast</h6>
-                        <p class="uk-text-small uk-text-center">How two thigs are a like and how they are diferent</p>
+                        <h6 class="uk-text-uppercase uk-text-center">#{alumno['map4.title.description.compare']}t</h6>
+                        <p class="uk-text-small uk-text-center">#{alumno['map4.title.description.how']}</p>
                     </div>
                 </div>
                 <div class="uk-position-relative ">
@@ -135,7 +135,7 @@
                                 <h:message for="tres" styleClass=""/>
                             </div>
                             <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="Send"
+                                             value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>

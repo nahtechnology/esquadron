@@ -226,7 +226,7 @@
                                 <h:message for="opiniong" styleClass=""/>
                             </div>
                             <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="Send"
+                                             value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>

@@ -106,7 +106,7 @@
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="introduction" styleClass=""/>
-                            <h3 class="uk-text-center margen-small">Supporting Deails:</h3>
+                            <h3 class="uk-text-center margen-small">#{alumno['map8.title.supporting']}</h3>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
                                              id="deails1"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
@@ -162,7 +162,7 @@
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="introduction-m" styleClass=""/>
-                            <h3 class="uk-text-center margen-small">Supporting Deails:</h3>
+                            <h3 class="uk-text-center margen-small">#{alumno['map8.title.supporting']}</h3>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
                                              id="deails1-m"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
@@ -197,7 +197,7 @@
                             </h:inputTextarea>
                             <h:message for="Conclusion-m" styleClass=""/>
                             <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="Send"
+                                             value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>
