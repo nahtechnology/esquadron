@@ -70,7 +70,7 @@
                     <div class="uk-container">
                         <div class="uk-grid uk-child-width-1-4@m" uk-grid="">
                             <div class="">
-                                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Grupos</h5>
+                                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Grupo</h5>
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">8</h1>-->
                                    <div class="uk-flex uk-flex-center">
                                         <h:panelGroup layout="block" styleClass="tamaño-imagen"  pt:uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Grupos; pos: right">
@@ -88,7 +88,7 @@
                                 </div>
                             </div>
                             <div>
-                                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Horas de Conexión</h5>
+                                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-cards color-title-card uk-text-center">Comentarios</h5>
                                 <!--<h1 class="color-texto uk-text-center size-one uk-margin-remove-top uk-margin-remove-bottom">30<small class="uk-text-small">HR</small></h1>-->
                                 <div class="uk-flex uk-flex-center">
                                     <h:panelGroup styleClass="tamaño-imagen"  pt:uk-tooltip="title: #{dashboardProfesorControlador.profesorModelo.id} Horas; pos: right">
@@ -303,36 +303,10 @@
 
             for (i = 0; i &lt; grafica.length; i++) {
 
-                // datos[0].innerHTML
 
                 let datos = grafica[i].querySelectorAll('div');
 
-                // new Chart(grafica[i], {
-                //     type: 'radar',
-                //     data: {
-                //         labels: ["Listening","Reading" , "Speaking", "Writing", "Mental Map"],
-                //         datasets: [{
-                //             label: datos[1].innerHTML+datos[0].innerHTML,
-                //             fill: true,
-                //             backgroundColor: datos[2].innerHTML,
-                //             borderColor: "rgba(51,153,255,0.2)",
-                //             pointBorderColor: "#fff",
-                //             pointBackgroundColor: "rgba(179,181,198,1)",
-                //             data: [parseFloat(datos[3].innerHTML), parseFloat(datos[4].innerHTML), parseFloat(datos[5].innerHTML), parseFloat(datos[6].innerHTML), parseFloat(datos[7].innerHTML)]
-                //         }]
-                //     },
-                //     options: {
-                //         maintainAspectRatio: false,
-                //         responsiveAnimationDuration: 500,
-                //         animation: {
-                //             duration: 2000
-                //         },
-                //         title: {
-                //             display: true,
-                //             text: 'Amelia juarez garcia'
-                //         }
-                //     }
-                // });
+
 
                 new Chart(grafica[i], {
                     type: 'horizontalBar',
