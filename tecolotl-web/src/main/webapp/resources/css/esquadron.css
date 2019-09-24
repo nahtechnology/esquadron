@@ -499,6 +499,12 @@ padding-top: 38px;
 .padding-logo{
   padding: 8px 0px;
 }
+.imagen-flexible{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+}
 .img-alumno-dashboard{
   width: 200px;
   height: 200px;

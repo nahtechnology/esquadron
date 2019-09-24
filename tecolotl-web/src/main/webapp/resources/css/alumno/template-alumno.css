@@ -3,7 +3,7 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-
+    font-family: 'Sniglet', sans-serif;
 }
 
 #top-head {
@@ -80,7 +80,8 @@ body{
     margin-bottom: -1px;
 }
 .left-nav-wrap {
-    padding-bottom: 60px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 .content-box-dark {
     background-color: rgba(0,0,0,0.09);
@@ -548,6 +549,28 @@ iframe {
 
 .mensaje1 > span{
     display: inline-block;
+}
+
+.barra-alumno{
+    width: calc(80%);
+}
+.contenedor-barra{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+}
+.contenedor-barra span{
+    font-weight: bold;
+    color: black;
+}
+
+.uk-progress{
+    margin-bottom: 0;
+    width: 75%;
+    margin-top: 4px;
 }
 
 
