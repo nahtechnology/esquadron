@@ -292,6 +292,7 @@
                 if (data.status === 'success') {
                     data.source.previousElementSibling.previousElementSibling.querySelector('.uk-sortable').removeAttribute('uk-sortable');
                     data.source.disabled = true;
+                    UIkit.notification("Respuesta Enviada correctamente", {pos: 'top-right'})
                 }
             }
 

@@ -3,10 +3,12 @@ Funcionaes para la transcripcion
  */
 var answer;
 var menuPrincipal;
+var orderWords;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     answer = document.querySelector('.answer');
     menuPrincipal = document.querySelector('.uk-container .uk-subnav');
+    orderWords = document.querySelector('.order-words');
     agregaRespuestas(answer.querySelector('.contenedor-respuesta'));
     menuPrincipal.querySelector('li:nth-child(4)').addEventListener('click', eventoClickTransciptcion);
     if (menuPrincipal.querySelector('li:first-child').dataset.respondiendo === 'true') {
@@ -49,6 +51,7 @@ function transcripcionEnvidad(data) {
     if (data.status === 'success') {
         menuPrincipal.querySelector('li:first-child').setAttribute('uk-filter-control','.transcrip');
         data.source.disabled = true;
+        UIkit.notification("Se ha enviado de forma correcta tu respuesta", {pos: 'top-right'});
     }
 }
 
