@@ -89,13 +89,18 @@
     padding: 4px 10px 4px 10px;
 }
 
-.menu-ordenar > .uk-active{
+.menu-ordenar > .uk-active {
     background-color: gold;
 }
 
+.menu-ordenar > :not(.uk-active) {
+    cursor: pointer;
+}
+/*
 .menu-ordenar > li:hover{
     cursor: pointer;
 }
+*/
 
 .boton-listo{
     color: white;
