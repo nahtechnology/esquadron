@@ -87,7 +87,14 @@
     margin: 3px;
     text-align: center;
     padding: 4px 10px 4px 10px;
+}
 
+.menu-ordenar > .uk-active{
+    background-color: gold;
+}
+
+.menu-ordenar > li:hover{
+    cursor: pointer;
 }
 
 .boton-listo{
