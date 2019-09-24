@@ -6,24 +6,6 @@ body{
 
 }
 
-@media screen and (max-width: 1030px ){
-    body{
-        background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-}
-
-@media screen and (max-width: 768px){
-    body{
-        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
-}
-
 #top-head {
     z-index: 9;
     top: 0;
@@ -445,8 +427,6 @@ iframe {
     color: white;
     font-weight: bold;
     font-size: 25px;
-    padding-bottom: 15px;
-    padding-left: 15px;
     font-family: 'Sniglet', sans-serif;
     position: absolute;
     top: calc(50% - 125px);
@@ -456,6 +436,9 @@ iframe {
     justify-content: center;
     align-content: center;
     flex-wrap: wrap;
+    display: -webkit-flex;
+    -webkit-align-content: center;
+    -webkit-justify-content: center;
 }
 
 .movimiento{
@@ -575,5 +558,33 @@ iframe {
         width: 90px;
         height: 65px;
         font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 1030px ){
+    body{
+        background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .movimiento1{
+        right: 10%;
+        top: 230px;
+    }
+    .realizado{
+        width: 90px;
+        height: 65px;
+        font-size: 10px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    body{
+        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 }
