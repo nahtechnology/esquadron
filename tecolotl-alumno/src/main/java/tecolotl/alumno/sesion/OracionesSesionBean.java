@@ -29,7 +29,6 @@ public class OracionesSesionBean {
         typedQuery.setParameter("idTarea", idTarea);
         List<TareaOracionesEntidad> tareaOracionesEntidadLista = typedQuery.getResultList();
         logger.finer("ElementosEncontrados: ".concat(String.valueOf(tareaOracionesEntidadLista.size())));
-        List<TareaOracionesModelo> tareaOracionesModeloLista = new ArrayList<>();
         return tareaOracionesEntidadLista.stream().map(TareaOracionesModelo::new).collect(Collectors.toList());
     }
 }

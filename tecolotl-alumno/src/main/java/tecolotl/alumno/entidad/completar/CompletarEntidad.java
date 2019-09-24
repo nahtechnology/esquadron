@@ -36,7 +36,7 @@ public class CompletarEntidad {
     }
 
     @NotNull
-    @Basic(fetch = FetchType.LAZY)
+    @Basic
     @Column(name = "oracion")
     public String getOracion() {
         return oracion;

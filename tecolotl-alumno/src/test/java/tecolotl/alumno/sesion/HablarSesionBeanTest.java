@@ -19,6 +19,7 @@ import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
+import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.hablar.HablarModelo;
@@ -64,7 +65,6 @@ public class HablarSesionBeanTest {
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
                 .addPackage(ActividadSesionBean.class.getPackage())
-//                .addPackage(EscribirLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ValidadorSessionBean.class.getPackage())
                 .addPackage(CatalogoNuevoValidacion.class.getPackage())
                 .addPackage(CatalagoEntidad.class.getPackage())
@@ -82,6 +82,7 @@ public class HablarSesionBeanTest {
                 .addPackage(RelacionarOracionLlavePrimariaValidacion.class.getPackage())
                 .addPackage(HablarEntidad.class.getPackage())
                 .addPackage(HablarModelo.class.getPackage())
+                .addPackage(TareaCompletarModelo.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
