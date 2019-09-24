@@ -130,8 +130,8 @@
             var i = 0;
             linksTareas.forEach(function (value) {
                 value.dataset.id = videos[i].getAttribute('id');
-                value.style.visibility = (parseInt(reproducciones[i].innerHTML) !== 0)?'visibility':'hidden';
-                mensajes[i].style.visibility = (parseInt(reproducciones[i].innerHTML) !== 0)?'hidden':'visibility';
+                value.style.display = (parseInt(reproducciones[i].innerHTML) !== 0)?'':'none';
+                mensajes[i].style.display = (parseInt(reproducciones[i].innerHTML) !== 0)?'none':'';
                 i++;
             });
             var players = new Array();
@@ -161,7 +161,7 @@
                     var idVideoYT = urlVideoYT.split('v=');
                     linksTareas.forEach(function (value) {
                         if(value.getAttribute('data-id') === idVideoYT[1]){
-                            value.style.visibility = 'visible';
+                            value.style.display = '';
                         }
                     });
                     event.target.a.parentElement.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
