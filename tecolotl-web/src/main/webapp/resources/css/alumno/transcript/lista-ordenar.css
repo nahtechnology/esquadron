@@ -74,14 +74,29 @@
     overflow: auto;
 }
 
+.uk-subnav > *{
+    padding-left: 0;
+}
+
 .boton-falta{
+    color: white;
+    font-weight: bold;
     background-color: #00A859;
     border-radius: 50%;
     border: 5px solid gray;
+    margin: 3px;
+    text-align: center;
+    padding: 4px 10px 4px 10px;
+
 }
 
 .boton-listo{
+    color: white;
+    font-weight: bold;
     background-color: darkred;
     border-radius: 50%;
     border: 5px solid gray;
+    margin: 3px;
+    text-align: center;
+    padding: 4px 10px 4px 10px;
 }

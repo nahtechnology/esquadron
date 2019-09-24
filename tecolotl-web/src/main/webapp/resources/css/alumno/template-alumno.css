@@ -524,6 +524,7 @@ iframe {
     display: flex;
     justify-content: center;
 }
+
 .scroll-drag::-webkit-scrollbar {
     width: 10px;
 }
@@ -560,8 +561,20 @@ iframe {
     }
 
     .movimiento1{
-        right: 10%;
+        right: 30%;
         top: 230px;
+    }
+
+    .mensaje1{
+        padding: 20px 30px 0px 35px;
+    }
+
+    .realizado{
+
+    }
+
+    .movimiento{
+        right: 15%;
     }
 
 }
