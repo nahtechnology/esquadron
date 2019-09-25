@@ -1,6 +1,9 @@
 *{
     box-sizing: border-box;
 }
+ul.js-filter li{
+    margin-left: 20px;
+}
 .oraciones{
     width: 80%;
     height: 60px;
@@ -31,7 +34,8 @@
 }
 
 .contenedor-imagen:nth-child(1){
-    border: 2px solid #D35400;
+    border: 5px solid #D35400;
+    border-radius: 5px;
     padding: 8px;
 }
 
@@ -149,6 +153,7 @@
     padding: 8px;
     border-radius: 8px;
 }
+
 .more-uno{
     color: black;
     top: 0;
@@ -260,5 +265,6 @@
     border: 5px solid #D35400;
     border-radius: 50%;
 }
+
 
 
