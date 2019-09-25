@@ -95,10 +95,15 @@
                         <li class="ordenar">
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.order.sentences']}</h1>
-                                <h:panelGroup layout="block" styleClass="uk-container padding-contenedor contenedor-oraciones uk-sortable "  pt:uk-sortable="">
-                                    <ui:repeat value="#{tareaOracionesControlador.desordena()}" var="oracion">
-                                        <div class="oraciones" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
-                                    </ui:repeat>
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable=""  >
+                                        <ui:repeat value="#{tareaOracionesControlador.desordena()}" var="oracion">
+                                               <div class="uk-width-1-1@m" uk-grid="" >
+                                                    <div class="imagen-oracion uk-width-auto">
+
+                                                    </div>
+                                                    <div class="oraciones uk-width-expand" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
+                                               </div>
+                                        </ui:repeat>
                                 </h:panelGroup>
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
                                 <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar uk-margin" value="Send">
@@ -113,7 +118,7 @@
                                     <div class="contenedor-imagen scroll-drag">
                                         <table class="tabla-imagenes">
                                             <thead>
-                                            <tr>
+                                            <tr class="letra-titulo">
                                                 <th class="" style="width: 50%">Imgen</th>
                                                 <th style="width: 50%">answer.order.sentences</th>
                                             </tr>
@@ -204,10 +209,13 @@
                                 </ul>
 
                                 <ul class="uk-switcher uk-margin">
-                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur . <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>
-                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>
-                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus.</p></li>
-                                    <li><p class="uk-text-center">Lorem ipsum  sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus obcaecati.</p></li>
+<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur . <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>-->
+<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>-->
+<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus.</p></li>-->
+<!--                                    <li><p class="uk-text-center">Lorem ipsum  sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus obcaecati.</p></li>-->
+                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="oracion">
+                                        <li>#{oracion}</li>
+                                    </ui:repeat>
 
                                 </ul>
                             </div>
