@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 @Named
 public class CompletarOracionesControlador {
 
+    @Inject
     private Logger logger;
 
     @Inject
@@ -27,10 +28,11 @@ public class CompletarOracionesControlador {
 
     @PostConstruct
     public void init(){
+        logger.info(alumnoControlador.getTareaActividadModelo().getIdActividad());
+        logger.info(alumnoControlador.getTareaActividadModelo().getId().toString());
         tareaCompletarModeloLista = completarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
         logger.info(tareaCompletarModeloLista.toString());
     }
-
 
     public List<TareaCompletarModelo> getTareaCompletarModeloLista() {
         return tareaCompletarModeloLista;
