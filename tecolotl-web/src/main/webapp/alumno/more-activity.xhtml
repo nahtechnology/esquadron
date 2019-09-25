@@ -67,7 +67,7 @@
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
-            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
                 <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt="" /></h:link></li>
@@ -94,14 +94,14 @@
                     <ul class="js-filter" style="list-style: none; padding-left: 0;">
                         <li class="ordenar">
                             <h:form id="tareaOraciones">
-                                <h1 class="lescuadron uk-text-center letra-titulo">Order Sentences</h1>
+                                <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.order.sentences']}</h1>
                                 <h:panelGroup layout="block" styleClass="uk-container padding-contenedor contenedor-oraciones uk-sortable "  pt:uk-sortable="">
                                     <ui:repeat value="#{tareaOracionesControlador.desordena()}" var="oracion">
                                         <div class="oraciones" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
                                     </ui:repeat>
                                 </h:panelGroup>
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
-                                <h:commandButton style="" onclick="getRespuestas()" styleClass="uk-button uk-button-primary uk-margin" value="Submit answer">
+                                <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar uk-margin" value="Send">
                                     <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form"/>
                                 </h:commandButton>
                             </h:form>
@@ -115,7 +115,7 @@
                                             <thead>
                                             <tr>
                                                 <th class="" style="width: 50%">Imgen</th>
-                                                <th style="width: 50%">Respuesta</th>
+                                                <th style="width: 50%">answer.order.sentences</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -188,7 +188,7 @@
                             </div>
                         </li>
                         <li class="complete-sentences">
-                            <h1 class="lescuadron uk-text-center letra-titulo">Complete all Sentences</h1>
+                            <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="uk-sortable contedor-oraciones" pt:uk-sortable="group: oracion">
                                 <div class="respuesta-oracion">palabra</div>
                                 <div class="respuesta-oracion">palabra</div>

@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
-            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
                 <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
@@ -86,18 +86,18 @@
         <div class="uk-section">
             <div class="uk-container  margen-superior color-fondo contenedor-padre margen-secuencia ">
                 <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>Respondido</span>
+                    <span>#{alumno['map2.title.answered']}</span>
                 </h:panelGroup>
                 <div class="uk-visible@s">
                     <div class="imagen-secuencia">
                         <h:graphicImage library="img" name="mounstro/whose.svg"/>
                     </div>
                     <div class="imagen-globo">
-                        <h3 class="titulo-mapa-11">Secuence Order</h3>
+                        <h3 class="titulo-mapa-11">#{alumno['map10.title.secuence']}</h3>
                     </div>
                 </div>
                 <div class="uk-hidden@s">
-                    <h3 class="titulo-mapa-11 uk-text-center uk-margin-top">Secuence order</h3>
+                    <h3 class="titulo-mapa-11 uk-text-center uk-margin-top">#{alumno['map10.title.secuence']}</h3>
                     <div class="imagen-secuencia-small">
                         <h:graphicImage library="img" name="mounstro/whose.svg"/>
                     </div>
@@ -197,7 +197,7 @@
                             </div>
                         </div>
                         <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                         value="Send"
+                                         value="#{boton['submit']}"
                                          rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                          action="#{mapaMentalControlador.respondeMapaMental}"/>
                     </h:form>

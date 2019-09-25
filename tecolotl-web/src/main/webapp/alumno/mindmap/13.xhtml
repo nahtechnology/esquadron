@@ -71,7 +71,7 @@
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
-            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
                 <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt="" /></h:link></li>
@@ -86,7 +86,7 @@
         <div class="uk-section margen-superior uk-margin-small-left uk-margin-small-right">
             <div class="uk-container padding-contenedor fondo-13 uk-position-relative" >
                 <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>Respondido</span>
+                    <span>#{alumno['map2.title.answered']}</span>
                 </h:panelGroup>
                 <h:graphicImage library="img" name="/mounstro/who.svg" styleClass="catarina-13"/>
                 <h:form id="formulario-mapamental" styleClass="uk-grid contenedor-formularios uk-visible@m" pt:uk-grid="">
@@ -371,7 +371,7 @@
                         </div>
                     </div>
                     <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                     value="Send"
+                                     value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                      action="#{mapaMentalControlador.respondeMapaMental}"/>
                 </h:form>

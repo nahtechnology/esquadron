@@ -63,7 +63,7 @@
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
-            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
                 <li uk-tooltip="title: #{alumno['dashboard']}; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="60" alt=""/></li>
                 <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt=""/></h:link></li>
@@ -104,7 +104,7 @@
                                     </h:panelGroup>
                                 </div>
                                 <div class="uk-card-body">
-                                    <div class="uk-text-center mensaje1"><span class="mensaje1-1">Please watch the<br/>full video!</span></div>
+                                    <div class="uk-text-center mensaje1"><span class="mensaje1-1">#{alumno['title.description.please.watch.the']}<br/>#{alumno['title.description.full.video']}</span></div>
                                 </div>
                                 <div  class="uk-card-footer">
                                     <h:form>

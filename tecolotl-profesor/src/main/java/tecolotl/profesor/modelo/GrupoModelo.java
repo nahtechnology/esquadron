@@ -7,6 +7,7 @@ import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -17,6 +18,7 @@ public class GrupoModelo {
     private Character grupo;
     private Integer idProfesor;
     private CicloEscolarModelo cicloEscolarModelo;
+    private List<GrupoAlumnoModelo> grupoAlumnoModeloLista;
 
     public GrupoModelo() {
     }

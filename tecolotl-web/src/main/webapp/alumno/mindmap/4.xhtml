@@ -71,7 +71,7 @@
             </ul>
         </div>
     <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
-        <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
+        <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
             <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
             <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
             <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt="" /></h:link></li>
@@ -93,12 +93,12 @@
                 <div class="uk-flex uk-flex-center uk-position-relative">
                     <h:graphicImage library="img" name="alumno/pop-art/popart-amarillo.svg" styleClass="uk-visible@m"/>
                     <div class="uk-position-absolute letra-posicion uk-visible@m">
-                        <h3 class="uk-text-uppercase">Compare and contrast</h3>
-                        <p>How two thigs are a like and how they are diferent</p>
+                        <h3 class="uk-text-uppercase">#{alumno['map4.title.description.compare']}</h3>
+                        <p>#{alumno['map4.title.description.how']}</p>
                     </div>
                     <div class="letra-posicion uk-hidden@m fondo-pop">
-                        <h6 class="uk-text-uppercase uk-text-center">Compare and contrast</h6>
-                        <p class="uk-text-small uk-text-center">How two thigs are a like and how they are diferent</p>
+                        <h6 class="uk-text-uppercase uk-text-center">#{alumno['map4.title.description.compare']}t</h6>
+                        <p class="uk-text-small uk-text-center">#{alumno['map4.title.description.how']}</p>
                     </div>
                 </div>
                 <div class="uk-position-relative ">
@@ -135,7 +135,7 @@
                                 <h:message for="tres" styleClass=""/>
                             </div>
                             <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="Send"
+                                             value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"/>
                         </div>

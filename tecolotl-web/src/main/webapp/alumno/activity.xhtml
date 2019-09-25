@@ -69,7 +69,7 @@
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
-            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
                 <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg"  width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt=""/></h:link></li>
@@ -147,7 +147,7 @@
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="uk-button uk-button-primary uk-margin"  value="Submit Answer">
+                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form"/>
                                 </h:commandButton>
                             </h:form>
@@ -185,11 +185,11 @@
                             </ul>
                         </li>
                         <li class="answer">
-                            <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">
-                                <div>
-                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
-                                </div>
-                                <h:panelGroup layout="block" styleClass="" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                            <div class="video-activity">
+                                <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
+                            </div>
+                            <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
+                                <h:panelGroup layout="block" styleClass="contenedor-padre-activity" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar">

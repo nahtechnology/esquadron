@@ -16,10 +16,15 @@ import java.util.StringJoiner;
     @NamedQuery(name ="GrupoEntidad.busca", query = "SELECT g FROM GrupoEntidad g"),
     @NamedQuery(
         name = "GrupoEntidad.buscaProfesor",
-        query = "SELECT g FROM GrupoEntidad g JOIN FETCH g.cicloEscolarEntidad ce WHERE g.profesorEntidad.id = :idProfesor AND g.cicloEscolarEntidad.activo = TRUE"),
+        query = "SELECT g FROM GrupoEntidad g JOIN FETCH g.cicloEscolarEntidad ce WHERE g.profesorEntidad.id = :idProfesor AND g.cicloEscolarEntidad.activo = TRUE"
+    ),
     @NamedQuery(
         name = "GrupoAlumnoEntidad.buscaAlumno",
         query = "SELECT g FROM GrupoEntidad g JOIN g.profesorEntidad"
+    ),
+    @NamedQuery(
+            name = "GrupoAlumnoEntidad.buscaTotalGrupos",
+            query = "select count(ge), gae.grupoAlumnoEntidadPK.alumnoEntidad from GrupoEntidad ge join fetch ge.grupoAlumnoEntidad gae on gae.grupoAlumnoEntidadPK.grupoEntidad.id = ge.id where ge.profesorEntidad.id = :idprofesor"
     )
 })
 public class GrupoEntidad {
@@ -29,6 +34,7 @@ public class GrupoEntidad {
     private Character grupo;
     private ProfesorEntidad profesorEntidad;
     private CicloEscolarEntidad cicloEscolarEntidad;
+    private List<GrupoAlumnoEntidad> grupoAlumnoEntidad;
 
     public GrupoEntidad() {
     }
@@ -93,31 +99,13 @@ public class GrupoEntidad {
         this.cicloEscolarEntidad = cicloEscolarEntidad;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GrupoEntidad that = (GrupoEntidad) o;
-        return id.equals(that.id) &&
-                grado.equals(that.grado) &&
-                grupo.equals(that.grupo) &&
-                profesorEntidad.equals(that.profesorEntidad) &&
-                cicloEscolarEntidad.equals(that.cicloEscolarEntidad);
+
+    @OneToMany(mappedBy = "grupoAlumnoEntidadPK.grupoEntidad")
+    public List<GrupoAlumnoEntidad> getGrupoAlumnoEntidad() {
+        return grupoAlumnoEntidad;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, grado, grupo, profesorEntidad, cicloEscolarEntidad);
-    }
-
-    @Override
-    public String toString() {
-        return "GrupoEntidad{" +
-                "id=" + id +
-                ", grado=" + grado +
-                ", grupo=" + grupo +
-                ", profesorEntidad=" + profesorEntidad +
-                ", cicloEscolarEntidad=" + cicloEscolarEntidad +
-                '}';
+    public void setGrupoAlumnoEntidad(List<GrupoAlumnoEntidad> grupoAlumnoEntidad) {
+        this.grupoAlumnoEntidad = grupoAlumnoEntidad;
     }
 }
