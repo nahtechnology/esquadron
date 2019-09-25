@@ -158,10 +158,12 @@ ul.js-filter li{
 .more-uno{
     background-color: #00FE00;
     opacity: 0.6;
+    box-sizing: border-box;
     color: black;
     top: 0;
     left: 0;
-    padding-left: 5%;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 
 .more-dos{
@@ -172,10 +174,12 @@ ul.js-filter li{
 .more-tres{
     color: black;
     background-color: #0e6ecd;
+    box-sizing: border-box;
     opacity: 0.6;
     bottom: 0;
     left: 0;
-    padding-right: 15%;
+    padding-left: 3%;
+    padding-right: 12%;
 
 }
 

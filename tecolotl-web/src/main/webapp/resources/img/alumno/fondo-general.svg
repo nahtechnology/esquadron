@@ -37,14 +37,14 @@
     <g class="luna">
         <circle cx="3380" cy="420" r="200" />
         <circle cx="3700" cy="425" r="40">
-            <animateTransform
-                    attributeName="transform"
-                    begin="0s"
-                    dur="60s"
-                    type="rotate"
-                    from="0 3370 425"
-                    to="360 3370 425"
-                    repeatCount="indefinite"/>
+<!--            <animateTransform-->
+<!--                    attributeName="transform"-->
+<!--                    begin="0s"-->
+<!--                    dur="60s"-->
+<!--                    type="rotate"-->
+<!--                    from="0 3370 425"-->
+<!--                    to="360 3370 425"-->
+<!--                    repeatCount="indefinite"/>-->
         </circle>
     </g>
 
@@ -73,11 +73,11 @@
             </linearGradient>
         </defs>
         <ellipse cx="32.5" cy="100" rx="15" ry="20" stroke="red" stroke-width="3" fill="url(#grad2)">
-            <animate attributeName="ry"
-                     values="20;70;20"
-                     begin="0"
-                     dur="5s"
-                     repeatCount="indefinite"/>
+<!--            <animate attributeName="ry"-->
+<!--                     values="20;70;20"-->
+<!--                     begin="0"-->
+<!--                     dur="5s"-->
+<!--                     repeatCount="indefinite"/>-->
         </ellipse>
 
         <path d="m60.21 68.94 c0.26785 17.693-10.503 52.991-10.503 52.991s-11.757 3.5095-16.409 3.5095c-4.7434-1e-5 -17.012-3.8767-17.012-3.8767s-9.632-36.475-9.632-52.892c0-34.31 28.518-62.124 28.518-62.124 1.0327 0.14753 24.529 28.855 25.037 62.392z" fill="#fff"/>
