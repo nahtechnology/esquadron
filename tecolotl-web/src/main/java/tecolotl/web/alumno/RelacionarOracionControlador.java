@@ -58,10 +58,20 @@ public class RelacionarOracionControlador {
         }
         return resp;
     }
+
     public List<TareaRelacionarOracionModelo> desordenaLista(List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista){
         List<TareaRelacionarOracionModelo> temporal = tareaRelacionarOracionModeloLista;
         Collections.shuffle(temporal);
         return temporal;
+    }
+
+    public String buscaPalabra(int respuesta) {
+        for (TareaRelacionarOracionModelo tareaRelacionarOracionModelo : tareaRelacionarOracionModeloLista) {
+            if (tareaRelacionarOracionModelo.getRelacionarOracionModelo().getId().intValue() == respuesta) {
+                return tareaRelacionarOracionModelo.getRelacionarOracionModelo().getRespuesta();
+            }
+        }
+        return null;
     }
 
     public List<TareaRelacionarOracionModelo> getTareaRelacionarOracionModeloLista() {

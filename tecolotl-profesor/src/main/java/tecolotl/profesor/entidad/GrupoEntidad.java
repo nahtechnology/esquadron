@@ -23,8 +23,9 @@ import java.util.StringJoiner;
         query = "SELECT g FROM GrupoEntidad g JOIN g.profesorEntidad"
     ),
     @NamedQuery(
-            name = "GrupoAlumnoEntidad.buscaTotalGrupos",
-            query = "select count(ge), gae.grupoAlumnoEntidadPK.alumnoEntidad from GrupoEntidad ge join fetch ge.grupoAlumnoEntidad gae on gae.grupoAlumnoEntidadPK.grupoEntidad.id = ge.id where ge.profesorEntidad.id = :idprofesor"
+            name = "GrupoEntidad.buscaTotalGrupos",
+            query = "select count(ge.id), gae.grupoAlumnoEntidadPK.alumnoEntidad from GrupoEntidad ge join ge.grupoAlumnoEntidad gae  " +
+                    "where ge.profesorEntidad.id = :idprofesor GROUP BY ge.id"
     )
 })
 public class GrupoEntidad {
