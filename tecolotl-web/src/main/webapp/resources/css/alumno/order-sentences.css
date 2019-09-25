@@ -138,9 +138,10 @@ ul.js-filter li{
     display: flex;
     flex-wrap: wrap;
     align-content: center;
-    justify-content: center;
+    /*justify-content: center;*/
     color: black;
-    font-size: 19px;
+    font-size: 21px;
+    font-weight: bold;
 
 
 }
@@ -155,26 +156,33 @@ ul.js-filter li{
 }
 
 .more-uno{
+    background-color: #00FE00;
+    opacity: 0.6;
     color: black;
     top: 0;
     left: 0;
+    padding-left: 5%;
 }
 
 .more-dos{
     color: black;
     top: 0;
-    right: 0;
+    right: -5%;
 }
 .more-tres{
     color: black;
+    background-color: #0e6ecd;
+    opacity: 0.6;
     bottom: 0;
     left: 0;
+    padding-right: 15%;
+
 }
 
 .more-cuatro{
     color: black;
     bottom: 0;
-    right: 0;
+    right: -5%;
 }
 
 .respuesta-oracion{
