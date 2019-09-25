@@ -97,8 +97,12 @@
                         <li uk-filter-control=".match" uk-tooltip="#{alumno['bar.icon.match']}" class="uk-animation-toggle" tabindex="0" style="display: #{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista ? 'none' : 'block'}">
                             <h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
-                        <li uk-filter-control=".order-words" uk-tooltip="#{alumno['title.order.words']}" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
-                        <li uk-filter-control=".answer" uk-tooltip="#{alumno['bar.icon.transcript']}" class="uk-animation-toggle" tabindex="0"><h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/></li>
+                        <li uk-filter-control=".order-words" uk-tooltip="#{alumno['title.order.words']}" class="uk-animation-toggle" tabindex="0">
+                            <h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
+                        </li>
+                        <li uk-filter-control=".answer" uk-tooltip="#{alumno['bar.icon.transcript']}" class="uk-animation-toggle" tabindex="0">
+                            <h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
+                        </li>
                         <h:form>
                             <h:inputHidden value="#{transcripcionControlador.activo}"/>
                             <h:commandLink style="display: none">
@@ -145,6 +149,23 @@
                                             <div class="respuesta" data-id="#{preRespuestas.relacionarOracionModelo.id}">#{relacionarOracion.respuesta != null ? preRespuestas.relacionarOracionModelo.respuesta : preRespuestas.relacionarOracionModelo.respuesta}</div>
                                         </ui:repeat>
                                     </h:panelGroup>
+                                </h:panelGroup>
+                                <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                    <div class="columna-pregunta uk-width-expand">
+                                        <h:dataTable styleClass="tabla-ordenar uk-table-middle"
+                                                     value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}"
+                                                     headerClass="titulo-tabla uk-text-center"
+                                                     rowClasses="cuerpo-tabla uk-text-center"
+                                                     var="relacionarOracion">
+                                            <h:column>
+                                                <f:facet name="header">#{alumno['title.match.sentence.question']}</f:facet>#{relacionarOracion.relacionarOracionModelo.pregunta}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">#{alumno['title.match.sentence.answer']}</f:facet>#{relacionarOracionControlador.buscaPalabra(relacionarOracion.respuesta)}
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                    <span>Respondido</span>
                                 </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
                                 <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send">
