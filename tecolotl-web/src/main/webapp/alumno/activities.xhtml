@@ -132,7 +132,7 @@
                 mensajes[i].style.display = (parseInt(reproducciones[i].innerHTML) !== 0)?'none':'';
                 i++;
             });
-            var players = new Array();
+            var players = [];
             var player;
             function onYouTubeIframeAPIReady() {
                 videos.forEach(function (value) {
@@ -154,7 +154,7 @@
             }
             var done = false;
             function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.ENDED &amp;&amp; !done) {
+                if (event.data === YT.PlayerState.ENDED &amp;&amp; !done) {
                     var urlVideoYT = event.target.getVideoUrl();
                     var idVideoYT = urlVideoYT.split('v=');
                     var i = 0;
@@ -165,7 +165,9 @@
                             mensajes[i].style.display = 'none';
                         }
                     });
-                    event.target.a.parentElement.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
+                    event.target.a.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
+                    var reproducciones = event.target.a.parentElement.previousElementSibling.querySelector('span.uk-padding-small');
+                    reproducciones.textContent = parseInt(reproducciones.textContent) + 1;
                     done = true;
                 }else {
                     done = false;
