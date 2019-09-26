@@ -44,7 +44,7 @@ public class GlosarioEntidad {
         this.glosarioEntidadPK = glosarioEntidadPK;
     }
 
-    @Basic
+    @Basic(fetch = FetchType.LAZY)
     @Column(name = "imagen")
     @NotNull
     public byte[] getImagen() {

@@ -1,7 +1,6 @@
 package tecolotl.web.herramienta;
 
-import tecolotl.alumno.scope.ImagenGlosarioScope;
-import tecolotl.alumno.sesion.GlosarioSesionBean;
+import tecolotl.alumno.cache.ImageneGlosarioCache;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -18,7 +17,7 @@ import java.io.OutputStream;
 public class ImagenGlosarioServlet extends HttpServlet {
 
     @Inject
-    private ImagenGlosarioScope imagenGlosarioScope;
+    private ImageneGlosarioCache imageneGlosarioCache;
 
     @Override
     protected void doGet(HttpServletRequest httpServletRequest,
@@ -26,7 +25,7 @@ public class ImagenGlosarioServlet extends HttpServlet {
         byte[] buffer = new byte[1024]; int byteLeidos;
         httpServletResponse.setContentType("image/jpeg");
         try(OutputStream outputStream = httpServletResponse.getOutputStream();
-            InputStream inputStream = new ByteArrayInputStream(imagenGlosarioScope.imagen(
+            InputStream inputStream = new ByteArrayInputStream(imageneGlosarioCache.busca(
                     httpServletRequest.getParameter("palabra"),
                     Short.parseShort(httpServletRequest.getParameter("clave"))))) {
             while ((byteLeidos = inputStream.read(buffer)) > -1) {

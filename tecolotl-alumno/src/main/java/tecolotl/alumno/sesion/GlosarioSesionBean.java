@@ -32,7 +32,7 @@ public class GlosarioSesionBean implements Serializable {
     private EntityManager entityManager;
 
     /**
-     *
+     * Busca un glosario por su llave primaria
      * @param palabra
      * @param clave
      * @return
@@ -102,6 +102,18 @@ public class GlosarioSesionBean implements Serializable {
         ).collect(Collectors.toList());
     }
 
+    /**
+     * Busca los glosario sin filtro alguno.
+     * @param inicio Posición de la primera fila a buscar.
+     * @param maximo El  máximo de elementos a buscar.
+     * @return Colección de {@link GlosarioModelo}
+     */
+    public List<GlosarioModelo> busca(int inicio, int maximo) {
+        logger.fine("Inicio:".concat(String.valueOf(inicio))); logger.fine("Maximo:".concat(String.valueOf(maximo)));
+        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
+        typedQuery.setFirstResult(inicio).setMaxResults(maximo);
+        return typedQuery.getResultList().stream().map(GlosarioModelo::new).collect(Collectors.toList());
+    }
 
     /**
      * Agreaga un nuevo glosario con su relacion en cascada de la actividad que pertenece.

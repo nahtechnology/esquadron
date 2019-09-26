@@ -24,8 +24,8 @@ public class GlosarioControlador {
 
     @PostConstruct
     public void init(){
-//        String idAvtividad = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idActividad");
-//        glosarioModeloLista = glosarioSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        String idAvtividad = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idActividad");
+        glosarioModeloLista = glosarioSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
     }
 
     public List<GlosarioModelo> getGlosarioModeloLista() {

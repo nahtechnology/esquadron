@@ -29,6 +29,7 @@ public class GlosarioModelo implements Comparable<GlosarioModelo>{
         this.palabra = glosarioEntidad.getGlosarioEntidadPK().getPalabra();
         this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
         this.significado = glosarioEntidad.getSignificado();
+        this.imagen = glosarioEntidad.getImagen();
     }
 
     @NotNull(groups = {GlosarioNuevoValidacion.class, GlosarioLlavePrimariaValidacion.class})
