@@ -1,9 +1,7 @@
 package tecolotl.alumno.cache;
 
 
-import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
-import tecolotl.alumno.sesion.ActividadSesionBean;
 import tecolotl.alumno.sesion.GlosarioSesionBean;
 
 import javax.annotation.PostConstruct;
@@ -20,7 +18,6 @@ import javax.validation.constraints.Size;
 import java.util.Dictionary;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.logging.Logger;
 
 @Singleton
