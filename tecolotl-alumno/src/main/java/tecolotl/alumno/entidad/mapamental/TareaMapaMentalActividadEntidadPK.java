@@ -12,6 +12,7 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
 
     private MapaMentalActividadEntidad mapaMentalActividadEntidad;
     private TareaEntidad tareaEntidad;
+    private Integer vuelta;
 
     public TareaMapaMentalActividadEntidadPK() {
     }
@@ -51,6 +52,16 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
         if (o == null || getClass() != o.getClass()) return false;
         TareaMapaMentalActividadEntidadPK that = (TareaMapaMentalActividadEntidadPK) o;
         return mapaMentalActividadEntidad.equals(that.mapaMentalActividadEntidad);
+    }
+
+    @Basic
+    @Column(name = "vuelta", insertable = false)
+    public Integer getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Integer vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override

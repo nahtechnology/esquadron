@@ -11,6 +11,7 @@ public class TareaMapaMentalModelo extends MapaMentalModelo{
 
     private String respuesta;
     private Date horaRespuesta;
+    private Integer vuelta;
 
     public TareaMapaMentalModelo() {
     }
@@ -27,6 +28,7 @@ public class TareaMapaMentalModelo extends MapaMentalModelo{
         this(tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad());
         this.respuesta = tareaMapaMentalActividadEntidad.getTextoRespuesta();
         this.horaRespuesta = tareaMapaMentalActividadEntidad.getHoraRespuesta();
+        this.vuelta = tareaMapaMentalActividadEntidad.getTareaMapaMentalActividadEntidadPK().getVuelta();
     }
 
     public String getRespuesta() {
@@ -43,6 +45,14 @@ public class TareaMapaMentalModelo extends MapaMentalModelo{
 
     public void setHoraRespuesta(Date horaRespuesta) {
         this.horaRespuesta = horaRespuesta;
+    }
+
+    public Integer getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Integer vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override

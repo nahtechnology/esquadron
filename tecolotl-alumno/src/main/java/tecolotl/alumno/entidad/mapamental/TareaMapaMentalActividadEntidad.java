@@ -39,6 +39,7 @@ import java.util.StringJoiner;
         )
 })
 public class TareaMapaMentalActividadEntidad implements Serializable {
+
     private TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK;
     private String textoRespuesta;
     private Date horaRespuesta;

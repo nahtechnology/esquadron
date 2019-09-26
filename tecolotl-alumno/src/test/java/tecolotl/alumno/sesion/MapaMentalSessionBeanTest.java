@@ -9,17 +9,23 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
+import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
+import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
 import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
+import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
+import tecolotl.alumno.modelo.hablar.HablarModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalResueltoModelo;
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
+import tecolotl.alumno.modelo.oraciones.TareaOracionesModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
@@ -71,6 +77,12 @@ public class MapaMentalSessionBeanTest {
                 .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(TareaResuetasModelo.class.getPackage())
                 .addPackage(MapaMentalLlavePrimariaValidacion.class.getPackage())
+                .addPackage(TareaOracionesModelo.class.getPackage())
+                .addPackage(TareaOracionesEntidad.class.getPackage())
+                .addPackage(HablarModelo.class.getPackage())
+                .addPackage(HablarEntidad.class.getPackage())
+                .addPackage(TareaCompletarModelo.class.getPackage())
+                .addPackage(TareaCompletarEntidad.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -93,7 +105,7 @@ public class MapaMentalSessionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<TareaMapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(5);
+        List<TareaMapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(1);
         assertNotNull(mapaMentalModeloLista);
         assertFalse(mapaMentalModeloLista.isEmpty());
         mapaMentalModeloLista.forEach(mapaMentalModelo -> {
