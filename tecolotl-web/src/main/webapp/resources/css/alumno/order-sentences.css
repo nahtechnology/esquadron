@@ -4,6 +4,7 @@
 ul.js-filter li{
     margin-left: 20px;
 }
+
 .oraciones{
     width: 80%;
     height: 60px;
@@ -17,7 +18,7 @@ ul.js-filter li{
     font-size: 20px;
 }
 .contenedor-oraciones{
-    height: 600px;
+    height: 500px;
     width: 100%;
     background: url("#{resource['img/mounstro/naranja.svg']}") no-repeat  center center/ 90% 90%;
     display: flex;
@@ -29,15 +30,10 @@ ul.js-filter li{
 }
 
 .contenedor-imagen {
-    height: 600px;
+    height: 500px;
     overflow: auto;
 }
 
-.contenedor-imagen:nth-child(1){
-    border: 5px solid #D35400;
-    border-radius: 5px;
-    padding: 8px;
-}
 
 .tabla-imagenes th{
     text-align: center;
@@ -47,16 +43,14 @@ ul.js-filter li{
 }
 .palabra-imagen{
     min-width: 150px;
-    max-width: 150px;
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px white;
+    border-radius: 5px;
     background: white;
-    padding: 3px 8px;
+    border:5px solid #F4D03F;
+    padding: 3px 4px;
     text-align: center;
     font-weight: bold;
     text-transform: capitalize;
     font-size: 20px;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
 }
 .palabras{
     display: flex;
@@ -279,5 +273,47 @@ ul.js-filter li{
     border-radius: 50%;
 }
 
+.imagen-relacionar{
+    background: url("#{resource['img/alumno/glosario/dizzy.jpg']}") no-repeat center center/100% 100%;
+    width: 80%;
+    height: 200px;
+    border: 4px solid white;
+}
+.icono-relacion-img{
+    width: 50px;
+    height: 50px;
+    background: url("#{resource['img/mounstro/whom.svg']}") no-repeat center/100% 100%;
+    margin-right: 9px;
+    border: 5px solid #D35400;
+    border-radius: 50%;
+    margin-top: 5px;
+}
+
+.oraciones-relacion-img{
+    height: 50px;
+    padding-left: 10px;
+    border: 5px solid #D35400;
+    background-color: white;
+    border-radius: 3px;
+    margin-top: 8px;
+    color:black;
+    font-weight: bold;
+    font-size: 10px;
+}
+.respuesta-imagen-contenedor{
+    width: 65%;
+    margin: 13px auto;
+}
 
 
+.oraciones-relacion-img > .palabra-imagen{
+    border: none;
+    padding: 3px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.respuesta-imagen{
+    width: 100%;
+    height: 100%;
+}

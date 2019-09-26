@@ -79,7 +79,6 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
-        <h:outputStylesheet library="css" name="/alumno/template-alumno.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container padding-contenedor">
@@ -113,30 +112,21 @@
                         </li>
                         <li class="relacion-imagen" >
                             <h1 class="lescuadron uk-text-center letra-titulo">Matching words</h1>
-                            <h:form>
-                                <div class="uk-grid uk-child-width-1-2@m" uk-grid="">
-                                    <div class="contenedor-imagen scroll-drag">
-                                        <table class="tabla-imagenes">
-                                            <thead>
-                                            <tr class="letra-titulo">
-                                                <th class="" style="width: 50%">Imgen</th>
-                                                <th style="width: 50%">answer.order.sentences</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                                <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
-                                                    <tr>
-                                                        <td><h:graphicImage library="img" name="/alumno/glosario/dare.jpg"/></td>
-                                                        <td class="uk-sortable" uk-sortable="group: respuesta-imagen">
-                                                            <h:panelGroup layout="blovk" rendered="#{not empty relacionar.respuesta}" styleClass="palabra-imagen">#{relacionarControlador.buscaPalabra(relacionar.respuesta)}</h:panelGroup>
-                                                        </td>
-                                                        <h:inputHidden value="#{relacionar.respuesta}" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}"/>
-                                                    </tr>
-                                                </ui:repeat>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <h:panelGroup styleClass="respuesta-imagen contenedor-imagen palabras"
+                            <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
+                                <div class="contenedor-imagen scroll-drag">
+                                    <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
+                                        <div class="imagen-relacionar uk-margin-auto ">
+
+                                        </div>
+                                        <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
+                                            <div class="icono-relacion-img uk-width-auto"></div>
+                                            <div class="oraciones-relacion-img uk-width-expand" uk-sortable="group: respuesta-imagen"></div>
+                                        </div>
+                                    </ui:repeat>
+
+                                </div>
+                                <h:panelGroup layout="block" styleClass="contenedor-imagen " >
+                                    <h:panelGroup styleClass="respuesta-imagen palabras"
                                                   rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                   layout="block">
                                         <div class="movimiento realizado">
@@ -144,18 +134,15 @@
                                         </div>
                                     </h:panelGroup>
                                     <h:panelGroup layout="block"
-                                                  styleClass="respuesta-imagen contenedor-imagen palabras "
+                                                  styleClass="respuesta-imagen  uk-sortable palabras"
                                                   pt:uk-sortable="group: respuesta-imagen"
                                                   rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                         <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
                                             <div data-codigo="#{relacionar.codigo}" class="palabra-imagen">#{relacionar.palabra}</div>
                                         </ui:repeat>
                                     </h:panelGroup>
-                                </div>
-                                <h:commandButton value="Send" styleClass="boton-enviar" onclick="enviarRespuesta()" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
-                                    <f:ajax listener="#{relacionarControlador.enviaRespuesta}" execute="@form" onevent="function funcion(data) {respuestaEnvidad(data)}"/>
-                                </h:commandButton>
-                            </h:form>
+                                </h:panelGroup>
+                            </h:panelGroup>
                         </li>
                         <li class="talking" >
                             <h1 class="lescuadron uk-text-center letra-titulo">Habla con tu pareja</h1>
@@ -209,10 +196,13 @@
                                 </ul>
 
                                 <ul class="uk-switcher uk-margin">
-                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur . <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>
-                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>
-                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus.</p></li>
-                                    <li><p class="uk-text-center">Lorem ipsum  sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus obcaecati.</p></li>
+<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur . <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>-->
+<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>-->
+<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus.</p></li>-->
+<!--                                    <li><p class="uk-text-center">Lorem ipsum  sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus obcaecati.</p></li>-->
+                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto">
+                                        <li><h:outputText value="#{texto.oracion}" escape="false"/> </li>
+                                    </ui:repeat>
 
                                 </ul>
                             </div>
