@@ -156,8 +156,6 @@ ul.js-filter li{
 }
 
 .more-uno{
-    background-color: #00FE00;
-    opacity: 0.6;
     box-sizing: border-box;
     color: black;
     top: 0;
@@ -169,13 +167,13 @@ ul.js-filter li{
 .more-dos{
     color: black;
     top: 0;
-    right: -5%;
+    right: 0;
+    box-sizing: border-box;
+    padding-left: 5%;
+    padding-right: 3%;
 }
 .more-tres{
-    color: black;
-    background-color: #0e6ecd;
     box-sizing: border-box;
-    opacity: 0.6;
     bottom: 0;
     left: 0;
     padding-left: 3%;
@@ -186,7 +184,10 @@ ul.js-filter li{
 .more-cuatro{
     color: black;
     bottom: 0;
-    right: -5%;
+    right: 0;
+    box-sizing: border-box;
+    padding-left: 5%;
+    padding-right: 3%;
 }
 
 .respuesta-oracion{
