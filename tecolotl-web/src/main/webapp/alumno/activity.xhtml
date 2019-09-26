@@ -122,56 +122,38 @@
                                </div>
                            </h:panelGroup>
                         </li>
-                        <li class="match uk-margin-small-top " value="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista and not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                            <h:form id="formulario-relacionar">
-                                <h1 class="uk-text-center lescuadron" style="color: white">#{alumno['title.match.sentence']}</h1>
-                                <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                                    <div class="columna-pregunta uk-width-expand">
-                                        <table id="tabla" class="tabla-ordenar uk-table-middle">
-                                            <thead class="titulo-tabla uk-text-center">
-                                            <tr>
-                                                <th>#{alumno['title.match.sentence.question']}</th>
-                                                <th>#{alumno['title.match.sentence.answer']}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody class="cuerpo-tabla uk-text-center">
-                                                <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
-                                                    <tr>
-                                                        <td>#{relacionarOracion.relacionarOracionModelo.pregunta}</td>
-                                                        <td class="uk-sortable" uk-sortable="group: respuesta">#{relacionarOracion.respuesta != null ? relacionarOracionControlador.respuestaVal(relacionarOracion.respuesta) : ""}</td>
-                                                    </tr>
-                                                </ui:repeat>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="uk-width-auto respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
-                                        <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas">
-                                            <div class="respuesta" data-id="#{preRespuestas.relacionarOracionModelo.id}">#{relacionarOracion.respuesta != null ? preRespuestas.relacionarOracionModelo.respuesta : preRespuestas.relacionarOracionModelo.respuesta}</div>
-                                        </ui:repeat>
+                        <li class="match uk-margin-small-top ">
+
+                                <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid=""  >
+                                    <h:panelGroup layout="block" styleClass="uk-width-3-4@m uk-grid" pt:uk-grid="">
+                                        <div class="uk-width-1-2@m">
+                                            <div class="titulo-respuesta-ordenar uk-width-expand" >respuesta</div>
+
+                                            <div class="pregunta-ordenar">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            </div>
+                                            <div class="pregunta-ordenar">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            </div>
+                                            <div class="pregunta-ordenar">
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                            </div>
+                                        </div>
+                                        <div class="uk-width-1-2@m">
+                                            <div class="titulo-respuesta-ordenar uk-width-expand" uk-sortable="group: respuesta-imagen">respuesta</div>
+
+                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista uk-sortable" pt:uk-sortable="group: respuesta"/>
+                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista uk-sortable" pt:uk-sortable="group: respuesta"/>
+                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista uk-sortable" pt:uk-sortable="group: respuesta"/>
+                                        </div>
                                     </h:panelGroup>
+                                     <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="uk-width-1-4@m respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
+                                            <div class="respuesta">Lorem ipsum dolor sit amet.</div>
+                                            <div class="respuesta">Lorem ipsum dolor sit amet.</div>
+                                            <div class="respuesta"> Lorem ipsum dolor sit amet.</div>
+                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                                    <div class="columna-pregunta uk-width-expand">
-                                        <h:dataTable styleClass="tabla-ordenar uk-table-middle"
-                                                     value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}"
-                                                     headerClass="titulo-tabla uk-text-center"
-                                                     rowClasses="cuerpo-tabla uk-text-center"
-                                                     var="relacionarOracion">
-                                            <h:column>
-                                                <f:facet name="header">#{alumno['title.match.sentence.question']}</f:facet>#{relacionarOracion.relacionarOracionModelo.pregunta}
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">#{alumno['title.match.sentence.answer']}</f:facet>#{relacionarOracionControlador.buscaPalabra(relacionarOracion.respuesta)}
-                                            </h:column>
-                                        </h:dataTable>
-                                    </div>
-                                    <span class="realizado movimiento">Respondido</span>
-                                </h:panelGroup>
-                                <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send">
-                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form"/>
-                                </h:commandButton>
-                            </h:form>
+
                         </li>
                         <li class="order-words">
                             <h1 class="uk-text-center lescuadron" style="color: white">Ordena las palabras en el orden correspondiente</h1>

@@ -108,3 +108,43 @@
     padding: 4px 10px 4px 10px;
 }
 
+.imagen-titulo-ordenar{
+    width: 50px;
+    height: 50px;
+    background: url("#{resource['img/mounstro/whom.svg']}") no-repeat center/100% 100%;
+    margin-right: 9px;
+    border: 5px solid #D35400;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-bottom: 20px ;
+    box-sizing: border-box;
+}
+
+.titulo-respuesta-ordenar{
+    height: 50px;
+    padding-left: 10px;
+    border: 5px solid #D35400;
+    background-color: white;
+    border-radius: 3px;
+    margin-top: 8px;
+    color:black;
+    font-weight: bold;
+    font-size: 10px;
+    margin-bottom: 20px ;
+    box-sizing: border-box;
+}
+.pregunta-ordenar{
+    height: 50px;
+    border-bottom: 2px solid white;
+    padding: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+.respuestas-ordenar-lista{
+    height: 50px;
+    border: 5px solid #D35400;
+    padding: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+
+}
