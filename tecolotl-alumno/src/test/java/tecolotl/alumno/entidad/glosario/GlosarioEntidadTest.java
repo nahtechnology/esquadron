@@ -1,10 +1,11 @@
-package tecolotl.alumno.sesion;
+package tecolotl.alumno.entidad.glosario;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,25 +14,24 @@ import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
-import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
+import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.hablar.HablarModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
-import tecolotl.alumno.modelo.glosario.ClaseGlosarioModelo;
-import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.oraciones.OracionesModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
+import tecolotl.alumno.sesion.ActividadSesionBean;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
-import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.glosario.GlosarioNuevoValidacion;
+import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar_oraciones.RelacionarOracionLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -40,14 +40,16 @@ import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
-import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
-public class GlosarioSesionBeanTest {
+public class GlosarioEntidadTest {
 
     @Deployment
     public static Archive<?> createDeployment() {
@@ -82,76 +84,22 @@ public class GlosarioSesionBeanTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
-    @Inject
-    private GlosarioSesionBean glosarioSesionBean;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Test
-    public void buscaId() {
-        GlosarioModelo glosarioModelo = glosarioSesionBean.busca("bandit", (short)0);
-        assertNotNull(glosarioModelo);
-        glosarioModelo = glosarioSesionBean.busca("bandit", (short)0);
-        assertNotNull(glosarioModelo);
-        glosarioModelo = glosarioSesionBean.busca("bandit", (short)0);
-        assertNotNull(glosarioModelo);
-    }
-
-    @Test
-    public void buscaActivdad() {
-        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca("DNHmujbuC74");
-        assertNotNull(glosarioModeloLista);
-        assertFalse(glosarioModeloLista.isEmpty());
-        glosarioModeloLista.forEach(glosarioModelo -> {
-            assertNotNull(glosarioModelo);
-            assertNotNull(glosarioModelo.getPalabra());
-            assertNotNull(glosarioModelo.getImagen());
-            assertNotNull(glosarioModelo.getSignificado());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
+    public void buscaReducido() {
+        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaNoImganeIdTarea", GlosarioEntidad.class);
+        typedQuery.setParameter("idTarea", 4);
+        List<GlosarioEntidad> glosarioEntidadLista = typedQuery.getResultList();
+        assertNotNull(glosarioEntidadLista);
+        assertFalse(glosarioEntidadLista.isEmpty());
+        glosarioEntidadLista.forEach(glosarioEntidad -> {
+            assertNotNull(glosarioEntidad);
+            assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getPalabra());
+            assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getValor());
+            assertNotNull(glosarioEntidad.getSignificado());
         });
     }
 
-    @Test
-    public void buscaPalabra() {
-        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca("pala", "g9WDeud275U");
-        assertNotNull(glosarioModeloLista);
-        assertFalse(glosarioModeloLista.isEmpty());
-        glosarioModeloLista.forEach(glosarioModelo -> {
-            assertNotNull(glosarioModelo);
-            assertNotNull(glosarioModelo.getPalabra());
-            assertNotNull(glosarioModelo.getImagen());
-            assertNotNull(glosarioModelo.getSignificado());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
-        });
-    }
-
-    @Test
-    public void buscaTarea() {
-        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(4);
-        assertNotNull(glosarioModeloLista);
-        assertFalse(glosarioModeloLista.isEmpty());
-        glosarioModeloLista.forEach(glosarioModelo -> {
-            assertNotNull(glosarioModelo);
-            assertNotNull(glosarioModelo.getPalabra());
-            assertNotNull(glosarioModelo.getSignificado());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
-        });
-    }
-
-    @Test
-    public void inserta() {
-        GlosarioModelo glosarioModelo = new GlosarioModelo();
-        glosarioModelo.setSignificado("Significado");
-        glosarioModelo.setPalabra("palabra");
-        glosarioModelo.setClaseGlosarioModelo(new ClaseGlosarioModelo((short)2));
-        glosarioModelo.setImagen("palabra".getBytes());
-        glosarioSesionBean.agregar(glosarioModelo, "DNHmujbuC74");
-        assertNotNull(glosarioModelo);
-    }
-
-    @Test
-    public void buscaIdActividad() {
-        String idActividad = glosarioSesionBean.buscaActividad(1);
-    }
 }

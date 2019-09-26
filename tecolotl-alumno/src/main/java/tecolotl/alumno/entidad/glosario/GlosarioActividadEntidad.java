@@ -1,6 +1,7 @@
 package tecolotl.alumno.entidad.glosario;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -22,6 +23,7 @@ import java.util.StringJoiner;
 public class GlosarioActividadEntidad {
 
     private GlosarioActividadEntidadPK glosarioActividadEntidadPK;
+    private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
 
     public GlosarioActividadEntidad() {
     }
@@ -37,6 +39,15 @@ public class GlosarioActividadEntidad {
 
     public void setGlosarioActividadEntidadPK(GlosarioActividadEntidadPK glosarioActividadEntidadPK) {
         this.glosarioActividadEntidadPK = glosarioActividadEntidadPK;
+    }
+
+    @OneToMany(mappedBy = "tareaGlosarioActividadEntidadPK.glosarioActividadEntidad")
+    public List<TareaGlosarioActividadEntidad> getTareaGlosarioActividadEntidadLista() {
+        return tareaGlosarioActividadEntidadLista;
+    }
+
+    public void setTareaGlosarioActividadEntidadLista(List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista) {
+        this.tareaGlosarioActividadEntidadLista = tareaGlosarioActividadEntidadLista;
     }
 
     @Override

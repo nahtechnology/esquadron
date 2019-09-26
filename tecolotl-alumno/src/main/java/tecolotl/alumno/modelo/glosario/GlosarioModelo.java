@@ -21,15 +21,36 @@ public class GlosarioModelo implements Comparable<GlosarioModelo>{
     public GlosarioModelo() {
     }
 
+    /**
+     * Crea una glosario con una palabra
+     * @param palabra Palabra clave
+     */
     public GlosarioModelo(String palabra) {
         this.palabra = palabra;
     }
 
+    /**
+     * Contruye un glosario modelo a partir de una entidad.
+     * @param glosarioEntidad Entidad de glosario.
+     */
     public GlosarioModelo(GlosarioEntidad glosarioEntidad) {
         this.palabra = glosarioEntidad.getGlosarioEntidadPK().getPalabra();
         this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
         this.significado = glosarioEntidad.getSignificado();
         this.imagen = glosarioEntidad.getImagen();
+    }
+
+    /**
+     * Contruye un glosario partiendo de una entidad, en caso de que imagen falso, la imagen será nula y el significado se asgina,
+     * en caso contrario su asignará la imágen pera no el significado.
+     * @param glosarioEntidad Entidad con los datos para el modelo.
+     * @param imagen Se desea relacionar una imagen
+     */
+    public GlosarioModelo(GlosarioEntidad glosarioEntidad, boolean imagen) {
+        this.palabra = glosarioEntidad.getGlosarioEntidadPK().getPalabra();
+        this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
+        this.imagen = imagen ? glosarioEntidad.getImagen() : null;
+        this.significado = imagen ? null : glosarioEntidad.getSignificado();
     }
 
     @NotNull(groups = {GlosarioNuevoValidacion.class, GlosarioLlavePrimariaValidacion.class})

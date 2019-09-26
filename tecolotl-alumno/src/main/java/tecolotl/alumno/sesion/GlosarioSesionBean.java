@@ -93,12 +93,12 @@ public class GlosarioSesionBean implements Serializable {
      */
     public List<GlosarioModelo> busca(@NotNull Integer idTarea) {
         logger.fine(idTarea.toString());
-        TypedQuery<TareaGlosarioActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaGlosarioActividadEntidad.buscaTarea", TareaGlosarioActividadEntidad.class);
+        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaNoImganeIdTarea", GlosarioEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
-        List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista = typedQuery.getResultList();
+        List<GlosarioEntidad> tareaGlosarioActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Glosario encontrados:"+tareaGlosarioActividadEntidadLista.size());
-        return tareaGlosarioActividadEntidadLista.stream().map(tareaGlosarioActividadEntidad ->
-            new GlosarioModelo(tareaGlosarioActividadEntidad.getTareaGlosarioActividadEntidadPK().getGlosarioActividadEntidad().getGlosarioActividadEntidadPK().getGlosarioEntidad())
+        return tareaGlosarioActividadEntidadLista.stream().map(glosarioEntidad ->
+            new GlosarioModelo(glosarioEntidad, false)
         ).collect(Collectors.toList());
     }
 
