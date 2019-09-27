@@ -20,12 +20,15 @@
 
 
 .palabra{
-    background-color: white;
+    background: url("#{resource['img/mounstro/who.svg']}") white no-repeat left/50px 37px ;
+    /*background-color: white;*/
     padding-bottom: 5px;
     padding-top: 5px;
+    padding-left: 3px;
     border-radius: 8px;
     box-shadow: 2px 2px 5px white;
-    width: 100%;
+
+
 }
 .imagen-ordenar{
     width: 150px;

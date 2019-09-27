@@ -123,11 +123,9 @@
                            </h:panelGroup>
                         </li>
                         <li class="match uk-margin-small-top ">
-
-                                <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid=""  >
-                                    <h:panelGroup layout="block" styleClass="uk-width-3-4@m uk-grid" pt:uk-grid="">
-                                        <div class="uk-width-1-2@m">
-                                            <div class="titulo-respuesta-ordenar uk-width-expand" >respuesta</div>
+                                    <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid" pt:uk-grid="">
+                                        <div class="uk-width-1-2@m uk-position-relative">
+                                            <div class="titulo-respuesta-ordenar " >Pregunta</div>
 
                                             <div class="pregunta-ordenar">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -138,22 +136,23 @@
                                             <div class="pregunta-ordenar">
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                             </div>
+                                            <h:graphicImage library="img" name="/mounstro/who.svg" styleClass="img-titulo"/>
                                         </div>
-                                        <div class="uk-width-1-2@m">
-                                            <div class="titulo-respuesta-ordenar uk-width-expand" uk-sortable="group: respuesta-imagen">respuesta</div>
+                                        <div class="uk-width-1-2@m uk-position-relative">
+                                            <div class="titulo-respuesta-ordenar">Respuesta</div>
 
-                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista uk-sortable" pt:uk-sortable="group: respuesta"/>
-                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista uk-sortable" pt:uk-sortable="group: respuesta"/>
-                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista uk-sortable" pt:uk-sortable="group: respuesta"/>
+                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista" pt:uk-sortable="group: respuesta"/>
+                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista " pt:uk-sortable="group: respuesta"/>
+                                            <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista " pt:uk-sortable="group: respuesta"/>
+                                            <h:graphicImage library="img" name="/mounstro/whom.svg" styleClass="img-titulo"/>
                                         </div>
+
                                     </h:panelGroup>
-                                     <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="uk-width-1-4@m respuestas-ordenar uk-sortable" pt:uk-sortable="group: respuesta"  >
+                                     <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="respuestas-ordenar "  pt:uk-sortable="group: respuesta" >
                                             <div class="respuesta">Lorem ipsum dolor sit amet.</div>
                                             <div class="respuesta">Lorem ipsum dolor sit amet.</div>
                                             <div class="respuesta"> Lorem ipsum dolor sit amet.</div>
                                      </h:panelGroup>
-                                </h:panelGroup>
-
                         </li>
                         <li class="order-words">
                             <h1 class="uk-text-center lescuadron" style="color: white">Ordena las palabras en el orden correspondiente</h1>

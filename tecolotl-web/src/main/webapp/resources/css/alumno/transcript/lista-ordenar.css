@@ -5,7 +5,6 @@
 .tabla-ordenar{
     width: 100%;
     margin:0;
-    font-family: 'Sniglet', "Arial Black";
     /*border: 2px solid #AEB6BF;*/
     border-collapse: collapse;
     color: black;
@@ -32,30 +31,29 @@
 
 
 .respuestas-ordenar{
-    background-color: #4d4d4d;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    border-radius: 5px 0 0 5px;
-    padding-left: 10px;
-    min-width: 200px;
+    border: 6px solid rgba(255,255,255,0.6);
+    width: 80%;
+    min-height: 250px;
+    max-height: 250px;
+    margin: 20px auto 0 auto;
+    box-sizing: border-box;
+    padding: 8px;
+
 }
 .respuesta{
+    display: inline-block;
+    height: auto;
     background-color:white;
     color: black;
     font-style: italic;
     font-weight: bolder;
-    /*border: 2px solid black;*/
     border-radius: 4px;
-    padding: 2px 4px;
-    min-width:300px !important;
+    padding: 4px 2px;
     box-sizing: border-box;
     text-align: center;
-    margin-top: 10px;
+    margin-left: 10px;
     box-shadow: 1.5px 1.5px 8px white;
-    margin-right: 10px;
+
 }
 .cuerpo-tabla  .respuesta{
     margin-top: 0;
@@ -122,16 +120,17 @@
 
 .titulo-respuesta-ordenar{
     height: 50px;
-    padding-left: 10px;
+    padding-top: 5px;
     border: 5px solid #D35400;
     background-color: white;
     border-radius: 3px;
     margin-top: 8px;
     color:black;
     font-weight: bold;
-    font-size: 10px;
+    font-size: 20px;
     margin-bottom: 20px ;
     box-sizing: border-box;
+
 }
 .pregunta-ordenar{
     height: 50px;
@@ -140,11 +139,35 @@
     margin-bottom: 20px;
     box-sizing: border-box;
 }
+
 .respuestas-ordenar-lista{
-    height: 50px;
+    min-height: 50px;
     border: 5px solid #D35400;
-    padding: 5px;
+    padding: 3px;
     margin-bottom: 20px;
     box-sizing: border-box;
+}
+
+.respuestas-ordenar-lista.uk-sortable-empty{
+    min-height: 50px;
+    box-sizing: border-box;
+}
+#tablaRespuestas.uk-sortable-empty{
+    min-height: 100px;
+}
+
+.caja-preguntas-ordenar{
+    margin-top: 80px;
+    padding-top: 50px;
+    height: 350px;
+    overflow: auto;
+
+}
+.img-titulo{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: -40px;
+    left: 8px;
 
 }
