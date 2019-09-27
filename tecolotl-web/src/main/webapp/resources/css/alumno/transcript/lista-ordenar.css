@@ -77,6 +77,7 @@
     margin: 20px auto 0 auto;
     box-sizing: border-box;
     padding: 8px;
+    overflow: auto;
 
 }
 .respuesta{
@@ -203,7 +204,7 @@
     min-height: 50px;
     box-sizing: border-box;
 }
-#tablaRespuestas.uk-sortable-empty{
+.respuestas-ordenar.uk-sortable-empty{
     min-height: 100px;
 }
 
@@ -214,11 +215,15 @@
     overflow: auto;
 
 }
-.img-titulo{
+[class^="img-titulo-"]{
     width: 100px;
     height: 100px;
     position: absolute;
     top: -40px;
+}
+.img-titulo-1{
     left: 8px;
-
+}
+.img-titulo-2{
+    right:0;
 }

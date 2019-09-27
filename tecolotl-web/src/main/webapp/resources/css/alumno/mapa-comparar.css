@@ -25,12 +25,33 @@
     box-sizing: border-box;
 }
 .posicion-texarea-comparar{
-    position: absolute;
-    width: 78%;
-    left: 15%;
-    bottom: 42%;
+    /*position: absolute;*/
+    min-width: 71%;
+    max-width: 71%;
+    min-height: 140px;
+    max-height: 140px;
+    /*left: 18%;*/
+    /*bottom:35%;*/
     box-sizing: border-box;
+    border: none;
 }
+.posicion-texarea-comparar-dos{
+    position: absolute;
+    min-width: 72%;
+    max-width: 72%;
+    min-height: 85px;
+    max-height: 85px;
+    left: 20%;
+    bottom:40%;
+    box-sizing: border-box;
+    border: none;
+}
+[class^="posicion-texarea-"]:focus{
+    border: 1px solid rgba(0,0,0,0.3);
+
+}
+
+
 .imagen-comparar{
     width: 30%;
     bottom: 0;
@@ -42,6 +63,19 @@
     font-weight: bold;
 
 }
+
+@media screen and (max-width: 1025px) {
+
+    .posicion-texarea-comparar{
+        min-width: 71%;
+        max-width: 71%;
+        min-height: 120px;
+        max-height: 120px;
+    }
+    .posicion-texarea-comparar-dos{
+        bottom:35%;
+    }
+}
 @media screen and (max-width: 658px) {
     .letra-posicion{
         bottom: 10%;
@@ -52,4 +86,18 @@
 .fondo-pop{
     background-color: #FFF200;
     border: 2px solid black;
+}
+.posicion-boton{
+    position: absolute;
+    left: calc(50% - 55px);
+    bottom: 0;
+}
+.mensaje-mapa-4{
+    display: block;
+    margin-top: 10px;
+}
+.pop-art-nube-grande{
+    background: url("#{resource['img/alumno/pop-art/mensaje4.svg']}") no-repeat red center center/100% 100%;
+    background-origin: border-box;
+    height: 200px;
 }
