@@ -26,16 +26,17 @@
 }
 
 .caja-4{
-    right: 20%;
+    right: 10%;
     bottom: 10%;
 }
 
 .caja-5{
-    right: 15%;
+    right: 6%;
     bottom: 0%;
 }
 
 .parrafo-mapa-15{
+    text-align: right;
     font-weight: bold;
     font-size: 30px;
     color: white;
@@ -69,9 +70,9 @@
     background-image: url("#{resource['img/alumno/planetas/planeta2.svg']}");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 170px;
-    height: 170px;
-    left: 25%;
+    width: 200px;
+    height: 200px;
+    left: 15%;
     top: 0;
 }
 
@@ -79,6 +80,8 @@
     background-image: url("#{resource['img/alumno/planetas/planeta3.svg']}");
     background-size: cover;
     background-repeat: no-repeat;
+    width: 130px;
+    height: 130px;
     left: 55%;
     top: 0;
 }
@@ -87,41 +90,51 @@
     background-image: url("#{resource['img/alumno/planetas/planeta4.svg']}");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 160px;
-    height: 160px;
-    left: 37%;
+    width: 300px;
+    height: 300px;
+    left: 20%;
     top: 0;
 }
 
 
 .planet-5{
-    background-image: url("#{resource['img/alumno/planetas/planeta5.svg']}");
+    background-image: url("#{resource['img/alumno/planetas/planeta.svg']}");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 170px;
-    height: 170px;
-    left: 25%;
+    width: 250px;
+    height: 250px;
+    left: 10%;
     top: 0;
 }
 
 .planet-6{
-    background-image: url("#{resource['img/alumno/planetas/tierra.svg']}");
+    background-image: url("#{resource['img/alumno/planetas/planeta6.svg']}");
     background-size: cover;
     background-repeat: no-repeat;
-    width: 180px;
-    height: 180px;
+    width: 300px;
+    height: 300px;
     left: 43%;
     top: 0;
+    bottom: 30%;
 }
 
 input[type=text],input[type=email],input[type=password],select,textarea{
-    border-radius: 8px !important;
+    border: none;
+    border-bottom: 4px dotted;
+    border-radius: 0px !important;
     background-color: transparent;
     border-width: 2px !important;
     padding: 0 20px;
     border-color: var(--form-focul) !important;
     box-sizing: border-box;
     margin:8px 0 0 5px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+input:focus[type=text]{
+    background-color: rgba(255, 255, 255, 0.6);
 }
 
 input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select:focus,textarea:focus{
@@ -202,6 +215,4 @@ form label{
     display: flex;
 }
 
-.tamaño-input{
-    width: 300px;
-}
+
