@@ -87,6 +87,12 @@ public class ActividadSesionBean {
                 .setParameter("idActividad", idActividad).getSingleResult();
     }
 
+    public String preguntaDetonadora(@NotNull @Size(min = 11, max = 11) String idActividad) {
+        logger.fine(idActividad);
+        return entityManager.createQuery("SELECT a.preguntaDetonadora FROM ActividadEntidad a WHERE a.id = :idActividad", String.class)
+                .setParameter("idActividad", idActividad).getSingleResult();
+    }
+
     /**
      * Agrega una nueva actividad
      * @param actividadModelo Datos de la nueva actividad

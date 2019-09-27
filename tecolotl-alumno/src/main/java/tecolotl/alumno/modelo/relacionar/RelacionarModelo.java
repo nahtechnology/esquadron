@@ -18,6 +18,7 @@ public class RelacionarModelo {
     private String codigo;
     private String respuesta;
     private Date horaRespuesta;
+    private Integer vuelta;
 
     public RelacionarModelo() {
     }
@@ -42,6 +43,7 @@ public class RelacionarModelo {
         this(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad());
         this.respuesta = tareaRelacionarActividadEntidad.getRespuesta();
         this.horaRespuesta = tareaRelacionarActividadEntidad.getHoraRespuesta();
+        this.vuelta = tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getVuelta();
     }
 
     @NotNull(groups = {RelacionarLlavePrimariaValidacion.class})
@@ -95,6 +97,14 @@ public class RelacionarModelo {
 
     public void setHoraRespuesta(Date horaRespuesta) {
         this.horaRespuesta = horaRespuesta;
+    }
+
+    public Integer getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Integer vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override

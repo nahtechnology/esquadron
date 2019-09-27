@@ -107,7 +107,8 @@
                                 <div style="" class="uk-card-footer">
                                     <h:form>
                                         <h:commandLink  action="#{tareaGramaticaControlador.incrementaReporduccion(1, tareaActvidadModelo.id)}" style="display: none">
-                                            <f:ajax render="@none"/>
+                                            <f:actionListener binding="#{actividadAlumno2Controlador.buscaPregunta(tareaActvidadModelo.idActividad)}"/>
+                                            <f:ajax render="pregunta-detonadora"/>
                                         </h:commandLink>
                                     </h:form>
                                     <h:form styleClass="tam-form">
@@ -120,6 +121,12 @@
                 </h:panelGroup>
             </div>
         </div>
+        <h:panelGroup id="modal-pregunta-detonadora" layout="block" styleClass="uk-flex-top" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+                <button class="uk-modal-close-default" type="button" uk-close=""/>
+                <h:outputText id="pregunta-detonadora" value="#{actividadAlumno2Controlador.preguntaDetonadora}"/>
+            </div>
+        </h:panelGroup>
         <script type="application/javascript">
             var videos = document.querySelectorAll('.videoPlayer');
             var mensajes = document.querySelectorAll('.uk-card-body');
@@ -169,12 +176,14 @@
                     event.target.a.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
                     var reproducciones = event.target.a.parentElement.previousElementSibling.querySelector('span.uk-padding-small');
                     reproducciones.textContent = parseInt(reproducciones.textContent) + 1;
+                    UIkit.modal(document.getElementById('modal-pregunta-detonadora')).show();
                     done = true;
                 }else {
                     done = false;
                 }
             }
         </script>
+        <h:outputScript library="js" name="alumno/activities.js"/>
     </ui:define>
 </ui:composition>
 </html>

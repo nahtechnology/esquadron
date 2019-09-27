@@ -12,6 +12,7 @@ public class TareaRelacionarActividadEntidadPK implements Serializable {
 
     private RelacionarActividadEntidad relacionarActividadEntidad;
     private TareaEntidad tareaEntidad;
+    private Integer vuelta;
 
     public TareaRelacionarActividadEntidadPK() {
     }
@@ -42,6 +43,16 @@ public class TareaRelacionarActividadEntidadPK implements Serializable {
 
     public void setTareaEntidad(TareaEntidad tareaEntidad) {
         this.tareaEntidad = tareaEntidad;
+    }
+
+    @Basic
+    @Column(name = "vuelta", insertable = false)
+    public Integer getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Integer vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override
