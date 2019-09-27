@@ -101,10 +101,10 @@
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
                                         <div id="#{tareaActvidadModelo.idActividad}" class="videoPlayer"></div>
                                 </div>
-                                <div class="uk-card-body">
+                                <div style="" class="uk-card-body">
                                     <div class="uk-text-center mensaje1"><span class="mensaje1-1">#{alumno['title.description.please.watch.the']}<br/>#{alumno['title.description.full.video']}</span></div>
                                 </div>
-                                <div  class="uk-card-footer">
+                                <div style="" class="uk-card-footer">
                                     <h:form>
                                         <h:commandLink  action="#{tareaGramaticaControlador.incrementaReporduccion(1, tareaActvidadModelo.id)}" style="display: none">
                                             <f:ajax render="@none"/>
@@ -128,8 +128,8 @@
             var i = 0;
             linksTareas.forEach(function (value) {
                 value.dataset.id = videos[i].getAttribute('id');
-                value.style.display = (parseInt(reproducciones[i].innerHTML) !== 0)?'':'none';
-                mensajes[i].style.display = (parseInt(reproducciones[i].innerHTML) !== 0)?'none':'';
+                value.setAttribute('style',  (parseInt(reproducciones[i].innerHTML) !== 0)?'':'display: none;');
+                mensajes[i].setAttribute('style', (parseInt(reproducciones[i].innerHTML) !== 0)?'display: none;':'');
                 i++;
             });
             var players = [];
@@ -160,10 +160,11 @@
                     var i = 0;
                     linksTareas.forEach(function (value) {
                         if(value.getAttribute('data-id') === idVideoYT[1]){
-
-                            value.style.display = '';
-                            mensajes[i].style.display = 'none';
+                            console.log(value, mensajes[i], idVideoYT[1]);
+                            value.setAttribute('style', '');
+                            mensajes[i].setAttribute('style', 'display: none;');
                         }
+                        i++;
                     });
                     event.target.a.parentElement.nextElementSibling.nextElementSibling.querySelector('form a').click();
                     var reproducciones = event.target.a.parentElement.previousElementSibling.querySelector('span.uk-padding-small');

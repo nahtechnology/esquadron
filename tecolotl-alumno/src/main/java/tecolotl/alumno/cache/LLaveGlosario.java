@@ -67,5 +67,4 @@ public class LLaveGlosario {
                 .add("clase=" + clase)
                 .toString();
     }
-
 }

@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.entidad.relacionar.*;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
+import tecolotl.alumno.modelo.relacionar.RelacionarOriginalModelo;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
@@ -68,6 +69,21 @@ public class RelacionarSesionBean {
         List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Elementos entontrados".concat(String.valueOf(tareaRelacionarActividadEntidadLista.size())));
         return tareaRelacionarActividadEntidadLista.stream().map(RelacionarModelo::new).collect(Collectors.toList());
+    }
+
+
+    /**
+     * Busca todas las relaciones sin filtro.
+     * @param inicio posicion de la primera fila a buscar.
+     * @param maximo máximo de elementos a buscar.
+     * @return una coleccipn de {@link RelacionarOriginalModelo}
+     */
+    public List<RelacionarOriginalModelo> busca(int inicio, int maximo){
+        logger.fine("Inicio: ".concat(String.valueOf(inicio)));
+        logger.fine("Maximo: ".concat(String.valueOf(maximo)));
+        TypedQuery<RelacionarEntidad> typedQuery = entityManager.createNamedQuery("RelacionarEntidad.busca", RelacionarEntidad.class);
+        typedQuery.setFirstResult(inicio).setMaxResults(maximo);
+        return typedQuery.getResultList().stream().map(RelacionarOriginalModelo::new).collect(Collectors.toList());
     }
 
     /**
