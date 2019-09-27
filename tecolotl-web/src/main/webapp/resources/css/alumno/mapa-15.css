@@ -37,7 +37,7 @@
 
 .parrafo-mapa-15{
     font-weight: bold;
-    font-size: 50px;
+    font-size: 30px;
     color: white;
     z-index: 2;
 }
@@ -48,6 +48,9 @@
 
 .subtitulo-15{
     right: 0;
+    color: white;
+    font-size: 45px;
+    font-weight: bold;
 }
 
 [class^="planet"]{
@@ -118,6 +121,7 @@ input[type=text],input[type=email],input[type=password],select,textarea{
     padding: 0 20px;
     border-color: var(--form-focul) !important;
     box-sizing: border-box;
+    margin:8px 0 0 5px;
 }
 
 input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select:focus,textarea:focus{
@@ -184,4 +188,20 @@ form label{
     .planet-6{
         top: 0;
     }
+}
+
+.horizontal-form1{
+    display: flex;
+}
+
+.horizontal-form2{
+    display: flex;
+}
+
+.horizontal-form3{
+    display: flex;
+}
+
+.tamaño-input{
+    width: 300px;
 }
