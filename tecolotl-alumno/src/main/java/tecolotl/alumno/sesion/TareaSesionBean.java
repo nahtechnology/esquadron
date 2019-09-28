@@ -77,7 +77,7 @@ public class TareaSesionBean implements Serializable {
     public List<TareaActividadModelo> buscaActividad(@NotNull Integer idAlumno) {
         logger.fine(idAlumno.toString());
         Query query = entityManager.createNativeQuery("select t.id,t.id_alumno,t.asignacion,t.reproducciones, t.respuesta, t.resolviendo_transcript, tga.id_actividad " +
-            "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea where t.id_alumno=? group by t.id, tga.id_actividad");
+            "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea where t.id_alumno=? group by t.id, t.asignacion, tga.id_actividad ORDER BY t.asignacion");
         query.setParameter(1, idAlumno);
         List<TareaActividadModelo> tareaActividadModeloLista = new ArrayList<>();
         for (Object[] objetos : (List<Object[]>)query.getResultList()) {
