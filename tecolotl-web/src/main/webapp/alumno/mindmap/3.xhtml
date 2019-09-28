@@ -30,12 +30,9 @@
                     <div class="uk-offcanvas-bar  ">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['activity']}; pos: right" ><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="40" alt="" /></li>
-                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
                         </ul>
 
                     </div>
@@ -63,22 +60,16 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="/alumno/planetas/planeta3.svg"  width="80" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="/alumno/planetas/planeta3.svg"  width="60" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -126,12 +117,12 @@
                                     </h:inputText>
                                 </div>
                                 <h:message for="unoa" styleClass=""/>
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="unob" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="unob" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="unob"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
                                                  pt:placeholder="Some text...">
                                         <f:validateRequired/>
                                     </h:inputText>
@@ -139,23 +130,23 @@
                                 <h:message for="unob" styleClass=""/>
                             </div>
                             <div class="uk-margin mapa-caja margen-caja2 uk-width-1-1@s">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="dosa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="dosa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="dosa"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
                                                  pt:placeholder="Some text...">
                                         <f:validateRequired/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="dosa" styleClass=""/>
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="dosb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="dosb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="dosb"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
                                                  pt:placeholder="Some text...">
                                         <f:validateRequired/>
                                     </h:inputText>
@@ -163,23 +154,23 @@
                                 <h:message for="dosb" styleClass=""/>
                             </div>
                             <div class="uk-margin mapa-caja uk-width-1-1@s">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="tresa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="tresa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="tresa"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                                  pt:placeholder="Some text...">
                                         <f:validateRequired/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="tresa" styleClass=""/>
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="tresb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="tresb" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="tresb"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
                                                  pt:placeholder="Some text...">
                                         <f:validateRequired/>
                                     </h:inputText>
@@ -187,12 +178,12 @@
                                 <h:message for="tresb" styleClass=""/>
                             </div>
                             <div class="uk-margin mapa-caja margen-caja3 uk-width-1-1@s">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="cuatroa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}"/>
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="cuatroa" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
                                 <div class="uk-form-controls">
                                     <h:inputText styleClass="uk-input"
                                                  id="cuatroa"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                                  pt:placeholder="Some text...">
                                         <f:validateRequired/>
                                     </h:inputText>
