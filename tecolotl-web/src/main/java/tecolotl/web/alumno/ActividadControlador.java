@@ -14,13 +14,9 @@ public class ActividadControlador {
     @Inject
     private ActividadSesionBean actividadSesionBean;
 
-    @Inject
-    private Logger logger;
-
     private String preguntaDetonadora;
 
     public void buscaPregunta(String idActividad) {
-        logger.info(idActividad);
         preguntaDetonadora = actividadSesionBean.preguntaDetonadora(idActividad);
     }
 

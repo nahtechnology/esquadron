@@ -94,19 +94,26 @@
                         <li class="ordenar">
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.order.sentences']}</h1>
-                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable=""  >
-                                        <ui:repeat value="#{tareaOracionesControlador.desordena()}" var="oracion">
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                        <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
                                                <div class="uk-width-1-1@m" uk-grid="" >
-                                                    <div class="imagen-oracion uk-width-auto">
-
-                                                    </div>
+                                                    <div class="imagen-oracion uk-width-auto"/>
                                                     <div class="oraciones uk-width-expand" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
                                                </div>
                                         </ui:repeat>
                                 </h:panelGroup>
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                    <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
+                                        <div class="uk-width-1-1@m" uk-grid="" >
+                                            <div class="imagen-oracion uk-width-auto"/>
+                                            <div class="oraciones uk-width-expand">#{tareaOracionesControlador.buscaOracion(oracion.respuesta)}</div>
+                                        </div>
+                                    </ui:repeat>
+                                </h:panelGroup>
+                                <h:outputText rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
-                                <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar uk-margin" value="Send">
-                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form"/>
+                                <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar uk-margin" value="Send" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data) }"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
@@ -194,12 +201,7 @@
                                     <li><a href="#">3</a></li>
                                     <li><a href="#">4</a></li>
                                 </ul>
-
                                 <ul class="uk-switcher uk-margin">
-<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur . <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>-->
-<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem in nihil obcaecati quod temporibus.</p></li>-->
-<!--                                    <li><p class="uk-text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus.</p></li>-->
-<!--                                    <li><p class="uk-text-center">Lorem ipsum  sit amet, consectetur adipisicing elit. <span class="contenedor-respuesta-oracion uk-sortable" uk-sortable="group: oracion"/> Ad dolorem  quod temporibus obcaecati.</p></li>-->
                                     <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto">
                                         <li><h:outputText value="#{texto.oracion}" escape="false"/> </li>
                                     </ui:repeat>

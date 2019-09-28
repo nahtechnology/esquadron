@@ -1,11 +1,15 @@
 var relacionarImagen = document.querySelector('.uk-container .relacion-imagen');
+var ordenarOracion = document.querySelector('.uk-container .ordenar');
 
 document.addEventListener('DOMContentLoaded', function (evt) {
-    revuelveRelacionarImagen(relacionarImagen.querySelectorAll('.palabras div'));
+    revuelve(relacionarImagen.querySelectorAll('.palabras div'));
+    revuelve(ordenarOracion.querySelectorAll('.contenedor-oraciones > div'));
 });
 
-function revuelveRelacionarImagen(palabras) {
-
+function revuelve(palabras) {
+    for (var indice = 0; indice < palabras.length; indice++) {
+        palabras[indice].after(palabras[Math.floor(Math.random() * palabras.length)]);
+    }
 }
 
 function enviarRespuesta() {
@@ -19,6 +23,7 @@ function respuestaEnvidad(data) {
         relacionarImagen.querySelectorAll('table tbody tr').forEach(function (ordenable) {
             ordenable.querySelector('td:nth-child(2)').removeAttribute('uk-sortable');
         });
+        data.source.disabled = true;
+        UIkit.notification("Respuesta enviada correctamente", {pos: 'top-right'})
     }
-    data.source.disabled = true;
 }

@@ -45,10 +45,13 @@ public class TareaOracionesControlador implements Serializable {
         oracionesRespuestaScope.respuesta(tareaOracionesModeloLista, alumnoControlador.getTareaActividadModelo().getId());
     }
 
-    public List<TareaOracionesModelo> desordena(){
-        List<TareaOracionesModelo> temp = this.getTareaOracionesModeloLista();
-        Collections.shuffle(temp);
-        return temp;
+    public String buscaOracion(Short id) {
+        for (TareaOracionesModelo tareaOracionesModelo : tareaOracionesModeloLista) {
+            if (tareaOracionesModelo.getOracionesModelo().getCardinalidad().compareTo(id) == 0) {
+                return tareaOracionesModelo.getOracionesModelo().getOracion();
+            }
+        }
+        return null;
     }
 
     public List<TareaOracionesModelo> getTareaOracionesModeloLista() {
