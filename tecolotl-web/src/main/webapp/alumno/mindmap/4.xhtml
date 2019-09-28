@@ -80,10 +80,12 @@
             <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
         </ul>
     </div>
+    </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/mapa-comparar.css"/>
-        <div class="uk-section margen-superior">
-            <div class="uk-container fondo-comparar uk-padding-remove">
+        <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left">
+            <h:form id="formulario-mapa-mental" class="uk-form-stacked">
+            <div class="uk-container fondo-comparar uk-padding-remove ">
                 <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
                     <span>Respondido</span>
                 </h:panelGroup>
@@ -102,44 +104,44 @@
                     </div>
                 </div>
                 <div class="uk-position-relative ">
-                    <h:form id="formulario-mapa-mental" class="uk-form-stacked">
+
                         <div class="uk-child-width-1-3@m" uk-grid="">
-                            <div class="uk-flex uk-flex-center uk-position-relative">
-                                <h:graphicImage library="img" name="alumno/pop-art/mensaje4.svg" styleClass="imagen-nube-popart"/>
-                                <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea"
+                            <div class="uk-flex uk-flex-center uk-position-relative pop-art-nube-grande ">
+                                <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea uk-hidden"
                                              id="uno"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                 pt:maxlength="80"
+                                                >
                                     <f:validateRequired/>
                                 </h:inputTextarea>
-                                <h:message for="uno" styleClass=""/>
+                                <h:message for="uno" styleClass="mensaje-mapa-4"/>
                             </div>
                             <div class="uk-flex uk-flex-center uk-position-relative">
                                 <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass="nube-medio"/>
-                                <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea"
+                                <h:inputTextarea styleClass="posicion-texarea-comparar-dos uk-textarea"
                                              id="dos"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}">
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             pt:maxlength="80">
                                     <f:validateRequired/>
                                 </h:inputTextarea>
                                 <h:message for="dos" styleClass=""/>
                             </div>
-                            <div class="uk-flex uk-flex-center uk-position-relative">
-                                <h:graphicImage library="img" name="alumno/pop-art/mensaje4.svg" styleClass="imagen-nube-popart" style="transform: rotateY(180deg)"/>
+                            <div class="uk-flex uk-flex-center uk-position-relative pop-art-nube-grande">
                                 <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea"
                                                  id="tres"
                                                  disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}">
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                 pt:maxlength="80"   >
                                     <f:validateRequired/>
                                 </h:inputTextarea>
                                 <h:message for="tres" styleClass=""/>
                             </div>
-                            <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="#{boton['submit']}"
-                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             action="#{mapaMentalControlador.respondeMapaMental}"/>
+
                         </div>
-                    </h:form>
+
+
                 </div>
                 <div class="nube-inferior uk-position-relative">
                     <h:graphicImage library="img" name="/fondo/nubes-abajo.svg"/>
@@ -148,6 +150,13 @@
                     </div>
                 </div>
             </div>
+                <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                 value="#{boton['submit']}"
+                                 rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                 action="#{mapaMentalControlador.respondeMapaMental}"
+                                 styleClass="boton-enviar uk-margin-auto-right uk-margin-auto-left "
+                />
+            </h:form>
         </div>
     </ui:define>
 </ui:composition>

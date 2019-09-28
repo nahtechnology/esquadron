@@ -373,7 +373,8 @@
                     <h:commandButton id="boton-enviar-mapa-mental-movil"
                                      value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                     action="#{mapaMentalControlador.respondeMapaMental}"/>
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar"/>
                 </h:form>
 <!--                Version para Moviles-->
                 <h:form styleClass="contenedor-formularios uk-hidden@m">

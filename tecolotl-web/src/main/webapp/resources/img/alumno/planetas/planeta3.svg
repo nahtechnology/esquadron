@@ -14,8 +14,8 @@
    <rect x="826.49" y="17.447" width="155.43" height="235.99" fill="none" stroke="#000" stroke-linecap="round" stroke-width=".71576"/>
   </clipPath>
   <linearGradient id="linearGradient4643" x1="46.98" x2="71.56" y1="93.076" y2="55.491" gradientUnits="userSpaceOnUse">
-   <stop stop-color="#94e420" offset="0"/>
-   <stop stop-color="#ffd42a" offset="1"/>
+   <stop stop-color="#1C74BC" offset="0"/>
+   <stop stop-color="#6DBDC4" offset="1"/>
   </linearGradient>
  </defs>
  <g transform="matrix(.36966 0 0 .36966 -144.74 26.339)" clip-path="url(#clipPath1005)">
