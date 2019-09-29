@@ -7,4 +7,6 @@ document.addEventListener('DOMContentLoaded', function (evt) {
             frase.classList.remove('remover');
         });
     });
+
+    answer
 });
