@@ -10,7 +10,11 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "relacionar", schema = "alumno")
 @NamedQueries(value = {
-        @NamedQuery(name = "RelacionarEntidad.busca", query = "SELECT r FROM RelacionarEntidad r")
+        @NamedQuery(name = "RelacionarEntidad.busca", query = "SELECT r FROM RelacionarEntidad r"),
+        @NamedQuery(
+                name = "RelacionarEntidad.buscaNoImagen",
+                query = "SELECT new RelacionarEntidad(r.codigo, r.palabra) FROM RelacionarEntidad r"
+        )
 })
 public class RelacionarEntidad {
 
@@ -23,6 +27,11 @@ public class RelacionarEntidad {
 
     public RelacionarEntidad(String codigo) {
         this.codigo = codigo;
+    }
+
+    public RelacionarEntidad(String codigo, String palabra) {
+        this.codigo = codigo;
+        this.palabra = palabra;
     }
 
     @Id

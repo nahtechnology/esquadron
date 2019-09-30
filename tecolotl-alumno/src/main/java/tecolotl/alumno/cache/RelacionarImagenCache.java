@@ -36,7 +36,7 @@ public class RelacionarImagenCache {
     @Inject
     private RelacionarSesionBean relacionarSesionBean;
 
-    private Dictionary<LlaveRelacionar, byte[]> diccionario;
+    private Dictionary<String, byte[]> diccionario;
 
     @PostConstruct
     public void init(){
@@ -48,7 +48,7 @@ public class RelacionarImagenCache {
     @Lock(value = LockType.READ)
     public byte[] busca(@NotNull @Size(min = 32, max = 32) String codigo){
         logger.fine("Codigo: ".concat(codigo));
-        return diccionario.get(new LlaveRelacionar(codigo));
+        return diccionario.get(codigo);
     }
 
     public void llena(){
@@ -58,12 +58,12 @@ public class RelacionarImagenCache {
         for (int bloque = 0; bloque < totalRelacionar; bloque+= BLOQUE){
             List<RelacionarOriginalModelo> relacionarModeloLista = relacionarSesionBean.busca(bloque, BLOQUE);
             for (RelacionarOriginalModelo relacionarOriginalModelo: relacionarModeloLista){
-                diccionario.put(new LlaveRelacionar(relacionarOriginalModelo), relacionarOriginalModelo.getImagen() );
+                diccionario.put(relacionarOriginalModelo.getCodigo(), relacionarOriginalModelo.getImagen() );
             }
         }
     }
 
     private Long buscaDatos(){
-        return entityManager.createQuery("select count(re) from RelacionarEntidad re", Long.class).getSingleResult();
+        return entityManager.createQuery("select count(re.codigo) from RelacionarEntidad re", Long.class).getSingleResult();
     }
 }
