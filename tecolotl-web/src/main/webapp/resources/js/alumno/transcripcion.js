@@ -28,7 +28,7 @@ function agregaRespuestas(elemento) {
     });
     totalRespuestasTranscripcion = respuestas.length;
     revolver(respuestas).forEach(function (resp) {
-        respuesta = document.createElement('div');
+        respuesta = document.createElement('span');
         respuesta.classList.add('respuesta-drag');
         respuesta.textContent = resp;
         elemento.appendChild(respuesta);

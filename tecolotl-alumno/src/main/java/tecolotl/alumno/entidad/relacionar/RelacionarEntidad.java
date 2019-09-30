@@ -14,6 +14,10 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "RelacionarEntidad.buscaNoImagen",
                 query = "SELECT new RelacionarEntidad(r.codigo, r.palabra) FROM RelacionarEntidad r"
+        ),
+        @NamedQuery(
+                name = "RelacionarEntidad.buscaNoPalabra",
+                query = "SELECT new RelacionarEntidad(r.codigo, r.imagen) FROM RelacionarEntidad r"
         )
 })
 public class RelacionarEntidad {
@@ -32,6 +36,11 @@ public class RelacionarEntidad {
     public RelacionarEntidad(String codigo, String palabra) {
         this.codigo = codigo;
         this.palabra = palabra;
+    }
+
+    public RelacionarEntidad(String codigo, byte[] imagen) {
+        this.codigo = codigo;
+        this.imagen = imagen;
     }
 
     @Id

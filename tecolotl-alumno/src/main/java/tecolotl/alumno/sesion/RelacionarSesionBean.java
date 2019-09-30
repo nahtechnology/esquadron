@@ -81,7 +81,7 @@ public class RelacionarSesionBean {
     public List<RelacionarOriginalModelo> busca(int inicio, int maximo){
         logger.fine("Inicio: ".concat(String.valueOf(inicio)));
         logger.fine("Maximo: ".concat(String.valueOf(maximo)));
-        TypedQuery<RelacionarEntidad> typedQuery = entityManager.createNamedQuery("RelacionarEntidad.buscaNoImagen", RelacionarEntidad.class);
+        TypedQuery<RelacionarEntidad> typedQuery = entityManager.createNamedQuery("RelacionarEntidad.buscaNoPalabra", RelacionarEntidad.class);
         typedQuery.setFirstResult(inicio).setMaxResults(maximo);
         return typedQuery.getResultList().stream().map(RelacionarOriginalModelo::new).collect(Collectors.toList());
     }

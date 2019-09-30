@@ -216,7 +216,7 @@
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
-                                    <f:verbatim escape="false">#{alumnoControlador.tareaActividadModelo.respuesta}</f:verbatim>
+                                    <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     <h:outputText styleClass="realizado movimiento1" value="Respondido" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </div>
                             </h:panelGroup>
