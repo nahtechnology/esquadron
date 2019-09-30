@@ -77,3 +77,58 @@ input[type=text]::placeholder{
 .margen-caja3{
     margin-left: 15%;
 }
+
+
+[class^="img-mapa-"] {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-left: 5px;
+    margin-top: 40px;
+    padding-left: 0;
+}
+
+.img-mapa-who{
+    background: url("#{resource['img/mounstro/who.svg']}") no-repeat gold center bottom/50px 50px;
+}
+.img-mapa-what{
+    background: url("#{resource['img/icono/pregunta.svg']}") no-repeat gold center bottom/50px 50px;
+}
+.img-mapa-when{
+    background: url("#{resource['img/icono/reloj.svg']}") no-repeat gold center bottom/50px 50px;
+}
+.img-mapa-where{
+    background: url("#{resource['img/icono/casa.svg']}") no-repeat gold center bottom/50px 50px;
+}
+.img-mapa-why{
+    background: url("#{resource['img/icono/lupar.svg']}") no-repeat gold center bottom/50px 50px;
+}
+
+
+
+.label-map-uno{
+    padding: 5px 2px;
+    background-color: black;
+    color: #E89E0C;!important;
+    font-size: 18px;
+    border-radius: 60px;
+}
+
+.letra-img-map-uno{
+    text-align: center;
+    color: black;
+    font-size: 16px;
+}
+.titulo-mapa-uno{
+    height: 150px;
+    background: url("#{resource['img/mounstro/whom.svg']}") no-repeat center left/120px 100%;
+    color: white;
+    font-size: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.mensaje-alerta-1{
+    color: red;
+
+}

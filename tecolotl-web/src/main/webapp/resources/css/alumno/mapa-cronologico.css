@@ -58,6 +58,11 @@
     width: 60%;
     margin: auto;
 }
+.formulario-mensaje-3{
+    display: block;
+    margin: 3px 0;
+    color: red;
+}
 @media screen and (min-width: 1024px ){
     .margen-mapa{
         margin-top: 25%;

@@ -76,16 +76,18 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-mental.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
             <div class="padding-superior ">
-                <div class="uk-light">
+                <div class="">
                     <div class="uk-container uk-container-small fondo-mapa contorno">
-                        <h1><span class="lescuadron">Mapa mental</span></h1>
+                        <div class="titulo-mapa-uno">
+                                <span class=" uk-text-uppercase">THE 5 W's CHART</span>
+                        </div>
                         <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
                             <span>Respondido</span>
                         </h:panelGroup>
                         <h:form class="uk-form-stacked" id="formulario-mapa-mental">
                             <div class="uk-margin uk-grid" uk-grid="" >
                                 <div class="uk-width-expand">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold label-map-uno"
                                                    for="pregunta-0"
                                                    value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
                                     <div class="uk-form-controls">
@@ -96,15 +98,15 @@
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
-                                    <h:message for="pregunta-0" styleClass=""/>
+                                    <h:message for="pregunta-0" styleClass="mensaje-alerta-1"/>
                                 </div>
-                                <div class="uk-width-auto uk-visible@m" >
-                                    <h:graphicImage library="img" name="mounstro/monstruo.svg" styleClass="uk-svg posicion-img" width="70" height="70"/>
+                                <div class="img-mapa-who uk-width-auto uk-visible@m" >
+                                    <p class="letra-img-map-uno">Who</p>
                                 </div>
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold label-map-uno"
                                                    for="pregunta-1"
                                                    value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                     <div class="uk-form-controls">
@@ -115,15 +117,15 @@
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
-                                    <h:message for="pregunta-1" styleClass=""/>
+                                    <h:message for="pregunta-1" styleClass="mensaje-alerta-1"/>
                                 </div>
-                                <div class="uk-width-auto uk-visible@m">
-                                    <h:graphicImage library="img" name="mounstro/morado.svg" styleClass="uk-svg posicion-img" width="70" height="70"/>
+                                <div class="img-mapa-what uk-width-auto uk-visible@m">
+                                    <p class="letra-img-map-uno">What</p>
                                 </div>
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold" for="pregunta-2" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold label-map-uno" for="pregunta-2" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
                                     <div class="uk-form-controls">
                                         <h:inputTextarea styleClass="uk-textarea"
                                                          id="pregunta-2" rows="3"
@@ -132,15 +134,15 @@
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
-                                    <h:message for="pregunta-2" styleClass=""/>
+                                    <h:message for="pregunta-2" styleClass="mensaje-alerta-1"/>
                                 </div>
-                                <div class="uk-width-auto uk-visible@m">
-                                    <h:graphicImage library="img" name="mounstro/morado.svg" styleClass="uk-svg posicion-img" width="70" height="70"/>
+                                <div class="img-mapa-when uk-width-auto uk-visible@m">
+                                    <p class="letra-img-map-uno"> When</p>
                                 </div>
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold label-map-uno"
                                                    for="pregunta-3"
                                                    value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
                                     <div class="uk-form-controls">
@@ -151,15 +153,15 @@
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
-                                    <h:message for="pregunta-3" styleClass=""/>
+                                    <h:message for="pregunta-3" styleClass="mensaje-alerta-1"/>
                                 </div>
-                                <div class="uk-width-auto uk-visible@m">
-                                    <h:graphicImage library="img" name="/mounstro/morado.svg" styleClass="uk-svg posicion-img" width="70" height="70"/>
+                                <div class="img-mapa-where uk-width-auto uk-visible@m">
+                                    <p class="letra-img-map-uno">Where</p>
                                 </div>
                             </div>
                             <div class="uk-margin uk-grid" uk-grid="">
                                 <div class="uk-width-expand  ">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-bold"
+                                    <h:outputLabel styleClass="uk-form-label uk-text-bold label-map-uno"
                                                    for="pregunta-4"
                                                    value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
                                     <div class="uk-form-controls">
@@ -170,10 +172,10 @@
                                             <f:validateRequired/>
                                         </h:inputTextarea>
                                     </div>
-                                    <h:message for="pregunta-4" styleClass=""/>
+                                    <h:message for="pregunta-4" styleClass="mensaje-alerta-1"/>
                                 </div>
-                                <div class="uk-width-auto uk-visible@m">
-                                    <h:graphicImage library="img" name="mounstro/morado.svg" styleClass="uk-svg posicion-img" width="70" height="70"/>
+                                <div class="img-mapa-why uk-width-auto uk-visible@m">
+                                    <p class="letra-img-map-uno">Why</p>
                                 </div>
                             </div>
                             <div>

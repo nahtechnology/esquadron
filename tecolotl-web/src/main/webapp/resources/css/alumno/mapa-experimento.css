@@ -60,7 +60,7 @@ body{
     z-index: 3;
 }
 .imagen-popart{
-    background-image: url("#{resource['img/alumno/pop-art/mensaje2.svg']}");
+    background-image: url("#{resource['img/alumno/pop-art/mensaje-mapa-7.svg']}");
     background-size: 100%;
     background-repeat: no-repeat;
     width: 40%;
@@ -84,4 +84,8 @@ body{
     align-items: center;
     justify-content: center;
     z-index: 5;
+}
+.mensaje-alerta-7{
+    color: red;
+    background-color: white;
 }

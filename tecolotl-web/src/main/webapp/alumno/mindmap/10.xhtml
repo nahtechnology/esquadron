@@ -92,14 +92,14 @@
                 <h:form id="formulario-mapa-mental">
                     <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">
                         <div class="globo-10 ">
-                            <h:inputTextarea styleClass="caja-texto-10"
+                            <h:inputTextarea styleClass="caja-texto-10 "
                                              id="uno"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="uno" styleClass=""/>
+                            <h:message for="uno" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="globo-10 ">
                             <h:inputTextarea styleClass="caja-texto-10"
@@ -109,7 +109,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="dos" styleClass=""/>
+                            <h:message for="dos" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="globo-10 ">
                             <h:inputTextarea styleClass="caja-texto-10"
@@ -119,7 +119,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="tres" styleClass=""/>
+                            <h:message for="tres" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="globo-10 ">
                             <h:inputTextarea styleClass="caja-texto-10"
@@ -129,7 +129,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="cuatro" styleClass=""/>
+                            <h:message for="cuatro" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="fondo-imagen-10 ">
                             <div class="titulo-imagen-10 ">
@@ -144,7 +144,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="cinco" styleClass=""/>
+                            <h:message for="cinco" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="globo-10 ">
                             <h:inputTextarea styleClass="caja-texto-10"
@@ -154,7 +154,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="seis" styleClass=""/>
+                            <h:message for="seis" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="globo-10 ">
                             <h:inputTextarea styleClass="caja-texto-10"
@@ -164,7 +164,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="siete" styleClass=""/>
+                            <h:message for="siete" styleClass="mensaje-alerta-10"/>
                         </div>
                         <div class="globo-10 ">
                             <h:inputTextarea styleClass="caja-texto-10"
@@ -174,7 +174,7 @@
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="ocho" styleClass=""/>
+                            <h:message for="ocho" styleClass="mensaje-alerta-10"/>
                         </div>
                         <h:commandButton id="boton-enviar-mapa-mental-movil"
                                          value="#{boton['submit']}"

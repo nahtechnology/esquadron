@@ -83,6 +83,9 @@
     width: 30%;
     margin: auto;
 }
+.mensaje-alerta-9{
+ color: red;
+}
 @media screen and (max-width: 768px){
     .imagen-ard{
         width: 100%;

@@ -27,11 +27,16 @@
     background-origin: content-box;
     height: 200px;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
-.nube-5 > input{
-    height: calc(200px / 4);
+.nube-5 > textarea{
+    min-height: 100px;
+    max-height: 100px;
+    min-width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 .nave-5{
     background: url("#{resource['img/alumno/pop-art/Nave-1.svg']}") no-repeat center/100% 100%;
@@ -50,14 +55,21 @@
 }
 .input-5{
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
     align-content: center ;
 }
-.input-5 >input{
-    height: calc((200px / 3) - 3px);
+.input-5 >textarea{
+    min-height: calc((200px / 3) - 3px);
+    max-height: calc((200px / 3) - 3px);
+    min-width: 100%;
+    max-width: 100%;
     margin-top: 3px;
+}
+.mensaje-alerta-5{
+    color: red;
+    width: 100%;
 }
 @media screen and (max-width: 1025px){
 
