@@ -14,9 +14,7 @@ input[type="text"]{
 }
 .cuadro-hijo1{
     border: 5px solid black;
-    background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas2.svg']}");
-    background-position: center center;
-    background-size: 150%;
+    background: url("#{resource['img/alumno/mapa-mental/puntos-naranjas2.svg']}") no-repeat center center/150%;
     display: flex;
     flex-direction: column;
     justify-content: center;
