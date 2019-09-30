@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', function (evt) {
             frase.classList.remove('remover');
         });
     });
-
-    answer
+    if (answer.querySelector('.trancript-contenedor').dataset.respuesta === "false") {
+        answer.querySelectorAll('.trancript-contenedor span').forEach(function (frase) {
+            frase.removeAttribute('uk-sortable');
+        });
+    }
 });

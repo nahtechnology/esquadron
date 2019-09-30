@@ -216,13 +216,13 @@
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
-                                    <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     <h:outputText styleClass="realizado movimiento1" value="Respondido" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </div>
                             </h:panelGroup>
                             <h:form>
                                 <h:inputHidden value="#{transcripcionControlador.transcripcion}"/>
-                                <h:commandButton styleClass="boton-enviar" style="margin-top: 20px" value="Send" onclick="return validaContenido()">
+                                <h:commandButton styleClass="boton-enviar" style="margin-top: 20px" value="Send" onclick="return validaContenido()" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <f:ajax listener="#{transcripcionControlador.enviaRespuestas}" execute="@form" onevent="function funcion(data) { transcripcionEnvidad(data); }"/>
                                 </h:commandButton>
                             </h:form>
@@ -257,7 +257,7 @@
 
             var done = false;
             function onPlayerStateChange(event) {
-                if (event.data == YT.PlayerState.PLAYING &amp;&amp; !done) {
+                if (event.data === YT.PlayerState.PLAYING &amp;&amp; !done) {
                     console.log('Ocurrio el evento! ');
                     pageScroll();
                     done = true;

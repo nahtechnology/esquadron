@@ -56,7 +56,7 @@ function transcripcionEnvidad(data) {
 }
 
 function validaContenido() {
-    if (((answer.querySelectorAll('.contenedor-respuesta div').length * 100) / totalRespuestasTranscripcion) < 15.0)  {
+    if (((answer.querySelectorAll('.contenedor-respuesta span').length * 100) / totalRespuestasTranscripcion) < 15.0)  {
         resp = '';
         answer.querySelectorAll('.remplazar p').forEach(function (respRem) {
             resp = resp.concat(respRem.outerHTML);
