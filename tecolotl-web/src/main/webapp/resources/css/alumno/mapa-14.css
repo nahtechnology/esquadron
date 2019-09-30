@@ -1,6 +1,6 @@
 .fondo-14{
     background: url("#{resource['img/mounstro/whose.svg']}") no-repeat left top/200px,
-    url("url(") no-repeat center/cover;
+    url("#{resource['img/alumno/mapa-mental/lineas-amarillas.svg']}") no-repeat center/cover;
     height: 1200px;
 }
 

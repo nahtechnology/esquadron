@@ -201,12 +201,12 @@
                                 </div>
                                 <h:message for="cuatrob" styleClass="formulario-mensaje-3"/>
                             </div>
-                            <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="#{boton['submit']}"
-                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             action="#{mapaMentalControlador.respondeMapaMental}"
-                                             styleClass="boton-enviar"/>
                         </div>
+                        <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                         value="#{boton['submit']}"
+                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         action="#{mapaMentalControlador.respondeMapaMental}"
+                                         styleClass="boton-enviar boton-gral1"/>
                     </h:form>
                 </div>
             </div>

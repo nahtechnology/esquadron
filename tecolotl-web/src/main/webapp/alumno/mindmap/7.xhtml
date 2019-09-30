@@ -170,12 +170,13 @@
                                 </div>
                                 <h:message for="seis" styleClass="mensaje-alerta-7"/>
                             </div>
-                            <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="#{boton['submit']}"
-                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             action="#{mapaMentalControlador.respondeMapaMental}"
-                                             styleClass="boton-enviar"/>
+
                         </div>
+                        <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                         value="#{boton['submit']}"
+                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                         action="#{mapaMentalControlador.respondeMapaMental}"
+                                         styleClass="boton-enviar boton-gral3"/>
                     </h:form>
                 </div>
             </div>

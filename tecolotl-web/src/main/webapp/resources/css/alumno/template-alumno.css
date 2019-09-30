@@ -465,6 +465,12 @@ iframe {
     display: block;
 }
 
+.boton-gral{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 .uk-subnav{
     justify-content: center ;
 }

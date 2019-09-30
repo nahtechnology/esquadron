@@ -155,16 +155,17 @@
                                 <h:message for="detalled" styleClass="mensaje-alerta-9"/>
                             </div>
                         </div>
-                        <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                         value="#{boton['submit']}"
-                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         action="#{mapaMentalControlador.respondeMapaMental}"
-                                         styleClass="boton-enviar"/>
                     </div>
+                    <div class="imagen-centrada">
+                        <h:graphicImage library="img" name="mounstro/whom.svg" />
+                    </div>
+                    <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="#{boton['submit']}"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar"/>
                 </h:form>
-                <div class="imagen-centrada">
-                    <h:graphicImage library="img" name="mounstro/whom.svg" />
-                </div>
+
             </div>
         </div>
     </ui:define>
