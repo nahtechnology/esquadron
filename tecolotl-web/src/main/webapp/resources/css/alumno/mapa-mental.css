@@ -135,6 +135,6 @@ input[type=text]::placeholder{
 
 .boton-gral5{
     position: absolute;
-    top: 167%;
-    left: 50%;
+    bottom: -22%;
+    left: 35%;
 }

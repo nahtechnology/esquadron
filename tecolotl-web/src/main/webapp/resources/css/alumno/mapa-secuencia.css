@@ -69,6 +69,13 @@
     margin-right: auto;
     margin-left: auto;
 }
+
+.boton-gral6{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 @media  screen and (max-width: 1499px){
     .margen-secuencia{
         margin-left: 20px;
