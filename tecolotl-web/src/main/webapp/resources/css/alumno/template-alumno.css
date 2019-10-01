@@ -465,6 +465,12 @@ iframe {
     display: block;
 }
 
+.boton-gral{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 .uk-subnav{
     justify-content: center ;
 }
@@ -571,6 +577,41 @@ iframe {
     margin-bottom: 0;
     width: 75%;
     margin-top: 4px;
+}
+
+
+
+.uk-dotnav > * > * {
+    width: 20px;
+    height: 20px;
+    background: #00a49d;
+    border: 1px solid rgba(102, 102, 102, 0.4);
+}
+
+/* Hover + Focus */
+.uk-dotnav > * > :hover,
+.uk-dotnav > * > :focus {
+    background-color: rgba(255, 255, 255, 0.6);
+
+}
+
+/* OnClick */
+.uk-dotnav > * > :active {
+    background-color: gold;
+    border-color: transparent;
+}
+
+/* Active */
+.uk-dotnav > .uk-active > * {
+    background-color: gold;
+    border-color: transparent;
+}
+.uk-notification-message {
+    background: white;
+    border-radius: 8px;
+    border: 4px solid #00A49D;
+    color: black;
+    font-weight: bold;
 }
 
 

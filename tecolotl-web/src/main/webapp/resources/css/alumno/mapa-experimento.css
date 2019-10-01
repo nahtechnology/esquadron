@@ -89,3 +89,9 @@ body{
     color: red;
     background-color: white;
 }
+
+.boton-gral3{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}

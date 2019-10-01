@@ -178,13 +178,12 @@
                                     <p class="letra-img-map-uno">Why</p>
                                 </div>
                             </div>
-                            <div>
-                                <h:commandButton id="boton-enviar-mapa-mental" 
-                                                 value="#{boton['submit']}"
-                                                 rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                                 action="#{mapaMentalControlador.respondeMapaMental}"
-                                                 styleClass="boton-enviar"/>
-                            </div>
+
+                            <h:commandButton id="boton-enviar-mapa-mental"
+                                             value="#{boton['submit']}"
+                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             action="#{mapaMentalControlador.respondeMapaMental}"
+                                             styleClass="boton-enviar boton-gral5"/>
                         </h:form>
                     </div>
                 </div>

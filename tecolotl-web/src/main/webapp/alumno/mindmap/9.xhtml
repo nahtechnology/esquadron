@@ -87,7 +87,7 @@
         <div class="uk-section margen-superior">
             <div class="uk-container fondo-idea uk-position-relative margen-idea  ">
                 <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>#{alumno['map2.title.answered']}</span>
+                    <span class="uk-text-capitalize">#{alumno['map2.title.answered']}</span>
                 </h:panelGroup>
                 <p class="uk-position-absolute titulo-mapa-idea">#{alumno['map9.title.main']}</p>
                 <div class="uk-margin-small-top">
@@ -155,16 +155,17 @@
                                 <h:message for="detalled" styleClass="mensaje-alerta-9"/>
                             </div>
                         </div>
-                        <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                         value="#{boton['submit']}"
-                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         action="#{mapaMentalControlador.respondeMapaMental}"
-                                         styleClass="boton-enviar"/>
                     </div>
+                    <div class="imagen-centrada">
+                        <h:graphicImage library="img" name="mounstro/whom.svg" />
+                    </div>
+                    <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="#{boton['submit']}"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar boton-gral4"/>
                 </h:form>
-                <div class="imagen-centrada">
-                    <h:graphicImage library="img" name="mounstro/whom.svg" />
-                </div>
+
             </div>
         </div>
     </ui:define>

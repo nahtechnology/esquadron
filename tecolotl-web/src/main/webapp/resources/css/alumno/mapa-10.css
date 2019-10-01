@@ -56,6 +56,13 @@
     margin-top: 5px;
     width: 100%;
 }
+
+.boton-gral3{
+    position: absolute;
+    bottom: -55px;
+    left: 50%;
+}
+
 @media screen and (max-width: 1024px){
  .caja-texto-10{
       margin-top: 10%;

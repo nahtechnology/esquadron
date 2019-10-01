@@ -14,6 +14,7 @@
     transform: translate(-50%, 0%);
     -webkit-transform: translate(-50%, 0%);
     z-index: 2;
+    text-transform: capitalize;
 }
 
 .text-area-idea{
@@ -84,8 +85,17 @@
     margin: auto;
 }
 .mensaje-alerta-9{
- color: red;
+    color: red;
+    text-align: center;
+    display: block;
 }
+
+.boton-gral4{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 @media screen and (max-width: 768px){
     .imagen-ard{
         width: 100%;

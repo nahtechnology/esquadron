@@ -176,12 +176,12 @@
                             </h:inputTextarea>
                             <h:message for="ocho" styleClass="mensaje-alerta-10"/>
                         </div>
-                        <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                         value="#{boton['submit']}"
-                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         action="#{mapaMentalControlador.respondeMapaMental}"
-                                         styleClass="boton-enviar"/>
                     </h:panelGroup>
+                    <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="#{boton['submit']}"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar boton-gral3"/>
                 </h:form>
             </div>
         </div>
