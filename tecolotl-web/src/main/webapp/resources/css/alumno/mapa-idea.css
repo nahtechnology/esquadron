@@ -89,6 +89,13 @@
     text-align: center;
     display: block;
 }
+
+.boton-gral4{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 @media screen and (max-width: 768px){
     .imagen-ard{
         width: 100%;

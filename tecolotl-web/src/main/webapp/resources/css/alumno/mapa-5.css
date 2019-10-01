@@ -71,6 +71,13 @@
     color: red;
     width: 100%;
 }
+
+.boton-gral{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 @media screen and (max-width: 1025px){
 
     .titulo-mapa-5{
