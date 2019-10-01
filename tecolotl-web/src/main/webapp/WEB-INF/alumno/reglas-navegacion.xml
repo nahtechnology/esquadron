@@ -104,4 +104,28 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/alumno/more-activity.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>actividades</from-outcome>
+            <to-view-id>/alumno/activities.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>glosario</from-outcome>
+            <to-view-id>/alumno/glossary.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>mapa-mental</from-outcome>
+            <to-view-id>/alumno/select-mindmap.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>biblioteca-alumno</from-outcome>
+            <to-view-id>/alumno/free-library.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>
