@@ -7,6 +7,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
+    </f:metadata>
     <ui:define name="hamburguesa">
         <div class="color-nav uk-visible@m">
             <div class="uk-position-top-center nave-superior"><h:graphicImage library="img" name="alumno/control-superior.svg" class="" alt="" width="250" height="auto"/></div>
@@ -26,14 +30,10 @@
                     <div class="uk-offcanvas-bar  ">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['activity']}; pos: right" ><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="40" alt="" /></li>
-                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
                         </ul>
-
                     </div>
                 </div>
             </nav>
@@ -43,7 +43,7 @@
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
-            <h6 class="uk-text-center uk-margin-remove-vertical text-light">#{alumnoControlador.alumnoModelo.apodo} </h6>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo} </h6>
 
             <div class="uk-position-relative uk-text-center uk-display-block">
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
@@ -59,22 +59,16 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="/alumno/planetas/planeta3.svg"  width="80" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="/alumno/planetas/planeta3.svg"  width="60" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -82,107 +76,170 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-15.css"/>
         <div class="uk-section margen-superior uk-margin-small-left uk-margin-small-right">
             <div class="uk-container picture margen-picture">
-
-                <div class="">
-                    <div class="uk-position-relative caja-1">
-                        <div class="uk-position-absolute titulo-mapa-15">
-                            <div class="horizontal-form1">
-                                <label class="parrafo-mapa-15 uk-form-label">#{alumno['map15.title.definition']}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input"  type="text"/>
+                <h:form styleClass="uk-form-stacked">
+                    <div class="">
+                        <div class="uk-position-relative caja-1">
+                            <div class="uk-position-absolute titulo-mapa-15">
+                                <div class="horizontal-form1">
+                                    <h:outputLabel styleClass="parrafo-mapa-15 uk-form-label" for="definicion" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                                     id="definicion">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="definicion" styleClass=""/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="horizontal-form2">
-                                <label class="parrafo-mapa-15 uk-form-label">#{alumno['map15.title.sentence']}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" type="text"/>
+                                <div class="horizontal-form2">
+                                    <h:outputLabel styleClass="parrafo-mapa-15 uk-form-label" for="sentencia" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].pregunta}"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}"
+                                                     id="sentencia">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="sentencia" styleClass=""/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="horizontal-form3">
-                                <label class="parrafo-mapa-15 uk-form-label">#{alumno['map15.title.part']}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" type="text"/>
+                                <div class="horizontal-form3">
+                                    <h:outputLabel styleClass="parrafo-mapa-15 uk-form-label" for="spreech" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                                     id="spreech">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="spreech" styleClass=""/>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="parrafo-mapa-15 uk-position-relative subtitulo-15 caja-2 uk-visible@m">
-                        <div class="uk-position-absolute subtitulo-15 uk-display-inline-block">
-                            <label class="parrafo-mapa-15 uk-form-label">#{alumno['map15.title.picture']}</label>
+                        <div class="parrafo-mapa-15 uk-position-relative subtitulo-15 caja-2 uk-visible@m">
+                            <div class="uk-position-absolute subtitulo-15 uk-display-inline-block">
+                                <label class="parrafo-mapa-15 uk-form-label">#{alumno['map15.title.picture']}</label>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="uk-position-absolute caja-4 uk-visible@m">
+                        <div class="uk-position-absolute caja-4 uk-visible@m">
                             <span class="subtitulo-15 uk-display-inline-block">
                                 #{alumno['map15.title.vocabulary']}
                             </span>
-                    </div>
-                    <div class="uk-position-absolute caja-5 uk-visible@m">
+                        </div>
+                        <div class="uk-position-absolute caja-5 uk-visible@m">
                             <span class="subtitulo-15 uk-display-inline-block">
                                 #{alumno['map15.title.study']}
                             </span>
-                    </div>
-
-                    <h3 class="parrafo-mapa-15 uk-hidden@m">#{alumno['map15.title.vocabulary.study']}</h3>
-
-                    <div class="uk-position-relative caja-3">
-                        <form action="" class="uk-form-stacked">
+                        </div>
+                        <h3 class="parrafo-mapa-15 uk-hidden@m">#{alumno['map15.title.vocabulary.study']}</h3>
+                        <div class="uk-position-relative caja-3">
                             <div class="planet-1 orientacion letras ">
                                 <div class="uk-form-stacked posicion-planeta">
-                                    <label class="uk-form-label" for="form-stacked-text">#{alumno['map15.title.suffix']}</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="subfijo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].respuesta}"
+                                                     id="subfijo">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="subfijo" styleClass=""/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="planet-1 orientacion letras ">
+                                <div class="uk-form-stacked posicion-planeta">
+                                    <h:outputLabel styleClass="uk-form-label" for="dibujo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
+                                                     id="dibujo">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="dibujo" styleClass=""/>
                                     </div>
                                 </div>
                             </div>
                             <div class="planet-2 orientacion letras">
                                 <div class="uk-form-stacked posicion-planeta">
-                                    <label class="uk-form-label " for="form-stacked-text">Prefix:</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="prefijo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
+                                                     id="prefijo">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="prefijo" styleClass=""/>
                                     </div>
                                 </div>
                             </div>
                             <div class="planet-3 orientacion letras">
                                 <div class="uk-form-stacked posicion-planeta">
-                                    <label class="uk-form-label" for="form-stacked-text">#{alumno['map15.title.root']}</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="raiz" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
+                                                     id="raiz">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="raiz" styleClass=""/>
                                     </div>
                                 </div>
                             </div>
                             <div class="planet-4 orientacion letras">
                                 <div class="uk-form-stacked posicion-planeta">
-                                    <label class="uk-form-label" for="form-stacked-text">#{alumno['map15.title.context']}</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="contexto" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                     id="contexto">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="contexto" styleClass=""/>
                                     </div>
                                 </div>
                             </div>
                             <div class="planet-5 orientacion letras">
                                 <div class="uk-form-stacked posicion-planeta">
-                                    <label class="uk-form-label" for="form-stacked-text">#{alumno['map15.title.new.word']}</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="nueva-palabra" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
+                                                     id="nueva-palabra">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="nueva-palabra" styleClass=""/>
                                     </div>
                                 </div>
                             </div>
                             <div class="planet-6 orientacion letras">
                                 <div class=" posicion-planeta">
-                                    <label class="uk-form-label" for="form-stacked-text">#{alumno['map15.title.synonyms']}</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="entrada-sinonimo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[10].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText styleClass="uk-input"
+                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[10].respuesta}"
+                                                     id="entrada-sinonimo">
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                        <h:message for="entrada-sinonimo" styleClass=""/>
                                     </div>
-                                    <label class="uk-form-label" for="form-stacked-text">#{alumno['map15.title.antonyms']}</label>
+                                    <h:outputLabel styleClass="uk-form-label" for="entrada-antonimo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"/>
                                     <div class="uk-form-controls">
-                                        <input class="uk-input" id="form-stacked-text" type="text"/>
+                                        <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                     id="entrada-antonimo"
+                                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                                     styleClass="uk-input">
+                                            <f:validateRequired/>
+                                        </h:inputText>
                                     </div>
+                                    <h:message for="entrada-antonimo" styleClass=""/>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                    <h:commandButton id="boton-enviar-mapa-mental"
+                                     value="#{boton['submit']}"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"/>
+                </h:form>
             </div>
         </div>
     </ui:define>

@@ -29,12 +29,9 @@
                     <div class="uk-offcanvas-bar  ">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['activity']}; pos: right" ><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta3.svg"  width="40" alt="" /></li>
-                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
                         </ul>
 
                     </div>
@@ -46,7 +43,7 @@
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
-            <h6 class="uk-text-center uk-margin-remove-vertical text-light">#{alumnoControlador.alumnoModelo.apodo} </h6>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo} </h6>
 
             <div class="uk-position-relative uk-text-center uk-display-block">
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
@@ -62,22 +59,16 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="80" alt="" /></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="/alumno/planetas/planeta3.svg"  width="80" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="/alumno/dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['activity']}; pos: right"><h:link outcome="/alumno/activity"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['glossary']}; pos: right"><h:link outcome="/alumno/glossary"><h:graphicImage library="img" name="alumno/planetas/planeta2.svg"  width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: Indefinido; pos: right"><h:graphicImage library="img" name="/alumno/planetas/planeta3.svg"  width="60" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="/alumno/select-mindmap"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="/alumno/free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -97,29 +88,29 @@
                     </div>
                     <h:form class="uk-form-stacked-movil">
                         <div class="uk-position-absolute texto-posicion">
-                            <h3 class="uk-text-center">#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}</h3>
+                            <h3 class="uk-text-center">#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}</h3>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-large-bottom"
                                          id="introduction"
-                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         pt:placeholder="Some text...">
+                                         disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                         value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="introduction" styleClass=""/>
                             <h3 class="uk-text-center margen-small">#{alumno['map8.title.supporting']}</h3>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
                                              id="deails1"
-                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                             pt:placeholder="Some text...">
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="deails1" styleClass=""/>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
                                              id="deails2"
-                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                             pt:placeholder="Some text...">
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="deails2" styleClass=""/>
@@ -127,16 +118,16 @@
                                              id="deails3"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
-                                             pt:placeholder="Some text...">
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="deails3" styleClass=""/>
-                            <h3 class="uk-text-center uk-margin-remove-top">#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}:</h3>
+                            <h3 class="uk-text-center uk-margin-remove-top">#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}:</h3>
                             <h:inputTextarea styleClass="uk-textarea"
                                              id="Conclusion"
-                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
-                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
-                                             pt:placeholder="Some text...">
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="Conclusion" styleClass=""/>

@@ -60,6 +60,7 @@ public class TareaMapaMentalModelo extends MapaMentalModelo{
         return new StringJoiner(", ", TareaMapaMentalModelo.class.getSimpleName() + "[", "]")
                 .add("respuesta='" + respuesta + "'")
                 .add("horaRespuesta=" + horaRespuesta)
+                .add("vuelta=" + vuelta)
                 .add("super=".concat(super.toString()))
                 .toString();
     }

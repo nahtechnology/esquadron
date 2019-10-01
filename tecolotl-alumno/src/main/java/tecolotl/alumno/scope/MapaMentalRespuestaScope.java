@@ -45,11 +45,11 @@ public class MapaMentalRespuestaScope {
             });
             userTransaction.commit();
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "No se puede insertar datos por:".concat(e.getMessage()), e);
+            logger.log(Level.SEVERE, "No se puede insertar datos por:" + e.getMessage(), e);
             try {
                 userTransaction.rollback();
             } catch (SystemException ex) {
-                logger.log(Level.SEVERE, "No se pudo hcer rollback por:".concat(ex.getMessage()), ex);
+                logger.log(Level.SEVERE, "No se pudo hcer rollback por:" + ex.getMessage(), ex);
             }
         }
     }
@@ -59,7 +59,7 @@ public class MapaMentalRespuestaScope {
         return new TareaMapaMentalActividadEntidadPK(
                 new MapaMentalActividadEntidad(
                         new MapaMentalActividadEntidadPK(new MapaMentalEntidad(mapaMentalEntidadPK), new ActividadEntidad(idActividad))
-                ), new TareaEntidad(idTarea)
+                ), new TareaEntidad(idTarea), tareaMapaMentalModelom.getVuelta()
         );
     }
 }
