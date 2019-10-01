@@ -152,12 +152,13 @@
                         <div class="nave-5-2">
 
                         </div>
-                        <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                         value="#{boton['submit']}"
-                                         rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         action="#{mapaMentalControlador.respondeMapaMental}"
-                                         styleClass="boton-enviar "/>
+
                     </h:panelGroup>
+                    <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="#{boton['submit']}"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar boton-gral"/>
                 </h:form>
             </div>
         </div>

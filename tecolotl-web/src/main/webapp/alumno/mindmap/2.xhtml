@@ -121,12 +121,13 @@
                             <f:validateRequired/>
                         </h:inputTextarea>
                         <h:message for="texto-respuesta-5" styleClass=""/>
-                        <h:commandButton id="boton-enviar-mapa-mental-escritorio"
+
+                    </div>
+                    <h:commandButton id="boton-enviar-mapa-mental-escritorio"
                                      value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                      action="#{mapaMentalControlador.respondeMapaMental}"
-                                     styleClass="boton-enviar"/>
-                    </div>
+                                     styleClass="boton-enviar boton-gral6"/>
                 </h:form>
                 <h:form id="formulario-mapa-mental-movil">
                     <div class="uk-hidden@s caja-pez">
