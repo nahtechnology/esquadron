@@ -59,6 +59,12 @@ form textarea{
     bottom: 8%;
     right: 23%;
 }
+
+.boton-grales{
+    position: absolute;
+    left: 45%;
+}
+
 @media  screen and (max-width: 1499px){
     .margen-mapa-efecto{
         margin-left: 20px;
