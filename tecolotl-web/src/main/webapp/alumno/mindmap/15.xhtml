@@ -145,19 +145,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="planet-1 orientacion letras ">
-                                <div class="uk-form-stacked posicion-planeta">
-                                    <h:outputLabel styleClass="uk-form-label" for="dibujo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].pregunta}"/>
-                                    <div class="uk-form-controls">
-                                        <h:inputText styleClass="uk-input"
-                                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[5].respuesta}"
-                                                     id="dibujo">
-                                            <f:validateRequired/>
-                                        </h:inputText>
-                                        <h:message for="dibujo" styleClass=""/>
-                                    </div>
-                                </div>
-                            </div>
                             <div class="planet-2 orientacion letras">
                                 <div class="uk-form-stacked posicion-planeta">
                                     <h:outputLabel styleClass="uk-form-label" for="prefijo" value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].pregunta}"/>
@@ -238,7 +225,8 @@
                     <h:commandButton id="boton-enviar-mapa-mental"
                                      value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                     action="#{mapaMentalControlador.respondeMapaMental}"/>
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar boton-gral"/>
                 </h:form>
             </div>
         </div>
