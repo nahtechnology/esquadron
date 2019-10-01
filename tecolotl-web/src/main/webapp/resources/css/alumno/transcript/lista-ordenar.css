@@ -128,7 +128,7 @@
     font-weight: bold;
     background-color: darkred;
     border-radius: 50%;
-    border: 5px solid gray;
+    border: 5px solid white;
     margin: 3px;
     text-align: center;
     padding: 4px 10px 4px 10px;
@@ -147,7 +147,7 @@
     font-weight: bold;
     background-color: #00A859;
     border-radius: 50%;
-    border: 5px solid gray;
+    border: 5px solid white;
     margin: 3px;
     text-align: center;
     padding: 4px 10px 4px 10px;
