@@ -69,6 +69,7 @@
     background: rgb(0,163,106);
 }
 .tam-contenido{
+    min-height: 52vh;
     max-height:52vh;
     background-color: white;
 

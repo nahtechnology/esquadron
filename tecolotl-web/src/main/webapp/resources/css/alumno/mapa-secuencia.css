@@ -11,10 +11,11 @@
 }
 .caja1{
     width: 100%;
-    background-color: #842484;
     margin: 35% 0 10px 0;
     border: solid 8px black;
     box-sizing: border-box;
+    background: url("#{resource['img/icono/flecha-abajo.svg']}") no-repeat  calc(100% - ((100%/3)/2 - 15px)) 220px/35px 30px,url("#{resource['img/icono/flecha-abajo.svg']}") no-repeat calc(((100%/3)/2) - 15px) calc(((100%/3) * 2) - 17px)/35px 30px,#842484 ;
+    /*background-color: #842484;*/
 }
 
 .caja2{
@@ -49,6 +50,19 @@
     align-items: center;
     justify-content: center;
 }
+.area-texto{
+    background: url("#{resource['img/icono/flecha.svg']}") no-repeat left center/35px 30px;
+
+}
+.area-texto:first-child,.area-texto:nth-child(4),.area-texto:nth-child(5),.area-texto:nth-child(6),.area-texto:nth-child(7){
+    background: none;
+}
+
+.area-texto:nth-child(5),.area-texto:nth-child(6){
+    background: url("#{resource['img/icono/fleca-izquierda.svg']}") no-repeat left center/35px 30px;
+}
+
+
 .area-texto>textarea{
     min-width: 100%;
     max-width: 100%;
@@ -69,6 +83,10 @@
     margin-right: auto;
     margin-left: auto;
 }
+.mensaje-alerta-11{
+    color: red;
+    font-weight: bold;
+}
 
 .boton-gral9{
     position: absolute;
@@ -80,6 +98,22 @@
     .margen-secuencia{
         margin-left: 20px;
         margin-right: 20px;
+    }
+}
+@media  screen and (max-width: 770px){
+    .area-texto{
+        background: none;
+
+    }
+    .area-texto:first-child,.area-texto:nth-child(4),.area-texto:nth-child(5),.area-texto:nth-child(6),.area-texto:nth-child(7){
+        background: none;
+    }
+
+    .area-texto:nth-child(5),.area-texto:nth-child(6){
+        background: none;
+    }
+    .caja1{
+        background: none #842484;
     }
 }
 @media screen and (max-width:500px ){

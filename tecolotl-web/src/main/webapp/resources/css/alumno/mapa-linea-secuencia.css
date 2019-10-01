@@ -30,6 +30,7 @@ input[type="text"]{
     align-items: center;
     flex-wrap: nowrap;
     flex-direction: column;
+    padding: 10px 0;
 }
 .cuadro-hijo3{
     border: 5px solid black;
@@ -103,6 +104,12 @@ input[type="text"]{
     left: 45%;
 }
 
+.mensaje-alerta-12{
+    display: block;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
 @media screen and (max-width: 500px) {
     .cuadro-hijo1{
         height: 200px;

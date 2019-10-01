@@ -72,7 +72,7 @@
 
 .formulario-morado{
     right: 20px;
-    bottom: 80px;
+    bottom: -100px;
 }
 .formulario-azul{
     display: flex;
@@ -118,10 +118,10 @@
 }
 
 textarea {
-    min-width: 100%;
-    max-width: 100%;
-    min-height: 64px;
-    max-height: 150px;
+    min-width: 200px !important;
+    max-width: 200px !important;
+    min-height: 59px;
+    max-height: 59px;
 }
 
 @media screen and (max-width: 900px) {
