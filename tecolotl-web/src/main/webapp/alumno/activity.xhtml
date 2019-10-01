@@ -235,6 +235,7 @@
             var videoPlayer = document.querySelectorAll('.scrollFinal');
             var player;
             var totalRespuestasTranscripcion = 0;
+            var ordenarPalabras = document.querySelector('.order-words');
 
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
@@ -314,7 +315,10 @@
                 if (data.status === 'success') {
                     data.source.previousElementSibling.previousElementSibling.querySelector('.uk-sortable').removeAttribute('uk-sortable');
                     data.source.disabled = true;
-                    UIkit.notification("Respuesta Enviada correctamente", {pos: 'top-right'})
+                    UIkit.notification("Respuesta Enviada correctamente", {pos: 'top-right'});
+                    var cambio = ordenarPalabras.querySelector('ul li.uk-active');
+                    cambio.classList.remove('boton-falta');
+                    cambio.classList.add('boton-listo');
                 }
             }
 

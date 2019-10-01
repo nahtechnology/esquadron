@@ -25,18 +25,19 @@ public class TareasProgresoControlador {
     @Inject
     private AlumnoControlador alumnoControlador;
 
-    private List<TareaActividadModelo> tareaActividadModeloLista;
+    private Integer idTarea;
     private List<TareaResuetasModelo> tareaResuetasModeloLista;
 
-    @PostConstruct
-    public void init(){
-        tareaActividadModeloLista = alumnoControlador.getTareaActvidadModeloLista();
-        logger.info(tareaActividadModeloLista.toString());
+    public void buscaTareasRealizadas() {
+        tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(idTarea);
     }
 
-    public void llenaTareas(Integer idTarea){
-        this.setTareaResuetasModeloLista(tareaSesionBean.tareasResuelta(idTarea));
-        logger.info(this.getTareaResuetasModeloLista().toString());
+    public Integer getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(Integer idTarea) {
+        this.idTarea = idTarea;
     }
 
     public List<TareaResuetasModelo> getTareaResuetasModeloLista() {
@@ -45,13 +46,5 @@ public class TareasProgresoControlador {
 
     public void setTareaResuetasModeloLista(List<TareaResuetasModelo> tareaResuetasModeloLista) {
         this.tareaResuetasModeloLista = tareaResuetasModeloLista;
-    }
-
-    public List<TareaActividadModelo> getTareaActividadModeloLista() {
-        return tareaActividadModeloLista;
-    }
-
-    public void setTareaActividadModeloLista(List<TareaActividadModelo> tareaActividadModeloLista) {
-        this.tareaActividadModeloLista = tareaActividadModeloLista;
     }
 }

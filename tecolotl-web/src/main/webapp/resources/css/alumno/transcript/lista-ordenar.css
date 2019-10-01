@@ -126,7 +126,7 @@
 .boton-falta{
     color: white;
     font-weight: bold;
-    background-color: #00A859;
+    background-color: darkred;
     border-radius: 50%;
     border: 5px solid gray;
     margin: 3px;
@@ -145,7 +145,7 @@
 .boton-listo{
     color: white;
     font-weight: bold;
-    background-color: darkred;
+    background-color: #00A859;
     border-radius: 50%;
     border: 5px solid gray;
     margin: 3px;
