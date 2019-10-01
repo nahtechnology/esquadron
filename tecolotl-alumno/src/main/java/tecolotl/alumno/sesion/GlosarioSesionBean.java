@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.glosario.*;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 
+import javax.ejb.Startup;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -23,6 +24,7 @@ import java.util.stream.Collectors;
  * @author Antonio Francisco Alonso Valerdi
  */
 @Stateless
+@Startup
 public class GlosarioSesionBean implements Serializable {
 
     @Inject
@@ -110,9 +112,9 @@ public class GlosarioSesionBean implements Serializable {
      */
     public List<GlosarioModelo> busca(int inicio, int maximo) {
         logger.fine("Inicio:".concat(String.valueOf(inicio))); logger.fine("Maximo:".concat(String.valueOf(maximo)));
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.busca", GlosarioEntidad.class);
+        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaImagen", GlosarioEntidad.class);
         typedQuery.setFirstResult(inicio).setMaxResults(maximo);
-        return typedQuery.getResultList().stream().map(GlosarioModelo::new).collect(Collectors.toList());
+        return typedQuery.getResultList().stream().map(glosarioEntidad -> new GlosarioModelo(glosarioEntidad, true)).collect(Collectors.toList());
     }
 
     /**

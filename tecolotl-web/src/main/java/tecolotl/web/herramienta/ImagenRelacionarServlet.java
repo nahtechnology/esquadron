@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
-@WebServlet(name = "ServletImagenRelacionar", urlPatterns = "imagen-relacionar")
+//@WebServlet(name = "ServletImagenRelacionar", urlPatterns = "imagen-relacionar")
 public class ImagenRelacionarServlet extends HttpServlet {
 
     @Inject

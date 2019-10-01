@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Singleton
-@Startup
+//@Startup
 public class RelacionarImagenCache {
 
     private int BLOQUE;

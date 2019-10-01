@@ -18,7 +18,7 @@ import java.util.StringJoiner;
         ),
         @NamedQuery(
                 name = "GlosarioEntidad.buscaImagen",
-                query = "SELECT g.imagen FROM GlosarioEntidad g WHERE g.glosarioEntidadPK.palabra = :palabra AND g.glosarioEntidadPK.claseGlosarioEntidad.clave = :clave"
+                query = "SELECT new GlosarioEntidad(g.glosarioEntidadPK, g.imagen) FROM GlosarioEntidad g"
         ),
         @NamedQuery(
                 name = "GlosarioEntidad.buscaNoImganeIdTarea",
@@ -43,6 +43,11 @@ public class GlosarioEntidad {
     public GlosarioEntidad(GlosarioEntidadPK glosarioEntidadPK, String significado) {
         this(glosarioEntidadPK);
         this.significado = significado;
+    }
+
+    public GlosarioEntidad(GlosarioEntidadPK glosarioEntidadPK, byte[] imagen) {
+        this(glosarioEntidadPK);
+        this.imagen = imagen;
     }
 
     @EmbeddedId
