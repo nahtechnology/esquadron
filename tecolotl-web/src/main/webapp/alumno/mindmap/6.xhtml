@@ -217,13 +217,14 @@
                                 </h:inputText>
                                 <h:message for="opiniong" styleClass=""/>
                             </div>
-                            <h:commandButton id="boton-enviar-mapa-mental-movil"
-                                             value="#{boton['submit']}"
-                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             action="#{mapaMentalControlador.respondeMapaMental}"
-                                             styleClass="boton-enviar"/>
+
                         </div>
                     </h:panelGroup>
+                    <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                     value="#{boton['submit']}"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar boton-gral6"/>
                 </h:form>
             </div>
         </div>

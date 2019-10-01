@@ -45,3 +45,9 @@ input[type="text"]{
     text-align: center;
     font-size: 29px;
 }
+
+.boton-gral6{
+    position: absolute;
+    bottom: -55%;
+    left: 50%;
+}
