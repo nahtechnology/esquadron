@@ -96,6 +96,13 @@ input[type="text"]{
     left: 5%;
     color: #2AABE2;
 }
+
+.boton-gral7{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 @media screen and (max-width: 500px) {
     .cuadro-hijo1{
         height: 200px;
@@ -175,11 +182,7 @@ input[type="text"]{
     }
 }
 
-.boton-gral7{
-    position: absolute;
-    bottom: -30px;
-    left: 45%;
-}
+
 
 @media screen and (min-width: 1200px) {
     .cuadro-hijo1{

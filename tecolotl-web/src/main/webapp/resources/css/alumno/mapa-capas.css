@@ -78,6 +78,12 @@
     font-weight: bold;
 }
 
+.boton-gral8{
+    position: absolute;
+    bottom: -30px;
+    left: 45%;
+}
+
 @media screen and (max-width: 1024px){
     .caja-capas{
         width: 90%;

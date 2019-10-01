@@ -82,11 +82,12 @@
                 <div class="imagen-who uk-visible@s">
                     <h:graphicImage library="img" name="mounstro/who.svg" />
                 </div>
+                <h:form class="uk-form-stacked-movil">
                 <div class="caja-capas uk-position-relative uk-visible@s">
                     <div class="imagen-hamburguesa  ">
                         <h:graphicImage library="img" name="/alumno/hamburguesa.svg"/>
                     </div>
-                    <h:form class="uk-form-stacked-movil">
+
                         <div class="uk-position-absolute texto-posicion">
                             <h3 class="uk-text-center">#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}</h3>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-large-bottom"
@@ -131,14 +132,18 @@
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="Conclusion" styleClass=""/>
-                            <h:commandButton id="boton-enviar-mapa-mental-escritorio"
-                                             value="enviar"
-                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             action="#{mapaMentalControlador.respondeMapaMental}"
-                                             styleClass="boton-enviar"/>
+
                         </div>
-                    </h:form>
+
+
                 </div>
+                    <h:commandButton id="boton-enviar-mapa-mental-escritorio"
+                                     value="enviar"
+                                     rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                     action="#{mapaMentalControlador.respondeMapaMental}"
+                                     styleClass="boton-enviar boton-gral8"/>
+                </h:form>
+
                 <div class="imagen-who-small uk-hidden@s">
                     <h:graphicImage library="img" name="mounstro/who.svg"/>
                 </div>
