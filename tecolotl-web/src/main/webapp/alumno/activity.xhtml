@@ -319,6 +319,12 @@
                     var cambio = ordenarPalabras.querySelector('ul li.uk-active');
                     cambio.classList.remove('boton-falta');
                     cambio.classList.add('boton-listo');
+                    var div = document.createElement('div');
+                    div.classList.add('realizado', 'movimiento');
+                    var responder = document.createElement('span');
+                    responder.textContent = "Responder";
+                    div.appendChild(responder);
+                    data.source.parentElement.parentElement.appendChild(div);
                 }
             }
 
