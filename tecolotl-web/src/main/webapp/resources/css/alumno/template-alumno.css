@@ -531,6 +531,8 @@ iframe {
     color: white;
     display: flex;
     justify-content: center;
+    position: relative;
+    right: 6%;
 }
 
 .scroll-drag::-webkit-scrollbar {
@@ -672,6 +674,13 @@ textarea::-webkit-scrollbar-thumb:hover {
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
+
+    .mensaje1{
+        padding: 20px 30px 0 35px;
+        position: relative;
+        left: 35%;
+    }
+
 }
 
 @media screen and (max-width: 500px) {
@@ -683,6 +692,12 @@ textarea::-webkit-scrollbar-thumb:hover {
         width: 90px;
         height: 65px;
         font-size: 10px;
+    }
+
+    .mensaje1{
+        padding: 20px 30px 0 35px;
+        position: relative;
+        left: 15%;
     }
 }
 
