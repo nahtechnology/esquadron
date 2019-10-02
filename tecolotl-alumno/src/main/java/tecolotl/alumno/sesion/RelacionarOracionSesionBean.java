@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class RelacionarOracionSesionBean {
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject

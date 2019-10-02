@@ -1,6 +1,8 @@
 package tecolotl.alumno.cache;
 
-
+import com.sun.xml.internal.ws.policy.EffectiveAlternativeSelector;
+import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
+import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarOriginalModelo;
 import tecolotl.alumno.sesion.RelacionarSesionBean;
 
@@ -25,7 +27,7 @@ public class RelacionarImagenCache {
 
     private int BLOQUE;
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject

@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class TareaSesionBean implements Serializable {
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject

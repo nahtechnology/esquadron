@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 @RequestScoped
 public class MapaMentalRespuestaScope {
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject

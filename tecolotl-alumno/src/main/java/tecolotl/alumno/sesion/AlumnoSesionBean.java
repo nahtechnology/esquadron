@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
 @Stateless
 public class AlumnoSesionBean implements Serializable {
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject

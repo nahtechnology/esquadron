@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 @Stateless
 public class ContactoSesionBean {
 
-    @PersistenceContext(unitName = "administracion")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject
