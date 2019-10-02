@@ -131,9 +131,15 @@ textarea {
     }
     .catarina-13{
         position: relative;
-        width: 80%;
+        width: 50%;
         top: 0;
         left:0;
+    }
+    textarea {
+        min-width: 100% !important;
+        max-width: 100% !important;
+        min-height: 59px;
+        max-height: 59px;
     }
 
 }

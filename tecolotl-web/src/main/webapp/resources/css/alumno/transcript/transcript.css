@@ -78,6 +78,11 @@
 .transcrip-contenedor{
     padding-right: 40px;
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .remover{

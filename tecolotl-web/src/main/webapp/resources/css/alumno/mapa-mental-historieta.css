@@ -51,3 +51,7 @@ input[type="text"]{
     bottom: -55%;
     left: 50%;
 }
+
+.opinion{
+    padding-left: 120px;
+}

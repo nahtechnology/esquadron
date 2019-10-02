@@ -122,9 +122,9 @@
                  </h:panelGroup>
                 <h1 class="lescuadron letra-titulo uk-text-center uk-margin-large-top">#{alumno['dashboard.homework.done']}</h1>
                 <div>
-                    <h:form>
-                        <h:selectOneRadio value="#{tareasProgresoControlador.idTarea}">
-                            <f:selectItems value="#{alumnoControlador.tareaActvidadModeloLista}" var="tareaActividad" itemLabel="#{tareaActividad.idActividad}" itemValue="#{tareaActividad.id}"/>
+                    <h:form styleClass="formulario-tareas-progreso" >
+                        <h:selectOneRadio value="#{tareasProgresoControlador.idTarea}"   >
+                            <f:selectItems value="#{alumnoControlador.tareaActvidadModeloLista}" var="tareaActividad"  itemLabel="#{tareaActividad.idActividad}" itemValue="#{tareaActividad.id}"/>
                             <f:ajax event="change" listener="#{tareasProgresoControlador.buscaTareasRealizadas}" execute="@form" render="tareas"/>
                         </h:selectOneRadio>
                     </h:form>

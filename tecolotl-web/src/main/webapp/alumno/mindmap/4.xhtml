@@ -95,10 +95,9 @@
                     </div>
                 </div>
                 <div class="uk-position-relative ">
-
                         <div class="uk-child-width-1-3@m" uk-grid="">
-                            <div class="uk-flex uk-flex-center uk-position-relative pop-art-nube-grande ">
-                                <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea uk-hidden"
+                            <div class="pop-art-nube-grande  uk-position-relative ">
+                                <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea"
                                              id="uno"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
@@ -107,8 +106,8 @@
                                 </h:inputTextarea>
                                 <h:message for="uno" styleClass="mensaje-mapa-4"/>
                             </div>
-                            <div class="uk-flex uk-flex-center uk-position-relative">
-                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass="nube-medio"/>
+                            <div class="pop-art-nube-medio uk-position-relative ">
+<!--                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass="nube-medio"/>-->
                                 <h:inputTextarea styleClass="posicion-texarea-comparar-dos uk-textarea"
                                              id="dos"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
@@ -118,7 +117,7 @@
                                 </h:inputTextarea>
                                 <h:message for="dos" styleClass=""/>
                             </div>
-                            <div class="uk-flex uk-flex-center uk-position-relative pop-art-nube-grande">
+                            <div class="pop-art-nube-grande uk-position-relative ">
                                 <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea"
                                                  id="tres"
                                                  disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"

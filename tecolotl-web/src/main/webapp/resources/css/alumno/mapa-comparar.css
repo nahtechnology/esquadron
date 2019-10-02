@@ -25,24 +25,19 @@
     box-sizing: border-box;
 }
 .posicion-texarea-comparar{
-    /*position: absolute;*/
-    min-width: 71%;
-    max-width: 71%;
-    min-height: 140px;
-    max-height: 140px;
-    /*left: 18%;*/
-    /*bottom:35%;*/
+
+    min-width: 60%;
+    max-width: 60%;
+    min-height: 90px;
+    max-height: 90px;
     box-sizing: border-box;
     border: none;
 }
 .posicion-texarea-comparar-dos{
-    position: absolute;
     min-width: 72%;
     max-width: 72%;
     min-height: 85px;
     max-height: 85px;
-    left: 20%;
-    bottom:40%;
     box-sizing: border-box;
     border: none;
 }
@@ -64,24 +59,7 @@
 
 }
 
-@media screen and (max-width: 1025px) {
 
-    .posicion-texarea-comparar{
-        min-width: 71%;
-        max-width: 71%;
-        min-height: 120px;
-        max-height: 120px;
-    }
-    .posicion-texarea-comparar-dos{
-        bottom:35%;
-    }
-}
-@media screen and (max-width: 658px) {
-    .letra-posicion{
-        bottom: 10%;
-        left: 19%;
-    }
-}
 
 .fondo-pop{
     background-color: #FFF200;
@@ -95,9 +73,45 @@
 .mensaje-mapa-4{
     display: block;
     margin-top: 10px;
+    font-weight: bold;
+    color: red;
+}
+.pop-art-nube-medio{
+    background: url("#{resource['img/alumno/pop-art/nube.svg']}") no-repeat center center/100% 100%;
+    background-origin: content-box;
+    height: 254px
 }
 .pop-art-nube-grande{
-    background: url("#{resource['img/alumno/pop-art/mensaje4.svg']}") no-repeat red center center/100% 100%;
-    background-origin: border-box;
-    height: 200px;
+    background: url("#{resource['img/alumno/pop-art/mensaje4.svg']}") no-repeat center center/100% 100%;
+    background-origin: content-box;
+    height: 254px
+}
+
+[class^="pop-art-nube-"]{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1025px) {
+
+
+    .posicion-texarea-comparar-dos{
+        bottom:35%;
+    }
+}
+@media screen and (max-width: 768px) {
+
+    .letra-posicion{
+        bottom: 10%;
+        left: 19%;
+    }
+    .pop-art-nube-grande{
+        height: 450px;
+    }
+    .pop-art-nube-medio{
+        height: 450px;
+    }
 }

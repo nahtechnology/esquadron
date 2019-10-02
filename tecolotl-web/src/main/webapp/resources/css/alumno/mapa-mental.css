@@ -89,19 +89,19 @@ input[type=text]::placeholder{
 }
 
 .img-mapa-who{
-    background: url("#{resource['img/mounstro/who.svg']}") no-repeat gold center bottom/50px 50px;
+    background: url("#{resource['img/mounstro/who.svg']}") no-repeat gold center bottom/70px 70px;
 }
 .img-mapa-what{
-    background: url("#{resource['img/icono/pregunta.svg']}") no-repeat gold center bottom/50px 50px;
+    background: url("#{resource['img/icono/pregunta.svg']}") no-repeat gold center bottom/70px 70px;
 }
 .img-mapa-when{
-    background: url("#{resource['img/icono/reloj.svg']}") no-repeat gold center bottom/50px 50px;
+    background: url("#{resource['img/icono/reloj.svg']}") no-repeat gold center bottom/70px 70px;
 }
 .img-mapa-where{
-    background: url("#{resource['img/icono/casa.svg']}") no-repeat gold center bottom/50px 50px;
+    background: url("#{resource['img/icono/casa.svg']}") no-repeat gold center bottom/70px 70px;
 }
 .img-mapa-why{
-    background: url("#{resource['img/icono/lupar.svg']}") no-repeat gold center bottom/50px 50px;
+    background: url("#{resource['img/icono/lupar.svg']}") no-repeat gold center bottom/70px 70px;
 }
 
 
@@ -123,7 +123,7 @@ input[type=text]::placeholder{
     height: 150px;
     background: url("#{resource['img/mounstro/whom.svg']}") no-repeat center left/120px 100%;
     color: white;
-    font-size: 30px;
+    font-size: 40px;
     display: flex;
     align-items: center;
     justify-content: center;

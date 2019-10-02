@@ -7,6 +7,10 @@
 .titulo-14{
     height: 400px;
 }
+.titulo-14 h3{
+    font-size: 24px;
+    font-weight: bold;
+}
 .arbol{
     background: url("#{resource['img/alumno/arbol.svg']}") no-repeat center/100% 100%;
     height: 800px;
