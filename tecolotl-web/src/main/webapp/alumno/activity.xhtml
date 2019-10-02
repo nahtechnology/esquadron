@@ -97,7 +97,7 @@
                         <li uk-filter-control=".match" uk-tooltip="#{alumno['bar.icon.match']}" class="uk-animation-toggle" tabindex="0" style="display: #{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista ? 'none' : 'block'}">
                             <h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
-                        <li uk-filter-control=".order-words" uk-tooltip="#{alumno['title.order.words']}" class="uk-animation-toggle" tabindex="0">
+                        <li uk-filter-control=".order-words" uk-tooltip="#{alumno['title.order.words']}" class="uk-animation-toggle" tabindex="0" style="display: #{empty gramaticaControlador.gramaticaModeloLista ? 'none' : 'block'}">
                             <h:graphicImage library="img" name="mounstro/3ojos.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
                         <li uk-filter-control=".answer" uk-tooltip="#{alumno['bar.icon.transcript']}" class="uk-animation-toggle" tabindex="0">
@@ -110,7 +110,6 @@
                             </h:commandLink>
                         </h:form>
                     </ul>
-
                     <ul class="js-filter  uk-text-center" >
                         <li class="transcrip">
                            <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
