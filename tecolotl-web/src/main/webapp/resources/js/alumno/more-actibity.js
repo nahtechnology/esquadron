@@ -24,6 +24,10 @@ function respuestaEnvidad(data) {
             ordenable.querySelector('td:nth-child(2)').removeAttribute('uk-sortable');
         });
         data.source.disabled = true;
-        UIkit.notification("Respuesta enviada correctamente", {pos: 'top-right'})
+        UIkit.notification("Respuesta enviada correctamente", {pos: 'top-right'});
+        var respondido = document.createElement('span');
+        respondido.classList.add('realizado', 'movimiento1');
+        respondido.textContent = 'Respondido';
+        ordenarOracion.querySelector('form').appendChild(respondido);
     }
 }
