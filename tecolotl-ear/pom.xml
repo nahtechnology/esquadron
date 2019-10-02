@@ -58,7 +58,8 @@
 						<webModule>
 							<groupId>tecolotl</groupId>
 							<artifactId>tecolotl-web</artifactId>
-							<contextRoot>/tecolotl</contextRoot>
+							<contextRoot>/</contextRoot>
+<!--							<contextRoot>/</contextRoot>-->
 						</webModule>
 					</modules>
 				</configuration>

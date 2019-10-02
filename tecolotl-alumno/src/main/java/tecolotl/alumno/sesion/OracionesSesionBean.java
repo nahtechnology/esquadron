@@ -20,7 +20,7 @@ public class OracionesSesionBean {
     @Inject
     private Logger logger;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "alumno")
     private EntityManager entityManager;
 
     public List<TareaOracionesModelo> busca(@NotNull Integer idTarea){

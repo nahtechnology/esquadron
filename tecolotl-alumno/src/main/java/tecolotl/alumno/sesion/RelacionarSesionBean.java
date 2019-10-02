@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class RelacionarSesionBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "alumno")
     private EntityManager entityManager;
 
     @Inject

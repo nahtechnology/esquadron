@@ -28,8 +28,8 @@ public class EscuelaSesionBean implements Serializable {
 
 	@Inject
 	private Logger logger;
-	
-	@PersistenceContext
+
+	@PersistenceContext(unitName = "administracion")
 	private EntityManager entityManager;
 
 	/**

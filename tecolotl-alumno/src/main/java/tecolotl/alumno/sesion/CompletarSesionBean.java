@@ -19,7 +19,8 @@ import java.util.stream.Collectors;
 @Stateless
 public class CompletarSesionBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "alumno")
+
     private EntityManager entityManager;
 
     @Inject

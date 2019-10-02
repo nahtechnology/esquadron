@@ -33,7 +33,7 @@ import java.util.logging.Logger;
 @Stateless
 public class LicenciaSesionBean implements Serializable {
 
-	@PersistenceContext
+	@PersistenceContext(unitName = "administracion")
 	private EntityManager entityManager;
 
 	@Inject

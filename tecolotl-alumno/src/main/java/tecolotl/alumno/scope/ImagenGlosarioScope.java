@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 @ApplicationScoped
 public class ImagenGlosarioScope {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "alumno")
     private EntityManager entityManager;
 
     @Inject

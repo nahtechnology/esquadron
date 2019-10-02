@@ -34,7 +34,7 @@ public class MapaMentalSessionBean {
     @Inject
     private ValidadorSessionBean validadorSessionBean;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "alumno")
     private EntityManager entityManager;
 
     /**

@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class ProfesorSesionBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "profesor")
     private EntityManager entityManager;
 
     @Inject

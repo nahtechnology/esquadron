@@ -26,7 +26,7 @@ public class ImageneGlosarioCache {
 
     private int BLOQUE;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "alumno")
     private EntityManager entityManager;
 
     @Inject

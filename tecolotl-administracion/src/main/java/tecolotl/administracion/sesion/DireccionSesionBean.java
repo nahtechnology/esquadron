@@ -31,7 +31,7 @@ public class DireccionSesionBean implements Serializable {
     @Inject
     private Logger logger;
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "administracion")
     private EntityManager entityManager;
 
     @Inject

@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class CoordinadorSesionBean {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "administracion")
     private EntityManager entityManager;
 
     @Inject
