@@ -30,8 +30,7 @@ public class GlosarioSesionBean implements Serializable {
     @Inject
     private Logger logger;
 
-    @PersistenceContext(unitName = "alumno")
-
+    @PersistenceContext
     private EntityManager entityManager;
 
     /**

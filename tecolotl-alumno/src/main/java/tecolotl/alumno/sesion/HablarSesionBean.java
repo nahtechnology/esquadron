@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Stateless
 public class HablarSesionBean {
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject

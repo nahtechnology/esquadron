@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalagoEntidad> {
 
-    @PersistenceContext(unitName = "tecolotl")
+    @PersistenceContext
     protected EntityManager entityManager;
 
     @Inject

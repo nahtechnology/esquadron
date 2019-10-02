@@ -33,7 +33,7 @@ public class CicloEscolarSessionBean {
     @Inject
     private ValidadorSessionBean validadorSessionBean;
 
-    @PersistenceContext(unitName = "profesor")
+    @PersistenceContext
     private EntityManager entityManager;
 
     /**

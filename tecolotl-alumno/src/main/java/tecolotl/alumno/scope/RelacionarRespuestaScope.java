@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 @RequestScoped
 public class RelacionarRespuestaScope {
 
-    @PersistenceContext(unitName = "alumno")
+    @PersistenceContext
     private EntityManager entityManager;
 
     @Inject
