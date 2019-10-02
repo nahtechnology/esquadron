@@ -422,8 +422,8 @@ iframe {
     display: none;
 }
 .realizado{
-    width: 300px;
-    height: 250px;
+    width: 250px;
+    height: 200px;
     background: url("#{resource['img/alumno/pop-art/mensaje2.svg']}") no-repeat center/100% 100%;
     color: white;
     font-weight: bold;
@@ -444,6 +444,7 @@ iframe {
 
 .movimiento{
     left: 60%;
+    top: 32%;
     transform: rotate(15deg);
 }
 
