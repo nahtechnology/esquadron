@@ -29,12 +29,9 @@
 }
 
 .uk-tooltip {
-    /* 1 */
     max-width: 300px;
     padding: 7px 5px;
-    /* 4 */
     background: var(--naranja-primary-color) !important;
-
     border:solid 1px;
     border-color: black;
     border-radius: 3px;
@@ -72,6 +69,7 @@
     min-height: 52vh;
     max-height:52vh;
     background-color: white;
+    box-sizing: border-box;
 
 
 }
@@ -91,4 +89,9 @@
 
 ul{
     list-style: none;
+}
+
+.js-filter li{
+    margin-left: auto;
+    margin-right: auto;
 }

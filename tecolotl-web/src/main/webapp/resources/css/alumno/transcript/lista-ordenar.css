@@ -110,6 +110,10 @@
     display: inline-block;
 }
 
+.respuestas-ordenar-lista .respuesta{
+    margin: 0 auto;
+}
+
 .imagen-ordenar{
     width: 140px;
     height: auto;

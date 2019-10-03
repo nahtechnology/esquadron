@@ -113,7 +113,7 @@
 
                     <ul class="js-filter  uk-text-center" >
                         <li class="transcrip">
-                           <h:panelGroup styleClass="uk-grid" pt:uk-grid="">
+                           <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left">
                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
                                </div>
@@ -131,15 +131,13 @@
                                                 <div class="pregunta-ordenar">
                                                     #{relacionarOracion.relacionarOracionModelo.pregunta}
                                                 </div>
-
                                             </ui:repeat>
                                             <h:graphicImage library="img" name="/mounstro/who.svg" styleClass="img-titulo-1"/>
                                         </div>
                                         <div class="uk-width-1-2@m uk-position-relative">
                                             <div class="titulo-respuesta-ordenar">#{alumno['title.match.sentence.answer']}</div>
-                                            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
-
-                                                <h:panelGroup layout="block" styleClass="respuestas-ordenar-lista" pt:uk-sortable="group: respuesta; cls-custom: animacion">
+                                            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
+                                                <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)" >
                                                     #{relacionarOracion.respuesta != null ? relacionarOracionControlador.respuestaVal(relacionarOracion.respuesta) : ""}
                                                 </h:panelGroup>
                                             </ui:repeat>
@@ -163,9 +161,9 @@
                                         </div>
                                         <span class="realizado movimiento">Respondido</span>
                                     </h:panelGroup>
-                                     <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="respuestas-ordenar scroll-drag"  pt:uk-sortable="group: respuesta; cls-custom: animacion" >
-                                         <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas">
-                                            <div class="respuesta" data-id="#{preRespuestas.relacionarOracionModelo.id}" >#{relacionarOracion.respuesta != null ? preRespuestas.relacionarOracionModelo.respuesta : preRespuestas.relacionarOracionModelo.respuesta}</div>
+                                     <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="respuestas-ordenar scroll-drag" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"   >
+                                         <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas" varStatus="resp">
+                                             <h:panelGroup id="resp#{resp.index}" layout="block" styleClass="respuesta" pt:data-id="#{preRespuestas.relacionarOracionModelo.id}" pt:draggable="true" pt:ondragstart="drag(event)" pt:ondrop="return false" pt:ondragover="return false">#{relacionarOracion.respuesta != null ? preRespuestas.relacionarOracionModelo.respuesta : preRespuestas.relacionarOracionModelo.respuesta}</h:panelGroup>
                                          </ui:repeat>
                                      </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
@@ -231,6 +229,7 @@
                 </h:panelGroup>
             </div>
         </div>
+        <h:outputScript library="js" name="/alumno/drag-drop.js"/>
         <script type="application/javascript">
             var videoPlayer = document.querySelectorAll('.scrollFinal');
             var player;

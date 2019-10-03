@@ -18,12 +18,14 @@
     display: flex;
     display: -webkit-flex;
     -webkit-flex-wrap: wrap;
-    -webkit-align-content: center;
     flex-wrap: wrap;
-    align-content: center;
+    -webkit-align-items: center;
+    align-items: center;
+
 }
 .respuesta-drag{
     background-color: goldenrod;
+    display: inline-block;
     color: white;
     font-style: italic;
     font-weight: bolder;
@@ -35,7 +37,6 @@
     text-align: center;
     z-index: 2;
     margin-top: 0;
-    display: inline-block;
 
 }
 .contenedor-respuesta > .respuesta-drag{
@@ -112,9 +113,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
 }
-ul.js-filter,li{
-    padding-left: 0;
-}
+
 
 @media screen and (max-width: 500px) {
     .contenedor-respuesta{
