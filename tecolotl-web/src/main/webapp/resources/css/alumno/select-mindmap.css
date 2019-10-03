@@ -100,3 +100,8 @@
     background: url("#{resource['img/alumno/mapa-mental/preview/15.jpg']}") no-repeat center/100% 100%;
     background-origin: content-box;
 }
+
+.vacio g {
+    fill: white;
+    stroke: white;
+}
