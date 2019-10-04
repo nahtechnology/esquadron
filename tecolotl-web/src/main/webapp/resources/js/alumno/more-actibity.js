@@ -1,6 +1,7 @@
 var relacionarImagen = document.querySelector('.uk-container .relacion-imagen');
 var ordenarOracion = document.querySelector('.uk-container .ordenar');
 var menu = document.querySelector('.uk-container ul.uk-subnav');
+var completarOracion = document.querySelector('.uk-container .complete-sentences');
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     revuelve(relacionarImagen.querySelectorAll('.palabras div'));
@@ -12,6 +13,12 @@ document.addEventListener('DOMContentLoaded', function (evt) {
             break;
         }
     }
+    palabras = completarOracion.querySelector('.contedor-oraciones');
+    completarOracion.querySelectorAll('ul:nth-child(2) > li').forEach(function (parrafo) {
+        var palabra = document.createElement('div');
+        palabra.textContent = parrafo.querySelector('span').textContent;
+        palabras.appendChild(palabra);
+    });
 });
 
 function revuelve(palabras) {

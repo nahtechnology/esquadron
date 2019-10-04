@@ -197,18 +197,12 @@
                         </li>
                         <li class="complete-sentences">
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.comple.all.sentences']}</h1>
-                            <h:panelGroup layout="block" styleClass="uk-sortable contedor-oraciones" pt:uk-sortable="group: oracion">
-                                <div>palabra</div>
-                                <div>palabra</div>
-                                <div>palabra</div>
-                                <div>palabra</div>
-                            </h:panelGroup>
+                            <h:panelGroup layout="block" styleClass="uk-sortable contedor-oraciones" pt:uk-sortable="group: oracion"/>
                             <div class="oracion-completar">
                                 <ul class="uk-subnav uk-subnav-pill uk-margin-top " uk-switcher="">
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
-                                    <li>1</li>
+                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
+                                        <li>#{estatus.index + 1}</li>
+                                    </ui:repeat>
                                 </ul>
                                 <ul class="uk-switcher uk-margin">
                                     <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto">
