@@ -101,7 +101,7 @@
     background-origin: content-box;
 }
 
-.vacio g {
+.vacio{
     fill: white;
     stroke: white;
 }
