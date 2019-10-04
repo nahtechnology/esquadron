@@ -198,18 +198,25 @@
                         <li class="complete-sentences">
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="uk-sortable contedor-oraciones" pt:uk-sortable="group: oracion"/>
-                            <div class="oracion-completar">
-                                <ul class="uk-subnav uk-subnav-pill uk-margin-top " uk-switcher="">
-                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
-                                        <li>#{estatus.index + 1}</li>
-                                    </ui:repeat>
-                                </ul>
-                                <ul class="uk-switcher uk-margin">
-                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto">
-                                        <li><h:outputText value="#{texto.oracion}" escape="false"/> </li>
-                                    </ui:repeat>
-                                </ul>
-                            </div>
+                            <h:form id="formulario-completar">
+                                <div class="oracion-completar">
+                                    <ul class="uk-subnav uk-subnav-pill uk-margin-top " uk-switcher="">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
+                                            <li>#{estatus.index + 1}</li>
+                                        </ui:repeat>
+                                    </ul>
+                                    <ul class="uk-switcher uk-margin">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto">
+                                            <li data-cardinalidad="#{texto.cardinalidad}"><h:outputText value="#{texto.oracion}" escape="false"/> </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </div>
+                                <h:outputText value="Respondido" rendered="#{not empty completarOracionesControlador.tareaCompletarModeloLista[0].respeusta}"/>
+                                <h:inputHidden id="input-respuesta" value="#{completarOracionesControlador.respeusta}" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respeusta}"/>
+                                <h:commandButton value="Send" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}">
+                                    <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta}" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
                         </li>
                     </ul>
                 </div>

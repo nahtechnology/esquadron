@@ -6,14 +6,16 @@ import tecolotl.alumno.sesion.CompletarSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class CompletarOracionesControlador {
+public class CompletarOracionesControlador implements Serializable {
 
     @Inject
     private Logger logger;
@@ -25,13 +27,15 @@ public class CompletarOracionesControlador {
     private AlumnoControlador alumnoControlador;
 
     private List<TareaCompletarModelo> tareaCompletarModeloLista;
+    private String respeusta;
 
     @PostConstruct
     public void init(){
-        logger.info(alumnoControlador.getTareaActividadModelo().getIdActividad());
-        logger.info(alumnoControlador.getTareaActividadModelo().getId().toString());
         tareaCompletarModeloLista = completarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
-        logger.info(tareaCompletarModeloLista.toString());
+    }
+
+    public void enviarRespuesta() {
+
     }
 
     public List<TareaCompletarModelo> getTareaCompletarModeloLista() {
@@ -40,5 +44,13 @@ public class CompletarOracionesControlador {
 
     public void setTareaCompletarModeloLista(List<TareaCompletarModelo> tareaCompletarModeloLista) {
         this.tareaCompletarModeloLista = tareaCompletarModeloLista;
+    }
+
+    public String getRespeusta() {
+        return respeusta;
+    }
+
+    public void setRespeusta(String respeusta) {
+        this.respeusta = respeusta;
     }
 }

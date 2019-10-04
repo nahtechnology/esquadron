@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     completarOracion.querySelectorAll('ul:nth-child(2) > li').forEach(function (parrafo) {
         var palabra = document.createElement('div');
         palabra.textContent = parrafo.querySelector('span').textContent;
+        palabra.dataset.cardinalidad = parrafo.dataset.cardinalidad;
         palabras.appendChild(palabra);
     });
 });
