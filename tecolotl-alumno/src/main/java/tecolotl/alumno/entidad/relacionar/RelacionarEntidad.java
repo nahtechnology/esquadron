@@ -4,6 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -18,6 +19,10 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "RelacionarEntidad.buscaNoPalabra",
                 query = "SELECT new RelacionarEntidad(r.codigo, r.imagen) FROM RelacionarEntidad r"
+        ),
+        @NamedQuery(
+                name = "RelacionarEntidad.buscaNoImagenIdTarea",
+                query = "SELECT new RelacionarEntidad(r.codigo, r.palabra) FROM RelacionarEntidad r JOIN r.relacionarActividadEntidadLista ra "
         )
 })
 public class RelacionarEntidad {
@@ -25,6 +30,7 @@ public class RelacionarEntidad {
     private String codigo;
     private String palabra;
     private byte[] imagen;
+    private List<RelacionarActividadEntidad> relacionarActividadEntidadLista;
 
     public RelacionarEntidad() {
     }
@@ -75,6 +81,15 @@ public class RelacionarEntidad {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+    }
+
+    @OneToMany(mappedBy = "relacionarActividadEntidadPK.relacionarEntidad")
+    public List<RelacionarActividadEntidad> getRelacionarActividadEntidadLista() {
+        return relacionarActividadEntidadLista;
+    }
+
+    public void setRelacionarActividadEntidadLista(List<RelacionarActividadEntidad> relacionarActividadEntidadLista) {
+        this.relacionarActividadEntidadLista = relacionarActividadEntidadLista;
     }
 
     @Override

@@ -1,9 +1,17 @@
 var relacionarImagen = document.querySelector('.uk-container .relacion-imagen');
 var ordenarOracion = document.querySelector('.uk-container .ordenar');
+var menu = document.querySelector('.uk-container ul.uk-subnav');
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     revuelve(relacionarImagen.querySelectorAll('.palabras div'));
     revuelve(ordenarOracion.querySelectorAll('.contenedor-oraciones > div'));
+    var listaMenu = menu.querySelectorAll('li');
+    for (indice = 0; indice < listaMenu.length; indice++) {
+        if (listaMenu[indice].style.display != 'none') {
+            listaMenu[indice].click();
+            break;
+        }
+    }
 });
 
 function revuelve(palabras) {

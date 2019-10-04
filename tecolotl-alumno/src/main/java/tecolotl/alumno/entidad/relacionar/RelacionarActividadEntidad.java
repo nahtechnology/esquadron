@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.ActividadEntidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
 
@@ -20,6 +21,7 @@ import java.util.StringJoiner;
 public class RelacionarActividadEntidad {
 
     private RelacionarActividadEntidadPK relacionarActividadEntidadPK;
+    private List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista;
 
     public RelacionarActividadEntidad() {
     }
@@ -35,6 +37,15 @@ public class RelacionarActividadEntidad {
 
     public void setRelacionarActividadEntidadPK(RelacionarActividadEntidadPK relacionarActividadEntidadPK) {
         this.relacionarActividadEntidadPK = relacionarActividadEntidadPK;
+    }
+
+    @OneToMany(mappedBy = "tareaRelacionarActividadEntidadPK.relacionarActividadEntidad")
+    public List<TareaRelacionarActividadEntidad> getTareaRelacionarActividadEntidadLista() {
+        return tareaRelacionarActividadEntidadLista;
+    }
+
+    public void setTareaRelacionarActividadEntidadLista(List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista) {
+        this.tareaRelacionarActividadEntidadLista = tareaRelacionarActividadEntidadLista;
     }
 
     @Override

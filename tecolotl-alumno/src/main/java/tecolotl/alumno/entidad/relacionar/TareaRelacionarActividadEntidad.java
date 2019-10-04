@@ -20,7 +20,7 @@ import java.util.StringJoiner;
         ),
         @NamedQuery(
                 name = "TareaRelacionarActividadEntidad.cuentaTarea",
-                query = "SELECT COUNT (tra) FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga "
+                query = "SELECT COUNT (t) FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga "
         )
 })
 public class TareaRelacionarActividadEntidad {

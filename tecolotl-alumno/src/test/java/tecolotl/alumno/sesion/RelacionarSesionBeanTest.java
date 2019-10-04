@@ -104,7 +104,7 @@ public class RelacionarSesionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(1);
+        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(67);
         assertNotNull(relacionarSesionBeanLista);
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {

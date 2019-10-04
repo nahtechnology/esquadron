@@ -12,21 +12,22 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaUpdate;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
 import javax.validation.Path;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 /**
- * Tarea relacinar.
+ * Tarea relacinar. Relacionar una imagen con una palabra.
  */
 @Stateless
 public class RelacionarSesionBean {
@@ -63,12 +64,22 @@ public class RelacionarSesionBean {
      */
     public List<RelacionarModelo> busca(@NotNull Integer idTarea) {
         logger.fine(idTarea.toString());
-        TypedQuery<TareaRelacionarActividadEntidad> typedQuery =
-                entityManager.createNamedQuery("TareaRelacionarActividadEntidad.buscaTarea", TareaRelacionarActividadEntidad.class);
-        typedQuery.setParameter("idTarea", idTarea);
-        List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista = typedQuery.getResultList();
-        logger.finer("Elementos entontrados".concat(String.valueOf(tareaRelacionarActividadEntidadLista.size())));
-        return tareaRelacionarActividadEntidadLista.stream().map(RelacionarModelo::new).collect(Collectors.toList());
+        Query query = entityManager.createNativeQuery(
+                "SELECT r.codigo,r.palabra,tar.respuesta, tar.hora_respuesta FROM alumno.tarea_actividad_relacionar tar " +
+                        "JOIN alumno.actividad_relacionar ar ON tar.id_relacionar = ar.id_relacionar and tar.id_actividad = ar.id_actividad " +
+                        "JOIN alumno.relacionar r ON ar.id_relacionar = r.codigo WHERE tar.id_tarea = ?");
+        query.setParameter(1, idTarea);
+        List<Object[]> respuesta = query.getResultList();
+        List<RelacionarModelo> relacionarModeloLista = new ArrayList<>();
+        for (Object[] objects : respuesta) {
+            RelacionarModelo relacionarModelo = new RelacionarModelo();
+            relacionarModelo.setCodigo((String)objects[0]);
+            relacionarModelo.setPalabra((String)objects[1]);
+            relacionarModelo.setRespuesta((String)objects[2]);
+            relacionarModelo.setHoraRespuesta((Date)objects[3]);
+            relacionarModeloLista.add(relacionarModelo);
+        }
+        return relacionarModeloLista;
     }
 
 
