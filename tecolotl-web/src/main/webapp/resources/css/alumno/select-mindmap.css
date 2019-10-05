@@ -101,7 +101,83 @@
     background-origin: content-box;
 }
 
-.vacio{
+.vacio g{
     fill: white;
     stroke: white;
+}
+
+.contiene{
+    background: url("#{resource['img/alumno/pop-art/mensaje2.svg']}");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 500px;
+    height: 325px;
+    position: absolute;
+    top: 31%;
+    left: 35%;
+}
+
+.no-hay-mapas{
+    position: absolute;
+
+
+}
+
+.letras{
+    color: white;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 1030px ){
+    body{
+        background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+}
+
+@media screen and (max-width: 768px){
+    body{
+        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .contiene{
+        position: absolute;
+        top: 35%;
+        left: 18%;
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    body{
+        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    .contiene{
+        width: 355px;
+        height: 180px;
+        position: absolute;
+        top: 38%;
+        left: 0%;
+    }
+
+    .letras{
+        font-size: 10px;
+    }
+
 }
