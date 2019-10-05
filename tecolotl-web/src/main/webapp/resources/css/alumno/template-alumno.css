@@ -453,6 +453,11 @@ iframe {
     transform: rotate(15deg);
 }
 
+.movimiento2{
+    left: 43%;
+    transform: rotate(15deg);
+}
+
 .boton-enviar{
     background: #CB4335;
     color: white;
@@ -730,6 +735,12 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 
+.finalizado2{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
+
 @media screen and (max-width: 1030px ){
     body{
         background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
@@ -758,6 +769,18 @@ textarea::-webkit-scrollbar-thumb:hover {
     .movimiento1{
         left: 56%;
         top: 52%;
+    }
+
+    .finalizado2{
+        width: 200px;
+        height: 100px;
+        position: absolute;
+    }
+
+    .movimiento2{
+        left: 46%;
+        top: 60%;
+        transform: rotate(15deg);
     }
 
     /*.mensaje1{*/
@@ -796,6 +819,18 @@ textarea::-webkit-scrollbar-thumb:hover {
         top: 37%;
     }
 
+    .finalizado2{
+        width: 190px;
+        height: 90px;
+        position: absolute;
+    }
+
+    .movimiento2{
+        left: 36%;
+        top: 75%;
+        transform: rotate(15deg);
+    }
+
     /*.mensaje1{*/
     /*    padding: 20px 30px 0 35px;*/
     /*    position: relative;*/
@@ -827,6 +862,18 @@ textarea::-webkit-scrollbar-thumb:hover {
     .movimiento1{
         left: -4%;
         top: 61%;
+    }
+
+    .finalizado2{
+        width: 120px;
+        height: 60px;
+        position: absolute;
+    }
+
+    .movimiento2{
+        left: 36%;
+        top: 102px;
+        transform: rotate(15deg);
     }
 
     /*.realizado{*/

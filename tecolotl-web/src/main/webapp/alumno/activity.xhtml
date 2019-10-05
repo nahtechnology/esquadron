@@ -164,7 +164,8 @@
                                         </h:panelGroup>
                                     </ui:repeat>
                                 </h:panelGroup>
-                                <h:outputText value="Respondido" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
+<!--                                <h:outputText value="Respondido" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>-->
+                                <h:graphicImage library="img" styleClass="movimiento2 finalizado2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
                                 <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
