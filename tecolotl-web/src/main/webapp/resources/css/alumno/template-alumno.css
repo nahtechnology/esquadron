@@ -443,8 +443,8 @@ iframe {
 }
 
 .movimiento{
-    left: 60%;
-    top: 32%;
+    left: 65%;
+    top: 43%;
     transform: rotate(15deg);
 }
 
@@ -689,6 +689,16 @@ textarea::-webkit-scrollbar-thumb:hover {
     border-color: #e5e5e5;
 }
 
+.finalizado{
+    width: 400px;
+    height: 300px;
+}
+
+.finalizado1{
+    width: 200px;
+    height: 100px;
+    position: absolute;
+}
 
 @media screen and (max-width: 1030px ){
     body{
@@ -698,18 +708,31 @@ textarea::-webkit-scrollbar-thumb:hover {
         background-attachment: fixed;
     }
 
-    .movimiento1{
-        right: 30%;
-        top: 230px;
-    }
+    .finalizado1{
 
-    .mensaje1{
-        padding: 20px 30px 0 35px;
+        width: 180px;
+        height: 90px;
+        position: absolute;
     }
 
     .movimiento{
-        top: 24%;
+        top: 32%;
     }
+
+    .finalizado{
+        width: 320px;
+        height: 220px;
+        position: absolute;
+    }
+
+    .movimiento1{
+        left: 56%;
+        top: 52%;
+    }
+
+    /*.mensaje1{*/
+    /*    padding: 20px 30px 0 35px;*/
+    /*}*/
 
 }
 
@@ -721,30 +744,72 @@ textarea::-webkit-scrollbar-thumb:hover {
         background-attachment: fixed;
     }
 
-    .mensaje1{
-        padding: 20px 30px 0 35px;
-        position: relative;
-        left: 35%;
+    .finalizado1{
+
+        width: 180px;
+        height: 90px;
+        position: absolute;
     }
+
+    .movimiento{
+        top: 36%;
+    }
+
+    .finalizado{
+        width: 140px;
+        height: 70px;
+        position: absolute;
+    }
+
+    .movimiento1{
+        left: 77%;
+        top: 37%;
+    }
+
+    /*.mensaje1{*/
+    /*    padding: 20px 30px 0 35px;*/
+    /*    position: relative;*/
+    /*    left: 35%;*/
+    /*}*/
 
 }
 
 @media screen and (max-width: 500px) {
-    .movimiento1{
-        right: 40%;
-        top: 230px;
-    }
-    .realizado{
-        width: 90px;
-        height: 65px;
-        font-size: 10px;
+
+    .finalizado1{
+
+        width: 100px;
+        height: 50px;
+        position: absolute;
     }
 
-    .mensaje1{
-        padding: 20px 30px 0 35px;
-        position: relative;
-        left: 15%;
+    .movimiento{
+        top: 55%;
+        left: 3%;
     }
+
+    .finalizado{
+        width: 110px;
+        height: 55px;
+        position: absolute;
+    }
+
+    .movimiento1{
+        left: -4%;
+        top: 61%;
+    }
+
+    /*.realizado{*/
+    /*    width: 90px;*/
+    /*    height: 65px;*/
+    /*    font-size: 10px;*/
+    /*}*/
+
+    /*.mensaje1{*/
+    /*    padding: 20px 30px 0 35px;*/
+    /*    position: relative;*/
+    /*    left: 15%;*/
+    /*}*/
 }
 
 
