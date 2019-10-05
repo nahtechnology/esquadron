@@ -699,6 +699,36 @@ textarea::-webkit-scrollbar-thumb:hover {
     height: 100px;
     position: absolute;
 }
+.boton-falta{
+    color: white;
+    font-weight: bold;
+    background-color: darkred;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin: 3px;
+    text-align: center;
+    padding: 4px 10px 4px 10px;
+}
+
+.menu-ordenar > .uk-active {
+    background-color: gold;
+}
+
+.menu-ordenar > :not(.uk-active) {
+    cursor: pointer;
+}
+
+.boton-listo{
+    color: white;
+    font-weight: bold;
+    background-color: #00A859;
+    border-radius: 50%;
+    border: 5px solid white;
+    margin: 3px;
+    text-align: center;
+    padding: 4px 10px 4px 10px;
+}
+
 
 @media screen and (max-width: 1030px ){
     body{

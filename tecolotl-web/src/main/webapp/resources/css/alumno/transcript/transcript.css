@@ -91,7 +91,7 @@ ul{
     list-style: none;
 }
 
-.js-filter li{
+.js-filter > li{
     margin-left: auto;
     margin-right: auto;
 }

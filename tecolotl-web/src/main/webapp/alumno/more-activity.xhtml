@@ -80,6 +80,7 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
         <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section margen-superior">
@@ -197,16 +198,16 @@
                         </li>
                         <li class="complete-sentences">
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['title.comple.all.sentences']}</h1>
-                            <h:panelGroup layout="block" styleClass="uk-sortable contedor-oraciones" pt:uk-sortable="group: oracion"/>
+                            <h:panelGroup layout="block" styleClass="contedor-oraciones" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"/>
                             <h:form id="formulario-completar">
-                                <div class="oracion-completar">
-                                    <ul class="uk-subnav uk-subnav-pill uk-margin-top " uk-switcher="">
+                                <div >
+                                    <ul class="uk-subnav uk-subnav-pill uk-margin-top menu-ordenar" uk-switcher="">
                                         <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
-                                            <li>#{estatus.index + 1}</li>
+                                            <li class="#{empty texto.oracion? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                         </ui:repeat>
                                     </ul>
-                                    <ul class="uk-switcher uk-margin">
-                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto">
+                                    <ul class="uk-switcher uk-margin remplazar">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="texto" varStatus="">
                                             <li data-cardinalidad="#{texto.cardinalidad}"><h:outputText value="#{texto.oracion}" escape="false"/> </li>
                                         </ui:repeat>
                                     </ul>
@@ -235,6 +236,7 @@
             }
         </script>
         <h:outputScript library="js" name="alumno/more-actibity.js"/>
+        <h:outputScript library="js" name="/alumno/drag-dos.js"/>
     </ui:define>
 </ui:composition>
 </html>
