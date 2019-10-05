@@ -1,3 +1,5 @@
+var sourceContainer = document.getElementById('formulario-relacionar:tablaRespuestas');
+
 function allowDrop(ev) {
     ev.preventDefault();
 }
@@ -13,7 +15,6 @@ function drop(ev, el) {
     console.log(ev.target.childElementCount);
     var retorno;
     if (el.childElementCount > 1) {
-       //  retorno = ev.target.firstChild
         sourceContainer.appendChild(ev.target.firstChild);
         return;
     }
