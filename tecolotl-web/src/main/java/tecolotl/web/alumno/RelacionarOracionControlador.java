@@ -1,16 +1,13 @@
 package tecolotl.web.alumno;
 
-import com.sun.org.apache.xerces.internal.xs.ItemPSVI;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.scope.RelacionOracionRespuestaScope;
 import tecolotl.alumno.sesion.RelacionarOracionSesionBean;
-import tecolotl.alumno.sesion.RelacionarSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;

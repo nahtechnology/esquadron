@@ -124,51 +124,50 @@
                         </li>
                         <li class="match uk-margin-small-top ">
                             <h:form id="formulario-relacionar">
-                                    <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                                        <div class="uk-width-1-2@m uk-position-relative">
-                                            <div class="titulo-respuesta-ordenar " >#{alumno['title.match.sentence.question']}</div>
-                                            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
-                                                <div class="pregunta-ordenar">
-                                                    #{relacionarOracion.relacionarOracionModelo.pregunta}
-                                                </div>
-                                            </ui:repeat>
-                                            <h:graphicImage library="img" name="/mounstro/who.svg" styleClass="img-titulo-1"/>
-                                        </div>
-                                        <div class="uk-width-1-2@m uk-position-relative">
-                                            <div class="titulo-respuesta-ordenar">#{alumno['title.match.sentence.answer']}</div>
-                                            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
-                                                <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)" >
-                                                    #{relacionarOracion.respuesta != null ? relacionarOracionControlador.respuestaVal(relacionarOracion.respuesta) : ""}
+                                <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="">
+                                    <div class="uk-width-1-2@m uk-position-relative">
+                                        <div class="titulo-respuesta-ordenar " >#{alumno['title.match.sentence.question']}</div>
+                                        <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
+                                            <div class="pregunta-ordenar">
+                                                #{relacionarOracion.relacionarOracionModelo.pregunta}
+                                            </div>
+                                        </ui:repeat>
+                                        <h:graphicImage library="img" name="/mounstro/who.svg" styleClass="img-titulo-1"/>
+                                    </div>
+                                    <div class="uk-width-1-2@m uk-position-relative">
+                                        <div class="titulo-respuesta-ordenar">#{alumno['title.match.sentence.answer']}</div>
+                                        <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
+                                            <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)" >
+                                                <h:panelGroup layout="block" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta}" styleClass="respuesta">
+                                                    #{relacionarOracionControlador.respuestaVal(relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta)}
                                                 </h:panelGroup>
-                                            </ui:repeat>
-                                            <h:graphicImage library="img" name="/mounstro/whom.svg" styleClass="img-titulo-2"/>
-                                        </div>
-                                    </h:panelGroup>
-                                    <h:panelGroup layout="block" styleClass="uk-grid padre contenedor-matching" pt:uk-grid="" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                                        <div class="columna-pregunta uk-width-expand">
-                                            <h:dataTable styleClass="tabla-ordenar uk-table-middle"
-                                                         value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}"
-                                                         headerClass="titulo-tabla uk-text-center"
-                                                         rowClasses="cuerpo-tabla uk-text-center"
-                                                         var="relacionarOracion">
-                                                <h:column>
-                                                    <f:facet name="header">#{alumno['title.match.sentence.question']}</f:facet>#{relacionarOracion.relacionarOracionModelo.pregunta}
-                                                </h:column>
-                                                <h:column>
-                                                    <f:facet name="header">#{alumno['title.match.sentence.answer']}</f:facet>#{relacionarOracionControlador.buscaPalabra(relacionarOracion.respuesta)}
-                                                </h:column>
-                                            </h:dataTable>
-                                        </div>
-                                        <span class="realizado movimiento">Respondido</span>
-                                    </h:panelGroup>
-                                     <h:panelGroup id="tablaRespuestas" style="" layout="block"  styleClass="respuestas-ordenar scroll-drag" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"   >
-                                         <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas" varStatus="resp">
-                                             <h:panelGroup id="resp#{resp.index}" layout="block" styleClass="respuesta" pt:data-id="#{preRespuestas.relacionarOracionModelo.id}" pt:draggable="true" pt:ondragstart="drag(event)" pt:ondrop="return false" pt:ondragover="return false">#{relacionarOracion.respuesta != null ? preRespuestas.relacionarOracionModelo.respuesta : preRespuestas.relacionarOracionModelo.respuesta}</h:panelGroup>
-                                         </ui:repeat>
-                                     </h:panelGroup>
+                                            </h:panelGroup>
+                                        </ui:repeat>
+                                        <h:graphicImage library="img" name="/mounstro/whom.svg" styleClass="img-titulo-2"/>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup id="tablaRespuestas"
+                                              layout="block"
+                                              styleClass="respuestas-ordenar scroll-drag"
+                                              pt:ondrop="drop(event, this)"
+                                              pt:ondragover="allowDrop(event)" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                    <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas" varStatus="resp">
+                                        <h:panelGroup id="resp#{resp.index}"
+                                                      layout="block"
+                                                      styleClass="respuesta"
+                                                      pt:data-id="#{preRespuestas.relacionarOracionModelo.id}"
+                                                      pt:draggable="true"
+                                                      pt:ondragstart="drag(event)"
+                                                      pt:ondrop="return false"
+                                                      pt:ondragover="return false">
+                                            #{preRespuestas.relacionarOracionModelo.respuesta}
+                                        </h:panelGroup>
+                                    </ui:repeat>
+                                </h:panelGroup>
+                                <h:outputText value="Respondido" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send">
-                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form"/>
+                                <h:commandButton id="buttonEnviar" style="" onclick="recuperaDatos()" styleClass="boton-enviar uk-margin"  value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
@@ -229,12 +228,12 @@
                 </h:panelGroup>
             </div>
         </div>
-        <h:outputScript library="js" name="/alumno/drag-drop.js"/>
         <script type="application/javascript">
             var videoPlayer = document.querySelectorAll('.scrollFinal');
             var player;
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
+            var sourceContainer = document.getElementById('formulario-relacionar:tablaRespuestas');
 
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
@@ -328,10 +327,10 @@
             }
 
             function recuperaDatos() {
-                var idRelacionarmodelos = document.querySelectorAll('.match tbody .respuesta');
+                var idRelacionarmodelos = document.querySelectorAll('.match form > div:nth-child(2) > div:nth-child(2) > div:not(:first-child)');
                 var getId = [];
                 idRelacionarmodelos.forEach(function (input) {
-                    getId.push(input.dataset.id);
+                    getId.push(input.querySelector('div').dataset.id);
                 });
                 document.getElementById('formulario-relacionar:respuestaOraciones').value = getId.join();
                 document.querySelector('input[type=submit]').disabled = true;
@@ -349,6 +348,7 @@
         </script>
         <h:outputScript library="js" name="alumno/transcripcion.js"/>
         <h:outputScript library="js" name="alumno/activity.js"/>
+        <h:outputScript library="js" name="/alumno/drag-drop.js"/>
     </ui:define>
 </ui:composition>
 </html>

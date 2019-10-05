@@ -211,8 +211,8 @@
                                         </ui:repeat>
                                     </ul>
                                 </div>
-                                <h:outputText value="Respondido" rendered="#{not empty completarOracionesControlador.tareaCompletarModeloLista[0].respeusta}"/>
-                                <h:inputHidden id="input-respuesta" value="#{completarOracionesControlador.respeusta}" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respeusta}"/>
+                                <h:outputText value="Respondido" rendered="#{not empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}"/>
+                                <h:inputHidden id="input-respuesta" value="#{completarOracionesControlador.respeusta}" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}"/>
                                 <h:commandButton value="Send" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta}" render="@form"/>
                                 </h:commandButton>
