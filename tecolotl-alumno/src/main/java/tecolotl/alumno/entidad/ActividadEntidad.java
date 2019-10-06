@@ -28,8 +28,10 @@ import java.util.Objects;
                 query = "DELETE FROM ActividadEntidad a WHERE a.id = :idAvtividad"
         ),
         @NamedQuery(
-                name = "ActividadEntidad.buscaImagen",
-                query = "SELECT a.vistaPrevia FROM ActividadEntidad a WHERE a.id = :idAvtividad"
+                name = "ActividadEntidad.buscaBibliotecaLibre",
+                query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.nivelLenguajeEntidad nl WHERE a.id NOT IN " +
+                        "(SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM " +
+                        "TareaGlosarioActividadEntidad tga JOIN tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"
         )
 })
 public class ActividadEntidad {
@@ -40,7 +42,6 @@ public class ActividadEntidad {
     private String preguntaDetonadora;
     private String lenguaje;
     private String trasncripcion;
-    private byte[] vistaPrevia;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private TemaEntidad temaEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
@@ -50,6 +51,12 @@ public class ActividadEntidad {
 
     public ActividadEntidad(String id) {
         this.id = id;
+    }
+
+    public ActividadEntidad(String id, String preguntaDetonadora, List<NivelLenguajeEntidad> nivelLenguajeEntidad) {
+        this.id = id;
+        this.preguntaDetonadora = preguntaDetonadora;
+        this.nivelLenguajeEntidad = nivelLenguajeEntidad;
     }
 
     @Id
@@ -121,17 +128,6 @@ public class ActividadEntidad {
         this.trasncripcion = trasncripcion;
     }
 
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "vista_previa")
-    @NotNull
-    public byte[] getVistaPrevia() {
-        return vistaPrevia;
-    }
-
-    public void setVistaPrevia(byte[] vistaPrevia) {
-        this.vistaPrevia = vistaPrevia;
-    }
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_tipo_estudiante")
     public TipoEstudianteEntidad getTipoEstudianteEntidad() {
@@ -142,7 +138,7 @@ public class ActividadEntidad {
         this.tipoEstudianteEntidad = tipoEstudianteEntidad;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "nivel_lenguaje_actividad",schema = "alumno",
             joinColumns = @JoinColumn(name = "id_actividad"),

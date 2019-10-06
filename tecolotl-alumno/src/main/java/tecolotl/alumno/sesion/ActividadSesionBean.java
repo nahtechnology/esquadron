@@ -14,6 +14,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
@@ -62,6 +63,33 @@ public class ActividadSesionBean {
             actividadModeloLista.add(new ActividadModelo(actividadEntidad));
         }
         return actividadModeloLista;
+    }
+
+    /**
+     * Busca todas las actividades que no esten asignadas a un alumno, teniendo en cuenta que será de forma paginada.
+     * @param idAlumno Identificador del alumno.
+     * @param primerElemento Primero elemento a buscar
+     * @param elementoMaximo Elementos máximos a buscar.
+     * @return Colección
+     */
+    public List<ActividadModelo> busca(@NotNull Integer idAlumno, @NotNull @Min(-1) Integer primerElemento, @NotNull @Min(0) Integer elementoMaximo) {
+        logger.fine(String.join(",", idAlumno.toString(), primerElemento.toString(), elementoMaximo.toString()));
+        TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaBibliotecaLibre", ActividadEntidad.class);
+        typedQuery.setParameter("idAlumno", idAlumno);
+        List<ActividadEntidad> actividadEntidadLista = typedQuery.getResultList();
+        List<ActividadModelo> actividadModeloLista = new ArrayList<>(actividadEntidadLista.size());
+        for (ActividadEntidad actividadEntidad : actividadEntidadLista) {
+            ActividadModelo actividadModelo = new ActividadModelo();
+            actividadModelo.setIdVideo(actividadEntidad.getId());
+            actividadModelo.setNivelLenguajeModeloLista(new ArrayList<>(actividadEntidad.getNivelLenguajeEntidad().size()));
+            for (NivelLenguajeEntidad nivelLenguajeEntidad : actividadEntidad.getNivelLenguajeEntidad()) {
+                actividadModelo.getNivelLenguajeModeloLista().add(new NivelLenguajeModelo(nivelLenguajeEntidad));
+            }
+            actividadModelo.setPreguntaDetonadora(actividadEntidad.getPreguntaDetonadora());
+            actividadModeloLista.add(actividadModelo);
+        }
+        return actividadModeloLista;
+
     }
 
     /**

@@ -73,13 +73,11 @@
            </exclusions>
        </dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.webjars/tinymce -->
 		<dependency>
-			<groupId>org.webjars</groupId>
-			<artifactId>tinymce</artifactId>
-			<version>5.0.9</version>
+			<groupId>org.jboss.spec.javax.ws.rs</groupId>
+			<artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+			<scope>provided</scope>
 		</dependency>
-
 
 	</dependencies>
 </project>
