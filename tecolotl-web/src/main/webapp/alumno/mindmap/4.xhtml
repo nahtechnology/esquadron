@@ -77,12 +77,14 @@
         <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left">
             <h:form id="formulario-mapa-mental" class="uk-form-stacked">
             <div class="uk-container fondo-comparar uk-padding-remove ">
-                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>Respondido</span>
-                </h:panelGroup>
+
                 <div class="nube-superior  uk-position-relative ">
                     <h:graphicImage library="img" name="/fondo/nubes-arriba.svg"/>
                 </div>
+                <h:panelGroup layout="block">
+                    <!--<span>Respondido</span>-->
+                    <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento4 finalizado4" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                </h:panelGroup>
                 <div class="uk-flex uk-flex-center uk-position-relative">
                     <h:graphicImage library="img" name="alumno/pop-art/popart-amarillo.svg" styleClass="uk-visible@m"/>
                     <div class="uk-position-absolute letra-posicion uk-visible@m">

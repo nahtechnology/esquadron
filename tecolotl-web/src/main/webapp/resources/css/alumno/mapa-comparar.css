@@ -95,6 +95,18 @@
     align-items: center;
 }
 
+.finalizado4{
+    width: 400px;
+    height: 300px;
+    position: absolute;
+}
+
+.movimiento4{
+    right: 30%;
+    top: 50%;
+    transform: rotate(15deg);
+}
+
 @media screen and (max-width: 1025px) {
 
 
