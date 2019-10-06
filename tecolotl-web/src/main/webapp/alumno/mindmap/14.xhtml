@@ -81,6 +81,10 @@
                 <div class="titulo-14">
                     <h3 class="uk-text-capitalize">#{alumno['map14.title.main']}</h3>
                 </div>
+                <h:panelGroup layout="block">
+                    <!--<span>Respondido</span>-->
+                    <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento14 finalizado14" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                </h:panelGroup>
                 <div class="arbol uk-position-relative uk-visible@m">
                     <h:form id="formulario--mapamental">
                         <div class="caja-14-uno ">

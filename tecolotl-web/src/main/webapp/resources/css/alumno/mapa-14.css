@@ -75,6 +75,19 @@
     justify-content: center;
     align-items: center;
 }
+
+.finalizado14{
+    width: 400px;
+    height: 300px;
+    position: absolute;
+}
+
+.movimiento14{
+    top: 77%;
+    right: 57%;
+    transform: rotate(15deg);
+}
+
 @media screen and (max-width: 1024px) {
      .caja-14-uno{
          top: 12%;

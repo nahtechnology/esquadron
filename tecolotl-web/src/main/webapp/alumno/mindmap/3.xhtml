@@ -79,8 +79,9 @@
         <h:outputStylesheet library="css" name="letra.css"/>
             <div class="uk-section  margen-superior">
                 <div class="uk-container fondo-mapa-orden contorno posicion-contenedor margen-cronologico">
-                    <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                        <span>#{alumno['map2.title.answered']}</span>
+                    <h:panelGroup layout="block">
+                       <!-- <span>#{alumno['map2.title.answered']}</span>-->
+                        <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento3 finalizado3" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                     </h:panelGroup>
                     <div class="dialogo uk-visible@s">
                         <h3 class=" titulo-mapa-3">#{alumno['map3.title.description']}</h3>
