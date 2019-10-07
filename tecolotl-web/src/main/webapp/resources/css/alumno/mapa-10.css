@@ -63,6 +63,18 @@
     left: 50%;
 }
 
+.movimiento10{
+    top: 49%;
+    left: 32%;
+    transform: rotate(15deg);
+}
+
+.finalizado10{
+    width: 250px;
+    height: 150px;
+    position: absolute;
+}
+
 @media screen and (max-width: 1024px){
  .caja-texto-10{
       margin-top: 10%;

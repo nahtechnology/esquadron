@@ -117,6 +117,18 @@
     padding-left: 10px;
 }
 
+.movimiento13{
+    left: 10%;
+    top: 10%;
+    transform: rotate(15deg);
+}
+
+.finalizado13{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
+
 textarea {
     min-width: 200px !important;
     max-width: 200px !important;

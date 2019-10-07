@@ -77,8 +77,9 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-experimento.css"/>
         <div class="uk-section margen-superior">
             <div class="uk-container fondo-mapa3 padding-contenedor posicion-contenedor">
-                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>#{alumno['map2.title.answered']}</span>
+                <h:panelGroup layout="block">
+                    <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento7 finalizado7" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                   <!-- <span>#{alumno['map2.title.answered']}</span>-->
                 </h:panelGroup>
                 <div class="imagen-whose">
                     <h:graphicImage library="img" name="mounstro/whose.svg"/>

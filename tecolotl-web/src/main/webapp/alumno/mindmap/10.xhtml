@@ -77,8 +77,9 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-10.css"/>
         <div class="uk-section margen-superior uk-margin-small-right uk-margin-small-left ">
             <div class="uk-container padding-contenedor fondo-mapa-10">
-                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>#{alumno['map2.title.answered']}</span>
+                <h:panelGroup layout="block">
+                    <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento10 finalizado10" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
+                    <!--<span>#{alumno['map2.title.answered']}</span>-->
                 </h:panelGroup>
                 <h:form id="formulario-mapa-mental">
                     <h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-grid" pt:uk-grid="">

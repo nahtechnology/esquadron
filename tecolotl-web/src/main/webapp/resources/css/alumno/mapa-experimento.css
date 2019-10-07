@@ -95,3 +95,15 @@ body{
     bottom: -30px;
     left: 45%;
 }
+
+.movimiento7{
+    right: 39%;
+    top: 11%;
+    transform: rotate(15deg);
+}
+
+.finalizado7{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
