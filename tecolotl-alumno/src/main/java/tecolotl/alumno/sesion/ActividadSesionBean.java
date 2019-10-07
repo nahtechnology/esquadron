@@ -68,12 +68,10 @@ public class ActividadSesionBean {
     /**
      * Busca todas las actividades que no esten asignadas a un alumno, teniendo en cuenta que será de forma paginada.
      * @param idAlumno Identificador del alumno.
-     * @param primerElemento Primero elemento a buscar
-     * @param elementoMaximo Elementos máximos a buscar.
      * @return Colección
      */
-    public List<ActividadModelo> busca(@NotNull Integer idAlumno, @NotNull @Min(-1) Integer primerElemento, @NotNull @Min(0) Integer elementoMaximo) {
-        logger.fine(String.join(",", idAlumno.toString(), primerElemento.toString(), elementoMaximo.toString()));
+    public List<ActividadModelo> busca(@NotNull Integer idAlumno) {
+        logger.fine(idAlumno.toString());
         TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaBibliotecaLibre", ActividadEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);
         List<ActividadEntidad> actividadEntidadLista = typedQuery.getResultList();
@@ -90,18 +88,6 @@ public class ActividadSesionBean {
         }
         return actividadModeloLista;
 
-    }
-
-    /**
-     * Recupera la imagen de una actividad.
-     * @param idActvidad Identificador de la actividad.
-     * @return Imagen en bytes.
-     */
-    public byte[] imagen(@NotNull @Size(min = 11, max = 11) String idActvidad) {
-        logger.fine(idActvidad);
-        TypedQuery<byte[]> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaImagen", byte[].class);
-        typedQuery.setParameter("idAvtividad", idActvidad);
-        return typedQuery.getSingleResult();
     }
 
     /**
