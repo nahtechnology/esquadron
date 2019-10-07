@@ -123,23 +123,6 @@ public class ActividadSesionBeanTest {
     }
 
     @Test
-    public void buscaBibliotecaLibre() {
-        List<ActividadModelo> actividadModeloLista = actividadSesionBean.busca(1, 0, 20);
-        assertNotNull(actividadModeloLista);
-        assertFalse(actividadModeloLista.isEmpty());
-        actividadModeloLista.forEach(actividadModelo -> {
-            assertNotNull(actividadModelo);
-            assertNotNull(actividadModelo.getIdVideo());
-            assertNotNull(actividadModelo.getNivelLenguajeModeloLista());
-            for (NivelLenguajeModelo nivelLenguajeModelo : actividadModelo.getNivelLenguajeModeloLista()) {
-                assertNotNull(nivelLenguajeModelo);
-                assertNotNull(nivelLenguajeModelo.getValor());
-            }
-            assertNotNull(actividadModelo.getPreguntaDetonadora());
-        });
-    }
-
-    @Test
     public void busca() {
         List<ActividadModelo> actividadModeloLista = actividadSesionBean.busca("A1");
         assertNotNull(actividadModeloLista);
