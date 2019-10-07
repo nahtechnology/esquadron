@@ -138,3 +138,15 @@ input[type=text]::placeholder{
     bottom: auto;
     left: 35%;
 }
+
+.movimiento1{
+    top: 13%;
+    left: 63%;
+    transform: rotate(15deg);
+}
+
+.finalizado1{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
