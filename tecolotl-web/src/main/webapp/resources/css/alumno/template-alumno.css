@@ -471,6 +471,11 @@ iframe {
     display: block;
 }
 
+.mover-boton{
+    position: absolute;
+    right: 100px;
+}
+
 .boton-gral{
     position: absolute;
     bottom: -30px;

@@ -77,8 +77,9 @@
         <h:outputStylesheet library="css" name="/alumno/mapa-linea-secuencia.css"/>
         <div class="uk-section">
             <div class="uk-container margen-superior uk-position-relative">
-                <h:panelGroup layout="block" styleClass="realizado" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}">
-                    <span>#{alumno['map2.title.answered']}</span>
+                <h:panelGroup layout="block">
+                    <!--<span>#{alumno['map2.title.answered']}</span>-->
+                    <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento12 finalizado12" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                 </h:panelGroup>
                 <div class="uk-child-width-1-2@m uk-margin-remove uk-visible@m" uk-grid="">
                     <div class="cuadro-padre1">
