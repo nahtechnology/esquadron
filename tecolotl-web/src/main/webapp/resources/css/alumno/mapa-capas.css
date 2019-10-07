@@ -84,6 +84,18 @@
     left: 45%;
 }
 
+.movimiento8{
+    right: 36%;
+    top: 10%;
+    transform: rotate(15deg);
+}
+
+.finalizado8{
+    width: 300px;
+    height: 200px;
+    position: absolute;
+}
+
 @media screen and (max-width: 1024px){
     .caja-capas{
         width: 90%;
