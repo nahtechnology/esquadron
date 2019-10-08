@@ -214,7 +214,7 @@
                                 </div>
                                 <h:outputText value="Respondido" rendered="#{not empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="input-respuesta" value="#{completarOracionesControlador.respeusta}" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}"/>
-                                <h:commandButton value="Send" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}">
+                                <h:commandButton styleClass="boton-enviar boton-trasladar" value="Send" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta}" render="@form"/>
                                 </h:commandButton>
                             </h:form>
