@@ -92,7 +92,6 @@
             <div class="uk-container padding-contenedor">
 
                 <h:panelGroup layout="block" styleClass="contiene" rendered="#{empty seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}">
-<!--                    <h:graphicImage library="img" name="/alumno/pop-art/mensaje2.svg" styleClass="no-hay-mapas" pt:uk-svg=""/>-->
                     <h:outputText styleClass="letras" value="No hay mapas mentales asignadas" rendered="#{empty seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}"/>
                 </h:panelGroup>
 
@@ -103,7 +102,7 @@
                             <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">
                                 <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
                             </h:link>
-                            <h:outputText styleClass="uk-position-absolute letra-mapas" value="Respondido" rendered="#{mapaMental.totalResueltos > 0}"/>
+                            <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos > 0}"/>
                         </div>
                     </ui:repeat>
                 </div>

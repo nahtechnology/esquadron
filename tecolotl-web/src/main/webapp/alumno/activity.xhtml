@@ -166,7 +166,7 @@
                                 </h:panelGroup>
                                 <h:graphicImage library="img" styleClass="movimiento2 finalizado2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" onclick="recuperaDatos()" styleClass="boton-enviar mover-boton" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" style="" onclick="recuperaDatos()" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>
@@ -195,7 +195,7 @@
                                                 <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.respuesta}"/>
                                             </h:panelGroup>
                                             <h:inputHidden value="#{tareaGramaticaControlador.respuesta}"/>
-                                            <h:commandButton value="Send" styleClass="boton-enviar" onclick="completarPalabra(this)" rendered="#{empty gramatica.respuesta}">
+                                            <h:commandButton value="Send" styleClass="boton-enviar boton-trasladar" onclick="completarPalabra(this)" rendered="#{empty gramatica.respuesta}">
                                                 <f:ajax listener="#{tareaGramaticaControlador.enviarRespuesta(gramatica.codigo, gramatica.actividadModelo.idVideo)}"
                                                         execute="@form" onevent="function funcion(data) { remueveOrdenador(data) }"/>
                                             </h:commandButton>
@@ -221,7 +221,7 @@
                             </h:panelGroup>
                             <h:form>
                                 <h:inputHidden value="#{transcripcionControlador.transcripcion}"/>
-                                <h:commandButton styleClass="boton-enviar" style="margin-top: 20px" value="Send" onclick="return validaContenido()" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px" value="Send" onclick="return validaContenido()" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <f:ajax listener="#{transcripcionControlador.enviaRespuestas}" execute="@form" onevent="function funcion(data) { transcripcionEnvidad(data); }"/>
                                 </h:commandButton>
                             </h:form>
