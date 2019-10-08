@@ -846,6 +846,12 @@ textarea::-webkit-scrollbar-thumb:hover {
         right: 43%;
     }
 
+    .boton-gral{
+        position: absolute;
+        bottom: -35%;
+        left: 43%;
+    }
+
     /*.mensaje1{*/
     /*    padding: 20px 30px 0 35px;*/
     /*    position: relative;*/
