@@ -788,6 +788,11 @@ textarea::-webkit-scrollbar-thumb:hover {
         transform: rotate(15deg);
     }
 
+    .boton-trasladar{
+        position: absolute;
+        right: 40%;
+    }
+
     /*.mensaje1{*/
     /*    padding: 20px 30px 0 35px;*/
     /*}*/
@@ -836,6 +841,11 @@ textarea::-webkit-scrollbar-thumb:hover {
         transform: rotate(15deg);
     }
 
+    .boton-trasladar{
+        position: absolute;
+        right: 43%;
+    }
+
     /*.mensaje1{*/
     /*    padding: 20px 30px 0 35px;*/
     /*    position: relative;*/
@@ -879,6 +889,11 @@ textarea::-webkit-scrollbar-thumb:hover {
         left: 36%;
         top: 102px;
         transform: rotate(15deg);
+    }
+
+    .boton-trasladar{
+        position: absolute;
+        right: 35%;
     }
 
     /*.realizado{*/

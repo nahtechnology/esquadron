@@ -114,6 +114,11 @@
     padding-bottom: 10px;
 }
 
+.video-activity{
+    width: 60%;
+    margin: 10px auto 20px auto;
+    height: 350px;
+}
 
 @media screen and (max-width: 500px) {
     .contenedor-respuesta{
@@ -131,11 +136,9 @@
        min-height: 250px;
        max-height: 250px;
    }
-}
 
-.video-activity{
-    width: 60%;
-   margin: 10px auto 20px auto;
-    height: 350px;
+    .video-activity{
+        width: 100%;
+    }
 
 }
