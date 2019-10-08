@@ -39,28 +39,33 @@
     border-radius: inherit; /* !importanté */
 }
 
-.A1:before {
+li .A1{
     background-color: var(--psecundary-option-three) !important;
 }
 
-.A2:before {
-    background-color: var(--purpura-primary-color);
+li .A2{
+    background-color: #D35400;
 }
 
-.A1-A2:before {
+li .A1A2{
     background: linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
 }
-.B1:before{
+li .B1{
     background-color:var(--tsecundary-option-one) !important;
 }
-.B2{
+li .B2{
     background-color:var(--asecundary-option-one);
 }
-.C1{
+li .C1{
     background-color:var(--color-nav-primary);
 }
-.C2{
+li .C2{
     background-color:var(--color-peligro);
+}
+
+.card-actividad{
+    padding: 1.4px;
+    border-radius: 8px;
 }
 
 
@@ -92,12 +97,12 @@
 }
 
 .uk-subnav-alumno li.uk-active:nth-child(4) a {
-    background-color:var(--purpura-primary-color);
+    background-color:#D35400;
     color: white;
 }
 
 .uk-subnav-alumno li:nth-child(4) a:hover {
-    background-color:var(--purpura-primary-color);
+    background-color:#D35400;
     opacity: 0.3;
     color: white;
 }

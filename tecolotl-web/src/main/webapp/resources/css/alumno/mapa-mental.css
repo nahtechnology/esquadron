@@ -25,11 +25,7 @@
 
 }
 .fondo-mapa{
-    /*background-color: rgba(233,33,71,0.8);*/
-    background-image: url("#{resource['img/alumno/lineas-rojas.svg']}");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+    background:url("#{resource['img/mounstro/whom.svg']}") no-repeat top left/120px ,url("#{resource['img/alumno/lineas-rojas.svg']}") no-repeat center center/cover;
 }
 
 textarea{
@@ -121,7 +117,6 @@ input[type=text]::placeholder{
 }
 .titulo-mapa-uno{
     height: 150px;
-    background: url("#{resource['img/mounstro/whom.svg']}") no-repeat center left/120px 100%;
     color: white;
     font-size: 40px;
     display: flex;
@@ -149,4 +144,10 @@ input[type=text]::placeholder{
     width: 300px;
     height: 200px;
     position: absolute;
+}
+
+@media screen and (max-width: 500px) {
+    .titulo-mapa-uno{
+      margin-top: 152px;
+    }
 }
