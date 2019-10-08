@@ -120,9 +120,10 @@
                                         </div>
                                     </ui:repeat>
                                 </h:panelGroup>
-                                <h:outputText rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>
+                                <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="fin-ordenar fin-movimiento" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>
+                                <!--<h:outputText value="Respondido" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>-->
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
-                                <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar uk-margin" value="Send" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar boton-trasladar uk-margin" value="Send" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
                                     <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data) }"/>
                                 </h:commandButton>
                             </h:form>
@@ -214,7 +215,7 @@
                                 </div>
                                 <h:outputText value="Respondido" rendered="#{not empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="input-respuesta" value="#{completarOracionesControlador.respeusta}" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}"/>
-                                <h:commandButton value="Send" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}">
+                                <h:commandButton styleClass="boton-enviar boton-trasladar" value="Send" rendered="#{empty completarOracionesControlador.tareaCompletarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta}" render="@form"/>
                                 </h:commandButton>
                             </h:form>

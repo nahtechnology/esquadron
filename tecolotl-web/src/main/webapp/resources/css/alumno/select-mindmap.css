@@ -31,13 +31,13 @@
 .link-imagen-mapa:hover{
     border-color: #0e6ecd;
 }
+
 .letra-mapas{
-    top: 140px;
-    left: calc((100%/3)  + 10px);
-    font-weight: bold;
-    text-shadow: 1px 1px 0 black, -1px -1px 0 black;
-    color: #0e6ecd;
-    font-size: 20px;
+    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center;
+    width: 140px;
+    height: 70px;
+    top: 118px;
+    left: calc((100%/3)  + 26px);
 }
 
 .mapa-1{
