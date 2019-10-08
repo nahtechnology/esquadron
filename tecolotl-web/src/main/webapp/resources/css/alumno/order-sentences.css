@@ -354,3 +354,15 @@
     color: #00a49d;
     font-weight: bold;
 }
+
+.fin-ordenar{
+    width: 300px;
+    height: 200px;
+}
+
+.fin-movimiento{
+    position: absolute;
+    top: 34%;
+    right: 5%;
+    transform: rotate(15deg);
+}
