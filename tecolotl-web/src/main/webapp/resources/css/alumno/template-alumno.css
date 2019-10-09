@@ -902,6 +902,12 @@ textarea::-webkit-scrollbar-thumb:hover {
         right: 35%;
     }
 
+    .boton-gral{
+        position: absolute;
+        bottom: -70%;
+        left: 35%;
+    }
+
     /*.realizado{*/
     /*    width: 90px;*/
     /*    height: 65px;*/
