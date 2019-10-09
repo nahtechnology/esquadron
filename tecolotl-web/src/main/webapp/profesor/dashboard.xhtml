@@ -66,27 +66,36 @@
                 No hay ciclo escolares asignados o se encuentran fuera inabilitados.
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
-                <h:form id="formulario-grupo" styleClass="uk-form-stacked">
+                <h:form id="formulario-grupo" styleClass="uk-form-horizontal">
                     <div class="uk-margin">
-                        <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar" styleClass="titulo-cards"/>
-                        <h:selectOneMenu value="#{dashboardProfesorControlador.cicloEscolarModelo}" styleClass="uk-select">
-                            <div class="uk-form-controls">
-                                <f:selectItems value="#{dashboardProfesorControlador.cicloEscolarModeloLista}" id="ciclo-escolar-select"
-                                               var="cicloEscolar"
-                                               itemLabel="#{cicloEscolar.descripcion}"
-                                               itemValue="#{cicloEscolar}"/>
-                            </div>
-                        </h:selectOneMenu>
+                        <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar:" styleClass="uk-form-label uk-text-bold "/>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu value="#{dashboardProfesorControlador.cicloEscolarModelo}" styleClass="uk-select">
+                                    <f:selectItems value="#{dashboardProfesorControlador.cicloEscolarModeloLista}" id="ciclo-escolar-select"
+                                                   var="cicloEscolar"
+                                                   itemLabel="#{cicloEscolar.descripcion}"
+                                                   itemValue="#{cicloEscolar}"/>
+                            </h:selectOneMenu>
+                        </div>
                     </div>
-                    <div class="uk-margin">
-                        <h:outputText id="fecha-inicio" value="#{dashboardProfesorControlador.cicloEscolarModelo.inicio}">
-                            <f:convertDateTime dateStyle="medium"/>
-                        </h:outputText>
-                        <h:outputText id="fecha-fin" value="#{dashboardProfesorControlador.cicloEscolarModelo.fin}">
-                            <f:convertDateTime dateStyle="medium"/>
-                        </h:outputText>
-                        <h:outputText id="descripcion" value="#{dashboardProfesorControlador.cicloEscolarModelo.descripcion}"/>
-                    </div>
+                    <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-3@m" pt:uk-grid="">
+                        <div>
+                            <div class="titulo-section uk-text-center uk-text-bold">Inicio</div>
+                            <h:outputText id="fecha-inicio" value="#{dashboardProfesorControlador.cicloEscolarModelo.inicio}">
+                                <f:convertDateTime dateStyle="medium"/>
+                            </h:outputText>
+                        </div>
+                        <div>
+                            <div class="titulo-section uk-text-center uk-text-bold">Fin</div>
+                            <h:outputText id="fecha-fin" value="#{dashboardProfesorControlador.cicloEscolarModelo.fin}">
+                                <f:convertDateTime dateStyle="medium"/>
+                            </h:outputText>
+                        </div>
+                        <div>
+                            <div class="titulo-section uk-text-center uk-text-bold">Descripcion</div>
+                            <h:outputText id="descripcion" value="#{dashboardProfesorControlador.cicloEscolarModelo.descripcion}"/>
+                        </div>
+                    </h:panelGroup>
                 </h:form>
             </h:panelGroup>
         </div>
