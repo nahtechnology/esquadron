@@ -120,13 +120,14 @@
                                 <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                         <li>
-                                            <h:link outcome="admin-alumnos" styleClass="uk-text-primary" >
+                                            <h:commandLink outcome="admin-alumno" styleClass="uk-text-primary" >
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                <f:param name="grupo" value="#{grupo.id}"/>
                                                 <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
-                                            </h:link>
+                                            </h:commandLink>
                                         </li>
+                                        <ui:remove>
                                         <li>
-
                                             <h:link outcome="biblioteca-profesor2" styleClass="uk-text-primary" >
                                                 <h:outputText pt:uk-icon="icon: cog" styleClass="uk-margin-small-right uk-icon" />
                                                 <span class="uk-text-middle"><h:outputText value="Asignar Tarea"/></span>
@@ -139,6 +140,7 @@
                                                 <f:ajax/>
                                             </h:commandLink>
                                         </li>
+                                        </ui:remove>
                                     </ul>
                                 </div>
                             </div>

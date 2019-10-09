@@ -32,8 +32,8 @@ public class AlumnoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        alumnoModelo = alumnoSesionBean.busca(2);
-        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(2);
+        alumnoModelo = alumnoSesionBean.busca(1);
+        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(1);
     }
 
     public String seleccion(TareaActividadModelo tareaActividadModelo){
