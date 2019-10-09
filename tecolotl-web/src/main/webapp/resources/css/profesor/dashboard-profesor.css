@@ -1,7 +1,10 @@
 #formulario-grupo span[id^="formulario-grupo"]{
-    display: inline-block;
-    width: calc(100%/3);
-    border: 2px solid #1665B4;
+    display: block;
+    border: 1px solid #1665B4;
     border-radius: 5px;
-    margin-left: 5px;
+    padding: 5px 2px;
+    box-sizing: border-box;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 6px;
 }
