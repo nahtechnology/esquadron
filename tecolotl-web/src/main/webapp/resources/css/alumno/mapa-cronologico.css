@@ -164,6 +164,9 @@
     .dialogo-small{
         width: 80%;
     }
+    .margen-mapa {
+         margin-top: 20px;
+    }
 }
 @media  screen and (max-width: 330px) {
     .dialogo-small{

@@ -150,7 +150,7 @@
                     <h:form id="formulario-mapa-mental-escritorio" class="uk-form-stacked">
                         <div class=" texto-posicion-small">
                             <h3 class="uk-text-center">#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}</h3>
-                            <h:inputTextarea styleClass="uk-textarea uk-margin-large-bottom"
+                            <h:inputTextarea styleClass="uk-textarea"
                                              id="introduction-m"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
@@ -159,7 +159,7 @@
                             </h:inputTextarea>
                             <h:message for="introduction-m" styleClass=""/>
                             <h3 class="uk-text-center margen-small">#{alumno['map8.title.supporting']}</h3>
-                            <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
+                            <h:inputTextarea styleClass="uk-textarea "
                                              id="deails1-m"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
@@ -167,7 +167,7 @@
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="deails1-m" styleClass=""/>
-                            <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
+                            <h:inputTextarea styleClass="uk-textarea "
                                              id="deails2-m"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"

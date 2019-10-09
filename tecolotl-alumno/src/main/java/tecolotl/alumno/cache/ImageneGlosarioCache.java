@@ -5,15 +5,13 @@ import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.GlosarioSesionBean;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Lock;
-import javax.ejb.LockType;
-import javax.ejb.Singleton;
-import javax.ejb.Startup;
+import javax.ejb.*;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Size;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -59,6 +57,30 @@ public class ImageneGlosarioCache {
             List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(bloque, BLOQUE);
             for (GlosarioModelo glosarioModelo : glosarioModeloLista) {
                 diccionario.put(new LLaveGlosario(glosarioModelo), glosarioModelo.getImagen());
+            }
+        }
+    }
+
+    @Schedules({
+            @Schedule(year = "*", month = "*", dayOfMonth = "*", dayOfWeek = "*", info = "Update de glosario a las 00:00 hrs todos los dias"),
+            @Schedule(hour = "00", minute = "00", second = "00")
+    })
+    public void actualiza() {
+        Long totalGlosario = buscaActividades();
+        logger.fine("Total glosario encontrados".concat(totalGlosario.toString()));
+        logger.fine("Total glosarios en el diccionario: ".concat(String.valueOf(diccionario.size())));
+        if(totalGlosario != diccionario.size()){
+            for (int bloque = 0; bloque < totalGlosario; bloque += BLOQUE) {
+                List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(bloque, BLOQUE);
+                for (GlosarioModelo glosarioModelo : glosarioModeloLista) {
+                    try{
+                        if(diccionario.get(new LLaveGlosario(glosarioModelo.getPalabra(),glosarioModelo.getClaseGlosarioModelo().getClave())) == null){
+                            diccionario.put(new LLaveGlosario(glosarioModelo), glosarioModelo.getImagen());
+                        }
+                    }catch(NullPointerException npe){
+                        logger.severe("Ocurrió un error al actualizar la memoria: ".concat(npe.getMessage()));
+                    }
+                }
             }
         }
     }

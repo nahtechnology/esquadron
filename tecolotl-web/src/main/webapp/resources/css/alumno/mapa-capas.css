@@ -16,7 +16,7 @@
     width: 90%;
     height: auto;
     margin: auto;
-    background-color: #0f7ae5;
+    background: url("#{resource['img/alumno/hamburguesa.svg']}") no-repeat #0f7ae5 center center/contain;
 }
 
 .posicion-relativa{
@@ -58,6 +58,7 @@
     width: 100%;
     /*background-color: #81b442;*/
     top: 0;
+    padding: 6px 0;
 }
 .texto-posicion textarea{
     display: block;
@@ -72,7 +73,9 @@
     width: 80%;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
-    margin: auto;
+    margin: 10px auto;
+    min-height: 38px;
+    max-height: 38px;
 }
 .texto-posicion h3{
     font-weight: bold;
