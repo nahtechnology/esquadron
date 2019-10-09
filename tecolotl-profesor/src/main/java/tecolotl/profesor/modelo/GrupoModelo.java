@@ -17,8 +17,6 @@ public class GrupoModelo {
     private Short grado;
     private Character grupo;
     private Integer idProfesor;
-    private CicloEscolarModelo cicloEscolarModelo;
-    private List<GrupoAlumnoModelo> grupoAlumnoModeloLista;
 
     public GrupoModelo() {
     }
@@ -31,7 +29,6 @@ public class GrupoModelo {
         this.id = grupoEntidad.getId();
         this.grado = grupoEntidad.getGrado();
         this.grupo = grupoEntidad.getGrupo();
-        this.cicloEscolarModelo = new CicloEscolarModelo(grupoEntidad.getCicloEscolarEntidad());
     }
 
     @NotNull(groups = {GrupoNuevoValidacion.class, GrupoLlavePrimariaValidacion.class})
@@ -70,14 +67,6 @@ public class GrupoModelo {
         this.idProfesor = idProfesor;
     }
 
-    public CicloEscolarModelo getCicloEscolarModelo() {
-        return cicloEscolarModelo;
-    }
-
-    public void setCicloEscolarModelo(CicloEscolarModelo cicloEscolarModelo) {
-        this.cicloEscolarModelo = cicloEscolarModelo;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,13 +75,12 @@ public class GrupoModelo {
         return id.equals(that.id) &&
                 grado.equals(that.grado) &&
                 grupo.equals(that.grupo) &&
-                idProfesor.equals(that.idProfesor) &&
-                cicloEscolarModelo.equals(that.cicloEscolarModelo);
+                idProfesor.equals(that.idProfesor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, grado, grupo, idProfesor, cicloEscolarModelo);
+        return Objects.hash(id, grado, grupo, idProfesor);
     }
 
     @Override
@@ -102,7 +90,6 @@ public class GrupoModelo {
                 ", grado=" + grado +
                 ", grupo=" + grupo +
                 ", idProfesor=" + idProfesor +
-                ", cicloEscolarModelo=" + cicloEscolarModelo +
                 '}';
     }
 

@@ -7,6 +7,7 @@ import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class CicloEscolarModelo {
@@ -31,6 +32,7 @@ public class CicloEscolarModelo {
         this.fin = cicloEscolarEntidad.getCicloEscolarPK().getFin();
         this.descripcion = cicloEscolarEntidad.getDescripcion();
         this.activo = cicloEscolarEntidad.getActivo();
+        this.idEscuela = cicloEscolarEntidad.getCicloEscolarPK().getEscuelaEntidad().getClaveCentroTrabajo();
     }
 
     @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class, GrupoNuevoValidacion.class})
@@ -70,7 +72,6 @@ public class CicloEscolarModelo {
     public void setIdEscuela(String idEscuela) {
         this.idEscuela = idEscuela;
     }
-
 
     public Boolean isActivo() {
         return activo;

@@ -4,7 +4,9 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.profesor.entidad.CicloEscolarEntidad;
 import tecolotl.profesor.entidad.CicloEscolarEntidadPK;
+import tecolotl.profesor.entidad.GrupoEntidad;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
+import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.validacion.CicloEscolarLlavePrimariaValidacion;
 
 import javax.ejb.Stateless;
@@ -18,6 +20,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Ciclo escolar de una escuela
@@ -41,18 +44,15 @@ public class CicloEscolarSessionBean {
      * @param claveCentroTrabajo Clave centro de trabajo de la escuela a buscar.
      * @return Colección de {@link CicloEscolarModelo}.
      */
-    public List<CicloEscolarModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+    public List<CicloEscolarModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
+                                          boolean activo,
+                                          @NotNull Integer idProfesor) {
         logger.fine(claveCentroTrabajo);
-        TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.buscaEscuela", CicloEscolarEntidad.class);
+        TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.buscaIdEscuela", CicloEscolarEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
-        List<CicloEscolarEntidad> cicloEscolarEntidadLista = typedQuery.getResultList();
-        logger.finer("Elementos encontrados:".concat(String.valueOf(cicloEscolarEntidadLista.size())));
-        List<CicloEscolarModelo> cicloEscolarModeloLista = new ArrayList<>();
-        for (CicloEscolarEntidad cicloEscolarEntidad : cicloEscolarEntidadLista) {
-            logger.finest(cicloEscolarEntidad.toString());
-            cicloEscolarModeloLista.add(new CicloEscolarModelo(cicloEscolarEntidad));
-        }
-        return cicloEscolarModeloLista;
+        typedQuery.setParameter("activo", activo);
+        typedQuery.setParameter("idProfesor", idProfesor);
+        return typedQuery.getResultList().stream().map(CicloEscolarModelo::new).collect(Collectors.toList());
     }
 
     /**

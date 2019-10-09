@@ -1,5 +1,6 @@
 package tecolotl.profesor.sesion;
 
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion;
@@ -18,6 +19,7 @@ import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -27,7 +29,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class ProfesorSesionBean {
+public class ProfesorSesionBean implements Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -85,17 +87,11 @@ public class ProfesorSesionBean {
 
     /**
      * Método para buscar un profesor por ID.
-     * @param Id Identificado del profesor.
+     * @param idProfesor Identificado del profesor.
      * @return un profesor.
      */
-    public ProfesorModelo busca(@NotNull Integer Id){
-        ProfesorModelo profesorModelo = new ProfesorModelo(entityManager.find(ProfesorEntidad.class, Id));
-        logger.finer("Profesor encontrado por ID: ".concat(profesorModelo.toString()));
-        return profesorModelo;
-    }
-
-    public Map<Integer, ProfesorDashboardModelo> busca(@NotNull String IdEscuela){
-        return null;
+    public ProfesorModelo busca(@NotNull Integer idProfesor){
+        return new ProfesorModelo(entityManager.find(ProfesorEntidad.class, idProfesor));
     }
 
     /**

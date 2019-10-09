@@ -25,7 +25,7 @@ public class DashboardTablaControlador implements Serializable {
     @PostConstruct
     public void init() {
         claveCentroTrabajo = "21DBA0003D";
-        profesorDashboardModeloMapa = profesorSesionBean.busca(claveCentroTrabajo);
+        //profesorDashboardModeloMapa = profesorSesionBean.busca(claveCentroTrabajo);
     }
 
     public Map<Integer, ProfesorDashboardModelo> getProfesorDashboardModeloMapa() {

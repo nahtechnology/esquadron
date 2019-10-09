@@ -1,4 +1,4 @@
-package tecolotl.web.profesor.controladores;
+package tecolotl.web.profesor;
 
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.sesion.ActividadSesionBean;

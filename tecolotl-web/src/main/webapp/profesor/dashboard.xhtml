@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <ui:define name="menu">
+        <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+            <li class="nav-sub-active"><span class="uk-text-capitalize">home</span></li>
+            <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/></li>
+            <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
+        </ul>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar">
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li class="nav-sub-active"><span class="uk-text-capitalize">home</span></li>
+                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/> </li>
+                    <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="graficas.css"/>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-uppercase lescuadron ">Welcome!</h1></div>
+        <div class="uk-grid" uk-grid="">
+            <div class="uk-width-1-3@m">
+                <div class="uk-card uk-card-default uk-card-small color-card-four margen-one">
+                    <div class="uk-card-header border-card">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                            <div class="uk-width-auto">
+                                <h:graphicImage styleClass="uk-border-circle" library="img" name="avatar/maestro.svg" width="50" height="50"/>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
+                                    #{profesorControlador.profesorModelo.nombre.concat(' ').concat(profesorControlador.profesorModelo.apellidoPaterno).concat(' ').concat(profesorControlador.profesorModelo.apellidoMaterno)}
+                                </h3>
+                                <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
+                            </div>
+                            <div class="uk-width-1-1@s">
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname: </span>#{profesorControlador.profesorModelo.apodo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body padding-card-body">
+                        <h3 class="uk-text-uppercase uk-text-bold ">question?</h3>
+                        <p>We've got answers! <span class="uk-text-primary">Contact Us</span></p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <h3 class="uk-text-uppercase uk-text-bold">Teacher Training</h3>
+                        <p>Learn more with our free <span class="uk-text-primary">e-squadron courses!</span></p>
+                    </div>
+                </div>
+            </div>
+            <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{empty dashboardProfesorControlador.cicloEscolarModeloLista}">
+                No hay ciclo escolares asignados o se encuentran fuera inabilitados.
+            </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
+                <h:form id="formulario-grupo" styleClass="uk-form-stacked">
+                    <div class="uk-margin">
+                        <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar"/>
+                        <h:selectOneMenu value="#{dashboardProfesorControlador.cicloEscolarModelo}">
+                            <div class="uk-form-controls">
+                                <f:selectItems value="#{dashboardProfesorControlador.cicloEscolarModeloLista}" id="ciclo-escolar-select"
+                                               var="cicloEscolar"
+                                               itemLabel="#{cicloEscolar.descripcion}"
+                                               itemValue="#{cicloEscolar}"/>
+                            </div>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="uk-margin">
+                        <h:outputText id="fecha-inicio" value="#{dashboardProfesorControlador.cicloEscolarModelo.inicio}">
+                            <f:convertDateTime dateStyle="medium"/>
+                        </h:outputText>
+                        <h:outputText id="fecha-fin" value="#{dashboardProfesorControlador.cicloEscolarModelo.fin}">
+                            <f:convertDateTime dateStyle="medium"/>
+                        </h:outputText>
+                        <h:outputText id="descripcion" value="#{dashboardProfesorControlador.cicloEscolarModelo.descripcion}"/>
+                    </div>
+                </h:form>
+            </h:panelGroup>
+        </div>
+        <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
+            <h:outputText styleClass="uk-text-bold uk-margin-remove-bottom titulo-section"
+                          value="#{empty dashboardProfesorControlador.grupoModeloLista ? 'No tiene grupos asigandos en este ciclo escolar' : 'Sus grupos para este ciclo escolar'}">
+            </h:outputText>
+            <h:form id="formulario-tabla" styleClass="uk-form-stacked">
+                <div class=" uk-margin-small-top">
+                    <h:dataTable
+                            value="#{dashboardProfesorControlador.grupoModeloLista}"
+                            id="tabla-grupo"
+                            var="grupo"
+                            styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown"
+                            headerClass="thPrimario uk-text-center"
+                            columnClasses="uk-width-small,uk-width-small,uk-width-small"
+                            rowClasses="tdPrimario"
+                            footerClass="thPrimario uk-text-left">
+                        <h:column>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{coordinacion['detalleprofesor.table.schoolgrade']}</span></f:facet>
+                            #{grupo.grado}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Grupo</span></f:facet>
+                            #{grupo.grupo}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Opciones</span></f:facet>
+                            <div class="uk-inline  ">
+                                <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                                <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
+                                    <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                        <li>
+                                            <h:link outcome="admin-alumnos" styleClass="uk-text-primary" >
+                                                <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
+                                            </h:link>
+                                        </li>
+                                        <li>
+
+                                            <h:link outcome="biblioteca-profesor2" styleClass="uk-text-primary" >
+                                                <h:outputText pt:uk-icon="icon: cog" styleClass="uk-margin-small-right uk-icon" />
+                                                <span class="uk-text-middle"><h:outputText value="Asignar Tarea"/></span>
+                                            </h:link>
+                                        </li>
+                                        <li>
+                                            <h:commandLink  pt:uk-toggle="target: #modal-reporte" styleClass="uk-text-primary" >
+                                                <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon" />
+                                                <span class="uk-text-middle"><h:outputText value="Reporte"/></span>
+                                                <f:ajax/>
+                                            </h:commandLink>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

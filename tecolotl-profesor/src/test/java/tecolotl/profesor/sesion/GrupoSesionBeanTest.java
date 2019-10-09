@@ -164,9 +164,6 @@ public class GrupoSesionBeanTest {
             Assert.assertNotNull(grupoModelo);
             Assert.assertNotNull(grupoModelo.getGrado());
             Assert.assertNotNull(grupoModelo.getGrupo());
-            Assert.assertNotNull(grupoModelo.getCicloEscolarModelo());
-            Assert.assertNotNull(grupoModelo.getCicloEscolarModelo().getInicio());
-            Assert.assertNotNull(grupoModelo.getCicloEscolarModelo().getFin());
         });
     }
 
@@ -179,7 +176,6 @@ public class GrupoSesionBeanTest {
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2019"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2020"));
         cicloEscolarModelo.setIdEscuela("21DBA0051N");
-        grupoModelo.setCicloEscolarModelo(cicloEscolarModelo);
         grupoModelo.setIdProfesor(1);
         grupoSesionBean.inserta(grupoModelo);
         Assert.assertNotNull(grupoModelo.getId());

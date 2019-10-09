@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -46,11 +47,6 @@ public class GrupoSesionBean {
         grupoEntidad.setGrado(grupoModelo.getGrado());
         grupoEntidad.setGrupo(grupoModelo.getGrupo());
         grupoEntidad.setProfesorEntidad(new ProfesorEntidad(grupoModelo.getIdProfesor()));
-        grupoEntidad.setCicloEscolarEntidad(new CicloEscolarEntidad(
-                new CicloEscolarEntidadPK(
-                        grupoModelo.getCicloEscolarModelo().getInicio(),
-                        grupoModelo.getCicloEscolarModelo().getFin(),
-                        grupoModelo.getCicloEscolarModelo().getIdEscuela())));
         entityManager.persist(grupoEntidad);
         grupoModelo.setId(grupoEntidad.getId());
     }
@@ -64,6 +60,20 @@ public class GrupoSesionBean {
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
         logger.finer("Numero de grupos encontrados: ".concat(String.valueOf(grupoEntidadLista.size())));
         return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca todos los grupos por ciclo escolar
+     * @param inicio
+     * @param fin
+     * @param claveCentroTrabajo
+     * @return
+     */
+    public List<GrupoModelo> busca(@NotNull Date inicio, @NotNull Date fin, @NotNull String claveCentroTrabajo, @NotNull Integer idProfesor) {
+        TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaCiclioEscolar", GrupoEntidad.class);
+        typedQuery.setParameter("inicio", inicio).setParameter("fin", fin)
+                .setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("idProfesor", idProfesor);
+        return typedQuery.getResultList().stream().map(GrupoModelo::new).collect(Collectors.toList());
     }
 
     /**

@@ -1,12 +1,11 @@
 package tecolotl.web.profesor;
 
+import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
-import tecolotl.profesor.modelo.ProfesorModelo;
+import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
-import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
-import javax.faces.component.html.HtmlDataTable;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,36 +16,48 @@ import java.util.logging.Logger;
 @ViewScoped
 @Named("dashboardProfesorControlador")
 public class DashboardProfesorControlador implements Serializable {
+
     @Inject
     private Logger logger;
 
     @Inject
-    private ProfesorSesionBean profesorSesionBean;
+    private ProfesorControlador profesorModelo;
+
+    @Inject
+    private CicloEscolarSessionBean cicloEscolarSessionBean;
 
     @Inject
     private GrupoSesionBean grupoSesionBean;
 
-
+    private List<CicloEscolarModelo> cicloEscolarModeloLista;
+    private CicloEscolarModelo cicloEscolarModelo;
     private List<GrupoModelo> grupoModeloLista;
-
-    private ProfesorModelo profesorModelo;
-
 
     @PostConstruct
     public void init(){
-        logger.info("Iniciando el controlador...\n");
-        profesorModelo = profesorSesionBean.busca(1);
-        logger.info(profesorModelo.toString());
-        grupoModeloLista = grupoSesionBean.busca(1);
-        logger.info(getGrupoModeloLista().toString());
+        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(
+                profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(), true, profesorModelo.getProfesorModelo().getId());
+        cicloEscolarModelo = cicloEscolarModeloLista.get(0);
+        grupoModeloLista = grupoSesionBean.busca(
+                cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
+                profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
+                profesorModelo.getProfesorModelo().getId());
     }
 
-    public ProfesorModelo getProfesorModelo() {
-        return profesorModelo;
+    public List<CicloEscolarModelo> getCicloEscolarModeloLista() {
+        return cicloEscolarModeloLista;
     }
 
-    public void setProfesorModelo(ProfesorModelo profesorModelo) {
-        this.profesorModelo = profesorModelo;
+    public void setCicloEscolarModeloLista(List<CicloEscolarModelo> cicloEscolarModeloLista) {
+        this.cicloEscolarModeloLista = cicloEscolarModeloLista;
+    }
+
+    public CicloEscolarModelo getCicloEscolarModelo() {
+        return cicloEscolarModelo;
+    }
+
+    public void setCicloEscolarModelo(CicloEscolarModelo cicloEscolarModelo) {
+        this.cicloEscolarModelo = cicloEscolarModelo;
     }
 
     public List<GrupoModelo> getGrupoModeloLista() {
