@@ -4,7 +4,7 @@
 }
 .titulo-mapa-5{
     position: absolute;
-    top: 15%;
+    top: 10%;
     left:6%;
     font-weight: bold;
 }
@@ -74,9 +74,9 @@
 }
 
 .boton-gral{
-    position: absolute;
+    position: relative;
     bottom: -30px;
-    left: 45%;
+    margin: 0px;
 }
 
 .movimiento5{
@@ -95,7 +95,7 @@
 
     .titulo-mapa-5{
         position: absolute;
-        top: 9%;
+        top: 7%;
         left:4%;
         font-weight: bold;
         font-size: 20px;

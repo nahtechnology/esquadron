@@ -129,9 +129,9 @@ input[type=text]::placeholder{
 }
 
 .boton-gral5{
-    position: absolute;
-    bottom: auto;
-    left: 35%;
+    position: relative;
+    bottom: -35px;
+    margin: auto;
 }
 
 .movimiento1{

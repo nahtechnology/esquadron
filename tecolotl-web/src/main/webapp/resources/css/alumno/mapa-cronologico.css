@@ -70,9 +70,9 @@
 }
 
 .boton-gral1{
-    position: absolute;
+    position: relative;
     bottom: -35px;
-    left: 45%;
+    margin: auto;
 }
 
 .imagen-calendario{
@@ -88,6 +88,7 @@
 .finalizado3{
     width: 250px;
     height: 150px;
+    z-index: 3;
     position: absolute;
 }
 
@@ -110,6 +111,9 @@
     }
     .titulo-mapa-3{
         font-size: 13px;
+    }
+    .movimiento3{
+        top: 19%;
     }
 
 }

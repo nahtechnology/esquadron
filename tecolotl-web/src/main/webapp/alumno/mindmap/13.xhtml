@@ -74,7 +74,7 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/mapa-13.css"/>
-        <div class="uk-section margen-superior uk-margin-small-left uk-margin-small-right">
+        <div class="uk-section margen-superior uk-margin-small-left uk-margin-small-right" style="margin-bottom: 80px">
             <div class="uk-container padding-contenedor fondo-13 uk-position-relative" >
                 <h:panelGroup layout="block">
                     <!--<span>#{alumno['map2.title.answered']}</span>-->
@@ -657,7 +657,7 @@
                                      value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                      action="#{mapaMentalControlador.respondeMapaMental}"
-                                     styleClass="boton-enviar"/>
+                                     styleClass="boton-enviar boton-gral2"/>
                 </h:form>
             </div>
         </div>

@@ -58,9 +58,9 @@
 }
 
 .boton-gral3{
-    position: absolute;
-    bottom: auto;
-    left: 50%;
+    position: relative;
+    bottom: -31px;
+    margin: auto;
 }
 
 .movimiento10{

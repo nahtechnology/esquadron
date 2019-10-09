@@ -80,6 +80,7 @@
 .finalizado14{
     width: 400px;
     height: 300px;
+    z-index: 3;
     position: absolute;
 }
 
@@ -87,6 +88,14 @@
     top: 49%;
     right: 57%;
     transform: rotate(15deg);
+}
+
+
+.boton-14{
+    position: relative;
+    bottom: -113px;
+    margin: auto;
+
 }
 
 @media screen and (max-width: 1024px) {
@@ -104,6 +113,11 @@
     .caja-14-tres{
         top: 220px;
     }
+
+    .movimiento14{
+        top: 38%;
+        right: 50%;
+    }
 }
 
 @media screen and (max-width: 768px){
@@ -111,6 +125,20 @@
         font-size: 19px;
         font-weight: bold;
         width: 220px;
+    }
+
+    .fondo-14{
+        padding-top: 80px;
+        padding-bottom: 80px;
+        height: auto;
+    }
+    .finalizado14{
+        width: 300px;
+        height: 200px;
+    }
+
+    .movimiento14{
+        top: 41%;
     }
 }
 
@@ -129,5 +157,22 @@
     .arbol{
         background: none;
     }
+
+    .fondo-14{
+        padding-top: 80px;
+        padding-bottom: 80px;
+        height: auto;
+    }
+
+    .finalizado14{
+        width: 100px;
+        height: 50px;
+    }
+
+    .movimiento14{
+        top: 30%;
+        right: 20%;
+    }
+
 }
 

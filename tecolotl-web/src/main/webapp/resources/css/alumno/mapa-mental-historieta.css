@@ -67,6 +67,29 @@ input[type="text"]{
     height: 200px;
     position: absolute;
 }
+
+@media screen and (max-width: 768px){
+    .finalizado6{
+        width: 150px;
+        height: 70px;
+    }
+    .movimiento6{
+        left: 13%;
+        top: 16%;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .finalizado6{
+        width: 100px;
+        height: 50px;
+    }
+
+    .movimiento6{
+        left: 10%;
+        top: 26%;
+    }
+}
 @media screen and (max-width: 800px){
     .opinion{
         padding-left: 30px;

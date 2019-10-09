@@ -96,6 +96,7 @@
 .finalizado8{
     width: 300px;
     height: 200px;
+    z-index: 2;
     position: absolute;
 }
 
@@ -125,5 +126,17 @@
         padding: 1px 2px !important;
         height: 25px;
         margin-bottom: 12px !important;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .finalizado8{
+        width: 150px;
+        height: 100px;
+    }
+
+    .movimiento8{
+        top: 10%;
+        left: 0;
     }
 }

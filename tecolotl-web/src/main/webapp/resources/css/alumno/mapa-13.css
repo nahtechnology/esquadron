@@ -111,9 +111,9 @@
 }
 
 .boton-gral2{
-    position: absolute;
-    bottom: -30px;
-    left: 45%;
+    position: relative;
+    bottom: 25px;
+    margin: auto;
     padding-left: 10px;
 }
 
@@ -153,5 +153,17 @@ textarea {
         min-height: 59px;
         max-height: 59px;
     }
+    .boton-gral2{
+        position: relative;
+        bottom: -189px;
+        margin: auto;
+    }
+}
 
+@media screen and (max-width: 500px){
+    .boton-gral2{
+        position: relative;
+        bottom: -190px;
+        margin: auto;
+    }
 }

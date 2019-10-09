@@ -120,61 +120,37 @@ input[type="text"]{
 .finalizado12{
     width: 300px;
     height: 200px;
+    z-index: 6;
     position: absolute;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (min-width: 1200px) {
     .cuadro-hijo1{
-        height: 200px;
-    }
-    .cuadro-hijo2{
-        height: 500px;
-    }
-    .cuadro-hijo3{
-        height: 500px;
-    }
-    .cuadro-hijo4{
-        height: 200px;
-    }
-    .titulo-mapa-12{
-        top:-10px;
-        left: 5%;
-        font-size: 19px;
-    }
-
-}
-@media screen and (min-width: 640px) {
-    .cuadro-hijo1{
-        height: 250px;
-    }
-    .cuadro-hijo2{
-        height: 650px;
-    }
-    .cuadro-hijo3{
-        height: 650px;
-    }
-    .cuadro-hijo4{
-        height: 250px;
-    }
-}
-@media screen and (min-width: 768px) {
-    .cuadro-hijo1{
-        height: 250px;
-    }
-    .cuadro-hijo2{
-        height: 650px;
-    }
-    .cuadro-hijo3{
-        height: 720px;
-    }
-    .cuadro-hijo4{
         height: 300px;
     }
+    .cuadro-hijo2{
+        height: 700px;
+    }
+    .cuadro-hijo3{
+        height: 700px;
+    }
+    .cuadro-hijo4{
+        height: 330px;
+    }
 
-    .img-whom{
-        width: 65%;
+}
+
+@media screen and (max-width: 1024px){
+    .finalizado12{
+        width: 200px;
+        height: 100px;
+    }
+
+    .movimiento12{
+        top: 1%;
     }
 }
+
 @media screen and (min-width: 960px) {
     .cuadro-hijo1{
         height: 200px;
@@ -202,20 +178,80 @@ input[type="text"]{
     }
 }
 
+@media screen and (max-width: 768px){
+    .finalizado12{
+        width: 250px;
+        height: 150px;
+    }
 
+    .movimiento12{
+        top: 7%;
+    }
+}
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 768px) {
     .cuadro-hijo1{
-        height: 300px;
+        height: 250px;
     }
     .cuadro-hijo2{
-        height: 700px;
+        height: 650px;
     }
     .cuadro-hijo3{
-        height: 700px;
+        height: 720px;
     }
     .cuadro-hijo4{
-        height: 330px;
+        height: 300px;
+    }
+
+    .img-whom{
+        width: 65%;
+    }
+}
+
+@media screen and (min-width: 640px) {
+    .cuadro-hijo1{
+        height: 250px;
+    }
+    .cuadro-hijo2{
+        height: 650px;
+    }
+    .cuadro-hijo3{
+        height: 650px;
+    }
+    .cuadro-hijo4{
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .cuadro-hijo1{
+        height: 200px;
+    }
+    .cuadro-hijo2{
+        height: 500px;
+    }
+    .cuadro-hijo3{
+        height: 500px;
+    }
+    .cuadro-hijo4{
+        height: 200px;
+    }
+    .titulo-mapa-12{
+        top:-10px;
+        left: 5%;
+        font-size: 19px;
+    }
+    .finalizado12{
+        width: 100px;
+        height: 50px;
+    }
+    .movimiento12{
+        top: 10%;
+        left: 27%;
     }
 
 }
+
+
+
+

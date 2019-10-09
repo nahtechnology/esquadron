@@ -98,6 +98,7 @@
 .finalizado4{
     width: 400px;
     height: 300px;
+    z-index: 2;
     position: absolute;
 }
 
@@ -109,9 +110,16 @@
 
 @media screen and (max-width: 1025px) {
 
-
     .posicion-texarea-comparar-dos{
         bottom:35%;
+    }
+    .finalizado4{
+        width: 300px;
+        height: 200px;
+    }
+    .movimiento4{
+        top: 22%;
+        right: 29%;
     }
 }
 @media screen and (max-width: 768px) {
@@ -125,5 +133,24 @@
     }
     .pop-art-nube-medio{
         height: 450px;
+    }
+    .finalizado4{
+        width: 250px;
+        height: 150px;
+    }
+    .movimiento4{
+        top: 23%;
+        right: 29%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .finalizado4{
+        width: 120px;
+        height: 60px;
+    }
+    .movimiento4{
+        top: 25%;
+        right: 35%;
     }
 }

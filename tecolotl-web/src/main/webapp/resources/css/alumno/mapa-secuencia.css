@@ -103,6 +103,7 @@
 .finalizado11{
     width: 300px;
     height: 200px;
+    z-index: 4;
     position: absolute;
 }
 
@@ -126,6 +127,16 @@
     }
     .caja1{
         background: none #842484;
+    }
+
+    .finalizado11{
+        width: 200px;
+        height: 100px;
+    }
+
+    .movimiento11{
+        top: 4%;
+        right: 36%;
     }
 }
 @media screen and (max-width:500px ){
