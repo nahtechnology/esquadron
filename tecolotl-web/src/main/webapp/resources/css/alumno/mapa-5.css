@@ -66,6 +66,7 @@
     min-width: 100%;
     max-width: 100%;
     margin-top: 3px;
+    box-sizing: border-box;
 }
 .mensaje-alerta-5{
     color: red;

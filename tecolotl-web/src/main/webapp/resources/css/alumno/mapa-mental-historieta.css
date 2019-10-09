@@ -67,3 +67,8 @@ input[type="text"]{
     height: 200px;
     position: absolute;
 }
+@media screen and (max-width: 800px){
+    .opinion{
+        padding-left: 30px;
+    }
+}
