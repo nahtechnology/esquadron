@@ -83,6 +83,10 @@
     padding-bottom: 25px;
 }
 
+.transcrip-contenedor p{
+    width: 100%;
+}
+
 .remover{
     color: red;
 }

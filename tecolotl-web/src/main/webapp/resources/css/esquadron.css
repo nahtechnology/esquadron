@@ -151,15 +151,9 @@
   }
 }
 .titulo-cards{
-  /*color: #E84F0C;*/
-    /*color:white;*/
+
     color: var(--nsecundary-option-one);
-    /*border-top-left-radius:  3px;*/
-    /*border-top-right-radius: 3px;*/
-    /*border-radius: 15px;*/
-   border:1px solid var(--nsecundary-option-one);
-  /*border-color:var(--nsecundary-option-one) ;*/
-    /*background-color:var(--nsecundary-option-one);*/
+    border:1px solid var(--nsecundary-option-one);
     padding: 3px 4px;
 }
 
@@ -347,6 +341,7 @@ input[type=text],input[type=email],input[type=password],select,textarea{
  border-width: 2px !important;
   padding: 0 20px;
   border-color: var(--form-focul) !important;
+
 }
 
 input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select:focus,textarea:focus{

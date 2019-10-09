@@ -29,7 +29,7 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="graficas.css"/>
+        <h:outputStylesheet library="css" name="/profesor/dashboard-profesor.css"/>
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-uppercase lescuadron ">Welcome!</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -68,8 +68,8 @@
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
                 <h:form id="formulario-grupo" styleClass="uk-form-stacked">
                     <div class="uk-margin">
-                        <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar"/>
-                        <h:selectOneMenu value="#{dashboardProfesorControlador.cicloEscolarModelo}">
+                        <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar" styleClass="titulo-cards"/>
+                        <h:selectOneMenu value="#{dashboardProfesorControlador.cicloEscolarModelo}" styleClass="uk-select">
                             <div class="uk-form-controls">
                                 <f:selectItems value="#{dashboardProfesorControlador.cicloEscolarModeloLista}" id="ciclo-escolar-select"
                                                var="cicloEscolar"
