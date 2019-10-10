@@ -6,6 +6,7 @@ import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,6 +32,7 @@ public class DashboardProfesorControlador implements Serializable {
 
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
     private CicloEscolarModelo cicloEscolarModelo;
+    private int hashCode;
     private List<GrupoModelo> grupoModeloLista;
 
     @PostConstruct
@@ -38,6 +40,19 @@ public class DashboardProfesorControlador implements Serializable {
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(), true, profesorModelo.getProfesorModelo().getId());
         cicloEscolarModelo = cicloEscolarModeloLista.get(0);
+        grupoModeloLista = grupoSesionBean.busca(
+                cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
+                profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
+                profesorModelo.getProfesorModelo().getId());
+    }
+
+    public void seleccion() {
+        for (CicloEscolarModelo cicloEscolarModelo : cicloEscolarModeloLista) {
+            if (cicloEscolarModelo.hashCode() == hashCode) {
+                this.cicloEscolarModelo = cicloEscolarModelo;
+                break;
+            }
+        }
         grupoModeloLista = grupoSesionBean.busca(
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
@@ -66,5 +81,13 @@ public class DashboardProfesorControlador implements Serializable {
 
     public void setGrupoModeloLista(List<GrupoModelo> grupoModeloLista) {
         this.grupoModeloLista = grupoModeloLista;
+    }
+
+    public int getHashCode() {
+        return hashCode;
+    }
+
+    public void setHashCode(int hashCode) {
+        this.hashCode = hashCode;
     }
 }

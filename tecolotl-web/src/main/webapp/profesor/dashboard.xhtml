@@ -63,18 +63,24 @@
                 </div>
             </div>
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{empty dashboardProfesorControlador.cicloEscolarModeloLista}">
-                No hay ciclo escolares asignados o se encuentran fuera inabilitados.
+                No hay ciclo escolares asignados o se encuentran inabilitados.
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
                 <h:form id="formulario-grupo" styleClass="uk-form-horizontal">
                     <div class="uk-margin">
                         <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar:" styleClass="uk-form-label uk-text-bold "/>
                         <div class="uk-form-controls">
-                            <h:selectOneMenu value="#{dashboardProfesorControlador.cicloEscolarModelo}" styleClass="uk-select">
-                                    <f:selectItems value="#{dashboardProfesorControlador.cicloEscolarModeloLista}" id="ciclo-escolar-select"
-                                                   var="cicloEscolar"
-                                                   itemLabel="#{cicloEscolar.descripcion}"
-                                                   itemValue="#{cicloEscolar}"/>
+                            <h:selectOneMenu value="#{dashboardProfesorControlador.hashCode}"
+                                             id="ciclo-escolar-select"
+                                             styleClass="uk-select">
+                                <f:selectItems value="#{dashboardProfesorControlador.cicloEscolarModeloLista}"
+                                               var="cicloEscolar"
+                                               itemLabel="#{cicloEscolar.descripcion}"
+                                               itemValue="#{cicloEscolar.hashCode()}"/>
+                                <f:ajax event="change"
+                                        execute="@form"
+                                        listener="#{dashboardProfesorControlador.seleccion}"
+                                        render="formulario-grupo:fecha-fin formulario-grupo:fecha-inicio formulario-grupo:descripcion formulario-tabla:tabla-grupo"/>
                             </h:selectOneMenu>
                         </div>
                     </div>

@@ -48,6 +48,7 @@ public class ProfesorModelo extends PersonaModelo {
         setApellidoMaterno(profesorModelo.getApellidoMaterno());
         setNombre(profesorModelo.getNombre());
         setCorreoEletronico(profesorModelo.getCorreoEletronico());
+        CicloEscolarModelo cicloEscolarModelo;
     }
 
     public ProfesorModelo(Integer id) {
