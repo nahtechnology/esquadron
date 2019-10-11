@@ -64,7 +64,7 @@
 }
 
 .movimiento10{
-    top: 36%;
+    top: 47%;
     left: 32%;
     transform: rotate(15deg);
 }
@@ -72,6 +72,7 @@
 .finalizado10{
     width: 250px;
     height: 150px;
+    z-index: 3;
     position: absolute;
 }
 
@@ -79,7 +80,13 @@
  .caja-texto-10{
       margin-top: 10%;
  }
-
+    .finalizado10{
+        width: 200px;
+        height: 100px;
+    }
+    .movimiento10{
+        top: 26%;
+    }
 }
 @media screen and (max-width: 768px){
     .caja-texto-10{
@@ -87,5 +94,25 @@
     }
     .globo-10{
         width: 90%;
+    }
+
+    .finalizado10{
+        width: 200px;
+        height: 100px;
+    }
+    .movimiento10{
+        left: 2%;
+        top: 20%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .finalizado10{
+        width: 100px;
+        height: 50px;
+    }
+    .movimiento10{
+        top: 44%;
+        left: 6%;
     }
 }
