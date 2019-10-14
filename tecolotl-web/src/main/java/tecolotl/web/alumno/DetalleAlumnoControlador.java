@@ -21,11 +21,11 @@ public class DetalleAlumnoControlador {
     private AlumnoSesionBean alumnoSesionBean;
 
     @Inject
-    private TareaSesionBean tareaSesionBean;
+    private AlumnoControlador alumnoControlador;
 
     @PostConstruct
     public void init(){
-        detalleAlumnoModelo = alumnoSesionBean.detalle(1);
+        detalleAlumnoModelo = alumnoSesionBean.detalle(alumnoControlador.getAlumnoModelo().getId());
     }
 
     public DetalleAlumnoModelo getDetalleAlumnoModelo() {
