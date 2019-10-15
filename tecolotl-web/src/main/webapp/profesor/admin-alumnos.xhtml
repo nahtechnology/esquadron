@@ -8,13 +8,14 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion"  >
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <f:metadata>
+        <f:viewParam name="grupo" value="#{grupoAlumnoControlador.idGrupo}" required="true"/>
+        <f:viewAction action="#{grupoAlumnoControlador.buscaDetalleAlumnos}"/>
+    </f:metadata>
     <ui:define name="menu">
         <div class="">
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-                <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-                <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
-                <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
-                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+                <li ><h:link outcome="tablero" value="Home" styleClass="letra-color-subnav"/></li>
             </ul>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
@@ -22,176 +23,99 @@
         </div>
         <div id="menu" uk-offcanvas="overlay: true">
             <div class="uk-offcanvas-bar  ">
-
                 <button class="uk-offcanvas-close" type="button" uk-close=""/>
-
                 <ul class="uk-nav  nav-sub-offcanvas ">
-                    <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-                    <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
-                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
-                    <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+                    <li ><h:link outcome="tablero" value="Home" styleClass="letra-color-subnav"/></li>
                 </ul>
-
             </div>
         </div>
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
-
-        <!--<div class="uk-grid uk-grid-small">-->
-            <!--<div class="uk-width-auto "><h4 class="uk-text-capitalize">grupo A</h4></div>-->
-            <!--<div class="uk-width-expand uk-flex uk-flex-right">-->
-                <!--<div class="uk-width-expand uk-flex uk-flex-right">-->
-                    <!--<h:form id="formulario-nuevo-tabla-alumnos">-->
-                        <!--<ul class="uk-iconnav">-->
-                            <!--<li>-->
-                                <!--<h:commandLink pt:uk-toggle="target: #modal-nuevo-alumno">-->
-                                    <!--<span class="uk-icon-link uk-text-capitalize uk-text-primary" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: plus-circle; ratio: 1.5"></span>-->
-                                    <!--<f:ajax/>-->
-                                <!--</h:commandLink>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<h:commandLink  pt:uk-toggle="target: #modal" >-->
-                                    <!--<span class="uk-icon-link uk-text-capitalize uk-text-primary" title="CSV" data-uk-tooltip="" ></span>-->
-
-                                    <!--<f:ajax/>-->
-                                <!--</h:commandLink>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</h:form>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-
-
-
-
-
-
-
         <div class="uk-grid uk-grid-medium uk-margin-large-bottom" data-uk-grid="">
-
-            <!-- tabla alumnos -->
-                        <div class="uk-width-1-1@s uk-margin-large-top">
-                            <!--<h1 class="uk-margin-top uk-text-uppercase lescuadron">Student Administration</h1>-->
-                            <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
-                                <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
-                                <div class="uk-margin-small-left esquadron-paddin"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
-                            </div>
-
-                            <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
-                                <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
-                                <div class="uk-text-center"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
-                            </div>
-                            <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Alumnos de la clase</h5>
-                            <h:form id="formulario-tabla-alumno">
-                                <div class="uk-overflow-auto">
-                                    <h:dataTable id="tabla-alumno"
-                                                 value="#{grupoAlumnosControlador.collectionDataModel}"
-                                                 binding="#{grupoAlumnosControlador.htmlDataTable}"
-                                                 var="dato"
-                                                 first="0"
-                                                 rows="10"
-                                                 styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-small-top"
-                                                 headerClass="thPrimario uk-text-center"
-                                                 columnClasses="uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small"
-                                                 rowClasses="tdPrimario"
-                                                 footerClass="thPrimario uk-text-left">
-
-                                        <h:column >
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Alumnos</span></f:facet>
-                                            #{dato.nickname}
-                                        </h:column>
-
-                                        <h:column >
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Listen</span></f:facet>
-                                            #{dato.listen}
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Transcript</span></f:facet>
-                                            #{dato.trasncript}
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Read</span></f:facet>
-                                            #{dato.read}
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Grammar</span></f:facet>
-                                            #{dato.gramman}
-                                        </h:column>
-                                        <h:column >
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">quizzes</span></f:facet>
-                                            #{dato.quizzes}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">progreso</span></f:facet>
-                                            <div>
-                                                <span class="uk-text-small"><small>%60</small></span>
-                                                <progress class="uk-progress tabla" value="60" max="100"></progress>
-                                            </div>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>
-
-                                            <div class="uk-inline  ">
-                                                <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                                <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
-                                                    <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                                                        <li>
-                                                            <h:link outcome="detalle-alumno">
-                                                                <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                                <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
-                                                            </h:link>
-                                                        </li>
-                                                        <li>
-                                                            <h:commandLink   pt:uk-toggle="target: #modal-editar-alumno">
-                                                                <h:outputText pt:uk-icon="icon: cog" styleClass="uk-margin-small-right uk-icon" />
-                                                                <span class="uk-text-middle"><h:outputText value="Editar"/></span>
-                                                                <f:ajax />
-                                                            </h:commandLink>
-                                                        </li>
-                                                        <li>
-                                                            <h:commandLink  pt:uk-toggle="target: #modal-eliminar">
-                                                                <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                                <span class="uk-text-middle"><h:outputText value="Eliminar"/></span>
-                                                                <f:ajax/>
-                                                            </h:commandLink>
-                                                        </li>
-                                                        <li>
-                                                            <h:commandLink  pt:uk-toggle="target: #modal-descarga">
-                                                                <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon" />
-                                                                <span class="uk-text-middle"><h:outputText value="Reporte"/></span>
-                                                                <f:ajax/>
-                                                            </h:commandLink>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </h:column>
-
-                                        <f:facet name="footer">
-                                            <pa:pie-tabla htmlDataTable="#{grupoAlumnosControlador.htmlDataTable}"/>
-                                        </f:facet>
-                                    </h:dataTable>
+        <!-- tabla alumnos -->
+            <div class="uk-width-1-1@s uk-margin-large-top">
+                <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
+                    <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
+                    <div class="uk-margin-small-left esquadron-paddin"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
+                </div>
+                <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
+                    <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
+                    <div class="uk-text-center"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
+                </div>
+                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Alumnos de la clase</h5>
+                <h:form id="formulario-tabla-alumno">
+                    <div class="uk-overflow-auto">
+                        <h:dataTable id="tabla-alumno"
+                                     value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
+                                     var="tarea">
+                            <h:column>
+                                <f:facet name="header">id tarea</f:facet>
+                                #{tarea.idTarea}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">actividad</f:facet>
+                                #{tarea.actividad}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">id alumno</f:facet>
+                                #{tarea.idAlumno}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">nombre</f:facet>
+                                #{tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoPaterno)}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">total tarea</f:facet>
+                                #{tarea.totalTarea}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">total respuesta</f:facet>
+                                #{tarea.totalRespuesta}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">progreso</f:facet>
+                                <div>
+                                    <span class="uk-text-small"><small>%60</small></span>
+                                    <progress class="uk-progress tabla" value="60" max="100"></progress>
                                 </div>
-                            </h:form>
-                        </div>
-                        <div class="uk-width-1-1@s uk-margin-small-top">
-                            <div class="uk-grid uk-grid-small">
-                                <div class="uk-width-auto ">
-                                    <f:ajax render="formulario-tabla-alumno:tabla-alumno formulario-botones-alumno">
-                                        <h:form id="formulario-botones-alumno" styleClass="">
-                                            <pa:boton-minimizado-profesor htmlDataTable="#{grupoAlumnosControlador.htmlDataTable}"/>
-                                        </h:form>
-                                    </f:ajax>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>
 
+                                <div class="uk-inline  ">
+                                    <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                                    <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
+                                        <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                            <li>
+                                                <h:link outcome="detalle-alumno">
+                                                    <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                    <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
+                                                </h:link>
+                                            </li>
+                                            <li>
+                                                <h:commandLink   pt:uk-toggle="target: #modal-editar-alumno">
+                                                    <h:outputText pt:uk-icon="icon: cog" styleClass="uk-margin-small-right uk-icon" />
+                                                    <span class="uk-text-middle"><h:outputText value="Editar"/></span>
+                                                    <f:ajax />
+                                                </h:commandLink>
+                                            </li>
+                                            <li>
+                                                <h:commandLink  pt:uk-toggle="target: #modal-descarga">
+                                                    <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon" />
+                                                    <span class="uk-text-middle"><h:outputText value="Reporte"/></span>
+                                                    <f:ajax/>
+                                                </h:commandLink>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-
-            <!-- /FIN colonias -->
+                            </h:column>
+                        </h:dataTable>
+                    </div>
+                </h:form>
+            </div>
         </div>
-
         <!--  Modal nuevo alumno  -->
         <h:panelGroup layout="block" id="modal-nuevo-alumno" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
@@ -202,7 +126,6 @@
                     </div>
                     <div class="barra-modal"></div>
                     <div class="uk-modal-body">
-
                         <div class="uk-margin">
                             <div class="uk-grid-small uk-grid" uk-grid="">
                                 <div class="uk-width-1-1@s uk-width-1-5@m ">
@@ -358,11 +281,9 @@
 
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno') }" execute="@form" render="@form"/>
                         </h:commandButton>
-
                     </div>
                 </h:form>
             </div>
-
         </h:panelGroup>
         <!--  Modal editar alumno -->
         <h:panelGroup layout="block" id="modal-editar-alumno" styleClass="uk-modal-container" pt:uk-modal="">
@@ -376,7 +297,6 @@
                     </div>
                     <div class="barra-modal"></div>
                     <div class="uk-modal-body">
-
                         <div class="uk-margin">
                             <div class="uk-grid-small uk-grid" uk-grid="">
                                 <div class="uk-width-1-1@s uk-width-1-5@m ">
@@ -483,7 +403,6 @@
                                         <f:validateRequired/>
                                     </h:selectOneMenu>
                                 </div>
-
                                 <div class="uk-width-1-1@s uk-width-1-5@m uk-first-column">
                                     <h:outputLabel for="select-grupo" styleClass=" uk-text-capitalize uk-form-label" value="grupo"/>
                                     <h:selectOneMenu styleClass="uk-select"
@@ -514,13 +433,10 @@
 
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEditar') }" execute="@form" render="@form"/>
                         </h:commandButton>
-
                     </div>
                 </h:form>
             </div>
-
         </h:panelGroup>
-
 
         <!--  Modal Eliminar -->
         <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
@@ -557,27 +473,16 @@
                 <div class="barra-modal"></div>
                 <h:form styleClass="uk-form-stacked">
                     <div class="uk-modal-body">
-
-
-
-                            <h:outputLabel for="select-descarga" styleClass="  uk-form-label" value="Selecciona Descarga"/>
-
-                                <h:selectOneRadio id="select-descarga" StyleClass="uk-checkbox" type="checkbox"  >
-                                    <f:selectItem styleClass="checked" itemValue = "1" itemLabel = "Reporte Cualitativo" />
-                                    <f:selectItem itemValue = "2" itemLabel = "Reporte Cuantitativo" />
-                                </h:selectOneRadio>
-
-
-
-
-
+                        <h:outputLabel for="select-descarga" styleClass="  uk-form-label" value="Selecciona Descarga"/>
+                        <h:selectOneRadio id="select-descarga" StyleClass="uk-checkbox" type="checkbox"  >
+                            <f:selectItem styleClass="checked" itemValue = "1" itemLabel = "Reporte Cualitativo" />
+                            <f:selectItem itemValue = "2" itemLabel = "Reporte Cuantitativo" />
+                        </h:selectOneRadio>
                         <ui:fragment rendered="#{facesContext.validationFailed}">
                             <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
                                 <h:messages styleClass="uk-list"/>
                             </h:panelGroup>
                         </ui:fragment>
-
-
                     </div>
                     <div class="uk-modal-footer uk-text-right">
                         <button class="boton-escuadron-base-secundary uk-modal-close" type="button">Cancel</button>
@@ -586,18 +491,10 @@
                         </h:commandButton>
                     </div>
                 </h:form>
-
             </div>
-
         </h:panelGroup>
         <!--  FIN Modal Bloqueo -->
-
-
-
-
-
         <script type="text/javascript">
-
             var modalEditar;
             var modalDescarga;
             var modalAgregarAlumno;
@@ -620,9 +517,7 @@
                 UIkit.util.on('#modal-eliminar', 'show', function () {
                     modalEliminar.querySelector('.uk-modal-body').click();
                 });
-
             });
-
 
             function cierraModal(data,modal) {
                 if (data.status === "success"){
@@ -651,13 +546,8 @@
 
                     }
                 }
-
-
             }
-
         </script>
-
-
     </ui:define>
 </ui:composition>
 

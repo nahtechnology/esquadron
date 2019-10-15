@@ -26,9 +26,13 @@
             <from-outcome>perfil</from-outcome>
             <to-view-id>/profesor/dashboard.xhtml</to-view-id>
         </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profesor/admin-alumnos.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>admin-alumno</from-outcome>
-            <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+            <from-outcome>tablero</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     

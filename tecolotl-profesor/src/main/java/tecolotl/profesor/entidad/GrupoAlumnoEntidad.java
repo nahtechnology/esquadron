@@ -9,7 +9,11 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "grupo_alumno", schema = "profesor")
 @NamedQueries({
-    @NamedQuery(name = "GrupoAlumnoEntidad.busca", query = "SELECT ga FROM GrupoAlumnoEntidad ga")
+    @NamedQuery(name = "GrupoAlumnoEntidad.busca", query = "SELECT ga FROM GrupoAlumnoEntidad ga"),
+    @NamedQuery(
+        name = "GrupoAlumnoEntidad.buscaAlumnosPorGrupo",
+        query = "SELECT new AlumnoEntidad(a.id, a.nombre, a.apellidoPaterno, a.apellidoMaterno) FROM GrupoAlumnoEntidad ga " +
+                "JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo")
 })
 public class GrupoAlumnoEntidad {
 

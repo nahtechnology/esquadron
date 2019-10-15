@@ -1,9 +1,12 @@
 package tecolotl.alumno.sesion;
 
+import org.hibernate.annotations.GenerationTime;
 import tecolotl.alumno.entidad.vista.TareaAlumnoVistaEntidad;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.modelo.DetalleAlumnoModelo;
+import tecolotl.nucleo.modelo.PersonaModelo;
+import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
 import java.io.Serializable;
 import java.util.List;

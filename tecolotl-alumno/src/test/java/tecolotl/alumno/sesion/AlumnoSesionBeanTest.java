@@ -112,6 +112,8 @@ public class AlumnoSesionBeanTest {
         Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
     }
 
+
+
     @Test
     public void detalle() {
         DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(1);

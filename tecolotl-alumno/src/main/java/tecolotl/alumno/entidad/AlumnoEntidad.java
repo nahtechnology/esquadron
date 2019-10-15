@@ -11,16 +11,15 @@ import java.util.*;
 @Table(name = "alumno", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", schema = "alumno", sequenceName = "alumno.alumno_seq")
 @NamedQueries({
-        @NamedQuery(
-                name = "AlumnoEntidad.busca",
-                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle"),
-        @NamedQuery(
-                name = "AlumnoEntidad.actualizaNivel",
-                query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
-        @NamedQuery(
-                name = "AlumnoEntidad.buscaId",
-                query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno"
-        )
+    @NamedQuery(
+        name = "AlumnoEntidad.busca",
+        query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle"),
+    @NamedQuery(
+        name = "AlumnoEntidad.actualizaNivel",
+        query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
+    @NamedQuery(
+        name = "AlumnoEntidad.buscaId",
+        query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno")
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
@@ -30,12 +29,18 @@ public class AlumnoEntidad extends PersonaEntidad {
     private String correoPadreFamilia;
     private byte[] contraseniaPadreFamilia;
 
-
     public AlumnoEntidad() {
     }
 
     public AlumnoEntidad(Integer id) {
         this.id = id;
+    }
+
+    public AlumnoEntidad(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno) {
+        setId(id);
+        setNombre(nombre);
+        setApellidoPaterno(apellidoPaterno);
+        setApellidoMaterno(apellidoMaterno);
     }
 
     @Id

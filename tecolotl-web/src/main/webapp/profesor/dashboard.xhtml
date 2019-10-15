@@ -135,11 +135,11 @@
                                 <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                         <li>
-                                            <h:commandLink outcome="admin-alumno" styleClass="uk-text-primary" >
+                                            <h:link outcome="alumnos" styleClass="uk-text-primary" >
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                 <f:param name="grupo" value="#{grupo.id}"/>
                                                 <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
-                                            </h:commandLink>
+                                            </h:link>
                                         </li>
                                         <ui:remove>
                                         <li>
