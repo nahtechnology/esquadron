@@ -448,8 +448,9 @@ iframe {
     transform: rotate(15deg);
 }
 
-.movimiento1{
-    left: 79%;
+.mov1{
+    left: 70%;
+    top: 27%;
     transform: rotate(15deg);
 }
 
@@ -704,7 +705,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     height: 300px;
 }
 
-.finalizado1{
+.fin1{
     width: 200px;
     height: 100px;
     position: absolute;
@@ -754,7 +755,7 @@ textarea::-webkit-scrollbar-thumb:hover {
         background-attachment: fixed;
     }
 
-    .finalizado1{
+    .fin1{
 
         width: 180px;
         height: 90px;
@@ -771,9 +772,9 @@ textarea::-webkit-scrollbar-thumb:hover {
         position: absolute;
     }
 
-    .movimiento1{
-        left: 56%;
-        top: 52%;
+    .mov1{
+        left: 70%;
+        top: 17%;
     }
 
     .finalizado2{
@@ -807,7 +808,7 @@ textarea::-webkit-scrollbar-thumb:hover {
         background-attachment: fixed;
     }
 
-    .finalizado1{
+    .fin1{
 
         width: 180px;
         height: 90px;
@@ -824,9 +825,9 @@ textarea::-webkit-scrollbar-thumb:hover {
         position: absolute;
     }
 
-    .movimiento1{
-        left: 77%;
-        top: 37%;
+    .mov1{
+        left: 69%;
+        top: 19%;
     }
 
     .finalizado2{
@@ -862,10 +863,10 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 @media screen and (max-width: 500px) {
 
-    .finalizado1{
+    .fin1{
 
-        width: 100px;
-        height: 50px;
+        width: 150px;
+        height: 70px;
         position: absolute;
     }
 
@@ -880,9 +881,9 @@ textarea::-webkit-scrollbar-thumb:hover {
         position: absolute;
     }
 
-    .movimiento1{
-        left: -4%;
-        top: 61%;
+    .mov1{
+        left: 43%;
+        top: 31%;
     }
 
     .finalizado2{
