@@ -161,7 +161,7 @@ textarea {
     }
 }
 
-@media screen and (max-width: 768px){
+@media screen and (max-width: 768px) {
     .finalizado13{
         width: 200px;
         height: 100px;
