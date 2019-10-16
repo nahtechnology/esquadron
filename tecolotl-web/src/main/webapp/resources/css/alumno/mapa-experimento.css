@@ -109,3 +109,11 @@ body{
     height: 200px;
     position: absolute;
 }
+
+@media screen and(max-width: 1024px) {
+    .titulo-mapa-7{
+        font-size: 19px;
+        top: -10%;
+        left: 2%;
+    }
+}
