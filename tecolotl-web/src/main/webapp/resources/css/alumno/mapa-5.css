@@ -118,6 +118,11 @@
     .contenido-5{
         margin-top:300px;
     }
+
+    .movimiento5{
+        top: 0;
+        left: 31%;
+    }
 }
 @media screen and (max-width: 600px){
     .imagen-nube-5{
@@ -131,5 +136,14 @@
     }
     .contenido-5{
         margin-top:300px;
+    }
+
+    .finalizado5{
+        width: 200px;
+        height: 100px;
+    }
+    .movimiento5{
+        top: 5%;
+        left: 19%;
     }
 }

@@ -454,8 +454,8 @@ iframe {
     transform: rotate(15deg);
 }
 
-.movimiento2{
-    left: 43%;
+.mov2{
+    left: 0;
     transform: rotate(15deg);
 }
 
@@ -741,7 +741,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 
-.finalizado2{
+.fin2{
     width: 300px;
     height: 200px;
     position: absolute;
@@ -777,13 +777,13 @@ textarea::-webkit-scrollbar-thumb:hover {
         top: 17%;
     }
 
-    .finalizado2{
+    .fin2{
         width: 200px;
         height: 100px;
         position: absolute;
     }
 
-    .movimiento2{
+    .mov2{
         left: 46%;
         top: 60%;
         transform: rotate(15deg);
@@ -830,13 +830,13 @@ textarea::-webkit-scrollbar-thumb:hover {
         top: 19%;
     }
 
-    .finalizado2{
+    .fin2{
         width: 190px;
         height: 90px;
         position: absolute;
     }
 
-    .movimiento2{
+    .mov2{
         left: 36%;
         top: 75%;
         transform: rotate(15deg);
@@ -886,13 +886,13 @@ textarea::-webkit-scrollbar-thumb:hover {
         top: 31%;
     }
 
-    .finalizado2{
+    .fin2{
         width: 120px;
         height: 60px;
         position: absolute;
     }
 
-    .movimiento2{
+    .mov2{
         left: 36%;
         top: 102px;
         transform: rotate(15deg);
