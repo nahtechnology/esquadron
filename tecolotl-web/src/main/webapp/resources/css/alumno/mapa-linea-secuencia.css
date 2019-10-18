@@ -71,10 +71,10 @@ input[type="text"]{
     flex-wrap: nowrap;
 }
 .img-hijo3{
-    width: 80%;
+    width: 100%;
     position: absolute;
-    top:-15%;
-    left: -10%;
+    top:-11%;
+    left: -20%;
 }
 .img-hijo3>img{
     transform: rotatey(180deg);
@@ -104,6 +104,12 @@ input[type="text"]{
     left: 45%;
 }
 
+.boton-gral12{
+    position: relative;
+    bottom: -10px;
+    left: 90%;
+}
+
 .mensaje-alerta-12{
     display: block;
     color: red;
@@ -112,14 +118,14 @@ input[type="text"]{
 }
 
 .movimiento12{
-    top: 23%;
-    left: 27%;
+    top: 5%;
+    left: 50%;
     transform: rotate(15deg);
 }
 
 .finalizado12{
-    width: 300px;
-    height: 200px;
+    width: 280px;
+    height: 180px;
     z-index: 6;
     position: absolute;
 }
@@ -137,19 +143,23 @@ input[type="text"]{
     .cuadro-hijo4{
         height: 330px;
     }
-
-}
-
-@media screen and (max-width: 1024px){
     .finalizado12{
         width: 200px;
         height: 100px;
     }
 
     .movimiento12{
-        top: 1%;
+        top: 10%;
     }
+
+    .movimiento12{
+        width: 230px;
+        height: 130px;
+    }
+
 }
+
+
 
 @media screen and (min-width: 960px) {
     .cuadro-hijo1{
@@ -178,16 +188,6 @@ input[type="text"]{
     }
 }
 
-@media screen and (max-width: 768px){
-    .finalizado12{
-        width: 250px;
-        height: 150px;
-    }
-
-    .movimiento12{
-        top: 7%;
-    }
-}
 
 @media screen and (min-width: 768px) {
     .cuadro-hijo1{
@@ -205,6 +205,28 @@ input[type="text"]{
 
     .img-whom{
         width: 65%;
+        top: 45%;
+    }
+
+    .finalizado12{
+        width: 250px;
+        height: 150px;
+    }
+
+    .movimiento12{
+        top: 8%;
+        left: 50%;
+    }
+    .boton-gral12{
+        bottom: -10px;
+        left: calc(50% - (110px/2));
+    }
+}
+
+@media screen and  (max-width: 768px){
+    .movimiento12{
+        top: 5%;
+        left: 10%;
     }
 }
 
@@ -219,7 +241,7 @@ input[type="text"]{
         height: 650px;
     }
     .cuadro-hijo4{
-        height: 250px;
+        height: 280px;
     }
 }
 
@@ -246,8 +268,12 @@ input[type="text"]{
         height: 50px;
     }
     .movimiento12{
-        top: 10%;
-        left: 27%;
+        top: 4%;
+        left: 10%;
+    }
+    .boton-gral12{
+        bottom: -5px;
+        left: 35%;
     }
 
 }

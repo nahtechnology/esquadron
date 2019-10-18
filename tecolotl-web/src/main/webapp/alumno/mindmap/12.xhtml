@@ -176,11 +176,11 @@
                                     <h:message for="diezd" styleClass="mensaje-alerta-12"/>
                                 </div>
                             </div>
-                            <h:commandButton id="boton-enviar-mapa-mental-movil"
+                            <h:commandButton id="boton-enviar-mapa-mental"
                                              value="#{boton['submit']}"
                                              rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              action="#{mapaMentalControlador.respondeMapaMental}"
-                                             styleClass="boton-enviar boton-gral7"/>
+                                             styleClass="boton-enviar boton-gral12"/>
                         </h:form>
                     </div>
                     <div class="cuadro-padre2 ">
@@ -305,6 +305,11 @@
                                     <h:message for="diez" styleClass=""/>
                                 </div>
                             </div>
+                            <h:commandButton id="boton-enviar-mapa-mental-movil"
+                                             value="#{boton['submit']}"
+                                             rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
+                                             action="#{mapaMentalControlador.respondeMapaMental}"
+                                             styleClass="boton-enviar boton-gral12"/>
                         </h:form>
                     </div>
                 </div>

@@ -94,6 +94,12 @@
     left: 45%;
 }
 
+.boton-gral11{
+    position: relative;
+    bottom: -67px;
+    left: calc(50% - 55px);
+}
+
 .movimiento11{
     transform: rotate(15deg);
     right: 38%;

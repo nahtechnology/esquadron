@@ -47,9 +47,9 @@ input[type="text"]{
 }
 
 .boton-gral6{
-    position: absolute;
-    bottom: -55%;
-    left: 50%;
+    position: relative;
+    bottom: -80px;
+    margin: auto;
 }
 
 .opinion{
@@ -75,19 +75,26 @@ input[type="text"]{
     }
     .movimiento6{
         left: 13%;
-        top: 16%;
+        top: 17%;
+    }
+    .subtitulo-6{
+        margin-top: -25px;
     }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 450px) {
     .finalizado6{
         width: 100px;
         height: 50px;
     }
 
     .movimiento6{
-        left: 10%;
-        top: 26%;
+        left: 5%;
+        top: 30%;
+    }
+
+    .subtitulo-6{
+        margin-top: -25px;
     }
 }
 @media screen and (max-width: 800px){
