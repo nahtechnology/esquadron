@@ -800,6 +800,12 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 }
 
+@media screen and (max-width: 1024px){
+    .mensaje1{
+        right: 34%;
+    }
+}
+
 @media screen and (max-width: 768px){
     body{
         background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
@@ -853,15 +859,13 @@ textarea::-webkit-scrollbar-thumb:hover {
         left: 43%;
     }
 
-    /*.mensaje1{*/
-    /*    padding: 20px 30px 0 35px;*/
-    /*    position: relative;*/
-    /*    left: 35%;*/
-    /*}*/
+    .mensaje1{
+        left: 21%;
+    }
 
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 450px) {
 
     .fin1{
 
@@ -908,18 +912,10 @@ textarea::-webkit-scrollbar-thumb:hover {
         bottom: -70%;
         left: 35%;
     }
-
-    /*.realizado{*/
-    /*    width: 90px;*/
-    /*    height: 65px;*/
-    /*    font-size: 10px;*/
-    /*}*/
-
-    /*.mensaje1{*/
-    /*    padding: 20px 30px 0 35px;*/
-    /*    position: relative;*/
-    /*    left: 15%;*/
-    /*}*/
+    .mensaje1{
+        left: -7%;
+        padding: 20px 100px 0px 100px;
+    }
 }
 
 
