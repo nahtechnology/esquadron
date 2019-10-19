@@ -39,6 +39,10 @@
     border-radius: inherit; /* !importanté */
 }
 
+.tecolotl-card{
+    height: 50px;
+}
+
 li .A1{
     background-color: var(--psecundary-option-three) !important;
 }
