@@ -13,7 +13,7 @@ import java.util.StringJoiner;
     @NamedQuery(
         name = "GrupoAlumnoEntidad.buscaAlumnosPorGrupo",
         query = "SELECT new AlumnoEntidad(a.id, a.nombre, a.apellidoPaterno, a.apellidoMaterno) FROM GrupoAlumnoEntidad ga " +
-                "JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo")
+                "LEFT JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo")
 })
 public class GrupoAlumnoEntidad {
 

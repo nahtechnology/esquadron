@@ -51,7 +51,8 @@
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
-                                     var="tarea">
+                                     var="tarea"
+                                      styleClass="tabla-general"  >
                             <h:column>
                                 <f:facet name="header">id tarea</f:facet>
                                 #{tarea.idTarea}
@@ -117,6 +118,23 @@
                         </h:dataTable>
                     </div>
                 </h:form>
+                <div>
+                    <table id="tabla-detalle">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Mapa Mental</th>
+                            <th>Completar</th>
+                            <th>Gramatica</th>
+                            <th>Oraciones</th>
+                            <th>Activar Relacionar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
         <!--  Modal nuevo alumno  -->
@@ -350,6 +368,8 @@
         </script>
         <h:outputScript library="js" name="nah.js"/>
         <h:outputScript library="js" name="profesor/admin-alumnos.js"/>
+        <h:outputScript library="js" name="/profesor/tabla-alumno.js"/>
+
     </ui:define>
 </ui:composition>
 

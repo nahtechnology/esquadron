@@ -12,13 +12,13 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 function cargaFilas(tbody) {
 }
 
-function Alumno(id, nombre, totalTarea, totalRespuesta, nombreActividad) {
-    this.id = id;
-    this.nombre = nombre;
-    this.totalTarea = totalTarea;
-    this.totalRespuesta = totalRespuesta;
-    this.nombreActividad = nombreActividad
-}
+// function Alumno(id, nombre, totalTarea, totalRespuesta, nombreActividad) {
+//     this.id = id;
+//     this.nombre = nombre;
+//     this.totalTarea = totalTarea;
+//     this.totalRespuesta = totalRespuesta;
+//     this.nombreActividad = nombreActividad
+// }
 
 function seleccionContrasenia(data) {
     if (typeof data === 'undefined') {
