@@ -16,7 +16,8 @@
     width: 90%;
     height: auto;
     margin: auto;
-    background: url("#{resource['img/alumno/hamburguesa.svg']}") no-repeat #0f7ae5 center center/contain;
+    background: url("#{resource['img/alumno/hamburguesa.svg']}") no-repeat #0f7ae5 center center/100% 100%;
+    opacity: 1;
 }
 
 .posicion-relativa{
@@ -82,9 +83,9 @@
 }
 
 .boton-gral8{
-    position: absolute;
-    bottom: -30px;
-    left: 45%;
+    position: relative;
+    bottom: -40px;
+    margin: auto;
 }
 
 .movimiento8{
@@ -136,7 +137,13 @@
     }
 
     .movimiento8{
-        top: 10%;
-        left: 0;
+        top: 10px;
+        left: 10px;
+    }
+    .boton-gral8{
+        bottom: -45px;
+    }
+    .uk-textarea:disabled{
+        opacity: .9;
     }
 }

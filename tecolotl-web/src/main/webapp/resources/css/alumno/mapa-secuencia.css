@@ -76,6 +76,7 @@
 }
 .titulo-mapa-11{
     color: mediumpurple;
+    margin-bottom: 76px;
     font-weight: bold;
     font-size: 30px;
 }
@@ -119,6 +120,14 @@
         margin-right: 20px;
     }
 }
+
+@media screen and (max-width: 1024px) {
+    .finalizado11{
+        width: 250px;
+        height: 150px;
+    }
+}
+
 @media  screen and (max-width: 770px){
     .area-texto{
         background: none;
@@ -133,6 +142,11 @@
     }
     .caja1{
         background: none #842484;
+    }
+    .titulo-mapa-11{
+        position: relative;
+        top:-32%;
+        left: 5%;
     }
 
     .finalizado11{
@@ -149,7 +163,12 @@
     .caja1{
         margin-top: 250px;
     }
+    .finalizado11{
+        width: 100px;
+        height: 50px;
+    }
 }
+
 .imagen-secuencia-small{
     width: 55%;
     position: absolute;
