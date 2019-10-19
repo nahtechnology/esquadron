@@ -1,0 +1,9 @@
+#formulario-modal-nuevo-profesor div:nth-child(7) {
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px 40px;
+}
+
+.seleccionado {
+    background-color: #2AABE2;
+}

@@ -19,7 +19,11 @@ import java.util.*;
         query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
     @NamedQuery(
         name = "AlumnoEntidad.buscaId",
-        query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno")
+        query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno"),
+    @NamedQuery(
+        name = "AlumnoEntidad.existeApodo",
+        query = "SELECT count(a.id) FROM AlumnoEntidad a WHERE a.apodo = :apodo"
+    )
 })
 public class AlumnoEntidad extends PersonaEntidad {
 

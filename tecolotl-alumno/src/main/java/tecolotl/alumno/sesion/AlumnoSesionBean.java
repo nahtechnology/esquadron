@@ -1,25 +1,21 @@
 package tecolotl.alumno.sesion;
 
-import org.hibernate.annotations.GenerationTime;
+import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.vista.TareaAlumnoVistaEntidad;
 import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.modelo.DetalleAlumnoModelo;
-import tecolotl.nucleo.modelo.PersonaModelo;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
-
-import java.io.Serializable;
-import java.util.List;
-import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.io.Serializable;
+import java.util.List;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * Session Bean implementation class AlumnoSesionBean
@@ -55,6 +51,13 @@ public class AlumnoSesionBean implements Serializable {
         AlumnoEntidad alumnoEntidad = typedQuery.getSingleResult();
         logger.finer(alumnoEntidad.toString());
         return new AlumnoModelo(alumnoEntidad);
+    }
+
+    public boolean existe(@NotNull @Size(min = 4, max = 40) String apodo) {
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.existeApodo", Long.class);
+        typedQuery.setParameter("apodo", apodo);
+        Long encontrados = typedQuery.getSingleResult();
+        return encontrados.intValue() == 1;
     }
 
     /**

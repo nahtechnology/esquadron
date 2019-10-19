@@ -1,8 +1,8 @@
 package tecolotl.profesor.sesion;
 
 import tecolotl.alumno.entidad.AlumnoEntidad;
+import tecolotl.alumno.entidad.NivelLenguajeEntidad;
 import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.profesor.entidad.GrupoAlumnoEntidad;
 import tecolotl.profesor.entidad.GrupoAlumnoEntidadPK;
 import tecolotl.profesor.entidad.GrupoEntidad;
@@ -10,6 +10,7 @@ import tecolotl.profesor.entidad.TareaAlumnoGrupoEntidad;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -19,6 +20,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.Root;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;

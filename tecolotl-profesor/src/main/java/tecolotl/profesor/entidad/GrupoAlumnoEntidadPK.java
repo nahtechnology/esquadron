@@ -15,6 +15,14 @@ public class GrupoAlumnoEntidadPK implements Serializable {
     private GrupoEntidad grupoEntidad;
     private AlumnoEntidad alumnoEntidad;
 
+    public GrupoAlumnoEntidadPK() {
+    }
+
+    public GrupoAlumnoEntidadPK(GrupoEntidad grupoEntidad, AlumnoEntidad alumnoEntidad) {
+        this.grupoEntidad = grupoEntidad;
+        this.alumnoEntidad = alumnoEntidad;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     @JoinColumn(name = "id_grupo")
@@ -26,7 +34,7 @@ public class GrupoAlumnoEntidadPK implements Serializable {
         this.grupoEntidad = grupoEntidad;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @NotNull
     @JoinColumn(name = "id_alumno")
     public AlumnoEntidad getAlumnoEntidad() {

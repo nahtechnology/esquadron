@@ -36,6 +36,7 @@ import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEnti
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
+import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.modelo.TemaModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
@@ -74,9 +75,12 @@ import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
+import tecolotl.profesor.scope.AlumnoGrupoScope;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
+import java.nio.charset.StandardCharsets;
+import java.util.Date;
 import java.util.List;
 
 @RunWith(Arquillian.class)
@@ -142,6 +146,7 @@ public class GrupoAlumnoSesionBeanTest {
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
                 .addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(AlumnoGrupoScope.class.getPackage())
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
@@ -151,6 +156,9 @@ public class GrupoAlumnoSesionBeanTest {
 
     @Inject
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
+
+    @Inject
+    private AlumnoGrupoScope alumnoGrupoScope;
 
     @Test
     public void busca(){
@@ -190,6 +198,19 @@ public class GrupoAlumnoSesionBeanTest {
             Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
             Assert.assertNull(alumnoModelo.getNacimiento());
         });
+    }
+
+    @Test public void insertaAlumo() {
+        AlumnoModelo alumnoModelo = new AlumnoModelo();
+        alumnoModelo.setApodo("antonio");
+        alumnoModelo.setNombre("Antonio");
+        alumnoModelo.setApellidoPaterno("Alonso");
+        alumnoModelo.setApellidoMaterno("Valerdi");
+        alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo((short)1));
+        alumnoModelo.setNacimiento(new Date());
+        alumnoModelo.setContrasenia("1:1,2:2".getBytes(StandardCharsets.UTF_8));
+        alumnoGrupoScope.inserta(alumnoModelo, 1);
+        Assert.assertNotNull(alumnoModelo.getId());
     }
 
     @Test

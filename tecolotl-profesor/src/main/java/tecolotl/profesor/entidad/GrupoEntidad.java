@@ -32,7 +32,11 @@ import java.util.StringJoiner;
         query = "SELECT g FROM GrupoEntidad g WHERE g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio AND " +
                 "g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin AND g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND " +
                 "g.profesorEntidad.id = :idProfesor"
-    )
+    ),
+    @NamedQuery(
+        name = "GrupoEntidad.buscaAlumnoApodo",
+        query = "SELECT count(a.id) FROM GrupoEntidad g JOIN g.grupoAlumnoEntidad ga JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a " +
+                "WHERE g.profesorEntidad.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND a.apodo = :apodo")
 })
 public class GrupoEntidad {
 

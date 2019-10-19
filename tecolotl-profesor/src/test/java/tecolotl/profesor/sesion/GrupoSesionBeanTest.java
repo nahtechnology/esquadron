@@ -16,6 +16,7 @@ import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
@@ -28,6 +29,7 @@ import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
+import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.modelo.hablar.HablarModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
@@ -129,6 +131,7 @@ public class GrupoSesionBeanTest {
                 .addPackage(LoggerProducer.class.getPackage())
                 .addPackage(HablarEntidad.class.getPackage())
                 .addPackage(HablarModelo.class.getPackage())
+                .addPackage(TareaCompletarModelo.class.getPackage()).addPackage(TareaCompletarEntidad.class.getPackage())
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
@@ -188,6 +191,11 @@ public class GrupoSesionBeanTest {
         grupoModelo.setGrado((short)2);
         grupoModelo.setGrupo('C');
         grupoSesionBean.actualiza(grupoModelo);
+    }
+
+    @Test
+    public void existeAlumno() {
+        Assert.assertTrue(grupoSesionBean.existeAlumno("21DBA0014J", "antonio"));
     }
 
     @Test

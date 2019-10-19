@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -86,6 +87,13 @@ public class GrupoSesionBean {
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
         logger.finer("Numero de grupos encontrados: ".concat(String.valueOf(grupoEntidadLista.size())));
         return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
+    }
+
+    public boolean existeAlumno(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
+                                @NotNull @Size(min = 4, max = 40) String apodo) {
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaAlumnoApodo", Long.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("apodo", apodo);
+        return typedQuery.getSingleResult().intValue() == 1;
     }
 
     /**

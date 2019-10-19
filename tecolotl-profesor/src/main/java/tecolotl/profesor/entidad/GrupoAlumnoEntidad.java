@@ -19,6 +19,13 @@ public class GrupoAlumnoEntidad {
 
     private GrupoAlumnoEntidadPK grupoAlumnoEntidadPK;
 
+    public GrupoAlumnoEntidad() {
+    }
+
+    public GrupoAlumnoEntidad(GrupoAlumnoEntidadPK grupoAlumnoEntidadPK) {
+        this.grupoAlumnoEntidadPK = grupoAlumnoEntidadPK;
+    }
+
     @EmbeddedId
     public GrupoAlumnoEntidadPK getGrupoAlumnoEntidadPK() {
         return grupoAlumnoEntidadPK;

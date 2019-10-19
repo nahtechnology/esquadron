@@ -60,7 +60,7 @@ public class ImageneGlosarioCache {
             }
         }
     }
-
+/*
     @Schedules({
             @Schedule(year = "*", month = "*", dayOfMonth = "*", dayOfWeek = "*", info = "Update de glosario a las 00:00 hrs todos los dias"),
             @Schedule(hour = "00", minute = "00", second = "00")
@@ -84,7 +84,7 @@ public class ImageneGlosarioCache {
             }
         }
     }
-
+*/
     private Long buscaActividades() {
         return entityManager.createQuery("SELECT COUNT(g) FROM GlosarioEntidad g", Long.class).getSingleResult();
     }
