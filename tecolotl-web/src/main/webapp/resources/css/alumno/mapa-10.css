@@ -75,6 +75,13 @@
     z-index: 3;
     position: absolute;
 }
+/*safari*/
+@media screen and (max-width: 1440px) {
+    .titulo-10{
+        position: absolute;
+        top: 80px;
+    }
+}
 
 @media screen and (max-width: 1024px){
  .caja-texto-10{
