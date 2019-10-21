@@ -5,13 +5,14 @@ import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
 @Table(name = "califica_tarea_gramatica", schema = "profesor")
-public class CalificaTareaGramaticaEntidad {
+public class CalificaTareaGramaticaEntidad implements Serializable {
 
     private TareaGramaticaEntidad tareaGramaticaEntidad;
     private Short puntaje;
@@ -26,12 +27,12 @@ public class CalificaTareaGramaticaEntidad {
 
     @Id
     @OneToOne
-    @JoinColumns(value = {
+/*    @JoinColumns(value = {
             @JoinColumn(name = "id_tarea", referencedColumnName = "id_tarea"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
             @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
             @JoinColumn(name = "vuelta", referencedColumnName = "vuelta")
-    })
+    })*/
     public TareaGramaticaEntidad getTareaGramaticaEntidad() {
         return tareaGramaticaEntidad;
     }

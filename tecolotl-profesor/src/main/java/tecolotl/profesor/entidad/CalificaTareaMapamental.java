@@ -6,11 +6,12 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "califica_tarea_mapamental", schema = "profesor")
-public class CalificaTareaMapamental {
+public class CalificaTareaMapamental implements Serializable {
 
     private TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad;
     private String comentario;
@@ -19,12 +20,12 @@ public class CalificaTareaMapamental {
 
     @Id
     @OneToOne
-    @JoinColumns( value = {
+/*    @JoinColumns( value = {
             @JoinColumn(name = "id_codigo", referencedColumnName = "codigo"),
             @JoinColumn(name = "id_actvidad", referencedColumnName = "id_actividad"),
             @JoinColumn(name = "id_tarea", referencedColumnName = "id_tarea"),
             @JoinColumn(name = "vuelta", referencedColumnName = "vuelta")
-    })
+    })*/
     public TareaMapaMentalActividadEntidad getTareaMapaMentalActividadEntidad() {
         return tareaMapaMentalActividadEntidad;
     }
