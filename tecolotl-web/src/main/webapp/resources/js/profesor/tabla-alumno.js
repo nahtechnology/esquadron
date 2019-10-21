@@ -97,41 +97,67 @@ function crearTabla(contenido) {
 
     console.log(contenido);
     for(var i = 0 ; i<nombreAlum.length;i++){
-        var row = cuerpoTabla.insertRow(0);
+        var row = cuerpoTabla.insertRow(0),totalTareas = 0, totalRespuestas = 0;
         var celda = [];
-        celda[0] = row.insertCell(0),celda[1] = row.insertCell(1),celda[2] = row.insertCell(2),celda[3] = row.insertCell(3),celda[4] = row.insertCell(4),celda[5] = row.insertCell(5);
-            var filaTabla = [];
-            contenido.filter(dato => dato.alumnoNombre.localeCompare(nombreAlum[i]) === 0).forEach(function (alumno,index) {
-
+        celda[0] = row.insertCell(0),celda[1] = row.insertCell(1),celda[2] = row.insertCell(2),celda[3] = row.insertCell(3),celda[4] = row.insertCell(4),celda[5] = row.insertCell(5),celda[6] = row.insertCell(6);
+        var filaTabla = [];
+        var celdas = document.createElement("td");
+        var progreso = document.createElement('progress');
+            contenido.filter(dato => dato.alumnoNombre.localeCompare(nombreAlum[i]) === 0).forEach(function (alumno,index){
             if(index === 0){
                  // celda[0].innerHTML=alumno.alumnoNombre;
                 filaTabla.push(alumno.alumnoNombre);
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadTarreas + "/" + alumno.actividadRespuesta);
+                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                totalTareas=alumno.actividadTarreas + totalTareas;
+                totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
             if(index === 1){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadTarreas + "/" + alumno.actividadRespuesta);
+                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                totalTareas=alumno.actividadTarreas + totalTareas;
+                totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
             if (index === 2){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadTarreas + "/" + alumno.actividadRespuesta);
+                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                totalTareas=alumno.actividadTarreas + totalTareas;
+                totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
             if(index === 3){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadTarreas + "/" + alumno.actividadRespuesta);
+                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                totalTareas=alumno.actividadTarreas + totalTareas;
+                totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
             if( index === 4){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadTarreas + "/" + alumno.actividadRespuesta);
+                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                totalTareas=alumno.actividadTarreas + totalTareas;
+                totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
+            }
+            if( index === 5){
+                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                totalTareas=alumno.actividadTarreas + totalTareas;
+                totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
 
         });
         console.log(filaTabla);
+        progreso.setAttribute("value", totalRespuestas);
+        progreso.setAttribute("max",totalTareas);
+
         celda[0].innerHTML = filaTabla[0];
         celda[1].innerHTML = filaTabla[1];
         celda[2].innerHTML = filaTabla[2];
         celda[3].innerHTML = filaTabla[3];
         celda[4].innerHTML = filaTabla[4];
         celda[5].innerHTML = filaTabla[5];
+        celda[6].innerHTML = filaTabla[6];
+
+        cuerpoTabla.querySelector("tr").appendChild(celdas);
+        celdas.appendChild(progreso);
+
 
 
     }
+
+    tabla.remove();
     
 
 }
