@@ -9,8 +9,10 @@ import java.util.StringJoiner;
 
 @Embeddable
 public class TareaGramaticaEntidadPK implements Serializable {
+
     private TareaEntidad tareaEntidad;
     private GramaticaEntidad gramaticaEntidad;
+    private Short vuelta;
 
     @JoinColumn(name = "id_tarea")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -35,6 +37,15 @@ public class TareaGramaticaEntidadPK implements Serializable {
 
     public void setGramaticaEntidad(GramaticaEntidad gramaticaEntidad) {
         this.gramaticaEntidad = gramaticaEntidad;
+    }
+
+    @Column(name = "vuelta")
+    public Short getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Short vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override

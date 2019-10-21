@@ -8,6 +8,7 @@ import tecolotl.alumno.modelo.DetalleAlumnoModelo;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
@@ -67,11 +68,17 @@ public class AlumnoSesionBean implements Serializable {
      */
     public DetalleAlumnoModelo detalle(@NotNull Integer idAlumno) {
         logger.fine(idAlumno.toString());
+        DetalleAlumnoModelo detalleAlumnoModelo  = new DetalleAlumnoModelo();
         TypedQuery<TareaAlumnoVistaEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaAlumnoVistaEntidad.buscaAlumno", TareaAlumnoVistaEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);
-        TareaAlumnoVistaEntidad tareaAlumnoVistaEntidad = typedQuery.getSingleResult();
-        logger.finer(tareaAlumnoVistaEntidad.toString());
-        return new DetalleAlumnoModelo(tareaAlumnoVistaEntidad);
+        try {
+            TareaAlumnoVistaEntidad tareaAlumnoVistaEntidad = typedQuery.getSingleResult();
+            logger.finer(tareaAlumnoVistaEntidad.toString());
+            detalleAlumnoModelo = new DetalleAlumnoModelo(tareaAlumnoVistaEntidad);
+        } catch (NoResultException ex) {
+            logger.finest("No hay actividades asignadas");
+        }
+        return detalleAlumnoModelo;
     }
 }
