@@ -29,9 +29,9 @@
                     <div class="uk-offcanvas-bar  ">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="40" height="" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg" width="40" height="" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="40" alt="" /></h:link></li>
                         </ul>
 
                     </div>
@@ -46,12 +46,12 @@
             <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo} </h6>
 
             <div class="uk-position-relative uk-text-center uk-display-block">
-                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['for.all.views.menu']}</a>
                 <!-- user dropdown -->
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                     <ul>
-                        <li><a href="#" class="uk-text-capitalize">#{alumno['profile']}</a></li>
-                        <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
+                        <li><a href="#" class="uk-text-capitalize">#{alumno['for.all.views.profile']}</a></li>
+                        <li><a href="#" class="uk-text-capitalize">#{etiqueta['for.all.studen.views.close.sesion']}</a></li>
                     </ul>
                 </div>
                 <!-- /user dropdown -->
@@ -59,16 +59,16 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="80" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg" width="80" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
-                <li uk-tooltip="title: #{alumno['dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg"  width="60" height="" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="mapametal"><h:graphicImage library="img" name="alumno/planetas/planeta4.svg" width="60" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="60" alt="" /></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -88,12 +88,12 @@
                 <div class="uk-flex uk-flex-center uk-position-relative">
                     <h:graphicImage library="img" name="alumno/pop-art/popart-amarillo.svg" styleClass="uk-visible@m"/>
                     <div class="uk-position-absolute letra-posicion uk-visible@m">
-                        <h3 class="uk-text-uppercase">#{alumno['map4.title.description.compare']}</h3>
-                        <p>#{alumno['map4.title.description.how']}</p>
+                        <h3 class="uk-text-uppercase">#{alumno['mindmap.map4.title.description.compare']}</h3>
+                        <p>#{alumno['mindmap.map4.title.description.how']}</p>
                     </div>
                     <div class="letra-posicion uk-hidden@m fondo-pop">
-                        <h6 class="uk-text-uppercase uk-text-center">#{alumno['map4.title.description.compare']}t</h6>
-                        <p class="uk-text-small uk-text-center">#{alumno['map4.title.description.how']}</p>
+                        <h6 class="uk-text-uppercase uk-text-center">#{alumno['mindmap.map4.title.description.compare']}t</h6>
+                        <p class="uk-text-small uk-text-center">#{alumno['mindmap.map4.title.description.how']}</p>
                     </div>
                 </div>
                 <div class="uk-position-relative ">

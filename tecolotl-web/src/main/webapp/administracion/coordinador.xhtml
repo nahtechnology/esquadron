@@ -11,7 +11,7 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{etiqueta['for.all.views.menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -69,7 +69,7 @@
                                             <th><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.block.table.header.name']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.email']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.status']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['for.all.administrator.views.options']}</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -85,7 +85,7 @@
                                         <tr>
                                             <td colspan="6">
                                                 <span class="letra-titulo">
-                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <h:outputFormat value="#{etiqueta['for.all.administrator.views.pages.total']}" styleClass="letra-titulo">
                                                         <f:param value="#{coordinadorControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{coordinadorControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{coordinadorControlador.htmlDataTable.rowCount}"/>
@@ -126,7 +126,7 @@
                                     <h:outputText rendered="#{coordinador.personaMotivoBloqueoModelo.clave ne 1}" pt:uk-icon="ban"/>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo">#{etiqueta['for.all.administrator.views.options']}</span></f:facet>
                                     <div class="uk-inline  ">
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
                                         <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-coordinador-dropdown; mode: click" styleClass="uk-dropdown">
@@ -345,7 +345,7 @@
                                              id="seleccion-bloqueo"
                                              label="bloqueo"
                                              styleClass="uk-select">
-                                <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['for.all.administrator.views.select']}" noSelectionOption="true"/>
                                 <f:selectItems value="#{coordinadorControlador.personaMotivoBloqueoModeloLista}"
                                                var="motivoBloqueo"
                                                itemValue="#{motivoBloqueo.clave}"

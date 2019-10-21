@@ -11,7 +11,7 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{etiqueta['for.all.views.menu']}</li>
             <li class="uk-parent">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -203,7 +203,7 @@
                                     <tfoot class="uk-background-primary">
                                     <tr>
                                         <td colspan="5"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                <h:outputFormat value="#{etiqueta['for.all.administrator.views.pages.total']}" styleClass="letra-titulo">
                                                     <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
@@ -267,7 +267,7 @@
                                             <f:validateLength minimum="4" maximum="5"/>
                                         </h:inputText>
                                         <h:commandLink styleClass="uk-button uk-button-secondary uk-margin-small-right">
-                                            #{boton['search']}
+                                            #{boton['for.all.administrator.views.search']}
                                             <h:outputText pt:uk-icon="icon: location" styleClass="uk-icon uk-margin-small-right"/>
                                             <f:ajax execute="@form" render="@form formulario-tabla-colonia" listener="#{catalogoColoniaControlador.actualizaDataModel}"/>
                                         </h:commandLink>
@@ -291,12 +291,12 @@
                     </div>
                     <div class="uk-modal-body">
                         <div class="uk-margin uk-text-capitalize">
-                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['description']}"/>
+                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['for.all.administrator.views.description']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText styleClass="uk-input"
                                              id="input-catalogo-bloqueo"
-                                             pt:placeholder="#{etiqueta['write.text']}"
-                                             label="#{etiqueta['description']}"
+                                             pt:placeholder="#{etiqueta['for.all.administrator.views.write.text']}"
+                                             label="#{etiqueta['for.all.administrator.views.description']}"
                                              value="#{catalogoMotivoBloqueControlador.catalogoModelo.valor}">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="3" maximum="20"/>
@@ -334,12 +334,12 @@
                     </div>
                     <div class="uk-modal-body">
                         <div class="uk-margin uk-text-capitalize">
-                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['description']}"/>
+                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['for.all.administrator.views.description']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText styleClass="uk-input"
                                              id="input-tipo-contacto"
-                                             pt:placeholder="#{etiqueta['write.text']}"
-                                             label="#{etiqueta['description']}"
+                                             pt:placeholder="#{etiqueta['for.all.administrator.views.write.text']}"
+                                             label="#{etiqueta['for.all.administrator.views.description']}"
                                              value="#{tipoContactoControlador.catalogoModelo.valor}">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="3" maximum="20"/>
@@ -378,7 +378,7 @@
                             <div class="uk-form-controls">
                                 <h:inputText id="entrada-colonia"
                                              value="#{catalogoColoniaControlador.coloniaModelo.nombre}"
-                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             pt:placeholder="#{etiqueta['for.all.administrator.views.write.text']}"
                                              styleClass="uk-input">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="3" maximum="70"/>

@@ -10,7 +10,7 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{etiqueta['for.all.views.menu']}</li>
             <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></a></li>
             <li><a href="#"><h:graphicImage library="img" name="icono/grupo.svg" pt:uk-svg="" styleClass="uk-margin-small-right grupo" width="20" height="20"/><span class="uk-text-capitalize">grupos</span></a></li>
         </ul>
@@ -87,7 +87,7 @@
                                             <th><span class="letra-titulo">número de grupos</span></th>
                                             <th><span class="letra-titulo">tareas asignadas</span></th>
                                             <th><span class="letra-titulo">Tareas por asignar</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['for.all.administrator.views.options']}</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,7 +103,7 @@
                                         <tr>
                                             <td colspan="5">
                                                 <span class="letra-titulo">
-                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <h:outputFormat value="#{etiqueta['for.all.administrator.views.pages.total']}" styleClass="letra-titulo">
                                                         <f:param value="#{coordinadorDashboardTablaControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{coordinadorDashboardTablaControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{coordinadorDashboardTablaControlador.htmlDataTable.rowCount}"/>
@@ -142,7 +142,7 @@
                                     NaN
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-text-center uk-width-small">
-                                    <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo">#{etiqueta['for.all.administrator.views.options']}</span></f:facet>
                                     <div class="uk-inline  ">
                                         <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
                                         <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
