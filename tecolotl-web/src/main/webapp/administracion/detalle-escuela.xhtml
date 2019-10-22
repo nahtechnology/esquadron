@@ -10,7 +10,7 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['for.all.views.menu']}</li>
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -156,7 +156,7 @@
                                             <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.type']}</span></th>
                                             <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.phone']}</span></th>
                                             <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.email']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['for.all.administrator.views.options']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -171,7 +171,7 @@
                                         <tfoot class="uk-background-primary">
                                         <tr>
                                             <td colspan="6"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['for.all.administrator.views.pages.total']}" styleClass="letra-titulo">
+                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
                                                     <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
@@ -216,7 +216,7 @@
                                         #{contacto.correoElectronico}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['for.all.administrator.views.options']}" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}" /></f:facet>
                                         <div class="uk-inline ">
                                             <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
                                             <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
@@ -290,7 +290,7 @@
                                             <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['for.all.administrator.views.options']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -306,7 +306,7 @@
                                         <tr>
                                             <td colspan="6">
                                                 <span class="letra-titulo">
-                                                    <h:outputFormat value="#{etiqueta['for.all.administrator.views.pages.total']}" styleClass="letra-titulo">
+                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
                                                         <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
@@ -348,7 +348,7 @@
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['for.all.administrator.views.options']}"/></f:facet>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}"/></f:facet>
                                     <div class="uk-inline ">
                                         <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
                                         <h:panelGroup layout="block" pt:uk-dropdown="boundary: .tabla-licencia; mode: click" id="licencia-menu">
@@ -430,7 +430,7 @@
                                                      styleClass="uk-select"
                                                      id="seleccion-tipo-contacto"
                                                      label="Tipo contacto">
-                                        <f:selectItem itemValue = "#{null}" itemLabel = "#{etiqueta['for.all.administrator.views.select']}" noSelectionOption="true" />
+                                        <f:selectItem itemValue = "#{null}" itemLabel = "#{etiqueta['select']}" noSelectionOption="true" />
                                         <f:selectItems value="#{contactoControlador.tipoContactoModeloLista}" var="contacto"
                                                        itemValue="#{contacto.clave}"
                                                        itemLabel="#{contacto.valor}"/>
