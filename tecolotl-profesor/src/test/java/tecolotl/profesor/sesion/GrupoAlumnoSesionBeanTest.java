@@ -71,15 +71,13 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.profesor.entidad.*;
-import tecolotl.profesor.modelo.GrupoAlumnoModelo;
-import tecolotl.profesor.modelo.GrupoModelo;
-import tecolotl.profesor.modelo.ProfesorModelo;
-import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
+import tecolotl.profesor.modelo.*;
 import tecolotl.profesor.scope.AlumnoGrupoScope;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -211,6 +209,17 @@ public class GrupoAlumnoSesionBeanTest {
         alumnoModelo.setContrasenia("1:1,2:2".getBytes(StandardCharsets.UTF_8));
         alumnoGrupoScope.inserta(alumnoModelo, 1);
         Assert.assertNotNull(alumnoModelo.getId());
+    }
+
+    @Test public void buscaAlumnoNivel() {
+        List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(Arrays.asList(1, 2, 3));
+        Assert.assertNotNull(alumnoTareasNivelModeloLista);
+        Assert.assertFalse(alumnoTareasNivelModeloLista.isEmpty());
+        for (AlumnoTareasNivelModelo alumnoTareasNivelModelo : alumnoTareasNivelModeloLista) {
+            Assert.assertNotNull(alumnoTareasNivelModelo);
+            Assert.assertNotNull(alumnoTareasNivelModelo.getIdGrupo());
+            Assert.assertNotNull(alumnoTareasNivelModelo.getNombre());
+        }
     }
 
     @Test

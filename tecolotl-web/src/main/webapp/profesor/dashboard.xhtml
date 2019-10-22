@@ -105,6 +105,40 @@
                 </h:form>
             </h:panelGroup>
         </div>
+        <div>
+            <h:dataTable id="tablaCalidicaciones"
+                         value="#{alumnoTareaNivelControlador.alumnoTareasNivelModeloLista}"
+                         var="alumnoTareaNivel">
+                <h:column>
+                    <f:facet name="header">grupo</f:facet>
+                    #{alumnoTareaNivel.idGrupo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">id</f:facet>
+                    #{alumnoTareaNivel.idAlumno}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">nombre</f:facet>
+                    #{alumnoTareaNivel.nombre}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">apellido paterno</f:facet>
+                    #{alumnoTareaNivel.apellidoPaterno}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">apellido materno</f:facet>
+                    #{alumnoTareaNivel.apellidoMaterno}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">totalTareas</f:facet>
+                    #{alumnoTareaNivel.totalTareas}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">nivelLenguaje</f:facet>
+                    #{alumnoTareaNivel.nivelLenguaje}
+                </h:column>
+            </h:dataTable>
+        </div>
         <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
             <h:outputText styleClass="uk-text-bold uk-margin-remove-bottom titulo-section"
                           value="#{empty dashboardProfesorControlador.grupoModeloLista ? 'No tiene grupos asigandos en este ciclo escolar' : 'Sus grupos para este ciclo escolar'}">

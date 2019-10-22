@@ -3,10 +3,8 @@ package tecolotl.profesor.sesion;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
 import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.profesor.entidad.GrupoAlumnoEntidad;
-import tecolotl.profesor.entidad.GrupoAlumnoEntidadPK;
-import tecolotl.profesor.entidad.GrupoEntidad;
-import tecolotl.profesor.entidad.TareaAlumnoGrupoEntidad;
+import tecolotl.profesor.entidad.*;
+import tecolotl.profesor.modelo.AlumnoTareasNivelModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
 
@@ -23,8 +21,10 @@ import javax.persistence.criteria.Root;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringJoiner;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -93,6 +93,25 @@ public class GrupoAlumnoSesionBean {
             }
         }
         return null;
+    }
+
+    /**
+     * Busca todos los alumnos de un grupo y muestra el avance
+     * @param idGrupoLista catalogo de grupos
+     * @return Colección de alumno con sus niveles
+     */
+    public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<Integer> idGrupoLista) {
+        logger.info(idGrupoLista.toString());
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tarea_nivel_lenguaje(CAST (? AS INTEGER[]))", AlumnoTareasNivelEntidad.class);
+        final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
+        idGrupoLista.forEach(grupo -> stringJoiner.add(String.valueOf(grupo.intValue())));
+        query.setParameter(1,stringJoiner.toString());
+        List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = new ArrayList<>();
+        for (AlumnoTareasNivelEntidad alumnoTareasNivelEntidad : (List<AlumnoTareasNivelEntidad>)query.getResultList()) {
+            AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo(alumnoTareasNivelEntidad);
+            alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);
+        }
+        return alumnoTareasNivelModeloLista;
     }
 
     public List<AlumnoModelo> buscaAlumno(@NotNull Integer idGrupo) {

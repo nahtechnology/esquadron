@@ -7,10 +7,7 @@ import tecolotl.alumno.modelo.DetalleAlumnoModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -52,13 +49,6 @@ public class AlumnoSesionBean implements Serializable {
         AlumnoEntidad alumnoEntidad = typedQuery.getSingleResult();
         logger.finer(alumnoEntidad.toString());
         return new AlumnoModelo(alumnoEntidad);
-    }
-
-    public boolean existe(@NotNull @Size(min = 4, max = 40) String apodo) {
-        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.existeApodo", Long.class);
-        typedQuery.setParameter("apodo", apodo);
-        Long encontrados = typedQuery.getSingleResult();
-        return encontrados.intValue() == 1;
     }
 
     /**
