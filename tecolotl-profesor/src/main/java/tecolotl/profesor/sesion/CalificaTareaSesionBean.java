@@ -28,7 +28,5 @@ public class CalificaTareaSesionBean {
                           @NotNull @Min(0) Short puntaje) {
         logger.fine(mapaMentalModelo.toString());
         TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK = new TareaMapaMentalActividadEntidadPK();
-        //tareaMapaMentalActividadEntidadPK.setVuelta(mapaMentalModelo.getVuelta());
-
     }
 }
