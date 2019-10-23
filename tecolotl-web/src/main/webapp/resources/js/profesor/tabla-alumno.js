@@ -28,74 +28,42 @@ function cargarFilas(cuerpoFila) {
                 nombreAlum.push(persona.nombre);
             }
     });
-
-    // cuenta total de tareas por actividad
-    console.log(alumnos.filter(alumno => alumno.actividad.localeCompare(actividad[1]) === 0).reduce(function (acumulador , valorActual) {
-        return acumulador + valorActual.totalTareas;
-    },0));
     nombreAlum.forEach(function (nombreActividad,conteo) {
         total2 = [];
-        // console.log(total2);
-        // console.log( "index: "+ conteo);
-        //almacena a un solo alumno
         alumnos.filter(alumno => alumno.idAlumo.localeCompare(id[conteo]) === 0).forEach(function (datos,inicio) {
-            // console.log("inicio:" + inicio);
             total2[inicio] = datos;
-            // console.log(total2[inicio]);
         });
-        // regresa el total de pregunta que tenga por actividad
         for (var init = 0; init < actividad.length; init++){
-            //  console.log(total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0).reduce(function (acumilador, valorActual) {
-            //
-            // return acumilador + valorActual.totalTareas;},0));
-
-             var tareas = total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0).reduce(function (acumilador, valorActual) {return acumilador + valorActual.totalTareas;},0);
-
-            // console.log(total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0).reduce(function (acumilador, valorActual) {
-            //     return acumilador + valorActual.totalRespuesta;},0));
-            var respuestas = total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0).reduce(function (acumilador, valorActual) {return acumilador + valorActual.totalRespuesta;},0);
-
-            // console.log(total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0));
-
-            var detalletarea = total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0);
-            var contenidoTabla = new ActividadAlumno(nombreActividad,actividad[init],tareas,respuestas,detalletarea);
-            datosTabla.push(contenidoTabla);
+         var tareas = total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0).reduce(function (acumilador, valorActual) {return acumilador + valorActual.totalTareas;},0);
+        var respuestas = total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0).reduce(function (acumilador, valorActual) {return acumilador + valorActual.totalRespuesta;},0);
+        var detalletarea = total2.filter(alumno => alumno.actividad.localeCompare(actividad[init]) === 0);
+        var contenidoTabla = new ActividadAlumno(nombreActividad,actividad[init],tareas,respuestas,detalletarea);
+        datosTabla.push(contenidoTabla);
         }
     });
     crearTabla(datosTabla);
 }
 
 function Alumno(idTarea, actividad, idAlumno,nombre,totalTareas,totalRespuesta ) {
-            this.idTarea = idTarea;
-            this.actividad = actividad;
-            this.idAlumo = idAlumno;
-            this.nombre = nombre;
-            this.totalTareas = parseInt(totalTareas);
-            this.totalRespuesta = parseInt(totalRespuesta);
+    this.idTarea = idTarea;
+    this.actividad = actividad;
+    this.idAlumo = idAlumno;
+    this.nombre = nombre;
+    this.totalTareas = parseInt(totalTareas);
+    this.totalRespuesta = parseInt(totalRespuesta);
 }
 
 function ActividadAlumno(alumnoNombre,nombreActividad,actividadTareas,actividadRespuesta,actividadDetalle){
-        // this.alumnoId=alumnoId;
-        this.alumnoNombre=alumnoNombre;
-        this.nombreActividad = nombreActividad;
-        this.actividadTarreas = actividadTareas;
-        this.actividadRespuesta = actividadRespuesta;
-        this.actividadDetalle = actividadDetalle;
-}
-
-function DescripActividad(nombreAlum,actividadUno,actividadDos,actividadTres,actividadCuatro,actividadCinco) {
-    this.nombreAlum = nombreAlum;
-    this.actividadUno = actividadUno;
-    this.actividadDos = actividadDos;
-    this.actividadTres = actividadTres;
-    this.actividadCuatro = actividadCuatro;
-    this.actividadCinco = actividadCinco;
+    this.alumnoNombre=alumnoNombre;
+    this.nombreActividad = nombreActividad;
+    this.actividadTarreas = actividadTareas;
+    this.actividadRespuesta = actividadRespuesta;
+    this.actividadDetalle = actividadDetalle;
 }
 
 function crearTabla(contenido) {
-    var cuerpoTabla = tablaDetalle.querySelector('tbody'),contenidoActividad,tareas,respuestas;
+    var cuerpoTabla = tablaDetalle.querySelector('tbody');
 
-    console.log(contenido);
     for(var i = 0 ; i<nombreAlum.length;i++){
         var row = cuerpoTabla.insertRow(0),totalTareas = 0, totalRespuestas = 0;
         var celda = [];
@@ -104,41 +72,38 @@ function crearTabla(contenido) {
         var celdas = document.createElement("td");
         var progreso = document.createElement('progress');
             contenido.filter(dato => dato.alumnoNombre.localeCompare(nombreAlum[i]) === 0).forEach(function (alumno,index){
-            if(index === 0){
-                 // celda[0].innerHTML=alumno.alumnoNombre;
+            if(index === 0) {
                 filaTabla.push(alumno.alumnoNombre);
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+                filaTabla.push(alumno.actividadRespuesta  + " / " + alumno.actividadTarreas);
                 totalTareas=alumno.actividadTarreas + totalTareas;
                 totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
-            if(index === 1){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+            if(index === 1) {
+                filaTabla.push(alumno.actividadRespuesta  + " / " + alumno.actividadTarreas);
                 totalTareas=alumno.actividadTarreas + totalTareas;
                 totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
-            if (index === 2){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+            if (index === 2) {
+                filaTabla.push(alumno.actividadRespuesta  + " / " + alumno.actividadTarreas);
                 totalTareas=alumno.actividadTarreas + totalTareas;
                 totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
-            if(index === 3){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+            if(index === 3) {
+                filaTabla.push(alumno.actividadRespuesta  + " / " + alumno.actividadTarreas);
                 totalTareas=alumno.actividadTarreas + totalTareas;
                 totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
-            if( index === 4){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+            if( index === 4) {
+                filaTabla.push(alumno.actividadRespuesta  + " / " + alumno.actividadTarreas);
                 totalTareas=alumno.actividadTarreas + totalTareas;
                 totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
-            if( index === 5){
-                filaTabla.push(alumno.nombreActividad + ":" + alumno.actividadRespuesta  + "/" + alumno.actividadTarreas);
+            if( index === 5) {
+                filaTabla.push(alumno.actividadRespuesta  + " / " + alumno.actividadTarreas);
                 totalTareas=alumno.actividadTarreas + totalTareas;
                 totalRespuestas = alumno.actividadRespuesta +totalRespuestas;
             }
-
         });
-        console.log(filaTabla);
         progreso.setAttribute("value", totalRespuestas);
         progreso.setAttribute("max",totalTareas);
 
@@ -153,12 +118,9 @@ function crearTabla(contenido) {
         cuerpoTabla.querySelector("tr").appendChild(celdas);
         celdas.appendChild(progreso);
 
-
-
     }
 
     tabla.remove();
-    
 
 }
 

@@ -42,7 +42,7 @@
                     <div class="uk-margin-small-left esquadron-paddin"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
                 </div>
                 <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
-                    <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
+                    <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="esquadron.svg" width="70" height="70"/></div>
                     <div class="uk-text-center"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
                 </div>
                 <button uk-toggle="target: #modal-nuevo-alumno">agregar</button>
@@ -51,42 +51,21 @@
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
-                                     var="tarea"
-                                      styleClass="tabla-general"  >
+                                     var="tarea">
                             <h:column>
-                                <f:facet name="header">id tarea</f:facet>
-                                #{tarea.idTarea}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">actividad</f:facet>
-                                #{tarea.actividad}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">id alumno</f:facet>
-                                #{tarea.idAlumno}
+                                <f:facet name="header">id</f:facet>
+                                #{tarea.id}
                             </h:column>
                             <h:column>
                                 <f:facet name="header">nombre</f:facet>
-                                #{tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoPaterno)}
+                                #{tarea.nombre.concat(' ').concat(tarea.apellidoPaterno)}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">total tarea</f:facet>
-                                #{tarea.totalTarea}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">total respuesta</f:facet>
-                                #{tarea.totalRespuesta}
-                            </h:column>
-                            <h:column>
-                                <f:facet name="header">progreso</f:facet>
-                                <div>
-                                    <span class="uk-text-small"><small>%60</small></span>
-                                    <progress class="uk-progress tabla" value="60" max="100"></progress>
-                                </div>
+                                <f:facet name="header">tareas</f:facet>
+                                #{tarea.totalRespuestaGramatica} / #{tarea.totalAsignadaGramatica}
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>
-
                                 <div class="uk-inline  ">
                                     <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
                                     <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
@@ -118,40 +97,6 @@
                         </h:dataTable>
                     </div>
                 </h:form>
-                <div>
-                    <table id="tabla-detalle">
-                        <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Relacionar oracion</th>
-                            <th>Actividad relacionar</th>
-                            <th>Gramatica</th>
-                            <th>Mapa Mental</th>
-                            <th>Completar</th>
-                            <th>Oraciones</th>
-                            <th>Progreso</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </div>
-                <div class="uk-margin-large-top">
-                    <label for="select2">Alumno:</label>
-                    <select id="select2">
-                        <option value="1">Mauricio</option>
-                        <option value="2">Juan</option>
-                        <option value="3">Antonio</option>
-                        <option value="4">Memo</option>
-                    </select>
-
-                        <label><input class="uk-radio" type="radio" name="radio2" checked=" "/> Detalles:</label>
-                        <label><input class="uk-radio" type="radio" name="radio2"/> Reporte:</label>
-                        <label><input class="uk-radio" type="radio" name="radio2"/> Eliminar:</label>
-
-
-                </div>
             </div>
         </div>
         <!--  Modal nuevo alumno  -->
@@ -385,8 +330,6 @@
         </script>
         <h:outputScript library="js" name="nah.js"/>
         <h:outputScript library="js" name="profesor/admin-alumnos.js"/>
-        <h:outputScript library="js" name="/profesor/tabla-alumno.js"/>
-
     </ui:define>
 </ui:composition>
 

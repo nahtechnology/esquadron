@@ -70,29 +70,7 @@ public class GrupoAlumnoSesionBean {
     public List<TareaAlumnoGrupoModelo> busca(@NotNull Integer idGrupo) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tareas_grupo(?)", TareaAlumnoGrupoEntidad.class);
         query.setParameter(1, idGrupo);
-        List<TareaAlumnoGrupoEntidad> tareaAlumnoGrupoEntidadLista = (List<TareaAlumnoGrupoEntidad>)query.getResultList();
-        TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaAlumnosPorGrupo", AlumnoEntidad.class);
-        typedQuery.setParameter("idGrupo", idGrupo);
-        List<AlumnoEntidad> alumnoEntidadLista = typedQuery.getResultList();
-        List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista = new ArrayList<>();
-        for (TareaAlumnoGrupoEntidad tareaAlumnoGrupoEntidad : tareaAlumnoGrupoEntidadLista) {
-            TareaAlumnoGrupoModelo tareaAlumnoGrupoModelo = new TareaAlumnoGrupoModelo(tareaAlumnoGrupoEntidad);
-            AlumnoEntidad alumnoEntidad = busca(alumnoEntidadLista, tareaAlumnoGrupoEntidad.getIdAlumno());
-            tareaAlumnoGrupoModelo.setNombre(alumnoEntidad.getNombre());
-            tareaAlumnoGrupoModelo.setApellidoPaterno(alumnoEntidad.getApellidoPaterno());
-            tareaAlumnoGrupoModelo.setApellidoMaterno(alumnoEntidad.getApellidoMaterno());
-            tareaAlumnoGrupoModeloLista.add(tareaAlumnoGrupoModelo);
-        }
-        return tareaAlumnoGrupoModeloLista;
-    }
-
-    private AlumnoEntidad busca(List<AlumnoEntidad> alumnoEntidadLista, Integer id) {
-        for (AlumnoEntidad alumnoEntidad : alumnoEntidadLista) {
-            if (alumnoEntidad.getId().compareTo(id) == 0) {
-                return alumnoEntidad;
-            }
-        }
-        return null;
+        return ((List<TareaAlumnoGrupoEntidad>)query.getResultList()).stream().map(TareaAlumnoGrupoModelo::new).collect(Collectors.toList());
     }
 
     /**
@@ -101,7 +79,7 @@ public class GrupoAlumnoSesionBean {
      * @return Colección de alumno con sus niveles
      */
     public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<Integer> idGrupoLista) {
-        logger.info(idGrupoLista.toString());
+        logger.fine(idGrupoLista.toString());
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tarea_nivel_lenguaje(CAST (? AS INTEGER[]))", AlumnoTareasNivelEntidad.class);
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
         idGrupoLista.forEach(grupo -> stringJoiner.add(String.valueOf(grupo.intValue())));

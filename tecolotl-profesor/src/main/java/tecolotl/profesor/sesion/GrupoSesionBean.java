@@ -65,10 +65,10 @@ public class GrupoSesionBean {
 
     /**
      * Busca todos los grupos por ciclo escolar
-     * @param inicio
-     * @param fin
-     * @param claveCentroTrabajo
-     * @return
+     * @param inicio Fecha inicio del ciclo escolar
+     * @param fin Fecha final del ciclo escolar
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+     * @return Colección de {@link GrupoModelo}
      */
     public List<GrupoModelo> busca(@NotNull Date inicio, @NotNull Date fin, @NotNull String claveCentroTrabajo, @NotNull Integer idProfesor) {
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaCiclioEscolar", GrupoEntidad.class);

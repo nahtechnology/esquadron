@@ -176,11 +176,11 @@ public class GrupoAlumnoSesionBeanTest {
         Assert.assertFalse(tareaAlumnoGrupoModeloLista.isEmpty());
         tareaAlumnoGrupoModeloLista.forEach(tareaAlumnoGrupoModelo -> {
             Assert.assertNotNull(tareaAlumnoGrupoModelo);
-            Assert.assertNotNull(tareaAlumnoGrupoModelo.getIdAlumno());
-            Assert.assertNotNull(tareaAlumnoGrupoModelo.getIdTarea());
-            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalTarea() > -1);
-            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalRespuesta() > -1);
-            Assert.assertNotNull(tareaAlumnoGrupoModelo.getActividad());
+            Assert.assertNotNull(tareaAlumnoGrupoModelo.getId());
+            Assert.assertNotNull(tareaAlumnoGrupoModelo.getNombre());
+            Assert.assertNotNull(tareaAlumnoGrupoModelo.getApellidoPaterno());
+            Assert.assertNotNull(tareaAlumnoGrupoModelo.getApellidoMaterno());
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalAsignadaCompletar() > -1);
         });
     }
 
