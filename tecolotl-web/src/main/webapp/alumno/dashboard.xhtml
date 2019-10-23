@@ -56,14 +56,20 @@
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="activities"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right">
+                    <h:link outcome="activities" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" /></h:link>
+                    <h:graphicImage rendered="#{empty alumnoControlador.tareaActvidadModeloLista}" library="img" name="alumno/planetas/planeta1.svg" width="80" alt="" />
+                </li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="80" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-position-relative uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" ><h:link outcome="activities"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" >
+                    <h:link outcome="activities" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt=""/></h:link>
+                    <h:graphicImage rendered="#{empty alumnoControlador.tareaActvidadModeloLista}" library="img" name="alumno/planetas/planeta1.svg" width="60"/>
+                </li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="60" alt=""/></h:link></li>
             </ul>
         </div>
@@ -115,7 +121,6 @@
                      <div class="uk-width-2-3@m">
                          <div class="uk-section uk-border-rounded border-section uk-padding-remove color-card-dashboard-alumno" style="position:relative;padding-top:52.25%;">
                              <div style="position:relative;padding-top:52.25%;" class="uk-margin-auto">
-<!--                                 <iframe src="https://youtu.be/0_1NU60qHWs"  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameborder="0" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>-->
                                  <iframe src="https://www.youtube.com/embed/0_1NU60qHWs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
                              </div>
                          </div>
