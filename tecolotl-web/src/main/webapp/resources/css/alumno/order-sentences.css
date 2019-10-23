@@ -394,6 +394,21 @@ h1 + div > div > p{
     top: 10%;
 }
 
+@media screen and (max-width: 1024px) {
+    .mosca{
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .mosca{
+        width: 70%;
+    }
+    h1 + div > div > p{
+        left: 24%;
+    }
+}
+
 @media screen and (max-width: 450px){
     .mosca{
         width: 80%;
