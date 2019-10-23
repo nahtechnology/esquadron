@@ -8,3 +8,16 @@
     font-weight: bold;
     margin-top: 6px;
 }
+
+ul > li > span {
+    font-family: 'Sniglet', "Arial Black";
+    color: black !important;
+    text-transform: capitalize !important;
+    border: 3px solid lightseagreen;
+    width: 60px;
+    height: 28px;
+    border-radius: 5px;
+    text-align: center;
+    padding-top: 7px;
+}
+
