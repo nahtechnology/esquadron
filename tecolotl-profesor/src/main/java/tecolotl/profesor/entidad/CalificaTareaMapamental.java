@@ -11,6 +11,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "califica_tarea_mapamental", schema = "profesor")
+@NamedQueries({
+        @NamedQuery(name = "CalificaTareaMapamental.busca", query = "SELECT calTareaMP FROM CalificaTareaMapamental calTareaMP")
+})
 public class CalificaTareaMapamental implements Serializable {
 
     private TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad;
@@ -20,12 +23,13 @@ public class CalificaTareaMapamental implements Serializable {
 
     @Id
     @OneToOne
-/*    @JoinColumns( value = {
+    @JoinColumns( value = {
             @JoinColumn(name = "id_codigo", referencedColumnName = "codigo"),
-            @JoinColumn(name = "id_actvidad", referencedColumnName = "id_actividad"),
+            @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
             @JoinColumn(name = "id_tarea", referencedColumnName = "id_tarea"),
+            @JoinColumn(name = "id_cardinalidad", referencedColumnName = "cardinalidad"),
             @JoinColumn(name = "vuelta", referencedColumnName = "vuelta")
-    })*/
+    })
     public TareaMapaMentalActividadEntidad getTareaMapaMentalActividadEntidad() {
         return tareaMapaMentalActividadEntidad;
     }

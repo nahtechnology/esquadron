@@ -11,7 +11,7 @@ public class TareaMapaMentalModelo extends MapaMentalModelo{
 
     private String respuesta;
     private Date horaRespuesta;
-    private Integer vuelta;
+    private Short vuelta;
 
     public TareaMapaMentalModelo() {
     }
@@ -47,11 +47,11 @@ public class TareaMapaMentalModelo extends MapaMentalModelo{
         this.horaRespuesta = horaRespuesta;
     }
 
-    public Integer getVuelta() {
+    public Short getVuelta() {
         return vuelta;
     }
 
-    public void setVuelta(Integer vuelta) {
+    public void setVuelta(Short vuelta) {
         this.vuelta = vuelta;
     }
 

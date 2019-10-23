@@ -12,12 +12,12 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
 
     private MapaMentalActividadEntidad mapaMentalActividadEntidad;
     private TareaEntidad tareaEntidad;
-    private Integer vuelta;
+    private Short vuelta;
 
     public TareaMapaMentalActividadEntidadPK() {
     }
 
-    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad, TareaEntidad tareaEntidad, Integer vuelta) {
+    public TareaMapaMentalActividadEntidadPK(MapaMentalActividadEntidad mapaMentalActividadEntidad, TareaEntidad tareaEntidad, Short vuelta) {
         this.mapaMentalActividadEntidad = mapaMentalActividadEntidad;
         this.tareaEntidad = tareaEntidad;
         this.vuelta = vuelta;
@@ -57,11 +57,11 @@ public class TareaMapaMentalActividadEntidadPK implements Serializable {
 
     @Basic
     @Column(name = "vuelta", insertable = false)
-    public Integer getVuelta() {
+    public Short getVuelta() {
         return vuelta;
     }
 
-    public void setVuelta(Integer vuelta) {
+    public void setVuelta(Short vuelta) {
         this.vuelta = vuelta;
     }
 

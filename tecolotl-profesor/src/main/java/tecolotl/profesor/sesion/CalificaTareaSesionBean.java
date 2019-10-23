@@ -22,12 +22,13 @@ public class CalificaTareaSesionBean {
     @Inject
     private Logger logger;
 
+    //TODO Toño revisa esto porfavor, no la había visto pero ya me hice los sesion bean de cada uno.
     public void mapaMetal(@NotNull TareaMapaMentalModelo mapaMentalModelo,
                           @NotNull @Size(min = 0) String comentario,
                           @NotNull @Min(0) Short puntaje) {
         logger.fine(mapaMentalModelo.toString());
         TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK = new TareaMapaMentalActividadEntidadPK();
-        tareaMapaMentalActividadEntidadPK.setVuelta(mapaMentalModelo.getVuelta());
+        //tareaMapaMentalActividadEntidadPK.setVuelta(mapaMentalModelo.getVuelta());
 
     }
 }

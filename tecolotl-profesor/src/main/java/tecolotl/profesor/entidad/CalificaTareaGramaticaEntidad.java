@@ -12,6 +12,9 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "califica_tarea_gramatica", schema = "profesor")
+@NamedQueries({
+        @NamedQuery(name = "CalificaTareaGramaticaEntidad.busca", query = "SELECT calTarea FROM CalificaTareaGramaticaEntidad calTarea")
+})
 public class CalificaTareaGramaticaEntidad implements Serializable {
 
     private TareaGramaticaEntidad tareaGramaticaEntidad;
@@ -27,12 +30,12 @@ public class CalificaTareaGramaticaEntidad implements Serializable {
 
     @Id
     @OneToOne
-/*    @JoinColumns(value = {
+    @JoinColumns(value = {
             @JoinColumn(name = "id_tarea", referencedColumnName = "id_tarea"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
             @JoinColumn(name = "codigo", referencedColumnName = "codigo"),
             @JoinColumn(name = "vuelta", referencedColumnName = "vuelta")
-    })*/
+    })
     public TareaGramaticaEntidad getTareaGramaticaEntidad() {
         return tareaGramaticaEntidad;
     }
@@ -85,5 +88,4 @@ public class CalificaTareaGramaticaEntidad implements Serializable {
                 .add("momento=" + momento)
                 .toString();
     }
-
 }
