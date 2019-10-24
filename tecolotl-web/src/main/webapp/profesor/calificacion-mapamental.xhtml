@@ -44,136 +44,40 @@
                 </ul>
                 <ul class="filtro-calificacion">
                     <li class="mapa-mental">
-                        <ui:repeat value="#{calificaMapaMentalControlador.mapaMentalMapa}" var="mapaMental">
-                            #{mapaMental.key}
-                            <h:panelGroup layout="block" styleClass="uk-grid avance" pt:uk-grid="">
+                            <ui:repeat value="#{calificaMapaMentalControlador.llaves()}" var="mapaMental">
+                                <h:panelGroup layout="block" styleClass="uk-grid " pt:uk-grid="">
                                 <div class="uk-width-3-4@m">
-                                    <h:form action="" class="uk-grid uk-child-width-1-2@m uk-form-controls" uk-grid="">
-                                        <ui:repeat value="#{mapaMental.value}" var="tareaMapaMental">
-                                            <div>
-                                                <h:outputLabel styleClass="uk-form-label" value="Pregunta"/>
-                                                <h:inputText value="#{tareaMapaMental.pregunta}" disabled="true"/>
+                                    <h:form styleClass="uk-form-controls uk-grid " pt:uk-grid="">
+                                        <ui:repeat value="#{calificaMapaMentalControlador.mapaMentalMapa.get(mapaMental)}" var="tareaMapaMental">
+                                            <div class="uk-width-1-3@m">
+                                                <p>#{tareaMapaMental.pregunta}</p>
                                             </div>
-                                            <div>
-
+                                            <div class="uk-width-2-3@m">
+                                                <h:inputTextarea    styleClass="uk-textarea" disabled="true" pt:placeholder="Respuesta vacia" value="#{tareaMapaMental.respuesta}"/>
                                             </div>
                                         </ui:repeat>
-                                        <div class="comentario">
-                                            <label for="comentario" class="uk-form-label">Comentario</label>
-                                            <textarea id="comentario" rows="" cols="" class="uk-textarea"/>
+                                        <div class="comentario uk-width-3-5@m">
+                                            <h:outputLabel  styleClass="uk-form-label" value="Comentario"/>
+                                            <h:inputTextarea  styleClass="uk-textarea"/>
                                         </div>
-                                        <div>
-                                            <label for="calificacion" class="uk-form-label">Calificacion</label>
-                                            <input type="range" id="calificacion" class="rango"   min="1" max="4"  step="1" />
+                                        <div class="uk-width-2-5@m">
+                                            <h:outputLabel  styleClass="uk-form-label" value="Calificacion"/>
+                                            <h:inputText pt:type="range"  styleClass="rango"   pt:min="1" pt:max="4"  pt:step="1" />
                                             <p><span/><span/></p>
-
+                                        </div>
+                                        <div class="uk-width-1-1@m">
+                                            <h:button value="enviar" styleClass="boton-escuadron-base"/>
                                         </div>
                                     </h:form>
                                 </div>
-                                <div class="uk-width-1-4@m ">
-                                    <div class="bmap-#{mapaMental.key}">
+                                <div class="uk-width-1-4@m avance">
+                                    <div class="bmap-#{mapaMental}">
 
                                     </div>
                                     <p>Score: <span/></p>
                                 </div>
-                            </h:panelGroup>
-                        </ui:repeat>
-                        <ui:remove>
-                            <h:panelGroup layout="block" styleClass="uk-grid avance" pt:uk-grid="">
-                                <div class="uk-width-3-4@m">
-                                    <form action="" class="uk-grid uk-child-width-1-2@m uk-form-controls" uk-grid="">
-                                        <div>
-                                            <label for="pregunta" class="uk-form-label">Pregunta</label>
-                                            <textarea  id="pregunta" rows="" cols="" class="uk-textarea"/>
-                                        </div>
-                                        <div>
-                                            <label for="respuesta" class="uk-form-label">Respuesta</label>
-                                            <textarea  id="respuesta" rows="" cols="" class="uk-textarea"/>
-                                        </div>
-                                        <div>
-                                            <label for="pregunta" class="uk-form-label">Pregunta</label>
-                                            <textarea  id="pregunta" rows="" cols="" class="uk-textarea"/>
-                                        </div>
-                                        <div>
-                                            <label for="respuesta" class="uk-form-label">Respuesta</label>
-                                            <textarea  id="respuesta" rows="" cols="" class="uk-textarea"/>
-                                        </div>
-                                        <div>
-                                            <label for="pregunta" class="uk-form-label">Pregunta</label>
-                                            <textarea rows="" cols="" id="pregunta" class="uk-textarea"/>
-                                        </div>
-                                        <div>
-                                            <label for="respuesta" class="uk-form-label">Respuesta</label>
-                                            <textarea rows="" cols="" id="respuesta" class="uk-textarea"/>
-                                        </div>
-
-                                        <div class="comentario">
-                                            <label for="comentario" class="uk-form-label">Comentario</label>
-                                            <textarea id="comentario" rows="" cols="" class="uk-textarea"/>
-                                        </div>
-                                        <div>
-                                            <label for="calificacion" class="uk-form-label">Calificacion</label>
-                                            <input type="range" id="calificacion" class="rango"   min="1" max="4"  step="1" />
-                                            <p><span/><span/></p>
-
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="uk-width-1-4@m ">
-                                    <div class="bmap-6">
-
-                                    </div>
-                                    <p>Score: <span/></p>
-                                </div>
-                            </h:panelGroup>
-                            <h:panelGroup layout="block" styleClass="uk-grid avance" pt:uk-grid="">
-                            <div class="uk-width-3-4@m">
-                                <form action="" class="uk-grid uk-child-width-1-2@m uk-form-controls" uk-grid="">
-                                    <div>
-                                        <label for="pregunta" class="uk-form-label">Pregunta</label>
-                                        <textarea  id="pregunta" rows="" cols="" class="uk-textarea"/>
-                                    </div>
-                                    <div>
-                                        <label for="respuesta" class="uk-form-label">Respuesta</label>
-                                        <textarea  id="respuesta" rows="" cols="" class="uk-textarea"/>
-                                    </div>
-                                    <div>
-                                        <label for="pregunta" class="uk-form-label">Pregunta</label>
-                                        <textarea  id="pregunta" rows="" cols="" class="uk-textarea"/>
-                                    </div>
-                                    <div>
-                                        <label for="respuesta" class="uk-form-label">Respuesta</label>
-                                        <textarea  id="respuesta" rows="" cols="" class="uk-textarea"/>
-                                    </div>
-                                    <div>
-                                        <label for="pregunta" class="uk-form-label">Pregunta</label>
-                                        <textarea rows="" cols="" id="pregunta" class="uk-textarea"/>
-                                    </div>
-                                    <div>
-                                        <label for="respuesta" class="uk-form-label">Respuesta</label>
-                                        <textarea rows="" cols="" id="respuesta" class="uk-textarea"/>
-                                    </div>
-
-                                    <div class="comentario">
-                                        <label for="comentario" class="uk-form-label">Comentario</label>
-                                        <textarea id="comentario" rows="" cols="" class="uk-textarea"/>
-                                    </div>
-                                    <div>
-                                        <label for="calificacion" class="uk-form-label">Calificacion</label>
-                                        <input type="range" id="calificacion" class="rango"   min="1" max="4"  step="1" />
-                                        <p><span/><span/></p>
-
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="uk-width-1-4@m ">
-                                <div class="bmap-13">
-
-                                </div>
-                                <p>Score: <span/></p>
-                            </div>
-                        </h:panelGroup>
-                        </ui:remove>
+                                </h:panelGroup>
+                            </ui:repeat>
                     </li>
                     <li class="gramatica">
                         <div>

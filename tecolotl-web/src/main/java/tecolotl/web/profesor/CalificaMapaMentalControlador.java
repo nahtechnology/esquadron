@@ -31,6 +31,14 @@ public class CalificaMapaMentalControlador {
         logger.info(mapaMentalMapa.toString());
     }
 
+    public List<TareaMapaMentalModelo> valores(Object key) {
+        return mapaMentalMapa.get(((Long)key).shortValue());
+    }
+
+    public List<Short> llaves(){
+        return mapaMentalMapa.keySet().stream().collect(Collectors.toList());
+    }
+
     public Integer getIdTarea() {
         return idTarea;
     }
