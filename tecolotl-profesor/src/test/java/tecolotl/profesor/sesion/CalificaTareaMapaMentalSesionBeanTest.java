@@ -165,9 +165,7 @@ public class CalificaTareaMapaMentalSesionBeanTest {
         Assert.assertFalse(calificaTareaMapaMentalModeloLista.isEmpty());
         for(CalificaTareaMapaMentalModelo calificaTareaMapaMentalModelo : calificaTareaMapaMentalModeloLista){
             Assert.assertNotNull(calificaTareaMapaMentalModelo);
-            Assert.assertNotNull(calificaTareaMapaMentalModelo.getCodigo());
             Assert.assertNotNull(calificaTareaMapaMentalModelo.getCardinalidad());
-            Assert.assertNotNull(calificaTareaMapaMentalModelo.getIdActividad());
             Assert.assertNotNull(calificaTareaMapaMentalModelo.getIdTarea());
             Assert.assertNotNull(calificaTareaMapaMentalModelo.getVuelta());
             Assert.assertNotNull(calificaTareaMapaMentalModelo.getComentario());

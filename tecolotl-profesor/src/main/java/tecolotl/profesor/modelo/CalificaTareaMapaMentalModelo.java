@@ -1,14 +1,14 @@
 package tecolotl.profesor.modelo;
 
-import tecolotl.profesor.entidad.CalificaTareaMapamental;
+import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidad;
+import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidadPK;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.StringJoiner;
 
 public class CalificaTareaMapaMentalModelo {
 
-    private String codigo;
-    private String idActividad;
     private Integer idTarea;
     private Short cardinalidad;
     private Short vuelta;
@@ -19,9 +19,7 @@ public class CalificaTareaMapaMentalModelo {
     public CalificaTareaMapaMentalModelo() {
     }
 
-    public CalificaTareaMapaMentalModelo(String codigo, String idActividad, Integer idTarea, Short cardinalidad, Short vuelta, String comentario, Short opuntaje, Date momento) {
-        this.codigo = codigo;
-        this.idActividad = idActividad;
+    public CalificaTareaMapaMentalModelo(Integer idTarea, Short cardinalidad, Short vuelta, String comentario, Short opuntaje, Date momento) {
         this.idTarea = idTarea;
         this.cardinalidad = cardinalidad;
         this.vuelta = vuelta;
@@ -30,33 +28,17 @@ public class CalificaTareaMapaMentalModelo {
         this.momento = momento;
     }
 
-    public CalificaTareaMapaMentalModelo(CalificaTareaMapamental calificaTareaMapamental){
-        this.codigo = calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCodigo();
-        this.idActividad = calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getActividadEntidad().getId();
-        this.idTarea = calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getTareaEntidad().getId();
-        this.cardinalidad = calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCardinalidad();
-        this.vuelta = calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getVuelta();
-        this.comentario = calificaTareaMapamental.getComentario();
-        this.puntaje = calificaTareaMapamental.getPuntaje();
-        this.momento = calificaTareaMapamental.getMomento();
+    public CalificaTareaMapaMentalModelo(CalificaTareaMapamentalEntidad calificaTareaMapamentalEntidad){
+        CalificaTareaMapamentalEntidadPK calificaTareaMapamentalEntidadPK = calificaTareaMapamentalEntidad.getCalificaTareaMapamentalEntidadPK();
+        this.idTarea = calificaTareaMapamentalEntidadPK.getTareaEntidad().getId();
+        this.cardinalidad = calificaTareaMapamentalEntidadPK.getCardinalidad();
+        this.vuelta = calificaTareaMapamentalEntidadPK.getVuelta();
+        this.comentario = calificaTareaMapamentalEntidad.getComentario();
+        this.puntaje = calificaTareaMapamentalEntidad.getPuntaje();
+        this.momento = calificaTareaMapamentalEntidad.getMomento();
     }
 
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getIdActividad() {
-        return idActividad;
-    }
-
-    public void setIdActividad(String idActividad) {
-        this.idActividad = idActividad;
-    }
-
+    @NotNull
     public Integer getIdTarea() {
         return idTarea;
     }
@@ -65,6 +47,7 @@ public class CalificaTareaMapaMentalModelo {
         this.idTarea = idTarea;
     }
 
+    @NotNull
     public Short getCardinalidad() {
         return cardinalidad;
     }
@@ -73,6 +56,7 @@ public class CalificaTareaMapaMentalModelo {
         this.cardinalidad = cardinalidad;
     }
 
+    @NotNull
     public Short getVuelta() {
         return vuelta;
     }
@@ -81,6 +65,7 @@ public class CalificaTareaMapaMentalModelo {
         this.vuelta = vuelta;
     }
 
+    @NotNull
     public String getComentario() {
         return comentario;
     }
@@ -89,6 +74,7 @@ public class CalificaTareaMapaMentalModelo {
         this.comentario = comentario;
     }
 
+    @NotNull
     public Short getPuntaje() {
         return puntaje;
     }
@@ -108,8 +94,6 @@ public class CalificaTareaMapaMentalModelo {
     @Override
     public String toString() {
         return new StringJoiner(", ", CalificaTareaMapaMentalModelo.class.getSimpleName() + "[", "]")
-                .add("codigo='" + codigo + "'")
-                .add("idActividad='" + idActividad + "'")
                 .add("idTarea=" + idTarea)
                 .add("cardinalidad=" + cardinalidad)
                 .add("vuelta=" + vuelta)

@@ -57,7 +57,7 @@ public class CalificaTareaMapaMentalTest {
                         MapaMentalActividadEntidad.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class,
                         TareaRelacionarActividadEntidad.class, TareaRelacionarActividadEntidadPK.class, RelacionarActividadEntidad.class,
                         RelacionarActividadEntidadPK.class, RelacionarEntidad.class, CalificaTareaGramaticaEntidad.class, TareaGramaticaEntidad.class,
-                        TareaGramaticaEntidadPK.class, GramaticaEntidad.class, GramaticaEntidadPK.class, CalificaTareaMapamental.class)
+                        TareaGramaticaEntidadPK.class, GramaticaEntidad.class, GramaticaEntidadPK.class, CalificaTareaMapamentalEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -67,17 +67,13 @@ public class CalificaTareaMapaMentalTest {
 
     @Test
     public void busca(){
-        TypedQuery<CalificaTareaMapamental> typedQuery = entityManager.createNamedQuery("CalificaTareaMapamental.busca", CalificaTareaMapamental.class);
-        List<CalificaTareaMapamental> calificaTareaMapamentalLista = typedQuery.getResultList();
-        Assert.assertNotNull(calificaTareaMapamentalLista);
-        Assert.assertFalse(calificaTareaMapamentalLista.isEmpty());
-        for (CalificaTareaMapamental calificaTareaMapamental : calificaTareaMapamentalLista){
-            Assert.assertNotNull(calificaTareaMapamental);
-            Assert.assertNotNull(calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getActividadEntidad().getId());
-            Assert.assertNotNull(calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCodigo());
-            Assert.assertNotNull(calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getMapaMentalActividadEntidad().getMapaMentalActividadPK().getMapaMentalEntidad().getMapaMentalEntidadPK().getCardinalidad());
-            Assert.assertNotNull(calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getTareaEntidad().getId());
-            Assert.assertNotNull(calificaTareaMapamental.getTareaMapaMentalActividadEntidad().getTareaMapaMentalActividadEntidadPK().getVuelta());
+        TypedQuery<CalificaTareaMapamentalEntidad> typedQuery = entityManager.createNamedQuery("CalificaTareaMapamental.busca", CalificaTareaMapamentalEntidad.class);
+        List<CalificaTareaMapamentalEntidad> calificaTareaMapamentalEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(calificaTareaMapamentalEntidadLista);
+        Assert.assertFalse(calificaTareaMapamentalEntidadLista.isEmpty());
+        for (CalificaTareaMapamentalEntidad calificaTareaMapamentalEntidad : calificaTareaMapamentalEntidadLista){
+            Assert.assertNotNull(calificaTareaMapamentalEntidad);
+
         }
     }
 }
