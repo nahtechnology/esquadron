@@ -14,8 +14,12 @@ public class TareaAlumnoGrupoEntidad {
     private String apellidoMaterno;
     private int totalRespuestaMapaMental;
     private int totalAsignadaMapaMental;
+    private int calificadoMapaMental;
+    private int totalAsignadoRelacionar;
+    private int totalRespuestaRelacionar;
     private int totalRespuestaGramatica;
     private int totalAsignadaGramatica;
+    private int totalCalificadasGramatica;
     private int totalRespuestaOraciones;
     private int totalAsignadaOraciones;
     private int totalRespuestaRelacionarOracion;
@@ -76,6 +80,33 @@ public class TareaAlumnoGrupoEntidad {
         this.totalAsignadaMapaMental = totalAsignadaMapaMental;
     }
 
+    @Column(name = "calificado_mapamental")
+    public int getCalificadoMapaMental() {
+        return calificadoMapaMental;
+    }
+
+    public void setCalificadoMapaMental(int calificadoMapaMental) {
+        this.calificadoMapaMental = calificadoMapaMental;
+    }
+
+    @Column(name = "total_asignado_relacionar")
+    public int getTotalAsignadoRelacionar() {
+        return totalAsignadoRelacionar;
+    }
+
+    public void setTotalAsignadoRelacionar(int totalAsignadoRelacionar) {
+        this.totalAsignadoRelacionar = totalAsignadoRelacionar;
+    }
+
+    @Column(name = "total_respuesta_relacionar")
+    public int getTotalRespuestaRelacionar() {
+        return totalRespuestaRelacionar;
+    }
+
+    public void setTotalRespuestaRelacionar(int totalRespuestaRelacionar) {
+        this.totalRespuestaRelacionar = totalRespuestaRelacionar;
+    }
+
     @Column(name = "total_respuesta_gramatica")
     public int getTotalRespuestaGramatica() {
         return totalRespuestaGramatica;
@@ -92,6 +123,15 @@ public class TareaAlumnoGrupoEntidad {
 
     public void setTotalAsignadaGramatica(int totalAsignadaGramatica) {
         this.totalAsignadaGramatica = totalAsignadaGramatica;
+    }
+
+    @Column(name = "total_calificadas_gramatica")
+    public int getTotalCalificadasGramatica() {
+        return totalCalificadasGramatica;
+    }
+
+    public void setTotalCalificadasGramatica(int totalCalificadasGramatica) {
+        this.totalCalificadasGramatica = totalCalificadasGramatica;
     }
 
     @Column(name = "total_respuesta_oraciones")

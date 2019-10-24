@@ -34,6 +34,10 @@
             <from-outcome>tablero</from-outcome>
             <to-view-id>/profesor/dashboard.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>califica-mapamental</from-outcome>
+            <to-view-id>/profesor/calificacion-mapamental.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
 </faces-config>

@@ -113,6 +113,9 @@ public class MapaMentalSessionBeanTest {
             assertNotNull(mapaMentalModelo.getPregunta());
             assertNotNull(mapaMentalModelo.getCardinalidad());
             assertNotNull(mapaMentalModelo.getCodigo());
+            assertNotNull(mapaMentalModelo.getRespuesta());
+            assertNotNull(mapaMentalModelo.getVuelta());
+            assertNotNull(mapaMentalModelo.getHoraRespuesta());
         });
     }
 

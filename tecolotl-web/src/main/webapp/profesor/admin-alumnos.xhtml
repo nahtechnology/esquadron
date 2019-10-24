@@ -38,7 +38,7 @@
             <!-- tabla alumnos -->
             <div class="uk-width-1-1@s uk-margin-large-top">
                 <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
-                    <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="3ojos.svg" width="70" height="70"/></div>
+                    <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="/mounstro/" width="70" height="70"/></div>
                     <div class="uk-margin-small-left esquadron-paddin"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
                 </div>
                 <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
@@ -54,16 +54,38 @@
                                      var="tarea"
                                      styleClass="uk-table-justify uk-table-small uk-table-middle uk-table-hover tablaPrimaria thPrimario">
                             <h:column>
-                                <f:facet name="header">id</f:facet>
-                                #{tarea.id}
-                            </h:column>
-                            <h:column>
                                 <f:facet name="header">nombre</f:facet>
-                                #{tarea.nombre.concat(' ').concat(tarea.apellidoPaterno)}
+                                ${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">tareas</f:facet>
-                                #{tarea.totalRespuestaGramatica} / #{tarea.totalAsignadaGramatica}
+                                <f:facet name="header">mapa mental</f:facet>
+                                ${tarea.totalRespuestaMapaMental} / ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}
+                                <h:outputText pt:uk-icon="icon: check" rendered="#{tarea.totalAsignadaMapaMental > 0 and (tarea.totalAsignadaMapaMental eq tarea.calificadoMapaMental)}"/>
+                                <h:link rendered="#{tarea.totalAsignadaMapaMental > 0 and (tarea.totalAsignadaMapaMental gt tarea.calificadoMapaMental)}" outcome="califica-mapamental">
+                                    <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                    <f:param name="tarea" value="#{tarea.id}"/>
+                                </h:link>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">ordenar palabra</f:facet>
+                                ${tarea.totalRespuestaGramatica} / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}
+                                <h:outputText pt:uk-icon="icon: check" rendered=""/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">relacionar imagen palabra</f:facet>
+                                ${tarea.totalRespuestaRelacionar} / ${tarea.totalAsignadoRelacionar}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">order oraciones</f:facet>
+                                ${tarea.totalRespuestaOraciones} / #{tarea.totalAsignadaOraciones}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">relacionar pregunta respuesta</f:facet>
+                                ${tarea.totalRespuestaRelacionarOracion} / ${tarea.totalAsignadaRelacionarOracion}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">completar oraciones</f:facet>
+                                ${tarea.totalRespuestaCompletar} / ${tarea.totalAsignadaCompletar}
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>

@@ -181,6 +181,17 @@ public class GrupoAlumnoSesionBeanTest {
             Assert.assertNotNull(tareaAlumnoGrupoModelo.getApellidoPaterno());
             Assert.assertNotNull(tareaAlumnoGrupoModelo.getApellidoMaterno());
             Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalAsignadaCompletar() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalRespuestaCompletar() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalAsignadaGramatica() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalRespuestaGramatica() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalAsignadaMapaMental() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalRespuestaMapaMental() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalAsignadaOraciones() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalRespuestaOraciones() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalAsignadaRelacionarOracion() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalRespuestaRelacionarOracion() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getCalificadoMapaMental() > -1);
+            Assert.assertTrue(tareaAlumnoGrupoModelo.getTotalCalificadasGramatica() > -1);
         });
     }
 

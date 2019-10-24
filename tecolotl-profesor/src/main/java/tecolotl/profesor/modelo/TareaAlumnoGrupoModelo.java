@@ -2,6 +2,8 @@ package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.TareaAlumnoGrupoEntidad;
 
+import java.util.StringJoiner;
+
 public class TareaAlumnoGrupoModelo {
 
     private int id;
@@ -10,8 +12,12 @@ public class TareaAlumnoGrupoModelo {
     private String apellidoMaterno;
     private int totalRespuestaMapaMental;
     private int totalAsignadaMapaMental;
+    private int calificadoMapaMental;
+    private int totalAsignadoRelacionar;
+    private int totalRespuestaRelacionar;
     private int totalRespuestaGramatica;
     private int totalAsignadaGramatica;
+    private int totalCalificadasGramatica;
     private int totalRespuestaOraciones;
     private int totalAsignadaOraciones;
     private int totalRespuestaRelacionarOracion;
@@ -29,8 +35,12 @@ public class TareaAlumnoGrupoModelo {
         this.apellidoMaterno = tareaAlumnoGrupoEntidad.getApellidoMaterno();
         this.totalRespuestaMapaMental = tareaAlumnoGrupoEntidad.getTotalRespuestaMapaMental();
         this.totalAsignadaMapaMental = tareaAlumnoGrupoEntidad.getTotalAsignadaMapaMental();
+        this.calificadoMapaMental = tareaAlumnoGrupoEntidad.getCalificadoMapaMental();
+        this.totalAsignadoRelacionar = tareaAlumnoGrupoEntidad.getTotalAsignadoRelacionar();
+        this.totalRespuestaRelacionar = tareaAlumnoGrupoEntidad.getTotalRespuestaRelacionar();
         this.totalRespuestaGramatica = tareaAlumnoGrupoEntidad.getTotalRespuestaGramatica();
         this.totalAsignadaGramatica = tareaAlumnoGrupoEntidad.getTotalAsignadaGramatica();
+        this.totalCalificadasGramatica = tareaAlumnoGrupoEntidad.getTotalCalificadasGramatica();
         this.totalRespuestaOraciones = tareaAlumnoGrupoEntidad.getTotalRespuestaOraciones();
         this.totalAsignadaOraciones = tareaAlumnoGrupoEntidad.getTotalAsignadaOraciones();
         this.totalRespuestaRelacionarOracion = tareaAlumnoGrupoEntidad.getTotalRespuestaRelacionarOracion();
@@ -149,5 +159,59 @@ public class TareaAlumnoGrupoModelo {
 
     public void setTotalAsignadaCompletar(int totalAsignadaCompletar) {
         this.totalAsignadaCompletar = totalAsignadaCompletar;
+    }
+
+    public int getCalificadoMapaMental() {
+        return calificadoMapaMental;
+    }
+
+    public void setCalificadoMapaMental(int calificadoMapaMental) {
+        this.calificadoMapaMental = calificadoMapaMental;
+    }
+
+    public int getTotalCalificadasGramatica() {
+        return totalCalificadasGramatica;
+    }
+
+    public void setTotalCalificadasGramatica(int totalCalificadasGramatica) {
+        this.totalCalificadasGramatica = totalCalificadasGramatica;
+    }
+
+    public int getTotalAsignadoRelacionar() {
+        return totalAsignadoRelacionar;
+    }
+
+    public void setTotalAsignadoRelacionar(int totalAsignadoRelacionar) {
+        this.totalAsignadoRelacionar = totalAsignadoRelacionar;
+    }
+
+    public int getTotalRespuestaRelacionar() {
+        return totalRespuestaRelacionar;
+    }
+
+    public void setTotalRespuestaRelacionar(int totalRespuestaRelacionar) {
+        this.totalRespuestaRelacionar = totalRespuestaRelacionar;
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaAlumnoGrupoModelo.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("nombre='" + nombre + "'")
+                .add("apellidoPaterno='" + apellidoPaterno + "'")
+                .add("apellidoMaterno='" + apellidoMaterno + "'")
+                .add("totalRespuestaMapaMental=" + totalRespuestaMapaMental)
+                .add("totalAsignadaMapaMental=" + totalAsignadaMapaMental)
+                .add("calificadoMapaMental=" + calificadoMapaMental)
+                .add("totalRespuestaGramatica=" + totalRespuestaGramatica)
+                .add("totalAsignadaGramatica=" + totalAsignadaGramatica)
+                .add("totalCalificadasGramatica=" + totalCalificadasGramatica)
+                .add("totalRespuestaOraciones=" + totalRespuestaOraciones)
+                .add("totalAsignadaOraciones=" + totalAsignadaOraciones)
+                .add("totalRespuestaRelacionarOracion=" + totalRespuestaRelacionarOracion)
+                .add("totalAsignadaRelacionarOracion=" + totalAsignadaRelacionarOracion)
+                .add("totalRespuestaCompletar=" + totalRespuestaCompletar)
+                .add("totalAsignadaCompletar=" + totalAsignadaCompletar)
+                .toString();
     }
 }
