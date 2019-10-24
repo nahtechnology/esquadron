@@ -385,9 +385,10 @@ input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select
   /*overflow: hidden;*/
   font-size: 13px;
   font-weight: bold;
+  text-transform: uppercase;
 }
 .tablaPrimaria, .thPrimario, .tdPrimario{
-  /*text-align: center;*/
+  text-align: center !important;
   border-bottom: 2px solid #000;
 }
 .borde-top-amarillo{
