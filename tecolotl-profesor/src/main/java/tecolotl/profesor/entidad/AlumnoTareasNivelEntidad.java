@@ -10,7 +10,7 @@ import java.util.StringJoiner;
 @Entity
 public class AlumnoTareasNivelEntidad implements Serializable {
 
-    private Short idGrupo;
+    private Integer idGrupo;
     private Integer idAlumno;
     private String nombre;
     private String apellidoPaterno;
@@ -20,11 +20,11 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     @Basic
     @Column(name = "id_grupo")
-    public Short getIdGrupo() {
+    public Integer getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Short idGrupo) {
+    public void setIdGrupo(Integer idGrupo) {
         this.idGrupo = idGrupo;
     }
 

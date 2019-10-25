@@ -4,7 +4,7 @@ import tecolotl.profesor.entidad.AlumnoTareasNivelEntidad;
 
 public class AlumnoTareasNivelModelo {
 
-    private Short idGrupo;
+    private Integer idGrupo;
     private Integer idAlumno;
     private String nombre;
     private String apellidoPaterno;
@@ -25,11 +25,11 @@ public class AlumnoTareasNivelModelo {
         this.nivelLenguaje = alumnoTareasNivelEntidad.getNivelLenguaje();
     }
 
-    public Short getIdGrupo() {
+    public Integer getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Short idGrupo) {
+    public void setIdGrupo(Integer idGrupo) {
         this.idGrupo = idGrupo;
     }
 

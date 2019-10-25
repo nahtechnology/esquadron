@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @RequestScoped
@@ -21,20 +22,20 @@ public class AlumnoTareaNivelControlador {
     @Inject
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
-    private List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista;
+    private Map<Integer, List<AlumnoTareasNivelModelo>> alumnoTareaNivelMapa;
 
     @PostConstruct
     public void inicio() {
-        alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
+        alumnoTareaNivelMapa = grupoAlumnoSesionBean.buscaAlumnoNivel(
                 dashboardProfesorControlador.getGrupoModeloLista().stream().map(GrupoModelo::getId).collect(Collectors.toList())
-        );
+        ).stream().collect(Collectors.groupingBy(AlumnoTareasNivelModelo::getIdGrupo));
     }
 
-    public List<AlumnoTareasNivelModelo> getAlumnoTareasNivelModeloLista() {
-        return alumnoTareasNivelModeloLista;
+    public Map<Integer, List<AlumnoTareasNivelModelo>> getAlumnoTareaNivelMapa() {
+        return alumnoTareaNivelMapa;
     }
 
-    public void setAlumnoTareasNivelModeloLista(List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista) {
-        this.alumnoTareasNivelModeloLista = alumnoTareasNivelModeloLista;
+    public void setAlumnoTareaNivelMapa(Map<Integer, List<AlumnoTareasNivelModelo>> alumnoTareaNivelMapa) {
+        this.alumnoTareaNivelMapa = alumnoTareaNivelMapa;
     }
 }

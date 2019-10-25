@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidad;
 import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidadPK;
 import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
+import tecolotl.profesor.modelo.TareaAlumnoModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -68,5 +69,10 @@ public class CalificaTareaMapaMentalSesionBean {
                 .setParameter("puntaje", calificaTareaMapaMentalModelo.getPuntaje())
                 .setParameter("vuelta", calificaTareaMapaMentalModelo.getVuelta());
         return query.executeUpdate();
+    }
+
+
+    public List<TareaAlumnoModelo> busca(@NotNull Integer idTarea) {
+        return null;
     }
 }
