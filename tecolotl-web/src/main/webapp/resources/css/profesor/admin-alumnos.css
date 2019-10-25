@@ -51,13 +51,6 @@ progress::-ms-fill {
 }
 
 div > div > div + div + button{
-    font-family: 'Sniglet', "Arial Black";
-    text-transform: capitalize;
-    font-size: 19px;
-    width: 108px;
-    border: #B31F0C solid 3px;
-    border-radius: 20px;
-    background-color: #F4D03F;
     position: relative;
     left: 85%;
 }

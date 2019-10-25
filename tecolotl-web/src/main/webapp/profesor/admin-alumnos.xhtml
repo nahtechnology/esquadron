@@ -38,49 +38,57 @@
             <!-- tabla alumnos -->
             <div class="uk-width-1-1@s uk-margin-large-top">
                 <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
-                    <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="/mounstro/" width="70" height="70"/></div>
+                    <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="/mounstro/naranja.svg" width="70" height="70"/></div>
                     <div class="uk-margin-small-left esquadron-paddin"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
                 </div>
                 <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
                     <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="esquadron.svg" width="70" height="70"/></div>
                     <div class="uk-text-center"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
                 </div>
-                <button uk-toggle="target: #modal-nuevo-alumno">agregar</button>
+                <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>
                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Alumnos de la clase</h5>
                 <h:form id="formulario-tabla-alumno" >
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
                                      var="tarea"
-                                     styleClass="tabla-alumnos uk-table-justify uk-table-small uk-table-middle uk-table-hover tablaPrimaria thPrimario">
+                                     styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
+                                     headerClass="thPrimario uk-text-center"
+                                     columnClasses="uk-width-small,uk-width-small,uk-width-small"
+                                     rowClasses="tdPrimario">
                             <h:column>
-                                <f:facet name="header">nombre</f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">nombre</span></f:facet>
                                 ${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">mapa mental</f:facet>
-                                ${tarea.totalRespuestaMapaMental} / ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">mapa mental</span></f:facet>
+                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaMapaMental eq 0}"/>
+                                <h:outputText value="${tarea.totalRespuestaMapaMental} / ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">ordenar palabra</f:facet>
-                                ${tarea.totalRespuestaGramatica} / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}
-                                <h:outputText pt:uk-icon="icon: check" rendered=""/>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">ordenar palabra</span></f:facet>
+                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaGramatica eq 0}"/>
+                                <h:outputText value="${tarea.totalRespuestaGramatica} / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">relacionar imagen palabra</f:facet>
-                                ${tarea.totalRespuestaRelacionar} / ${tarea.totalAsignadoRelacionar}
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">relacionar imagen palabra</span></f:facet>
+                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadoRelacionar eq 0}"/>
+                                <h:outputText value="${tarea.totalRespuestaRelacionar} / ${tarea.totalAsignadoRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">order oraciones</f:facet>
-                                ${tarea.totalRespuestaOraciones} / #{tarea.totalAsignadaOraciones}
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">ordenar oraciones</span></f:facet>
+                                <h:outputText pt:uk-icon="ban" rendered="#{tarea.totalAsignadaOraciones eq 0}"/>
+                                <h:outputText value="#{tarea.totalRespuestaOraciones} / #{tarea.totalAsignadaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">relacionar pregunta respuesta</f:facet>
-                                ${tarea.totalRespuestaRelacionarOracion} / ${tarea.totalAsignadaRelacionarOracion}
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">relacionar pregunta respuesta</span></f:facet>
+                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaRelacionarOracion eq 0}"/>
+                                <h:outputText value="${tarea.totalRespuestaRelacionarOracion} / ${tarea.totalAsignadaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">completar oraciones</f:facet>
-                                ${tarea.totalRespuestaCompletar} / ${tarea.totalAsignadaCompletar}
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">completar oraciones</span></f:facet>
+                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaCompletar eq 0}"/>
+                                <h:outputText value="${tarea.totalRespuestaCompletar} / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>
@@ -237,60 +245,31 @@
         </h:panelGroup>
         <!--  Modal Eliminar -->
         <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
-            <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header fondo-peligro">
-                    <h2 class="uk-modal-title titulo-modal">
-                        <h:outputText styleClass="uk-text-capitalize" value="Eliminar Alumno" />
-                    </h2>
-                </div>
-                <div class="barra-modal-peligro"></div>
-                <h:form styleClass="uk-form-stacked">
-                    <div class="uk-modal-body">
-                        <p>¿Está seguro en borrar la escuela Benito Juarez?, no se prodrá recuperar los datos
-                        </p>
-
+            <h:form>
+                <div class="uk-modal-dialog uk-margin-auto-vertical">
+                    <div class="uk-modal-header fondo-peligro">
+                        <h2 class="uk-modal-title titulo-modal">
+                            <h:outputText styleClass="uk-text-capitalize" value="Eliminar Alumno" />
+                        </h2>
                     </div>
-                </h:form>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="boton-escuadron-defaul uk-modal-close" type="button">Cancel</button>
-                    <h:commandButton styleClass="boton-escuadron-peligro  uk-margin-small-left" value="Aceptar" >
-                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar' ) }"/>
-                    </h:commandButton>
-                </div>
-            </div>
-        </h:panelGroup>
-        <!--  FIN Modal Eliminar -->
+                    <div class="barra-modal-peligro"></div>
+                    <h:form styleClass="uk-form-stacked">
+                        <div class="uk-modal-body">
+                            <p>¿Está seguro en borrar la escuela Benito Juarez?, no se prodrá recuperar los datos
+                            </p>
 
-        <!--  Modal Reporte -->
-        <h:panelGroup layout="block" id="modal-descarga" pt:uk-modal="">
-            <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header header-color-card">
-                    <h2 class="uk-modal-title titulo-modal">Reporte</h2>
-                </div>
-                <div class="barra-modal"></div>
-                <h:form styleClass="uk-form-stacked">
-                    <div class="uk-modal-body">
-                        <h:outputLabel for="select-descarga" styleClass="  uk-form-label" value="Selecciona Descarga"/>
-                        <h:selectOneRadio id="select-descarga" StyleClass="uk-checkbox" type="checkbox"  >
-                            <f:selectItem styleClass="checked" itemValue = "1" itemLabel = "Reporte Cualitativo" />
-                            <f:selectItem itemValue = "2" itemLabel = "Reporte Cuantitativo" />
-                        </h:selectOneRadio>
-                        <ui:fragment rendered="#{facesContext.validationFailed}">
-                            <h:panelGroup layout="block" styleClass="uk-alert-danger"  pt:uk-alert="">
-                                <h:messages styleClass="uk-list"/>
-                            </h:panelGroup>
-                        </ui:fragment>
-                    </div>
+                        </div>
+                    </h:form>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="boton-escuadron-base-secundary uk-modal-close" type="button">Cancel</button>
-                        <h:commandButton styleClass="boton-escuadron-base  uk-margin-small-left" value="Descargar" >
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalDescarga') }" render="@form" execute="@form"/>
+                        <button class="boton-escuadron-defaul uk-modal-close" type="button">Cancel</button>
+                        <h:commandButton styleClass="boton-escuadron-peligro  uk-margin-small-left" value="Aceptar" >
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar' ) }"/>
                         </h:commandButton>
                     </div>
-                </h:form>
-            </div>
+                </div>
+            </h:form>
         </h:panelGroup>
-        <!--  FIN Modal Bloqueo -->
+        <!--  FIN Modal Eliminar -->
         <script type="text/javascript">
             var modalEditar;
             var modalDescarga;

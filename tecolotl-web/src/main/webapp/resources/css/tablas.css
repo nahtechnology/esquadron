@@ -87,3 +87,7 @@
     font-weight: normal;
 }
 
+div > table > thead + tbody > tr > td:nth-child(5){
+
+}
+
