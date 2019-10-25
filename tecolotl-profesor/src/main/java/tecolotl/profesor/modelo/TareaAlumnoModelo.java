@@ -8,6 +8,9 @@ public class TareaAlumnoModelo {
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
     private Short calificacionGramatica;
+    private Short calificacionOraciones;
+    private Short calificacionRelacionarOraciones;
+    private Short calificacionCompletar;
 
     public TareaAlumnoModelo() {
     }
@@ -21,6 +24,9 @@ public class TareaAlumnoModelo {
         this.calificacionMapamental = tareaAlumnoEntidad.getCalificacionMapamental();
         this.calificacionRelacionarImagen = tareaAlumnoEntidad.getCalificacionRelacionarImagen();
         this.calificacionGramatica = tareaAlumnoEntidad.getCalificacionGramatica();
+        this.calificacionOraciones = tareaAlumnoEntidad.getCalificacionOraciones();
+        this.calificacionRelacionarOraciones = tareaAlumnoEntidad.getCalificacionRelacionarOraciones();
+        this.calificacionCompletar = tareaAlumnoEntidad.getCalificacionCompletar();
     }
 
     public int getId() {
@@ -53,5 +59,28 @@ public class TareaAlumnoModelo {
 
     public void setCalificacionGramatica(Short calificacionGramatica) {
         this.calificacionGramatica = calificacionGramatica;
+    }
+    public Short getCalificacionOraciones() {
+        return calificacionOraciones;
+    }
+
+    public void setCalificacionOraciones(Short calificacionOraciones) {
+        this.calificacionOraciones = calificacionOraciones;
+    }
+
+    public Short getCalificacionRelacionarOraciones() {
+        return calificacionRelacionarOraciones;
+    }
+
+    public void setCalificacionRelacionarOraciones(Short calificacionRelacionarOraciones) {
+        this.calificacionRelacionarOraciones = calificacionRelacionarOraciones;
+    }
+
+    public Short getCalificacionCompletar() {
+        return calificacionCompletar;
+    }
+
+    public void setCalificacionCompletar(Short calificacionCompletar) {
+        this.calificacionCompletar = calificacionCompletar;
     }
 }

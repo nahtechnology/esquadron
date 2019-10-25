@@ -11,6 +11,10 @@ public class TareaAlumnoEntidad {
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
     private Short calificacionGramatica;
+    private Short calificacionOraciones;
+    private Short calificacionRelacionarOraciones;
+    private Short calificacionCompletar;
+
 
     @Id
     public int getId() {
@@ -46,6 +50,30 @@ public class TareaAlumnoEntidad {
 
     public void setCalificacionGramatica(Short calificacionGramatica) {
         this.calificacionGramatica = calificacionGramatica;
+    }
+    @Column(name = "calificacion_oraciones")
+    public Short getCalificacionOraciones() {
+        return calificacionOraciones;
+    }
+
+    public void setCalificacionOraciones(Short calificacionOraciones) {
+        this.calificacionOraciones = calificacionOraciones;
+    }
+    @Column(name = "calificacion_relacionar_oracion")
+    public Short getCalificacionRelacionarOraciones() {
+        return calificacionRelacionarOraciones;
+    }
+
+    public void setCalificacionRelacionarOraciones(Short calificacionRelacionarOraciones) {
+        this.calificacionRelacionarOraciones = calificacionRelacionarOraciones;
+    }
+    @Column(name = "calificacion_completar")
+    public Short getCalificacionCompletar() {
+        return calificacionCompletar;
+    }
+
+    public void setCalificacionCompletar(Short calificacionCompletar) {
+        this.calificacionCompletar = calificacionCompletar;
     }
 
 }
