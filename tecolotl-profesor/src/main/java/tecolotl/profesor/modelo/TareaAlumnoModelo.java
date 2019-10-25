@@ -83,4 +83,5 @@ public class TareaAlumnoModelo {
     public void setCalificacionCompletar(Short calificacionCompletar) {
         this.calificacionCompletar = calificacionCompletar;
     }
+
 }

@@ -51,7 +51,7 @@
                     <h:graphicImage styleClass="uk-border-circle uk-visible@s" library="img" name="fonfo2.png" height="100" width="100"/>
                     Nombre: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.nombre.concat(' ').concat(tareaAlumnoControlador.alumnoModelo.apellidoPaterno).concat(' ').concat(tareaAlumnoControlador.alumnoModelo.apellidoMaterno)}"/>
                     Apodo: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.apodo}"/>
-                    Nivel Lenguaje: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}"/>
+                    Nivel Lenguaje: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}"/>
                 </div>
                 <!--CARDS WRAPPER-->
                 <div class="js-filter" data-uk-sortable="handle: .drag-icon">
@@ -125,7 +125,7 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea relacionar oraciones</span></f:facet>
-                                            <progress value="#{#{tareaAlumno.calificacionRelacionarOraciones}}" min="0" max="100"/>
+                                            <progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/>
                                             #{tareaAlumno.calificacionRelacionarOraciones}
                                         </h:column>
                                         <h:column>
