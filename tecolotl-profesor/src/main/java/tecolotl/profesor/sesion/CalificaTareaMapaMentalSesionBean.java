@@ -3,6 +3,7 @@ package tecolotl.profesor.sesion;
 import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidad;
 import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidadPK;
+import tecolotl.profesor.entidad.TareaAlumnoEntidad;
 import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
 import tecolotl.profesor.modelo.TareaAlumnoModelo;
 
@@ -71,8 +72,15 @@ public class CalificaTareaMapaMentalSesionBean {
         return query.executeUpdate();
     }
 
-
+    /**
+     * Busca las tareas asignadas de un alumno
+     * @param idTarea Identificador de las tareas
+     * @return Colección de {@link TareaAlumnoModelo}
+     */
     public List<TareaAlumnoModelo> busca(@NotNull Integer idTarea) {
-        return null;
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tareas_alumno(?)", TareaAlumnoEntidad.class);
+        query.setParameter(1, idTarea);
+        return ((List<TareaAlumnoEntidad>)query.getResultList()).stream().map(TareaAlumnoModelo::new).collect(Collectors.toList());
     }
+
 }

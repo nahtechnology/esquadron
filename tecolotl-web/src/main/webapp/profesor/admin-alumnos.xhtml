@@ -52,7 +52,7 @@
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
                                      var="tarea"
-                                     styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
+                                     styleClass="tabla-alumnos uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
                                      headerClass="thPrimario uk-text-center"
                                      columnClasses="uk-width-small,uk-width-small,uk-width-small"
                                      rowClasses="tdPrimario">
@@ -100,21 +100,8 @@
                                                 <h:link outcome="detalle-alumno">
                                                     <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                     <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
+                                                    <f:param name="idAlumno" value="#{tarea.id}"/>
                                                 </h:link>
-                                            </li>
-                                            <li>
-                                                <h:commandLink   pt:uk-toggle="target: #modal-editar-alumno">
-                                                    <h:outputText pt:uk-icon="icon: cog" styleClass="uk-margin-small-right uk-icon" />
-                                                    <span class="uk-text-middle"><h:outputText value="Editar"/></span>
-                                                    <f:ajax />
-                                                </h:commandLink>
-                                            </li>
-                                            <li>
-                                                <h:commandLink  pt:uk-toggle="target: #modal-descarga">
-                                                    <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon" />
-                                                    <span class="uk-text-middle"><h:outputText value="Reporte"/></span>
-                                                    <f:ajax/>
-                                                </h:commandLink>
                                             </li>
                                         </ul>
                                     </div>

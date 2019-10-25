@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <f:metadata>
+        <f:viewParam name="idAlumno" value="#{tareaAlumnoControlador.idAlumno}"/>
+        <f:viewAction action="#{tareaAlumnoControlador.detalle}"/>
+    </f:metadata>
+    <ui:define name="menu">
+        <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+            <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+            <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
+            <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" outcome="detalle-alumno" value="Student Details"/></li>
+            <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+            <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+        </ul>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar  ">
+                <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                    <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
+                    <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" outcome="detalle-alumno" value="Student Details"/></li>
+                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                    <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="tablas.css"/>
+        <h:outputStylesheet library="css" name="graficas.css"/>
+        <!--CARDS WRAPPER-->
+        <section class="uk-section uk-section-default uk-section-default uk-padding-remove-top " data-uk-filter="target: .js-filter">
+            <div class="uk-container uk-container-expand">
+                    <ul class="uk-subnav  nav-default-profesor2 uk-subnav-alumno2">
+                        <li class="uk-active" data-uk-filter-control=".actividad-card"><a href="#">Actividad/Alumno</a></li>
+                        <li data-uk-filter-control=".tarea-card"><a href="#">Tareas</a></li>
+                        <li data-uk-filter-control=".nivel-card "><a href="#">Asignación de nivel</a></li>
+                    </ul>
+                <div class="contenedor-imagen-alumnos uk-margin-small-bottom uk-margin-small-top">
+                    <h:graphicImage styleClass="uk-border-circle uk-visible@s" library="img" name="fonfo2.png" height="100" width="100"/>
+                    Nombre: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.nombre.concat(' ').concat(tareaAlumnoControlador.alumnoModelo.apellidoPaterno).concat(' ').concat(tareaAlumnoControlador.alumnoModelo.apellidoMaterno)}"/>
+                    Apodo: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.apodo}"/>
+                    Nivel Lenguaje: <h:outputText value="${tareaAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}"/>
+                </div>
+                <!--CARDS WRAPPER-->
+                <div class="js-filter" data-uk-sortable="handle: .drag-icon">
+                    <!-- card -->
+                    <div class="actividad-card uk-container">
+                        <div class="">
+                            <div class="titulo-section padding-0">
+                                <div class="uk-grid uk-margin-small-left">
+                                    <div class="uk-width-expand uk-flex uk-flex-right">
+                                        <ul class="uk-iconnav">
+                                            <li class="">
+                                                <div class="">
+                                                    <div uk-form-custom="target: > * > span:first-child">
+                                                        <select>
+                                                            <option value="1">Ultimos 7 Dias</option>
+                                                            <option value="2">Ultimo mes</option>
+                                                            <option value="3">Ultimo año</option>
+                                                            <option value="4">Todos</option>
+                                                            <option value="5">Personalizado</option>
+                                                        </select>
+                                                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
+                                                            <span/>
+                                                            <span uk-icon="icon: chevron-down"/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="padding-0">
+                                <div class="uk-overflow-auto">
+                                <h:form id="formulario-tabla-actividades">
+                                    <h:dataTable id="tabla-actividades"
+                                                 value="#{tareaAlumnoControlador.tareaAlumnoModeloLista}"
+                                                 var="tareaAlumno"
+                                                 styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-text-center tabla-profesor-dropdown"
+                                                 headerClass="borde-top-amarillo uk-text-center"
+                                                 columnClasses="uk-width-small,,uk-width-small,uk-width-small,uk-width-small"
+                                                 rowClasses="tdPrimario"
+                                                 footerClass="thPrimario uk-text-left">
+                                        <h:column>
+                                            <f:facet name="header"><span>id</span></f:facet>
+                                            #{tareaAlumno.id}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>tarea gramática</span></f:facet>
+                                            <progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/>
+                                            #{tareaAlumno.calificacionGramatica}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>tarea mapa mental</span></f:facet>
+                                            <progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/>
+                                            #{tareaAlumno.calificacionMapamental}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>tarea relacionar imagen</span></f:facet>
+                                            <progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/>
+                                            #{tareaAlumno.calificacionRelacionarImagen}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>tarea completar oracion</span></f:facet>
+                                            <progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/>
+                                            #{tareaAlumno.calificacionCompletar}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>tarea order oraciones</span></f:facet>
+                                            <progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/>
+                                            #{tareaAlumno.calificacionOraciones}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>tarea relacionar oraciones</span></f:facet>
+                                            <progress value="#{#{tareaAlumno.calificacionRelacionarOraciones}}" min="0" max="100"/>
+                                            #{tareaAlumno.calificacionRelacionarOraciones}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Tipo</span></f:facet>
+                                            <div class="uk-width-auto">
+                                                <ul class="uk-subnav" data-uk-margin="">
+                                                    <li><h:commandLink pt:uk-toggle="target: #modal-comentarios-alumno">
+                                                        <h:graphicImage styleClass="" library="img" name="gramatica.svg" width="25" height="25" pt:data-uk-tooltip="gramatica"/>
+                                                        <f:ajax/>
+                                                    </h:commandLink>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /card -->
+                    <!-- card -->
+                    <div class="nivel-card uk-container">
+                        <ui:remove>
+                        <div class="">
+                            <div class="titulo-section padding-0">
+                                <div class="uk-grid">
+                                    <div class="uk-text-bold"><h4 class=" uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">nivel actual</h4></div>
+                                        <div class="uk-width-expand uk-flex uk-flex-right">
+
+                                            <div class="uk-width-auto">
+                                                <h:graphicImage library="img" name="letra-a.svg" width="50" height="50" styleClass="uk-border-circle"/>
+                                            </div>
+                                            <span class="uk-text-primary">%60</span>
+                                            <progress class="uk-progress-full" value="78" max="100"></progress>
+                                            <div class="uk-width-auto uk-margin-auto-right uk-margin-auto-left">
+                                                <h:graphicImage library="img" name="letra-b.svg" width="50" height="50" styleClass="uk-border-circle"/>
+                                            </div>
+
+                                        </div>
+
+                                </div>
+                            </div>
+                            <div class="padding-0">
+                                <div class="uk-overflow-auto">
+                                <h:form id="formulario-tabla-nivel">
+                                    <h:dataTable id="tabla-nivel"
+                                                 value="#{asignacionNivelControlador.collectionDataModel}"
+                                                 binding="#{asignacionNivelControlador.htmlDataTable}"
+                                                 var="dato"
+                                                 first="0"
+                                                 rows="10"
+                                                 styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-text-center tabla-profesor-dropdown"
+                                                 headerClass="borde-top-amarillo uk-text-center"
+                                                 columnClasses="uk-width-small,uk-width-small,uk-width-small"
+                                                 rowClasses="tdPrimario"
+                                                 footerClass="thPrimario uk-text-left">
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Alumnos</span></f:facet>
+                                            #{dato.nickname}
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Listen</span></f:facet>
+                                            <span class="uk-icon-link uk-text-capitalize uk-text-success" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: check; ratio: 1.5"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Transcript</span></f:facet>
+                                            <span class="uk-icon-link uk-text-capitalize uk-text-success" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: check; ratio: 1.5"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Read</span></f:facet>
+                                            <span class="uk-icon-link uk-text-capitalize uk-text-danger" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: close; ratio: 1.5"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Grammar</span></f:facet>
+                                            <span class="uk-icon-link uk-text-capitalize uk-text-primary" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: ban; ratio: 1.5"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">quizzes</span></f:facet>
+                                            #{dato.quizzes}
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
+                                </div>
+                            </div>
+                        </div>
+                        </ui:remove>
+                    </div>
+                    <!-- /card -->
+                </div>
+            </div>
+        </section>
+        <h:outputScript library="js" name="Chart.js"/>
+    </ui:define>
+</ui:composition>
+
+
+</html>
