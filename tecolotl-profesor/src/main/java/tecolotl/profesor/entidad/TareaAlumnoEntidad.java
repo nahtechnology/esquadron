@@ -3,11 +3,14 @@ package tecolotl.profesor.entidad;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.util.Date;
 
 @Entity
 public class TareaAlumnoEntidad {
 
     private int id;
+    private Date fechaAsignacion;
+    private String idActividad;
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
     private Short calificacionGramatica;
@@ -75,5 +78,20 @@ public class TareaAlumnoEntidad {
     public void setCalificacionCompletar(Short calificacionCompletar) {
         this.calificacionCompletar = calificacionCompletar;
     }
+    @Column(name = "fecha_asignacion ")
+    public Date getFechaAsignacion() {
+        return fechaAsignacion;
+    }
 
+    public void setFechaAsignacion(Date fechaAsignacion) {
+        this.fechaAsignacion = fechaAsignacion;
+    }
+    @Column(name = "id_actividad")
+    public String getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(String idActividad) {
+        this.idActividad = idActividad;
+    }
 }

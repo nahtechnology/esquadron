@@ -5,6 +5,8 @@ import tecolotl.profesor.entidad.TareaAlumnoEntidad;
 public class TareaAlumnoModelo {
 
     private int id;
+    private Date fechaAsignacion;
+    private String idActividad;
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
     private Short calificacionGramatica;
@@ -21,6 +23,8 @@ public class TareaAlumnoModelo {
 
     public TareaAlumnoModelo(TareaAlumnoEntidad tareaAlumnoEntidad) {
         this.id = tareaAlumnoEntidad.getId();
+        this.fechaAsignacion = tareaAlumnoEntidad.getFechaAsignacion();
+        this.idActividad = tareaAlumnoEntidad.getIdActividad();
         this.calificacionMapamental = tareaAlumnoEntidad.getCalificacionMapamental();
         this.calificacionRelacionarImagen = tareaAlumnoEntidad.getCalificacionRelacionarImagen();
         this.calificacionGramatica = tareaAlumnoEntidad.getCalificacionGramatica();
@@ -84,4 +88,19 @@ public class TareaAlumnoModelo {
         this.calificacionCompletar = calificacionCompletar;
     }
 
+    public Date getFechaAsignacion() {
+        return fechaAsignacion;
+    }
+
+    public void setFechaAsignacion(Date fechaAsignacion) {
+        this.fechaAsignacion = fechaAsignacion;
+    }
+
+    public String getIdActividad() {
+        return idActividad;
+    }
+
+    public void setIdActividad(String idActividad) {
+        this.idActividad = idActividad;
+    }
 }
