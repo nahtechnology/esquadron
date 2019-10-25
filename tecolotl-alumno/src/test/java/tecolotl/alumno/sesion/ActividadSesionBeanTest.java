@@ -9,15 +9,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.entidad.ActividadEntidad;
-import tecolotl.alumno.entidad.NivelLenguajeEntidad;
-import tecolotl.alumno.entidad.TemaEntidad;
-import tecolotl.alumno.entidad.TipoEstudianteEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
-import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -39,16 +35,13 @@ import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar_oraciones.RelacionarOracionLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar_oraciones.TareaRelacionarOracionRespuestaValidacion;
-import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
-import tecolotl.nucleo.validacion.CatalogoLlavePrimariaValidacion;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -68,7 +61,6 @@ public class ActividadSesionBeanTest {
                 .addPackage(MapaMentalLlavePrimariaValidacion.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(GlosarioEntidad.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage())
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())

@@ -25,7 +25,6 @@ import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
-import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -97,7 +96,6 @@ public class GrupoSesionBeanTest {
                 .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(GlosarioEntidad.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage())
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())

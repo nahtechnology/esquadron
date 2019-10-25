@@ -16,7 +16,6 @@ import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
-import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -49,7 +48,6 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
 public class OracionesSesionBeanTest {
@@ -64,7 +62,6 @@ public class OracionesSesionBeanTest {
                 .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(GlosarioEntidad.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage())
                 .addPackage(GlosarioNuevoValidacion.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())

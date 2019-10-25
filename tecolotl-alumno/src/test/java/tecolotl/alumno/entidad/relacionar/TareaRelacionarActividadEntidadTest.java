@@ -40,7 +40,6 @@ public class TareaRelacionarActividadEntidadTest {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
                 .addPackage(ActividadEntidad.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
@@ -71,10 +70,6 @@ public class TareaRelacionarActividadEntidadTest {
         tareaRelacionarActividadEntidadLista.forEach(tareaRelacionarActividadEntidad -> {
             assertNotNull(tareaRelacionarActividadEntidad);
             assertNotNull(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getTareaEntidad().getId());
-            assertNotNull(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad());
-            assertNotNull(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getRelacionarEntidad());
-            assertNotNull(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getRelacionarEntidad().getCodigo());
-            assertNotNull(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getActividadEntidad().getId());
         });
     }
 

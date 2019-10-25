@@ -40,7 +40,6 @@ public class RelacionarActividadEntidadTest {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
                 .addPackage(ActividadEntidad.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
@@ -69,7 +68,6 @@ public class RelacionarActividadEntidadTest {
         relacionarActividadEntidadLista.forEach(relacionarActividadEntidad -> {
             assertNotNull(relacionarActividadEntidad);
             assertNotNull(relacionarActividadEntidad.getRelacionarActividadEntidadPK().getActividadEntidad().getId());
-            assertNotNull(relacionarActividadEntidad.getRelacionarActividadEntidadPK().getRelacionarEntidad().getCodigo());
         });
     }
 

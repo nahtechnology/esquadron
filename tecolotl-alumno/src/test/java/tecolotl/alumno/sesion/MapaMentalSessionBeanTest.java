@@ -15,7 +15,6 @@ import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
-import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
@@ -26,7 +25,6 @@ import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalResueltoModelo;
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
 import tecolotl.alumno.modelo.oraciones.TareaOracionesModelo;
-import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar_oraciones.TareaRelacionarOracionModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
@@ -65,8 +63,6 @@ public class MapaMentalSessionBeanTest {
                 .addPackage(CatalagoEntidad.class.getPackage())
                 .addPackage(CatalogoSesionBean.class.getPackage())
                 .addPackage(CatalogoModelo.class.getPackage())
-                .addPackage(RelacionarModelo.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(GramaticaModelo.class.getPackage())
                 .addPackage(GramaticaEntidad.class.getPackage())
                 .addPackage(TareaRelacionarOracionesEntidad.class.getPackage())

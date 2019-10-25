@@ -15,7 +15,6 @@ import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
-import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
@@ -65,7 +64,6 @@ public class RelacionarSesionBeanTest {
                 .addPackage(CatalogoSesionBean.class.getPackage())
                 .addPackage(CatalogoModelo.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(GramaticaModelo.class.getPackage())
                 .addPackage(GramaticaEntidad.class.getPackage())
                 .addPackage(TareaRelacionarOracionesEntidad.class.getPackage())

@@ -1,6 +1,7 @@
 package tecolotl.alumno.entidad.relacionar;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,25 +11,15 @@ import java.util.StringJoiner;
 @Embeddable
 public class RelacionarActividadEntidadPK implements Serializable {
 
-    private RelacionarEntidad relacionarEntidad;
     private ActividadEntidad actividadEntidad;
+    private GlosarioEntidad glosarioEntidad;
 
     public RelacionarActividadEntidadPK() {
     }
 
-    public RelacionarActividadEntidadPK(RelacionarEntidad relacionarEntidad, ActividadEntidad actividadEntidad) {
-        this.relacionarEntidad = relacionarEntidad;
+    public RelacionarActividadEntidadPK(ActividadEntidad actividadEntidad, GlosarioEntidad glosarioEntidad) {
         this.actividadEntidad = actividadEntidad;
-    }
-
-    @JoinColumn(name = "id_relacionar")
-    @ManyToOne(fetch = FetchType.LAZY)
-    public RelacionarEntidad getRelacionarEntidad() {
-        return relacionarEntidad;
-    }
-
-    public void setRelacionarEntidad(RelacionarEntidad relacionarEntidad) {
-        this.relacionarEntidad = relacionarEntidad;
+        this.glosarioEntidad = glosarioEntidad;
     }
 
     @JoinColumn(name = "id_actividad")
@@ -41,25 +32,39 @@ public class RelacionarActividadEntidadPK implements Serializable {
         this.actividadEntidad = actividadEntidad;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumns(value = {
+            @JoinColumn(name = "id_palabra", referencedColumnName = "palabra"),
+            @JoinColumn(name = "id_clase", referencedColumnName = "id_clase_glosario")
+    })
+    public GlosarioEntidad getGlosarioEntidad() {
+        return glosarioEntidad;
+    }
+
+    public void setGlosarioEntidad(GlosarioEntidad glosarioEntidad) {
+        this.glosarioEntidad = glosarioEntidad;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RelacionarActividadEntidadPK that = (RelacionarActividadEntidadPK) o;
-        return relacionarEntidad.equals(that.relacionarEntidad) &&
-                actividadEntidad.equals(that.actividadEntidad);
+        return actividadEntidad.equals(that.actividadEntidad) &&
+                glosarioEntidad.equals(that.glosarioEntidad);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(relacionarEntidad, actividadEntidad);
+        return Objects.hash(actividadEntidad, glosarioEntidad);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", RelacionarActividadEntidadPK.class.getSimpleName() + "[", "]")
-                .add("relacionarEntidad=" + relacionarEntidad)
                 .add("actividadEntidad=" + actividadEntidad)
+                .add("glosarioEntidad=" + glosarioEntidad)
                 .toString();
     }
+
 }

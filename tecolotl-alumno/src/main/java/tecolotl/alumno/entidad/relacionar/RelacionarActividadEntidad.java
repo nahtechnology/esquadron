@@ -14,8 +14,7 @@ import java.util.StringJoiner;
         @NamedQuery(name = "RelacionarActividadEntidad.busca", query = "SELECT ra FROM RelacionarActividadEntidad ra"),
         @NamedQuery(
                 name = "RelacionarActividadEntidad.buscaActividad",
-                query = "SELECT ra FROM RelacionarActividadEntidad ra JOIN FETCH ra.relacionarActividadEntidadPK.relacionarEntidad r " +
-                        "JOIN FETCH ra.relacionarActividadEntidadPK.actividadEntidad a WHERE ra.relacionarActividadEntidadPK.actividadEntidad.id = :idActividad"
+                query = "SELECT ra FROM RelacionarActividadEntidad ra JOIN FETCH ra.relacionarActividadEntidadPK.glosarioEntidad g"
         )
 })
 public class RelacionarActividadEntidad {

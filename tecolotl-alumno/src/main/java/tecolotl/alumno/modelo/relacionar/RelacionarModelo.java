@@ -1,7 +1,6 @@
 package tecolotl.alumno.modelo.relacionar;
 
 import tecolotl.alumno.entidad.relacionar.RelacionarActividadEntidad;
-import tecolotl.alumno.entidad.relacionar.RelacionarEntidad;
 import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 
@@ -29,18 +28,11 @@ public class RelacionarModelo {
         this.codigo = codigo;
     }
 
-    public RelacionarModelo(RelacionarEntidad relacionarEntidad) {
-        this.codigo = relacionarEntidad.getCodigo();
-        this.palabra = relacionarEntidad.getPalabra();
-    }
-
     public RelacionarModelo(RelacionarActividadEntidad relacionarActividadEntidad) {
-        this(relacionarActividadEntidad.getRelacionarActividadEntidadPK().getRelacionarEntidad());
         this.idActividad = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getActividadEntidad().getId();
     }
 
     public RelacionarModelo(TareaRelacionarActividadEntidad tareaRelacionarActividadEntidad) {
-        this(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad());
         this.respuesta = tareaRelacionarActividadEntidad.getRespuesta();
         this.horaRespuesta = tareaRelacionarActividadEntidad.getHoraRespuesta();
         this.vuelta = tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getVuelta();

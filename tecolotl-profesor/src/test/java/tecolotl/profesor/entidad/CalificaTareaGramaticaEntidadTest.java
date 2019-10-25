@@ -75,7 +75,7 @@ public class CalificaTareaGramaticaEntidadTest {
                         TareaMapaMentalActividadEntidad.class, TareaMapaMentalActividadEntidadPK.class, MapaMentalEntidad.class,
                         MapaMentalActividadEntidad.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class,
                         TareaRelacionarActividadEntidad.class, TareaRelacionarActividadEntidadPK.class, RelacionarActividadEntidad.class,
-                        RelacionarActividadEntidadPK.class, RelacionarEntidad.class, CalificaTareaGramaticaEntidad.class, TareaGramaticaEntidad.class,
+                        RelacionarActividadEntidadPK.class, CalificaTareaGramaticaEntidad.class, TareaGramaticaEntidad.class,
                         TareaGramaticaEntidadPK.class, GramaticaEntidad.class, GramaticaEntidadPK.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");

@@ -39,7 +39,6 @@ public class RelacionarEntidadTest {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
                 .addPackage(ActividadEntidad.class.getPackage())
-                .addPackage(RelacionarEntidad.class.getPackage())
                 .addPackage(MapaMentalModelo.class.getPackage())
                 .addPackage(GlosarioModelo.class.getPackage())
                 .addPackage(ActividadModelo.class.getPackage())
@@ -58,18 +57,5 @@ public class RelacionarEntidadTest {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Test
-    public void busca() {
-        TypedQuery<RelacionarEntidad> typedQuery = entityManager.createNamedQuery("RelacionarEntidad.busca", RelacionarEntidad.class);
-        List<RelacionarEntidad> relacionarEntidadLista = typedQuery.getResultList();
-        assertNotNull(relacionarEntidadLista);
-        assertFalse(relacionarEntidadLista.isEmpty());
-        relacionarEntidadLista.forEach(relacionarEntidad -> {
-            assertNotNull(relacionarEntidad);
-            assertNotNull(relacionarEntidad.getCodigo());
-            assertNotNull(relacionarEntidad.getPalabra());
-            assertNotNull(relacionarEntidad.getImagen());
-        });
-    }
 
 }

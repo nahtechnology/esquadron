@@ -52,7 +52,7 @@
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
                                      var="tarea"
-                                     styleClass="uk-table-justify uk-table-small uk-table-middle uk-table-hover tablaPrimaria thPrimario">
+                                     styleClass="tabla-alumnos uk-table-justify uk-table-small uk-table-middle uk-table-hover tablaPrimaria thPrimario">
                             <h:column>
                                 <f:facet name="header">nombre</f:facet>
                                 ${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}
@@ -60,11 +60,6 @@
                             <h:column>
                                 <f:facet name="header">mapa mental</f:facet>
                                 ${tarea.totalRespuestaMapaMental} / ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}
-                                <h:outputText pt:uk-icon="icon: check" rendered="#{tarea.totalAsignadaMapaMental > 0 and (tarea.totalAsignadaMapaMental eq tarea.calificadoMapaMental)}"/>
-                                <h:link rendered="#{tarea.totalAsignadaMapaMental > 0 and (tarea.totalAsignadaMapaMental gt tarea.calificadoMapaMental)}" outcome="califica-mapamental">
-                                    <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                    <f:param name="tarea" value="#{tarea.id}"/>
-                                </h:link>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">ordenar palabra</f:facet>
@@ -91,7 +86,7 @@
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>
                                 <div class="uk-inline  ">
                                     <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                    <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
+                                    <div uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
                                         <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                             <li>
                                                 <h:link outcome="detalle-alumno">

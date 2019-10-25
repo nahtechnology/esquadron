@@ -34,11 +34,7 @@ public class RelacionarRespuestaScope {
             userTransaction.begin();
             relacionarModeloLista.forEach(relacionarModelo -> {
                 TareaRelacionarActividadEntidad tareaRelacionarActividadEntidad =
-                        entityManager.find(TareaRelacionarActividadEntidad.class,
-                                new TareaRelacionarActividadEntidadPK(
-                                        new RelacionarActividadEntidad(
-                                                new RelacionarActividadEntidadPK(new RelacionarEntidad(relacionarModelo.getCodigo()),
-                                                        new ActividadEntidad(relacionarModelo.getIdActividad()))), new TareaEntidad(idTarea)));
+                        entityManager.find(TareaRelacionarActividadEntidad.class, new TareaRelacionarActividadEntidadPK());
                 tareaRelacionarActividadEntidad.setRespuesta(relacionarModelo.getRespuesta());
             });
             userTransaction.commit();
