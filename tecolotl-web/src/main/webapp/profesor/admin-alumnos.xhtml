@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-6@m uk-first-column">
                                     <h:outputLabel for="seleccion-nivel-lenguaje" styleClass="uk-text-capitalize uk-form-label" value="nivel lenguaje"/>
-                                    <h:selectOneMenu id="seleccion-nivel-lenguaje" value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}">
+                                    <h:selectOneMenu id="seleccion-nivel-lenguaje" styleClass="selector" value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}">
                                         <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
                                         <f:selectItems value="#{grupoAlumnoControlador.nivelLenguajeModeloLista}"
                                                        var="nivelLenguaje"

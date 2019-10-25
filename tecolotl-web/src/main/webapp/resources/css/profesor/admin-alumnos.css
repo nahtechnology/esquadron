@@ -2,10 +2,15 @@
     display: grid;
     grid-template-columns: 40px 40px 40px 40px 40px 40px 40px;
     grid-template-rows: 40px 40px 40px 40px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+    position: relative;
+    left: 32%;
+    margin-top: 30px;
 }
 
 .seleccionado {
-    background-color: #2AABE2;
+    transform: scale(1.5,1.5);
 }
 
 progress{
@@ -53,4 +58,19 @@ progress::-ms-fill {
 div > div > div + div + button{
     position: relative;
     left: 85%;
+}
+
+div > div > div > div + div + div + div + div + div > img{
+    width: 40px;
+    height: 40px;
+    transition: all 1s linear;
+    cursor: pointer;
+}
+
+div > div > div > div + div + div + div + div + div > img:hover{
+    transform: scale(1.5,1.5);
+}
+
+.selector{
+    height: 40px;
 }

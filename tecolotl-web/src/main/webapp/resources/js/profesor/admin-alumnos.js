@@ -4,7 +4,6 @@ var formularioNuevoAlumno = document.getElementById('formulario-modal-nuevo-prof
 
 document.addEventListener('DOMContentLoaded', function (evento) { 
     tabla = document.querySelector('.uk-container table');
-    cargaFilas(tabla.querySelector('tbody'));
     seleccionContrasenia();
     formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
 });
