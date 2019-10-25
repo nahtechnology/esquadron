@@ -2,6 +2,8 @@ package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.TareaAlumnoEntidad;
 
+import java.util.Date;
+
 public class TareaAlumnoModelo {
 
     private int id;
