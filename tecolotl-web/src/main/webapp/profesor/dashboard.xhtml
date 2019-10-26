@@ -81,7 +81,7 @@
                                 <f:ajax event="change"
                                         execute="@form"
                                         listener="#{dashboardProfesorControlador.seleccion()}"
-                                        render="formulario-grupo:fecha-fin formulario-grupo:fecha-inicio formulario-grupo:descripcion formulario-tabla:tabla-grupo"/>
+                                        render="formulario-grupo:fecha-fin formulario-grupo:fecha-inicio formulario-grupo:descripcion formulario-tabla:tabla-grupo graficas"/>
                             </h:selectOneMenu>
                         </div>
                     </div>
@@ -108,6 +108,21 @@
                 </h:form>
             </h:panelGroup>
         </div>
+        <h:panelGroup layout="block" id="graficas">
+            <ui:remove>
+                <ui:repeat value="#{alumnoTareaNivelControlador.transforma()}" var="alumnoNivel">
+                    #{alumnoNivel}
+                </ui:repeat>
+            </ui:remove>
+            <ui:repeat value="#{alumnoTareaNivelControlador.transforma()}" var="nivelAlumno">
+                <ui:repeat value="#{alumnoTareaNivelControlador.alumnoTareaNivelMapa.get(nivelAlumno)}" var="grupos">
+                    <div>
+                        <span>#{grupos.idGrupo}</span><span>#{grupos.idAlumno}</span><span>#{grupos.nombre} #{grupos.apellidoPaterno} #{grupos.apellidoMaterno}</span>
+                        <span>#{grupos.totalTareas}</span><span>#{grupos.nivelLenguaje}</span>
+                    </div>
+                </ui:repeat>
+            </ui:repeat>
+        </h:panelGroup>
         <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
             <h:outputText styleClass="uk-text-bold uk-margin-remove-bottom titulo-section"
                           value="#{empty dashboardProfesorControlador.grupoModeloLista ? 'No tiene grupos asigandos en este ciclo escolar' : 'Sus grupos para este ciclo escolar'}">
