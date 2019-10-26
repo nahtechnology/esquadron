@@ -43,5 +43,13 @@
             <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profesor/tarea-alumno.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>gramatica</from-outcome>
+            <to-view-id>/profesor/calificacion-gramatica.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     
 </faces-config>

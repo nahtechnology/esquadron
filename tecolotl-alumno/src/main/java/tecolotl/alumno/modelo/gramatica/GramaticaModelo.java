@@ -19,7 +19,6 @@ public class GramaticaModelo {
     }
 
     public GramaticaModelo(GramaticaEntidad gramaticaEntidad){
-        this.actividadModelo = new ActividadModelo(gramaticaEntidad.getGramaticaEntidadPK().getActividadEntidad().getId());
         this.codigo = gramaticaEntidad.getGramaticaEntidadPK().getCodigo();
         this.palabra = gramaticaEntidad.getPalabra();
     }

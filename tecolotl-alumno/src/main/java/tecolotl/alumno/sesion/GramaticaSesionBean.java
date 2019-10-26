@@ -67,7 +67,7 @@ public class GramaticaSesionBean {
         TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaTarea", TareaGramaticaEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
         List<TareaGramaticaEntidad> tareaGramaticaEntidadLista = typedQuery.getResultList();
-        return tareaGramaticaEntidadLista.stream().map(tareaGramaticaEntidad -> new GramaticaModelo(tareaGramaticaEntidad)).collect(Collectors.toList());
+        return tareaGramaticaEntidadLista.stream().map(GramaticaModelo::new).collect(Collectors.toList());
     }
 
     /**

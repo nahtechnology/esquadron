@@ -7,7 +7,7 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
-<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml" >
     <f:metadata>
         <f:viewParam name="idAlumno" value="#{tareaAlumnoControlador.idAlumno}"/>
         <f:viewAction action="#{tareaAlumnoControlador.detalle}"/>
@@ -107,9 +107,13 @@
                                             </h:outputText>
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea gramática</span></f:facet>
-                                            <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null}"><progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/></ui:fragment>
+                                            <f:facet name="header"><span>tarea gramática</span></f:facet>
                                             <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
+                                            <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
+                                                <h:graphicImage library="img" name="icono/evaluar.svg"/>
+                                                <f:param name="idTarea" value="#{tareaAlumno.id}"/>
+                                            </h:link>
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}"><progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/></ui:fragment>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea mapa mental</span></f:facet>
