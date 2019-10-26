@@ -461,8 +461,25 @@ input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select
 }
 .contenedor-imagen-alumnos{
   height: 150px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   /*background-color: #595959;*/
 }
+
+.nino{
+  width: 40px;
+  height: 72px;
+}
+
+.contenedor-imagen-alumnos>div{
+  display: flex;
+  flex-direction: column;
+}
+/*.contenedor-imagen-alumnos > img{*/
+/*  float:left;*/
+/*}*/
+
 .letra-cards{
   /*font-family: 'Sniglet', "Arial Black";*/
   color: black;
@@ -508,4 +525,14 @@ padding-top: 38px;
 .nombre-usuario{
   font-size: 13px !important;
   font-weight: bold !important;
+}
+
+.img-previa{
+  width: 100px;
+  height: 50px;
+}
+
+.uk-iconnav > li > div > div{
+  font-weight: bold;
+  border: 3px solid white !important;
 }
