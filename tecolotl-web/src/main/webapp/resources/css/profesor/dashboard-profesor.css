@@ -10,7 +10,7 @@
 }
 
 ul > li > span {
-    font-family: 'Sniglet', "Arial Black";
+    font-family: 'Sniglet', "Arial Black", serif;
     color: black !important;
     text-transform: capitalize !important;
     border: 3px solid lightseagreen;
@@ -21,3 +21,7 @@ ul > li > span {
     padding-top: 7px;
 }
 
+#graficas > div > span{
+    display: inline-block;
+    margin-left: 5px;
+}
