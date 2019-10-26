@@ -29,6 +29,9 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
 
     @NotNull(groups = {PersonaNuevaValidacion.class})
     private byte[] contrasenia;
+    @NotNull(groups = {PersonaNuevaValidacion.class})
+    @Size(max = 1, groups = {PersonaNuevaValidacion.class})
+    private Character sexo;
 
     public PersonaModelo(){
     }
@@ -38,6 +41,7 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
         this.apellidoPaterno = personaEntidad.getApellidoPaterno();
         this.apellidoMaterno = personaEntidad.getApellidoMaterno();
         this.apodo = personaEntidad.getApodo();
+        this.sexo = personaEntidad.getSexo();
     }
 
     public String getNombre() {
@@ -81,19 +85,8 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
     }
 
     @Override
-    public int compareTo(PersonaModelo x){
-        return nombre.compareTo(x.nombre);
-    }
-
-    @Override
-    public String toString() {
-        return new StringJoiner(", ", PersonaModelo.class.getSimpleName() + "[", "]")
-                .add("nombre='" + nombre + "'")
-                .add("apellidoPaterno='" + apellidoPaterno + "'")
-                .add("apellidoMaterno='" + apellidoMaterno + "'")
-                .add("apodo='" + apodo + "'")
-                .add("contrasenia=" + Arrays.toString(contrasenia))
-                .toString();
+    public int compareTo(PersonaModelo personaModelo){
+        return nombre.compareTo(personaModelo.nombre);
     }
 
     @Override
@@ -101,17 +94,30 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PersonaModelo that = (PersonaModelo) o;
-        return nombre.equals(that.nombre) &&
-                apellidoPaterno.equals(that.apellidoPaterno) &&
-                apellidoMaterno.equals(that.apellidoMaterno) &&
-                apodo.equals(that.apodo) &&
-                Arrays.equals(contrasenia, that.contrasenia);
+        return Objects.equals(nombre, that.nombre) &&
+                Objects.equals(apellidoPaterno, that.apellidoPaterno) &&
+                Objects.equals(apellidoMaterno, that.apellidoMaterno) &&
+                Objects.equals(apodo, that.apodo) &&
+                Arrays.equals(contrasenia, that.contrasenia) &&
+                Objects.equals(sexo, that.sexo);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(nombre, apellidoPaterno, apellidoMaterno, apodo);
+        int result = Objects.hash(nombre, apellidoPaterno, apellidoMaterno, apodo, sexo);
         result = 31 * result + Arrays.hashCode(contrasenia);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PersonaModelo{" +
+                "nombre='" + nombre + '\'' +
+                ", apellidoPaterno='" + apellidoPaterno + '\'' +
+                ", apellidoMaterno='" + apellidoMaterno + '\'' +
+                ", apodo='" + apodo + '\'' +
+                ", contrasenia=" + Arrays.toString(contrasenia) +
+                ", sexo=" + sexo +
+                '}';
     }
 }

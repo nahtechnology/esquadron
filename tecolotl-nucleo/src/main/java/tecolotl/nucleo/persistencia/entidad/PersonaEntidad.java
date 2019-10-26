@@ -17,6 +17,9 @@ public class PersonaEntidad {
     private String apellidoMaterno;
     private String apodo;
     private byte[] contrasenia;
+    private Character sexo;
+
+
 
     @Basic
     @Column(name = "nombre")
@@ -80,4 +83,11 @@ public class PersonaEntidad {
     public void setContrasenia(byte[] contrasenia) {
         this.contrasenia = contrasenia;
     }
+
+    @Basic
+    @Column(name = "sexo")
+    @Size(min = 1, max = 1)
+    @NotNull
+    public Character getSexo() {return sexo;}
+    public void setSexo(Character sexo) {this.sexo = sexo;}
 }
