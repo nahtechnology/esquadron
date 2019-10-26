@@ -95,46 +95,51 @@
                                                  rowClasses="tdPrimario"
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
-                                            <f:facet name="header"><span>id</span></f:facet>
-                                            #{tareaAlumno.id}
+                                            <f:facet name="header"><span>tarea</span></f:facet>
+                                            <img src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header"><span>asignacion</span></f:facet>
+                                            <h:outputText value="#{tareaAlumno.fechaAsignacion}">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                            </h:outputText>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea gramática</span></f:facet>
-                                            <progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/>
-                                            #{tareaAlumno.calificacionGramatica}
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null}"><progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/></ui:fragment>
+                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea mapa mental</span></f:facet>
-                                            <progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/>
-                                            #{tareaAlumno.calificacionMapamental}
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null}"><progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/></ui:fragment>
+                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea relacionar imagen</span></f:facet>
-                                            <progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/>
-                                            #{tareaAlumno.calificacionRelacionarImagen}
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarImagen ne null}"><progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/></ui:fragment>
+                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea completar oracion</span></f:facet>
-                                            <progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/>
-                                            #{tareaAlumno.calificacionCompletar}
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionCompletar ne null}"><progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/></ui:fragment>
+                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea order oraciones</span></f:facet>
-                                            <progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/>
-                                            #{tareaAlumno.calificacionOraciones}
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionOraciones ne null}"><progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/></ui:fragment>
+                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span>tarea relacionar oraciones</span></f:facet>
-                                            <progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/>
-                                            #{tareaAlumno.calificacionRelacionarOraciones}
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarOraciones ne null}"><progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/></ui:fragment>
+                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">Tipo</span></f:facet>
                                             <div class="uk-width-auto">
                                                 <ul class="uk-subnav" data-uk-margin="">
                                                     <li><h:commandLink pt:uk-toggle="target: #modal-comentarios-alumno">
-                                                        <h:graphicImage styleClass="" library="img" name="gramatica.svg" width="25" height="25" pt:data-uk-tooltip="gramatica"/>
-                                                        <f:ajax/>
+                                                        <h:graphicImage library="img" name="gramatica.svg" width="25" height="25" pt:data-uk-tooltip="gramatica"/>
                                                     </h:commandLink>
                                                     </li>
                                                 </ul>
