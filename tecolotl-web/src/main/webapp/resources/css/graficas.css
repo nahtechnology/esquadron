@@ -12,19 +12,16 @@
     margin: 0 auto;
 }
 
-.uk-container > ul + div > div > span{
+div > ul + div{
+    width: 30%;
+    height: 450px;
+    margin-bottom: 30px;
+}
+
+div > ul + div > div > div > span{
     font-weight: bold;
-    color: black;
 }
 
-.uk-container > ul + div > div{
-    padding-left: 15px;
-    padding-top: 15px;
-}
 
-.uk-container > ul + div{
-    width: 350px;
-    height: 100px;
-    border: 3px solid var(--tsecundary-option-one);
-    border-radius: 15px;
-}
+
+
