@@ -13,6 +13,7 @@ public class GramaticaModelo {
     private String codigo;
     private String palabra;
     private String respuesta;
+    private Integer calificacion;
     private Date horaRespuesta;
 
     public GramaticaModelo() {
@@ -27,6 +28,14 @@ public class GramaticaModelo {
         this(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getGramaticaEntidad());
         this.respuesta = tareaGramaticaEntidad.getRespuesta();
         this.horaRespuesta = tareaGramaticaEntidad.getHoraRespuesta();
+    }
+
+    public Integer getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Integer calificacion) {
+        this.calificacion = calificacion;
     }
 
     public ActividadModelo getActividadModelo() {

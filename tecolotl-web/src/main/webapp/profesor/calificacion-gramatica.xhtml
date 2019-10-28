@@ -44,29 +44,40 @@
                  </ul>
                 <ul class="gramatica">
                     <li class="calificar">
-                        <h:form>
+                        <h:form id="formulario-califica">
                             <h2>Actividad 1</h2>
                             <ui:repeat value="#{calificacionGramaticaControlador.gramaticaModeloLista}" var="gramaticaModelo">
                                 <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                                     <div class="uk-width-3-5@m">
                                         <span>#{gramaticaModelo.palabra}</span>
-                                        <span data-respuesta="#{empty gramaticaModelo.respuesta}">#{empty gramaticaModelo.respuesta ? 'Sin respuesta' : gramaticaModelo.respuesta}</span>
+                                        <h:inputText disabled="true" value="#{gramaticaModelo.respuesta}" pt:placeholder="Sin respuesta"/>
                                     </div>
                                     <div class="uk-width-2-5@m">
                                         <span/><span>Score:</span>
-                                        <h:inputText styleClass="rango" pt:type="range"  pt:min="1" pt:max="4"  pt:step="1"/>
+                                        <h:inputText styleClass="rango" pt:type="range"  pt:min="1" pt:max="4"  pt:step="1" value="#{gramaticaModelo.calificacion}"/>
                                     </div>
                                 </h:panelGroup>
                             </ui:repeat>
-                            <h:button value="Enviar" styleClass="boton-escuadron-base"/>
+                            <button>Enviar</button>
+                            <h:commandButton id="envio-respuesta" value="Enviar" style="display: none"
+                                             action="#{calificacionGramaticaControlador.enviaRespuesta}"/>
                         </h:form>
                     </li>
                     <li class="contestadas">
-
                     </li>
                 </ul>
             </h:panelGroup>
         </div>
+        <h:panelGroup layout="block" id="modal-valida-calificacion" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Tareas incompletas</h2>
+                Al parecer este estudiante no ha terminado de resolver sus todas sus tareas, ¿Está seguro que desea calificar dichos ejercicios?
+                <p class="uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                    <button class="uk-button uk-button-primary" type="button">Aceptar</button>
+                </p>
+            </div>
+        </h:panelGroup>
         <h:outputScript library="js" name="/profesor/gramatica.js"/>
     </ui:define>
 </ui:composition>
