@@ -34,17 +34,44 @@
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="nah.css"/>
         <h:outputStylesheet library="css" name="profesor/admin-alumnos.css"/>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Student Administration</h1></div>
+        <div class="uk-grid" uk-grid="">
+            <div class="uk-width-1-3@m">
+                <div class="uk-card uk-card-default uk-card-small color-card-four margen-one">
+                    <div class="uk-card-header barder-card">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                            <div class="uk-width-auto">
+                                <h:graphicImage styleClass="uk-border-circle" library="img" name="/avatar/maestro.svg" width="50" height="50"/>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
+                                    #{profesorControlador.profesorModelo.nombre.concat(' ').concat(profesorControlador.profesorModelo.apellidoPaterno).concat(' ').concat(profesorControlador.profesorModelo.apellidoMaterno)}
+                                </h3>
+                                <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
+                            </div>
+                            <div class="uk-width-1-1@s">
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname: </span>#{profesorControlador.profesorModelo.apodo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body padding-card-body">
+                        <h3 class="uk-text-uppercase uk-text-bold ">grupo</h3>
+                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>1°</p>
+                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>B</p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <h3 class="uk-text-uppercase uk-text-bold">Teacher Training</h3>
+                        <p>Learn more with our free <span class="uk-text-primary">e-squadron courses!</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="uk-grid uk-grid-medium uk-margin-large-bottom" data-uk-grid="">
             <!-- tabla alumnos -->
-            <div class="uk-width-1-1@s uk-margin-large-top">
-                <div class="uk-container  uk-flex uk-flex-left uk-margin-small-bottom uk-visible@m" >
-                    <div> <h:graphicImage styleClass="uk-border-circle" library="img" name="/mounstro/naranja.svg" width="70" height="70"/></div>
-                    <div class="uk-margin-small-left esquadron-paddin"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
-                </div>
-                <div class="uk-container uk-container-small uk-grid uk-child-width-1-1@s uk-hidden@m" >
-                    <div class="contenedor-imagen-alumnos uk-flex uk-flex-center"> <h:graphicImage styleClass="uk-border-circle" library="img" name="esquadron.svg" width="70" height="70"/></div>
-                    <div class="uk-text-center"><h1 class="letra-cards lescuadron ">Student Administration</h1></div>
-                </div>
+            <div class="uk-width-1-1@s">
                 <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>
                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Alumnos de la clase</h5>
                 <h:form id="formulario-tabla-alumno" >
