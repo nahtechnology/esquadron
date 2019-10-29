@@ -61,13 +61,17 @@
                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>1°</p>
                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>B</p>
                     </div>
+                    <div class="uk-card-footer">
+                        <h3 class="uk-text-uppercase uk-text-bold">Teacher Training</h3>
+                        <p>Learn more with our free <span class="uk-text-primary">e-squadron courses!</span></p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="uk-grid uk-grid-medium uk-margin-large-bottom" data-uk-grid="">
             <!-- tabla alumnos -->
-            <div class="uk-width-1-1@s">
+            <div class="uk-width-1-1@s uk-margin-large-top">
                 <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>
                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">Alumnos de la clase</h5>
                 <h:form id="formulario-tabla-alumno" >
@@ -77,8 +81,8 @@
                                      var="tarea"
                                      styleClass="tabla-alumnos uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
                                      headerClass="thPrimario uk-text-center"
-                                     columnClasses="uk-width-small,uk-width-small,uk-width-small"
-                                     rowClasses="tdPrimario">
+                                     columnClasses="uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small uk-margin-auto"
+                                     rowClasses="tdPrimario uk-margin-small">
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">nombre</span></f:facet>
                                 ${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}
@@ -114,10 +118,9 @@
                                 <h:outputText value="${tarea.totalRespuestaCompletar} / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">opciones</span></f:facet>
-                                <div class="uk-inline">
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Opciones</span></f:facet>
                                     <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                    <div uk-dropdown="boundary: .tabla-alumnos; mode: click" id="dropear" >
+                                    <div uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
                                         <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                             <li>
                                                 <h:link outcome="detalle-alumno">
@@ -128,7 +131,6 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </div>
                             </h:column>
                         </h:dataTable>
                     </div>
