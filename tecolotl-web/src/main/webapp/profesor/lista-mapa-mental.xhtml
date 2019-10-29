@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <f:metadata>
+        <f:viewParam name="idTarea" value="#{listaMapaMentalControlador.idTarea}" required="true"/>
+        <f:viewParam name="idAlumno" value="#{listaMapaMentalControlador.idAlumno}" required="true"/>
+        <f:viewAction action="#{listaMapaMentalControlador.busca}"/>
+    </f:metadata>
+    <ui:define name="menu">
+
+    </ui:define>
+    <ui:define name="contenido">
+        Tareas Mapa Mental asigandas a la tarea #{listaMapaMentalControlador.idTarea}
+        <ui:repeat value="#{listaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
+            Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
+            Respondido: #{tareaMapaMental.totalRespuestas}<br/>
+            <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
+                    outcome="califica"
+                    rendered="#{tareaMapaMental.totalRespuestas gt 0}">
+                <f:param name="idTarea" value="#{listaMapaMentalControlador.idTarea}"/>
+                <f:param name="cardinalidad" value="#{tareaMapaMental.cardinalidad}"/>
+                <f:param name="intento" value="#{tareaMapaMental.vuelta}"/>
+            </h:link>
+        </ui:repeat>
+    </ui:define>
+</ui:composition>
+</html>

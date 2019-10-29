@@ -135,13 +135,23 @@
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
                                                 <h:graphicImage library="img" name="icono/evaluar.svg"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
+                                                <f:param name="idAlumno" value="#{tareaAlumnoControlador.idAlumno}"/>
                                             </h:link>
-                                            <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}"><progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/></ui:fragment>
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}">
+                                                <progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/>
+                                            </ui:fragment>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea mapa mental</span></f:facet>
-                                            <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null}"><progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
+                                            <h:link outcome="mapamental" rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental eq 0}">
+                                                <h:graphicImage library="img" name="icono/evaluar.svg"/>
+                                                <f:param name="idTarea" value="#{tareaAlumno.id}"/>
+                                                <f:param name="idAlumno" value="#{tareaAlumnoControlador.idAlumno}"/>
+                                            </h:link>
+                                            <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental ne 0}">
+                                                <progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/>
+                                            </ui:fragment>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea relacionar imagen</span></f:facet>
@@ -162,17 +172,6 @@
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea relacionar oraciones</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarOraciones ne null}"><progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Tipo</span></f:facet>
-                                            <div class="uk-width-auto">
-                                                <ul class="uk-subnav" data-uk-margin="">
-                                                    <li><h:commandLink pt:uk-toggle="target: #modal-comentarios-alumno">
-                                                        <h:graphicImage library="img" name="gramatica.svg" width="25" height="25" pt:data-uk-tooltip="gramatica"/>
-                                                    </h:commandLink>
-                                                    </li>
-                                                </ul>
-                                            </div>
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>

@@ -2,15 +2,17 @@ package tecolotl.web.profesor;
 
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
 import tecolotl.alumno.sesion.MapaMentalSessionBean;
+import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
+import tecolotl.profesor.sesion.CalificaTareaMapaMentalSesionBean;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @RequestScoped
 @Named
@@ -20,23 +22,33 @@ public class CalificaMapaMentalControlador {
     private MapaMentalSessionBean mapaMentalSessionBean;
 
     @Inject
+    private CalificaTareaMapaMentalSesionBean calificaTareaMapaMentalSesionBean;
+
+    @Inject
     private Logger logger;
 
     private Integer idTarea;
-    private Map<Short, List<TareaMapaMentalModelo>> mapaMentalMapa;
+    private Short cardinalidad;
+    private Short intento;
+    private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
+    private CalificaTareaMapaMentalModelo calificaTareaMapaMentalModelo = new CalificaTareaMapaMentalModelo();
 
-    public void cargaTareas() {
-        mapaMentalMapa = mapaMentalSessionBean.busca(idTarea)
-                .stream().collect(Collectors.groupingBy(TareaMapaMentalModelo::getCardinalidad));
-        logger.info(mapaMentalMapa.toString());
+    public void busca() {
+        tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(idTarea, cardinalidad);
+        calificaTareaMapaMentalModelo = calificaTareaMapaMentalSesionBean.busca(idTarea, cardinalidad, intento);
     }
 
-    public List<TareaMapaMentalModelo> valores(Object key) {
-        return mapaMentalMapa.get(((Long)key).shortValue());
+    public void califica() {
+        Map<String, String> requestParameterMapa = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        logger.info(calificaTareaMapaMentalModelo.toString());
     }
 
-    public List<Short> llaves(){
-        return mapaMentalMapa.keySet().stream().collect(Collectors.toList());
+    public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {
+        return tareaMapaMentalModeloLista;
+    }
+
+    public void setTareaMapaMentalModeloLista(List<TareaMapaMentalModelo> tareaMapaMentalModeloLista) {
+        this.tareaMapaMentalModeloLista = tareaMapaMentalModeloLista;
     }
 
     public Integer getIdTarea() {
@@ -47,11 +59,27 @@ public class CalificaMapaMentalControlador {
         this.idTarea = idTarea;
     }
 
-    public Map<Short, List<TareaMapaMentalModelo>> getMapaMentalMapa() {
-        return mapaMentalMapa;
+    public Short getCardinalidad() {
+        return cardinalidad;
     }
 
-    public void setMapaMentalMapa(Map<Short, List<TareaMapaMentalModelo>> mapaMentalMapa) {
-        this.mapaMentalMapa = mapaMentalMapa;
+    public void setCardinalidad(Short cardinalidad) {
+        this.cardinalidad = cardinalidad;
+    }
+
+    public Short getIntento() {
+        return intento;
+    }
+
+    public void setIntento(Short intento) {
+        this.intento = intento;
+    }
+
+    public CalificaTareaMapaMentalModelo getCalificaTareaMapaMentalModelo() {
+        return calificaTareaMapaMentalModelo;
+    }
+
+    public void setCalificaTareaMapaMentalModelo(CalificaTareaMapaMentalModelo calificaTareaMapaMentalModelo) {
+        this.calificaTareaMapaMentalModelo = calificaTareaMapaMentalModelo;
     }
 }

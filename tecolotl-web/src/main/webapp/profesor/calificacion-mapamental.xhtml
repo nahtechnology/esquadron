@@ -7,121 +7,30 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
     <f:metadata>
-        <f:viewParam name="tarea" value="#{calificaMapaMentalControlador.idTarea}" required="true"/>
-        <f:viewAction action="#{calificaMapaMentalControlador.cargaTareas}"/>
+        <f:viewParam name="idTarea" value="#{calificaMapaMentalControlador.idTarea}" required="true"/>
+        <f:viewParam name="cardinalidad" value="#{calificaMapaMentalControlador.cardinalidad}" required="true"/>
+        <f:viewParam name="intento" value="#{calificaMapaMentalControlador.intento}" required="true"/>
+        <f:viewAction action="#{calificaMapaMentalControlador.busca}"/>
     </f:metadata>
     <ui:define name="menu">
-        <div class="">
-            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-                <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-                <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
-                <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
-                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
-            </ul>
-        </div>
-        <div class="uk-navbar-left uk-hidden@m">
-            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
-        </div>
-        <div id="menu" uk-offcanvas="overlay: true">
-            <div class="uk-offcanvas-bar">
-                <button class="uk-offcanvas-close" type="button" uk-close=""/>
-                <ul class="uk-nav  nav-sub-offcanvas ">
-                    <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-                    <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
-                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
-                    <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
-                </ul>
-            </div>
-        </div>
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
-        <div class="uk-section uk-margin-small-top">
-            <h:panelGroup layout="block" styleClass="uk-container" pt:uk-filter="target: .filtro-calificacion">
-                <ul class="uk-subnav nav-default-profesor2 uk-subnav-alumno2">
-                    <li uk-filter-control=".mapa-mental" class="uk-active"><a href="#">Mapa Mental</a></li>
-                    <li uk-filter-control=".gramatica"><a href="#">Gramatica</a></li>
-                </ul>
-                <ul class="filtro-calificacion">
-                    <li class="mapa-mental">
-                            <ui:repeat value="#{calificaMapaMentalControlador.llaves()}" var="mapaMental">
-                                <h:panelGroup layout="block" styleClass="uk-grid " pt:uk-grid="">
-                                <div class="uk-width-3-4@m">
-                                    <h:form styleClass="uk-form-controls uk-grid " pt:uk-grid="">
-                                        <ui:repeat value="#{calificaMapaMentalControlador.mapaMentalMapa.get(mapaMental)}" var="tareaMapaMental">
-                                            <div class="uk-width-1-3@m">
-                                                <p>#{tareaMapaMental.pregunta}</p>
-                                            </div>
-                                            <div class="uk-width-2-3@m">
-                                                <h:inputTextarea    styleClass="uk-textarea" disabled="true" pt:placeholder="Respuesta vacia" value="#{tareaMapaMental.respuesta}"/>
-                                            </div>
-                                        </ui:repeat>
-                                        <div class="comentario uk-width-3-5@m">
-                                            <h:outputLabel  styleClass="uk-form-label" value="Comentario"/>
-                                            <h:inputTextarea  styleClass="uk-textarea"/>
-                                        </div>
-                                        <div class="uk-width-2-5@m">
-                                            <h:outputLabel  styleClass="uk-form-label" value="Calificacion"/>
-                                            <h:inputText pt:type="range"  styleClass="rango"   pt:min="1" pt:max="4"  pt:step="1" />
-                                            <p><span/><span/></p>
-                                        </div>
-                                        <div class="uk-width-1-1@m">
-                                            <h:button value="enviar" styleClass="boton-escuadron-base"/>
-                                        </div>
-                                    </h:form>
-                                </div>
-                                <div class="uk-width-1-4@m avance">
-                                    <div class="bmap-#{mapaMental}">
-
-                                    </div>
-                                    <p>Score: <span/></p>
-                                </div>
-                                </h:panelGroup>
-                            </ui:repeat>
-                    </li>
-                    <li class="gramatica">
-                        <div>
-                            <h2>actividad 1</h2>
-                            <div>
-                                <h3>Oracion</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                            <div>
-                                <h3>Respuesta</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                            <div>
-                                <h3>Oracion</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                            <div>
-                                <h3>Respuesta</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                         </div>
-                        <div>
-                            <h2>Actividad 2</h2>
-                            <div>
-                                <h3>Oracion</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                            <div>
-                                <h3>Respuesta</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                            <div>
-                                <h3>Oracion</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                            <div>
-                                <h3>Respuesta</h3>
-                                <span>I like Turkish Van cats because, unlike many other cats, they love to swim!</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </h:panelGroup>
-        </div>
+        <h:panelGroup layout="block" class="mapa-mental">
+            <h:form styleClass="uk-form-controls uk-grid " pt:uk-grid="">
+                <ui:repeat value="#{calificaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
+                    <h:outputText value="#{tareaMapaMental.pregunta}"/>
+                    <h:outputText value="#{tareaMapaMental.respuesta}"/>
+                </ui:repeat>
+                <h:inputText value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}">
+                    <f:validateRequired/>
+                </h:inputText>
+                <h:inputText pt:type="range" pt:min="0" pt:max="4" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
+                    <f:validateRequired/>
+                </h:inputText>
+                <h:commandButton value="Calificar" action="#{calificaMapaMentalControlador.califica}"/>
+            </h:form>
+        </h:panelGroup>
         <script type="application/javascript">
             var slider = document.querySelectorAll('.mapa-mental input[type=range]');
             var output = document.querySelectorAll('.mapa-mental input[type=range] + p  span:first-child');

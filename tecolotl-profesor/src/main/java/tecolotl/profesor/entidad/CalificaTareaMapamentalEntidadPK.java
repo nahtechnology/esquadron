@@ -34,7 +34,7 @@ public class CalificaTareaMapamentalEntidadPK implements Serializable {
     }
 
     @Basic
-    @Column(name = "id_cardinalidad")
+    @Column(name = "cardinalidad")
     public Short getCardinalidad() {
         return cardinalidad;
     }
