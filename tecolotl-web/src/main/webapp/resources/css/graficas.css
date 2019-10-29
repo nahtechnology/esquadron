@@ -12,12 +12,6 @@
     margin: 0 auto;
 }
 
-div > ul + div{
-    width: 30%;
-    height: 450px;
-    margin-bottom: 30px;
-}
-
 div > ul + div > div > div > span{
     font-weight: bold;
 }
