@@ -74,9 +74,9 @@
                     </div>
                 </div>
                 <!--CARDS WRAPPER-->
-                <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-2@m">
+                <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-1@m">
                     <div>
-                        <div class="titulo-section uk-text-center uk-text-bold">Filtro</div>
+                        <div class="titulo-section uk-text-center uk-text-bold">Filtro de Asignación</div>
                     </div>
                 </h:panelGroup>
                 <div class="js-filter" data-uk-sortable="handle: .drag-icon">
@@ -84,27 +84,23 @@
                     <div class="actividad-card uk-container">
                         <div >
                             <div class="padding-0">
-                                <div class="uk-grid uk-margin-small-left">
-                                    <div class="uk-child-width-1-1@xl">
-                                        <ul class="uk-iconnav">
-                                            <li class="">
-                                                <div class="">
-                                                    <div uk-form-custom="target: > * > span:first-child">
-                                                        <select>
-                                                            <option value="1">Ultimos 7 Dias</option>
-                                                            <option value="2">Ultimo mes</option>
-                                                            <option value="3">Ultimo año</option>
-                                                            <option value="4">Todos</option>
-                                                            <option value="5">Personalizado</option>
-                                                        </select>
-                                                        <button class="uk-button uk-button-default" type="button" tabindex="-1">
-                                                            <span/>
-                                                            <span uk-icon="icon: chevron-down"/>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                <div class="uk-grid uk-margin-small-left uk-child-width-1-1@m" uk-grid="">
+                                    <div class="">
+                                        <div class="">
+                                            <div uk-form-custom="target: > * > span:first-child">
+                                                <select class="width-select">
+                                                    <option value="1">Ultimos 7 Dias</option>
+                                                    <option value="2">Ultimo mes</option>
+                                                    <option value="3">Ultimo año</option>
+                                                    <option value="4">Todos</option>
+                                                    <option value="5">Personalizado</option>
+                                                </select>
+                                                <button class="uk-button uk-button-default width-button" type="button" tabindex="-1">
+                                                    <span/>
+                                                    <span uk-icon="icon: chevron-down"/>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -131,9 +127,9 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea gramática</span></f:facet>
-                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
-                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="40"/>
+                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="38"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}">
@@ -142,9 +138,9 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea mapa mental</span></f:facet>
-                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
                                             <h:link outcome="mapamental" rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental eq 0}">
-                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="40"/>
+                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="38"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental ne 0}">
@@ -154,22 +150,22 @@
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea relacionar imagen</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarImagen ne null}"><progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea completar oracion</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionCompletar ne null}"><progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea ordenar oraciones</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionOraciones ne null}"><progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea relacionar oraciones</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarOraciones ne null}"><progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>

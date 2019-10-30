@@ -16,8 +16,16 @@ div > ul + div > div > div > span{
     font-weight: bold;
 }
 
+
 .width-select{
-    width: 50%;
+    width: 985px !important;
+    left: 6% !important;
+}
+
+.width-button{
+    position: relative;
+    width: 1000px;
+    left: 5%;
 }
 
 
