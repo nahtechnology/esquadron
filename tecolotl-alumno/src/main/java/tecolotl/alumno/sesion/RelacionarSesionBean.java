@@ -65,9 +65,9 @@ public class RelacionarSesionBean {
     public List<RelacionarModelo> busca(@NotNull Integer idTarea) {
         logger.fine(idTarea.toString());
         Query query = entityManager.createNativeQuery(
-                "SELECT r.codigo,r.palabra,tar.respuesta, tar.hora_respuesta FROM alumno.tarea_actividad_relacionar tar " +
-                        "JOIN alumno.actividad_relacionar ar ON tar.id_relacionar = ar.id_relacionar and tar.id_actividad = ar.id_actividad " +
-                        "JOIN alumno.relacionar r ON ar.id_relacionar = r.codigo WHERE tar.id_tarea = ?");
+                "SELECT g.id_clase_glosario, g.palabra, tar.respuesta, tar.hora_respuesta FROM alumno.tarea_actividad_relacionar tar " +
+                        "JOIN alumno.actividad_relacionar ar ON tar.id_palabra = ar.id_palabra and tar.id_clase = ar.id_clase and tar.id_actividad = ar.id_actividad JOIN " +
+                        "alumno.glosario g ON ar.id_palabra = g.palabra and ar.id_clase = g.id_clase_glosario WHERE tar.id_tarea = ?");
         query.setParameter(1, idTarea);
         List<Object[]> respuesta = query.getResultList();
         List<RelacionarModelo> relacionarModeloLista = new ArrayList<>();
