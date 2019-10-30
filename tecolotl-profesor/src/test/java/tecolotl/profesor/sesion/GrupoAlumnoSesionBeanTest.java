@@ -1,5 +1,6 @@
 package tecolotl.profesor.sesion;
 
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -195,6 +196,25 @@ public class GrupoAlumnoSesionBeanTest {
             Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
             Assert.assertNull(alumnoModelo.getNacimiento());
         });
+    }
+    @Test public void buscaActividades(){
+        List<ActividadModelo> actividadModelos = grupoAlumnoSesionBean.buscaActividades(1);
+        Assert.assertNotNull(actividadModelos);
+        Assert.assertFalse(actividadModelos.isEmpty());
+        actividadModelos.forEach(actividadModelo -> {
+            Assert.assertNotNull(actividadModelo);
+            Assert.assertNotNull(actividadModelo.getIdVideo());
+            Assert.assertNotNull(actividadModelo.getLenguaje());
+            Assert.assertNotNull(actividadModelo.getNivelLenguajeModeloLista());
+            Assert.assertNotNull(actividadModelo.getPreguntaDetonadora());
+            Assert.assertNotNull(actividadModelo.getPuntaje());
+            Assert.assertNotNull(actividadModelo.getTranscripcion());
+            Assert.assertNotNull(actividadModelo.getTipoEstudianteModelo());
+            Assert.assertNotNull(actividadModelo.getTemaModelo());
+            Assert.assertNotNull(actividadModelo.getTiempo());
+        });
+
+
     }
 
     @Test public void insertaAlumo() {

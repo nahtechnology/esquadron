@@ -1,7 +1,9 @@
 package tecolotl.profesor.sesion;
 
+import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
+import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.entidad.*;
 import tecolotl.profesor.modelo.AlumnoTareasNivelModelo;
@@ -91,7 +93,27 @@ public class GrupoAlumnoSesionBean {
         }
         return alumnoTareasNivelModeloLista;
     }
+    /**
+     * Busca todas las Actividades que no se asignaron en un Grupo de
+     */
+    public List<ActividadModelo> buscaActividades(@NotNull Integer idGrupo){
+    Query query =entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN  SELECT tga.id_actividad as nulo\n" +
+            "                FROM\n" +
+            "                   profesor.grupo_alumno ga left join\n" +
+            "                   alumno.alumno a ON ga.id_alumno = a.id LEFT JOIN\n" +
+            "                   alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno LEFT JOIN\n" +
+            "                   alumno.tarea_glosario_actividad tga ON t.id = tga.id_tarea\n" +
+            "                WHERE ga.id_grupo= ? \n" +
+            "                GROUP BY\n" +
+            "                    tga.id_tarea, tga.id_actividad\n" +
+            "            ) AS tarea_actividad ON  a.id_video = tarea_actividad.nulo  LEFT JOIN\n" +
+            "               alumno.nivel_lenguaje_actividad nla ON  a.id_video = nla.id_actividad\n" +
+            "        where tarea_actividad.nulo IS NULL", ActividadEntidad.class);
 
+        query.setParameter(1, idGrupo);
+        return ((List<ActividadEntidad>) query.getResultList()).stream().map(ActividadModelo::new).collect(Collectors.toList());
+
+    }
     public List<AlumnoModelo> buscaAlumno(@NotNull Integer idGrupo) {
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaAlumnosPorGrupo", AlumnoEntidad.class);
         typedQuery.setParameter("idGrupo", idGrupo);
