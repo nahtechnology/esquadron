@@ -56,7 +56,6 @@ public class CalificaTareaGramaticaEntidad implements Serializable {
         this.puntaje = puntaje;
     }
 
-    @NotNull
     @Basic
     @Column(name = "momento", insertable = false, updatable = false)
     public Date getMomento() {

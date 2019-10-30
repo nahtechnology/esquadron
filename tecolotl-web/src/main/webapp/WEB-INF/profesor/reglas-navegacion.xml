@@ -77,5 +77,19 @@
             </redirect>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profesor/calificacion-gramatica.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>tareas</from-outcome>
+            <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
+            <redirect include-view-params="true">
+                <redirect-param>
+                    <name>idAlumno</name>
+                    <value>#{profesorGrupoControlador.alumnoModelo.id}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
     
 </faces-config>

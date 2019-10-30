@@ -2,19 +2,24 @@ package tecolotl.web.profesor;
 
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
 import tecolotl.alumno.sesion.GramaticaSesionBean;
+import tecolotl.profesor.scope.CalificaGramaticaScope;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class CalificacionGramaticaControlador {
+public class CalificacionGramaticaControlador implements Serializable {
 
     @Inject
     private GramaticaSesionBean gramaticaSesionBean;
+
+    @Inject
+    private CalificaGramaticaScope calificaGramaticaScope;
 
     @Inject
     private Logger logger;
@@ -26,8 +31,10 @@ public class CalificacionGramaticaControlador {
         gramaticaModeloLista = gramaticaSesionBean.busca(idTarea);
     }
 
-    public void enviaRespuesta(Integer idTarea) {
-        logger.info("envio de respuesta");
+    public String enviaRespuesta() {
+        logger.info(gramaticaModeloLista.toString());
+        calificaGramaticaScope.inserta(gramaticaModeloLista, idTarea);
+        return "tareas";
     }
 
     public int getIdTarea() {

@@ -18,6 +18,13 @@ public class TareaGramaticaEntidad {
     private String respuesta;
     private Date horaRespuesta;
 
+    public TareaGramaticaEntidad() {
+    }
+
+    public TareaGramaticaEntidad(TareaGramaticaEntidadPK tareaGramaticaEntidadPK) {
+        this.tareaGramaticaEntidadPK = tareaGramaticaEntidadPK;
+    }
+
     @EmbeddedId
     public TareaGramaticaEntidadPK getTareaGramaticaEntidadPK() {
         return tareaGramaticaEntidadPK;

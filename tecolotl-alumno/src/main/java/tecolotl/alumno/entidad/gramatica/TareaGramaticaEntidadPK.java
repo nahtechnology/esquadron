@@ -14,6 +14,15 @@ public class TareaGramaticaEntidadPK implements Serializable {
     private GramaticaEntidad gramaticaEntidad;
     private Short vuelta;
 
+    public TareaGramaticaEntidadPK() {
+    }
+
+    public TareaGramaticaEntidadPK(TareaEntidad tareaEntidad, GramaticaEntidad gramaticaEntidad, Short vuelta) {
+        this.tareaEntidad = tareaEntidad;
+        this.gramaticaEntidad = gramaticaEntidad;
+        this.vuelta = vuelta;
+    }
+
     @JoinColumn(name = "id_tarea")
     @ManyToOne(fetch = FetchType.LAZY)
     public TareaEntidad getTareaEntidad() {
@@ -25,10 +34,10 @@ public class TareaGramaticaEntidadPK implements Serializable {
     }
 
     @JoinColumns(
-            value = {
-                    @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
-                    @JoinColumn(name = "codigo", referencedColumnName = "codigo")
-            }
+        value = {
+            @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),
+            @JoinColumn(name = "codigo", referencedColumnName = "codigo")
+        }
     )
     @ManyToOne(fetch = FetchType.LAZY)
     public GramaticaEntidad getGramaticaEntidad() {
@@ -50,18 +59,17 @@ public class TareaGramaticaEntidadPK implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         TareaGramaticaEntidadPK that = (TareaGramaticaEntidadPK) o;
         return tareaEntidad.equals(that.tareaEntidad) &&
-                gramaticaEntidad.equals(that.gramaticaEntidad);
+                gramaticaEntidad.equals(that.gramaticaEntidad) &&
+                vuelta.equals(that.vuelta);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(tareaEntidad, gramaticaEntidad);
+        return Objects.hash(tareaEntidad, gramaticaEntidad, vuelta);
     }
 
     @Override
@@ -69,6 +77,8 @@ public class TareaGramaticaEntidadPK implements Serializable {
         return new StringJoiner(", ", TareaGramaticaEntidadPK.class.getSimpleName() + "[", "]")
                 .add("tareaEntidad=" + tareaEntidad)
                 .add("gramaticaEntidad=" + gramaticaEntidad)
+                .add("vuelta=" + vuelta)
                 .toString();
     }
+
 }

@@ -13,13 +13,15 @@ public class GramaticaModelo {
     private String codigo;
     private String palabra;
     private String respuesta;
-    private Integer calificacion;
+    private Short calificacion;
+    private Short vuelta;
     private Date horaRespuesta;
 
     public GramaticaModelo() {
     }
 
     public GramaticaModelo(GramaticaEntidad gramaticaEntidad){
+        this.actividadModelo = new ActividadModelo(gramaticaEntidad.getGramaticaEntidadPK().getActividadEntidad().getId());
         this.codigo = gramaticaEntidad.getGramaticaEntidadPK().getCodigo();
         this.palabra = gramaticaEntidad.getPalabra();
     }
@@ -28,13 +30,14 @@ public class GramaticaModelo {
         this(tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getGramaticaEntidad());
         this.respuesta = tareaGramaticaEntidad.getRespuesta();
         this.horaRespuesta = tareaGramaticaEntidad.getHoraRespuesta();
+        this.vuelta = tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getVuelta();
     }
 
-    public Integer getCalificacion() {
+    public Short getCalificacion() {
         return calificacion;
     }
 
-    public void setCalificacion(Integer calificacion) {
+    public void setCalificacion(Short calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -78,12 +81,25 @@ public class GramaticaModelo {
         this.horaRespuesta = horaRespuesta;
     }
 
+    public Short getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Short vuelta) {
+        this.vuelta = vuelta;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", GramaticaModelo.class.getSimpleName() + "[", "]")
                 .add("actividadModelo=" + actividadModelo)
                 .add("codigo='" + codigo + "'")
                 .add("palabra='" + palabra + "'")
+                .add("respuesta='" + respuesta + "'")
+                .add("calificacion=" + calificacion)
+                .add("vuelta=" + vuelta)
+                .add("horaRespuesta=" + horaRespuesta)
                 .toString();
     }
+
 }

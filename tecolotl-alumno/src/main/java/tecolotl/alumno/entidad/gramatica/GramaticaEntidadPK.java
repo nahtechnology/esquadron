@@ -9,8 +9,17 @@ import java.util.StringJoiner;
 
 @Embeddable
 public class GramaticaEntidadPK implements Serializable{
+
     private ActividadEntidad actividadEntidad;
     private String codigo;
+
+    public GramaticaEntidadPK() {
+    }
+
+    public GramaticaEntidadPK(ActividadEntidad actividadEntidad, String codigo) {
+        this.actividadEntidad = actividadEntidad;
+        this.codigo = codigo;
+    }
 
     @JoinColumn(name = "id_actividad")
     @ManyToOne(fetch = FetchType.LAZY)

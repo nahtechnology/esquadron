@@ -118,15 +118,14 @@ function  Textos(oracionActividad,oracionAlumno) {
     this.oracionAlumno = oracionAlumno;
 }
 
-function envioRespuesta(evento) {
-    var respuestasEntrada = evento.target.parentNode.querySelectorAll('input[type=text]');
-    if (respuestasEntrada.filter(function (entrada) { return entrada.value === ''}).length > 0) {
-        UIkit.modal.confirm('Al parecer algunas tareas no se han terminadas por el alumno. ¿Está seguro que desea enviar la calificación?').then(function() {
-            console.log('Confirmed.')
-        }, function () {
-            console.log('Rejected.')
+function validaRespuesta(evento) {
+    var entradas = document.getElementById('formulario-califica').parentNode.querySelectorAll('input[type=text]');
+    entradas = Array.from(entradas);
+    if (entradas.filter(entrada => entrada.value).length < entradas.length) {
+        UIkit.modal.alert('No se puede calificar hasta que el alumno haya terminado de responder todos los ejercicios.').then(function () {
+            console.log('Alert closed.')
         });
-    } else {
-
+        return false;
     }
+    return true;
 }
