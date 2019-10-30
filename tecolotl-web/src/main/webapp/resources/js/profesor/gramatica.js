@@ -1,6 +1,6 @@
 var slider = document.querySelectorAll('.calificar input[type=range]');
-var oracion = document.querySelectorAll('.calificar > form > div > div:first-child > span:first-child');
-var respuesta = document.querySelectorAll('.calificar > form > div > div:first-child > span:last-child');
+var oracion = document.querySelectorAll('.calificar > form > div > div:first-child > span');
+var respuesta = document.querySelectorAll('.calificar > form > div > div:first-child > input[type=text]');
 var rubrica = document.querySelectorAll('.calificar > form > div > div:last-child > :first-child');
 var score = document.querySelectorAll('.calificar > form > div > div:last-child > :first-child + span');
 var oraciones = [];
@@ -9,6 +9,7 @@ var calificacion = [];
 var datos = [];
 document.addEventListener('DOMContentLoaded',function (ev) {
     calificarOracion(oracion,respuesta);
+    document.querySelector('#formulario-califica button').addEventListener('click', envioRespuesta);
 });
 
 function calificarOracion(oracion,respuesta) {
@@ -115,4 +116,17 @@ function calificarOracion(oracion,respuesta) {
 function  Textos(oracionActividad,oracionAlumno) {
     this.oracionActividad = oracionActividad;
     this.oracionAlumno = oracionAlumno;
+}
+
+function envioRespuesta(evento) {
+    var respuestasEntrada = evento.target.parentNode.querySelectorAll('input[type=text]');
+    if (respuestasEntrada.filter(function (entrada) { return entrada.value === ''}).length > 0) {
+        UIkit.modal.confirm('Al parecer algunas tareas no se han terminadas por el alumno. ¿Está seguro que desea enviar la calificación?').then(function() {
+            console.log('Confirmed.')
+        }, function () {
+            console.log('Rejected.')
+        });
+    } else {
+
+    }
 }

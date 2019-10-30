@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <ui:define name="menu">
+        <div class="">
+            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+                <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
+                <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+            </ul>
+        </div>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar">
+                <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                    <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
+                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                    <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <div class="uk-section uk-margin-medium-top">
+            <div class="uk-container">
+                <ui:repeat value="#{alumnoTareaNivelControlador.alumnoTareaNivelMapa}" var="nivelAlumno">
+                    <p>lorem10 #{nivelAlumno}</p>
+                </ui:repeat>
+            </div>
+
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

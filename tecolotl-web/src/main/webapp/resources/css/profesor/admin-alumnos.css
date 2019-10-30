@@ -55,7 +55,7 @@ progress::-ms-fill {
     border: 0;
 }
 
-div > div > div + div + button{
+div > button{
     position: relative;
     left: 85%;
 }

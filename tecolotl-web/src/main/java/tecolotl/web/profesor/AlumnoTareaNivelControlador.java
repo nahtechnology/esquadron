@@ -10,11 +10,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RequestScoped
 @Named
 public class AlumnoTareaNivelControlador {
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private DashboardProfesorControlador dashboardProfesorControlador;
@@ -29,6 +33,12 @@ public class AlumnoTareaNivelControlador {
         alumnoTareaNivelMapa = grupoAlumnoSesionBean.buscaAlumnoNivel(
                 dashboardProfesorControlador.getGrupoModeloLista().stream().map(GrupoModelo::getId).collect(Collectors.toList())
         ).stream().collect(Collectors.groupingBy(AlumnoTareasNivelModelo::getIdGrupo));
+        logger.info(alumnoTareaNivelMapa.toString());
+        logger.info(dashboardProfesorControlador.getGrupoModeloLista().stream().map(GrupoModelo::getId).collect(Collectors.toList()).toString());
+    }
+
+    public List<Integer> transforma(){
+        return alumnoTareaNivelMapa.keySet().stream().collect(Collectors.toList());
     }
 
     public Map<Integer, List<AlumnoTareasNivelModelo>> getAlumnoTareaNivelMapa() {

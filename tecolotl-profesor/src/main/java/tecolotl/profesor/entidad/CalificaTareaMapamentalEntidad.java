@@ -20,7 +20,11 @@ import java.util.StringJoiner;
         name = "CalificaTareaMapamentalEntidad.califica",
         query = "UPDATE CalificaTareaMapamentalEntidad c SET c.comentario = :comentario, c.puntaje = :puntaje " +
                 "WHERE c.calificaTareaMapamentalEntidadPK.tareaEntidad.id = :idTarea AND " +
-                "c.calificaTareaMapamentalEntidadPK.cardinalidad = :cardinalidad AND c.calificaTareaMapamentalEntidadPK.vuelta = :vuelta")
+                "c.calificaTareaMapamentalEntidadPK.cardinalidad = :cardinalidad AND c.calificaTareaMapamentalEntidadPK.vuelta = :vuelta"),
+    @NamedQuery(
+        name = "CalificaTareaMapamentalEntidad.busca",
+        query = "SELECT ctm FROM CalificaTareaMapamentalEntidad ctm JOIN ctm.calificaTareaMapamentalEntidadPK.tareaEntidad t " +
+                "WHERE t.id = :idTarea")
 })
 public class CalificaTareaMapamentalEntidad implements Serializable {
 

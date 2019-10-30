@@ -43,5 +43,39 @@
             <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profesor/tarea-alumno.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>gramatica</from-outcome>
+            <to-view-id>/profesor/calificacion-gramatica.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>mapamental</from-outcome>
+            <to-view-id>/profesor/lista-mapa-mental.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/profesor/lista-mapa-mental.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>califica</from-outcome>
+            <to-view-id>/profesor/calificacion-mapamental.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/profesor/calificacion-mapamental.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>tareas</from-outcome>
+            <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
+            <redirect include-view-params="true">
+                <redirect-param>
+                    <name>idAlumno</name>
+                    <value>#{calificaMapaMentalControlador.idAlumno}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
+    </navigation-rule>
     
 </faces-config>

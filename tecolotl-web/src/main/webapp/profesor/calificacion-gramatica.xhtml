@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <f:metadata>
+        <f:viewParam name="idTarea" value="#{calificacionGramaticaControlador.idTarea}" required="true"/>
+        <f:viewAction action="#{calificacionGramaticaControlador.buscaTareas()}"/>
+    </f:metadata>
+    <ui:define name="menu">
+        <div class="">
+            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+                <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
+                <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+            </ul>
+        </div>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar">
+                <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                    <li class="uk-text-uppercase nav-sub-active"><h:link styleClass="letra-color-subnav" value="Group Details" outcome="admin-alumnos"/></li>
+                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor2" styleClass="letra-color-subnav" value="Library"/> </li>
+                    <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="/profesor/gramatica.css"/>
+        <div class="uk-section uk-margin-medium-top">
+            <h:panelGroup styleClass="uk-container" pt:uk-filter="target: .gramatica">
+                 <ul class="uk-subnav nav-default-profesor2 uk-subnav-alumno2">
+                     <li uk-filter-control=".calificar" class="uk-active"><a href="#">Calificacion</a></li>
+                     <li uk-filter-control=".contestadas"><a href="#">Contestadas</a></li>
+                 </ul>
+                <ul class="gramatica">
+                    <li class="calificar">
+                        <h:form id="formulario-califica">
+                            <h2>Actividad 1</h2>
+                            <ui:repeat value="#{calificacionGramaticaControlador.gramaticaModeloLista}" var="gramaticaModelo">
+                                <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
+                                    <div class="uk-width-3-5@m">
+                                        <span>#{gramaticaModelo.palabra}</span>
+                                        <h:inputText disabled="true" value="#{gramaticaModelo.respuesta}" pt:placeholder="Sin respuesta"/>
+                                    </div>
+                                    <div class="uk-width-2-5@m">
+                                        <span/><span>Score:</span>
+                                        <h:inputText styleClass="rango" pt:type="range"  pt:min="1" pt:max="4"  pt:step="1" value="#{gramaticaModelo.calificacion}"/>
+                                    </div>
+                                </h:panelGroup>
+                            </ui:repeat>
+                            <button>Enviar</button>
+                            <h:commandButton id="envio-respuesta" value="Enviar" style="display: none"
+                                             action="#{calificacionGramaticaControlador.enviaRespuesta}"/>
+                        </h:form>
+                    </li>
+                    <li class="contestadas">
+                    </li>
+                </ul>
+            </h:panelGroup>
+        </div>
+        <h:panelGroup layout="block" id="modal-valida-calificacion" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Tareas incompletas</h2>
+                Al parecer este estudiante no ha terminado de resolver sus todas sus tareas, ¿Está seguro que desea calificar dichos ejercicios?
+                <p class="uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
+                    <button class="uk-button uk-button-primary" type="button">Aceptar</button>
+                </p>
+            </div>
+        </h:panelGroup>
+        <h:outputScript library="js" name="/profesor/gramatica.js"/>
+    </ui:define>
+</ui:composition>
+</html>
