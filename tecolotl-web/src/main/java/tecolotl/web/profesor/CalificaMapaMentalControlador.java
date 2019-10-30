@@ -5,13 +5,10 @@ import tecolotl.alumno.sesion.MapaMentalSessionBean;
 import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
 import tecolotl.profesor.sesion.CalificaTareaMapaMentalSesionBean;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -38,8 +35,9 @@ public class CalificaMapaMentalControlador {
         calificaTareaMapaMentalModelo = calificaTareaMapaMentalSesionBean.busca(idTarea, cardinalidad, intento);
     }
 
-    public void califica() {
+    public String califica() {
         calificaTareaMapaMentalSesionBean.respuesta(calificaTareaMapaMentalModelo);
+        return "tareas";
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {

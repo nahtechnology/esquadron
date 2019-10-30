@@ -130,7 +130,6 @@
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
                                                 <h:graphicImage library="img" name="icono/evaluar.svg"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
-                                                <f:param name="idAlumno" value="#{tareaAlumnoControlador.idAlumno}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}">
                                                 <progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/>
@@ -142,7 +141,6 @@
                                             <h:link outcome="mapamental" rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental eq 0}">
                                                 <h:graphicImage library="img" name="icono/evaluar.svg"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
-                                                <f:param name="idAlumno" value="#{tareaAlumnoControlador.idAlumno}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental ne 0}">
                                                 <progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/>

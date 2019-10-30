@@ -16,7 +16,6 @@ public class ListaMapaMentalControlador {
     private CalificaTareaMapaMentalSesionBean calificaTareaMapaMentalSesionBean;
 
     private Integer idTarea;
-    private Integer idAlumno;
     private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
 
     public void busca() {
@@ -29,14 +28,6 @@ public class ListaMapaMentalControlador {
 
     public void setIdTarea(Integer idTarea) {
         this.idTarea = idTarea;
-    }
-
-    public Integer getIdAlumno() {
-        return idAlumno;
-    }
-
-    public void setIdAlumno(Integer idAlumno) {
-        this.idAlumno = idAlumno;
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {

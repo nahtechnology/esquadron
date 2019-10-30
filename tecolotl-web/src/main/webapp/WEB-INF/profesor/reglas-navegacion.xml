@@ -68,11 +68,11 @@
         <from-view-id>/profesor/calificacion-mapamental.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>tareas</from-outcome>
-            <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
+            <to-view-id>/profesor/lista-mapa-mental.xhtml</to-view-id>
             <redirect include-view-params="true">
                 <redirect-param>
                     <name>idAlumno</name>
-                    <value>#{calificaMapaMentalControlador.idAlumno}</value>
+                    <value>#{profesorGrupoControlador.alumnoModelo.id}</value>
                 </redirect-param>
             </redirect>
         </navigation-case>

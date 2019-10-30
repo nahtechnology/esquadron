@@ -8,7 +8,6 @@
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
     <f:metadata>
         <f:viewParam name="idTarea" value="#{listaMapaMentalControlador.idTarea}" required="true"/>
-        <f:viewParam name="idAlumno" value="#{listaMapaMentalControlador.idAlumno}" required="true"/>
         <f:viewAction action="#{listaMapaMentalControlador.busca}"/>
     </f:metadata>
     <ui:define name="menu">
