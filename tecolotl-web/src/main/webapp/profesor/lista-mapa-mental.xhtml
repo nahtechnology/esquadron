@@ -17,17 +17,19 @@
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
         <div class="uk-section">
             <div class="uk-container ">
-                <h1>Tareas Mapa Mental asigandas a la tarea #{listaMapaMentalControlador.idTarea}</h1>
+                <h1>Tareas Mapa Mental asigandas</h1>
                 <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-3@l uk-child-width-1-2@m" pt:uk-grid="">
                     <ui:repeat value="#{listaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
                         <div class="uk-position-relative">
                             <div class="bmap-#{tareaMapaMental.cardinalidad}">
-
+                                <h:panelGroup layout="block" styleClass="respondido" rendered="#{not empty tareaMapaMental.totalRespuestas}">
+                                    <span>Respondido</span>
+                                </h:panelGroup>
                             </div>
                             <ui:remove>
                                 Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
+                                <span>Respondido: #{tareaMapaMental.totalRespuestas}</span>
                             </ui:remove>
-                            <span>Respondido: #{tareaMapaMental.totalRespuestas}</span>
                             <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
                                     outcome="califica"
                                     styleClass="boton-escuadron-base"
