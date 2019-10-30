@@ -74,13 +74,18 @@
                     </div>
                 </div>
                 <!--CARDS WRAPPER-->
+                <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-2@m">
+                    <div>
+                        <div class="titulo-section uk-text-center uk-text-bold">Filtro</div>
+                    </div>
+                </h:panelGroup>
                 <div class="js-filter" data-uk-sortable="handle: .drag-icon">
                     <!-- card -->
                     <div class="actividad-card uk-container">
-                        <div class="">
-                            <div class="titulo-section padding-0">
+                        <div >
+                            <div class="padding-0">
                                 <div class="uk-grid uk-margin-small-left">
-                                    <div class="uk-width-expand uk-flex uk-flex-right">
+                                    <div class="uk-child-width-1-1@xl">
                                         <ul class="uk-iconnav">
                                             <li class="">
                                                 <div class="">
@@ -109,7 +114,7 @@
                                     <h:dataTable id="tabla-actividades"
                                                  value="#{tareaAlumnoControlador.tareaAlumnoModeloLista}"
                                                  var="tareaAlumno"
-                                                 styleClass="tabla-alumnos uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
+                                                 styleClass="tabla-alumnos uk-table uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
                                                  headerClass="borde-top-amarillo uk-text-center thPrimario"
                                                  columnClasses="uk-width-small,uk-width-small,uk-width-small,uk-width-small"
                                                  rowClasses="tdPrimario"
@@ -126,9 +131,9 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea gramática</span></f:facet>
-                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
-                                                <h:graphicImage library="img" name="icono/evaluar.svg"/>
+                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="40"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}">
@@ -137,9 +142,9 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea mapa mental</span></f:facet>
-                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
                                             <h:link outcome="mapamental" rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental eq 0}">
-                                                <h:graphicImage library="img" name="icono/evaluar.svg"/>
+                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="40"/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental ne 0}">
@@ -149,22 +154,22 @@
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea relacionar imagen</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarImagen ne null}"><progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea completar oracion</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionCompletar ne null}"><progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea ordenar oraciones</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionOraciones ne null}"><progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea relacionar oraciones</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarOraciones ne null}"><progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/></ui:fragment>
-                                            <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
+                                            <h:outputText pt:uk-icon="icon:ban; ratio:2" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>

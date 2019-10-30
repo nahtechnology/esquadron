@@ -16,6 +16,9 @@ div > ul + div > div > div > span{
     font-weight: bold;
 }
 
+.width-select{
+    width: 50%;
+}
 
 
 

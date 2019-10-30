@@ -531,8 +531,3 @@ padding-top: 38px;
   width: 100px;
   height: 50px;
 }
-
-.uk-iconnav > li > div > div{
-  font-weight: bold;
-  border: 3px solid white !important;
-}
