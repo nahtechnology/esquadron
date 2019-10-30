@@ -14,18 +14,33 @@
 
     </ui:define>
     <ui:define name="contenido">
-        Tareas Mapa Mental asigandas a la tarea #{listaMapaMentalControlador.idTarea}
-        <ui:repeat value="#{listaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
-            Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
-            Respondido: #{tareaMapaMental.totalRespuestas}<br/>
-            <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
-                    outcome="califica"
-                    rendered="#{tareaMapaMental.totalRespuestas gt 0}">
-                <f:param name="idTarea" value="#{listaMapaMentalControlador.idTarea}"/>
-                <f:param name="cardinalidad" value="#{tareaMapaMental.cardinalidad}"/>
-                <f:param name="intento" value="#{tareaMapaMental.vuelta}"/>
-            </h:link>
-        </ui:repeat>
+        <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
+        <div class="uk-section">
+            <div class="uk-container ">
+                <h1>Tareas Mapa Mental asigandas a la tarea #{listaMapaMentalControlador.idTarea}</h1>
+                <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-3@l uk-child-width-1-2@m" pt:uk-grid="">
+                    <ui:repeat value="#{listaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
+                        <div class="uk-position-relative">
+                            <div class="bmap-#{tareaMapaMental.cardinalidad}">
+
+                            </div>
+                            <ui:remove>
+                                Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
+                            </ui:remove>
+                            <span>Respondido: #{tareaMapaMental.totalRespuestas}</span>
+                            <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
+                                    outcome="califica"
+                                    styleClass="boton-escuadron-base"
+                                    rendered="#{tareaMapaMental.totalRespuestas gt 0}">
+                                <f:param name="idTarea" value="#{listaMapaMentalControlador.idTarea}"/>
+                                <f:param name="cardinalidad" value="#{tareaMapaMental.cardinalidad}"/>
+                                <f:param name="intento" value="#{tareaMapaMental.vuelta}"/>
+                            </h:link>
+                        </div>
+                    </ui:repeat>
+                </h:panelGroup>
+            </div>
+        </div>
     </ui:define>
 </ui:composition>
 </html>

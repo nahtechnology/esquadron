@@ -17,49 +17,65 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
         <h:panelGroup layout="block" class="mapa-mental">
-            <h:form styleClass="uk-form-controls uk-grid " pt:uk-grid="">
-                <ui:repeat value="#{calificaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
-                    <h:outputText value="#{tareaMapaMental.pregunta}"/>
-                    <h:outputText value="#{tareaMapaMental.respuesta}"/>
-                </ui:repeat>
-                <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.idTarea}"/>
-                <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
-                <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
-                <h:inputText value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}">
-                    <f:validateRequired/>
-                </h:inputText>
-                <h:inputText pt:type="range" pt:min="0" pt:max="100" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
-                    <f:validateRequired/>
-                </h:inputText>
-                <h:commandButton value="Calificar" action="#{calificaMapaMentalControlador.califica}"/>
+            <h2 class="uk-text-center">Calificacion Mapa Mental</h2>
+            <h:form styleClass="uk-form-controls uk-grid" pt:uk-grid="" >
+                <h:panelGroup layout="block" styleClass="uk-width-3-4@m uk-grid uk-child-width-1-2@m" pt:uk-grid="">
+                    <ui:repeat value="#{calificaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
+                        <div>Pregunta:<br/><span>#{tareaMapaMental.pregunta}</span></div>
+                        <div>Respuesta:<br/><span>#{tareaMapaMental.respuesta}</span></div>
+                    </ui:repeat>
+                    <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.idTarea}"/>
+                    <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
+                    <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
+                    <div>
+                        <h:inputTextarea value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}" styleClass="uk-textarea comentario">
+                            <f:validateRequired/>
+                        </h:inputTextarea>
+                    </div>
+                    <div>
+                        <h:inputText pt:type="range" pt:min="25" pt:max="100" pt:step="25" styleClass="rango" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
+                            <f:validateRequired/>
+                        </h:inputText>
+                        <p><span /><span style="color: red; font-weight: bold"/></p>
+                    </div>
+                </h:panelGroup>
+                <div class="uk-width-1-4@m">
+                    <div class="bmap-#{calificaMapaMentalControlador.tareaMapaMentalModeloLista[0].cardinalidad}">
+
+                    </div>
+                    <p>Score: <span style="color: red; font-weight: bold"/></p>
+                </div>
+                <h:commandButton value="Calificar" styleClass="boton-escuadron-base" action="#{calificaMapaMentalControlador.califica}"/>
             </h:form>
         </h:panelGroup>
         <script type="application/javascript">
             var slider = document.querySelectorAll('.mapa-mental input[type=range]');
             var output = document.querySelectorAll('.mapa-mental input[type=range] + p  span:first-child');
-            var rubrica = document.querySelectorAll('.mapa-mental input[type=range] + p span:first-child + span');
-            var score = document.querySelectorAll('.mapa-mental > div > div + div > p > span');
+            var rubrica = document.querySelectorAll('.mapa-mental input[type=range] + p > span:first-child + span');
+            var score = document.querySelectorAll('.mapa-mental form [class^=bmap-] + p > span');
             var datos = [], texto = [];
 
+            // rubrica.style.color="red";
+            // score.style.color="red";
             output.forEach(function (value,index) {
                 // value.innerHTML = slider[index].value;
             });
             rubrica.forEach(function (value,index) {
 
                 switch (slider[index].value) {
-                    case "1":
+                    case "25":
                         rubrica[index].innerHTML = "Deficiente";
                         score[index].innerHTML = "25";
                         break;
-                    case "2":
+                    case "50":
                         rubrica[index].innerHTML = "Regular";
                         score[index].innerHTML = "50";
                         break;
-                    case "3":
+                    case "75":
                         rubrica[index].innerHTML = "Bueno";
                         score[index].innerHTML = "75";
                         break;
-                    case "4":
+                    case "100":
                         rubrica[index].innerHTML = "Excelente";
                         score[index].innerHTML = "100";
                         break;
@@ -74,19 +90,19 @@
                 value.oninput = function() {
 
                     switch (this.value) {
-                        case "1":
+                        case "25":
                             rubrica[index].innerHTML = "Deficiente";
                             score[index].innerHTML = "25";
                             break;
-                        case "2":
+                        case "50":
                             rubrica[index].innerHTML = "Regular";
                             score[index].innerHTML = "50";
                             break;
-                        case "3":
+                        case "75":
                             rubrica[index].innerHTML = "Bueno";
                             score[index].innerHTML = "75";
                             break;
-                        case "4":
+                        case "100":
                             rubrica[index].innerHTML = "Excelente";
                             score[index].innerHTML = "100";
                             break;

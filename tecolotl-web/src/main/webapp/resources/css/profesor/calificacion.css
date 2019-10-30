@@ -11,13 +11,13 @@
 
 [class^="bmap"]{
     width: 95%;
-    height: 200px;
+    height: 250px;
     /*border: 3px solid #444444;*/
     box-shadow: 0 8px 5px #999999 ;
 }
 .rango{
     display: block;
-    width: 100%;
+    width: 60%;
     -webkit-appearance: none;
     appearance: none;
     height: 13px;
@@ -49,33 +49,50 @@
     background: #4CAF50;
     cursor: pointer;
 }
+
+
+.mapa-mental form > :nth-child(2)  > div > span{
+    display: inline-block;
+    width: 100%;
+    padding: 10px 5px;
+    border-radius: 13px;
+    border: 2px solid #00a49d;
+}
+
+.mapa-mental form > :nth-child(3) {
+    display: flex;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+
+.mapa-mental input[type=range]{
+    width: 100%;
+}
+
 .mapa-mental > div{
     padding-bottom: 10px;
     border-bottom: 8px solid #0e6dcd;
 }
 
-.mapa-mental input[type='range'] + p {
-    font-weight: bold;
-    font-size: 17px;
-    margin-bottom: 5px;
-}
 
-.mapa-mental > div > div + div > p{
-    color: red;
-}
-.mapa-mental textarea{
-    height: 70px;
-}
 
-.mapa-mental form  > .comentario textarea{
-    height: 75%;
+.comentario{
+    height: 80px;
+    width: 100%;
     box-sizing: border-box;
 }
-.mapa-mental form label{
-    padding-left: 5px;
-    font-style: italic;
-    font-weight: bold;
+
+.mapa-mental > form > .boton-escuadron-base{
+    position: relative;
+    left: calc(50% - (131.44px/2));
 }
+
+
+.mapa-mental input[type=range] + div > span:first-child{
+    margin-right: 100px;
+}
+
 
 .bmap-1{
     background: url("#{resource['img/alumno/mapa-mental/preview/1.jpg']}") no-repeat center center/100% 100%;
@@ -132,8 +149,38 @@
     font-style: italic;
     color: black;
 }
+h1{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
 
-.mapa-mental form .boton-escuadron-base{
-    position: relative;
-    left: calc(60% - (108.91px/2));
+[class^="bmap-"] + span{
+    display: inline-block;
+    font-size: 19px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+[class^="bmap-"] + span + .boton-escuadron-base{
+    float: right;
+}
+
+/*.mapa-mental form .boton-escuadron-base{*/
+/*    position: relative;*/
+/*    left: calc(60% - (108.91px/2));*/
+/*}*/
+
+@media screen and (max-width: 780px){
+    [class^="bmap"]{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+@media screen and (max-width: 500px){
+    [class^="bmap"]{
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
