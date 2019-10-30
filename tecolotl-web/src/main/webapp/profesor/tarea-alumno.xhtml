@@ -56,25 +56,20 @@
                                 </div>
                                 <div class="uk-width-expand">
                                     <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
-                                        ${tareaAlumnoControlador.alumnoModelo.nombre.concat(' ').concat(tareaAlumnoControlador.alumnoModelo.apellidoPaterno).concat(' ').concat(tareaAlumnoControlador.alumnoModelo.apellidoMaterno)}
+                                        ${profesorGrupoControlador.alumnoModelo.nombre.concat(' ').concat(profesorGrupoControlador.alumnoModelo.apellidoPaterno).concat(' ').concat(profesorGrupoControlador.alumnoModelo.apellidoMaterno)}
                                     </h3>
-                                    <p class="uk-text-meta uk-margin-remove-top uk-text-small">
-                                        <span>${tareaAlumnoControlador.alumnoModelo.apodo}</span>
-                                        <span>${tareaAlumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}</span>
-                                    </p>
                                 </div>
                                 <div class="uk-width-1-1@s">
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Apodo:</span> jonhas</p>
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Email:</span> manzanilla@gmail.com</p>
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Nivel de Lenguaje:</span> A1</p>
+                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Apodo:</span> #{profesorGrupoControlador.alumnoModelo.apodo}</p>
+                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Nivel de Lenguaje:</span> #{profesorGrupoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
                                     <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-primary">Editar Perfil:</span></p>
                                 </div>
                             </div>
                         </div>
                         <div class="uk-card-body padding-card-body">
                             <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grado:</span> 1°</p>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grupo:</span> B</p>
+                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grado:</span> #{profesorGrupoControlador.grupoModelo.grado}</p>
+                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grupo:</span> #{profesorGrupoControlador.grupoModelo.grupo}</p>
                         </div>
                     </div>
                 </div>

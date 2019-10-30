@@ -37,6 +37,9 @@ public class GrupoAlumnoControlador implements Serializable {
     @Inject
     private ProfesorControlador profesorControlador;
 
+    @Inject
+    private ProfesorGrupoControlador profesorGrupoControlador;
+
     private Integer idGrupo;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
@@ -67,6 +70,7 @@ public class GrupoAlumnoControlador implements Serializable {
 
     public void buscaDetalleAlumnos() {
         tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
+        profesorGrupoControlador.detalleGrupo(idGrupo);
     }
 
     public Integer getIdGrupo() {

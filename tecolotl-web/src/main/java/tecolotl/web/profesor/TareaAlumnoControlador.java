@@ -19,15 +19,14 @@ public class TareaAlumnoControlador {
     private CalificaTareaMapaMentalSesionBean calificaTareaMapaMentalSesionBean;
 
     @Inject
-    private AlumnoSesionBean alumnoSesionBean;
+    private ProfesorGrupoControlador profesorGrupoControlador;
 
     private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
-    private AlumnoModelo alumnoModelo;
     private Integer idAlumno;
 
     public void detalle() {
         tareaAlumnoModeloLista = calificaTareaMapaMentalSesionBean.busca(idAlumno);
-        alumnoModelo = alumnoSesionBean.busca(idAlumno);
+        profesorGrupoControlador.detalleAlumno(idAlumno);
     }
 
     public List<TareaAlumnoModelo> getTareaAlumnoModeloLista() {
@@ -36,14 +35,6 @@ public class TareaAlumnoControlador {
 
     public void setTareaAlumnoModeloLista(List<TareaAlumnoModelo> tareaAlumnoModeloLista) {
         this.tareaAlumnoModeloLista = tareaAlumnoModeloLista;
-    }
-
-    public AlumnoModelo getAlumnoModelo() {
-        return alumnoModelo;
-    }
-
-    public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
-        this.alumnoModelo = alumnoModelo;
     }
 
     public Integer getIdAlumno() {

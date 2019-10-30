@@ -39,8 +39,7 @@ public class CalificaMapaMentalControlador {
     }
 
     public void califica() {
-        Map<String, String> requestParameterMapa = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        logger.info(calificaTareaMapaMentalModelo.toString());
+        calificaTareaMapaMentalSesionBean.respuesta(calificaTareaMapaMentalModelo);
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {

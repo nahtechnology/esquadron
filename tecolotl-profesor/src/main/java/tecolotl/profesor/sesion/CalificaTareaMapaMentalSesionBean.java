@@ -97,7 +97,6 @@ public class CalificaTareaMapaMentalSesionBean {
         calificaTareaMapamentalEntidadPK.setVuelta(intento);
         calificaTareaMapamentalEntidadPK.setCardinalidad(cardinalidad);
         calificaTareaMapamentalEntidadPK.setTareaEntidad(new TareaEntidad(idTarea));
-        logger.info(calificaTareaMapamentalEntidadPK.toString());
         CalificaTareaMapamentalEntidad calificaTareaMapamentalEntidad = entityManager.find(CalificaTareaMapamentalEntidad.class, calificaTareaMapamentalEntidadPK);
         return new CalificaTareaMapaMentalModelo(calificaTareaMapamentalEntidad);
     }

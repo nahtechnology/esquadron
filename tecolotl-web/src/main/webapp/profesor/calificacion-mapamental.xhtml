@@ -22,10 +22,13 @@
                     <h:outputText value="#{tareaMapaMental.pregunta}"/>
                     <h:outputText value="#{tareaMapaMental.respuesta}"/>
                 </ui:repeat>
+                <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.idTarea}"/>
+                <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
+                <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
                 <h:inputText value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}">
                     <f:validateRequired/>
                 </h:inputText>
-                <h:inputText pt:type="range" pt:min="0" pt:max="4" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
+                <h:inputText pt:type="range" pt:min="0" pt:max="100" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
                     <f:validateRequired/>
                 </h:inputText>
                 <h:commandButton value="Calificar" action="#{calificaMapaMentalControlador.califica}"/>

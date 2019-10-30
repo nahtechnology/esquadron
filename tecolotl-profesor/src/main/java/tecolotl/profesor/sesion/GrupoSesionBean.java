@@ -19,13 +19,14 @@ import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
-public class GrupoSesionBean {
+public class GrupoSesionBean implements Serializable {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -50,6 +51,15 @@ public class GrupoSesionBean {
         grupoEntidad.setProfesorEntidad(new ProfesorEntidad(grupoModelo.getIdProfesor()));
         entityManager.persist(grupoEntidad);
         grupoModelo.setId(grupoEntidad.getId());
+    }
+
+    /**
+     * Busca los datos de un grupo
+     * @param idGrupo
+     * @return
+     */
+    public GrupoModelo buscaId(@NotNull Integer idGrupo) {
+        return new GrupoModelo(entityManager.find(GrupoEntidad.class, idGrupo));
     }
 
     /**
