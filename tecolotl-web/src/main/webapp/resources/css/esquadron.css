@@ -340,7 +340,7 @@ input[type=text],input[type=email],input[type=password],select,textarea{
   border-radius: 20px !important;
  border-width: 2px !important;
   padding: 0 20px;
-  border-color: var(--form-focul) !important;
+  border-color: #1665B4 !important;
 
 }
 

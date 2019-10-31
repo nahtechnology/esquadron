@@ -133,9 +133,11 @@
 
         </h:panelGroup>
         <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
-            <h:outputText styleClass="uk-text-bold uk-margin-remove-bottom titulo-section"
-                          value="#{empty dashboardProfesorControlador.grupoModeloLista ? 'No tiene grupos asigandos en este ciclo escolar' : 'Sus grupos para este ciclo escolar'}">
-            </h:outputText>
+            <div class="uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo">
+                <h:outputText
+                              value="#{empty dashboardProfesorControlador.grupoModeloLista ? 'No tiene grupos asigandos en este ciclo escolar' : 'Sus grupos para este ciclo escolar'}">
+                </h:outputText>
+            </div>
             <h:form id="formulario-tabla" styleClass="uk-form-stacked">
                 <div class=" uk-margin-small-top">
                     <h:dataTable

@@ -1,6 +1,6 @@
 #formulario-grupo span[id^="formulario-grupo"]{
     display: block;
-    border: 1px solid #1665B4;
+    border: 1.5px solid #1665B4;
     border-radius: 5px;
     padding: 5px 2px;
     box-sizing: border-box;
@@ -24,4 +24,8 @@ ul > li > span {
 #graficas > div > span{
     display: inline-block;
     margin-left: 5px;
+}
+
+.padding-titulo{
+    padding-left: 10px;
 }
