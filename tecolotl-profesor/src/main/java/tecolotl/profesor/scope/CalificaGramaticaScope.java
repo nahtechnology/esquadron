@@ -14,6 +14,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
@@ -40,13 +41,13 @@ public class CalificaGramaticaScope {
         try {
             userTransaction.begin();
             for (GramaticaModelo gramaticaModelo : gramaticaModeloLista) {
-                TareaGramaticaEntidadPK tareaGramaticaEntidadPK = new TareaGramaticaEntidadPK(
-                        new TareaEntidad(idTarea),
-                        new GramaticaEntidad(new GramaticaEntidadPK(new ActividadEntidad(gramaticaModelo.getActividadModelo().getIdVideo()), gramaticaModelo.getCodigo())),
-                        gramaticaModelo.getVuelta()
-                );
-                CalificaTareaGramaticaEntidad calificaTareaGramaticaEntidad = entityManager.find(CalificaTareaGramaticaEntidad.class, new TareaGramaticaEntidad(tareaGramaticaEntidadPK));
-                calificaTareaGramaticaEntidad.setPuntaje(gramaticaModelo.getCalificacion());
+                Query query = entityManager.createNamedQuery("CalificaTareaGramaticaEntidad.califica");
+                query.setParameter("puntaje", gramaticaModelo.getCalificacion())
+                        .setParameter("idTarea", idTarea)
+                        .setParameter("idActividad", gramaticaModelo.getActividadModelo().getIdVideo())
+                        .setParameter("codigo", gramaticaModelo.getCodigo())
+                        .setParameter("vuelta", gramaticaModelo.getVuelta());
+                query.executeUpdate();
             }
             userTransaction.commit();
         } catch (Exception ex) {

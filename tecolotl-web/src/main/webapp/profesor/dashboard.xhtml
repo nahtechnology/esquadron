@@ -83,6 +83,7 @@
                                         execute="@form"
                                         listener="#{dashboardProfesorControlador.seleccion()}"
                                         onevent="function grafica(data) {
+                                            console.log(data.status);
                                             if (data.status === 'success')
                                                {datosGrupo();}
                                         }"
@@ -115,12 +116,12 @@
         </div>
         <h:panelGroup layout="block" id="graficas" >
             <ui:remove>
-                <ui:repeat value="#{alumnoTareaNivelControlador.transforma()}" var="alumnoNivel">
+                <ui:repeat value="#{dashboardProfesorControlador.transforma()}" var="alumnoNivel">
                     #{alumnoNivel}
                 </ui:repeat>
             </ui:remove>
-            <ui:repeat value="#{alumnoTareaNivelControlador.transforma()}" var="nivelAlumno">
-                <ui:repeat value="#{alumnoTareaNivelControlador.alumnoTareaNivelMapa.get(nivelAlumno)}" var="grupos">
+            <ui:repeat value="#{dashboardProfesorControlador.transforma()}" var="nivelAlumno">
+                <ui:repeat value="#{dashboardProfesorControlador.alumnoTareaNivelMapa.get(nivelAlumno)}" var="grupos">
                     <div>
                         <span>#{grupos.idGrupo}</span><span>#{grupos.idAlumno}</span><span>#{grupos.nombre} #{grupos.apellidoPaterno} #{grupos.apellidoMaterno}</span>
                         <span>#{grupos.totalTareas}</span><span>#{grupos.nivelLenguaje}</span>

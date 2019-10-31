@@ -13,7 +13,14 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "califica_tarea_gramatica", schema = "profesor")
 @NamedQueries({
-        @NamedQuery(name = "CalificaTareaGramaticaEntidad.busca", query = "SELECT calTarea FROM CalificaTareaGramaticaEntidad calTarea")
+    @NamedQuery(name = "CalificaTareaGramaticaEntidad.busca", query = "SELECT calTarea FROM CalificaTareaGramaticaEntidad calTarea"),
+    @NamedQuery(
+        name = "CalificaTareaGramaticaEntidad.califica",
+        query = "UPDATE CalificaTareaGramaticaEntidad c SET c.puntaje = :puntaje WHERE c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.tareaEntidad.id = :idTarea " +
+                "AND c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.gramaticaEntidad.gramaticaEntidadPK.actividadEntidad.id = :idActividad " +
+                "AND c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.gramaticaEntidad.gramaticaEntidadPK.codigo = :codigo " +
+                "AND c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.vuelta = :vuelta"
+    )
 })
 public class CalificaTareaGramaticaEntidad implements Serializable {
 

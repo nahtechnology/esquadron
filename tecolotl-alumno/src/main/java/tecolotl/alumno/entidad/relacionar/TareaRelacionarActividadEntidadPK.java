@@ -57,4 +57,28 @@ public class TareaRelacionarActividadEntidadPK implements Serializable {
         this.vuelta = vuelta;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TareaRelacionarActividadEntidadPK that = (TareaRelacionarActividadEntidadPK) o;
+        return tareaEntidad.equals(that.tareaEntidad) &&
+                vuelta.equals(that.vuelta) &&
+                relacionarActividadEntidad.equals(that.relacionarActividadEntidad);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(tareaEntidad, vuelta, relacionarActividadEntidad);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaRelacionarActividadEntidadPK.class.getSimpleName() + "[", "]")
+                .add("tareaEntidad=" + tareaEntidad)
+                .add("vuelta=" + vuelta)
+                .add("relacionarActividadEntidad=" + relacionarActividadEntidad)
+                .toString();
+    }
+
 }

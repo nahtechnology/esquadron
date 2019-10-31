@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 @Entity
@@ -86,6 +87,25 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     public void setNivelLenguaje(String nivelLenguaje) {
         this.nivelLenguaje = nivelLenguaje;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AlumnoTareasNivelEntidad that = (AlumnoTareasNivelEntidad) o;
+        return idGrupo.equals(that.idGrupo) &&
+                idAlumno.equals(that.idAlumno) &&
+                nombre.equals(that.nombre) &&
+                apellidoPaterno.equals(that.apellidoPaterno) &&
+                apellidoMaterno.equals(that.apellidoMaterno) &&
+                totalTareas.equals(that.totalTareas) &&
+                nivelLenguaje.equals(that.nivelLenguaje);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idGrupo, idAlumno, nombre, apellidoPaterno, apellidoMaterno, totalTareas, nivelLenguaje);
     }
 
     @Override

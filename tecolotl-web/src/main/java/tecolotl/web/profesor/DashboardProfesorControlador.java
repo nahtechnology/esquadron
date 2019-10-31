@@ -1,8 +1,10 @@
 package tecolotl.web.profesor;
 
+import tecolotl.profesor.modelo.AlumnoTareasNivelModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
+import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 
 import javax.annotation.PostConstruct;
@@ -12,7 +14,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @ViewScoped
 @Named("dashboardProfesorControlador")
@@ -30,7 +34,11 @@ public class DashboardProfesorControlador implements Serializable {
     @Inject
     private GrupoSesionBean grupoSesionBean;
 
+    @Inject
+    private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
+
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
+    private Map<Integer, List<AlumnoTareasNivelModelo>> alumnoTareaNivelMapa;
     private CicloEscolarModelo cicloEscolarModelo;
     private int hashCode;
     private List<GrupoModelo> grupoModeloLista;
@@ -44,6 +52,9 @@ public class DashboardProfesorControlador implements Serializable {
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorModelo.getProfesorModelo().getId());
+        alumnoTareaNivelMapa = grupoAlumnoSesionBean.buscaAlumnoNivel(
+                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList())
+        ).stream().collect(Collectors.groupingBy(AlumnoTareasNivelModelo::getIdGrupo));
     }
 
     public void seleccion() {
@@ -57,6 +68,13 @@ public class DashboardProfesorControlador implements Serializable {
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorModelo.getProfesorModelo().getId());
+        alumnoTareaNivelMapa = grupoAlumnoSesionBean.buscaAlumnoNivel(
+                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList())
+        ).stream().collect(Collectors.groupingBy(AlumnoTareasNivelModelo::getIdGrupo));
+    }
+
+    public List<Integer> transforma(){
+        return alumnoTareaNivelMapa.keySet().stream().collect(Collectors.toList());
     }
 
     public List<CicloEscolarModelo> getCicloEscolarModeloLista() {
@@ -89,5 +107,13 @@ public class DashboardProfesorControlador implements Serializable {
 
     public void setHashCode(int hashCode) {
         this.hashCode = hashCode;
+    }
+
+    public Map<Integer, List<AlumnoTareasNivelModelo>> getAlumnoTareaNivelMapa() {
+        return alumnoTareaNivelMapa;
+    }
+
+    public void setAlumnoTareaNivelMapa(Map<Integer, List<AlumnoTareasNivelModelo>> alumnoTareaNivelMapa) {
+        this.alumnoTareaNivelMapa = alumnoTareaNivelMapa;
     }
 }

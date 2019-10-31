@@ -5,6 +5,7 @@ import tecolotl.alumno.entidad.ActividadEntidad;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.StringJoiner;
 
 @Entity
@@ -16,7 +17,8 @@ import java.util.StringJoiner;
                 query = "SELECT g FROM GramaticaEntidad g WHERE g.gramaticaEntidadPK.actividadEntidad.id = :idActividad"
         )
 })
-public class GramaticaEntidad {
+public class GramaticaEntidad implements Serializable {
+
     private GramaticaEntidadPK gramaticaEntidadPK;
     private String palabra;
 

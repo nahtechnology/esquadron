@@ -3,6 +3,7 @@ package tecolotl.alumno.entidad.gramatica;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.StringJoiner;
 
@@ -13,7 +14,7 @@ import java.util.StringJoiner;
         @NamedQuery(name = "TareaGramaticaEntidad.buscaTarea", query = "SELECT tge FROM TareaGramaticaEntidad tge " +
                 "JOIN FETCH tge.tareaGramaticaEntidadPK.gramaticaEntidad g WHERE tge.tareaGramaticaEntidadPK.tareaEntidad.id = :idTarea")
 })
-public class TareaGramaticaEntidad {
+public class TareaGramaticaEntidad implements Serializable {
     private TareaGramaticaEntidadPK tareaGramaticaEntidadPK;
     private String respuesta;
     private Date horaRespuesta;
