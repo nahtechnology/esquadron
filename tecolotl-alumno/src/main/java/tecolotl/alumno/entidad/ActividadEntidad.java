@@ -46,6 +46,7 @@ public class ActividadEntidad {
     private TemaEntidad temaEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
 
+
     public ActividadEntidad() {
     }
 

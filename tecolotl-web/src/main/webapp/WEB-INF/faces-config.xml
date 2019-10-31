@@ -78,7 +78,7 @@
 			<var>coordinacion</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>alumno</base-name>
+			<base-name>alumno_en</base-name>
 			<var>alumno</var>
 		</resource-bundle>
 
