@@ -58,6 +58,7 @@ progress::-ms-fill {
 div > button{
     position: relative;
     left: 85%;
+    bottom: 48px;
 }
 
 div > div > div > div + div + div + div + div + div > img{
