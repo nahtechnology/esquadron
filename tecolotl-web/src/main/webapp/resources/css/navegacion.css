@@ -54,7 +54,7 @@
     position: relative;
     transition: box-shadow 0.15s ease-out;
     border-radius: 3px;
-    border-bottom-color: var(--activo-fondo-navbar);
+    border-bottom-color: var(--turquesa-primary-color);
     margin: 0;
     padding: 0;
     text-align: left;
@@ -82,7 +82,7 @@
     background-color:#FFFFFF;
 }
 .uk-subnav-alumno2 li.uk-active:nth-child(1) a {
-    background-color:var(--activo-fondo-navbar);
+    background-color:var(--turquesa-primary-color);
 
 }.uk-subnav-alumno2 li.uk-active:nth-child(2) a {
      background-color:var(--activo-fondo-navbar);
