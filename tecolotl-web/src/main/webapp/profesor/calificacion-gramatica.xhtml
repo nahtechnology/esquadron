@@ -16,22 +16,26 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/gramatica.css"/>
         <div class="uk-section uk-margin-medium-top">
-            <h:form id="formulario-califica">
-                <ui:repeat value="#{calificacionGramaticaControlador.gramaticaModeloLista}" varStatus="estatus" var="var">
-                    <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
-                        <div class="uk-width-3-5@m">
-                            <span>#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].palabra}</span>
-                            <h:inputText disabled="true" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].respuesta}" pt:placeholder="Sin respuesta"/>
-                        </div>
-                        <div class="uk-width-2-5@m">
-                            <span>Score:</span>
-                            <h:inputText styleClass="rango" pt:type="range"  pt:min="1" pt:max="4"  pt:step="1" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].calificacion}"/>
-                        </div>
-                    </h:panelGroup>
-                </ui:repeat>
-                <h:commandButton value="Enviar" onclick="return validaRespuesta(event)"
-                                 action="#{calificacionGramaticaControlador.enviaRespuesta}"/>
-            </h:form>
+            <div class="calificar">
+                <h:form id="formulario-califica">
+                        <ui:repeat value="#{calificacionGramaticaControlador.gramaticaModeloLista}" varStatus="estatus" var="var">
+                            <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
+                                <div class="uk-width-3-5@m">
+                                    <span>#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].palabra}</span>
+                                    <h:inputText styleClass="uk-textarea" disabled="true" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].respuesta}" pt:placeholder="Sin respuesta"/>
+                                </div>
+                                <div class="uk-width-2-5@m">
+                                    <span/> <span>Score:</span>
+                                    <h:inputText styleClass="rango" pt:type="range"  pt:min="1" pt:max="4"  pt:step="1" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].calificacion}"/>
+                                </div>
+                            </h:panelGroup>
+                        </ui:repeat>
+
+                    <h:commandButton value="Enviar" onclick="return validaRespuesta(event)"
+                                     action="#{calificacionGramaticaControlador.enviaRespuesta}"
+                                     styleClass="boton-escuadron-base"/>
+                </h:form>
+            </div>
         </div>
         <h:panelGroup layout="block" id="modal-valida-calificacion" pt:uk-modal="">
             <div class="uk-modal-dialog uk-modal-body">
