@@ -85,14 +85,17 @@
                                             <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />
                                             <span class="cat-txt">
                                                 <h:outputText value="#{tareaActvidadModelo.asignacion}">
-                                                    <f:convertDateTime locale="en_UK" timeStyle="short" type="both" dateStyle="full"/>
+                                                    <f:convertDateTime locale="en_UK" timeStyle="short" type="date" dateStyle="full"/>
+
                                                 </h:outputText>
                                                 #{actividadAlumno2Controlador.buscaPregunta(tareaActvidadModelo.idActividad)}
                                             </span>
+                                            #{tareaActvidadModelo.idActividad}
                                         </div>
                                         <div class="uk-width-auto uk-text-right uk-text-muted">
                                             <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>
                                             <span class="uk-padding-small">#{tareaActvidadModelo.reproducciones}</span>
+
                                         </div>
                                     </h:panelGroup>
                                 </div>
