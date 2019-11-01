@@ -104,7 +104,7 @@
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.order.sentences']}</h1>
                                 <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
                                         <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
-                                               <div class="uk-width-1-1@m" uk-grid="" >
+                                               <div class="uk-width-1-1@m uk-grid" uk-grid="" >
                                                     <div class="imagen-oracion uk-width-auto"/>
                                                     <div class="oraciones uk-width-expand" data-cardinalidad="#{oracion.oracionesModelo.cardinalidad}">#{oracion.oracionesModelo.oracion}</div>
                                                </div>
@@ -112,7 +112,7 @@
                                 </h:panelGroup>
                                 <h:panelGroup layout="block" styleClass="contenedor-oraciones" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
                                     <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
-                                        <div class="uk-width-1-1@m" uk-grid="" >
+                                        <div class="uk-width-1-1@m uk-grid" uk-grid="" >
                                             <div class="imagen-oracion uk-width-auto"/>
                                             <div class="oraciones uk-width-expand">#{tareaOracionesControlador.buscaOracion(oracion.respuesta)}</div>
                                         </div>
