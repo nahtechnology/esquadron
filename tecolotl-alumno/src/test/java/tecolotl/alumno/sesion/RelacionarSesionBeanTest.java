@@ -94,7 +94,7 @@ public class RelacionarSesionBeanTest {
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {
             assertNotNull(relacionarModelo);
-            assertNotNull(relacionarModelo.getCodigo());
+            assertNotNull(relacionarModelo.getIdClaseGlosario());
             assertNotNull(relacionarModelo.getPalabra());
             assertNotNull(relacionarModelo.getIdActividad());
         });
@@ -107,7 +107,7 @@ public class RelacionarSesionBeanTest {
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {
             assertNotNull(relacionarModelo);
-            assertNotNull(relacionarModelo.getCodigo());
+            assertNotNull(relacionarModelo.getIdClaseGlosario());
             assertNotNull(relacionarModelo.getPalabra());
             assertNotNull(relacionarModelo.getIdActividad());
         });
@@ -118,7 +118,6 @@ public class RelacionarSesionBeanTest {
         RelacionarModelo relacionarModelo = new RelacionarModelo();
         relacionarModelo.setIdActividad("0_1NU60qHWs");
         relacionarModelo.setIdTarea(2);
-        relacionarModelo.setCodigo("c9ae3273cc488a5a879c9f1354367bf8");
         relacionarSesionBean.respuesta(relacionarModelo, "8c373fd1a64c1a3083fff348caf4b4ab");
     }
 }

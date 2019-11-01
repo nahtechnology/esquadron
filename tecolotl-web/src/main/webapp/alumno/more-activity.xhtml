@@ -128,37 +128,44 @@
                         </li>
                         <li class="relacion-imagen" >
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
-                            <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
-                                <div class="contenedor-imagen scroll-drag">
-                                    <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
-                                        <div class="imagen-relacionar uk-margin-auto ">
-
-                                        </div>
-                                        <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
-                                            <div class="icono-relacion-img uk-width-auto"></div>
-                                            <div class="oraciones-relacion-img uk-width-expand" uk-sortable="group: respuesta-imagen"></div>
-                                        </div>
-                                    </ui:repeat>
-
-                                </div>
-                                <h:panelGroup layout="block" styleClass="contenedor-imagen " >
-                                    <h:panelGroup styleClass="respuesta-imagen palabras"
-                                                  rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
-                                                  layout="block">
-                                        <div class="movimiento realizado">
-                                            Respondido
-                                        </div>
-                                    </h:panelGroup>
-                                    <h:panelGroup layout="block"
-                                                  styleClass="respuesta-imagen  uk-sortable palabras"
-                                                  pt:uk-sortable="group: respuesta-imagen"
-                                                  rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
-                                        <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
-                                            <div data-codigo="#{relacionar.codigo}" class="palabra-imagen">#{relacionar.palabra}</div>
+                            <h:form>
+                                <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
+                                    <div class="contenedor-imagen scroll-drag">
+                                        <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo">
+                                            <div class="imagen-relacionar uk-margin-auto ">
+                                                <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.idClaseGlosario))}" alt="imagen"/>
+                                            </div>
+                                            <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
+                                                <div class="icono-relacion-img uk-width-auto"></div>
+                                                <h:inputHidden value="#{relacionarModelo.palabra}"/>
+                                                <h:panelGroup layout="block" styleClass="oraciones-relacion-img uk-width-expand" pt:uk-sortable="group: respuesta-imagen" rendered="#{empty relacionarModelo.respuesta}"/>
+                                                <h:panelGroup layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
+                                                <h:inputHidden value="#{relacionarModelo.respuesta}" rendered="#{empty relacionarModelo.respuesta}"/>
+                                            </div>
                                         </ui:repeat>
+                                    </div>
+                                    <h:panelGroup layout="block" styleClass="contenedor-imagen">
+                                        <h:panelGroup styleClass="respuesta-imagen palabras"
+                                                      rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
+                                                      layout="block">
+                                            <div class="movimiento realizado">
+                                                Respondido
+                                            </div>
+                                        </h:panelGroup>
+                                        <h:panelGroup layout="block"
+                                                      styleClass="respuesta-imagen  uk-sortable palabras"
+                                                      pt:uk-sortable="group: respuesta-imagen"
+                                                      rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
+                                            <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
+                                                <div data-codigo="#{relacionar.idClaseGlosario}" class="palabra-imagen">#{relacionar.palabra}</div>
+                                            </ui:repeat>
+                                        </h:panelGroup>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                            </h:panelGroup>
+                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuesta()">
+                                    <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form"/>
+                                </h:commandButton>
+                            </h:form>
                         </li>
                         <li class="talking" >
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.talk']}</h1>

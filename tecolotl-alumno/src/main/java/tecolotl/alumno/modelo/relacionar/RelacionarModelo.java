@@ -7,6 +7,7 @@ import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public class RelacionarModelo {
@@ -14,7 +15,7 @@ public class RelacionarModelo {
     private String idActividad;
     private Integer idTarea;
     private String palabra;
-    private String codigo;
+    private Short idClaseGlosario;
     private String respuesta;
     private Date horaRespuesta;
     private Integer vuelta;
@@ -22,14 +23,14 @@ public class RelacionarModelo {
     public RelacionarModelo() {
     }
 
-    public RelacionarModelo(String idActividad, Integer idTarea, String codigo) {
+    public RelacionarModelo(String idActividad) {
         this.idActividad = idActividad;
-        this.idTarea = idTarea;
-        this.codigo = codigo;
     }
 
     public RelacionarModelo(RelacionarActividadEntidad relacionarActividadEntidad) {
         this.idActividad = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getActividadEntidad().getId();
+        this.idClaseGlosario = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getGlosarioEntidad()
+                .getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave();
     }
 
     public RelacionarModelo(TareaRelacionarActividadEntidad tareaRelacionarActividadEntidad) {
@@ -65,14 +66,12 @@ public class RelacionarModelo {
         this.palabra = palabra;
     }
 
-    @NotNull(groups = {RelacionarLlavePrimariaValidacion.class})
-    @Size(min = 32, max = 32, groups = {RelacionarLlavePrimariaValidacion.class})
-    public String getCodigo() {
-        return codigo;
+    public Short getIdClaseGlosario() {
+        return idClaseGlosario;
     }
 
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setIdClaseGlosario(Short idClaseGlosario) {
+        this.idClaseGlosario = idClaseGlosario;
     }
 
     public String getRespuesta() {
@@ -100,14 +99,31 @@ public class RelacionarModelo {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RelacionarModelo that = (RelacionarModelo) o;
+        return idActividad.equals(that.idActividad) &&
+                idTarea.equals(that.idTarea) &&
+                palabra.equals(that.palabra) &&
+                idClaseGlosario.equals(that.idClaseGlosario);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idActividad, idTarea, palabra, idClaseGlosario);
+    }
+
+    @Override
     public String toString() {
         return new StringJoiner(", ", RelacionarModelo.class.getSimpleName() + "[", "]")
                 .add("idActividad='" + idActividad + "'")
                 .add("idTarea=" + idTarea)
                 .add("palabra='" + palabra + "'")
-                .add("codigo='" + codigo + "'")
+                .add("idClaseGlosario=" + idClaseGlosario)
                 .add("respuesta='" + respuesta + "'")
                 .add("horaRespuesta=" + horaRespuesta)
+                .add("vuelta=" + vuelta)
                 .toString();
     }
 }

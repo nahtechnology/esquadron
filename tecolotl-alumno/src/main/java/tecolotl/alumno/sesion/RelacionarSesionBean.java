@@ -50,7 +50,6 @@ public class RelacionarSesionBean {
         logger.fine(idActivdad);
         TypedQuery<RelacionarActividadEntidad> typedQuery =
                 entityManager.createNamedQuery("RelacionarActividadEntidad.buscaActividad", RelacionarActividadEntidad.class);
-        typedQuery.setParameter("idActividad", idActivdad);
         List<RelacionarActividadEntidad> relacionarActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Elementos encontraodos".concat(String.valueOf(relacionarActividadEntidadLista.size())));
         List<RelacionarModelo> relacionarModeloLista = new ArrayList<>();
@@ -73,7 +72,7 @@ public class RelacionarSesionBean {
         List<RelacionarModelo> relacionarModeloLista = new ArrayList<>();
         for (Object[] objects : respuesta) {
             RelacionarModelo relacionarModelo = new RelacionarModelo();
-            relacionarModelo.setCodigo((String)objects[0]);
+            relacionarModelo.setIdClaseGlosario((Short)objects[0]);
             relacionarModelo.setPalabra((String)objects[1]);
             relacionarModelo.setRespuesta((String)objects[2]);
             relacionarModelo.setHoraRespuesta((Date)objects[3]);

@@ -38,7 +38,7 @@ public class RelacionarRespuestaScope {
                 tareaRelacionarActividadEntidad.setRespuesta(relacionarModelo.getRespuesta());
             });
             userTransaction.commit();
-        }catch(Exception e){
+        }catch(Exception e) {
             logger.log(Level.SEVERE, "No se puede insertar datos por: ".concat(e.getMessage()), e);
             try{
                 userTransaction.rollback();

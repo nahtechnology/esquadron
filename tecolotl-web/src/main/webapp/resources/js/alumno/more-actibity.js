@@ -32,16 +32,22 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 
 });
 
+function validaRespuesta() {
+    if (relacionarImagen.querySelectorAll('.respuesta-imagen div').length !== 0) {
+        UIkit.modal.alert('No se puede enviar la respuesta hasta terminar de resolver');
+        return false;
+    } else {
+        relacionarImagen.querySelectorAll('.respuesta-imagen-contenedor > :nth-child(3)').forEach(function (respuesta) {
+            respuesta.nextElementSibling.value = respuesta.firstChild.textContent;
+        });
+        return true;
+    }
+}
+
 function revuelve(palabras) {
     for (var indice = 0; indice < palabras.length; indice++) {
         palabras[indice].after(palabras[Math.floor(Math.random() * palabras.length)]);
     }
-}
-
-function enviarRespuesta() {
-    relacionarImagen.querySelectorAll('table tbody tr').forEach(function (respuesta) {
-        respuesta.querySelector('input[type=hidden]').value = respuesta.querySelector('td:nth-child(2) div').dataset.codigo;
-    });
 }
 
 function respuestaEnvidad(data) {

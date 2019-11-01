@@ -41,11 +41,7 @@ public class RelacionarControlador implements Serializable {
     }
 
     public String buscaPalabra(String codigo) {
-        for (RelacionarModelo relacionarModelo : relacionarModeloLista) {
-            if (relacionarModelo.getCodigo().equals(codigo)) {
-                return relacionarModelo.getPalabra();
-            }
-        }
+
         return null;
     }
 
