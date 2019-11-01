@@ -11,9 +11,7 @@
         <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
     </f:metadata>
     <ui:define name="hamburguesa">
-        <div class="color-nav uk-visible@m">
-            <div class="uk-position-top-center nave-superior"><h:graphicImage library="img" name="alumno/control-superior.svg" class="" alt="" width="250" height="auto"/></div>
-        </div>
+
         <div class="color-nav uk-hidden@m">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
                 <div class="">
@@ -74,7 +72,7 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/mapa-5.css"/>
-        <div class="uk-section margen-superior uk-margin-small-left uk-margin-small-right">
+        <div class="uk-section uk-margin-small-left uk-margin-small-right">
             <div class="uk-container padding-contenedor fondo-mapa-5 uk-position-relative">
                 <h:panelGroup layout="block">
                     <h:graphicImage library="img" name="/alumno/pop-art/boton-finished.svg" styleClass="movimiento5 finalizado5" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
