@@ -4,55 +4,216 @@
 }
 .graficas  {
     /*background-color: #dfdfdf;*/
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin: auto;
+    --grafica1: #CB4335;
+    --grafica2: #76448A;
+    --grafica3: #1F618D;
+    --grafica4: #2874A6 ;
+    --grafica5: #148F77;
+    --grafica6: #117A65 ;
+    --grafica7: #1E8449;
+    --grafica8: #239B56;
+    --grafica9: #239B56;
+    --grafica10: #B9770E;
+    --grafica11: #AF601A;
+    --grafica12: #A04000;
+    --grafica13: #AF601A;
+    --grafica14: #A04000;
+    --grafica15: #283747;
+    --grafica16: #AAB7B8;
+
 }
 .graficas progress{
     width: calc(100%/6);
-    float: left;
+    height: 25px;
     -webkit-appearance: none;
+    -moz-appearance: none;
     appearance: none;
+    box-sizing: border-box;
+    border: none;
+    background: transparent;
+
 }
 .graficas progress::-webkit-progress-bar{
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
-    background-color: #eee;
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
+    background-color: transparent;
+    /*border-radius: 8px;*/
+
 }
-.graficas span{
+.graficas > div > span{
     display: inline-block;
     width: calc(100%/6);
-    float: left;
+    padding: 1.5px 0;
     text-align: center;
     font-weight: bold;
-    font-size: 10px;
-}
-.graficas p{
-    margin-bottom: 0;
-    font-weight: bold;
-    font-size: 12px;
+    font-size: 11px;
+    margin-bottom: 12px;
+    color: white;
+    /*border-radius: 8px;*/
+    box-sizing: border-box;
 }
 
-.graficas > div > div > progress:nth-child(8)::-webkit-progress-value{
-    background: rgb(232,12,162);
-    background: linear-gradient(90deg, rgba(232,12,162,0.53) 44%, rgba(232,12,162,1) 100%);
+.graficas > div > :first-child{
+    background-color: #00A49D;
+    border-left: 2px solid white;
 }
-.graficas > div > div > progress:nth-child(9)::-webkit-progress-value{
-    background: rgb(211,84,0);
-    background: linear-gradient(90deg, rgba(211,84,0,0.53) 44%, rgba(211,84,0,1) 100%);
+.graficas > div > :nth-child(2){
+    background-color: #00A49D;
+    border-left: 2px solid white;
 }
-.graficas > div > div > progress:nth-child(10)::-webkit-progress-value{
-    background: rgb(232,158,12);
-    background: linear-gradient(90deg, rgba(232,158,12,0.53) 44%, rgba(232,158,12,1) 100%);
+.graficas > div > :nth-child(3){
+    background-color: #00A49D;
+    border-left: 2px solid white;
 }
-.graficas > div > div > progress:nth-child(11)::-webkit-progress-value{
-    background: rgb(101,12,232);
-    background: linear-gradient(90deg, rgba(101,12,232,0.53) 44%, rgba(101,12,232,1) 100%);
+.graficas > div > :nth-child(4){
+    background-color: #00A49D;
+    border-left: 2px solid white;
 }
-.graficas > div > div > progress:nth-child(12)::-webkit-progress-value{
-    background: rgb(0,168,236);
-    background: linear-gradient(90deg, rgba(0,168,236,0.53) 44%, rgba(0,168,236,1) 100%);
+.graficas > div > :nth-child(5){
+    background-color: #00A49D;
+    border-left: 2px solid white;
 }
-.graficas > div > div > progress:nth-child(13)::-webkit-progress-value{
-    background: rgb(240,80,110);
-    background: linear-gradient(90deg, rgba(240,80,110,1) 44%, rgba(240,80,110,0.53) 100%);
+.graficas > div > :nth-child(6){
+    background-color: #00A49D;
+    border-left: 2px solid white;
+}
+
+.graficas p{
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 13px;
+    color: white;
+    /*display: inline-block;*/
+}
+.graficas p > span{
+    background-color: #00A8EC;
+    border-radius: 8px;
+    display: inline-block;
+    padding: 0 5px;
+}
+.graficas > div{
+    /*background-color: #999999;*/
+    /*background: url("../rectangulo.png") repeat-x left center/calc(100%/6) 100%;*/
+    background-origin: content-box;
+    padding: 10px;
+    /*margin-left: 2px;*/
+}
+.graficas > div progress::-webkit-progress-value{
+    /*border-radius: 5px;*/
+}
+.graficas > div  > div  > progress:nth-child(2)::-webkit-progress-value{
+    border-radius: 8px 0 0 8px;
+}
+.graficas > div  > div  > progress:nth-child(7)::-webkit-progress-value{
+    border-radius: 0 8px 8px 0;
+}
+
+.graficas > div  > div  > progress:nth-child(2)::-moz-progress-bar{
+    border-radius: 8px 0 0 8px;
+}
+.graficas > div  > div  > progress:nth-child(7)::-moz-progress-bar{
+    border-radius: 8px 0 0 8px;
+}
+
+
+/*colores de graficas*/
+.graficas > div > :nth-child(6) + div > progress::-webkit-progress-value
+{
+    background:var(--grafica1);
+}
+.graficas > div > :nth-child(6) + div > progress::-moz-progress-bar{
+    background:var(--grafica1);
+}
+.graficas > div > :nth-child(6) + div + div > progress::-webkit-progress-value
+{
+    background:var(--grafica2);
+}
+.graficas > div > :nth-child(6) + div + div > progress::-moz-progress-bar{
+    background:var(--grafica2);
+}
+.graficas > div > :nth-child(6) + div + div + div > progress::-webkit-progress-value
+{
+    background:var(--grafica3);
+}
+.graficas > div > :nth-child(6) + div + div + div > progress::-moz-progress-bar{
+    background:var(--grafica3);
+}
+.graficas > div > :nth-child(6) + div + div + div + div> progress::-webkit-progress-value{
+    background:var(--grafica4);
+}
+.graficas > div > :nth-child(6) + div + div + div + div> progress::-moz-progress-bar{
+    background:var(--grafica4);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-webkit-progress-value{
+    background:var(--grafica5);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-moz-progress-bar{
+    background:var(--grafica5);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-webkit-progress-value{
+    background:var(--grafica6);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-moz-progress-bar{
+    background:var(--grafica6);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div +div  > progress::-webkit-progress-value{
+    background:var(--grafica7);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div +div  > progress::-moz-progress-bar{
+    background:var(--grafica7);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+    background:var(--grafica8);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+    background:var(--grafica8);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+    background:var(--grafica9);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+    background:var(--grafica9);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+    background:var(--grafica10);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+    background:var(--grafica10);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
+    background: var(--grafica11);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
+    background: var(--grafica11);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
+    background: var(--grafica12);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
+    background: var(--grafica12);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
+    background: var(--grafica13);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
+    background: var(--grafica13);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+    background: var(--grafica14);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+    background: var(--grafica14);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+    background: var(--grafica15);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+    background: var(--grafica15);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+    background: var(--grafica16);
+}
+.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+    background: var(--grafica16);
 }
 

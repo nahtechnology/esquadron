@@ -45,6 +45,12 @@ function datosGrupo() {
 }
 
 function crearGrafica(datosGrupo) {
+    var level1 = document.createElement('span');
+    var level2 = document.createElement('span');
+    var level3 = document.createElement('span');
+    var level4 = document.createElement('span');
+    var level5 = document.createElement('span');
+    var level6 = document.createElement('span');
     console.log("crear grafica invocada");
     var canvasGrafica = document.querySelector('#canvas');
     var idPersona = [];
@@ -56,32 +62,29 @@ function crearGrafica(datosGrupo) {
             idPersona.push(grupo.personaId);
         }
     });
+    level1.innerHTML='A1';
+    level2.innerHTML='A2';
+    level3.innerHTML='B1';
+    level4.innerHTML='B2';
+    level5.innerHTML='C1';
+    level6.innerHTML='C2';
+    grupo.appendChild(level1);
+    grupo.appendChild(level2);
+    grupo.appendChild(level3);
+    grupo.appendChild(level4);
+    grupo.appendChild(level5);
+    grupo.appendChild(level6);
     // console.log(idPersona);
     for (var indice = 0 ; indice < idPersona.length ; indice++) {
         var alumnoGrupo = document.createElement('div');
         var nombreAlumno = document.createElement('p');
-        var level1 = document.createElement('span');
-        var level2 = document.createElement('span');
-        var level3 = document.createElement('span');
-        var level4 = document.createElement('span');
-        var level5 = document.createElement('span');
-        var level6 = document.createElement('span');
+        var estiloNombreAlumno = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
         console.log(sujeto);
-        nombreAlumno.innerHTML = sujeto[0].personaNombre;
+        estiloNombreAlumno.innerHTML = sujeto[0].personaNombre;
+        nombreAlumno.appendChild(estiloNombreAlumno);
         alumnoGrupo.appendChild(nombreAlumno);
-        level1.innerHTML='A1';
-        level2.innerHTML='A2';
-        level3.innerHTML='B1';
-        level4.innerHTML='B2';
-        level5.innerHTML='C1';
-        level6.innerHTML='C2';
-        alumnoGrupo.appendChild(level1);
-        alumnoGrupo.appendChild(level2);
-        alumnoGrupo.appendChild(level3);
-        alumnoGrupo.appendChild(level4);
-        alumnoGrupo.appendChild(level5);
-        alumnoGrupo.appendChild(level6);
+
         nivel.forEach(function (lenguajeNivel) {
             var barraNivel = document.createElement('progress');
             // console.log(sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0));

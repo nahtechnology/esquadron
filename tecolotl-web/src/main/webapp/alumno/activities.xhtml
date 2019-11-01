@@ -7,9 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="hamburguesa">
-        <div class="color-nav uk-visible@m">
-            <div class="uk-position-top-center nave-superior"><h:graphicImage library="img" name="alumno/control-superior.svg" class="" alt="" width="250" height="auto"/></div>
-        </div>
+
         <div class="color-nav uk-hidden@m">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
                 <div class="">
@@ -89,7 +87,7 @@
                                                 <h:outputText value="#{tareaActvidadModelo.asignacion}">
                                                     <f:convertDateTime locale="en_UK" timeStyle="short" type="both" dateStyle="full"/>
                                                 </h:outputText>
-                                                #{tareaActvidadModelo.idActividad}
+                                                #{actividadAlumno2Controlador.buscaPregunta(tareaActvidadModelo.idActividad)}
                                             </span>
                                         </div>
                                         <div class="uk-width-auto uk-text-right uk-text-muted">
