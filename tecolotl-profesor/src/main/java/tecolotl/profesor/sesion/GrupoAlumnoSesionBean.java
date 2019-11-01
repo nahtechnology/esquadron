@@ -97,7 +97,7 @@ public class GrupoAlumnoSesionBean {
      * Busca todas las Actividades que no se asignaron en un Grupo de
      */
     public List<ActividadModelo> buscaActividades(@NotNull Integer idGrupo){
-    Query query =entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN  SELECT tga.id_actividad as nulo\n" +
+    Query query = entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN  SELECT tga.id_actividad as nulo\n" +
             "                FROM\n" +
             "                   profesor.grupo_alumno ga left join\n" +
             "                   alumno.alumno a ON ga.id_alumno = a.id LEFT JOIN\n" +

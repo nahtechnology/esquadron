@@ -8,31 +8,12 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+        <f:metadata>
+            <f:viewParam name="grupo" value="#{asignarActividadControlador.grupo}" required="true"/>
+            <f:viewAction action="#{asignarActividadControlador.inicio}"/>
+        </f:metadata>
         <ui:define name="menu">
-            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-                <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-<!--                <li class="uk-text-uppercase "><h:link  outcome="asignar-tarea"  value="biblioteca" styleClass="letra-color-subnav"/> </li>-->
-                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Library</a></li>
-                <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
-            </ul>
-            <div class="uk-navbar-left uk-hidden@m">
-                <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
-            </div>
-            <div id="menu" uk-offcanvas="overlay: true">
-                <div class="uk-offcanvas-bar  ">
 
-                    <button class="uk-offcanvas-close" type="button" uk-close=""/>
-
-                    <ul class="uk-nav  nav-sub-offcanvas ">
-                        <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-                        <!--<li class="uk-text-uppercase "><a href="#" class="letra-color-subnav">Group Details</a></li>-->
-                        <!--<li class="uk-text-uppercase "><a href="#" class="letra-color-subnav">Student Details</a></li>-->
-                        <li class=" "><h:link outcome="asignar-actividad" styleClass="letra-color-subnav" value="Librar"/> </li>
-                        <li class="uk-text-uppercase"><a href="#" class="letra-color-subnav">Edit profile</a></li>
-                    </ul>
-
-                </div>
-            </div>
         </ui:define>
         <ui:define name="contenido">
             <h:outputStylesheet library="css" name="profesor/biblioteca-profesor.css"/>
@@ -50,106 +31,105 @@
                 <div data-uk-filter="target: .js-filter">
                 <ul class="uk-subnav nav-default-profesor uk-subnav-alumno uk-margin-medium-top">
                     <li class="uk-active" data-uk-filter-control=""><a href="#">Show All</a></li>
-                    <li data-uk-filter-control=".A1" ><a href="#">Level A1</a></li>
-                    <li data-uk-filter-control=".A1-A2" ><a href="#">Level A1-A2</a></li>
-                    <li data-uk-filter-control=".A2"><a href="#">Level A2</a></li>
-                    <li data-uk-filter-control=".B1"><a href="#">Level B1</a></li>
-                    <li data-uk-filter-control=".B2"><a href="#">Level B2</a></li>
-                    <li data-uk-filter-control=".C1"><a href="#">Level C1</a></li>
-                    <li data-uk-filter-control=".C2"><a href="#">Level C2</a></li>
-                    <li data-uk-filter-control=".nivel"><a href="#">Level #{param["nivelLenguaje"]}</a></li>
+                    <ui:remove>
+                        <li data-uk-filter-control=".A1" ><a href="#">Level A1</a></li>
+                        <li data-uk-filter-control=".A1-A2" ><a href="#">Level A1-A2</a></li>
+                        <li data-uk-filter-control=".A2"><a href="#">Level A2</a></li>
+                        <li data-uk-filter-control=".B1"><a href="#">Level B1</a></li>
+                        <li data-uk-filter-control=".B2"><a href="#">Level B2</a></li>
+                        <li data-uk-filter-control=".C1"><a href="#">Level C1</a></li>
+                        <li data-uk-filter-control=".C2"><a href="#">Level C2</a></li>
+                    </ui:remove>
+                    <ui:repeat value="#{asignarActividadControlador.buscaNiveles()}" var="nivel">
+                        <li data-uk-filter-control=".#{nivel}">Level #{nivel}</li>
+                    </ui:repeat>
                 </ul>
-
-                 <div class="uk-margin-medium-top uk-flex uk-flex-right">
+                <div class="uk-margin-medium-top uk-flex uk-flex-right">
                     <form action="">
                         <input type="button" class="uk-button  uk-button-primary uk-border-rounded" value="Asignar"/>
-                     </form>
-                 </div>
-
-                <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
-                    <ui:repeat value="#{actividadControlador.actividadModeloLista}" var="actividadModelo">
-                        <h:panelGroup layout="block" styleClass="uk-width-1-3@m #{param['nivelLenguaje']}" pt:data-tags="a beautiful landscape - nature outdoor">
-                            <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border #{param['nivelLenguaje']}">
-                                <div class="uk-card-header border-card">
-                                    <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
-                                        <div class="uk-width-expand">
-                                            <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />
-                                            <span class="cat-txt">#{actividadModelo.temaModelo.valor}</span>
-                                        </div>
-                                        <div class="uk-width-auto uk-text-right uk-text-muted">
-                                            <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>#{actividadModelo.tiempo}
-                                            <input type="checkbox" class="uk-checkbox"/>
-                                        </div>
-                                    </h:panelGroup>
-                                </div>
-                                <div class="uk-card-media-top">
-                                    <h:panelGroup layout="block" pt:uk-spinner=""/>
-                                        <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
-                                            <img src="https://i.ytimg.com/vi/#{actividadModelo.idVideo}/mqdefault.jpg"/>
-                                            <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{actividadModelo.idVideo}"/>
+                    </form>
+                </div>
+                <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
+                    <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
+                        <li class="#{actividadModelo.nivelLenguaje}">
+                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.tema}" pt:data-tags="actividadModelo.tema" >
+                                <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border"> <!-- actividadModelo.tema -->
+                                    <div class="uk-card-header border-card">
+                                        <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
+                                            <div class="uk-width-expand">
+                                                <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />
+                                                <span class="cat-txt">90</span>
+                                            </div>
+                                            <div class="uk-width-auto uk-text-right uk-text-muted">
+                                                <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>90
+                                                <input type="checkbox" class="uk-checkbox"/>
+                                            </div>
                                         </h:panelGroup>
-<!--                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>-->
-                                </div>
-                                <div class="uk-card-body">
-                                    <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
-                                    <p class="uk-text-small uk-text-muted ">#{actividadModelo.tipoEstudianteModelo.valor}</p>
-                                </div>
-                                <div class="uk-card-footer">
-                                    <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
-                                        <div class="uk-width-auto uk-text-small text-color-level1 uk-text-bold">
-                                            <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
-                                                <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Download" styleClass="uk-icon-image uk-svg" library="img" name="icono/escuela.svg" /></div>
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Didactic Guide" styleClass="uk-icon-image uk-svg" library="img" name="icono/decarga.svg" /></div>
-                                                <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
-                                            </h:panelGroup>
-                                        </div>
-                                        <div class="uk-width-expand ">
-                                            <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-child-width-1-5" pt:uk-grid="">
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image uk-svg" library="img" name="icono/listen.svg" /></div>
-                                                <div>
-                                                    <h:form>
-                                                        <h:commandLink pt:uk-toggle="#modal-transcript" >
-                                                            <h:graphicImage pt:data-uk-tooltip="title: Trasncript" styleClass="uk-icon-image uk-svg" library="img" name="icono/transcript1.svg" />
-                                                            <f:ajax listener="#{actividadControlador.buscaTranscripcion(actividadModelo)}" render="transcripcion" />
-                                                        </h:commandLink>
-                                                    </h:form>
-                                                </div>
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image uk-svg " library="img" name="icono/reading.svg" /></div>
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image uk-svg " library="img" name="icono/gramatica.svg" /></div>
-                                                <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="icono/quizcalifica.svg" /></div>
-                                            </h:panelGroup>
-                                        </div>
+                                    </div>
+                                    <div class="uk-card-media-top">
+                                        <h:panelGroup layout="block" pt:uk-spinner=""/>
+                                        <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
+                                            <img src="https://i.ytimg.com/vi/#{actividadModelo.idActividad}/mqdefault.jpg"/>
+                                            <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{actividadModelo.idActividad}"/>
+                                        </h:panelGroup>
+                                        <!--                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>-->
+                                    </div>
+                                    <div class="uk-card-body">
+                                        <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
+                                        <p class="uk-text-small uk-text-muted ">#{actividadModelo.nivelLenguaje}</p>
+                                    </div>
+                                    <div class="uk-card-footer">
+                                        <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
+                                            <div class="uk-width-auto uk-text-small text-color-level1 uk-text-bold">
+                                                <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
+                                                    <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
+                                                    <div><h:graphicImage pt:data-uk-tooltip="title: Download" styleClass="uk-icon-image uk-svg" library="img" name="icono/escuela.svg" /></div>
+                                                    <div><h:graphicImage pt:data-uk-tooltip="title: Didactic Guide" styleClass="uk-icon-image uk-svg" library="img" name="icono/decarga.svg" /></div>
+                                                    <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
+                                                </h:panelGroup>
+                                            </div>
+                                            <div class="uk-width-expand ">
+                                                <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-child-width-1-5" pt:uk-grid="">
+                                                    <div><h:graphicImage pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image uk-svg" library="img" name="icono/listen.svg" /></div>
+                                                    <div>
+                                                        <h:form>
+                                                            <h:commandLink pt:uk-toggle="#modal-transcript" >
+                                                                <h:graphicImage pt:data-uk-tooltip="title: Trasncript" styleClass="uk-icon-image uk-svg" library="img" name="icono/transcript1.svg" />
+                                                                <f:ajax listener="#{actividadControlador.buscaTranscripcion(actividadModelo)}" render="transcripcion" />
+                                                            </h:commandLink>
+                                                        </h:form>
+                                                    </div>
+                                                    <div><h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image uk-svg " library="img" name="icono/reading.svg" /></div>
+                                                    <div><h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image uk-svg " library="img" name="icono/gramatica.svg" /></div>
+                                                    <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="icono/quizcalifica.svg" /></div>
+                                                </h:panelGroup>
+                                            </div>
 
-                                    </h:panelGroup>
+                                        </h:panelGroup>
+                                    </div>
                                 </div>
-                            </div>
-                        </h:panelGroup>
+                            </h:panelGroup>
+                        </li>
                     </ui:repeat>
-                </h:panelGroup>
+                </ul>
                 </div>
             </div>
-
             <h:panelGroup layout="block" id="modal-transcript" pt:uk-modal="" >
                 <div class="uk-modal-dialog uk-margin-auto-vertical modal-tam " >
                     <div class="uk-modal-header header-color-card">
                         <h2 class="uk-modal-title titulo-modal">Reporte</h2>
                     </div>
                     <div class="barra-modal"></div>
-
-                        <div class="uk-modal-body  modal-contenedor-transcrip modal">
-                           <h:panelGroup layout="block" id="transcripcion">
-                              <h:outputText value="#{actividadControlador.trasncrip}" escape="false"/>
-                           </h:panelGroup>
-                        </div>
-                        <div class="uk-modal-footer uk-text-right">
-                            <button class="boton-escuadron-base-secundary uk-modal-close" type="button">Cancel</button>
-                            <button class="boton-escuadron-base  uk-margin-small-left">Aceptar</button>
-                        </div>
-
-
+                    <div class="uk-modal-body  modal-contenedor-transcrip modal">
+                       <h:panelGroup layout="block" id="transcripcion">
+                          <h:outputText value="#{actividadControlador.trasncrip}" escape="false"/>
+                       </h:panelGroup>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="boton-escuadron-base-secundary uk-modal-close" type="button">Cancel</button>
+                        <button class="boton-escuadron-base  uk-margin-small-left">Aceptar</button>
+                    </div>
                 </div>
-
             </h:panelGroup>
 <!--            <h:outputScript library="js" name="profesor/biblioteca-profesor.js"/>-->
         </ui:define>

@@ -170,13 +170,14 @@
                                                 <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
                                             </h:link>
                                         </li>
-                                        <ui:remove>
                                         <li>
-                                            <h:link outcome="biblioteca-profesor2" styleClass="uk-text-primary" >
-                                                <h:outputText pt:uk-icon="icon: cog" styleClass="uk-margin-small-right uk-icon" />
+                                            <h:link outcome="asignar-tarea" styleClass="uk-text-primary" >
+                                                <h:graphicImage library="img" name="icono/gramatica.svg" width="20"/>
                                                 <span class="uk-text-middle"><h:outputText value="Asignar Tarea"/></span>
+                                                <f:param name="grupo" value="#{grupo.id}"/>
                                             </h:link>
                                         </li>
+                                        <ui:remove>
                                         <li>
                                             <h:commandLink  pt:uk-toggle="target: #modal-reporte" styleClass="uk-text-primary" >
                                                 <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon" />

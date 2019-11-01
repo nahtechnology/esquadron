@@ -13,6 +13,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -44,6 +45,18 @@ public class ActividadSesionBean {
     public List<ActividadModelo> busca() {
         TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.busca", ActividadEntidad.class);
         return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca todas las activdades donde no esten asigandas a los alumnos de un grupo
+     * @param idGrupo Identificador del grupo
+     * @return Colección de {@link ActividadModelo} con los datos
+     */
+    public List<ActividadModelo> buscaGrupo(@NotNull Integer idGrupo) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM alumno.actividad WHERE actividad.id_video NOT IN ( SELECT tga.id_actividad FROM " +
+                "profesor.grupo_alumno ga JOIN alumno.tarea t ON t.id_alumno = ga.id_alumno JOIN alumno.tarea_glosario_actividad tga ON t.id = tga.id_tarea " +
+                "WHERE ga.id_grupo = 1 GROUP BY tga.id_actividad)");
+        return null;
     }
 
     /**
@@ -101,6 +114,11 @@ public class ActividadSesionBean {
                 .setParameter("idActividad", idActividad).getSingleResult();
     }
 
+    /**
+     * Busca la pegunta detonadora de una actividad.
+     * @param idActividad Identificador de la actividad.
+     * @return Cadena de caracteres con la pregunta detonadora.
+     */
     public String preguntaDetonadora(@NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine(idActividad);
         return entityManager.createQuery("SELECT a.preguntaDetonadora FROM ActividadEntidad a WHERE a.id = :idActividad", String.class)

@@ -17,6 +17,7 @@ import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.alumno.entidad.*;
+import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
 import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
