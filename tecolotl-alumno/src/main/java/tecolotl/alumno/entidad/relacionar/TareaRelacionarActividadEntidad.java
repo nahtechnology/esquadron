@@ -26,7 +26,7 @@ import java.util.StringJoiner;
         name = "TareaRelacionarActividadEntidad.responder",
         query = "UPDATE TareaRelacionarActividadEntidad t SET t.respuesta = :respuesta WHERE t.tareaRelacionarActividadEntidadPK.tareaEntidad.id = :idTarea AND " +
                 "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.glosarioEntidad.glosarioEntidadPK.palabra = :palabra AND " +
-                "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.actividadEntidad.id = : idActividad AND " +
+                "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.actividadEntidad.id = :idActividad AND " +
                 "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.glosarioEntidad.glosarioEntidadPK.claseGlosarioEntidad.clave = :claveClase"
     )
 })
