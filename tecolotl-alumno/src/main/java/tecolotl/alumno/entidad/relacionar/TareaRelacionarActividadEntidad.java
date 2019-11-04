@@ -12,16 +12,23 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "tarea_actividad_relacionar", schema = "alumno")
 @NamedQueries(value = {
-        @NamedQuery(name = "TareaRelacionarActividadEntidad.busca", query = "SELECT tra FROM TareaRelacionarActividadEntidad tra"),
-        @NamedQuery(
-                name = "TareaRelacionarActividadEntidad.buscaTarea",
-                query = "SELECT tra FROM TareaRelacionarActividadEntidad tra JOIN FETCH tra.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad ra " +
-                        "WHERE tra.tareaRelacionarActividadEntidadPK.tareaEntidad.id = :idTarea"
-        ),
-        @NamedQuery(
-                name = "TareaRelacionarActividadEntidad.cuentaTarea",
-                query = "SELECT COUNT (t) FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga "
-        )
+    @NamedQuery(name = "TareaRelacionarActividadEntidad.busca", query = "SELECT tra FROM TareaRelacionarActividadEntidad tra"),
+    @NamedQuery(
+        name = "TareaRelacionarActividadEntidad.buscaTarea",
+        query = "SELECT tra FROM TareaRelacionarActividadEntidad tra JOIN FETCH tra.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad ra " +
+                "WHERE tra.tareaRelacionarActividadEntidadPK.tareaEntidad.id = :idTarea"
+    ),
+    @NamedQuery(
+        name = "TareaRelacionarActividadEntidad.cuentaTarea",
+        query = "SELECT COUNT (t) FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga "
+    ),
+    @NamedQuery(
+        name = "TareaRelacionarActividadEntidad.responder",
+        query = "UPDATE TareaRelacionarActividadEntidad t SET t.respuesta = :respuesta WHERE t.tareaRelacionarActividadEntidadPK.tareaEntidad.id = :idTarea AND " +
+                "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.glosarioEntidad.glosarioEntidadPK.palabra = :palabra AND " +
+                "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.actividadEntidad.id = : idActividad AND " +
+                "t.tareaRelacionarActividadEntidadPK.relacionarActividadEntidad.relacionarActividadEntidadPK.glosarioEntidad.glosarioEntidadPK.claseGlosarioEntidad.clave = :claveClase"
+    )
 })
 public class TareaRelacionarActividadEntidad {
 
