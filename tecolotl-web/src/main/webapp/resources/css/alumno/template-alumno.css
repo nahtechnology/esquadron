@@ -424,27 +424,16 @@ iframe {
 .realizado{
     width: 250px;
     height: 200px;
-    background: url("#{resource['img/alumno/pop-art/mensaje2.svg']}") no-repeat center/100% 100%;
-    color: white;
-    font-weight: bold;
-    font-size: 25px;
-    font-family: 'Sniglet', sans-serif;
+    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
     position: absolute;
     top: calc(50% - 125px);
     left: calc(50% - 125px);
     z-index: 6;
-    display: flex;
-    display: -webkit-flex;
-    justify-items: center;
-    align-items: center;
-    -webkit-align-items: center;
-    -webkit-justify-content: center;
-    flex-wrap: wrap;
 }
 
 .movimiento{
     left: 65%;
-    top: 43%;
+    top: 30%;
     transform: rotate(15deg);
 }
 
@@ -766,7 +755,8 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
     .movimiento{
-        top: 32%;
+        top: 23%;
+        left: 63%;
     }
 
     .finalizado{
@@ -825,7 +815,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
     .movimiento{
-        top: 36%;
+        top: 28%;
     }
 
     .finalizado{
@@ -882,7 +872,7 @@ textarea::-webkit-scrollbar-thumb:hover {
         left: 3%;
     }
 
-    .finalizado{
+    .realizado{
         width: 110px;
         height: 55px;
         position: absolute;
