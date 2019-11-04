@@ -85,7 +85,7 @@ li .C2{
 
 .uk-subnav-alumno li:nth-child(2) a:hover {
     background-color:var(--psecundary-option-three);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -96,7 +96,7 @@ li .C2{
 
 .uk-subnav-alumno li:nth-child(3) a:hover {
     background-image:linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -107,7 +107,7 @@ li .C2{
 
 .uk-subnav-alumno li:nth-child(4) a:hover {
     background-color:#D35400;
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -117,7 +117,7 @@ li .C2{
 }
 .uk-subnav-alumno li:nth-child(5) a:hover {
     background-color:var(--tsecundary-option-one);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -127,7 +127,7 @@ li .C2{
 }
 .uk-subnav-alumno li:nth-child(6) a:hover {
     background-color:var(--asecundary-option-one);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -137,7 +137,7 @@ li .C2{
 }
 .uk-subnav-alumno li:nth-child(7) a:hover {
     background-color:var(--color-nav-primary);
-    opacity:0.3;
+    /*opacity:0.3;*/
     color: white;
 }
 .uk-subnav-alumno li.uk-active:nth-child(8) a {
@@ -146,7 +146,7 @@ li .C2{
 }
 .uk-subnav-alumno li:nth-child(8) a:hover {
     background-color:var(--color-peligro);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 #search-form input:focus{
