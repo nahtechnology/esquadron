@@ -15,6 +15,7 @@ import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
@@ -80,6 +81,7 @@ public class RelacionarSesionBeanTest {
                 .addPackage(HablarEntidad.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
                 .addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -102,14 +104,15 @@ public class RelacionarSesionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(67);
+        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(121);
         assertNotNull(relacionarSesionBeanLista);
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {
             assertNotNull(relacionarModelo);
-            assertNotNull(relacionarModelo.getIdClaseGlosario());
-            assertNotNull(relacionarModelo.getPalabra());
             assertNotNull(relacionarModelo.getIdActividad());
+            assertNotNull(relacionarModelo);
+            assertNotNull(relacionarModelo);
+            assertNotNull(relacionarModelo);
         });
     }
 

@@ -162,7 +162,7 @@
                                         </h:panelGroup>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuesta()">
+                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuesta()" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form"/>
                                 </h:commandButton>
                             </h:form>

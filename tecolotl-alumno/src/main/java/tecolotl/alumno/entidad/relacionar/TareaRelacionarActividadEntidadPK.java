@@ -33,7 +33,7 @@ public class TareaRelacionarActividadEntidadPK implements Serializable {
         this.tareaEntidad = tareaEntidad;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
             @JoinColumn(name = "id_palabra", referencedColumnName = "id_palabra"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),

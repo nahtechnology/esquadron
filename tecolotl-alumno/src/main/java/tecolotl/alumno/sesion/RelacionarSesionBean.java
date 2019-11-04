@@ -63,37 +63,25 @@ public class RelacionarSesionBean {
      */
     public List<RelacionarModelo> busca(@NotNull Integer idTarea) {
         logger.fine(idTarea.toString());
-        Query query = entityManager.createNativeQuery(
-                "SELECT g.id_clase_glosario, g.palabra, tar.respuesta, tar.hora_respuesta FROM alumno.tarea_actividad_relacionar tar " +
-                        "JOIN alumno.actividad_relacionar ar ON tar.id_palabra = ar.id_palabra and tar.id_clase = ar.id_clase and tar.id_actividad = ar.id_actividad JOIN " +
-                        "alumno.glosario g ON ar.id_palabra = g.palabra and ar.id_clase = g.id_clase_glosario WHERE tar.id_tarea = ?");
-        query.setParameter(1, idTarea);
-        List<Object[]> respuesta = query.getResultList();
+        TypedQuery<TareaRelacionarActividadEntidad> typedQuery =
+                entityManager.createNamedQuery("TareaRelacionarActividadEntidad.buscaTarea", TareaRelacionarActividadEntidad.class);
+        typedQuery.setParameter("idTarea", idTarea);
         List<RelacionarModelo> relacionarModeloLista = new ArrayList<>();
-        for (Object[] objects : respuesta) {
+        for (TareaRelacionarActividadEntidad tareaRelacionarActividadEntidad : typedQuery.getResultList()) {
             RelacionarModelo relacionarModelo = new RelacionarModelo();
-            relacionarModelo.setIdClaseGlosario((Short)objects[0]);
-            relacionarModelo.setPalabra((String)objects[1]);
-            relacionarModelo.setRespuesta((String)objects[2]);
-            relacionarModelo.setHoraRespuesta((Date)objects[3]);
+            relacionarModelo.setIdActividad(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK()
+                    .getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getActividadEntidad().getId());
+            relacionarModelo.setIdClaseGlosario(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK()
+                    .getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave());
+            relacionarModelo.setPalabra(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad()
+                    .getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getPalabra());
+            relacionarModelo.setIdTarea(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getTareaEntidad().getId());
+            relacionarModelo.setVuelta(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getVuelta());
+            relacionarModelo.setRespuesta(tareaRelacionarActividadEntidad.getRespuesta());
+            relacionarModelo.setHoraRespuesta(tareaRelacionarActividadEntidad.getHoraRespuesta());
             relacionarModeloLista.add(relacionarModelo);
         }
         return relacionarModeloLista;
-    }
-
-
-    /**
-     * Busca todas las relaciones sin filtro.
-     * @param inicio posicion de la primera fila a buscar.
-     * @param maximo máximo de elementos a buscar.
-     * @return una coleccipn de {@link RelacionarOriginalModelo}
-     */
-    public List<RelacionarOriginalModelo> busca(int inicio, int maximo){
-        logger.fine("Inicio: ".concat(String.valueOf(inicio)));
-        logger.fine("Maximo: ".concat(String.valueOf(maximo)));
-        //TODO
-
-        return null;
     }
 
     /**

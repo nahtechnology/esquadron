@@ -37,12 +37,9 @@ public class RelacionarControlador implements Serializable {
     }
 
     public void enviaRespuesta() {
+        logger.info(relacionarModeloLista.toString());
+        logger.info(alumnoControlador.getTareaActividadModelo().getId().toString());
         relacionarRespuestaScope.respuesta(relacionarModeloLista, alumnoControlador.getTareaActividadModelo().getId());
-    }
-
-    public String buscaPalabra(String codigo) {
-
-        return null;
     }
 
     public List<RelacionarModelo> getRelacionarModeloLista() {
