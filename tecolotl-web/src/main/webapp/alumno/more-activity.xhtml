@@ -100,6 +100,10 @@
                     </ul>
                     <ul class="js-filter" style="list-style: none; padding-left: 0;">
                         <li class="ordenar">
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Order the sentences</div>
+                            </div>
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.order.sentences']}</h1>
                                 <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
@@ -127,6 +131,10 @@
                             </h:form>
                         </li>
                         <li class="relacion-imagen" >
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Match the image with its meaning</div>
+                            </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
                             <h:form>
                                 <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
@@ -176,6 +184,7 @@
                             </h:form>
                         </li>
                         <li class="talking" >
+
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.talk']}</h1>
                             <div>
                                 <div class="mosca">
@@ -213,6 +222,10 @@
                             </div>
                         </li>
                         <li class="complete-sentences">
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Choose one word to complete the sentences</div>
+                            </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="contedor-oraciones" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"/>
                             <div>

@@ -111,6 +111,10 @@
 
                     <ul class="js-filter  uk-text-center" >
                         <li class="transcrip">
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Watch the video carefully</div>
+                            </div>
                            <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left">
                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
@@ -121,6 +125,10 @@
                            </h:panelGroup>
                         </li>
                         <li class="match uk-margin-small-top ">
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold ">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Match the columns</div>
+                            </div>
                             <h:form id="formulario-relacionar">
                                 <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="">
                                     <div class="uk-width-1-2@m uk-position-relative">
@@ -170,6 +178,10 @@
                             </h:form>
                         </li>
                         <li class="order-words">
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Make sentences  using can and  the words provided</div>
+                            </div>
                             <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
                             <div class="imagen-ordenar">
                                 <h:graphicImage library="img" name="mounstro/whom.svg"/>
@@ -200,6 +212,10 @@
                             </ul>
                         </li>
                         <li class="answer">
+                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                <div uk-dropdown="mode: click">Watch the video and fill in the blanks</div>
+                            </div>
                             <div class="video-activity">
                                 <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
                             </div>
