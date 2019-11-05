@@ -87,7 +87,7 @@ public class GramaticaSesionBeanTest {
 
     @Test
     public void buscarTareaGramatica(){
-        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(5);
+        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(141);
         Assert.assertNotNull(gramaticaModeloLista);
         Assert.assertFalse(gramaticaModeloLista.isEmpty());
         for (GramaticaModelo gramaticaModelo : gramaticaModeloLista){
