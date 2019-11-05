@@ -8,6 +8,7 @@
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <f:metadata>
         <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
+        <f:event type="postValidate" listener="#{mapaMentalControlador.validaParametro}"/>
         <f:event type="preRenderView" listener="#{mapaMentalControlador.llenaLista}"/>
     </f:metadata>
     <ui:define name="hamburguesa">
