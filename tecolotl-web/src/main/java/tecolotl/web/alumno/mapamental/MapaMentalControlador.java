@@ -5,9 +5,11 @@ import tecolotl.alumno.scope.MapaMentalRespuestaScope;
 import tecolotl.alumno.sesion.MapaMentalSessionBean;
 import tecolotl.web.alumno.AlumnoControlador;
 
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
@@ -41,6 +43,13 @@ public class MapaMentalControlador implements Serializable {
                 alumnoControlador.getTareaActividadModelo().getId(),
                 alumnoControlador.getTareaActividadModelo().getIdActividad());
         return "success";
+    }
+
+    public void validaParametro() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        if (!facesContext.isPostback() && facesContext.isValidationFailed()) {
+            facesContext.getExternalContext().redirect("no-mindmap.xhtml");
+        }
     }
 
     public List<TareaMapaMentalModelo> getTareaMapaMentalModeloLista() {
