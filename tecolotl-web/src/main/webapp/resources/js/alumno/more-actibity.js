@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         palabras.appendChild(palabra);
     });
     answer = document.querySelector('.complete-sentences');
-    agregaRespuestas(answer.querySelectorAll('.remplazar'));
+    agregaRespuestas(answer.querySelector('.remplazar'));
 
 });
 
@@ -96,7 +96,7 @@ function revolver(arreglo) {
     return arreglo;
 }
 
-function validaRespuesta(evento) {
+function validaRespuestaCompletarOracion(evento) {
     var formulario = evento.target.parentNode;
     var respuesta = formulario.querySelector('.respuesta-ordenar-oracion span');
     if (respuesta) {

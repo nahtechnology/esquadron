@@ -222,16 +222,16 @@
                                     </ui:repeat>
                                 </ul>
                                 <ul class="uk-switcher uk-margin remplazar">
-                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="texto">
-                                        <li data-cardinalidad="#{texto.cardinalidad}">
+                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
+                                        <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
                                             <h:form>
-                                                <h:outputText value="#{texto.oracion}" escape="false"/>
-                                                <h:inputHidden value="#{texto.respuesta}" rendered="#{not empty texto.respuesta}"/>
+                                                <h:outputText value="#{tareaCompletarModelo.oracion}" escape="false"/>
+                                                <h:inputHidden value="#{tareaCompletarModelo.respuesta}" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
                                                 <h:commandButton styleClass="boton-enviar boton-trasladar"
                                                                  value="Send"
-                                                                 onclick="return validaRespuesta(event)"
-                                                                 rendered="#{empty texto.respuesta}">
-                                                    <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta(texto.id)}" render="@form"/>
+                                                                 onclick="return validaRespuestaCompletarOracion(event)"
+                                                                 rendered="#{empty tareaCompletarModelo.respuesta}">
+                                                    <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}" render="@form"/>
                                                 </h:commandButton>
                                             </h:form>
                                         </li>
