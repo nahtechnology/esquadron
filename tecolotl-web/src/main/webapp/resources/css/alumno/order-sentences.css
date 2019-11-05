@@ -376,8 +376,8 @@
 
 .fin-movimiento{
     position: absolute;
-    top: 34%;
-    right: 5%;
+    top: 5%;
+    left: 15%;
     transform: rotate(15deg);
 }
 
@@ -406,6 +406,16 @@ h1 + div > div > p{
     .mosca{
         width: 45%;
     }
+    .fin-ordenar{
+        width: 220px;
+        height: 110px;
+    }
+
+    .fin-movimiento{
+        position: absolute;
+        top: 12%;
+        left: 13%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -414,6 +424,19 @@ h1 + div > div > p{
     }
     h1 + div > div > p{
         left: 24%;
+    }
+    .oraciones{
+        font-size: 18px;
+    }
+    .fin-ordenar{
+        width: 170px;
+        height: 80px;
+    }
+
+    .fin-movimiento{
+        position: absolute;
+        top: 15%;
+        left: 3%;
     }
 }
 
@@ -425,5 +448,21 @@ h1 + div > div > p{
     h1 + div > div > p{
         font-size: 12px;
         top: 18%;
+    }
+
+    .oraciones{
+        font-size: 10px;
+    }
+
+    .fin-ordenar{
+        width: 140px;
+        height: 70px;
+    }
+
+    .fin-movimiento{
+        position: absolute;
+        top: 22%;
+        left: 3%;
+        transform: rotate(0deg);
     }
 }
