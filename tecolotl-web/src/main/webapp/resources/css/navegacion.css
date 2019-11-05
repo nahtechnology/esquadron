@@ -158,3 +158,9 @@ uk-subnav-alumno2 li.uk-active:nth-child(6) a {
     align-items: center;
 }
 
+.x-panel-ghost {
+    opacity:1.0;
+    -moz-opacity:1.0;
+    filter:alpha(opacity=100);
+}
+
