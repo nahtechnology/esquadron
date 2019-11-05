@@ -323,7 +323,7 @@
   text-transform: uppercase;
 }
 .boton-escuadron-base-secundary:hover{
-  text-decoration: none;
+  text-decoration: none !important;
   background-color: rgb(255,255,224);
   color: black;
 }
