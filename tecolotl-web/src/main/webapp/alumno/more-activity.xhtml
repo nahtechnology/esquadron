@@ -148,7 +148,7 @@
                                         <h:panelGroup styleClass="respuesta-imagen palabras"
                                                       rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                       layout="block">
-                                            <div class="movimiento realizado"></div>
+                                            <div class="ubicado terminado"></div>
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
@@ -170,7 +170,7 @@
                                         </h:panelGroup>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
+                                <h:commandButton value="#{boton['submit']}" styleClass="boton-enviar boton-trasladar uk-margin" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form"/>
                                 </h:commandButton>
                             </h:form>
