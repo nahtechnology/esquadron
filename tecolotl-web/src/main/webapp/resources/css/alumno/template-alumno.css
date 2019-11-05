@@ -743,6 +743,21 @@ textarea::-webkit-scrollbar-thumb:hover {
     position: absolute;
 }
 
+.desplazar1{
+    left: 68%;
+    top: 16%;
+    transform: rotate(15deg);
+}
+.final1{
+    width: 250px;
+    height: 200px;
+    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 125px);
+    z-index: 6;
+}
+
 @media screen and (max-width: 1030px ){
     body{
         background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
