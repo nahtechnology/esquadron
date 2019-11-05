@@ -280,6 +280,15 @@
     width: 80%;
     height: 200px;
     border: 4px solid white;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.imagen-relacionar img{
+    width: 80%;
+    height: 80%;
+
 }
 .icono-relacion-img{
     width: 50px;

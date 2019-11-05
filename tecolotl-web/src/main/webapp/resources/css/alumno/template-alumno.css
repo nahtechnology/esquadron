@@ -534,6 +534,10 @@ iframe {
     position: relative;
     right: 6%;
 }
+.scroll-drag{
+    scrollbar-color: rgb(52, 73, 94)  rgba(52, 73, 94, 0.5);
+    scrollbar-width: thin;
+}
 
 .scroll-drag::-webkit-scrollbar {
     width: 10px;

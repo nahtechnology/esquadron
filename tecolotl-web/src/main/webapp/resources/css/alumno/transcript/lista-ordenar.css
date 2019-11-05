@@ -169,9 +169,10 @@
 }
 
 .respuestas-ordenar-lista{
+    background: url("#{resource['img/icono/drag-drop-icon.svg']}") no-repeat right center/30px;
     min-height: 50px;
     border: 5px solid #D35400;
-    padding: 3px;
+    padding: 3px 40px 3px 3px;
     margin-bottom: 20px;
     box-sizing: border-box;
 }

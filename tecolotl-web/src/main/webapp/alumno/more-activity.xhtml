@@ -131,15 +131,15 @@
                             <h:form>
                                 <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                                     <div class="contenedor-imagen scroll-drag">
-                                        <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo">
+                                        <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                             <div class="imagen-relacionar uk-margin-auto ">
                                                 <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.idClaseGlosario))}" alt="imagen"/>
                                             </div>
                                             <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
                                                 <div class="icono-relacion-img uk-width-auto"></div>
                                                 <h:inputHidden value="#{relacionarModelo.palabra}"/>
-                                                <h:panelGroup layout="block" styleClass="oraciones-relacion-img uk-width-expand" pt:uk-sortable="group: respuesta-imagen" rendered="#{empty relacionarModelo.respuesta}"/>
-                                                <h:panelGroup layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
+                                                <h:panelGroup id="su#{conta.index}" layout="block" styleClass="oraciones-relacion-img uk-width-expand"  pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)" rendered="#{empty relacionarModelo.respuesta}"/>
+                                                <h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
                                                 <h:inputHidden value="#{relacionarModelo.respuesta}" rendered="#{empty relacionarModelo.respuesta}"/>
                                             </div>
                                         </ui:repeat>
@@ -154,10 +154,20 @@
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
-                                                      pt:uk-sortable="group: respuesta-imagen"
+                                                      pt:ondrop="drop(event, this)"
+                                                      pt:ondragover="allowDrop(event)"
                                                       rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
-                                            <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar">
-                                                <div data-codigo="#{relacionar.idClaseGlosario}" class="palabra-imagen">#{relacionar.palabra}</div>
+                                            <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar" varStatus="resp">
+                                                <h:panelGroup layout="block"
+                                                              id="res#{resp.index}"
+                                                              pt:data-codigo="#{relacionar.idClaseGlosario}"
+                                                              styleClass="palabra-imagen"
+                                                              pt:draggable="true"
+                                                              pt:ondragstart="drag(event)"
+                                                              pt:ondrop="return false"
+                                                              pt:ondragover="return false"  >
+                                                    #{relacionar.palabra}
+                                                </h:panelGroup>
                                             </ui:repeat>
                                         </h:panelGroup>
                                     </h:panelGroup>
@@ -246,7 +256,7 @@
             }
         </script>
         <h:outputScript library="js" name="alumno/more-actibity.js"/>
-        <h:outputScript library="js" name="/alumno/drag-dos.js"/>
+        <h:outputScript library="js" name="/alumno/drag-drop.js"/>
     </ui:define>
 </ui:composition>
 </html>
