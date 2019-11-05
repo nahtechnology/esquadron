@@ -94,7 +94,7 @@
                         <li uk-filter-control=".talking" uk-tooltip="Hablar" class="uk-animation-toggle" tabindex="0">
                             <h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
-                        <li uk-filter-control=".complete-sentences" uk-tooltip="Completar Oraciones" class="uk-animation-toggle" tabindex="0">
+                        <li uk-filter-control=".complete-sentences" uk-tooltip="Completar Oraciones" class="uk-animation-toggle" tabindex="0" style="display: #{empty completarOracionesControlador.tareaCompletarModeloLista ? 'none' : 'block'}">
                             <h:graphicImage library="img" name="mounstro/morado.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
                     </ul>
@@ -148,9 +148,7 @@
                                         <h:panelGroup styleClass="respuesta-imagen palabras"
                                                       rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                       layout="block">
-                                            <div class="movimiento realizado">
-                                                Respondido
-                                            </div>
+                                            <div class="movimiento realizado"></div>
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
@@ -172,7 +170,7 @@
                                         </h:panelGroup>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuesta()" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
+                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form"/>
                                 </h:commandButton>
                             </h:form>

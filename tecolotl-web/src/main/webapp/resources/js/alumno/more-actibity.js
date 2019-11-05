@@ -32,13 +32,13 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 
 });
 
-function validaRespuesta() {
+function validaRespuestaImagen(evento) {
     if (relacionarImagen.querySelectorAll('.respuesta-imagen div').length !== 0) {
         UIkit.modal.alert('No se puede enviar la respuesta hasta terminar de resolver');
         return false;
     } else {
         relacionarImagen.querySelectorAll('.respuesta-imagen-contenedor > :nth-child(3)').forEach(function (respuesta) {
-            respuesta.nextElementSibling.value = respuesta.firstChild.textContent;
+            respuesta.nextElementSibling.value = respuesta.firstChild.textContent.trim();
         });
         return true;
     }
