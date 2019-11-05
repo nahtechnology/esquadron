@@ -99,6 +99,7 @@ public class GramaticaSesionBean {
         GramaticaEntidadPK gramaticaEntidadPK = new GramaticaEntidadPK();
         gramaticaEntidadPK.setCodigo(gramaticaModelo.getCodigo());
         gramaticaEntidadPK.setActividadEntidad(new ActividadEntidad(gramaticaModelo.getActividadModelo().getIdVideo()));
+        tareaGramaticaEntidadPK.setVuelta(gramaticaModelo.getVuelta());
         tareaGramaticaEntidadPK.setGramaticaEntidad(new GramaticaEntidad(gramaticaEntidadPK));
         return tareaGramaticaEntidadPK;
     }

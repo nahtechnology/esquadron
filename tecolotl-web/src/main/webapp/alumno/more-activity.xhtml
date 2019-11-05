@@ -91,7 +91,7 @@
                         <li uk-filter-control=".relacion-imagen" uk-tooltip="Relacionar Imagen" class="uk-animation-toggle" tabindex="0" style="display: #{empty relacionarControlador.relacionarModeloLista ? 'none' : 'block'}">
                             <h:graphicImage library="img" name="mounstro/verde.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
-                        <li uk-filter-control=".talking" uk-tooltip="Hablar" class="uk-animation-toggle" tabindex="0">
+                        <li uk-filter-control=".talking" uk-tooltip="Hablar" class="uk-animation-toggle" tabindex="0" style="display: #{empty hablarControlador.hablarModeloLista ? 'none' : 'block'}">
                             <h:graphicImage library="img" name="mounstro/naranja.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
                         <li uk-filter-control=".complete-sentences" uk-tooltip="Completar Oraciones" class="uk-animation-toggle" tabindex="0" style="display: #{empty completarOracionesControlador.tareaCompletarModeloLista ? 'none' : 'block'}">
@@ -148,7 +148,7 @@
                                         <h:panelGroup styleClass="respuesta-imagen palabras"
                                                       rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                       layout="block">
-                                            <div class="movimiento realizado"></div>
+                                            <div class="ubicado terminado"></div>
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
@@ -163,14 +163,14 @@
                                                               pt:draggable="true"
                                                               pt:ondragstart="drag(event)"
                                                               pt:ondrop="return false"
-                                                              pt:ondragover="return false"  >
+                                                              pt:ondragover="return false">
                                                     #{relacionar.palabra}
                                                 </h:panelGroup>
                                             </ui:repeat>
                                         </h:panelGroup>
                                     </h:panelGroup>
                                 </h:panelGroup>
-                                <h:commandButton value="#{boton['submit']}" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
+                                <h:commandButton value="#{boton['submit']}" styleClass="boton-enviar boton-trasladar uk-margin" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form"/>
                                 </h:commandButton>
                             </h:form>

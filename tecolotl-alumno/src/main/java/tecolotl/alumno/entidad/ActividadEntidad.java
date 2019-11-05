@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 @Entity
 @Table(name = "actividad", schema = "alumno")
@@ -174,5 +175,20 @@ public class ActividadEntidad {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", ActividadEntidad.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("puntaje=" + puntaje)
+                .add("tiempo=" + tiempo)
+                .add("preguntaDetonadora='" + preguntaDetonadora + "'")
+                .add("lenguaje='" + lenguaje + "'")
+                .add("trasncripcion='" + trasncripcion + "'")
+                .add("tipoEstudianteEntidad=" + tipoEstudianteEntidad)
+                .add("temaEntidad=" + temaEntidad)
+                .add("nivelLenguajeEntidad=" + nivelLenguajeEntidad)
+                .toString();
     }
 }

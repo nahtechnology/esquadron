@@ -381,6 +381,22 @@
     transform: rotate(15deg);
 }
 
+.terminado{
+    width: 250px;
+    height: 200px;
+    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
+    position: absolute;
+    top: calc(50% - 125px);
+    left: calc(50% - 125px);
+    z-index: 6;
+}
+
+.ubicado{
+    left: 11%;
+    top: 5%;
+    transform: rotate(15deg);
+}
+
 .mosca{
     background-image: url("#{resource['img/alumno/fondo-mosca.svg']}");
     background-position: center center;
@@ -416,6 +432,14 @@ h1 + div > div > p{
         top: 12%;
         left: 13%;
     }
+    .terminado{
+        width: 200px;
+        height: 100px;
+    }
+    .ubicado{
+        left: 16%;
+        top: 12%;
+    }
 }
 
 @media screen and (max-width: 768px) {
@@ -437,6 +461,14 @@ h1 + div > div > p{
         position: absolute;
         top: 15%;
         left: 3%;
+    }
+    .terminado{
+        width: 160px;
+        height: 80px;
+    }
+    .ubicado{
+        left: 2%;
+        top: 14%;
     }
 }
 
@@ -464,5 +496,13 @@ h1 + div > div > p{
         top: 22%;
         left: 3%;
         transform: rotate(0deg);
+    }
+    .terminado{
+        width: 120px;
+        height: 60px;
+    }
+    .ubicado{
+        left: 3%;
+        top: 24%;
     }
 }

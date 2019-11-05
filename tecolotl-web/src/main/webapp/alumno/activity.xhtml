@@ -170,7 +170,7 @@
                             </h:form>
                         </li>
                         <li class="order-words">
-                            <h1 class="uk-text-center lescuadron" style="color: white">Ordena las palabras en el orden correspondiente</h1>
+                            <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
                             <div class="imagen-ordenar">
                                 <h:graphicImage library="img" name="mounstro/whom.svg"/>
                             </div>
@@ -191,7 +191,7 @@
                                             </h:panelGroup>
                                             <h:inputHidden value="#{tareaGramaticaControlador.respuesta}"/>
                                             <h:commandButton value="Send" styleClass="boton-enviar boton-trasladar" onclick="return completarPalabra(event)" rendered="#{empty gramatica.respuesta}">
-                                                <f:ajax listener="#{tareaGramaticaControlador.enviarRespuesta(gramatica.codigo, gramatica.actividadModelo.idVideo)}"
+                                                <f:ajax listener="#{tareaGramaticaControlador.enviarRespuesta(gramatica.codigo, gramatica.actividadModelo.idVideo, gramatica.vuelta, gramatica.palabra)}"
                                                         execute="@form" onevent="function funcion(data) { remueveOrdenador(data) }"/>
                                             </h:commandButton>
                                         </h:form>
@@ -301,7 +301,7 @@
                 texto.forEach(function (value) {
                     respuesta = respuesta.concat(value.textContent).concat(' ');
                 });
-                elemento.previousElementSibling.value = respuesta.trim();
+                evento.target.previousElementSibling.value = respuesta.trim();
             }
 
             function remueveOrdenador(data) {

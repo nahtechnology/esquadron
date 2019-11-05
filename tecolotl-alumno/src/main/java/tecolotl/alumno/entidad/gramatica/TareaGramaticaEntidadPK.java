@@ -48,6 +48,7 @@ public class TareaGramaticaEntidadPK implements Serializable {
         this.gramaticaEntidad = gramaticaEntidad;
     }
 
+    @Basic
     @Column(name = "vuelta")
     public Short getVuelta() {
         return vuelta;

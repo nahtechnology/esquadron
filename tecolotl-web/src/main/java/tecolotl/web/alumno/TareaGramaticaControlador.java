@@ -30,11 +30,15 @@ public class TareaGramaticaControlador {
 
     private String respuesta;
 
-    public void enviarRespuesta(String codigo, String idActividad) {
+    public void enviarRespuesta(String codigo, String idActividad, Short vuelta, String palabra) {
         GramaticaModelo gramaticaModelo = new GramaticaModelo();
         gramaticaModelo.setCodigo(codigo);
+        gramaticaModelo.setVuelta(vuelta);
+        gramaticaModelo.setPalabra(palabra);
         gramaticaModelo.setActividadModelo(new ActividadModelo(idActividad));
         gramaticaModelo.setRespuesta(respuesta.trim());
+        logger.info(gramaticaModelo.toString());
+        logger.info(idActividad);
         gramaticaSesionBean.respuesta(gramaticaModelo, alumnoControlador.getTareaActividadModelo().getId());
     }
 
