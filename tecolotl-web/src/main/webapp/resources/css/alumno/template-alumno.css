@@ -438,8 +438,8 @@ iframe {
 }
 
 .mov1{
-    left: 70%;
-    top: 27%;
+    left: 68%;
+    top: 16%;
     transform: rotate(15deg);
 }
 
@@ -763,15 +763,9 @@ textarea::-webkit-scrollbar-thumb:hover {
         left: 63%;
     }
 
-    .finalizado{
-        width: 320px;
-        height: 220px;
-        position: absolute;
-    }
-
     .mov1{
-        left: 70%;
-        top: 17%;
+        left: 17%;
+        top: 13%;
     }
 
     .fin2{
@@ -822,12 +816,6 @@ textarea::-webkit-scrollbar-thumb:hover {
         top: 28%;
     }
 
-    .finalizado{
-        width: 140px;
-        height: 70px;
-        position: absolute;
-    }
-
     .mov1{
         left: 69%;
         top: 19%;
@@ -866,7 +854,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
     .fin1{
 
-        width: 150px;
+        width: 140px;
         height: 70px;
         position: absolute;
     }
@@ -883,8 +871,8 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
     .mov1{
-        left: 43%;
-        top: 31%;
+        left: 1%;
+        top: 20%;
     }
 
     .fin2{

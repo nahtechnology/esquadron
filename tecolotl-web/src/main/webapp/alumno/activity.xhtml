@@ -162,7 +162,7 @@
                                         </h:panelGroup>
                                     </ui:repeat>
                                 </h:panelGroup>
-                                <h:graphicImage library="img" styleClass="movimiento2 finalizado2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
+                                <h:graphicImage library="img" styleClass="fin1 mov1" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
                                 <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" style="" onclick="recuperaDatos()" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
@@ -209,7 +209,7 @@
                                     <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
-                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+<!--                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>-->
                                     <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </div>
                                 <h:graphicImage library="img" styleClass="movimiento2 finalizado" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
