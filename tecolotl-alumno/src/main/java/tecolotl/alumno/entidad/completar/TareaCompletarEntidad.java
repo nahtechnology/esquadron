@@ -16,8 +16,9 @@ import java.util.StringJoiner;
                         "WHERE tce.tareaCompletarEntidadPK.tareaEntidad.id = :idTarea")
 })
 public class TareaCompletarEntidad {
+
     private TareaCompletarEntidadPK tareaCompletarEntidadPK;
-    private String respuesta;
+    private Integer respuesta;
     private Date hora_respuesta;
 
     public TareaCompletarEntidad() {
@@ -39,11 +40,11 @@ public class TareaCompletarEntidad {
     @NotNull
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "respuesta")
-    public String getRespuesta() {
+    public Integer getRespuesta() {
         return respuesta;
     }
 
-    public void setRespuesta(String respuesta) {
+    public void setRespuesta(Integer respuesta) {
         this.respuesta = respuesta;
     }
 

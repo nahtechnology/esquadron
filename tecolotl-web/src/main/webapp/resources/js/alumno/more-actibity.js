@@ -96,3 +96,14 @@ function revolver(arreglo) {
     return arreglo;
 }
 
+function validaRespuesta(evento) {
+    var formulario = evento.target.parentNode;
+    var respuesta = formulario.querySelector('.respuesta-ordenar-oracion span');
+    if (respuesta) {
+        formulario.querySelector('input[type=hidden]').value = respuesta.dataset.cardinalidad;
+        return true;
+    } else {
+        UIkit.modal.alert('No se puede enviar respuesta vacia');
+        return false;
+    }
+}

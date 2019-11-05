@@ -164,7 +164,7 @@
                                 </h:panelGroup>
                                 <h:graphicImage library="img" styleClass="fin1 mov1" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" style="" onclick="recuperaDatos()" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" style="" onclick="return recuperaDatos(event)" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>
@@ -174,15 +174,14 @@
                             <div class="imagen-ordenar">
                                 <h:graphicImage library="img" name="mounstro/whom.svg"/>
                             </div>
-                            <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar " uk-switcher="">
+                            <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar scroll-drag" uk-switcher="">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica" varStatus="estatus">
                                     <li class="#{empty gramatica.respuesta ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                 </ui:repeat>
                             </ul>
-                            <ul class="uk-switcher uk-margin">
+                            <ul class="uk-switcher uk-margin scroll-drag">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica">
                                     <li>
-
                                         <h:graphicImage library="img" styleClass="movimiento2 finalizado" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta}"/>
                                         <h:form>
                                             <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
@@ -191,7 +190,7 @@
                                                 <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.respuesta}"/>
                                             </h:panelGroup>
                                             <h:inputHidden value="#{tareaGramaticaControlador.respuesta}"/>
-                                            <h:commandButton value="Send" styleClass="boton-enviar boton-trasladar" onclick="completarPalabra(this)" rendered="#{empty gramatica.respuesta}">
+                                            <h:commandButton value="Send" styleClass="boton-enviar boton-trasladar" onclick="return completarPalabra(event)" rendered="#{empty gramatica.respuesta}">
                                                 <f:ajax listener="#{tareaGramaticaControlador.enviarRespuesta(gramatica.codigo, gramatica.actividadModelo.idVideo)}"
                                                         execute="@form" onevent="function funcion(data) { remueveOrdenador(data) }"/>
                                             </h:commandButton>
@@ -296,8 +295,8 @@
                 return arreglo;
             }
             
-            function completarPalabra(elemento) {
-                var texto = elemento.previousElementSibling.previousElementSibling.querySelectorAll('div > div > .palabra');
+            function completarPalabra(evento) {
+                var texto = evento.target.previousElementSibling.previousElementSibling.querySelectorAll('div > div > .palabra');
                 var respuesta = '';
                 texto.forEach(function (value) {
                     respuesta = respuesta.concat(value.textContent).concat(' ');
@@ -322,14 +321,20 @@
                 }
             }
 
-            function recuperaDatos() {
-                var idRelacionarmodelos = document.querySelectorAll('.match form > div:nth-child(2) > div:nth-child(2) > div:not(:first-child)');
-                var getId = [];
-                idRelacionarmodelos.forEach(function (input) {
-                    getId.push(input.querySelector('div').dataset.id);
-                });
-                document.getElementById('formulario-relacionar:respuestaOraciones').value = getId.join();
-                document.querySelector('input[type=submit]').disabled = true;
+            function recuperaDatos(evento) {
+                if (document.getElementById('formulario-relacionar:tablaRespuestas').childElementCount > 0 )  {
+                    UIkit.modal.alert('Necesitas terminar de relacionar las oraciones.');
+                    return false;
+                } else {
+                    var idRelacionarmodelos = document.querySelectorAll('.match form > div:nth-child(2) > div:nth-child(2) > div:not(:first-child)');
+                    var getId = [];
+                    idRelacionarmodelos.forEach(function (input) {
+                        getId.push(input.querySelector('div').dataset.id);
+                    });
+                    document.getElementById('formulario-relacionar:respuestaOraciones').value = getId.join();
+                    document.querySelector('input[type=submit]').disabled = true;
+                    return false;
+                }
             }
 
             document.addEventListener('DOMContentLoaded', estaResuelto);

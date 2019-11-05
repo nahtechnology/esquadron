@@ -3,10 +3,11 @@ package tecolotl.alumno.modelo.completar;
 import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
 
 import java.util.Date;
+import java.util.StringJoiner;
 
 public class TareaCompletarModelo extends CompletarModelo {
 
-    private String respuesta;
+    private Integer respuesta;
     private Date horaRespuesta;
 
     public TareaCompletarModelo() {
@@ -22,11 +23,11 @@ public class TareaCompletarModelo extends CompletarModelo {
         horaRespuesta = tareaCompletarEntidad.getHora_respuesta();
     }
 
-    public String getRespuesta() {
+    public Integer getRespuesta() {
         return respuesta;
     }
 
-    public void setRespuesta(String respuesta) {
+    public void setRespuesta(Integer respuesta) {
         this.respuesta = respuesta;
     }
 
@@ -38,4 +39,12 @@ public class TareaCompletarModelo extends CompletarModelo {
         this.horaRespuesta = horaRespuesta;
     }
 
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaCompletarModelo.class.getSimpleName() + "[", "]")
+                .add("respuesta=" + respuesta)
+                .add("horaRespuesta=" + horaRespuesta)
+                .add("super=" + super.toString())
+                .toString();
+    }
 }

@@ -27,15 +27,21 @@ public class CompletarOracionesControlador implements Serializable {
     private AlumnoControlador alumnoControlador;
 
     private List<TareaCompletarModelo> tareaCompletarModeloLista;
-    private String respeusta;
 
     @PostConstruct
     public void init(){
         tareaCompletarModeloLista = completarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
     }
 
-    public void enviarRespuesta() {
-
+    public void enviarRespuesta(Integer id) {
+        logger.info(id.toString());
+        for (TareaCompletarModelo tareaCompletarModelo : tareaCompletarModeloLista) {
+            if (tareaCompletarModelo.getId().compareTo(id) == 0) {
+                logger.info(tareaCompletarModelo.toString());
+                break;
+            }
+        }
+        logger.info(tareaCompletarModeloLista.toString());
     }
 
     public List<TareaCompletarModelo> getTareaCompletarModeloLista() {
@@ -46,11 +52,4 @@ public class CompletarOracionesControlador implements Serializable {
         this.tareaCompletarModeloLista = tareaCompletarModeloLista;
     }
 
-    public String getRespeusta() {
-        return respeusta;
-    }
-
-    public void setRespeusta(String respeusta) {
-        this.respeusta = respeusta;
-    }
 }
