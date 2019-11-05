@@ -219,16 +219,14 @@ header{
     padding-bottom: 100px;
 }
 .padding-contenido-inferior{
-    padding-bottom: 100px;
+    padding-bottom: 126px;
 }
-
 
 .border-section{
  border-width: 6px;
  border-style: solid;
 
 }
-
 .videoContainer {
     position: relative;
     width: 100%;

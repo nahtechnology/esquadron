@@ -68,9 +68,13 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <span>No tienes esta tarea asignada</span>
-        <h:graphicImage library="img" name="mounstro/whom.svg"/>
-        <h:button outcome="home" value="regresar"/>
+        <div class="padding-contenedor">
+            <h:outputStylesheet library="css" name="/alumno/select-mindmap.css"/>
+            <div class="sin-mapa">
+                <span>No tienes esta tarea asignada</span>
+            </div>
+            <h:button styleClass="boton-enviar" outcome="home" value="regresar"/>
+        </div>
     </ui:define>
 </ui:composition>
 </html>
