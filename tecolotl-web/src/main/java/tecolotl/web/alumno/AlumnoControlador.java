@@ -1,5 +1,6 @@
 package tecolotl.web.alumno;
 
+import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.TareaModelo;
@@ -29,6 +30,7 @@ public class AlumnoControlador implements Serializable {
     private AlumnoModelo alumnoModelo;
     private List<TareaActividadModelo> tareaActvidadModeloLista;
     private TareaActividadModelo tareaActividadModelo;
+    private ActividadModelo actividadModeloBibliotecaLibre;
 
     @PostConstruct
     public void init() {
@@ -39,6 +41,11 @@ public class AlumnoControlador implements Serializable {
     public String seleccion(TareaActividadModelo tareaActividadModelo){
         this.tareaActividadModelo = tareaActividadModelo;
         return "transcript";
+    }
+
+    public String actividadBiliotecaLibre(String idActividad) {
+        actividadModeloBibliotecaLibre = new ActividadModelo(idActividad);
+        return "actividad";
     }
 
     public AlumnoModelo getAlumnoModelo() {
@@ -63,5 +70,13 @@ public class AlumnoControlador implements Serializable {
 
     public void setTareaActividadModelo(TareaActividadModelo tareaActividadModelo) {
         this.tareaActividadModelo = tareaActividadModelo;
+    }
+
+    public ActividadModelo getActividadModeloBibliotecaLibre() {
+        return actividadModeloBibliotecaLibre;
+    }
+
+    public void setActividadModeloBibliotecaLibre(ActividadModelo actividadModeloBibliotecaLibre) {
+        this.actividadModeloBibliotecaLibre = actividadModeloBibliotecaLibre;
     }
 }
