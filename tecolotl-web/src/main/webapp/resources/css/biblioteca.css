@@ -51,6 +51,9 @@ li .A1{
     background-color: var(--psecundary-option-three);
     color: white;
 }
+.A1>div>div>.uk-card-footer > div > div > span{
+    padding-left: 11px;
+}
 
 li .A2{
     background-color: #D35400;
@@ -58,6 +61,9 @@ li .A2{
 .A2>div>div>.uk-card-footer > div > div > span > input{
     background-color: #D35400;
     color: white;
+}
+.A2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 11px;
 }
 
 li .A1A2{
@@ -71,6 +77,9 @@ li .B1{
     background-color: var(--tsecundary-option-one) !important;
     color: white;
 }
+.B1>div>div>.uk-card-footer > div > div > span{
+    padding-left: 11px;
+}
 
 li .B2{
     background-color:var(--asecundary-option-one);
@@ -79,7 +88,9 @@ li .B2{
     background-color: var(--asecundary-option-one);
     color: white;
 }
-
+.B2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 11px;
+}
 
 li .C1{
     background-color:var(--color-nav-primary);
@@ -88,6 +99,9 @@ li .C1{
     background-color: var(--color-nav-primary);
     color: white;
 }
+.C1>div>div>.uk-card-footer > div > div > span{
+    padding-left: 11px;
+}
 
 li .C2{
     background-color:var(--color-peligro);
@@ -95,6 +109,9 @@ li .C2{
 .C2>div>div>.uk-card-footer > div > div > span > input {
     background-color: var(--color-peligro);
     color: white;
+}
+.C2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 11px;
 }
 
 .card-actividad{
