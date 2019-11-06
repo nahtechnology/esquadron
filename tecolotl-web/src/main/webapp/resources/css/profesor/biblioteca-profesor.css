@@ -162,3 +162,14 @@ span.personaje{
 .tecolotl-card{
     height: 50px;
 }
+
+.uk-card-media-top > .uk-inline > img{
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
+}
+
+.uk-card-media-top > .uk-inline{
+    width: 100%;
+    height: 100%;
+}

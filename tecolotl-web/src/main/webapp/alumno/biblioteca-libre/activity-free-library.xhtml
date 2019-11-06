@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/escolar/template-alumno.xhtml">
+    <ui:define name="hamburguesa">
+        <div class="color-nav uk-hidden@m">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
+                <div class="">
+                    <a class="logo uk-logo" href="#">
+                        <h:graphicImage  library="img" name="esquadron.svg"  alt="logo" title="logo" width="30px" height="30px" />
+                        <span class="lescuadron letra-logo uk-visible@m">squadron</span>
+                    </a>
+                </div>
+                <div class="uk-navbar-right ">
+                    <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+                </div>
+                <div id="menu" uk-offcanvas="overlay: true">
+                    <div class="uk-offcanvas-bar  ">
+                        <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                        <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-large-top">
+                            <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="40" alt="" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="barra-nav"></div>
+        </div>
+    </ui:define>
+    <ui:define name="menu">
+        <div class="left-content-box  content-box-dark">
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img"/>
+            <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo} </h6>
+
+            <div class="uk-position-relative uk-text-center uk-display-block">
+                <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
+                <!-- user dropdown -->
+                <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+                    <ul>
+                        <li><a href="#" class="uk-text-capitalize">#{alumno['for.all.views.profile']}</a></li>
+                        <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
+                    </ul>
+                </div>
+                <!-- /user dropdown -->
+            </div>
+        </div>
+        <div class="left-nav-wrap  uk-visible@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="80" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="80" alt="" /></li>
+            </ul>
+        </div>
+        <div class="left-nav-wrap uk-position-relative  uk-hidden@xl ">
+            <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-top-center uk-margin-small-top">
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg"  width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt=""/></li>
+            </ul>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        #{actividadBibliotecaLibre.actividadModelo.idVideo}
+        #{actividadBibliotecaLibre.actividadModelo.transcripcion}
+        <h:button value="#{boton['next']}" outcome="siguiente"/>
+    </ui:define>
+</ui:composition>
+</html>
