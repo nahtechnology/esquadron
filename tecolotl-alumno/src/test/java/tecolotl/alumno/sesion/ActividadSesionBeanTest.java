@@ -14,6 +14,7 @@ import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.hablar.HablarEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -83,6 +84,7 @@ public class ActividadSesionBeanTest {
                 .addPackage(HablarEntidad.class.getPackage())
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -143,6 +145,12 @@ public class ActividadSesionBeanTest {
         String transcripcion = actividadSesionBean.transcripcion("DNHmujbuC74");
         assertNotNull(transcripcion);
         assertTrue(transcripcion.length() < 2);
+    }
+
+    @Test
+    public void buscaIdActividad() {
+        List<ActividadModelo> actividadModeloList = actividadSesionBean.busca(1);
+        assertNotNull(actividadModeloList);
     }
 
     @Test

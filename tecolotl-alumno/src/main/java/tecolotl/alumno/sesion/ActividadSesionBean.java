@@ -6,6 +6,7 @@ import tecolotl.alumno.entidad.TemaEntidad;
 import tecolotl.alumno.entidad.TipoEstudianteEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.NivelLenguajeModelo;
+import tecolotl.alumno.modelo.TemaModelo;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.validacion.CatalogoLlavePrimariaValidacion;
 
@@ -103,6 +104,7 @@ public class ActividadSesionBean implements Serializable {
                 actividadModelo.getNivelLenguajeModeloLista().add(new NivelLenguajeModelo(nivelLenguajeEntidad));
             }
             actividadModelo.setPreguntaDetonadora(actividadEntidad.getPreguntaDetonadora());
+            actividadModelo.setTemaModelo(new TemaModelo(actividadEntidad.getTemaEntidad()));
             actividadModeloLista.add(actividadModelo);
         }
         return actividadModeloLista;
