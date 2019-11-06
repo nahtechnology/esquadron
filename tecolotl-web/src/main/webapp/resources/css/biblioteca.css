@@ -47,8 +47,17 @@ li .A1{
     background-color: var(--psecundary-option-three) !important;
 }
 
+.A1>div>div>.uk-card-footer > div > div > span > input {
+    background-color: var(--psecundary-option-three);
+    color: white;
+}
+
 li .A2{
     background-color: #D35400;
+}
+.A2>div>div>.uk-card-footer > div > div > span > input{
+    background-color: #D35400;
+    color: white;
 }
 
 li .A1A2{
@@ -57,14 +66,35 @@ li .A1A2{
 li .B1{
     background-color:var(--tsecundary-option-one) !important;
 }
+
+.B1>div>div>.uk-card-footer > div > div > span > input{
+    background-color: var(--tsecundary-option-one) !important;
+    color: white;
+}
+
 li .B2{
     background-color:var(--asecundary-option-one);
 }
+.B2>div>div>.uk-card-footer > div > div > span > input{
+    background-color: var(--asecundary-option-one);
+    color: white;
+}
+
+
 li .C1{
     background-color:var(--color-nav-primary);
 }
+.C1>div>div>.uk-card-footer > div > div > span > input {
+    background-color: var(--color-nav-primary);
+    color: white;
+}
+
 li .C2{
     background-color:var(--color-peligro);
+}
+.C2>div>div>.uk-card-footer > div > div > span > input {
+    background-color: var(--color-peligro);
+    color: white;
 }
 
 .card-actividad{
@@ -153,4 +183,10 @@ li .C2{
     background-color:paleturquoise ;
     color:black;
     font-weight: bold;
+}
+
+.uk-card-media-top > img{
+    width: 100%;
+    height: 100%;
+    box-sizing: content-box;
 }
