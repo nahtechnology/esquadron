@@ -1,18 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Created by IntelliJ IDEA.
-  User: Antonio
-  Date: 05/11/2019
-  Time: 12:00 p. m.
--->
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-
 <ui:composition template="/template/escolar/template-alumno.xhtml">
 <ui:define name="hamburguesa">
     <div class="color-nav uk-hidden@m">
@@ -70,46 +61,10 @@
     </div>
 </ui:define>
 <ui:define name="contenido">
-    <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="">
-        <div class="uk-width-1-2@m uk-position-relative">
-            <div class="titulo-respuesta-ordenar " >#{alumno['activities.title.match.sentence.question']}</div>
-            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
-                <div class="pregunta-ordenar">
-                    #{relacionarOracion.relacionarOracionModelo.pregunta}
-                </div>
-            </ui:repeat>
-            <h:graphicImage library="img" name="/mounstro/who.svg" styleClass="img-titulo-1"/>
-        </div>
-        <div class="uk-width-1-2@m uk-position-relative">
-            <div class="titulo-respuesta-ordenar">#{alumno['activities.title.match.sentence.answer']}</div>
-            <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
-                <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista x-panel-ghost" pt:ondrop="drop(event, this)" pt:pt:ondragover="allowDrop(event)" >
-                    <h:panelGroup layout="block" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta}" styleClass="respuesta">
-                        #{relacionarOracionControlador.respuestaVal(relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta)}
-                    </h:panelGroup>
-                </h:panelGroup>
-            </ui:repeat>
-            <h:graphicImage library="img" name="/mounstro/whom.svg" styleClass="img-titulo-2"/>
-        </div>
-    </h:panelGroup>
-    <h:panelGroup id="tablaRespuestas"
-                  layout="block"
-                  styleClass="respuestas-ordenar scroll-drag"
-                  pt:ondrop="drop(event, this)"
-                  pt:ondragover="allowDrop(event)" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-        <ui:repeat value="#{relacionarOracionControlador.desordenaLista(relacionarOracionControlador.tareaRelacionarOracionModeloLista)}" var="preRespuestas" varStatus="resp">
-            <h:panelGroup id="resp#{resp.index}"
-                          layout="block"
-                          styleClass="respuesta x-panel-ghost"
-                          pt:data-id="#{preRespuestas.relacionarOracionModelo.id}"
-                          pt:draggable="true"
-                          pt:ondragstart="drag(event)"
-                          pt:ondrop="return false"
-                          pt:ondragover="return false">
-                #{preRespuestas.relacionarOracionModelo.respuesta}
-            </h:panelGroup>
-        </ui:repeat>
-    </h:panelGroup>
+    <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramaticaModelo">
+        #{gramaticaModelo.palabra}
+        #{gramaticaModelo.codigo}
+    </ui:repeat>
 </ui:define>
-
+</ui:composition>
 </html>

@@ -41,14 +41,12 @@
 
             <div class="uk-position-relative uk-text-center uk-display-block">
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
-                <!-- user dropdown -->
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                     <ul>
                         <li><a href="#" class="uk-text-capitalize">#{alumno['for.all.views.profile']}</a></li>
                         <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
                     </ul>
                 </div>
-                <!-- /user dropdown -->
             </div>
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
@@ -63,12 +61,10 @@
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg"  width="60" alt=""/></li>
             </ul>
         </div>
-
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="navegacion.css"/>
         <h:outputStylesheet library="css" name="biblioteca.css"/>
-
         <div class="uk-container  padding-inferior">
             <div class="uk-width-1-1@m uk-margin-medium-top">
                 <form id="search-form" action="">
@@ -125,7 +121,7 @@
                                                     <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
                                                         <h:commandButton styleClass="uk-button uk-button-small uk-border-rounded"
                                                                          value="Go!"
-                                                                         action="#{actividadBibliotecaLibre.buscaActividad(actividadModelo.idVideo)}"/>
+                                                                         action="#{actividadBibliotecaLibre.busca(actividadModelo.idVideo)}"/>
                                                     </h:panelGroup>
                                                 </div>
                                                 <div class="uk-width-expand ">
@@ -137,7 +133,6 @@
                                                         <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="icono/quizcalifica.svg" /></div>
                                                     </div>
                                                 </div>
-
                                             </h:panelGroup>
                                         </div>
                                     </div>
