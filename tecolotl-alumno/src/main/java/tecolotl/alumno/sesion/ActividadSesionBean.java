@@ -47,6 +47,11 @@ public class ActividadSesionBean {
         return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
     }
 
+
+    public ActividadModelo detalle(@NotNull @Size(max = 12) String idActvidad) {
+        return new ActividadModelo(entityManager.find(ActividadEntidad.class, idActvidad));
+    }
+
     /**
      * Busca todas las activdades donde no esten asigandas a los alumnos de un grupo
      * @param idGrupo Identificador del grupo

@@ -17,12 +17,14 @@ public class BibliotecaLibreControlador {
     @Inject
     private ActividadSesionBean actividadSesionBean;
 
+    @Inject
+    private AlumnoControlador alumnoControlador;
+
     private List<ActividadModelo> actividadModeloLista;
 
     @PostConstruct
     public void inicio() {
-        actividadModeloLista = actividadSesionBean.busca(1);
-//        actividadModeloLista = (List<ActividadModelo>) actividadSesionBean.busca(1).stream().collect(Collectors.groupingBy(ActividadModelo::getNivelLenguajeModeloLista));
+        actividadModeloLista = actividadSesionBean.busca(alumnoControlador.getAlumnoModelo().getId());
     }
 
     public List<ActividadModelo> getActividadModeloLista() {

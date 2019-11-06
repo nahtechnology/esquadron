@@ -55,10 +55,9 @@
 	<context-param>
 		<description>Multiples archivos de configuración para la navegación</description>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
-		<param-value>
-			/WEB-INF/faces-config.xml,
-			/WEB-INF/alumno/reglas-navegacion.xml,
-			/WEB-INF/profesor/reglas-navegacion.xml
+		<param-value>/WEB-INF/faces-config.xml,
+            /WEB-INF/alumno/reglas-navegacion.xml,
+            /WEB-INF/profesor/reglas-navegacion.xml
 		</param-value>
 	</context-param>
 
