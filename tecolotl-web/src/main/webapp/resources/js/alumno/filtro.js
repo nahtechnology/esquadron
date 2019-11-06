@@ -1,5 +1,6 @@
 var search = UIkit.util.$('.search-fld');
 var searchVal = UIkit.util.$('.search-filter');
+var searchQus= UIkit.util.$('.search-question');
 var filterBtn = UIkit.util.$$('li[data-uk-filter-control] a');
 var formEl = UIkit.util.$('#search-form');
 var debounce;
@@ -9,17 +10,15 @@ UIkit.util.on(search, 'keyup', function() {
 	debounce = setTimeout(function() {
 		var value = search.value;
 		console.log(value);
-		var finalValue = value;
-		var finalValue2 = value.toLowerCase();
+		var finalValue = value.toLowerCase();
+		// var finalValue2 = value.toLowerCase();
 		var searchTerm = '';
 		var searchTerm2 = '';
 
 		if (value.length){
-			searchTerm = '[data-tags*="' + finalValue + '"]' || '[data-tags*="' + finalValue2 + '"]';
-
+			searchTerm = '[data-tags*="' + finalValue+ '"]';
 		}
 		UIkit.util.attr(searchVal, 'data-uk-filter-control', searchTerm);
-		// UIkit.util.attr(searchVal, 'data-uk-filter-control', searchTerm2);
 		searchVal.click();
 	}, 300);
 });
