@@ -103,6 +103,19 @@ public class RelacionarSesionBeanTest {
     }
 
     @Test
+    public void bibliotecaLibre() {
+        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.bibliotecaLibre("0_1NU60qHWs");
+        assertNotNull(relacionarSesionBeanLista);
+        assertFalse(relacionarSesionBeanLista.isEmpty());
+        relacionarSesionBeanLista.forEach(relacionarModelo -> {
+            assertNotNull(relacionarModelo);
+            assertNotNull(relacionarModelo.getIdClaseGlosario());
+            assertNotNull(relacionarModelo.getPalabra());
+            assertNotNull(relacionarModelo.getIdActividad());
+        });
+    }
+
+    @Test
     public void buscaTarea() {
         List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(121);
         assertNotNull(relacionarSesionBeanLista);

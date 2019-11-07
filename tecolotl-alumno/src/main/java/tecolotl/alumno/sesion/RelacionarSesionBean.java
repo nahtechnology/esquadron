@@ -56,6 +56,13 @@ public class RelacionarSesionBean {
         return relacionarActividadEntidadLista.stream().map(RelacionarModelo::new).collect(Collectors.toList());
     }
 
+    public List<RelacionarModelo> bibliotecaLibre(@NotNull @Size(min = 11, max = 11) String idActivdad) {
+        logger.fine(idActivdad);
+        TypedQuery<RelacionarActividadEntidad> typedQuery = entityManager.createNamedQuery("RelacionarActividadEntidad.buscaBibliotecaLibre", RelacionarActividadEntidad.class);
+        typedQuery.setParameter("idActividad", idActivdad);
+        return typedQuery.getResultList().stream().map(RelacionarModelo::new).collect(Collectors.toList());
+    }
+
     /**
      * Busca todas las tareas de realacionar.
      * @param idTarea Identificador de la tarea.

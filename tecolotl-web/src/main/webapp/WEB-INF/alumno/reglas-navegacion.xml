@@ -177,12 +177,16 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>siguiente</from-outcome>
-            <to-view-id>/alumno/biblioteca-libre/</to-view-id>
+            <to-view-id>/alumno/biblioteca-libre/match-free-library.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
         <from-view-id>/alumno/biblioteca-libre/match-free-library.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
         <navigation-case>
             <from-outcome>atras</from-outcome>
             <to-view-id>/alumno/biblioteca-libre/order-free-library.xhtml</to-view-id>

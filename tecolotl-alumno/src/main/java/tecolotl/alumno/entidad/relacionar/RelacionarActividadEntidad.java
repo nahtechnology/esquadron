@@ -11,12 +11,16 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "actividad_relacionar", schema = "alumno")
 @NamedQueries(value = {
-        @NamedQuery(name = "RelacionarActividadEntidad.busca", query = "SELECT ra FROM RelacionarActividadEntidad ra"),
-        @NamedQuery(
-                name = "RelacionarActividadEntidad.buscaActividad",
-                query = "SELECT ra FROM RelacionarActividadEntidad ra JOIN FETCH ra.relacionarActividadEntidadPK.glosarioEntidad g " +
-                        "WHERE ra.relacionarActividadEntidadPK.actividadEntidad.id = :idActividad"
-        )
+    @NamedQuery(name = "RelacionarActividadEntidad.busca", query = "SELECT ra FROM RelacionarActividadEntidad ra"),
+    @NamedQuery(
+        name = "RelacionarActividadEntidad.buscaActividad",
+        query = "SELECT ra FROM RelacionarActividadEntidad ra JOIN FETCH ra.relacionarActividadEntidadPK.glosarioEntidad g " +
+                "WHERE ra.relacionarActividadEntidadPK.actividadEntidad.id = :idActividad"
+    ),
+    @NamedQuery(
+        name = "RelacionarActividadEntidad.buscaBibliotecaLibre",
+        query = "SELECT ra FROM RelacionarActividadEntidad ra WHERE ra.relacionarActividadEntidadPK.actividadEntidad.id = :idActividad"
+    )
 })
 public class RelacionarActividadEntidad {
 

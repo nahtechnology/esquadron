@@ -31,6 +31,7 @@ public class RelacionarModelo {
         this.idActividad = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getActividadEntidad().getId();
         this.idClaseGlosario = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getGlosarioEntidad()
                 .getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave();
+        this.palabra = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getPalabra();
     }
 
     public RelacionarModelo(TareaRelacionarActividadEntidad tareaRelacionarActividadEntidad) {
