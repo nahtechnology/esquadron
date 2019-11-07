@@ -62,6 +62,7 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/alumno/transcript/ordenar-palabra.css"/>
+        <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section" style="box-sizing: border-box">
              <div class="uk-container padding-contenedor">
@@ -85,7 +86,10 @@
     <!--                             <h:graphicImage library="img" styleClass="movimiento2 finalizado" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.palabra}"/>-->
                                  <h:form>
                                      <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
-                                         #{gramatica.palabra}
+
+
+                                                #{gramatica.palabra}
+
     <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" pt:uk-sortable="" rendered="#{empty gramatica.palabra}"/>-->
     <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.palabra}"/>-->
                                      </h:panelGroup>
