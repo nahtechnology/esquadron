@@ -419,6 +419,7 @@ h1 + div > div > p{
 }
 
 form>input+span+div{
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
 }
