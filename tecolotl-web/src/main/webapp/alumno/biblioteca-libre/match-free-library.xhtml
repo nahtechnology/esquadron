@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="hamburguesa">
         <div class="color-nav uk-hidden@m">
@@ -62,12 +62,69 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <ui:repeat value="#{relacionarBiblitecaLibreControler.relacionarModeloLista}" var="relacionarModelo">
-            #{relacionarModelo.palabra}
-            <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.idClaseGlosario))}" class="glosario-img" alt="imagen"/>
-        </ui:repeat>
-        <h:button outcome="atras" value="#{boton['back']}"/>
-        <h:button outcome="terminar" value="#{boton['end']}"/>
+        <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
+        <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
+        <div class="uk-section">
+            <div class="uk-container padding-contenedor">
+
+                <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                    <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                    <div uk-dropdown="mode: click">Match the image with its meaning</div>
+                </div>
+                <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
+                <h:form>
+                    <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
+                        <div class="contenedor-imagen scroll-drag">
+                            <ui:repeat value="#{relacionarBiblitecaLibreControler.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
+                                <div class="imagen-relacionar uk-margin-auto ">
+                                    <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.idClaseGlosario))}" class="glosario-img" alt="imagen"/>
+                                </div>
+                                <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
+                                    <div class="icono-relacion-img uk-width-auto"></div>
+
+                                    <h:panelGroup id="su#{conta.index}" layout="block" styleClass="oraciones-relacion-img uk-width-expand"  pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)" >
+
+                                    </h:panelGroup>
+                                    <ui:remove><h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" >#{relacionarModelo.palabra}</h:panelGroup></ui:remove>
+
+                                </div>
+                            </ui:repeat>
+                        </div>
+                        <h:panelGroup layout="block" styleClass="contenedor-imagen">
+                            <ui:remove>
+                            <h:panelGroup styleClass="respuesta-imagen palabras"
+                                          rendered="#{not empty relacionarBiblitecaLibreControler.relacionarModeloLista[0].palabra}"
+                                          layout="block">
+                            </h:panelGroup>
+                            </ui:remove>
+                            <h:panelGroup layout="block"
+                                          styleClass="respuesta-imagen  uk-sortable palabras"
+                                          pt:ondrop="drop(event, this)"
+                                          pt:ondragover="allowDrop(event)"
+                                          >
+                                <ui:repeat value="#{relacionarBiblitecaLibreControler.relacionarModeloLista}" var="relacionar" varStatus="resp">
+                                    <h:panelGroup layout="block"
+                                                  id="res#{resp.index}"
+                                                  styleClass="palabra-imagen"
+                                                  pt:draggable="true"
+                                                  pt:ondragstart="drag(event)"
+                                                  pt:ondrop="return false"
+                                                  pt:ondragover="return false">
+                                        #{relacionar.palabra}
+                                    </h:panelGroup>
+                                </ui:repeat>
+                            </h:panelGroup>
+                        </h:panelGroup>
+                    </h:panelGroup>
+                    <h:button outcome="atras" value="#{boton['back']}"/>
+                    <h:button outcome="terminar" value="#{boton['end']}"/>
+                </h:form>
+
+            </div>
+        </div>
+
+<!--        javascript-->
     </ui:define>
 </ui:composition>
 </html>
