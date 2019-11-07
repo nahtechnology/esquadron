@@ -64,17 +64,27 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="/alumno/transcript/variables-alumno.css"/>
         <h:outputStylesheet library="css" name="alumno/transcript/transcript.css"/>
+        <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
+        <script src="https://www.youtube.com/iframe_api"></script>
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
-                    <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
-                        <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left">
-                            <div data-video="#{alumnoControlador.actividadModeloBibliotecaLibre.idVideo}" class="scrollFinal"></div>
-                        </div>
-                        <div id="scrollTranscript" class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion transcripcion">
-                            <h:outputText value="#{actividadBibliotecaLibre.transcripcion}" escape="false"/>
-                        </div>
+                <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                    <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                    <div uk-dropdown="mode: click">Watch the video and fill in the blanks</div>
+                </div>
+                <div class="video-activity">
+                    <div data-video="#{alumnoControlador.actividadModeloBibliotecaLibre.idVideo}" class="scrollFinal"></div>
+                </div>
+                <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
+                    <h:panelGroup layout="block" styleClass="contenedor-padre-activity" >
+                        <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                     </h:panelGroup>
+                    <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" >
+                        <h:outputText value="#{actividadBibliotecaLibre.transcripcion}" escape="false" />
+                    </div>
+                </h:panelGroup>
                     <h:button value="#{boton['next']}" styleClass="boton-enviar boton-trasladar" outcome="siguiente"/>
             </div>
         </div>
@@ -119,6 +129,7 @@
                 time = setTimeout('pageScroll()', 500);
             }
         </script>
+        <h:outputScript library="js" name="/alumno/activity-free-library.js"/>
     </ui:define>
 </ui:composition>
 </html>
