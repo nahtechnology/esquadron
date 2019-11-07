@@ -83,27 +83,21 @@
                      <ul class="uk-switcher uk-margin scroll-drag">
                          <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramatica">
                              <li>
-    <!--                             <h:graphicImage library="img" styleClass="movimiento2 finalizado" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.palabra}"/>-->
-                                 <h:form>
-                                     <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
-
-
-                                                #{gramatica.palabra}
-
-    <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" pt:uk-sortable="" rendered="#{empty gramatica.palabra}"/>-->
-    <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.palabra}"/>-->
-                                     </h:panelGroup>
-                                     <div class="boton-trasladar">
-                                         <h:button outcome="atras" styleClass="boton-enviar" value="#{boton['back']}"/>
-                                         <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
-                                     </div>
-                                 </h:form>
+                                 <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
+                                     <span><h:outputText value="#{gramatica.palabra}" escape="false" /></span>
+                                 </h:panelGroup>
                              </li>
                          </ui:repeat>
                      </ul>
                  </h:panelGroup>
              </div>
         </div>
+        <div class="uk-flex uk-flex-center">
+            <h:button outcome="atras" styleClass="boton-enviar uk-margin-medium-right" value="#{boton['back']}"/>
+            <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
+        </div>
+
+        <h:outputScript library="js" name="/alumno/order-free-library.js"/>
     </ui:define>
 </ui:composition>
 </html>
