@@ -94,17 +94,17 @@
                             <li class="#{actividadModelo.nivelLenguajeModeloLista[0].valor}#{actividadModelo.nivelLenguajeModeloLista[1].valor}" data-tags="#{actividadModelo.temaModelo.valor.toLowerCase()} #{actividadModelo.preguntaDetonadora.toLowerCase()}">
                                 <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.nivelLenguajeModeloLista[0].valor}#{actividadModelo.nivelLenguajeModeloLista[1].valor}"  >
                                     <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border ">
-                                        <div class="uk-card-header border-card">
+                                        <div class="uk-card-header">
                                             <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                                 <div class="uk-width-expand">
                                                     <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />
                                                     <ui:repeat value="#{actividadModelo.nivelLenguajeModeloLista}" var="lenguaje">
                                                         <span class="cat-txt">#{lenguaje.valor}</span>
                                                     </ui:repeat>
-                                                    #{actividadModelo.temaModelo.valor}
+                                                    <span>#{actividadModelo.temaModelo.valor}</span>
                                                 </div>
                                                 <div class="uk-width-auto uk-text-right uk-text-muted">
-                                                    <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>#{actividadModelo.tiempo}
+                                                    <h:outputText styleClass="uk-margin-small-right uk-text-secondary" pt:uk-icon="icon:clock"/>#{actividadModelo.tiempo}
                                                 </div>
                                             </h:panelGroup>
                                          </div>
