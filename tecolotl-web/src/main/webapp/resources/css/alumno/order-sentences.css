@@ -418,6 +418,15 @@ h1 + div > div > p{
     top: 10%;
 }
 
+form>input+span+div{
+    display: flex;
+    flex-direction: row;
+}
+
+form>input+span+div>input{
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 1024px) {
     .mosca{
         width: 45%;

@@ -117,13 +117,14 @@
                             </h:panelGroup>
                         </h:panelGroup>
                     </h:panelGroup>
-                    <h:button outcome="atras" value="#{boton['back']}"/>
-                    <h:button outcome="terminar" value="#{boton['end']}"/>
+                    <div class="boton-trasladar">
+                        <h:button outcome="atras" styleClass="boton-enviar" value="#{boton['back']}"/>
+                        <h:button outcome="terminar" styleClass="boton-enviar" value="#{boton['end']}"/>
+                    </div>
                 </h:form>
 
             </div>
         </div>
-
 <!--        javascript-->
     </ui:define>
 </ui:composition>
