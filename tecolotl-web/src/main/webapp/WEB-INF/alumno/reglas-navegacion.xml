@@ -181,4 +181,16 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/alumno/biblioteca-libre/match-free-library.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>atras</from-outcome>
+            <to-view-id>/alumno/biblioteca-libre/order-free-library.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>terminar</from-outcome>
+            <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

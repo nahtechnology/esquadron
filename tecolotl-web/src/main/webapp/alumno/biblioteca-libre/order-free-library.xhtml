@@ -61,10 +61,16 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <ui:repeat value="#{actividadBibliotecaLibre.gramaticaModeloLista}" var="gramaticaModelo">
-            #{gramaticaModelo.palabra}
-            #{gramaticaModelo.codigo}
-        </ui:repeat>
+        <ui:fragment render="#{empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}">
+            <span>No hay ejercicios para esta actividad</span>
+        </ui:fragment>
+        <ui:fragment render="#{not empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}">
+            <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramaticaModelo">
+                #{gramaticaModelo.palabra}
+            </ui:repeat>
+        </ui:fragment>
     </ui:define>
+    <h:button outcome="atras" value="#{buton['back']}"/>
+    <h:button outcome="siguiente" value="#{boton['next']}"/>
 </ui:composition>
 </html>

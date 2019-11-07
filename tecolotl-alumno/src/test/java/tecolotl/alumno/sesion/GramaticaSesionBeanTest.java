@@ -74,7 +74,7 @@ public class GramaticaSesionBeanTest {
 
     @Test
     public void buscaPorActividad(){
-        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca("0_1NU60qHWs");
+        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca("9B6DMShBV6k");
         Assert.assertNotNull(gramaticaModeloLista);
         Assert.assertFalse(gramaticaModeloLista.isEmpty());
         for (GramaticaModelo gramaticaModelo : gramaticaModeloLista){
