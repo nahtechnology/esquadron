@@ -61,16 +61,42 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <ui:fragment render="#{empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}">
-            <span>No hay ejercicios para esta actividad</span>
-        </ui:fragment>
-        <ui:fragment render="#{not empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}">
-            <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramaticaModelo">
-                #{gramaticaModelo.palabra}
-            </ui:repeat>
-        </ui:fragment>
-        <h:button outcome="atras" value="#{boton['back']}"/>
-        <h:button outcome="siguiente" value="#{boton['next']}"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
+        <div class="uk-section" style="box-sizing: border-box">
+             <div class="uk-container padding-contenedor">
+                 <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                     <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                     <div uk-dropdown="mode: click">Make sentences  using can and  the words provided</div>
+                 </div>
+                 <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
+                 <div class="imagen-ordenar">
+                     <h:graphicImage library="img" name="mounstro/whom.svg"/>
+                 </div>
+                 <h:panelGroup layout="block" render="#{not empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}">
+                     <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar scroll-drag" uk-switcher="">
+                         <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramatica" varStatus="estatus">
+                             <li class="#{empty gramatica.palabra ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
+                         </ui:repeat>
+                     </ul>
+                     <ul class="uk-switcher uk-margin scroll-drag">
+                         <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramatica">
+                             <li>
+    <!--                             <h:graphicImage library="img" styleClass="movimiento2 finalizado" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.palabra}"/>-->
+                                 <h:form>
+                                     <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
+                                         #{gramatica.palabra}
+    <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" pt:uk-sortable="" rendered="#{empty gramatica.palabra}"/>-->
+    <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.palabra}"/>-->
+                                     </h:panelGroup>
+                                 </h:form>
+                             </li>
+                         </ui:repeat>
+                     </ul>
+                 </h:panelGroup>
+             </div>
+        </div>
+        <h:button outcome="atras" styleClass="boton-enviar" value="#{boton['back']}"/>
+        <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
     </ui:define>
 </ui:composition>
 </html>
