@@ -93,6 +93,10 @@
     <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" pt:uk-sortable="" rendered="#{empty gramatica.palabra}"/>-->
     <!--                                     <h:panelGroup layout="block" styleClass="uk-child-width-1-5@m uk-grid  uk-padding-small" pt:uk-grid="" rendered="#{not empty gramatica.palabra}"/>-->
                                      </h:panelGroup>
+                                     <div class="boton-trasladar">
+                                         <h:button outcome="atras" styleClass="boton-enviar" value="#{boton['back']}"/>
+                                         <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
+                                     </div>
                                  </h:form>
                              </li>
                          </ui:repeat>
@@ -100,8 +104,6 @@
                  </h:panelGroup>
              </div>
         </div>
-        <h:button outcome="atras" styleClass="boton-enviar" value="#{boton['back']}"/>
-        <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
     </ui:define>
 </ui:composition>
 </html>

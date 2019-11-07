@@ -133,6 +133,13 @@ svg .pregunta,svg .borde,svg .circulo{
     fill: white;
 
 }
+li>form>input + div + div {
+    display: flex;
+    flex-direction: row;
+}
+li>form>input + div + div>input{
+    margin-left: 5px;
+}
 
 @media screen and (max-width: 500px) {
     .contenedor-respuesta{
