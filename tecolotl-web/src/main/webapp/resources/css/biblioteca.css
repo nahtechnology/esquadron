@@ -81,18 +81,18 @@ li .A2{
 }
 
 li .A1A2{
-    background: linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
+    background: linear-gradient(to right, var(--psecundary-option-three), #D35400);
 }
 .A1A2>div>div>.uk-card-footer > div > div > span > input{
-    background: linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
+    background: linear-gradient(to right, var(--psecundary-option-three), #D35400);
     color: white;
 }
 .A1A2>div>div>.uk-card-footer > div > div > span{
     padding-left: 11px;
 }
 .A1A2>div>div>.uk-card-header>div>div>:nth-child(4){
-    background: -webkit-linear-gradient(top right, var(--psecundary-option-three), var(--purpura-primary-color));
-    background: linear-gradient(to left bottom, var(--psecundary-option-three), var(--purpura-primary-color));
+    background: -webkit-linear-gradient(top right, var(--psecundary-option-three), #D35400);
+    background: linear-gradient(to left bottom, var(--psecundary-option-three), #D35400);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: bold;
@@ -196,12 +196,12 @@ li .C2{
 }
 
 .uk-subnav-alumno li.uk-active:nth-child(3) a {
-      background-image:linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
+      background-image:linear-gradient(to right, var(--psecundary-option-three), #D35400);
       color: white;
 }
 
 .uk-subnav-alumno li:nth-child(3) a:hover {
-    background-image:linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
+    background-image:linear-gradient(to right, var(--psecundary-option-three), #D35400);
     /*opacity: 0.3;*/
     color: white;
 }
