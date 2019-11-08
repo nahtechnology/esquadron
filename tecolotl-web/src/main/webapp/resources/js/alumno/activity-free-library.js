@@ -1,9 +1,12 @@
-var contenedorRespuesta , parrafo,respuestas = [];
-var contenedorPalabras = document.querySelector('.contenedor-respuesta')
+var contenedorRespuesta , parrafo,respuestas = [], copyRespuesta = [],botonCalificar;
+var contenedorPalabras = document.querySelector('.contenedor-respuesta');
 
 document.addEventListener('DOMContentLoaded', function (evt) {
      contenedorRespuesta = document.querySelector('.trancript-contenedor');
         parrafos(contenedorRespuesta);
+        botonCalificar = document.querySelector('.uk-flex-center button');
+        botonCalificar.addEventListener('click',calificar)
+
 });
 
 function parrafos(texto) {
@@ -17,7 +20,8 @@ function parrafos(texto) {
          resp.setAttribute('uk-sortable','group: respuesta');
          resp.innerHTML=" ";
      });
-     revolver(respuestas).forEach(function (texto) {
+     copyRespuesta = respuestas.slice();
+     revolver(copyRespuesta).forEach(function (texto) {
          console.log(texto);
          var palabra = document.createElement('span');
          palabra.innerHTML=texto;
@@ -36,4 +40,26 @@ function revolver(arreglo) {
         arreglo[indiceAleatorio] = temporal;
     }
     return arreglo;
+}
+
+function calificar() {
+    var score=document.createElement('div');
+    var cajaRespuestaAlumno = document.querySelectorAll('.trancript-contenedor .respuesta-drag');
+    var respuestaAlumno = [],contador=0,puntaje;
+    cajaRespuestaAlumno.forEach(function (respuesta) {
+        respuestaAlumno.push(respuesta.innerHTML);
+    });
+    for (var inicio = 0; inicio < respuestas.length; inicio++){
+        console.log(respuestaAlumno[inicio] + '=' + respuestas[inicio]);
+        if(respuestaAlumno[inicio] === respuestas[inicio]){
+            contador++;
+            cajaRespuestaAlumno[inicio].style.backgroundColor="#2ECC71";
+        }else {
+            cajaRespuestaAlumno[inicio].style.backgroundColor="#E74C3C";
+        }
+    }
+    puntaje = (contador * 100) / respuestas.length;
+    score.innerHTML= 'Score: ' + Math.round(puntaje);
+    score.classList.add('puntaje');
+    document.querySelector('.contenedor-respuesta').appendChild(score);
 }

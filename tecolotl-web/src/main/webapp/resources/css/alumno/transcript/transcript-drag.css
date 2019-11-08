@@ -129,6 +129,21 @@
 .img-ayuda:hover{
     transform: scale(1.3,1.3);
 }
+.puntaje{
+    width: 240px;
+    height: 210px;
+    background: url("#{resource['img/alumno/pop-art/mensaje-mapa-7.svg']}") no-repeat center center/100% 100%;
+    color: black;
+    font-size: 21px;
+    font-weight: bold;
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: calc(50% - 120px);
+
+}
 svg .pregunta,svg .borde,svg .circulo{
     fill: white;
 
