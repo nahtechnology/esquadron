@@ -73,6 +73,9 @@
                     <div uk-dropdown="mode: click">Match the image with its meaning</div>
                 </div>
                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
+                <span class="sin-tarea">
+                    <h:outputText value="no hay tarea" rendered="#{empty relacionarBiblitecaLibreControler.relacionarModeloLista}"/>
+                </span>
                 <h:form>
                     <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                         <div class="contenedor-imagen scroll-drag">

@@ -132,7 +132,7 @@
 .puntaje{
     width: 240px;
     height: 210px;
-    background: url("#{resource['img/alumno/pop-art/mensaje-mapa-7.svg']}") no-repeat center center/100% 100%;
+    background: url("#{resource['img/alumno/pop-art/mensaje6.svg']}") no-repeat center center/100% 100%;
     color: black;
     font-size: 21px;
     font-weight: bold;
@@ -156,7 +156,7 @@ li>form>input + div + div>input{
     margin-left: 5px;
 }
 
-.uk-section>div>span{
+.sin-tarea1{
     background: url("#{resource['img/alumno/pop-art/mensaje7.svg']}") no-repeat center/100% 100%;
     -webkit-text-fill-color: lime;
     -webkit-text-stroke: 1px purple;
@@ -168,6 +168,20 @@ li>form>input + div + div>input{
     padding-left: 4%;
     position: relative;
     left: 19%;
+}
+
+.sin-tarea{
+    background: url("#{resource['img/alumno/pop-art/mensaje7.svg']}") no-repeat center/100% 100%;
+    -webkit-text-fill-color: lime;
+    -webkit-text-stroke: 1px purple;
+    font-size: 25px;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    padding-left: 2%;
+    position: relative;
+    left: 45%;
 }
 
 @media screen and (max-width: 500px) {
