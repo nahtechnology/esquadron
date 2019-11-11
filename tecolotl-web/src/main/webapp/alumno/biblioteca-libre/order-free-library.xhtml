@@ -71,9 +71,9 @@
                      <div uk-dropdown="mode: click">Make sentences  using can and  the words provided</div>
                  </div>
                  <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
-                 <span class="sin-tarea1">
-                    <h:outputText value="no hay tarea" rendered="#{empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}"/>
-                 </span>
+
+                 <h:outputText styleClass="sin-tarea1" value="no hay tarea" rendered="#{empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}"/>
+
                  <div class="imagen-ordenar">
                      <h:graphicImage library="img" name="mounstro/whom.svg"/>
                  </div>

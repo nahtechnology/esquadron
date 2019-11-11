@@ -73,12 +73,13 @@
                     <div uk-dropdown="mode: click">Match the image with its meaning</div>
                 </div>
                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
-                <span class="sin-tarea">
-                    <h:outputText value="no hay tarea" rendered="#{empty relacionarBiblitecaLibreControler.relacionarModeloLista}"/>
-                </span>
-                <h:form>
+                <h:panelGroup rendered="#{empty relacionarBiblitecaLibreControler.relacionarModeloLista[0].palabra}">
+                    <h:outputText styleClass="sin-tarea" value="no hay tarea"/>
+                    <h:graphicImage library="img" value="/resources/img/mounstro/monstruo.svg" styleClass="rosa"/>
+                </h:panelGroup>
+                <h:form rendered="#{not empty relacionarBiblitecaLibreControler.relacionarModeloLista[0].palabra}">
                     <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
-                        <div class="contenedor-imagen scroll-drag">
+                        <h:panelGroup styleClass="contenedor-imagen scroll-drag" layout="block">
                             <ui:repeat value="#{relacionarBiblitecaLibreControler.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                 <div class="imagen-relacionar uk-margin-auto ">
                                     <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.idClaseGlosario))}" class="glosario-img" alt="imagen"/>
@@ -93,7 +94,7 @@
 
                                 </div>
                             </ui:repeat>
-                        </div>
+                        </h:panelGroup>
                         <h:panelGroup layout="block" styleClass="contenedor-imagen">
                             <ui:remove>
                             <h:panelGroup styleClass="respuesta-imagen palabras"
@@ -120,12 +121,11 @@
                             </h:panelGroup>
                         </h:panelGroup>
                     </h:panelGroup>
-                    <div class="boton-trasladar">
-                        <h:button outcome="atras" styleClass="boton-enviar" value="#{boton['back']}"/>
-                        <h:button outcome="terminar" styleClass="boton-enviar" value="#{boton['end']}"/>
-                    </div>
                 </h:form>
-
+                <div class="uk-flex uk-flex-center">
+                    <h:button outcome="atras" styleClass="boton-enviar uk-margin-medium-right" value="#{boton['back']}"/>
+                    <h:button outcome="terminar" styleClass="boton-enviar" value="#{boton['end']}"/>
+                </div>
             </div>
         </div>
 <!--        javascript-->

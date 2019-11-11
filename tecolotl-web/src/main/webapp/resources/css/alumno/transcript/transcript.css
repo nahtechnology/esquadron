@@ -126,8 +126,8 @@ svg .pregunta,svg .borde,svg .circulo{
 
 @media screen and (max-width: 1024px){
     .movimiento2{
-        left: 55%;
-        top: 47%;
+        left: 58%;
+        top: 49%;
         transform: rotate(15deg);
     }
 
@@ -152,7 +152,7 @@ svg .pregunta,svg .borde,svg .circulo{
 
 @media screen and (max-width: 450px){
     .movimiento2{
-        left: 47%;
+        left: 51%;
         top: 22%;
     }
 

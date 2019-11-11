@@ -181,7 +181,21 @@ li>form>input + div + div>input{
     align-items: center;
     padding-left: 2%;
     position: relative;
-    left: 45%;
+    left: 30%;
+}
+
+.rosa{
+    position: relative;
+    left: 34%;
+}
+
+@media screen and (max-width: 768px){
+    .sin-tarea1{
+        width: 165px;
+        height: 165px;
+        font-size: 20px;
+        padding-left: 2%;
+    }
 }
 
 @media screen and (max-width: 500px) {
@@ -204,4 +218,22 @@ li>form>input + div + div>input{
         width: 100%;
     }
 
+    .sin-tarea1{
+        width: 180px;
+        height: 180px;
+        font-size: 20px;
+        padding-left: 6%;
+    }
+    .sin-tarea{
+        width: 180px;
+        height: 180px;
+        font-size: 20px;
+        padding-left: 4%;
+        position: relative;
+        left: 23%;
+    }
+    .rosa{
+        width: 60%;
+        height: 60%;
+    }
 }

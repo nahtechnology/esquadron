@@ -418,12 +418,6 @@ h1 + div > div > p{
     top: 10%;
 }
 
-form>input+span+div{
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;
-}
-
 form>input+span+div>input{
     margin-left: 10px;
 }
