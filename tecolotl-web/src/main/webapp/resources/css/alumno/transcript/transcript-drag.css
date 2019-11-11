@@ -189,10 +189,25 @@ li>form>input + div + div>input{
     left: 34%;
 }
 
+@media screen and (max-width: 1024px){
+    .sin-tarea{
+        width: 190px;
+        height: 190px;
+        font-size: 20px;
+        padding-left: 2%;
+    }
+}
+
 @media screen and (max-width: 768px){
     .sin-tarea1{
         width: 165px;
         height: 165px;
+        font-size: 20px;
+        padding-left: 2%;
+    }
+    .sin-tarea{
+        width: 180px;
+        height: 180px;
         font-size: 20px;
         padding-left: 2%;
     }
