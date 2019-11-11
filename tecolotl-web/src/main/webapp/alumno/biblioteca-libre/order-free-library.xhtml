@@ -84,21 +84,29 @@
                          </ui:repeat>
                      </ul>
                      <ul class="uk-switcher uk-margin scroll-drag">
-                         <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramatica">
+                         <ui:repeat value="#{gramaticaBibliotecaLibreControlador.gramaticaModeloLista}" var="gramatica" varStatus="conteo">
                              <li>
                                  <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
                                      <span><h:outputText value="#{gramatica.palabra}" escape="false" /></span>
                                  </h:panelGroup>
+                                 <div id="calificacion-respuesta" class="uk-hidden">
+
+                                 </div>
+                                 <div class="uk-flex uk-flex-center">
+                                     <button class="boton-enviar" data-indice="#{conteo.index}">Score</button>
+                                 </div>
                              </li>
                          </ui:repeat>
                      </ul>
                  </h:panelGroup>
              </div>
         </div>
+
         <div class="uk-flex uk-flex-center">
             <h:button outcome="atras" styleClass="boton-enviar uk-margin-medium-right" value="#{boton['back']}"/>
             <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
         </div>
+
 
         <h:outputScript library="js" name="/alumno/order-free-library.js"/>
     </ui:define>

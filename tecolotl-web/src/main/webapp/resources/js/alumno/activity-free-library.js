@@ -46,11 +46,21 @@ function calificar() {
     var score=document.createElement('div');
     var cajaRespuestaAlumno = document.querySelectorAll('.trancript-contenedor .respuesta-drag');
     var respuestaAlumno = [],contador=0,puntaje;
-    cajaRespuestaAlumno.forEach(function (respuesta) {
+    cajaRespuestaAlumno.forEach(function (respuesta,index) {
         respuestaAlumno.push(respuesta.innerHTML);
     });
+
+    if(respuestaAlumno.length !== respuestas.length){
+        UIkit.modal.alert('Necesitas llenar todas las respuestas.');
+        return false;
+    }
+
+    //verificar que esten contestadas
+
+
     for (var inicio = 0; inicio < respuestas.length; inicio++){
         console.log(respuestaAlumno[inicio] + '=' + respuestas[inicio]);
+
         if(respuestaAlumno[inicio] === respuestas[inicio]){
             contador++;
             cajaRespuestaAlumno[inicio].style.backgroundColor="#2ECC71";

@@ -12,13 +12,19 @@
         </ui:define>
         <ui:define name="contenido">
             <div class="centrado" >
+                <h:form styleClass="uk-flex uk-flex-center">
+                <h:selectOneMenu value="" styleClass="uk-select">
+                    <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
+                </h:selectOneMenu>
+                </h:form>
                 <div class="contenedor ">
-                    <h5 class="nombre-alumno letra-inicio uk-margin-small-bottom">Jose Luis Morales</h5>
+<!--                    <h5 class="nombre-alumno letra-inicio uk-margin-small-bottom">Jose Luis Morales</h5>-->
                     <c:forEach begin="1" end="28" var="indice">
                         <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
                     </c:forEach>
                 </div>
                 <div class="uk-margin-small-top uk-flex uk-flex-center">
+
                     <h:link  outcome="dashboard" styleClass=" boton-escuadron-base-secundary " value="Aceptar"/>
                 </div>
             </div>

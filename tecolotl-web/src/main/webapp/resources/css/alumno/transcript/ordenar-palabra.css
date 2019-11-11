@@ -48,3 +48,19 @@
 .menu-ordenar > * > :first-child:hover{
     border-radius: 50%;
 }
+
+#calificacion-respuesta{
+    width: 220px;
+    height: 170px;
+    background: url("#{resource['img/alumno/pop-art/mensaje6.svg']}") no-repeat center center/100% 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    color: #2ECC71;
+    flex-wrap: wrap;
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
