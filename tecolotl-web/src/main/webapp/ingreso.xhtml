@@ -16,53 +16,58 @@
     <div class="uk-section">
         <div class="uk-container uk-container-large">
           <form action="j_security_check" method="post" uk-filter="target: .form-filter">
-              <div class="uk-flex uk-flex-center">
-                  <h:selectOneMenu value="" styleClass="uk-select">
-                      <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
-                  </h:selectOneMenu>
-              </div>
+
             <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
                 <li uk-filter-control=".alumno" class="uk-active"><a href="#">Alumno</a></li>
                 <li uk-filter-control=".profesor"><a href="#">Profesor</a></li>
             </ul>
             <ul class="form-filter">
                 <li class="alumno">
+                    <div class="uk-flex uk-flex-center uk-margin-large-bottom">
+                        <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
+                            <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
+                        </h:selectOneMenu>
+                    </div>
                     <div class="contenedor uk-flex uk-flex-center">
-                        <!--                    <h5 class="nombre-alumno letra-inicio uk-margin-small-bottom">Jose Luis Morales</h5>-->
                         <c:forEach begin="1" end="28" var="indice">
                             <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
                         </c:forEach>
                     </div>
                     <div class="uk-margin-small-top uk-flex uk-flex-center">
-                        <button class=" boton-escuadron-base-secundary ">Aceptar</button>
+                        <button class="uk-button uk-button-primary uk-border-rounded">Aceptar</button>
                     </div>
                 </li>
                 <li class="profesor">
-                    <div class="contenedor-profesor uk-flex uk-flex-center">
-                        <div>
-                            <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
-                            <div class="uk-margin">
+                    <div class="uk-flex uk-flex-center uk-margin-large-bottom" >
+                        <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
+                            <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
+                        </h:selectOneMenu>
+                    </div>
+                    <div class="">
+                        <div class="contenedor-profesor uk-padding-small">
+                            <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo uk-margin-auto-right uk-margin-auto-left" pt:uk-svg=""/>
+                            <div class="uk-margin-small-bottom">
                                 <div class="uk-inline">
                                     <a class="uk-form-icon" uk-icon="icon: user"/>
-                                    <input class="uk-input uk-border-rounded" placeholder="apodo" name="j_username"/>
+                                    <input  class="uk-input uk-border-rounded" placeholder="apodo" name="j_username"/>
                                 </div>
                             </div>
-                            <div class="uk-margin">
+                            <div class="uk-margin-small-bottom">
                                 <div class="uk-inline">
                                     <a class="uk-form-icon" uk-icon="icon: lock"/>
-                                    <input class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
+                                    <input  class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
                                 </div>
                             </div>
-                            <div class="uk-margin">
-                                <select class="uk-select uk-border-rounded selector">
+                            <div class="uk-margin-small-bottom">
+                                <select class="uk-select uk-border-rounded">
                                     <option>opcion1</option>
                                     <option>opcion2</option>
                                     <option>opcion3</option>
                                 </select>
                             </div>
-                            <input class="uk-button uk-button-primary uk-border-rounded boton" type="submit" value="enviar"/>
-                            <a href="#">Se me olvido mi contraseña</a>
-                            <a href="#">No tengo una cuenta</a>
+                            <input class="uk-button uk-button-primary uk-border-rounded" type="submit" value="enviar"/>
+                            <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
+                            <a href="#" class="uk-text-center">No tengo una cuenta</a>
                         </div>
                     </div>
                 </li>

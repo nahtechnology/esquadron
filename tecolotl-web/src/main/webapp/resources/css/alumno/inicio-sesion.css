@@ -6,15 +6,19 @@
     align-items: center;
     grid-column-gap: 8px;
     grid-row-gap: 8px;
+    width: 610px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 .contenedor img {
     width: 40px;
     height: 40px;
     transition: height 1s, width 1s;
     cursor: pointer;
-
+    border-radius: 8px;
 }
 
 .contenedor img:hover {
@@ -41,7 +45,7 @@
 
 }
 .letra-inicio {
-    font-family: Sniglet, 'Arial Black';
+    font-family: Sniglet, 'Arial Blac', sans-serif;
     font-size: 20px !important;
     color:#000;
 }
