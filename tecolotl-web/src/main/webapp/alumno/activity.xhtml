@@ -172,7 +172,7 @@
                                 </h:panelGroup>
                                 <h:graphicImage library="img" styleClass="fin1 mov1" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
-                                <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" style="" onclick="return recuperaDatos(event)" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" onclick="return recuperaDatos(event)" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
                                     <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
                                 </h:commandButton>
                             </h:form>
