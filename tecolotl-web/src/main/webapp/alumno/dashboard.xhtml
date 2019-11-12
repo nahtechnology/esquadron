@@ -44,8 +44,11 @@
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
                     <ul >
-                        <li><a href="#" class="uk-text-capitalize">#{alumno['for.all.views.profile']}</a></li>
-                        <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
+                        <li>
+                            <h:form>
+                                <h:commandLink styleClass="uk-text-capitalize" action="#{alumnoControlador.cerrarSesion()}" value="#{etiqueta['close.sesion']}"/>
+                            </h:form>
+                        </li>
                     </ul>
                 </div>
             </div>

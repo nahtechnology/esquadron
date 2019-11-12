@@ -19,6 +19,7 @@ import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -107,6 +108,7 @@ public class AlumnoSesionBeanTest {
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
                 .addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -169,4 +171,19 @@ public class AlumnoSesionBeanTest {
         Assert.assertNotNull(detalleAlumnoModelo.getApellidoPaterno());
         Assert.assertNotNull(detalleAlumnoModelo.getApellidoMaterno());
     }
+
+    @Test
+    public void buscaApodo() {
+        AlumnoModelo alumnoModelo = alumnoSesionBean.busca("jonhas");
+        Assert.assertNotNull(alumnoModelo);
+        Assert.assertNotNull(alumnoModelo.getId());
+        Assert.assertNotNull(alumnoModelo.getNacimiento());
+        Assert.assertNotNull(alumnoModelo.getCorreoPadreFamilia());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo());
+        Assert.assertNotNull(alumnoModelo.getNivelLenguajeModelo().getValor());
+        Assert.assertNotNull(alumnoModelo.getApellidoMaterno());
+        Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
+        Assert.assertNotNull(alumnoModelo.getApodo());
+    }
+
 }

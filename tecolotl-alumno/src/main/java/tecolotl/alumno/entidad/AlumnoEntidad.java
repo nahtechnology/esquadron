@@ -22,8 +22,10 @@ import java.util.*;
         query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno"),
     @NamedQuery(
         name = "AlumnoEntidad.existeApodo",
-        query = "SELECT count(a.id) FROM AlumnoEntidad a WHERE a.apodo = :apodo"
-    )
+        query = "SELECT count(a.id) FROM AlumnoEntidad a WHERE a.apodo = :apodo"),
+    @NamedQuery(
+        name = "AlumnoEntidad.buscaApodo",
+        query = "SELECT a FROM AlumnoEntidad a WHERE a.apodo = :apodo")
 })
 public class AlumnoEntidad extends PersonaEntidad {
 

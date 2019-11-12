@@ -11,9 +11,11 @@ import tecolotl.alumno.sesion.TareaSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -34,13 +36,19 @@ public class AlumnoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        alumnoModelo = alumnoSesionBean.busca(2);
-        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(2);
+        Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+        alumnoModelo = alumnoSesionBean.busca(principal.getName());
+        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId());
     }
 
     public String seleccion(TareaActividadModelo tareaActividadModelo){
         this.tareaActividadModelo = tareaActividadModelo;
         return "transcript";
+    }
+
+    public String cerrarSesion() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml";
     }
 
     public String actividadBiliotecaLibre(String idActividad) {
