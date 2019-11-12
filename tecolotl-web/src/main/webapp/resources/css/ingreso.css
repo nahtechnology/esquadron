@@ -1,7 +1,7 @@
 *{
     box-sizing: border-box;
 }
-.contenedor{
+.contenedor-profesor{
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 8px;
     display: flex;
@@ -30,9 +30,6 @@
 
 body{
     background: linear-gradient(to bottom right, royalblue, purple) ;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
 }
 
@@ -45,9 +42,12 @@ a:hover {
     color: purple;
 }
 
+ul{
+    list-style: none;
+}
 
 @media screen and (max-width: 360px){
-    .contenedor{
+    .contenedor-profesor{
         width: 100% !important;
         margin: 0 10px !important;
         box-sizing: border-box !important;
