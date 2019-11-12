@@ -136,7 +136,22 @@
         </navigation-case>
     </navigation-rule>
 
+
     <!--    biblioteca libre    -->
+    <navigation-rule>
+        <from-view-id>/alumno/glossary.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>free-library</from-outcome>
+            <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/alumno/select-mindmap.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>free-library</from-outcome>
+            <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
     <navigation-rule>
         <from-view-id>/alumno/biblioteca-libre/free-library.xhtml</from-view-id>
         <navigation-case>

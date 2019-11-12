@@ -85,10 +85,12 @@
                         <h:outputText value="#{actividadBibliotecaLibre.transcripcion}" escape="false" />
                     </div>
                 </h:panelGroup>
-                    <div class="uk-flex uk-flex-center uk-margin-large-bottom">
+                    <div class="uk-flex uk-flex-center uk-margin-small-bottom">
                         <button  class="boton-enviar ">SCORE</button>
                     </div>
-                <h:button value="#{boton['next']}" styleClass="boton-enviar " outcome="siguiente"/>
+                <div class="uk-flex uk-flex-center">
+                    <h:button value="#{boton['next']}" styleClass="boton-enviar " outcome="siguiente"/>
+                </div>
 
             </div>
         </div>

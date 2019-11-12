@@ -93,19 +93,20 @@
 
                                  </div>
                                  <div class="uk-flex uk-flex-center">
-                                     <button class="boton-enviar" data-indice="#{conteo.index}">Score</button>
+                                     <button class="boton-enviar" data-indice="#{conteo.index}">SCORE</button>
                                  </div>
                              </li>
                          </ui:repeat>
                      </ul>
                  </h:panelGroup>
+                 <div class="uk-flex uk-flex-center">
+                     <h:button outcome="atras" styleClass="boton-enviar uk-margin-medium-right" value="#{boton['back']}"/>
+                     <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
+                 </div>
              </div>
         </div>
 
-        <div class="uk-flex uk-flex-center">
-            <h:button outcome="atras" styleClass="boton-enviar uk-margin-medium-right" value="#{boton['back']}"/>
-            <h:button outcome="siguiente" styleClass="boton-enviar" value="#{boton['next']}"/>
-        </div>
+
 
 
         <h:outputScript library="js" name="/alumno/order-free-library.js"/>

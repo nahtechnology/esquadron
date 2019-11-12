@@ -140,8 +140,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    position: relative;
-    left: calc(50% - 120px);
+    /*position: relative;*/
+    /*left: calc(50% - 120px);*/
 
 }
 svg .pregunta,svg .borde,svg .circulo{

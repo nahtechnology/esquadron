@@ -103,7 +103,7 @@
                             </h:panelGroup>
                             </ui:remove>
                             <h:panelGroup layout="block"
-                                          styleClass="respuesta-imagen  uk-sortable palabras"
+                                          styleClass="respuesta-imagen palabras"
                                           pt:ondrop="drop(event, this)"
                                           pt:ondragover="allowDrop(event)"
                                           >
@@ -122,7 +122,10 @@
                         </h:panelGroup>
                     </h:panelGroup>
                 </h:form>
-                <div class="uk-flex uk-flex-center">
+                <div class="uk-flex uk-flex-center uk-margin-medium-top">
+                   <button class="boton-enviar">SCORE</button>
+                </div>
+                <div class="uk-flex uk-flex-center uk-margin-small-top">
                     <h:button outcome="atras" styleClass="boton-enviar uk-margin-medium-right" value="#{boton['back']}"/>
                     <h:button outcome="terminar" styleClass="boton-enviar" value="#{boton['end']}"/>
                 </div>

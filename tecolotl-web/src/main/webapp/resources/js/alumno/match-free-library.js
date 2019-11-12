@@ -1,8 +1,11 @@
 var contenedorPalabras;
-var words,letra=[];
+var contenedorRespuestas;
+var words,letra=[],copyLetras,btnRespuesta;
 document.addEventListener('DOMContentLoaded', function (evt) {
     contenedorPalabras = document.querySelector('.respuesta-imagen');
+    btnRespuesta = document.querySelector('form + div > button');
     palabras(contenedorPalabras);
+    btnRespuesta.addEventListener('click',calificar)
 });
 
 function palabras(contenedor) {
@@ -10,6 +13,7 @@ function palabras(contenedor) {
     words.forEach(function (palabra) {
         letra.push(palabra.innerText)
     });
+    copyLetras = letra.slice();
     cajas(letra);
 
 }
@@ -19,6 +23,39 @@ function cajas(texto) {
     revolver(texto).forEach(function (palabra,indice) {
         words[indice].innerHTML = palabra;
     })
+}
+
+function calificar() {
+    var imgRespuesta = document.createElement('div');
+    var resContent = document.createElement('span');
+    var contPuntaje = document.querySelector('.respuesta-imagen');
+    var answer = [],conta = 0,puntaje;
+    var estiloContenedor = document.querySelectorAll('.contenedor-imagen .oraciones-relacion-img');
+    contenedorRespuestas = document.querySelectorAll('.contenedor-imagen .oraciones-relacion-img .palabra-imagen');
+    contenedorRespuestas.forEach(function (texto) {
+        answer.push(texto.innerHTML);
+    });
+    if(answer.length !== letra.length){
+        UIkit.modal.alert('Necesitas llenar todas las respuestas.');
+        return false;
+    }
+    for (var indice = 0; indice < letra.length;indice++){
+       if (answer[indice] === copyLetras[indice] ) {
+           conta++;
+           contenedorRespuestas[indice].style.backgroundColor="transparent";
+           estiloContenedor[indice].style.backgroundColor="#2ECC71";
+       }else {
+           contenedorRespuestas[indice].style.backgroundColor="transparent";
+           estiloContenedor[indice].style.backgroundColor="#E74C3C";
+       }
+    }
+
+    puntaje = Math.round((conta*100)/letra.length);
+    resContent.innerHTML= 'Score:' + puntaje + '%';
+    imgRespuesta.appendChild(resContent);
+    imgRespuesta.classList.add('puntaje');
+    imgRespuesta.style.color="#2ECC71";
+    contPuntaje.appendChild(imgRespuesta);
 }
 
 function revolver(arreglo) {

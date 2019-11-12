@@ -69,7 +69,8 @@ function calificar() {
         }
     }
     puntaje = (contador * 100) / respuestas.length;
-    score.innerHTML= 'Score: ' + Math.round(puntaje);
+    score.innerHTML= 'Score: ' + Math.round(puntaje) + '%';
     score.classList.add('puntaje');
+    score.style.color='#2ECC71';
     document.querySelector('.contenedor-respuesta').appendChild(score);
 }
