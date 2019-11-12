@@ -78,7 +78,8 @@
     box-sizing: border-box;
     padding: 8px;
     overflow: auto;
-
+    display: flex;
+    flex-direction: column;
 }
 .respuesta{
     height: auto;
