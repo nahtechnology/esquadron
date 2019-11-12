@@ -23,36 +23,37 @@
                         </h:selectOneMenu>
                     </div>
                 </ui:remove>
-                <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
+                <ul class="login-menu uk-flex uk-flex-center">
                     <li uk-filter-control=".alumno" class="uk-active"><a href="#">Alumno</a></li>
                     <li uk-filter-control=".profesor"><a href="#">Profesor</a></li>
                 </ul>
                 <ul class="form-filter">
                     <li class="alumno">
-                        <div class="contenedor uk-flex uk-flex-center">
+                        <div class="contenedor uk-flex uk-flex-center uk-margin-medium-bottom">
                             <c:forEach begin="1" end="28" var="indice">
                                 <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
                             </c:forEach>
                         </div>
-                        <div class="uk-margin-small-top uk-flex uk-flex-center">
-                            Apodo: <input type="text" name="j_username"/>
+                        <div class=" uk-flex uk-flex-center">
+                            <span style="color: white">Nickname:</span><input  name="j_username" class="uk-input"/>
                             <input type="hidden" name="j_password"/>
-                            <input type="submit" value="#{boton['submit']}"/>
+                            <input type="submit" value="#{boton['submit']}" class="uk-button uk-button-primary"/>
                         </div>
                     </li>
                     <li class="profesor">
-                        <div class="uk-flex uk-flex-center uk-margin-large-bottom" >
-                            <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
-                                <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
-                            </h:selectOneMenu>
-                        </div>
+                        <ui:remove>
+                            <div class="uk-flex uk-flex-center uk-margin-large-bottom" >
+                                <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
+                                    <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </ui:remove>
                         <div class="contenedor-profesor uk-flex uk-flex-center">
-                            <div>
                                 <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
                                 <div class="uk-margin-small-bottom">
                                     <div class="uk-inline">
                                         <a class="uk-form-icon" uk-icon="icon: user"/>
-                                        <input class="uk-input uk-border-rounded" placeholder="apodo" name="j_username"/>
+                                        <input class="uk-input uk-border-rounded" placeholder="Nickname" name="j_username"/>
                                     </div>
                                 </div>
                                 <div class="uk-margin-small-bottom">
@@ -62,7 +63,7 @@
                                     </div>
                                 </div>
                                 <div class="uk-margin-small-bottom">
-                                    <select class="uk-select uk-border-rounded selector">
+                                    <select class="uk-select uk-border-rounded ">
                                         <option>opcion1</option>
                                         <option>opcion2</option>
                                         <option>opcion3</option>
@@ -71,7 +72,6 @@
                                 <input class="uk-button uk-button-primary uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
                                 <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
                                 <a href="#" class="uk-text-center">No tengo una cuenta</a>
-                            </div>
                         </div>
                     </li>
                 </ul>
