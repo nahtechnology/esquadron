@@ -55,14 +55,15 @@
 	<context-param>
 		<description>Multiples archivos de configuración para la navegación</description>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
-		<param-value>/WEB-INF/faces-config.xml,
+		<param-value>
+			/WEB-INF/faces-config.xml,
             /WEB-INF/alumno/reglas-navegacion.xml,
             /WEB-INF/profesor/reglas-navegacion.xml
 		</param-value>
 	</context-param>
 
 	<session-config>
-		<session-timeout>120</session-timeout>
+		<session-timeout>30</session-timeout>
 	</session-config>
 
 	<!--  restriccion de seguridad  -->
@@ -105,7 +106,7 @@
 		<realm-name>tecolotl-realm</realm-name>
 		<form-login-config>
 			<form-login-page>/ingreso.xhtml</form-login-page>
-			<form-error-page>/ingreso.xhtml?error</form-error-page>
+			<form-error-page>/ingreso.xhtml?error=nologin</form-error-page>
 		</form-login-config>
 	</login-config>
 

@@ -13,13 +13,21 @@ function loginImagen(imagenes) {
     });
 }
 
-function cargaContrasenia(imagenes) {
-    seleccionados = [];
-    for (i = 0; i < imagenes.length; i++) {
+function cargaContrasenia(evento) {
+    let seleccionados = [];
+    let imagenes = alumno.querySelectorAll('img');
+    for (let i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
             x = Math.floor(i / 7);
             y = i % 7;
             seleccionados.push(x.toString().concat(':').concat(y.toString()));
         }
+    }
+    if (seleccionados.length === 0) {
+        UIkit.modal.alert('Estimado usuario, de favor seleccionar una contraseña');
+        return false;
+    } else {
+        alumno.querySelector('input[type=hidden]').value = seleccionados.join(',');
+        return true;
     }
 }
