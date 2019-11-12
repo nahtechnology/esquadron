@@ -37,7 +37,7 @@
                         <div class=" uk-flex uk-flex-center">
                             <span style="color: white">Nickname:</span><input  name="j_username" class="uk-input"/>
                             <input type="hidden" name="j_password"/>
-                            <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia(event)" class="uk-button uk-button-primary"/>
+                            <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia(event)" class="uk-button boton"/>
                         </div>
                         <h:outputText value="Usuario o contraseña incorrectos, por favor intenta de nuevo"
                                       styleClass="uk-margin-small-top"
@@ -72,7 +72,7 @@
                                         <option>opcion3</option>
                                     </select>
                                 </div>
-                                <input class="uk-button uk-button-primary uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
+                                <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
                                 <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
                                 <a href="#" class="uk-text-center">No tengo una cuenta</a>
                         </div>

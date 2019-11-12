@@ -33,7 +33,9 @@
 }
 
 .boton{
-    width: 100%;
+    /*background-color: #242C33;*/
+    background: linear-gradient(to bottom right,#31B7F5 , #AF08F3 );
+    color: white;
 }
 
 body{

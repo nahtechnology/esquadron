@@ -83,11 +83,9 @@
     font-family: 'Sniglet', sans-serif;
 }
 .uk-modal-footer button{
-    opacity: 0.5;
+    background: linear-gradient(to bottom right,#31B7F5 , #AF08F3 ); !important;
     border-radius: 8px;
 }
-
-
 
 @media screen and (min-width: 768px){
     .contenedor{
