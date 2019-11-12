@@ -15,19 +15,21 @@ public class EscuelaControlador {
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
 
+    private List<EscuelaBaseModelo> escuelaBaseModeloLista;
+
     public String busca(String claveCentroTrabajo) {
         return escuelaSesionBean.nombre(claveCentroTrabajo);
     }
 
-    public List<EscuelaBaseModelo> busca(){
-           return escuelaSesionBean.nombre();
+    public void busca(){
+        escuelaBaseModeloLista = escuelaSesionBean.nombre();
     }
 
-    public EscuelaSesionBean getEscuelaSesionBean() {
-        return escuelaSesionBean;
+    public List<EscuelaBaseModelo> getEscuelaBaseModeloLista() {
+        return escuelaBaseModeloLista;
     }
 
-    public void setEscuelaSesionBean(EscuelaSesionBean escuelaSesionBean) {
-        this.escuelaSesionBean = escuelaSesionBean;
+    public void setEscuelaBaseModeloLista(List<EscuelaBaseModelo> escuelaBaseModeloLista) {
+        this.escuelaBaseModeloLista = escuelaBaseModeloLista;
     }
 }

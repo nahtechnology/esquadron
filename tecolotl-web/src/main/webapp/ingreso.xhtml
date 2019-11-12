@@ -15,64 +15,67 @@
 <h:body>
     <div class="uk-section">
         <div class="uk-container uk-container-large">
-          <form action="j_security_check" method="post" uk-filter="target: .form-filter">
-
-            <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
-                <li uk-filter-control=".alumno" class="uk-active"><a href="#">Alumno</a></li>
-                <li uk-filter-control=".profesor"><a href="#">Profesor</a></li>
-            </ul>
-            <ul class="form-filter">
-                <li class="alumno">
+            <form action="j_security_check" method="post" uk-filter="target: .form-filter">
+                <ui:remove>
                     <div class="uk-flex uk-flex-center uk-margin-large-bottom">
-                        <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
-                            <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
+                        <h:selectOneMenu value="" styleClass="uk-select">
+                            <f:selectItems value="#{escuelaControlador.escuelaBaseModeloLista}" var="escuela" itemLabel="#{escuela.nombre}" itemValue="#{escuela.claveCentroTrabajo}"/>
                         </h:selectOneMenu>
                     </div>
-                    <div class="contenedor uk-flex uk-flex-center">
-                        <c:forEach begin="1" end="28" var="indice">
-                            <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
-                        </c:forEach>
-                    </div>
-                    <div class="uk-margin-small-top uk-flex uk-flex-center">
-                        <button class="uk-button uk-button-primary uk-border-rounded">Aceptar</button>
-                    </div>
-                </li>
-                <li class="profesor">
-                    <div class="uk-flex uk-flex-center uk-margin-large-bottom" >
-                        <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
-                            <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
-                        </h:selectOneMenu>
-                    </div>
-                    <div class="">
-                        <div class="contenedor-profesor uk-padding-small">
-                            <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo uk-margin-auto-right uk-margin-auto-left" pt:uk-svg=""/>
-                            <div class="uk-margin-small-bottom">
-                                <div class="uk-inline">
-                                    <a class="uk-form-icon" uk-icon="icon: user"/>
-                                    <input  class="uk-input uk-border-rounded" placeholder="apodo" name="j_username"/>
-                                </div>
-                            </div>
-                            <div class="uk-margin-small-bottom">
-                                <div class="uk-inline">
-                                    <a class="uk-form-icon" uk-icon="icon: lock"/>
-                                    <input  class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
-                                </div>
-                            </div>
-                            <div class="uk-margin-small-bottom">
-                                <select class="uk-select uk-border-rounded">
-                                    <option>opcion1</option>
-                                    <option>opcion2</option>
-                                    <option>opcion3</option>
-                                </select>
-                            </div>
-                            <input class="uk-button uk-button-primary uk-border-rounded" type="submit" value="enviar"/>
-                            <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
-                            <a href="#" class="uk-text-center">No tengo una cuenta</a>
+                </ui:remove>
+                <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center">
+                    <li uk-filter-control=".alumno" class="uk-active"><a href="#">Alumno</a></li>
+                    <li uk-filter-control=".profesor"><a href="#">Profesor</a></li>
+                </ul>
+                <ul class="form-filter">
+                    <li class="alumno">
+                        <div class="contenedor uk-flex uk-flex-center">
+                            <c:forEach begin="1" end="28" var="indice">
+                                <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
+                            </c:forEach>
                         </div>
-                    </div>
-                </li>
-            </ul>
-           </form>
+                        <div class="uk-margin-small-top uk-flex uk-flex-center">
+                            Apodo: <input type="text" name="j_username"/>
+                            <input type="hidden" name="j_password"/>
+                            <input type="submit" value="#{boton['submit']}"/>
+                        </div>
+                    </li>
+                    <li class="profesor">
+                        <div class="uk-flex uk-flex-center uk-margin-large-bottom" >
+                            <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
+                                <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <div class="contenedor-profesor uk-flex uk-flex-center">
+                            <div>
+                                <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
+                                <div class="uk-margin-small-bottom">
+                                    <div class="uk-inline">
+                                        <a class="uk-form-icon" uk-icon="icon: user"/>
+                                        <input class="uk-input uk-border-rounded" placeholder="apodo" name="j_username"/>
+                                    </div>
+                                </div>
+                                <div class="uk-margin-small-bottom">
+                                    <div class="uk-inline">
+                                        <a class="uk-form-icon" uk-icon="icon: lock"/>
+                                        <input class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
+                                    </div>
+                                </div>
+                                <div class="uk-margin-small-bottom">
+                                    <select class="uk-select uk-border-rounded selector">
+                                        <option>opcion1</option>
+                                        <option>opcion2</option>
+                                        <option>opcion3</option>
+                                    </select>
+                                </div>
+                                <input class="uk-button uk-button-primary uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
+                                <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
+                                <a href="#" class="uk-text-center">No tengo una cuenta</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
         </div>
     </div>
     <h:outputScript library="js" name="uikit.js"/>
