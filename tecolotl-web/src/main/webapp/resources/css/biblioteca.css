@@ -50,9 +50,10 @@ li .A1{
 .A1>div>div>.uk-card-footer > div > div > span > input {
     background-color: var(--psecundary-option-three);
     color: white;
+    width: 80px;
 }
 .A1>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .A1>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--psecundary-option-three);
@@ -68,9 +69,10 @@ li .A2{
 .A2>div>div>.uk-card-footer > div > div > span > input{
     background-color: #D35400;
     color: white;
+    width: 80px;
 }
 .A2>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .A2>div>div>.uk-card-header>div>div>:nth-child(3){
     color: #D35400;
@@ -86,9 +88,10 @@ li .A1A2{
 .A1A2>div>div>.uk-card-footer > div > div > span > input{
     background: linear-gradient(to right, var(--psecundary-option-three), #D35400);
     color: white;
+    width: 80px;
 }
 .A1A2>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .A1A2>div>div>.uk-card-header>div>div>:nth-child(4){
     background: -webkit-linear-gradient(top right, var(--psecundary-option-three), #D35400);
@@ -107,9 +110,10 @@ li .B1{
 .B1>div>div>.uk-card-footer > div > div > span > input{
     background-color: var(--tsecundary-option-one) !important;
     color: white;
+    width: 80px;
 }
 .B1>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .B1>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--tsecundary-option-one) !important;
@@ -125,9 +129,10 @@ li .B2{
 .B2>div>div>.uk-card-footer > div > div > span > input{
     background-color: var(--asecundary-option-one);
     color: white;
+    width: 80px;
 }
 .B2>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .B2>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--asecundary-option-one);
@@ -143,9 +148,10 @@ li .C1{
 .C1>div>div>.uk-card-footer > div > div > span > input {
     background-color: var(--color-nav-primary);
     color: white;
+    width: 80px;
 }
 .C1>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .C1>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--color-nav-primary);
@@ -161,9 +167,10 @@ li .C2{
 .C2>div>div>.uk-card-footer > div > div > span > input {
     background-color: var(--color-peligro);
     color: white;
+    width: 80px;
 }
 .C2>div>div>.uk-card-footer > div > div > span{
-    padding-left: 11px;
+    padding-left: 130px;
 }
 .C2>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--color-peligro);
@@ -274,3 +281,5 @@ li .C2{
 .cat-txt{
     color: black;
 }
+
+
