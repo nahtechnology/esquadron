@@ -64,45 +64,57 @@
 	<session-config>
 		<session-timeout>120</session-timeout>
 	</session-config>
-	<!--
-        <security-constraint>
 
-            <web-resource-collection>
-                <web-resource-name>Paginas administrativas</web-resource-name>
-                <description>Proteccion para las vistas de la administracion</description>
-                <url-pattern>/administracion/*</url-pattern>
-                <http-method>GET</http-method>
-                <http-method>POST</http-method>
-                <http-method>PUT</http-method>
-                <http-method>DELETE</http-method>
-                <http-method>OPTIONS</http-method>
-            </web-resource-collection>
+	<!--  restriccion de seguridad  -->
 
-            <auth-constraint>
-                <description>Rol para al administracion</description>
-                <role-name>administrador</role-name>
-            </auth-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>seguridad-alumno</web-resource-name>
+			<url-pattern>/alumno/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>el usuario alumno</description>
+			<role-name>alumno</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 
-            <user-data-constraint>
-                <description>Como los datos del usuario deben ser transmitidos</description>
-                <transport-guarantee>NONE</transport-guarantee>
-            </user-data-constraint>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>seguridad-profesor</web-resource-name>
+			<url-pattern>/profesor/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>usuario-profesor</description>
+			<role-name>profesor</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 
-        </security-constraint>
+	<!--  autentificacion por formulario  -->
+	<login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>tecolotl-realm</realm-name>
+		<form-login-config>
+			<form-login-page>/ingreso.xhtml</form-login-page>
+			<form-error-page>/ingreso.xhtml?error</form-error-page>
+		</form-login-config>
+	</login-config>
 
-        <login-config>
+	<!--  roles  -->
+	<security-role>
+		<role-name>alumno</role-name>
+	</security-role>
+	<security-role>
+		<role-name>profesor</role-name>
+	</security-role>
 
-            <auth-method>FORM</auth-method>
-
-            <form-login-config>
-                <form-login-page>/ingreso.xhtml</form-login-page>
-                <form-error-page>/ingreso.xhtml</form-error-page>
-            </form-login-config>
-
-        </login-config>
-
-        <security-role>
-            <role-name>administrador</role-name>
-        </security-role>
-        -->
 </web-app>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jboss-web>
-<!--    <security-domain>java:/jaas/tecolotlLoginDB</security-domain>   -->
-<!--    <context-root>/</context-root>-->
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee" version="8.0">
     <context-root>/tecolotl</context-root>
-<!--    <virtual-host>www.e-squadron.com.mx</virtual-host>-->
+    <security-domain>aplicacionTecolotlDomain</security-domain>
 </jboss-web>

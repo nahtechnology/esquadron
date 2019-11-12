@@ -86,7 +86,6 @@
                                             <span class="cat-txt">
                                                 <h:outputText value="#{tareaActvidadModelo.asignacion}">
                                                     <f:convertDateTime locale="en_UK" timeStyle="short" type="date" dateStyle="full"/>
-
                                                 </h:outputText>
                                                 #{actividadAlumno2Controlador.buscaPregunta(tareaActvidadModelo.idActividad)}
                                             </span>
@@ -95,13 +94,12 @@
                                         <div class="uk-width-auto uk-text-right uk-text-muted">
                                             <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>
                                             <span class="uk-padding-small">#{tareaActvidadModelo.reproducciones}</span>
-
                                         </div>
                                     </h:panelGroup>
                                 </div>
                                 <div class="uk-card-media-top">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
-                                        <div id="#{tareaActvidadModelo.idActividad}" class="videoPlayer"></div>
+                                    <div id="#{tareaActvidadModelo.idActividad}" class="videoPlayer"></div>
                                 </div>
                                 <div style="" class="uk-card-body">
                                     <div class="uk-text-center mensaje1"><span class="mensaje1-1">#{alumno['activities.title.description.please.watch.the']}<br/>#{alumno['title.description.full.video']}</span></div>
