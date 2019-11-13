@@ -4,12 +4,6 @@ var searchQus= UIkit.util.$('.search-question');
 var filterBtn = UIkit.util.$$('li[data-uk-filter-control] a');
 var formEl = UIkit.util.$('#search-form');
 var debounce;
-var drag = UIkit.util.$('.trancript-contenedor .respuesta-transcript');
-
-UIkit.util.on(drag,'added',function () {
-	console.log('agregado')
-});
-
 
 UIkit.util.on(search, 'keyup', function() {
 	clearTimeout(debounce);
