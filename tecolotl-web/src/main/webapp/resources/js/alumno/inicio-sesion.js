@@ -24,7 +24,7 @@ function cargaContrasenia(evento) {
         }
     }
     if (seleccionados.length === 0) {
-        UIkit.modal.alert('Estimado usuario, de favor seleccionar una contraseña');
+        UIkit.modal.alert(mensaje);
         return false;
     } else {
         alumno.querySelector('input[type=hidden]').value = seleccionados.join(',');

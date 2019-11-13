@@ -52,35 +52,38 @@
                             </div>
                         </ui:remove>
                         <div class="contenedor-profesor uk-flex uk-flex-center">
-                                <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
-                                <div class="uk-margin-small-bottom">
-                                    <div class="uk-inline">
-                                        <a class="uk-form-icon" uk-icon="icon: user"/>
-                                        <input class="uk-input uk-border-rounded" placeholder="Nickname" name="j_username"/>
-                                    </div>
+                            <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
+                            <div class="uk-margin-small-bottom">
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon" uk-icon="icon: user"/>
+                                    <input class="uk-input uk-border-rounded" placeholder="Nickname" name="j_username"/>
                                 </div>
-                                <div class="uk-margin-small-bottom">
-                                    <div class="uk-inline">
-                                        <a class="uk-form-icon" uk-icon="icon: lock"/>
-                                        <input class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
-                                    </div>
+                            </div>
+                            <div class="uk-margin-small-bottom">
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon" uk-icon="icon: lock"/>
+                                    <input class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
                                 </div>
-                                <div class="uk-margin-small-bottom">
-                                    <select class="uk-select uk-border-rounded ">
-                                        <option>opcion1</option>
-                                        <option>opcion2</option>
-                                        <option>opcion3</option>
-                                    </select>
-                                </div>
-                                <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
-                                <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
-                                <a href="#" class="uk-text-center">No tengo una cuenta</a>
+                            </div>
+                            <div class="uk-margin-small-bottom">
+                                <select class="uk-select uk-border-rounded ">
+                                    <option>opcion1</option>
+                                    <option>opcion2</option>
+                                    <option>opcion3</option>
+                                </select>
+                            </div>
+                            <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
+                            <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
+                            <a href="#" class="uk-text-center">No tengo una cuenta</a>
                         </div>
                     </li>
                 </ul>
             </form>
         </div>
     </div>
+    <script type="application/javascript">
+        var mensaje = "#{alumno['login.valid.password']}";
+    </script>
     <h:outputScript library="js" name="uikit.js"/>
     <h:outputScript library="js" name="uikit-icons.js"/>
     <h:outputScript library="js" name="alumno/inicio-sesion.js"/>
