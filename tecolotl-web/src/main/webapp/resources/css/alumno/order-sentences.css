@@ -392,14 +392,12 @@
     height: 200px;
     background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
     position: absolute;
-    top: calc(50% - 125px);
-    left: calc(50% - 125px);
     z-index: 6;
 }
 
 .ubicado{
-    left: 11%;
-    top: 5%;
+    left: 58%;
+    top: 15%;
     transform: rotate(15deg);
 }
 
@@ -447,7 +445,7 @@ form>input+span+div>input{
         height: 100px;
     }
     .ubicado{
-        left: 16%;
+        left: 65%;
         top: 12%;
     }
 }
@@ -477,7 +475,7 @@ form>input+span+div>input{
         height: 80px;
     }
     .ubicado{
-        left: 2%;
+        left: 51%;
         top: 14%;
     }
 }
@@ -489,7 +487,8 @@ form>input+span+div>input{
     }
     h1 + div > div > p{
         font-size: 12px;
-        top: 18%;
+        top: 20%;
+        left: 17%;
     }
 
     .oraciones{
@@ -512,7 +511,7 @@ form>input+span+div>input{
         height: 60px;
     }
     .ubicado{
-        left: 3%;
+        left: 58%;
         top: 24%;
     }
 }
