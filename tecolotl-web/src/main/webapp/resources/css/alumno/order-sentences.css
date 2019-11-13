@@ -121,8 +121,11 @@
     float: left;
     display: flex;
     flex-wrap: wrap;
-    align-content: center;
-    /*justify-content: center;*/
+    -webkit-flex-wrap: wrap;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content:center ;
     color: black;
     font-size: 21px;
     font-weight: bold;
