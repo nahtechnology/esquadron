@@ -75,3 +75,20 @@
 .filtro-actividades ul{
     list-style: none;
 }
+@media screen and (max-width: 1024px){
+    .letra-titulo{
+        margin-top: 15%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .letra-titulo{
+        margin-top: 25%;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .letra-titulo{
+        margin-top: 25%;
+    }
+}

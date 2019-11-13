@@ -282,4 +282,78 @@ li .C2{
     color: black;
 }
 
+div>ul>li{
+    margin-top: 7px;
+}
 
+@media screen and (max-width: 1024px){
+    .A1>div>div>.uk-card-footer > div > div > span{
+        padding-left: 76px;
+    }
+    .A2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 76px;
+    }
+    .A1A2>div>div>.uk-card-footer > div > div > span {
+        padding-left: 76px;
+    }
+    .B1>div>div>.uk-card-footer > div > div > span {
+        padding-left: 76px;
+    }
+    .B2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 76px;
+    }
+    .C1>div>div>.uk-card-footer > div > div > span{
+        padding-left: 76px;
+    }
+    .C2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 76px;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .A1>div>div>.uk-card-footer > div > div > span{
+        padding-left: 290px;
+    }
+    .A2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 290px;
+    }
+    .A1A2>div>div>.uk-card-footer > div > div > span {
+        padding-left: 290px;
+    }
+    .B1>div>div>.uk-card-footer > div > div > span {
+        padding-left: 290px;
+    }
+    .B2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 290px;
+    }
+    .C1>div>div>.uk-card-footer > div > div > span{
+        padding-left: 290px;
+    }
+    .C2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 290px;
+    }
+}
+
+@media screen and (max-width: 450px){
+    .A1>div>div>.uk-card-footer > div > div > span{
+        padding-left: 100px;
+    }
+    .A2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 100px;
+    }
+    .A1A2>div>div>.uk-card-footer > div > div > span {
+        padding-left: 100px;
+    }
+    .B1>div>div>.uk-card-footer > div > div > span {
+        padding-left: 100px;
+    }
+    .B2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 100px;
+    }
+    .C1>div>div>.uk-card-footer > div > div > span{
+        padding-left: 100px;
+    }
+    .C2>div>div>.uk-card-footer > div > div > span{
+        padding-left: 100px;
+    }
+}
