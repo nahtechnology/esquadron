@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 
 function validaRespuestaImagen(evento) {
     if (relacionarImagen.querySelectorAll('.respuesta-imagen div').length !== 0) {
-        UIkit.modal.alert('No se puede enviar la respuesta hasta terminar de resolver');
+        UIkit.modal.alert(mensajeNoEnvio);
         return false;
     } else {
         relacionarImagen.querySelectorAll('.respuesta-imagen-contenedor > :nth-child(3)').forEach(function (respuesta) {
@@ -56,7 +56,7 @@ function respuestaEnvidad(data) {
             ordenable.querySelector('td:nth-child(2)').removeAttribute('uk-sortable');
         });
         data.source.disabled = true;
-        UIkit.notification("Respuesta enviada correctamente", {pos: 'top-right'});
+        UIkit.notification(mensajeEnviado, {pos: 'top-right'});
         var respondido = document.createElement('span');
         respondido.classList.add('realizado', 'movimiento1');
         respondido.textContent = 'Respondido';
@@ -103,7 +103,7 @@ function validaRespuestaCompletarOracion(evento) {
         formulario.querySelector('input[type=hidden]').value = respuesta.dataset.cardinalidad;
         return true;
     } else {
-        UIkit.modal.alert('No se puede enviar respuesta vacia');
+        UIkit.modal.alert(mensajeNoEnvio);
         return false;
     }
 }

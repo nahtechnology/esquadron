@@ -224,7 +224,7 @@
                                     <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                 </h:panelGroup>
                                 <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
-<!--                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>-->
+                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </div>
                                 <h:graphicImage library="img" styleClass="finalizado movimiento2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
@@ -245,6 +245,9 @@
             var player;
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
+            var mensajeEnviado = "#{alumno['send.message']}";
+            var mensajeError = "#{alumno['send.message.error']}";
+            var mensajeTrnascripcion = "#{alumno['send.message.transcript']}":
 
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
@@ -330,9 +333,6 @@
                     cambio.classList.add('boton-listo');
                     var div = document.createElement('div');
                     div.classList.add('realizado', 'movimiento');
-                    // var responder = document.createElement('span');
-                    // responder.textContent = "Responder";
-                    // div.appendChild(responder);
                     data.source.parentElement.parentElement.appendChild(div);
                 }
             }

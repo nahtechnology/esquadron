@@ -51,11 +51,7 @@ function transcripcionEnvidad(data) {
     if (data.status === 'success') {
         menuPrincipal.querySelector('li:first-child').setAttribute('uk-filter-control','.transcrip');
         data.source.disabled = true;
-        UIkit.notification("Se ha enviado de forma correcta tu respuesta", {pos: 'top-right'});
-        var respondido = document.createElement('span');
-        respondido.classList.add('realizado', 'movimiento1');
-        respondido.textContent = "Respondido";
-        answer.querySelector('.trancript-contenedor').appendChild(respondido);
+        UIkit.notification(mensajeEnviado, {pos: 'top-right'});
     }
 }
 
@@ -68,7 +64,7 @@ function validaContenido() {
         answer.querySelector('form input[type=hidden]:nth-child(2)').value = resp;
         return true;
     }
-    UIkit.modal.alert('Es necesario relacionar más ejercicios');
+    UIkit.modal.alert(mensajeError);
     return false;
 }
 
@@ -76,7 +72,7 @@ function eventoClickTransciptcion() {
     var video = menuPrincipal.querySelector('li:first-child');
     var respuestaTranscript = menuPrincipal.querySelector('li:nth-child(4)');
     if (video.dataset.respondiendo === 'false' && video.dataset.respuesta === 'vacio') {
-        UIkit.modal.confirm('Al selecionar esta tarea, no podrá selecciona la actividad de video o ver algun otro transcript.').then(function() {
+        UIkit.modal.confirm(mensajeTrnascripcion).then(function() {
             video.removeAttribute('uk-filter-control');
             menuPrincipal.querySelector('form input[type=hidden]:nth-child(2)').value = true;
             menuPrincipal.querySelector('form a').click();
