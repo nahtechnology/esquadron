@@ -549,7 +549,7 @@ iframe {
 
 /* Handle */
 .scroll-drag::-webkit-scrollbar-thumb {
-    background: rgb(52, 73, 94);
+    background: var(--turquesa-primary-color);
     border-radius: 10px;
 }
 

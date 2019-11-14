@@ -26,21 +26,6 @@
     text-decoration: underline;
 }
 
-.uk-tooltip {
-    max-width: 300px;
-    padding: 7px 5px;
-    background: var(--naranja-primary-color) !important;
-    border:solid 1px;
-    border-color: black;
-    border-radius: 3px;
-    color: #fff !important;
-    font-size: 14px;
-    font-weight: normal;
-    font-family: 'Sniglet', "Arial Black";
-}
-
-
-
 /* width */
 .scroll-alumno::-webkit-scrollbar {
     width: 10px;
