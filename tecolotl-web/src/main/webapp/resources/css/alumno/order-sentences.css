@@ -335,7 +335,7 @@
     height: 100%;
 }
 .complete-sentences ul:nth-child(2){
-    height: 180px;
+    height: 210px;
     border: 6px solid #D35400;
     color: white;
     font-weight: bold;
@@ -352,6 +352,7 @@
     min-width: 120px;
     display: inline-block;
     margin-left: 5px;
+    margin-top: 5px;
     border: #D35400 solid 3px;
     font-weight: bold;
     color: black;
@@ -364,7 +365,7 @@
     background-color: transparent;
     padding: 2px 0;
     min-width: 100px;
-    min-height: 20px;
+    min-height: 100px;
     display: inline-block;
     text-align: center;
     border-bottom: 3px solid white;
@@ -424,6 +425,10 @@ h1 + div > div > p{
 
 form>input+span+div>input{
     margin-left: 10px;
+}
+
+.mover-caja{
+    top: 10%;
 }
 
 @media screen and (max-width: 1024px) {
