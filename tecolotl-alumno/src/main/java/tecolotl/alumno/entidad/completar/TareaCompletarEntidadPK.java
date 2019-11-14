@@ -12,7 +12,7 @@ import java.util.StringJoiner;
 public class TareaCompletarEntidadPK implements Serializable {
     private CompletarEntidad completarEntidad;
     private TareaEntidad tareaEntidad;
-
+    private Short vuelta;
 
     @JoinColumn(name = "id_completar")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -32,6 +32,16 @@ public class TareaCompletarEntidadPK implements Serializable {
 
     public void setTareaEntidad(TareaEntidad tareaEntidad) {
         this.tareaEntidad = tareaEntidad;
+    }
+
+    @Basic
+    @Column(name = "vuelta")
+    public Short getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Short vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override

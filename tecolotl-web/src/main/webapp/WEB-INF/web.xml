@@ -67,7 +67,6 @@
 	</session-config>
 
 	<!--  restriccion de seguridad  -->
-
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>seguridad-alumno</web-resource-name>

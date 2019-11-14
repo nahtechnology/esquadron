@@ -228,29 +228,36 @@
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="contedor-oraciones" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"/>
+                    <h:form>
                             <div>
                                 <ul class="uk-subnav uk-subnav-pill uk-margin-top menu-ordenar" uk-switcher="">
                                     <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
                                         <li class="#{empty texto.oracion ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                     </ui:repeat>
                                 </ul>
-                                <ul class="uk-switcher uk-margin remplazar">
-                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
-                                        <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
-                                            <h:form>
-                                                <h:outputText value="#{tareaCompletarModelo.oracion}" escape="false"/>
-                                                <h:inputHidden value="#{tareaCompletarModelo.respuesta}" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
+
+                                    <ul class="uk-switcher uk-margin remplazar">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
+                                            <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
+                                                <h:panelGroup layout="block" styleClass="terminado" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
+                                                <h:outputText pt:data-resuelto="#{not empty tareaCompletarModelo.respuesta}"
+                                                              pt:data-respuesta="#{completarOracionesControlador.buscaPalabra(tareaCompletarModelo.respuesta)}"
+                                                              value="#{tareaCompletarModelo.oracion}"
+                                                              escape="false"/>
+                                                <h:inputHidden value="#{tareaCompletarModelo.respuesta}"/>
                                                 <h:commandButton styleClass="boton-enviar boton-trasladar"
                                                                  value="Send"
                                                                  onclick="return validaRespuestaCompletarOracion(event)"
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}" render="@form"/>
                                                 </h:commandButton>
-                                            </h:form>
-                                        </li>
-                                    </ui:repeat>
-                                </ul>
+
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+
                             </div>
+                    </h:form>
                         </li>
                     </ul>
                 </div>

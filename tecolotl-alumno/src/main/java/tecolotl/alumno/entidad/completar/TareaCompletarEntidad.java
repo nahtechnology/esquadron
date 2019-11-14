@@ -9,11 +9,16 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "tarea_completar", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "TareaCompletarEntidad.busca", query = "SELECT tce FROM TareaCompletarEntidad tce"),
-        @NamedQuery(
-                name = "TareaCompletarEntidad.buscaidTarea",
-                query = "SELECT tce FROM TareaCompletarEntidad tce JOIN FETCH tce.tareaCompletarEntidadPK.completarEntidad " +
-                        "WHERE tce.tareaCompletarEntidadPK.tareaEntidad.id = :idTarea")
+    @NamedQuery(name = "TareaCompletarEntidad.busca", query = "SELECT tce FROM TareaCompletarEntidad tce"),
+    @NamedQuery(
+        name = "TareaCompletarEntidad.buscaidTarea",
+        query = "SELECT tce FROM TareaCompletarEntidad tce JOIN FETCH tce.tareaCompletarEntidadPK.completarEntidad " +
+                "WHERE tce.tareaCompletarEntidadPK.tareaEntidad.id = :idTarea"),
+    @NamedQuery(
+        name = "TareaCompletarEntidad.respuesta",
+        query = "UPDATE TareaCompletarEntidad tc SET tc.respuesta = :respuesta WHERE tc.tareaCompletarEntidadPK.tareaEntidad.id = :idTarea AND " +
+                "tc.tareaCompletarEntidadPK.completarEntidad.id = :idCompletar AND tc.tareaCompletarEntidadPK.vuelta = :vuelta"
+    )
 })
 public class TareaCompletarEntidad {
 

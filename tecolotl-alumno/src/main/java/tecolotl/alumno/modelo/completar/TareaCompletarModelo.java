@@ -9,6 +9,7 @@ public class TareaCompletarModelo extends CompletarModelo {
 
     private Integer respuesta;
     private Date horaRespuesta;
+    private Short vuelta;
 
     public TareaCompletarModelo() {
     }
@@ -19,6 +20,7 @@ public class TareaCompletarModelo extends CompletarModelo {
 
     public TareaCompletarModelo(TareaCompletarEntidad tareaCompletarEntidad) {
         super(tareaCompletarEntidad.getTareaCompletarEntidadPK().getCompletarEntidad());
+        vuelta = tareaCompletarEntidad.getTareaCompletarEntidadPK().getVuelta();
         respuesta = tareaCompletarEntidad.getRespuesta();
         horaRespuesta = tareaCompletarEntidad.getHora_respuesta();
     }
@@ -37,6 +39,14 @@ public class TareaCompletarModelo extends CompletarModelo {
 
     public void setHoraRespuesta(Date horaRespuesta) {
         this.horaRespuesta = horaRespuesta;
+    }
+
+    public Short getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Short vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override

@@ -1,11 +1,9 @@
 package tecolotl.web.alumno;
 
-import tecolotl.alumno.modelo.completar.CompletarModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
 import tecolotl.alumno.sesion.CompletarSesionBean;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -13,8 +11,8 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
 
-@ViewScoped
 @Named
+@ViewScoped
 public class CompletarOracionesControlador implements Serializable {
 
     @Inject
@@ -34,14 +32,25 @@ public class CompletarOracionesControlador implements Serializable {
     }
 
     public void enviarRespuesta(Integer id) {
-        logger.info(id.toString());
         for (TareaCompletarModelo tareaCompletarModelo : tareaCompletarModeloLista) {
             if (tareaCompletarModelo.getId().compareTo(id) == 0) {
-                logger.info(tareaCompletarModelo.toString());
+                completarSesionBean.respuesta(tareaCompletarModelo, alumnoControlador.getTareaActividadModelo().getId());
                 break;
             }
         }
-        logger.info(tareaCompletarModeloLista.toString());
+    }
+
+    public String buscaPalabra(Integer id) {
+        String oracion;
+        if (id != null) {
+            for (TareaCompletarModelo tareaCompletarModelo : tareaCompletarModeloLista) {
+                if (tareaCompletarModelo.getId().compareTo(id) == 0) {
+                    oracion = tareaCompletarModelo.getOracion();
+                    return oracion.substring(oracion.indexOf("<span class=\"remover\">"), oracion.indexOf("</span>"));
+                }
+            }
+        }
+        return null;
     }
 
     public List<TareaCompletarModelo> getTareaCompletarModeloLista() {
@@ -53,3 +62,4 @@ public class CompletarOracionesControlador implements Serializable {
     }
 
 }
+

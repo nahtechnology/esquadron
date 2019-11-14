@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -35,5 +36,16 @@ public class CompletarSesionBean {
         TypedQuery<TareaCompletarEntidad> typedQuery = entityManager.createNamedQuery("TareaCompletarEntidad.buscaidTarea", TareaCompletarEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
         return typedQuery.getResultList().stream().map(TareaCompletarModelo::new).collect(Collectors.toList());
+    }
+
+
+    public int respuesta(@NotNull TareaCompletarModelo tareaCompletarModelo, @NotNull Integer idTarea) {
+        logger.fine(tareaCompletarModelo.toString());
+        Query query = entityManager.createNamedQuery("TareaCompletarEntidad.respuesta");
+        query.setParameter("idTarea", idTarea);
+        query.setParameter("idCompletar", tareaCompletarModelo.getId());
+        query.setParameter("vuelta", tareaCompletarModelo.getVuelta());
+        query.setParameter("respuesta", tareaCompletarModelo.getRespuesta());
+        return query.executeUpdate();
     }
 }
