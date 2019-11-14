@@ -84,6 +84,14 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
         this.contrasenia = contrasenia;
     }
 
+    public Character getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Character sexo) {
+        this.sexo = sexo;
+    }
+
     @Override
     public int compareTo(PersonaModelo personaModelo){
         return nombre.compareTo(personaModelo.nombre);

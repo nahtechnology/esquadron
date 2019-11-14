@@ -8,7 +8,6 @@
 
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="hamburguesa">
-
         <div class="color-nav uk-hidden@m">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
                 <div class="">
@@ -40,20 +39,20 @@
     </ui:define>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="" class="uk-border-circle profile-img" rendered="#{true}"/>
-            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="" class="uk-border-circle profile-img" rendered="#{false}"/>
+            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
+            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
             <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo}</h6>
             <div class="uk-position-relative uk-text-center uk-display-block">
-                <!--Modificar los datos para mostrar en el Alumno-->
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
-                <!-- user dropdown -->
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
-                    <ul >
-                        <li><a href="#" class="uk-text-capitalize">#{alumno['for.all.views.profile']}</a></li>
-                        <li><a href="#" class="uk-text-capitalize">#{etiqueta['close.sesion']}</a></li>
+                    <ul>
+                        <li>
+                            <h:form>
+                                <h:commandLink styleClass="uk-text-capitalize" action="#{alumnoControlador.cerrarSesion()}" value="#{etiqueta['close.sesion']}"/>
+                            </h:form>
+                        </li>
                     </ul>
                 </div>
-                <!-- /user dropdown -->
             </div>
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
@@ -228,13 +227,13 @@
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="contedor-oraciones" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"/>
-                            <div>
-                                <ul class="uk-subnav uk-subnav-pill uk-margin-top menu-ordenar" uk-switcher="">
-                                    <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
-                                        <li class="#{empty texto.oracion ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
-                                    </ui:repeat>
-                                </ul>
-
+                            <h:form>
+                                <div>
+                                    <ul class="uk-subnav uk-subnav-pill uk-margin-top menu-ordenar" uk-switcher="">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
+                                            <li class="#{empty texto.oracion ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
+                                        </ui:repeat>
+                                    </ul>
                                     <ul class="uk-switcher uk-margin remplazar">
                                         <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
@@ -254,9 +253,8 @@
                                             </li>
                                         </ui:repeat>
                                     </ul>
-
-                            </div>
-                    </h:form>
+                                </div>
+                            </h:form>
                         </li>
                     </ul>
                 </div>
