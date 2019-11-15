@@ -18,6 +18,7 @@ function parrafos(texto) {
          resp.classList.add('uk-sortable');
          resp.classList.add('respuesta-transcript');
          resp.setAttribute('uk-sortable','group: respuesta');
+         resp.setAttribute('data-indice',indice);
          resp.innerHTML=" ";
      });
      copyRespuesta = respuestas.slice();
