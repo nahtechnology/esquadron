@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
             break;
         }
     }
+    completarOracionRemueve();
+});
+
+function completarOracionRemueve() {
     palabras = completarOracion.querySelector('.contedor-oraciones');
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
         otro = parrafo.querySelector('span');
@@ -23,8 +27,8 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         } else {
             var palabra = document.createElement('span');
             palabra.textContent = otro.querySelector('span').textContent;
-            palabra.dataset.cardinalidad = otro.dataset.cardinalidad;
-            palabra.draggable=true;
+            palabra.dataset.cardinalidad = otro.parentNode.dataset.cardinalidad;
+            palabra.draggable = true;
             palabra.id="identificador"+indice;
             palabra.setAttribute('ondragstart','drag(event)');
             palabra.setAttribute('ondrop','return true');
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     answer = document.querySelector('.complete-sentences');
     agregaRespuestas(answer.querySelector('.remplazar'));
     agregaRespuesta();
-});
+}
 
 function validaRespuestaImagen(evento) {
     if (relacionarImagen.querySelectorAll('.respuesta-imagen div').length !== 0) {

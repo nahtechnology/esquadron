@@ -247,7 +247,12 @@
                                                                  value="Send"
                                                                  onclick="return validaRespuestaCompletarOracion(event)"
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
-                                                    <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}" render="@form"/>
+                                                    <f:ajax execute="@form"
+                                                            onevent="function funcion(data) {
+                                                                if (data.status === 'success') { completarOracionRemueve(); }
+                                                            }"
+                                                            listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}"
+                                                            render="@form"/>
                                                 </h:commandButton>
                                             </li>
                                         </ui:repeat>
