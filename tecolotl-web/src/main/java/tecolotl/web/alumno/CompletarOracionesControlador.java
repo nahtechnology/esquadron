@@ -32,10 +32,8 @@ public class CompletarOracionesControlador implements Serializable {
     }
 
     public void enviarRespuesta(Integer id) {
-        logger.info(id.toString());
         for (TareaCompletarModelo tareaCompletarModelo : tareaCompletarModeloLista) {
             if (tareaCompletarModelo.getId().compareTo(id) == 0) {
-                logger.info(tareaCompletarModelo.toString());
                 completarSesionBean.respuesta(tareaCompletarModelo, alumnoControlador.getTareaActividadModelo().getId());
                 break;
             }

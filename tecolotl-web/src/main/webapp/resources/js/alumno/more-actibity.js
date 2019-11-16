@@ -20,6 +20,9 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 
 function completarOracionRemueve() {
     palabras = completarOracion.querySelector('.contedor-oraciones');
+    while (palabras.hasChildNodes()) {
+        palabras.removeChild(palabras.firstChild);
+    }
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
         otro = parrafo.querySelector('span');
         if (otro.dataset.resuelto === 'true') {
@@ -83,6 +86,9 @@ function agregaRespuestas(elemento) {
         palabra.innerHTML=" ";
     });
     totalRespuestasTranscripcion = respuestas.length;
+    // while (elemento.hasChildNodes()) {
+    //     elemento.removeChild(elemento.firstChild);
+    // }
     respuestas.forEach(function (resp) {
         respuesta = document.createElement('span');
         respuesta.classList.add('respuesta-drag');

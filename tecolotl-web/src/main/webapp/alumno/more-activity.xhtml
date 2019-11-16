@@ -223,7 +223,7 @@
                         <li class="complete-sentences">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Choose one word to complete the sentences</div>
+                                <div uk-dropdown="mode: click">#{alumno['send.message.sentence.tip']}</div>
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="contedor-oraciones" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"/>
@@ -231,7 +231,7 @@
                                 <div>
                                     <ul class="uk-subnav uk-subnav-pill uk-margin-top menu-ordenar" uk-switcher="">
                                         <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}" var="texto" varStatus="estatus">
-                                            <li class="#{empty texto.oracion ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
+                                            <li class="#{empty texto.respuesta ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                         </ui:repeat>
                                     </ul>
                                     <ul class="uk-switcher uk-margin remplazar">
