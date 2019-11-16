@@ -286,6 +286,19 @@ div>ul>li{
     margin-top: 7px;
 }
 
+.caja-pregunta-detonadora{
+    /*background: url("#{resource['img/alumno/pop-art/mensaje9.svg']}") no-repeat center center/100% 100%;*/
+    width: 95%;
+    height: 70px;
+    margin: auto auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media screen and (max-width: 1024px){
     .A1>div>div>.uk-card-footer > div > div > span{
         padding-left: 76px;

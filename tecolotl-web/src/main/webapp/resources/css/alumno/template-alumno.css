@@ -524,7 +524,7 @@ iframe {
     height: 100px;
     background: url("#{resource['img/alumno/pop-art/mensaje10.svg']}") no-repeat center/100% 100%;
     background-clip: padding-box;
-    padding: 20px 100px 0px 110px;
+    padding: 20px 100px 0 110px;
     font-size: 15px;
     font-family: 'Sniglet', sans-serif;
     color: white;
