@@ -363,7 +363,8 @@
 
 .respuesta-ordenar-oracion{
     background-color: transparent;
-    padding: 2px 0;
+    padding-bottom: 2px;
+    padding-top: 65px;
     min-width: 100px;
     min-height: 100px;
     display: inline-block;
