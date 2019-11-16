@@ -5377,6 +5377,7 @@ ul.uk-nav-sub {
   display: flex;
   /* 1 */
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
   /* 2 */
   margin: 0;
   padding: 0;
@@ -5438,6 +5439,7 @@ ul.uk-nav-sub {
 .uk-thumbnav-vertical {
   /* 1 */
   flex-direction: column;
+  -webkit-flex-direction: column;
   /* 2 */
   margin-left: 0;
   margin-top: -15px;
