@@ -17,19 +17,24 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     }
     palabras = completarOracion.querySelector('.contedor-oraciones');
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
-        var palabra = document.createElement('span');
-        palabra.textContent = parrafo.querySelector('span').textContent;
-        palabra.dataset.cardinalidad = parrafo.dataset.cardinalidad;
-        palabra.draggable=true;
-        palabra.id="identificador"+indice;
-        palabra.setAttribute('ondragstart','drag(event)');
-        palabra.setAttribute('ondrop','return true');
-        palabra.setAttribute('ondragover','return false');
-        palabras.appendChild(palabra);
+        otro = parrafo.querySelector('span');
+        if (otro.dataset.resuelto === 'true') {
+            //otro.querySelector('span').textContent = otro.dataset.respuesta;
+        } else {
+            var palabra = document.createElement('span');
+            palabra.textContent = otro.querySelector('span').textContent;
+            palabra.dataset.cardinalidad = otro.dataset.cardinalidad;
+            palabra.draggable=true;
+            palabra.id="identificador"+indice;
+            palabra.setAttribute('ondragstart','drag(event)');
+            palabra.setAttribute('ondrop','return true');
+            palabra.setAttribute('ondragover','return false');
+            palabras.appendChild(palabra);
+        }
     });
     answer = document.querySelector('.complete-sentences');
     agregaRespuestas(answer.querySelector('.remplazar'));
-
+    agregaRespuesta();
 });
 
 function validaRespuestaImagen(evento) {
@@ -65,7 +70,6 @@ function respuestaEnvidad(data) {
 }
 
 function agregaRespuestas(elemento) {
-    console.log('agregando elemento');
     respuestas = [];
     answer.querySelectorAll('.remover').forEach(function (palabra) {
         respuestas.push(palabra.textContent);
@@ -75,7 +79,7 @@ function agregaRespuestas(elemento) {
         palabra.innerHTML=" ";
     });
     totalRespuestasTranscripcion = respuestas.length;
-    revolver(respuestas).forEach(function (resp) {
+    respuestas.forEach(function (resp) {
         respuesta = document.createElement('span');
         respuesta.classList.add('respuesta-drag');
         respuesta.textContent = resp;
@@ -84,16 +88,12 @@ function agregaRespuestas(elemento) {
 
 }
 
-function revolver(arreglo) {
-    var indiceActual = arreglo.length, temporal, indiceAleatorio;
-    while (0 !== indiceActual) {
-        indiceAleatorio = Math.floor(Math.random() * indiceActual);
-        indiceActual -= 1;
-        temporal = arreglo[indiceActual];
-        arreglo[indiceActual] = arreglo[indiceAleatorio];
-        arreglo[indiceAleatorio] = temporal;
-    }
-    return arreglo;
+function agregaRespuesta() {
+    completarOracion.querySelectorAll('div ul:nth-child(2) > li > span').forEach(function (elemento) {
+        if (elemento.dataset.resuelto === 'true') {
+            elemento.querySelector('span').textContent = elemento.dataset.respuesta;
+        }
+    });
 }
 
 function validaRespuestaCompletarOracion(evento) {

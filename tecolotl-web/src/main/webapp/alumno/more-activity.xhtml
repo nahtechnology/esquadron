@@ -237,7 +237,7 @@
                                     <ul class="uk-switcher uk-margin remplazar">
                                         <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
-                                                <h:panelGroup layout="block" styleClass="terminado" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
+                                                <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
                                                 <h:outputText pt:data-resuelto="#{not empty tareaCompletarModelo.respuesta}"
                                                               pt:data-respuesta="#{completarOracionesControlador.buscaPalabra(tareaCompletarModelo.respuesta)}"
                                                               value="#{tareaCompletarModelo.oracion}"
@@ -249,7 +249,6 @@
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form" listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}" render="@form"/>
                                                 </h:commandButton>
-
                                             </li>
                                         </ui:repeat>
                                     </ul>

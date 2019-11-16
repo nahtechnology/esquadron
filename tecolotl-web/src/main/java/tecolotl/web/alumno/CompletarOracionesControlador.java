@@ -40,13 +40,13 @@ public class CompletarOracionesControlador implements Serializable {
         }
     }
 
-    public String buscaPalabra(Integer id) {
-        String oracion;
+    public String buscaPalabra(Short id) {
         if (id != null) {
             for (TareaCompletarModelo tareaCompletarModelo : tareaCompletarModeloLista) {
-                if (tareaCompletarModelo.getId().compareTo(id) == 0) {
-                    oracion = tareaCompletarModelo.getOracion();
-                    return oracion.substring(oracion.indexOf("<span class=\"remover\">"), oracion.indexOf("</span>"));
+                if (tareaCompletarModelo.getCardinalidad().compareTo(id) == 0) {
+                    return  tareaCompletarModelo.getOracion().substring(
+                            tareaCompletarModelo.getOracion().indexOf("<span class=\"remover\">") + 22,
+                            tareaCompletarModelo.getOracion().indexOf("</span>"));
                 }
             }
         }
