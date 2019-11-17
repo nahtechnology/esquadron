@@ -93,13 +93,10 @@
                                 </div>
                                 <div class="uk-card-media-top" data-video="#{tareaActvidadModelo.idActividad}">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
-
-                                    <ui:fragment rendered="#{(conta.index) le 6 }">
+                                    <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
                                         <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
-                                    </ui:fragment>
-                                    <ui:fragment rendered="#{(conta.index) gt 6 }">
-                                        <img data-video="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
-                                    </ui:fragment>
+                                        <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
+                                    </h:panelGroup>
 
                                 </div>
                                 <div style="" class="uk-card-body">
@@ -131,57 +128,7 @@
         </ui:remove>
 
         <h:outputScript library="js" name="alumno/activities.js"/>
-        <script type="application/javascript">
 
-            // document.addEventListener('DOMContentLoaded', function (evt) {
-            //     var imgVideos = document.querySelectorAll('.uk-card-media-top');
-            //     imgVideos.forEach(function (imgV,index) {
-            //         var imagen = document.createElement('img');
-            //          var liga='https://i.ytimg.com/vi/';
-            //         var ligaCompleta = liga.concat(imgV.dataset.video,'/mqdefault.jpg');
-            //         imagen.src = ligaCompleta;
-            //         imgV.appendChild(imagen);
-            //
-            //     });
-            //
-            // });
-
-            document.addEventListener("DOMContentLoaded", function(evt) {
-                var lazyloadImages = document.querySelectorAll(".uk-card-media-top img[data-video]");
-                var lazyloadThrottleTimeout;
-                function lazyload () {
-                    if(lazyloadThrottleTimeout) {
-                        clearTimeout(lazyloadThrottleTimeout);
-                    }
-
-                    lazyloadThrottleTimeout = setTimeout(function() {
-                        var scrollTop = window.pageYOffset;
-                        lazyloadImages.forEach(function(img) {
-                            if(img.offsetTop &lt; (window.innerHeight + scrollTop)) {
-                                // while (img.hasChildNodes()){
-                                //     img.removeChild(img.firstChild);
-                                // }
-                                // var imagen = document.createElement('img');
-                                // var liga='https://i.ytimg.com/vi/';
-                                // var ligaCompleta = liga.concat(img.dataset.video,'/mqdefault.jpg');
-                                // imagen.src = ligaCompleta;
-                                // img.appendChild(imagen);
-                                img.src = img.dataset.video;
-                            }
-                        });
-                        if(lazyloadImages.length === 0) {
-                            document.removeEventListener("scroll", lazyload);
-                            window.removeEventListener("resize", lazyload);
-                            window.removeEventListener("orientationChange", lazyload);
-                        }
-                    }, 20);
-                }
-
-                document.addEventListener("scroll", lazyload);
-                window.addEventListener("resize", lazyload);
-                window.addEventListener("orientationChange", lazyload);
-            });
-        </script>
     </ui:define>
 </ui:composition>
 </html>
