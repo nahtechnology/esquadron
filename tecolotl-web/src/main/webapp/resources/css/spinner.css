@@ -13,6 +13,7 @@
 .spinner svg{
   width: 122.67px;
   height: 122.67px;
+  display: block;
   /*left: calc(50% - (122.67px/2));*/
   /*top: calc(50% - (122.67px/2));*/
 }
@@ -20,6 +21,10 @@
   /*  stroke:rgb(81, 181, 163) !important;*/
   /*  stroke-width: 0.6px !important;*/
   /*}*/
+
+.spinner > img{
+    display: none;
+}
 
   .spinner.spinner-open{
     display: flex ;
