@@ -39,28 +39,146 @@
     border-radius: inherit; /* !importanté */
 }
 
-.A1:before {
+li .A1{
     background-color: var(--psecundary-option-three) !important;
 }
 
-.A2:before {
-    background-color: var(--purpura-primary-color);
+.A1>div>div>.uk-card-footer > div > div > span > input {
+    background-color: var(--psecundary-option-three);
+    color: white;
+    width: 80px;
+}
+.A1>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.A1>div>div>.uk-card-header>div>div>:nth-child(3){
+    color: var(--psecundary-option-three);
+    font-weight: bold;
+    width: 212px;
+    display: inline-block;
+    text-align: center;
 }
 
-.A1-A2:before {
-    background: linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
+li .A2{
+    background-color: #D35400;
 }
-.B1:before{
+.A2>div>div>.uk-card-footer > div > div > span > input{
+    background-color: #D35400;
+    color: white;
+    width: 80px;
+}
+.A2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.A2>div>div>.uk-card-header>div>div>:nth-child(3){
+    color: #D35400;
+    font-weight: bold;
+    width: 212px;
+    display: inline-block;
+    text-align: center;
+}
+
+li .A1A2{
+    background: linear-gradient(to right, var(--psecundary-option-three), #D35400);
+}
+.A1A2>div>div>.uk-card-footer > div > div > span > input{
+    background: linear-gradient(to right, var(--psecundary-option-three), #D35400);
+    color: white;
+    width: 80px;
+}
+.A1A2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.A1A2>div>div>.uk-card-header>div>div>:nth-child(4){
+    background: -webkit-linear-gradient(top right, var(--psecundary-option-three), #D35400);
+    background: linear-gradient(to left bottom, var(--psecundary-option-three), #D35400);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    width: 196px;
+    display: inline-block;
+    text-align: center;
+}
+li .B1{
     background-color:var(--tsecundary-option-one) !important;
 }
-.B2{
+
+.B1>div>div>.uk-card-footer > div > div > span > input{
+    background-color: var(--tsecundary-option-one) !important;
+    color: white;
+    width: 80px;
+}
+.B1>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.B1>div>div>.uk-card-header>div>div>:nth-child(3){
+    color: var(--tsecundary-option-one) !important;
+    font-weight: bold;
+    width: 212px;
+    display: inline-block;
+    text-align: center;
+}
+
+li .B2{
     background-color:var(--asecundary-option-one);
 }
-.C1{
+.B2>div>div>.uk-card-footer > div > div > span > input{
+    background-color: var(--asecundary-option-one);
+    color: white;
+    width: 80px;
+}
+.B2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.B2>div>div>.uk-card-header>div>div>:nth-child(3){
+    color: var(--asecundary-option-one);
+    font-weight: bold;
+    width: 212px;
+    display: inline-block;
+    text-align: center;
+}
+
+li .C1{
     background-color:var(--color-nav-primary);
 }
-.C2{
+.C1>div>div>.uk-card-footer > div > div > span > input {
+    background-color: var(--color-nav-primary);
+    color: white;
+    width: 80px;
+}
+.C1>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.C1>div>div>.uk-card-header>div>div>:nth-child(3){
+    color: var(--color-nav-primary);
+    font-weight: bold;
+    width: 212px;
+    display: inline-block;
+    text-align: center;
+}
+
+li .C2{
     background-color:var(--color-peligro);
+}
+.C2>div>div>.uk-card-footer > div > div > span > input {
+    background-color: var(--color-peligro);
+    color: white;
+    width: 80px;
+}
+.C2>div>div>.uk-card-footer > div > div > span{
+    padding-left: 130px;
+}
+.C2>div>div>.uk-card-header>div>div>:nth-child(3){
+    color: var(--color-peligro);
+    font-weight: bold;
+    width: 212px;
+    display: inline-block;
+    text-align: center;
+}
+
+.card-actividad{
+    padding: 1.4px;
+    border-radius: 8px;
 }
 
 
@@ -76,29 +194,29 @@
 
 .uk-subnav-alumno li:nth-child(2) a:hover {
     background-color:var(--psecundary-option-three);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
 .uk-subnav-alumno li.uk-active:nth-child(3) a {
-      background-image:linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
-      color: white;
+    background-image:linear-gradient(to right, var(--psecundary-option-three), #D35400);
+    color: white;
 }
 
 .uk-subnav-alumno li:nth-child(3) a:hover {
-    background-image:linear-gradient(to right, var(--psecundary-option-three), var(--purpura-primary-color));
-    opacity: 0.3;
+    background-image:linear-gradient(to right, var(--psecundary-option-three), #D35400);
+    /*opacity: 0.3;*/
     color: white;
 }
 
 .uk-subnav-alumno li.uk-active:nth-child(4) a {
-    background-color:var(--purpura-primary-color);
+    background-color:#D35400;
     color: white;
 }
 
 .uk-subnav-alumno li:nth-child(4) a:hover {
-    background-color:var(--purpura-primary-color);
-    opacity: 0.3;
+    background-color:#D35400;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -108,7 +226,7 @@
 }
 .uk-subnav-alumno li:nth-child(5) a:hover {
     background-color:var(--tsecundary-option-one);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -118,7 +236,7 @@
 }
 .uk-subnav-alumno li:nth-child(6) a:hover {
     background-color:var(--asecundary-option-one);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 
@@ -128,7 +246,7 @@
 }
 .uk-subnav-alumno li:nth-child(7) a:hover {
     background-color:var(--color-nav-primary);
-    opacity:0.3;
+    /*opacity:0.3;*/
     color: white;
 }
 .uk-subnav-alumno li.uk-active:nth-child(8) a {
@@ -137,7 +255,7 @@
 }
 .uk-subnav-alumno li:nth-child(8) a:hover {
     background-color:var(--color-peligro);
-    opacity: 0.3;
+    /*opacity: 0.3;*/
     color: white;
 }
 #search-form input:focus{

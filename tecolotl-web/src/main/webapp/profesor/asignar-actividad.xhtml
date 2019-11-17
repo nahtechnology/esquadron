@@ -16,9 +16,10 @@
 
         </ui:define>
         <ui:define name="contenido">
-            <h:outputStylesheet library="css" name="profesor/biblioteca-profesor.css"/>
+            <h:outputStylesheet library="css" name="navegacion.css"/>
+            <h:outputStylesheet library="css" name="/profesor/biblioteca-profesor.css"/>
             <h:outputStylesheet library="css" name="profesor/scroll-profesor.css"/>
-            <div class="uk-container">
+            <div class="uk-container" data-uk-filter="target: .js-filter">
                 <div class="uk-width-1-1@m uk-margin-medium-top">
                     <form id="search-form" action="">
                         <div class="uk-inline uk-width-1-1">
@@ -28,7 +29,6 @@
                         </div>
                     </form>
                 </div>
-                <div data-uk-filter="target: .js-filter">
                 <ul class="uk-subnav nav-default-profesor uk-subnav-alumno uk-margin-medium-top">
                     <li class="uk-active" data-uk-filter-control=""><a href="#">Show All</a></li>
                     <ui:repeat value="#{asignarActividadControlador.buscaNiveles()}" var="nivel">
@@ -45,8 +45,8 @@
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
-                        <li class="#{actividadModelo.nivelLenguaje}">
-                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.tema}" pt:data-tags="actividadModelo.tema" >
+                        <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()}">
+                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.tema}"  >
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border">
                                     <div class="uk-card-header border-card">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
@@ -102,7 +102,7 @@
                         </li>
                     </ui:repeat>
                 </ul>
-                </div>
+
             </div>
             <h:panelGroup layout="block" id="modal-transcript" pt:uk-modal="" >
                 <div class="uk-modal-dialog uk-margin-auto-vertical modal-tam " >
@@ -121,6 +121,10 @@
                     </div>
                 </div>
             </h:panelGroup>
+
+        </ui:define>
+        <ui:define name="file-js">
+            <h:outputScript library="js" name="/alumno/filtro.js"/>
             <h:outputScript library="js" name="profesor/asignar-actividad.js"/>
         </ui:define>
     </ui:composition>
