@@ -53,6 +53,14 @@ body{
     max-width: 160px;
     padding: 0.75rem;
     height: 50px;
+
+}
+#left-col .user-drop a{
+    color: var(--turquesa-primary-color);
+    text-decoration: none;
+}
+#left-col .user-drop a:hover{
+    text-decoration: none;
 }
 #left-col .uk-dropdown ul{
     list-style: none;
