@@ -45,15 +45,18 @@
                     </ui:repeat>
                 </ul>
                 <div class="uk-margin-medium-top uk-flex uk-flex-right">
-                    <form action="">
-                        <input type="button" class="uk-button  uk-button-primary uk-border-rounded" value="Asignar"/>
-                    </form>
+                    <h:form id="formulario-asignar-tarea">
+                        <h:inputHidden id="input-actividad" value="#{asignarActividadControlador.actividad}"/>
+                        <h:commandButton value="Asignar" styleClass="uk-button  uk-button-primary uk-border-rounded">
+                            <f:ajax execute="@form" listener="#{asignarActividadControlador.asiganarTarea()}"/>
+                        </h:commandButton>
+                    </h:form>
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
                         <li class="#{actividadModelo.nivelLenguaje}">
                             <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.tema}" pt:data-tags="actividadModelo.tema" >
-                                <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border"> <!-- actividadModelo.tema -->
+                                <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border">
                                     <div class="uk-card-header border-card">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                             <div class="uk-width-expand">
@@ -62,7 +65,7 @@
                                             </div>
                                             <div class="uk-width-auto uk-text-right uk-text-muted">
                                                 <h:outputText styleClass="uk-margin-small-right" pt:uk-icon="icon:clock"/>90
-                                                <input type="checkbox" class="uk-checkbox"/>
+                                                <input type="radio" name="#{actividadModelo.nivelLenguaje}" class="uk-radio" value="#{actividadModelo.idActividad}"/>
                                             </div>
                                         </h:panelGroup>
                                     </div>
@@ -104,7 +107,6 @@
                                                     <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image uk-svg " library="img" name="icono/quizcalifica.svg" /></div>
                                                 </h:panelGroup>
                                             </div>
-
                                         </h:panelGroup>
                                     </div>
                                 </div>
