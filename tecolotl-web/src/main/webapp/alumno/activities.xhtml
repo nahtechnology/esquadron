@@ -91,14 +91,17 @@
 
                                     </h:panelGroup>
                                 </div>
+
                                 <div class="uk-card-media-top" data-video="#{tareaActvidadModelo.idActividad}">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
                                     <h:panelGroup layout="block" styleClass="uk-inline " pt:uk-lightbox="">
-                                        <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
-                                        <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
+                                        <div>
+                                            <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
+                                            <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
+                                        </div>
                                     </h:panelGroup>
-
                                 </div>
+
                                 <div style="" class="uk-card-body">
                                     <ui:remove><div class="uk-text-center mensaje1"><span class="mensaje1-1">#{alumno['activities.title.description.please.watch.the']}<br/>#{alumno['title.description.full.video']}</span></div></ui:remove>
                                     <div class="caja-pregunta-detonadora">
@@ -107,6 +110,7 @@
                                         </span>
                                     </div>
                                 </div>
+
                                 <div style="" class="uk-card-footer uk-text-center">
                                     <h:form styleClass="">
                                         <h:commandButton styleClass="boton" action="#{alumnoControlador.seleccion(tareaActvidadModelo)}" value="#{boton['homework']}"/>

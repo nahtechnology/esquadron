@@ -299,6 +299,8 @@ div>ul>li{
     text-align: center;
 }
 
+
+
 @media screen and (max-width: 1024px){
     .A1>div>div>.uk-card-footer > div > div > span{
         padding-left: 76px;
