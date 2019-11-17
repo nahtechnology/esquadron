@@ -31,15 +31,6 @@
                 <div data-uk-filter="target: .js-filter">
                 <ul class="uk-subnav nav-default-profesor uk-subnav-alumno uk-margin-medium-top">
                     <li class="uk-active" data-uk-filter-control=""><a href="#">Show All</a></li>
-                    <ui:remove>
-                        <li data-uk-filter-control=".A1" ><a href="#">Level A1</a></li>
-                        <li data-uk-filter-control=".A1-A2" ><a href="#">Level A1-A2</a></li>
-                        <li data-uk-filter-control=".A2"><a href="#">Level A2</a></li>
-                        <li data-uk-filter-control=".B1"><a href="#">Level B1</a></li>
-                        <li data-uk-filter-control=".B2"><a href="#">Level B2</a></li>
-                        <li data-uk-filter-control=".C1"><a href="#">Level C1</a></li>
-                        <li data-uk-filter-control=".C2"><a href="#">Level C2</a></li>
-                    </ui:remove>
                     <ui:repeat value="#{asignarActividadControlador.buscaNiveles()}" var="nivel">
                         <li data-uk-filter-control=".#{nivel}">Level #{nivel}</li>
                     </ui:repeat>
@@ -47,7 +38,7 @@
                 <div class="uk-margin-medium-top uk-flex uk-flex-right">
                     <h:form id="formulario-asignar-tarea">
                         <h:inputHidden id="input-actividad" value="#{asignarActividadControlador.actividad}"/>
-                        <h:commandButton value="Asignar" styleClass="uk-button  uk-button-primary uk-border-rounded">
+                        <h:commandButton value="Asignar" styleClass="uk-button  uk-button-primary uk-border-rounded" onclick="return buscaActividadSeleccionada(event)">
                             <f:ajax execute="@form" listener="#{asignarActividadControlador.asiganarTarea()}"/>
                         </h:commandButton>
                     </h:form>
@@ -75,7 +66,6 @@
                                             <img src="https://i.ytimg.com/vi/#{actividadModelo.idActividad}/mqdefault.jpg"/>
                                             <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{actividadModelo.idActividad}"/>
                                         </h:panelGroup>
-                                        <!--                                    <div class="video-error"><h:graphicImage library="img" name="video-error.svg" width="120" height="120"/> </div>-->
                                     </div>
                                     <div class="uk-card-body tecolotl-card">
                                         <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
@@ -85,10 +75,8 @@
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
                                             <div class="uk-width-auto uk-text-small text-color-level1 uk-text-bold">
                                                 <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
-                                                    <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
                                                     <div><h:graphicImage pt:data-uk-tooltip="title: Download" styleClass="uk-icon-image uk-svg" library="img" name="icono/escuela.svg" /></div>
                                                     <div><h:graphicImage pt:data-uk-tooltip="title: Didactic Guide" styleClass="uk-icon-image uk-svg" library="img" name="icono/decarga.svg" /></div>
-                                                    <!--<div><h:link styleClass="uk-link-reset"><h:outputText pt:uk-icon="icon: file-pdf" styleClass=""/></h:link></div>-->
                                                 </h:panelGroup>
                                             </div>
                                             <div class="uk-width-expand ">
@@ -133,7 +121,7 @@
                     </div>
                 </div>
             </h:panelGroup>
-<!--            <h:outputScript library="js" name="profesor/biblioteca-profesor.js"/>-->
+            <h:outputScript library="js" name="profesor/asignar-actividad.js"/>
         </ui:define>
     </ui:composition>
 </html>
