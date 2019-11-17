@@ -112,8 +112,8 @@ public class GrupoAlumnoSesionBean {
 
         query.setParameter(1, idGrupo);
         return ((List<ActividadEntidad>) query.getResultList()).stream().map(ActividadModelo::new).collect(Collectors.toList());
-
     }
+
     public List<AlumnoModelo> buscaAlumno(@NotNull Integer idGrupo) {
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaAlumnosPorGrupo", AlumnoEntidad.class);
         typedQuery.setParameter("idGrupo", idGrupo);
@@ -128,6 +128,13 @@ public class GrupoAlumnoSesionBean {
             alumnoModeloLista.add(alumnoModelo);
         }
         return alumnoModeloLista;
+    }
+
+
+    public int tarea(@NotNull Integer idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?)");
+        query.setParameter(1, idGrupo).setParameter(2, idActividad);
+        return query.executeUpdate();
     }
 
     /**

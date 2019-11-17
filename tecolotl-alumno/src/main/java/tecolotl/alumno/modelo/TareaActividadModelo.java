@@ -7,6 +7,7 @@ import java.util.StringJoiner;
 public class TareaActividadModelo extends TareaModelo {
 
     private String idActividad;
+    private String preguntaDetonadora;
 
     public String getIdActividad() {
         return idActividad;
@@ -14,6 +15,14 @@ public class TareaActividadModelo extends TareaModelo {
 
     public void setIdActividad(String idActividad) {
         this.idActividad = idActividad;
+    }
+
+    public String getPreguntaDetonadora() {
+        return preguntaDetonadora;
+    }
+
+    public void setPreguntaDetonadora(String preguntaDetonadora) {
+        this.preguntaDetonadora = preguntaDetonadora;
     }
 
     @Override
