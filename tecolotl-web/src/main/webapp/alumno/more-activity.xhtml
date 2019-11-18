@@ -143,7 +143,7 @@
                                             <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
                                                 <div class="icono-relacion-img uk-width-auto"></div>
                                                 <h:inputHidden value="#{relacionarModelo.palabra}"/>
-                                                <h:panelGroup id="su#{conta.index}" layout="block" styleClass="oraciones-relacion-img uk-width-expand"  pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)" rendered="#{empty relacionarModelo.respuesta}"/>
+                                                <h:panelGroup id="su#{conta.index}" layout="block" styleClass="oraciones-relacion-img uk-width-expand"  pt:uk-sortable="group: respuesta" pt:data-indice="#{conta.index}" rendered="#{empty relacionarModelo.respuesta}"/>
                                                 <h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
                                                 <h:inputHidden value="#{relacionarModelo.respuesta}" rendered="#{empty relacionarModelo.respuesta}"/>
                                             </div>
@@ -157,18 +157,15 @@
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
-                                                      pt:ondrop="drop(event, this)"
-                                                      pt:ondragover="allowDrop(event)"
-                                                      rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
+                                                      rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}"
+                                                       pt:uk-sortable="group: respuesta" >
                                             <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionar" varStatus="resp">
                                                 <h:panelGroup layout="block"
                                                               id="res#{resp.index}"
+                                                              pt:data-index="#{resp.index}"
                                                               pt:data-codigo="#{relacionar.idClaseGlosario}"
                                                               styleClass="palabra-imagen"
-                                                              pt:draggable="true"
-                                                              pt:ondragstart="drag(event)"
-                                                              pt:ondrop="return false"
-                                                              pt:ondragover="return false">
+                                                              >
                                                     #{relacionar.palabra}
                                                 </h:panelGroup>
                                             </ui:repeat>
@@ -224,7 +221,7 @@
                                 <div uk-dropdown="mode: click">#{alumno['send.message.sentence.tip']}</div>
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.comple.all.sentences']}</h1>
-                            <h:panelGroup layout="block" styleClass="contedor-oraciones" pt:ondrop="drop(event, this)" pt:ondragover="allowDrop(event)"/>
+                            <h:panelGroup layout="block" styleClass="contedor-oraciones uk-sortable" pt:uk-sortable="group: completar" />
                             <h:form>
                                 <div>
                                     <ul class="uk-subnav uk-subnav-pill uk-margin-top menu-ordenar" uk-switcher="">
@@ -247,7 +244,8 @@
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form"
                                                             onevent="function funcion(data) {
-                                                                if (data.status === 'success') { completarOracionRemueve(); }
+                                                                if (data.status === 'success') { completarOracionRemueve();
+                                                                 evitarPreguntas();}
                                                             }"
                                                             listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}"
                                                             render="@form"/>
@@ -279,6 +277,10 @@
         </script>
         <h:outputScript library="js" name="alumno/more-actibity.js"/>
         <h:outputScript library="js" name="/alumno/drag-dos.js"/>
+    </ui:define>
+    <ui:define name="enlaces-js">
+        <h:outputScript library="js" name="/alumno/match-img.js"/>
+        <h:outputScript library="js" name="/alumno/complete-sentences.js"/>
     </ui:define>
 </ui:composition>
 </html>

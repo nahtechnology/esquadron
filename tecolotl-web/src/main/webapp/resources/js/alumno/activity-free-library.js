@@ -22,12 +22,13 @@ function parrafos(texto) {
          resp.innerHTML=" ";
      });
      copyRespuesta = respuestas.slice();
-     revolver(copyRespuesta).forEach(function (texto) {
+     revolver(copyRespuesta).forEach(function (texto,contador) {
          console.log(texto);
          var palabra = document.createElement('span');
          palabra.innerHTML=texto;
          palabra.classList.add('respuesta-drag');
          contenedorPalabras.appendChild(palabra);
+         palabra.dataset.index = contador;
      });
 }
 

@@ -31,11 +31,13 @@ function completarOracionRemueve() {
             var palabra = document.createElement('span');
             palabra.textContent = otro.querySelector('span').textContent;
             palabra.dataset.cardinalidad = otro.parentNode.dataset.cardinalidad;
-            palabra.draggable = true;
+            // palabra.draggable = true;
             palabra.id="identificador"+indice;
-            palabra.setAttribute('ondragstart','drag(event)');
-            palabra.setAttribute('ondrop','return true');
-            palabra.setAttribute('ondragover','return false');
+            palabra.dataset.index = indice;
+            // palabra.setAttribute('ondragstart','drag(event)');
+            // palabra.setAttribute('ondrop','return true');
+            // palabra.setAttribute('ondragover','return false');
+            // palabra.setAttribute('uk-sortable','group: completar');
             palabras.appendChild(palabra);
         }
     });
@@ -78,12 +80,14 @@ function respuestaEnvidad(data) {
 
 function agregaRespuestas(elemento) {
     respuestas = [];
-    answer.querySelectorAll('.remover').forEach(function (palabra) {
+    answer.querySelectorAll('.remover').forEach(function (palabra,index) {
         respuestas.push(palabra.textContent);
         palabra.setAttribute('class','respuesta-ordenar-oracion');
-        palabra.setAttribute("ondrop","drop(event, this)");
-        palabra.setAttribute("ondragover","allowDrop(event)");
+        // palabra.setAttribute("ondrop","drop(event, this)");
+        // palabra.setAttribute("ondragover","allowDrop(event)");
+        palabra.setAttribute('uk-sortable','group: completar');
         palabra.innerHTML=" ";
+        palabra.dataset.indice = index;
     });
     totalRespuestasTranscripcion = respuestas.length;
     // while (elemento.hasChildNodes()) {

@@ -20,10 +20,11 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 function agregaRespuestas(elemento) {
     console.log('agregando elemento');
     respuestas = [];
-    answer.querySelectorAll('.remplazar .remover').forEach(function (palabra) {
+    answer.querySelectorAll('.remplazar .remover').forEach(function (palabra,index) {
         respuestas.push(palabra.textContent);
         palabra.setAttribute("uk-sortable","group: respuesta");
         palabra.setAttribute('class','uk-sortable respuesta-transcript');
+        respuesta.setAttribute('data-indice',index);
         palabra.innerHTML=" ";
     });
     totalRespuestasTranscripcion = respuestas.length;

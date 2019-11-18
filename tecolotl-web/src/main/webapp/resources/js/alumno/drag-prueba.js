@@ -1,11 +1,12 @@
 var conta = [];
 var cadena = [];
-var primera = [], copy;
-var drag;
+var primera = [], resp = [];
+var drag,respuestaDrag;
 var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     drag = UIkit.util.$$('.trancript-contenedor .respuesta-transcript');
+    respuestaDrag = UIkit.util.$$('.contenedor-respuesta .respuesta-drag');
     for (var inx = 0;inx < drag.length;inx++ ){
         conta.push(0);
     }
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
                 conta[caja.dataset.indice]++;
                 if (conta[caja.dataset.indice] === 1){
                     primera[caja.dataset.indice] = drag[texto.target.dataset.indice].querySelector('.respuesta-drag').textContent;
+                    resp[caja.dataset.indice] = drag[texto.target.dataset.indice].querySelector('.respuesta-drag').dataset.index;
                 }
                 if(conta[caja.dataset.indice] === 2){
                     var textos = drag[texto.target.dataset.indice].querySelectorAll('.respuesta-drag');
@@ -26,59 +28,30 @@ document.addEventListener('DOMContentLoaded', function (evt) {
                     var caja2 = document.createElement('span');
                     var caja3 = document.createElement('span');
                     textos.forEach(function (word) {
-                        var palabra = word.innerHTML;
-                        if (palabra !== primera[caja.dataset.indice]){
-                            caja2.innerHTML = palabra;
+                        var palabra;
+                        if (word.dataset.index !== resp[caja.dataset.indice]){
+                            caja2.innerHTML = word.innerHTML;
+                            console.log(word.dataset.index + " " + resp[caja.dataset.indice]);
                             while (cajaTexto.hasChildNodes()){
                                 cajaTexto.removeChild(cajaTexto.firstChild);
                             }
                             caja3.innerText = primera[caja.dataset.indice];
                             caja2.classList.add('respuesta-drag');
+                            caja2.dataset.index = word.dataset.index;
                             cajaTexto.appendChild(caja2);
                             caja3.classList.add('respuesta-drag');
+                            caja3.dataset.index = resp[caja.dataset.indice];
                             cajaResp.appendChild(caja3);
-
-
                             console.log(primera[caja.dataset.indice]);
-
                         }
 
                     });
                     conta[caja.dataset.indice] = 1;
                     primera[caja.dataset.indice] = drag[texto.target.dataset.indice].textContent;
+                    resp[caja.dataset.indice] = drag[texto.target.dataset.indice].querySelector('.respuesta-drag').dataset.index;
                 }
             }
         });
 
-
-        // if (conta === 1){
-        //     primera = document.querySelectorAll('.trancript-contenedor .respuesta-transcript > .respuesta-drag');
-        //     primera.forEach(function (texto) {
-        //         cadena.push(texto.innerHTML);
-        //     })
-        // }
-
-        // if(conta === 2){
-        //     var textos = document.querySelectorAll('.trancript-contenedor p:nth-child(1) .respuesta-transcript > .respuesta-drag');
-        //     console.log(textos);
-        //     var cajaTexto = document.querySelector('.trancript-contenedor p:nth-child(1) .respuesta-transcript');
-        //     var caja = document.createElement('span');
-        //     textos.forEach(function (texto) {
-        //         var palabra = texto.innerHTML;
-        //         cadena.push(texto.innerHTML);
-        //         if (palabra !== primera){
-        //             caja.innerHTML = palabra;
-        //             console.log(primera);
-        //             while (cajaTexto.hasChildNodes()){
-        //                 cajaTexto.removeChild(cajaTexto.firstChild);
-        //             }
-        //             caja.classList.add('respuesta-drag');
-        //             cajaTexto.appendChild(caja);
-        //             console.log(primera);
-        //         }
-        //     });
-        //     conta = 1;
-        //     primera = document.querySelector('.trancript-contenedor p:nth-child(1) .respuesta-transcript > .respuesta-drag').textContent;
-        // }
     });
 });
