@@ -32,7 +32,7 @@
                 <ul class="uk-subnav nav-default-profesor uk-subnav-alumno uk-margin-medium-top">
                     <li class="uk-active" data-uk-filter-control=""><a href="#">Show All</a></li>
                     <ui:repeat value="#{asignarActividadControlador.buscaNiveles()}" var="nivel">
-                        <li data-uk-filter-control=".#{nivel}">Level #{nivel}</li>
+                        <li data-uk-filter-control=".#{nivel}" class="#{nivel}"><a href="#">Level #{nivel}</a></li>
                     </ui:repeat>
                 </ul>
                 <div class="uk-margin-medium-top uk-flex uk-flex-right">
@@ -46,7 +46,7 @@
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
                         <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()}">
-                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.tema}"  >
+                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.nivelLenguaje}"  >
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border">
                                     <div class="uk-card-header border-card">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
