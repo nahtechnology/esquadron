@@ -24,13 +24,14 @@ function agregaRespuestas(elemento) {
         respuestas.push(palabra.textContent);
         palabra.setAttribute("uk-sortable","group: respuesta");
         palabra.setAttribute('class','uk-sortable respuesta-transcript');
-        respuesta.setAttribute('data-indice',index);
+        palabra.setAttribute('data-indice',index);
         palabra.innerHTML=" ";
     });
     totalRespuestasTranscripcion = respuestas.length;
-    revolver(respuestas).forEach(function (resp) {
+    revolver(respuestas).forEach(function (resp,indice) {
         respuesta = document.createElement('span');
         respuesta.classList.add('respuesta-drag');
+        respuesta.setAttribute('data-index', indice);
         respuesta.textContent = resp;
         elemento.appendChild(respuesta);
     });

@@ -95,12 +95,12 @@
     min-width: 20%;
     max-width: 60%;
     margin: 10px auto;
-    -webkit-transition: all  0.3s  linear; /* Safari */
-    transition: all  0.3s  linear;
+    /*-webkit-transition: all  0.3s  linear; !* Safari *!*/
+    /*transition: all  0.3s  linear;*/
 
 }
 .respuesta:hover{
-    animation: colores-fondo 3s infinite linear;
+    /*animation: colores-fondo 3s infinite linear;*/
     cursor: pointer;
 }
 .cuerpo-tabla  .respuesta{
