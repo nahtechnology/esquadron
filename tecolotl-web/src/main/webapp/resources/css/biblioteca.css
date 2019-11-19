@@ -318,6 +318,7 @@ div>ul>li{
     height: 200px;
     background: url("#{resource['img/alumno/pop-art/nube1.svg']}") no-repeat center center/100% 100%;
     color: black;
+    font-weight: bold;
     display: flex;
     justify-content: center;
     align-items: center;
