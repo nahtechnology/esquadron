@@ -286,8 +286,8 @@ div>ul>li{
     margin-top: 7px;
 }
 
-.caja-pregunta-detonadora{
-    /*background: url("#{resource['img/alumno/pop-art/mensaje9.svg']}") no-repeat center center/100% 100%;*/
+/*.caja-pregunta-detonadora{
+    /*background: url("#{resource['img/alumno/pop-art/mensaje9.svg']}") no-repeat center center/100% 100%;
     width: 95%;
     height: 70px;
     margin: auto auto;
@@ -297,7 +297,7 @@ div>ul>li{
     color: black;
     font-weight: bold;
     text-align: center;
-}
+}*/
 
 .uk-card-media-top>div>div+div>div>img{
     width: 100%;
@@ -309,29 +309,19 @@ div>ul>li{
     min-width: 100%;
 }
 
+.uk-card-media-top>div{
+    width: 100%;
+}
+
 .posicion{
     width: 100%;
     height: 200px;
+    background: url("#{resource['img/alumno/pop-art/nube1.svg']}") no-repeat center center/100% 100%;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-/*.pregunta-detonadora{
-    position: absolute;
-    overflow: hidden;
-    width: 100%;
-    height: 100%;
-    -webkit-transition: all 500ms ease;
-    transition: all 500ms ease;
-    opacity: 1;
-}
-
-.pregunta-detonadora:hover .caja-img{
-    cursor: pointer;
-    opacity: 1;
-}*/
-
 
 @media screen and (max-width: 1024px){
     .A1>div>div>.uk-card-footer > div > div > span{
