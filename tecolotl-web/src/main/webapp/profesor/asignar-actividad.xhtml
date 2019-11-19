@@ -40,12 +40,12 @@
                         <h:inputHidden id="input-actividad" value="#{asignarActividadControlador.actividad}"/>
                         <h:commandButton id="boton-enviar"
                                          action="#{asignarActividadControlador.asiganarTarea()}"
-                                         value="Asignar" styleClass="uk-button  uk-button-primary uk-border-rounded"
+                                         value="Asignar" styleClass="uk-button  uk-button-primary"
                                          style="display: none">
                         </h:commandButton>
                     </h:form>
-                    <h:button value="regresar" styleClass="uk-button uk-margin-small-right" outcome="dashboard"/>
-                    <button class="uk-button uk-border-rounded" onclick="buscaActividadSeleccionada(event)">Asignar</button>
+                    <h:button value="regresar" styleClass="uk-button uk-margin-small-right boton-escuadron-base" outcome="dashboard"/>
+                    <button class="uk-button boton-escuadron-base" onclick="buscaActividadSeleccionada(event)">Asignar</button>
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
