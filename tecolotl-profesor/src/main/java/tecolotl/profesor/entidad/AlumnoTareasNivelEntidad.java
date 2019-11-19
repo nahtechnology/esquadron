@@ -70,7 +70,7 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     }
 
     @Id
-    @Column(name = "total_tareas")
+    @Column(name = "total_tareas_resueltas")
     public Short getTotalTareas() {
         return totalTareas;
     }
@@ -80,7 +80,7 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     }
 
     @Id
-    @Column(name = "valor")
+    @Column(name = "nivel_lenguaje")
     public String getNivelLenguaje() {
         return nivelLenguaje;
     }

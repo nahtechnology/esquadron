@@ -38,7 +38,7 @@ public class DashboardProfesorControlador implements Serializable {
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
-    private Map<Integer, List<AlumnoTareasNivelModelo>> alumnoTareaNivelMapa;
+    private List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista;
     private CicloEscolarModelo cicloEscolarModelo;
     private int hashCode;
     private List<GrupoModelo> grupoModeloLista;
@@ -52,9 +52,8 @@ public class DashboardProfesorControlador implements Serializable {
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorModelo.getProfesorModelo().getId());
-        alumnoTareaNivelMapa = grupoAlumnoSesionBean.buscaAlumnoNivel(
-                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList())
-        ).stream().collect(Collectors.groupingBy(AlumnoTareasNivelModelo::getIdGrupo));
+        alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
+                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
     }
 
     public void seleccion() {
@@ -68,13 +67,8 @@ public class DashboardProfesorControlador implements Serializable {
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorModelo.getProfesorModelo().getId());
-        alumnoTareaNivelMapa = grupoAlumnoSesionBean.buscaAlumnoNivel(
-                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList())
-        ).stream().collect(Collectors.groupingBy(AlumnoTareasNivelModelo::getIdGrupo));
-    }
-
-    public List<Integer> transforma(){
-        return alumnoTareaNivelMapa.keySet().stream().collect(Collectors.toList());
+        alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
+                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
     }
 
     public List<CicloEscolarModelo> getCicloEscolarModeloLista() {
@@ -109,11 +103,11 @@ public class DashboardProfesorControlador implements Serializable {
         this.hashCode = hashCode;
     }
 
-    public Map<Integer, List<AlumnoTareasNivelModelo>> getAlumnoTareaNivelMapa() {
-        return alumnoTareaNivelMapa;
+    public List<AlumnoTareasNivelModelo> getAlumnoTareasNivelModeloLista() {
+        return alumnoTareasNivelModeloLista;
     }
 
-    public void setAlumnoTareaNivelMapa(Map<Integer, List<AlumnoTareasNivelModelo>> alumnoTareaNivelMapa) {
-        this.alumnoTareaNivelMapa = alumnoTareaNivelMapa;
+    public void setAlumnoTareasNivelModeloLista(List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista) {
+        this.alumnoTareasNivelModeloLista = alumnoTareasNivelModeloLista;
     }
 }

@@ -82,7 +82,7 @@ public class GrupoAlumnoSesionBean {
      */
     public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<Integer> idGrupoLista) {
         logger.fine(idGrupoLista.toString());
-        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tarea_nivel_lenguaje(CAST (? AS INTEGER[]))", AlumnoTareasNivelEntidad.class);
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))", AlumnoTareasNivelEntidad.class);
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
         idGrupoLista.forEach(grupo -> stringJoiner.add(String.valueOf(grupo.intValue())));
         query.setParameter(1,stringJoiner.toString());

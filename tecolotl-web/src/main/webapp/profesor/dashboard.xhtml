@@ -115,18 +115,12 @@
             </h:panelGroup>
         </div>
         <h:panelGroup layout="block" id="graficas" >
-            <ui:remove>
-                <ui:repeat value="#{dashboardProfesorControlador.transforma()}" var="alumnoNivel">
-                    #{alumnoNivel}
-                </ui:repeat>
-            </ui:remove>
-            <ui:repeat value="#{dashboardProfesorControlador.transforma()}" var="nivelAlumno">
-                <ui:repeat value="#{dashboardProfesorControlador.alumnoTareaNivelMapa.get(nivelAlumno)}" var="grupos">
-                    <div>
-                        <span>#{grupos.idGrupo}</span><span>#{grupos.idAlumno}</span><span>#{grupos.nombre} #{grupos.apellidoPaterno} #{grupos.apellidoMaterno}</span>
-                        <span>#{grupos.totalTareas}</span><span>#{grupos.nivelLenguaje}</span>
-                    </div>
-                </ui:repeat>
+            <ui:repeat value="#{dashboardProfesorControlador.alumnoTareasNivelModeloLista}" var="alumnoTareasNivelModelo">
+                <div>
+                    <span>#{alumnoTareasNivelModelo.idGrupo}</span><span>#{alumnoTareasNivelModelo.idAlumno}</span>
+                    <span>#{alumnoTareasNivelModelo.nombre} #{alumnoTareasNivelModelo.apellidoPaterno} #{alumnoTareasNivelModelo.apellidoMaterno}</span>
+                    <span>#{alumnoTareasNivelModelo.totalTareas}</span><span>#{alumnoTareasNivelModelo.nivelLenguaje}</span>
+                </div>
             </ui:repeat>
         </h:panelGroup>
         <h:panelGroup layout="block" styleClass="uk-container uk-child-width-1-2@m graficas" pt:uk-grid="" id="canvas">
