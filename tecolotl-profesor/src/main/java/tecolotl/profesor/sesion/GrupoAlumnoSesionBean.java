@@ -131,10 +131,10 @@ public class GrupoAlumnoSesionBean {
     }
 
 
-    public int tarea(@NotNull Integer idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
+    public Integer tarea(@NotNull Integer idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?)");
         query.setParameter(1, idGrupo).setParameter(2, idActividad);
-        return query.executeUpdate();
+        return (Integer)query.getSingleResult();
     }
 
     /**

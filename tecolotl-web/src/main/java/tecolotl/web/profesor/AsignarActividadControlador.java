@@ -6,18 +6,20 @@ import tecolotl.profesor.sesion.TareasAlumnoSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class AsignarActividadControlador {
+public class AsignarActividadControlador implements Serializable {
 
     @Inject
     private ProfesorGrupoControlador profesorGrupoControlador;
@@ -32,20 +34,18 @@ public class AsignarActividadControlador {
     private Logger logger;
 
     private List<ActividadModelo> actividadModeloLista;
-
-    @NotNull
     private Integer grupo;
-
-    @NotNull
     private String actividad;
 
     public void inicio() {
         actividadModeloLista = tareasAlumnoSesionBean.busca(grupo);
     }
 
-    public void asiganarTarea() {
-//        grupoAlumnoSesionBean.tarea(grupo, actividad);
-        logger.info(actividad);
+    public String asiganarTarea() {
+        for (String string : actividad.split(",")) {
+            grupoAlumnoSesionBean.tarea(grupo, string);
+        }
+        return "dashboard";
     }
 
     public List<String> buscaNiveles() {

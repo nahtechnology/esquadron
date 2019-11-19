@@ -95,5 +95,13 @@
             </redirect>
         </navigation-case>
     </navigation-rule>
-    
+
+    <navigation-rule>
+        <from-view-id>/profesor/asignar-actividad.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>
