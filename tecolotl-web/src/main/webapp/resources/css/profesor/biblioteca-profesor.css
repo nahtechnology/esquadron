@@ -369,14 +369,16 @@ span.personaje{
     width: 100%;
     height: 100%;
 }
-
+.uk-card-footer img{
+    display: none;
+}
 .uk-card-footer svg{
     width: 30px;
     height: 30px;
+    display: block;
 }
 .A1 .uk-card-footer svg, .A1 .uk-card-footer svg .icono{
     stroke: var(--psecundary-option-three);
-
 }
 .A2 .uk-card-footer svg, .A2 .uk-card-footer svg .icono{
     stroke: #D35400;

@@ -8,7 +8,11 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 function loginImagen(imagenes) {
     imagenes.forEach(function (imagen) {
         imagen.addEventListener("click", function (evento) {
-            imagen.classList.toggle('seleccionado');
+            if(imagen.classList.toggle('seleccionado') === false){
+                var etiqueta = document.querySelector('ul.login-menu li');
+                etiqueta.click();
+                console.log('entro');
+            }
         });
     });
 }

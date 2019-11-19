@@ -29,3 +29,7 @@ ul > li > span {
 .padding-titulo{
     padding-left: 10px;
 }
+
+.uk-modal-dialog .uk-modal-body{
+    border:3px solid #0e6dcd;
+}

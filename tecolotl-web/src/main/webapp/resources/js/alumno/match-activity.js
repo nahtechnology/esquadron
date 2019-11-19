@@ -12,8 +12,11 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     }
     UIkit.util.on(arrastrar,'added',function (texto) {
         console.log(texto.target.dataset.indice);
-
+        console.log('hola');
         arrastrar.forEach(function (caja) {
+            if(!caja.hasChildNodes()){
+                contador[texto.target.dataset.indice] = 0;
+            }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 contador[caja.dataset.indice]++;
                 if (contador[caja.dataset.indice] === 1){
@@ -63,4 +66,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         });
 
     });
+    UIkit.util.on(arrastrar,'remove',function (texto) {
+        contador[texto.target.dataset.indice] = 0;
+        console.log('entro');
+    });
+
+
 });

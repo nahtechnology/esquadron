@@ -16,8 +16,7 @@
 
         </ui:define>
         <ui:define name="contenido">
-            <h:outputStylesheet library="css" name="navegacion.css"/>
-            <h:outputStylesheet library="css" name="profesor/biblioteca-profesor.css"/>
+            <h:outputStylesheet library="css" name="/profesor/biblioteca-profesor.css"/>
             <h:outputStylesheet library="css" name="profesor/scroll-profesor.css"/>
             <div class="uk-container" data-uk-filter="target: .js-filter">
                 <div class="uk-width-1-1@m uk-margin-medium-top">
@@ -49,7 +48,7 @@
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
-                        <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()}">
+                        <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()}" data-actividad="#{actividadModelo.idActividad}">
                             <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.nivelLenguaje}"  >
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border">
                                     <div class="uk-card-header border-card">
