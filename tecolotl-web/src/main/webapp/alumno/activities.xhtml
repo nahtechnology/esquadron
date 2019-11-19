@@ -95,27 +95,16 @@
                                <div class="uk-card-media-top uk-text-center" data-video="#{tareaActvidadModelo.idActividad}">
                                    <h:panelGroup layout="block" pt:uk-spinner=""/>
                                    <div  class="uk-inline-clip uk-transition-toggle" tabindex="0">
-                                       <div class="uk-h4 uk-margin-remove posicion" style="width:90%; height:200px;">
+                                       <div class="uk-h4 uk-margin-remove posicion">
                                            <span><h:outputText  value="#{tareaActvidadModelo.preguntaDetonadora}"/></span>
                                        </div>
-                                       <div class="uk-transition-fade uk-position-cover uk-position-small uk-overlay uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
-                                           <div>
-                                               <h:panelGroup layout="block" styleClass="uk-inline" style="width: 100%; height: 100%" pt:uk-lightbox="">
-                                                   <img class="caja-img" src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
-                                                   <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
-                                               </h:panelGroup>
-                                           </div>
+                                       <div class="uk-transition-fade uk-position-cover uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
+                                           <h:panelGroup layout="block" styleClass="uk-inline" pt:uk-lightbox="">
+                                               <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
+                                               <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
+                                           </h:panelGroup>
                                        </div>
                                    </div>
-                                </div>
-
-                                <div style="" class="uk-card-body">
-                                    <ui:remove><div class="uk-text-center mensaje1"><span class="mensaje1-1">#{alumno['activities.title.description.please.watch.the']}<br/>#{alumno['title.description.full.video']}</span></div></ui:remove>
-                                    <div class="caja-pregunta-detonadora">
-                                        <span>
-                                            <h:outputText  value="#{tareaActvidadModelo.preguntaDetonadora}"/>
-                                        </span>
-                                    </div>
                                 </div>
 
                                 <div style="" class="uk-card-footer uk-text-center">

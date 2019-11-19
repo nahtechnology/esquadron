@@ -299,13 +299,25 @@ div>ul>li{
     text-align: center;
 }
 
-/*.caja-img{
+.uk-card-media-top>div>div+div>div>img{
     width: 100%;
     height: 100%;
-    opacity: 0;
+    box-sizing: content-box;
 }
 
-.pregunta-detonadora{
+.uk-card-media-top>div>div+div>div{
+    min-width: 100%;
+}
+
+.posicion{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*.pregunta-detonadora{
     position: absolute;
     overflow: hidden;
     width: 100%;
