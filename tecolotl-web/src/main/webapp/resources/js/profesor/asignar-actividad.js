@@ -8,11 +8,16 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 
 
 function buscaActividadSeleccionada(evento) {
-    niveles.forEach(function (nivel) {
-        seleccionados = ejercicios.querySelector('input[type=radio][name='+nivel.textContent+']:checked');
-    });
-    if (seleccionados.length === 0) {
+    salida = [];
+    seleccionados = ejercicios.querySelectorAll('input[type=radio]:checked');
+    if (seleccionados === null || seleccionados.length === 0) {
         UIkit.modal.alert('Es necesario seleccionar una actvidad');
+        return false;
+    } else {
+        seleccionados.forEach(function (seleccionado) {
+            salida.push(seleccionado.value);
+        });
+        document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
+        return true;
     }
-    return false;
 }

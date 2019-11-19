@@ -39,13 +39,13 @@
                     <h:form id="formulario-asignar-tarea">
                         <h:inputHidden id="input-actividad" value="#{asignarActividadControlador.actividad}"/>
                         <h:commandButton value="Asignar" styleClass="uk-button  uk-button-primary uk-border-rounded" onclick="return buscaActividadSeleccionada(event)">
-                            <f:ajax execute="@form" listener="#{asignarActividadControlador.asiganarTarea()}"/>
+                            <f:ajax execute="@form" listener="#{asignarActividadControlador.asiganarTarea()}" render="@none"/>
                         </h:commandButton>
                     </h:form>
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
-                        <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()}">
+                        <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()}" data-actividad="#{actividadModelo.idActividad}">
                             <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.nivelLenguaje}"  >
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border">
                                     <div class="uk-card-header border-card">

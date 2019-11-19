@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RequestScoped
@@ -27,6 +28,9 @@ public class AsignarActividadControlador {
     @Inject
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
+    @Inject
+    private Logger logger;
+
     private List<ActividadModelo> actividadModeloLista;
 
     @NotNull
@@ -40,7 +44,8 @@ public class AsignarActividadControlador {
     }
 
     public void asiganarTarea() {
-        grupoAlumnoSesionBean.tarea(grupo, actividad);
+//        grupoAlumnoSesionBean.tarea(grupo, actividad);
+        logger.info(actividad);
     }
 
     public List<String> buscaNiveles() {
