@@ -120,7 +120,7 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>actividades</from-outcome>
-            <to-view-id>/alumno/activity.xhtml</to-view-id>
+            <to-view-id>/alumno/activities.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>glosario</from-outcome>

@@ -251,6 +251,7 @@
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
             var mensajeEnviado = "#{alumno['send.message']}";
+            var mensajeNoEnviar = "#{alumno['send.message.not.send']}";
             var mensajeError = "#{alumno['send.message.error']}";
             var mensajeTrnascripcion = "#{alumno['send.message.transcript']}";
 
@@ -332,7 +333,7 @@
                 if (data.status === 'success') {
                     data.source.previousElementSibling.previousElementSibling.querySelector('.uk-sortable').removeAttribute('uk-sortable');
                     data.source.disabled = true;
-                    UIkit.notification("Respuesta Enviada correctamente", {pos: 'top-right'});
+                    UIkit.notification(mensajeEnviado, {pos: 'top-right'});
                     var cambio = ordenarPalabras.querySelector('ul li.uk-active');
                     cambio.classList.remove('boton-falta');
                     cambio.classList.add('boton-listo');
@@ -344,7 +345,7 @@
 
             function recuperaDatos(evento) {
                 if (document.getElementById('formulario-relacionar:tablaRespuestas').childElementCount > 0 )  {
-                    UIkit.modal.alert('Necesitas terminar de relacionar las oraciones.');
+                    UIkit.modal.alert(mensajeNoEnviar);
                     return false;
                 } else {
                     var idRelacionarmodelos = document.querySelectorAll('.match form > div:nth-child(2) > div:nth-child(2) > div:not(:first-child)');
@@ -354,7 +355,7 @@
                     });
                     document.getElementById('formulario-relacionar:respuestaOraciones').value = getId.join();
                     document.querySelector('input[type=submit]').disabled = true;
-                    return false;
+                    return true;
                 }
             }
 
