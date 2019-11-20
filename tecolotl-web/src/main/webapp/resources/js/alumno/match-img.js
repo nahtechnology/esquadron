@@ -14,6 +14,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         console.log(texto.target.dataset.indice);
 
         drag.forEach(function (caja) {
+            if(!caja.hasChildNodes()){
+                conta[caja.dataset.indice] = 0;
+                console.log(caja);
+            }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 conta[caja.dataset.indice]++;
                 if (conta[caja.dataset.indice] === 1){

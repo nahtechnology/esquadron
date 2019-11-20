@@ -19,6 +19,10 @@ function evitarPreguntas() {
         console.log(texto.target.dataset.indice);
 
         dragSen.forEach(function (caja) {
+            if(!caja.hasChildNodes()){
+                cuenta[caja.dataset.indice] = 0;
+                console.log(caja);
+            }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 cuenta[caja.dataset.indice]++;
                 if (cuenta[caja.dataset.indice] === 1){
