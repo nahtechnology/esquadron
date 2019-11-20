@@ -55,11 +55,6 @@ progress::-ms-fill {
     border: 0;
 }
 
-div > button{
-    position: relative;
-    left: 85%;
-    bottom: 48px;
-}
 
 div > div > div > div + div + div + div + div + div > img{
     width: 40px;
@@ -78,4 +73,15 @@ div > div > div > div + div + div + div + div + div > img:hover{
 
 .padding-titulo{
     padding-left: 10px;
+}
+
+.botones{
+    display: flex;
+    justify-content: flex-end;
+    align-content: space-around;
+    margin-bottom: 15px;
+}
+
+.botones > .boton-escuadron-base{
+    margin-left: 15px;
 }
