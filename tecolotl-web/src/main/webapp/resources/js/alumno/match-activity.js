@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         arrastrar.forEach(function (caja) {
             if(!caja.hasChildNodes()){
                 contador[caja.dataset.indice] = 0;
-                console.log(caja);
+                // console.log(caja);
             }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 contador[caja.dataset.indice]++;

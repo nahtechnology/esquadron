@@ -55,7 +55,10 @@
 
 .graficas > div > :first-child{
     background-color: #00A49D;
-    border-left: 2px solid white;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    color: white;
+    font-weight: bold;
 }
 .graficas > div > :nth-child(2){
     background-color: #00A49D;
@@ -77,20 +80,30 @@
     background-color: #00A49D;
     border-left: 2px solid white;
 }
+.graficas > div > :nth-child(7){
+    background-color: #00A49D;
+    border-left: 2px solid white;
+}
 
 .graficas p{
     margin-bottom: 2px;
     font-weight: bold;
-    font-size: 13px;
+    font-size: 12px;
     color: white;
     /*display: inline-block;*/
 }
-.graficas p > span{
+.graficas p > span:first-child{
     display: inline-block;
     padding: 0 5px;
-    border:1.3px solid #00A8EC;
-    border-radius: 5px;
+    border-bottom:2px solid #00A8EC;
     color: black;
+    font-family: Sniglet, 'Arial Blac', sans-serif;
+}
+.graficas p > span:nth-child(2){
+    margin-left: 5px;
+    color: black;
+    font-family: Sniglet, 'Arial Blac', sans-serif;
+    font-weight: bold;
 }
 .graficas > div{
     /*background-color: #999999;*/

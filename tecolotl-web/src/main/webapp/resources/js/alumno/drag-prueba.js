@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         drag.forEach(function (caja) {
             if(!caja.hasChildNodes()){
                 conta[caja.dataset.indice] = 0;
-                console.log(caja);
+                // console.log(caja);
             }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 conta[caja.dataset.indice]++;

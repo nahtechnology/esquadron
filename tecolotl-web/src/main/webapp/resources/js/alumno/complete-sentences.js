@@ -21,7 +21,7 @@ function evitarPreguntas() {
         dragSen.forEach(function (caja) {
             if(!caja.hasChildNodes()){
                 cuenta[caja.dataset.indice] = 0;
-                console.log(caja);
+                // console.log(caja);
             }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 cuenta[caja.dataset.indice]++;

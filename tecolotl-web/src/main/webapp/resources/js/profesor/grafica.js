@@ -2,7 +2,8 @@ var  nivel = ['A1','A2','B1','B2','C1','C2'];
 
 function datosGrupo() {
     console.log("invocada");
-    var alumno = [],idalumno = [] , grupos = [],nivel2=[] ;
+    var alumno = [],idalumno = [] , grupos = [],nivel2=[],clases = [] ;
+    var tabla = document.querySelectorAll('table[class*=tabla-profesor-dropdown] tbody tr');
     var datosAlumnos = document.querySelector('#graficas ');
     var listaDatos = datosAlumnos.querySelectorAll('div');
     var canvasGrafica = document.querySelector('#canvas');
@@ -28,23 +29,33 @@ function datosGrupo() {
             nivel2.push(persona.nivelLenjuaje);
         }
         if (!grupos.includes(persona.idGrupo)){
-            grupos.push(persona.idGrupo);`
-            `
+            grupos.push(persona.idGrupo);
         }
+    });
+    tabla.forEach(function (table) {
+        var grado = table.querySelector('td:first-child').innerText;
+        var grupo = table.querySelector('td:nth-child(2)').innerText;
+        var id = table.querySelector('td:last-child ul li:first-child a').search;
+        var ident = id.split('=');
+        var classroom = new DatosGrupo(grado,grupo,ident[1]);
+        clases.push(classroom);
     });
     var grup;
    grupos.forEach(function (value, index) {
        var graficas = [];
        alumno.filter(person => person.idGrupo.localeCompare(grupos[index]) === 0).forEach(function (grafica) {
-                var persona = new DatosGrafica(grafica.idAlumo,grafica.nombreCompleto,grafica.totalTareas,grafica.nivelLenjuaje);
+                var persona = new DatosGrafica(grafica.idAlumo,grafica.nombreCompleto,grafica.totalTareas,grafica.nivelLenjuaje,grafica.idGrupo);
                 graficas.push(persona);
        });
-       crearGrafica(graficas);
+       crearGrafica(graficas,clases);
    }) ;
 
+
+   console.log(clases);
 }
 
-function crearGrafica(datosGrupo) {
+function crearGrafica(datosGrupo,claseGrupo) {
+    var titleGrupo = document.createElement('h6');
     var level1 = document.createElement('span');
     var level2 = document.createElement('span');
     var level3 = document.createElement('span');
@@ -55,11 +66,17 @@ function crearGrafica(datosGrupo) {
     var canvasGrafica = document.querySelector('#canvas');
     var idPersona = [];
     var grupo = document.createElement('div');
-    console.log(datosGrupo);
+    // console.log(datosGrupo);
 
     datosGrupo.forEach(function (grupo) {
         if(!idPersona.includes(grupo.personaId)){
             idPersona.push(grupo.personaId);
+        }
+    });
+    // console.log(datosGrupo[0].personaGrupo);
+    claseGrupo.forEach(function (clg) {
+        if (clg.idGrup === datosGrupo[0].personaGrupo){
+            titleGrupo.innerHTML ='Grupo: ' + clg.grado + ' ' +clg.grupo;
         }
     });
     level1.innerHTML='A1';
@@ -68,6 +85,7 @@ function crearGrafica(datosGrupo) {
     level4.innerHTML='B2';
     level5.innerHTML='C1';
     level6.innerHTML='C2';
+    grupo.appendChild(titleGrupo);
     grupo.appendChild(level1);
     grupo.appendChild(level2);
     grupo.appendChild(level3);
@@ -76,11 +94,13 @@ function crearGrafica(datosGrupo) {
     grupo.appendChild(level6);
     // console.log(idPersona);
     for (var indice = 0 ; indice < idPersona.length ; indice++) {
+        var porcentajeTotal = 0;
         var alumnoGrupo = document.createElement('div');
         var nombreAlumno = document.createElement('p');
+        var porcentajeAlumno = document.createElement('span');
         var estiloNombreAlumno = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
-        console.log(sujeto);
+        // console.log(sujeto);
         estiloNombreAlumno.innerHTML = sujeto[0].personaNombre;
         nombreAlumno.appendChild(estiloNombreAlumno);
         alumnoGrupo.appendChild(nombreAlumno);
@@ -92,7 +112,14 @@ function crearGrafica(datosGrupo) {
             barraNivel.setAttribute('max','18');
             barraNivel.setAttribute('value',cantidadTarea);
             alumnoGrupo.appendChild(barraNivel);
+            if (cantidadTarea > 18){
+                cantidadTarea = 18;
+            }
+            porcentajeTotal += cantidadTarea;
         });
+        porcentajeTotal =  Math.round((porcentajeTotal * 100)/(18*6));
+        porcentajeAlumno.innerHTML = 'porcentaje: '+ porcentajeTotal + '%';
+        nombreAlumno.appendChild(porcentajeAlumno);
         grupo.appendChild(alumnoGrupo);
         canvasGrafica.appendChild(grupo);
     }
@@ -107,10 +134,17 @@ function GraficaAlumno(idGrupo,idAlumno,nombreCompleto,totalTareas,nivelLenguaje
     this.nivelLenjuaje = nivelLenguaje;
 }
 
-function DatosGrafica(personaId,personaNombre,tareasNivel,personaNivel) {
+function DatosGrafica(personaId,personaNombre,tareasNivel,personaNivel,personaGrupo) {
     this.personaId = personaId;
     this.personaNombre = personaNombre;
     this.tareasNivel = parseInt(tareasNivel);
     this.personaNivel = personaNivel;
+    this.personaGrupo = personaGrupo;
+}
+
+function DatosGrupo(grado,grupo,idGrup){
+    this.grado = grado;
+    this.grupo = grupo;
+    this.idGrup = idGrup;
 }
 
