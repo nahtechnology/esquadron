@@ -1,11 +1,13 @@
 var tabla;
 var alumnos = [];
 var formularioNuevoAlumno = document.getElementById('formulario-modal-nuevo-profesor');
+var botonResporte = document.querySelector('.uk-container button.reporte');;
 
 document.addEventListener('DOMContentLoaded', function (evento) { 
     tabla = document.querySelector('.uk-container table');
     seleccionContrasenia();
     formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
+    botonResporte.addEventListener('click', generarReporte);
 });
 
 
@@ -48,4 +50,19 @@ function limpiaFormulario(data) {
             entrada.value = null;
         });
     }
+}
+
+function generarReporte(evento) {
+    console.log(evento);
+    tabla = document.getElementById('formulario-tabla-alumno:tabla-alumno');
+    csv = Array.from(tabla.tHead.rows[0].cells).map(th => th.textContent).join(',').concat('\n');
+    console.log(csv);
+    for (i = 0; i < tabla.tBodies[0].rows.length; i++) {
+        csv += Array.from(tabla.tBodies[0].rows[i].cells).map(td => td.querySelector('span').textContent === null ? 'No hay tarea' : td.querySelector('span').textContent).join(',').concat('\n');
+    }
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.csv';
+    hiddenElement.click();
 }

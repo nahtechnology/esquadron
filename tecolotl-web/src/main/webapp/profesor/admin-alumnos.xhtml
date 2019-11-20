@@ -64,6 +64,8 @@
                 </div>
             </div>
         </div>
+        <h:button value="regresar" outcome="tablero"/>
+        <button class="boton-escuadron-base reporte">reporte</button>
         <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>
         <div class="uk-grid uk-grid-medium uk-margin-large-bottom" data-uk-grid="">
             <!-- tabla alumnos -->
@@ -80,52 +82,52 @@
                                      rowClasses="tdPrimario uk-margin-small">
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">nombre</span></f:facet>
-                                ${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}
+                                <span>${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}</span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">mapa mental</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaMapaMental eq 0}"/>
-                                <h:outputText value="${tarea.totalRespuestaMapaMental} / ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/>
+                                <span><h:outputText value="${tarea.totalRespuestaMapaMental} / ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/></span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">ordenar palabra</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaGramatica eq 0}"/>
-                                <h:outputText value="${tarea.totalRespuestaGramatica} / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/>
+                                <span><h:outputText value="${tarea.totalRespuestaGramatica} / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/></span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">relacionar imagen palabra</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadoRelacionar eq 0}"/>
-                                <h:outputText value="${tarea.totalRespuestaRelacionar} / ${tarea.totalAsignadoRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/>
+                                <span><h:outputText value="${tarea.totalRespuestaRelacionar} / ${tarea.totalAsignadoRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/></span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">ordenar oraciones</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="#{tarea.totalAsignadaOraciones eq 0}"/>
-                                <h:outputText value="#{tarea.totalRespuestaOraciones} / #{tarea.totalAsignadaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/>
+                                <span><h:outputText value="#{tarea.totalRespuestaOraciones} / #{tarea.totalAsignadaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/></span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">relacionar pregunta respuesta</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaRelacionarOracion eq 0}"/>
-                                <h:outputText value="${tarea.totalRespuestaRelacionarOracion} / ${tarea.totalAsignadaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/>
+                                <span><h:outputText value="${tarea.totalRespuestaRelacionarOracion} / ${tarea.totalAsignadaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/></span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">completar oraciones</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaCompletar eq 0}"/>
-                                <h:outputText value="${tarea.totalRespuestaCompletar} / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/>
+                                <span><h:outputText value="${tarea.totalRespuestaCompletar} / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/></span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">Opciones</span></f:facet>
-                                    <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                    <div uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
-                                        <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                                            <li>
-                                                <h:link outcome="detalle-alumno">
-                                                    <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary"/>
-                                                    <span class="uk-text-middle uk-text-primary"><h:outputText value="Detalle"/></span>
-                                                    <f:param name="idAlumno" value="#{tarea.id}"/>
-                                                </h:link>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
+                                <div uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
+                                    <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                        <li>
+                                            <h:link outcome="detalle-alumno">
+                                                <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary"/>
+                                                <span class="uk-text-middle uk-text-primary"><h:outputText value="Detalle"/></span>
+                                                <f:param name="idAlumno" value="#{tarea.id}"/>
+                                            </h:link>
+                                        </li>
+                                    </ul>
+                                </div>
                             </h:column>
                         </h:dataTable>
                     </div>
