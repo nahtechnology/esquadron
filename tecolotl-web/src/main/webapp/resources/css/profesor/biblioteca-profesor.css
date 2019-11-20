@@ -398,5 +398,11 @@ span.personaje{
 }
 .C2 .uk-card-footer svg, .C2 .uk-card-footer svg .icono{
     stroke: var(--color-peligro);
+}
 
+#formulario-asignar-tarea + input{
+    padding: 0 25px;
+}
+#formulario-asignar-tarea + input + button{
+    padding: 0 25px;
 }
