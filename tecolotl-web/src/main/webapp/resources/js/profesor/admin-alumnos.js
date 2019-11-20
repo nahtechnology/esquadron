@@ -58,11 +58,11 @@ function generarReporte(evento) {
     csv = Array.from(tabla.tHead.rows[0].cells).map(th => th.textContent).join(',').concat('\n');
     console.log(csv);
     for (i = 0; i < tabla.tBodies[0].rows.length; i++) {
-        csv += Array.from(tabla.tBodies[0].rows[i].cells).map(td => td.querySelector('span').textContent === null ? 'No hay tarea' : td.querySelector('span').textContent).join(',').concat('\n');
+        csv += Array.from(tabla.tBodies[0].rows[i].cells).map(td => td.querySelector('span').textContent.trim() === '' ? 'N/A' : td.querySelector('span').textContent).join(',').concat('\n');
     }
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'people.csv';
+    hiddenElement.download = 'activityreport_group' + evento.target.dataset.grado + evento.target.dataset.grupo + '.cvs';
     hiddenElement.click();
 }
