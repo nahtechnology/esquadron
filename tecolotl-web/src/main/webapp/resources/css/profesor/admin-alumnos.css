@@ -78,8 +78,8 @@ div > div > div > div + div + div + div + div + div > img:hover{
 .botones{
     display: flex;
     justify-content: flex-end;
-    align-content: space-around;
-    margin-bottom: 15px;
+    align-content: flex-end;
+    flex-wrap: wrap;
 }
 
 .botones > .boton-escuadron-base{
