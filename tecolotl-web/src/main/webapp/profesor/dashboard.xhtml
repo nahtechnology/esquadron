@@ -14,8 +14,10 @@
             <li class="nav-sub-active">
                 <span>#{etiqueta['home']}</span>
             </li>
+            <ui:remove>
             <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/></li>
             <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
+            </ui:remove>
         </ul>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
@@ -23,9 +25,11 @@
         <div id="menu" uk-offcanvas="overlay: true">
             <div class="uk-offcanvas-bar">
                 <ul class="uk-nav  nav-sub-offcanvas ">
-                    <li class="nav-sub-active"><span class="uk-text-capitalize">home</span></li>
+                    <li class="nav-sub-active"><span class="uk-text-capitalize">#{etiqueta['home']}</span></li>
+                    <ui:remove>
                     <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/> </li>
                     <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
+                    </ui:remove>
                 </ul>
             </div>
         </div>
@@ -50,8 +54,8 @@
                             </div>
                             <div class="uk-width-1-1@s">
                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.nickname']}: </span>#{profesorControlador.profesorModelo.apodo}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.email']}: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+                                <ui:remove><p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p></ui:remove>
                             </div>
                         </div>
                     </div>
@@ -71,7 +75,7 @@
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
                 <h:form id="formulario-grupo" styleClass="uk-form-horizontal">
                     <div class="uk-margin">
-                        <h:outputLabel for="ciclo-escolar-select" value="Ciclo Escolar:" styleClass="uk-form-label uk-text-bold "/>
+                        <h:outputLabel for="ciclo-escolar-select" value="#{profesor['dashboard.school.cycle']}:" styleClass="uk-form-label uk-text-bold "/>
                         <div class="uk-form-controls">
                             <h:selectOneMenu value="#{dashboardProfesorControlador.hashCode}"
                                              id="ciclo-escolar-select"
@@ -94,13 +98,13 @@
                     </div>
                     <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                         <div>
-                            <div class="titulo-section uk-text-center uk-text-bold">Inicio</div>
+                            <div class="titulo-section uk-text-center uk-text-bold">#{profesor['dashboard.start']}</div>
                             <h:outputText id="fecha-inicio" value="#{dashboardProfesorControlador.cicloEscolarModelo.inicio}">
                                 <f:convertDateTime dateStyle="medium"/>
                             </h:outputText>
                         </div>
                         <div>
-                            <div class="titulo-section uk-text-center uk-text-bold">Fin</div>
+                            <div class="titulo-section uk-text-center uk-text-bold">#{profesor['dashboard.end']}</div>
                             <h:outputText id="fecha-fin" value="#{dashboardProfesorControlador.cicloEscolarModelo.fin}">
                                 <f:convertDateTime dateStyle="medium"/>
                             </h:outputText>
@@ -108,7 +112,7 @@
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-1@m">
                         <div>
-                            <div class="titulo-section uk-text-center uk-text-bold">Descripcion</div>
+                            <div class="titulo-section uk-text-center uk-text-bold">#{profesor['dashboard.description']}</div>
                             <h:outputText id="descripcion" value="#{dashboardProfesorControlador.cicloEscolarModelo.descripcion}"/>
                         </div>
                     </h:panelGroup>
@@ -130,7 +134,7 @@
         <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
             <div class="uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo">
                 <h:outputText
-                              value="#{empty dashboardProfesorControlador.grupoModeloLista ? 'No tiene grupos asigandos en este ciclo escolar' : 'Sus grupos para este ciclo escolar'}">
+                              value="#{empty dashboardProfesorControlador.grupoModeloLista ? profesor['dashboard.table.title.not.group'] : profesor['dashboard.table.title.group']}">
                 </h:outputText>
             </div>
             <h:form id="formulario-tabla" styleClass="uk-form-stacked">
@@ -149,11 +153,11 @@
                             #{grupo.grado}
                         </h:column>
                         <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Grupo</span></f:facet>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.group']}</span></f:facet>
                             #{grupo.grupo}
                         </h:column>
                         <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Opciones</span></f:facet>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.options']}</span></f:facet>
                             <div class="uk-inline  ">
                                 <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
                                 <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
