@@ -148,3 +148,28 @@ function DatosGrupo(grado,grupo,idGrup){
     this.idGrup = idGrup;
 }
 
+function ReporteCuantitativo() {
+    var resporteGrafica = [];
+    var grafica = document.querySelectorAll('#canvas > div');
+    grafica.forEach(function (grupo) {
+        var alumno = grupo.querySelectorAll('div');
+        alumno.forEach(function (datos) {
+            var datoNombre = datos.querySelector('p > span:first-child').textContent;
+            var datoProgreso = datos.querySelector('progress');
+            var totalDatos = new DatosReporte(datoNombre,datoProgreso[0].value,datoProgreso[1].value,datoProgreso[2].value,datoProgreso[3].value,datoProgreso[4].value,datoProgreso[5].value,8);
+            resporteGrafica.push(totalDatos);
+        });
+        console.log(resporteGrafica);
+    });
+}
+
+function DatosReporte(nombreAlumno,levelA1,levelA2,levelB1,levelB2,levelC1,levelC2,calificacion) {
+    this.nombreAlumno = nombreAlumno;
+    this.levelA1 = levelA1;
+    this.levelA2 = levelA2;
+    this.levelB1 = levelB1;
+    this.levelB2 = levelB2;
+    this.levelC1 = levelC1;
+    this.levelC2 = levelC2;
+    this.calificacion = calificacion;
+}
