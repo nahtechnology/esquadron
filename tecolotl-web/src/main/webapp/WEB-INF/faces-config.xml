@@ -81,6 +81,10 @@
 			<base-name>alumno_en</base-name>
 			<var>alumno</var>
 		</resource-bundle>
+		<resource-bundle>
+			<base-name>profesor</base-name>
+			<var>profesor</var>
+		</resource-bundle>
 
 		<message-bundle>
 			validacion.Messages
