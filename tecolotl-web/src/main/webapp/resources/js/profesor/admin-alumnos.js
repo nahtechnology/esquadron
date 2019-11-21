@@ -1,13 +1,15 @@
 var tabla;
 var alumnos = [];
 var formularioNuevoAlumno = document.getElementById('formulario-modal-nuevo-profesor');
-var botonResporte = document.querySelector('.uk-container button.reporte');;
+var botonResporte = document.querySelector('.uk-container button.reporte');
+var tablaAlumnos = document.getElementById('formulario-tabla-alumno:tabla-alumno');
 
 document.addEventListener('DOMContentLoaded', function (evento) { 
     tabla = document.querySelector('.uk-container table');
     seleccionContrasenia();
     formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
     botonResporte.addEventListener('click', generarReporte);
+    desabilitar();
 });
 
 
@@ -65,4 +67,16 @@ function generarReporte(evento) {
     hiddenElement.target = '_blank';
     hiddenElement.download = 'activityreport_group' + evento.target.dataset.grado + evento.target.dataset.grupo + '.cvs';
     hiddenElement.click();
+}
+
+function desabilitar() {
+    var filas = tablaAlumnos.querySelectorAll('tbody tr');
+    filas.forEach(function (row) {
+        var celdas = row.querySelectorAll('td');
+        if(celdas[1].innerText === "" && celdas[2].innerText === ""  && celdas[3].innerText === ""  && celdas[4].innerText === "" && celdas[5].innerText === "" && celdas[6].innerText === ""){
+             celdas[7].querySelector('button').disabled = true;
+        }
+        console.log(celdas);
+    });
+
 }

@@ -85,3 +85,22 @@ div > div > div > div + div + div + div + div + div > img:hover{
 .botones > .boton-escuadron-base{
     margin-left: 15px;
 }
+#tabla-vacia > div:first-child{
+    background-color: #ceccc2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#tabla-vacia > div:first-child span{
+    display: inline-block;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: black;
+    width: calc(100%/7);
+    text-align: center;
+}
+
+#tabla-vacia > div:nth-child(2){
+    height: 500px;
+    background: url("#{resource['img/vacio.svg']}") #FFF5EE no-repeat center center/500px;
+}

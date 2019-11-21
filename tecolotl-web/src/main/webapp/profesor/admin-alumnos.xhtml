@@ -74,7 +74,7 @@
             <!-- tabla alumnos -->
             <div class="uk-width-1-1@s">
                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo">Alumnos de la clase</h5>
-                <h:form id="formulario-tabla-alumno" >
+                <h:form id="formulario-tabla-alumno" rendered="#{not empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}">
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
@@ -123,10 +123,10 @@
                                 <span><h:outputText value="${tarea.totalRespuestaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/></span>
                                 <h:outputText value=" / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/>
                             </h:column>
-                            <h:column>
+                            <h:column >
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">Opciones</span></f:facet>
                                 <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                <div uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
+                                <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                         <li>
                                             <h:link outcome="detalle-alumno">
@@ -136,11 +136,15 @@
                                             </h:link>
                                         </li>
                                     </ul>
-                                </div>
+                                </h:panelGroup>
                             </h:column>
                         </h:dataTable>
                     </div>
                 </h:form>
+                <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}">
+                    <div><span>NOMBRE</span><span>MAPA MENTAL</span><span>ORDENAR PALABRA</span><span>RELACIONAR IMAGEN PALABRA</span><span>ORDENAR ORACIONES</span><span>RELACIONAR PREGUNTA RESPUESTA</span><span>COMPLETAR ORACIONES</span></div>
+                    <div></div>
+                </h:panelGroup>
             </div>
         </div>
         <!--  Modal nuevo alumno  -->

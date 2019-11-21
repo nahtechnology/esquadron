@@ -178,6 +178,10 @@
             <from-outcome>siguiente</from-outcome>
             <to-view-id>/alumno/biblioteca-libre/order-free-library.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>free-library</from-outcome>
+            <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -194,6 +198,10 @@
             <from-outcome>siguiente</from-outcome>
             <to-view-id>/alumno/biblioteca-libre/match-free-library.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>free-library</from-outcome>
+            <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -209,6 +217,10 @@
         <navigation-case>
             <from-outcome>terminar</from-outcome>
             <to-view-id>/alumno/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>free-library</from-outcome>
+            <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
