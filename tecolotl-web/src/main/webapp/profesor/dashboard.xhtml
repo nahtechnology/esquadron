@@ -149,7 +149,7 @@
                             var="grupo"
                             styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown"
                             headerClass="thPrimario uk-text-center"
-                            columnClasses="uk-width-small,uk-width-small,uk-width-small"
+                            columnClasses=",,,uk-width-small"
                             rowClasses="tdPrimario"
                             footerClass="thPrimario uk-text-left">
                         <h:column>
@@ -161,7 +161,11 @@
                             #{grupo.grupo}
                         </h:column>
                         <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.options']}</span></f:facet>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">total alumnos</span></f:facet>
+                            ${grupo.totalAlumno}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{etiqueta['options']}</span></f:facet>
                             <div class="uk-inline  ">
                                 <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
                                 <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" >
@@ -173,22 +177,15 @@
                                                 <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
                                             </h:link>
                                         </li>
-                                        <li>
-                                            <h:link outcome="asignar-tarea" styleClass="uk-text-primary" >
-                                                <h:graphicImage library="img" name="icono/gramatica.svg" width="20"/>
-                                                <span class="uk-text-middle"><h:outputText value="Asignar Tarea"/></span>
-                                                <f:param name="grupo" value="#{grupo.id}"/>
-                                            </h:link>
-                                        </li>
-                                        <ui:remove>
-                                        <li>
-                                            <h:commandLink  pt:uk-toggle="target: #modal-reporte" styleClass="uk-text-primary" >
-                                                <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon" />
-                                                <span class="uk-text-middle"><h:outputText value="Reporte"/></span>
-                                                <f:ajax/>
-                                            </h:commandLink>
-                                        </li>
-                                        </ui:remove>
+                                        <ui:fragment rendered="${grupo.totalAlumno > 0}">
+                                            <li>
+                                                <h:link outcome="asignar-tarea" styleClass="uk-text-primary">
+                                                    <h:graphicImage library="img" name="icono/gramatica.svg" width="20"/>
+                                                    <span class="uk-text-middle"><h:outputText value="Asignar Tarea"/></span>
+                                                    <f:param name="grupo" value="#{grupo.id}"/>
+                                                </h:link>
+                                            </li>
+                                        </ui:fragment>
                                     </ul>
                                 </div>
                             </div>

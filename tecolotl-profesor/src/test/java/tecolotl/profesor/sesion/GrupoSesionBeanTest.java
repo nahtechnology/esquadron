@@ -26,6 +26,7 @@ import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -65,6 +66,7 @@ import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -131,6 +133,7 @@ public class GrupoSesionBeanTest {
                 .addPackage(HablarEntidad.class.getPackage())
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage()).addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
@@ -185,11 +188,26 @@ public class GrupoSesionBeanTest {
     }
 
     @Test
-    public void actualiza(){
+    public void actualiza() {
         GrupoModelo grupoModelo = new GrupoModelo(-38);
         grupoModelo.setGrado((short)2);
         grupoModelo.setGrupo('C');
         grupoSesionBean.actualiza(grupoModelo);
+    }
+
+    @Test
+    public void buscaConTotal() throws ParseException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<GrupoModelo> grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
+                dateFormat.parse("2019-09-14"), dateFormat.parse("2020-09-14"), "21DBA0014J", 1);
+        Assert.assertNotNull(grupoModeloLista);
+        Assert.assertFalse(grupoModeloLista.isEmpty());
+        for (GrupoModelo grupoModelo : grupoModeloLista) {
+            Assert.assertNotNull(grupoModelo.getId());
+            Assert.assertNotNull(grupoModelo.getGrupo());
+            Assert.assertNotNull(grupoModelo.getGrado());
+            Assert.assertTrue(grupoModelo.getTotalAlumno() > -1);
+        }
     }
 
     @Test

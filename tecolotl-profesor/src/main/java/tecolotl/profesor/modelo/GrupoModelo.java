@@ -17,6 +17,7 @@ public class GrupoModelo {
     private Short grado;
     private Character grupo;
     private Integer idProfesor;
+    private int totalAlumno;
 
     public GrupoModelo() {
     }
@@ -65,6 +66,14 @@ public class GrupoModelo {
 
     public void setIdProfesor(Integer idProfesor) {
         this.idProfesor = idProfesor;
+    }
+
+    public int getTotalAlumno() {
+        return totalAlumno;
+    }
+
+    public void setTotalAlumno(int totalAlumno) {
+        this.totalAlumno = totalAlumno;
     }
 
     @Override

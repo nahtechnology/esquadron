@@ -20,6 +20,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -85,6 +86,27 @@ public class GrupoSesionBean implements Serializable {
         typedQuery.setParameter("inicio", inicio).setParameter("fin", fin)
                 .setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("idProfesor", idProfesor);
         return typedQuery.getResultList().stream().map(GrupoModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca todos los grupos por ciclo escolar contando
+     * @param inicio Fecha inicio del ciclo escolar
+     * @param fin Fecha final del ciclo escolar
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+     * @return Colección de {@link GrupoModelo}
+     */
+    public List<GrupoModelo> buscaTotalAlumno(@NotNull Date inicio, @NotNull Date fin, @NotNull String claveCentroTrabajo, @NotNull Integer idProfesor) {
+        TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaCiclioEscolarTotalAlumno", GrupoEntidad.class);
+        typedQuery.setParameter("inicio", inicio).setParameter("fin", fin)
+                .setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("idProfesor", idProfesor);
+        List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
+        List<GrupoModelo> grupoModeloLista = new ArrayList<>(grupoEntidadLista.size());
+        for (GrupoEntidad grupoEntidad : grupoEntidadLista) {
+            GrupoModelo grupoModelo = new GrupoModelo(grupoEntidad);
+            grupoModelo.setTotalAlumno(grupoEntidad.getTotalAlumno());
+            grupoModeloLista.add(grupoModelo);
+        }
+        return grupoModeloLista;
     }
 
     /**

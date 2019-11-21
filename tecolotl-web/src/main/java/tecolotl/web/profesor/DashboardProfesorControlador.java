@@ -48,7 +48,7 @@ public class DashboardProfesorControlador implements Serializable {
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(), true, profesorModelo.getProfesorModelo().getId());
         cicloEscolarModelo = cicloEscolarModeloLista.get(0);
-        grupoModeloLista = grupoSesionBean.busca(
+        grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorModelo.getProfesorModelo().getId());
@@ -63,7 +63,7 @@ public class DashboardProfesorControlador implements Serializable {
                 break;
             }
         }
-        grupoModeloLista = grupoSesionBean.busca(
+        grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorModelo.getProfesorModelo().getId());
