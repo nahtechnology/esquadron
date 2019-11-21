@@ -53,8 +53,12 @@
                                 <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
                             </div>
                             <div class="uk-width-1-1@s">
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.nickname']}: </span>#{profesorControlador.profesorModelo.apodo}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.email']}: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom ">
+                                    <span class="uk-text-bold uk-text-capitalize">#{profesor['dashboard.nickname']}: </span>#{profesorControlador.profesorModelo.apodo}
+                                </p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom ">
+                                    <span class="uk-text-bold uk-text-capitalize">#{profesor['dashboard.email']}: </span>#{profesorControlador.profesorModelo.correoEletronico}
+                                </p>
                                 <ui:remove><p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p></ui:remove>
                             </div>
                         </div>
@@ -75,7 +79,7 @@
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
                 <h:form id="formulario-grupo" styleClass="uk-form-horizontal">
                     <div class="uk-margin">
-                        <h:outputLabel for="ciclo-escolar-select" value="#{profesor['dashboard.school.cycle']}:" styleClass="uk-form-label uk-text-bold "/>
+                        <h:outputLabel for="ciclo-escolar-select" value="#{profesor['dashboard.school.cycle']}:" styleClass="uk-form-label uk-text-bold uk-text-capitalize"/>
                         <div class="uk-form-controls">
                             <h:selectOneMenu value="#{dashboardProfesorControlador.hashCode}"
                                              id="ciclo-escolar-select"
@@ -98,13 +102,13 @@
                     </div>
                     <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                         <div>
-                            <div class="titulo-section uk-text-center uk-text-bold">#{profesor['dashboard.start']}</div>
+                            <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">#{profesor['dashboard.start']}</div>
                             <h:outputText id="fecha-inicio" value="#{dashboardProfesorControlador.cicloEscolarModelo.inicio}">
                                 <f:convertDateTime dateStyle="medium"/>
                             </h:outputText>
                         </div>
                         <div>
-                            <div class="titulo-section uk-text-center uk-text-bold">#{profesor['dashboard.end']}</div>
+                            <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">#{profesor['dashboard.end']}</div>
                             <h:outputText id="fecha-fin" value="#{dashboardProfesorControlador.cicloEscolarModelo.fin}">
                                 <f:convertDateTime dateStyle="medium"/>
                             </h:outputText>
@@ -112,7 +116,7 @@
                     </h:panelGroup>
                     <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-1@m">
                         <div>
-                            <div class="titulo-section uk-text-center uk-text-bold">#{profesor['dashboard.description']}</div>
+                            <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">#{profesor['dashboard.description']}</div>
                             <h:outputText id="descripcion" value="#{dashboardProfesorControlador.cicloEscolarModelo.descripcion}"/>
                         </div>
                     </h:panelGroup>

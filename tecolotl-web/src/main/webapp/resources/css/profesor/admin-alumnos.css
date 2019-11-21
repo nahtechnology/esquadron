@@ -104,3 +104,4 @@ div > div > div > div + div + div + div + div + div > img:hover{
     height: 500px;
     background: url("#{resource['img/vacio.svg']}") #FFF5EE no-repeat center center/500px;
 }
+
