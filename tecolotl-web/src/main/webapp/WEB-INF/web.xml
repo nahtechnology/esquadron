@@ -73,6 +73,12 @@
 			<url-pattern>/alumno/*</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>CONNECT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>PUT</http-method>
 		</web-resource-collection>
 		<auth-constraint>
 			<description>el usuario alumno</description>
@@ -89,6 +95,12 @@
 			<url-pattern>/profesor/*</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>POST</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>CONNECT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>PUT</http-method>
 		</web-resource-collection>
 		<auth-constraint>
 			<description>usuario-profesor</description>

@@ -95,6 +95,17 @@ public class ProfesorSesionBean implements Serializable {
     }
 
     /**
+     * Busca los detalles  de un profesor por apodo
+     * @param apodo Apodo con el que buscar
+     * @return {@link ProfesorModelo} con los datos encontrados
+     */
+    public ProfesorModelo busca(@NotNull String apodo) {
+        TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaApodo", ProfesorEntidad.class);
+        typedQuery.setParameter("apodo", apodo);
+        return new ProfesorModelo(typedQuery.getSingleResult());
+    }
+
+    /**
      * Actualiza los datos de un profesor
      * @param profesorModelo datos para poder modificar un profesor
      * @return numero de elementos modificados, 0 en caso de no existir.

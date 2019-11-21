@@ -15,70 +15,57 @@
 <h:body>
     <div class="uk-section">
         <div class="uk-container uk-container-large">
-            <form action="j_security_check" method="post" uk-filter="target: .form-filter">
-                <ui:remove>
-                    <div class="uk-flex uk-flex-center uk-margin-large-bottom">
-                        <h:selectOneMenu value="" styleClass="uk-select">
-                            <f:selectItems value="#{escuelaControlador.escuelaBaseModeloLista}" var="escuela" itemLabel="#{escuela.nombre}" itemValue="#{escuela.claveCentroTrabajo}"/>
-                        </h:selectOneMenu>
-                    </div>
-                </ui:remove>
+            <div uk-filter="target: .form-filter">
                 <ul class="login-menu uk-flex uk-flex-center">
                     <li uk-filter-control=".alumno" class="uk-active"><a href="#">#{etiqueta['logging.student']}</a></li>
                     <li uk-filter-control=".profesor"><a href="#">#{etiqueta['logging.teacher']}</a></li>
                 </ul>
                 <ul class="form-filter">
                     <li class="alumno">
-                        <div class="contenedor uk-flex uk-flex-center uk-margin-medium-bottom">
-                            <c:forEach begin="1" end="28" var="indice">
-                                <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
-                            </c:forEach>
-                        </div>
-                        <div class=" uk-flex uk-flex-center">
-                            <span style="color: white">#{etiqueta['logging.nickname']}</span><input  name="j_username" class="uk-input"/>
-                            <input type="hidden" name="j_password"/>
-                            <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia(event)" class="uk-button boton"/>
-                        </div>
-                        <h:outputText value="Usuario o contraseña incorrectos, por favor intenta de nuevo"
-                                      styleClass="uk-margin-small-top"
-                                      rendered="#{not empty param['error']}"/>
+                        <form action="j_security_check" method="post">
+                            <div class="contenedor uk-flex uk-flex-center uk-margin-medium-bottom">
+                                <c:forEach begin="1" end="28" var="indice">
+                                    <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
+                                </c:forEach>
+                            </div>
+                            <div class=" uk-flex uk-flex-center">
+                                <span style="color: white">#{etiqueta['logging.nickname']}</span>
+                                <input autocomplete="off" name="j_username" class="uk-input"/>
+                                <input type="hidden" name="j_password"/>
+                                <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia(event)" class="uk-button boton"/>
+                            </div>
+                            <h:outputText value="Usuario o contraseña incorrectos, por favor intenta de nuevo"
+                                          styleClass="uk-margin-small-top"
+                                          rendered="#{not empty param['error']}"/>
+                        </form>
                     </li>
                     <li class="profesor">
-                        <ui:remove>
-                            <div class="uk-flex uk-flex-center uk-margin-large-bottom" >
-                                <h:selectOneMenu value="" styleClass="uk-select" style="width: 50%">
-                                    <f:selectItems value="#{escuelaControlador.busca()}" var="escuela" itemLabel="#{escuela.nombre}"/>
-                                </h:selectOneMenu>
-                            </div>
-                        </ui:remove>
-                        <div class="contenedor-profesor uk-flex uk-flex-center">
-                            <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
-                            <div class="uk-margin-small-bottom">
-                                <div class="uk-inline">
-                                    <a class="uk-form-icon" uk-icon="icon: user"/>
-                                    <input class="uk-input uk-border-rounded" placeholder="#{etiqueta['logging.nickname']}" name="j_username"/>
+                        <form action="j_security_check" method="post">
+                            <div class="contenedor-profesor uk-flex uk-flex-center">
+                                <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
+                                <div class="uk-margin-small-bottom">
+                                    <div class="uk-inline">
+                                        <a class="uk-form-icon" uk-icon="icon: user"/>
+                                        <input class="uk-input uk-border-rounded"
+                                               autocomplete="off"
+                                               placeholder="#{etiqueta['logging.nickname']}"
+                                               name="j_username"/>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="uk-margin-small-bottom">
-                                <div class="uk-inline">
-                                    <a class="uk-form-icon" uk-icon="icon: lock"/>
-                                    <input class="uk-input uk-border-rounded" type="password" placeholder="#{etiqueta['password']}"  name="j_password"/>
+                                <div class="uk-margin-small-bottom">
+                                    <div class="uk-inline">
+                                        <a class="uk-form-icon" uk-icon="icon: lock"/>
+                                        <input class="uk-input uk-border-rounded" type="password" placeholder="#{etiqueta['password']}" name="j_password"/>
+                                    </div>
                                 </div>
+                                <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
+                                <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.password']}</a>
+                                <a href="#" class="uk-text-center">#{etiqueta['logging.not.account']}</a>
                             </div>
-                            <div class="uk-margin-small-bottom">
-                                <select class="uk-select uk-border-rounded ">
-                                    <option>opcion 1</option>
-                                    <option>opcion 2</option>
-                                    <option>opcion 3</option>
-                                </select>
-                            </div>
-                            <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
-                            <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.password']}</a>
-                            <a href="#" class="uk-text-center">#{etiqueta['logging.not.account']}</a>
-                        </div>
+                        </form>
                     </li>
                 </ul>
-            </form>
+            </div>
         </div>
     </div>
     <script type="application/javascript">
