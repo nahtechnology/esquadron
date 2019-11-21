@@ -7,11 +7,9 @@ import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -27,9 +25,9 @@ public class ProfesorControlador implements Serializable {
 
     @PostConstruct
     public void inicio() {
-        Principal principal= FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         escuelaBaseModelo = new EscuelaBaseModelo("21DBA0014J");
-        profesorModelo = profesorSesionBean.busca(principal.getName());
+        profesorModelo = profesorSesionBean.busca(1);
+        profesorModelo.setId(1);
     }
 
     public ProfesorModelo getProfesorModelo() {
