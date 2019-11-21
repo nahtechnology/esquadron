@@ -292,7 +292,6 @@
   color:white;
   font-weight: bold;
   border-style: solid;
-  border-color: var(--turquesa-primary-color);
   border-width: 3px;
   border-radius: 20px;
   text-align: center;
@@ -305,6 +304,12 @@
   text-decoration: none;
   background-color: rgb(224,255,255);
   color: black;
+}
+
+.boton-disabilitado{
+  text-decoration: none;
+  background-color: rgb(224,255,255) !important;
+  color: #95A5A6 !important;
 }
 
 .boton-escuadron-base-secundary{

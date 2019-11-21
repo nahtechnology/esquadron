@@ -9,7 +9,16 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     seleccionContrasenia();
     formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
     botonResporte.addEventListener('click', generarReporte);
-    desabilitar();
+    if(document.querySelector('#tabla-vacia') === null){
+        desabilitar();
+        botonResporte.disabled = false;
+        botonResporte.classList.remove('boton-disabilitado');
+
+    }else{
+        botonResporte.disabled = true;
+        botonResporte.classList.add('boton-disabilitado');
+    }
+
 });
 
 
@@ -65,7 +74,7 @@ function generarReporte(evento) {
     var hiddenElement = document.createElement('a');
     hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElement.target = '_blank';
-    hiddenElement.download = 'activityreport_group' + evento.target.dataset.grado + evento.target.dataset.grupo + '.cvs';
+    hiddenElement.download = 'activityreport_group' + evento.target.dataset.grado + evento.target.dataset.grupo + '.csv';
     hiddenElement.click();
 }
 
@@ -76,7 +85,7 @@ function desabilitar() {
         if(celdas[1].innerText === "" && celdas[2].innerText === ""  && celdas[3].innerText === ""  && celdas[4].innerText === "" && celdas[5].innerText === "" && celdas[6].innerText === ""){
              celdas[7].querySelector('button').disabled = true;
         }
-        console.log(celdas);
+        // console.log(celdas);
     });
 
 }

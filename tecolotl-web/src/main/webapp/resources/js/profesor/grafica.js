@@ -1,8 +1,17 @@
 var  nivel = ['A1','A2','B1','B2','C1','C2'];
 
 document.addEventListener('DOMContentLoaded', function (evento) {
-   var botonReporte = document.querySelector('#boton-reporte');
+    var botonReporte = document.querySelector('#boton-reporte');
+    var canvasGrafic = document.querySelector('#canvas');
    botonReporte.addEventListener('click',reporteCuantitativo);
+    if (!canvasGrafic.hasChildNodes()){
+        console.log('entro');
+        botonReporte.disabled = true;
+        botonReporte.classList.add('boton-disabilitado');
+    }else {
+        botonReporte.disabled = false;
+        botonReporte.classList.remove('boton-disabilitado');
+    }
 });
 function datosGrupo() {
     console.log("invocada");
@@ -17,6 +26,8 @@ function datosGrupo() {
     while (canvasGrafica.hasChildNodes()){
         canvasGrafica.removeChild(canvasGrafica.firstChild);
     }
+    var botonReport = document.querySelector('#boton-reporte');
+
 
 
     listaDatos.forEach(function (datos) {
@@ -55,7 +66,15 @@ function datosGrupo() {
    }) ;
 
 
-   console.log(clases);
+   // console.log(clases);
+    if (!canvasGrafica.hasChildNodes()){
+        console.log('entro');
+        botonReport.disabled = true;
+        botonReport.classList.add('boton-disabilitado');
+    }else{
+        botonReport.disabled = false;
+        botonReport.classList.remove('boton-disabilitado');
+    }
 }
 
 function crearGrafica(datosGrupo,claseGrupo) {
@@ -152,8 +171,9 @@ function DatosGrupo(grado,grupo,idGrup){
     this.idGrup = idGrup;
 }
 
-function reporteCuantitativo() {
+function reporteCuantitativo(evento) {
     var resporteGrafica = [];
+    // var csv;
     var grafica = document.querySelectorAll('#canvas > div');
     grafica.forEach(function (grupo) {
         var alumno = grupo.querySelectorAll('div');
@@ -164,7 +184,18 @@ function reporteCuantitativo() {
             resporteGrafica.push(totalDatos);
         });
         console.log(resporteGrafica);
+        csv = 'Nombre'+ "," + nivel.join().concat('\n');
+        resporteGrafica.forEach(function (reporte,index) {
+              csv += reporte.nombreAlumno + "," + reporte.levelA1 + "," + reporte.levelA2 + "," + reporte.levelB1 + "," +
+                reporte.levelB2 + "," + reporte.levelC1 + "," + reporte.levelC2 + ('\n');
+        });
+
     });
+    var hiddenElemento = document.createElement('a');
+    hiddenElemento.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElemento.target = '_blank';
+    hiddenElemento.download = 'quantitativeReport'  + '.csv';
+    hiddenElemento.click();
 }
 
 function DatosReporte(nombreAlumno,levelA1,levelA2,levelB1,levelB2,levelC1,levelC2,calificacion) {
