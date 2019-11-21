@@ -1,19 +1,19 @@
 var contador = [];
 var cadena = [];
 var primero = [], answer = [],identDrag = [], codigo = [];
-var arrastrar,respuestaDrag;
+var arrastrar,respuestaDrag2;
 var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     arrastrar = UIkit.util.$$('.match .caja-preguntas-ordenar  .respuestas-ordenar-lista');
-    respuestaDrag = UIkit.util.$$('.match .respuestas-ordenar .respuesta');
+    respuestaDrag2 = UIkit.util.$$('.match .respuestas-ordenar');
     for (var inx = 0;inx < arrastrar.length;inx++ ){
         contador.push(0);
     }
     UIkit.util.on(arrastrar,'added',function (texto) {
         console.log(texto.target.dataset.indice);
         arrastrar.forEach(function (caja) {
-            if(!caja.hasChildNodes()){
+            if(caja.innerText === ""){
                 contador[caja.dataset.indice] = 0;
                 // console.log(caja);
             }
@@ -66,9 +66,14 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         });
 
     });
-    UIkit.util.on(arrastrar,'remove',function (texto) {
-        contador[texto.target.dataset.indice] = 0;
-        console.log('entro');
+    UIkit.util.on(respuestaDrag2,'added', function () {
+        console.log('agregado');
+        drag.forEach(function (box,indice) {
+            if (box.innerText === "") {
+                conta[indice] = 0;
+                // console.log(indice);
+            }
+        });
     });
 
 

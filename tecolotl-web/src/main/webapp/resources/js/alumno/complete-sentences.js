@@ -1,7 +1,7 @@
 var cuenta = [];
 var cadena = [];
 var first = [], answ = [],identDrags = [],cajaCardinalidad = [];
-var dragSen,respuestasDrag;
+var dragSen,respuestasDrag4;
 var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 
 function evitarPreguntas() {
     dragSen = UIkit.util.$$('.complete-sentences form .respuesta-ordenar-oracion');
-    respuestasDrag = UIkit.util.$$('.complete-sentences .contedor-oraciones span ');
+    respuestasDrag4 = UIkit.util.$$('.complete-sentences .contedor-oraciones ');
     for (var inx = 0;inx < dragSen.length;inx++ ){
         cuenta.push(0);
     }
@@ -19,7 +19,7 @@ function evitarPreguntas() {
         console.log(texto.target.dataset.indice);
 
         dragSen.forEach(function (caja) {
-            if(!caja.hasChildNodes()){
+            if(caja.innerText === ""){
                 cuenta[caja.dataset.indice] = 0;
                 // console.log(caja);
             }
@@ -71,5 +71,14 @@ function evitarPreguntas() {
             }
         });
 
+    });
+    UIkit.util.on(respuestasDrag4,'added', function () {
+        console.log('agregado');
+        drag.forEach(function (box,indice) {
+            if (box.innerText === "") {
+                conta[indice] = 0;
+                // console.log(indice);
+            }
+        });
     });
 }

@@ -6,17 +6,17 @@ var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     drag = UIkit.util.$$('.trancript-contenedor .respuesta-transcript');
-    respuestaDrag = UIkit.util.$$('.contenedor-respuesta .respuesta-drag');
+    respuestaDrag = UIkit.util.$('.contenedor-respuesta');
     for (var inx = 0;inx < drag.length;inx++ ){
         conta.push(0);
     }
     UIkit.util.on(drag,'added',function (texto) {
         console.log(texto.target.dataset.indice);
 
-        drag.forEach(function (caja) {
-            if(!caja.hasChildNodes()){
+        drag.forEach(function (caja,indice) {
+            if(caja.innerText === ""){
                 conta[caja.dataset.indice] = 0;
-                // console.log(caja);
+                // console.log(indice);
             }
             if(caja.dataset.indice === texto.target.dataset.indice ){
                 conta[caja.dataset.indice]++;
@@ -58,4 +58,15 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         });
 
     });
+
+    UIkit.util.on(respuestaDrag,'added', function () {
+        console.log('agregado');
+        drag.forEach(function (box,indice) {
+            if (box.innerText === "") {
+                conta[indice] = 0;
+                // console.log(indice);
+            }
+        });
+    });
+
 });

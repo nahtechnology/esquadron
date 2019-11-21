@@ -1,12 +1,12 @@
 var conta = [];
 var cadena = [];
 var primera = [], resp = [],identDrag = [], codigo = [];
-var drag,respuestaDrag;
+var drag,respuestaDrag3;
 var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     drag = UIkit.util.$$('.relacion-imagen .contenedor-imagen .oraciones-relacion-img');
-    respuestaDrag = UIkit.util.$$('.relacion-imagen .respuesta-imagen .palabra-imagen');
+    respuestaDrag3 = UIkit.util.$$('.relacion-imagen .respuesta-imagen ');
     for (var inx = 0;inx < drag.length;inx++ ){
         conta.push(0);
     }
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         console.log(texto.target.dataset.indice);
 
         drag.forEach(function (caja) {
-            if(!caja.hasChildNodes()){
+            if(caja.innerText === ""){
                 conta[caja.dataset.indice] = 0;
                 // console.log(caja);
             }
@@ -66,5 +66,14 @@ document.addEventListener('DOMContentLoaded', function (evt) {
             }
         });
 
+    });
+    UIkit.util.on(respuestaDrag3,'added', function () {
+        console.log('agregado');
+        drag.forEach(function (box,indice) {
+            if (box.innerText === "") {
+                conta[indice] = 0;
+                // console.log(indice);
+            }
+        });
     });
 });
