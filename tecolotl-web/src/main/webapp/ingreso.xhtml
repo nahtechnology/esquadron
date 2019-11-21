@@ -56,25 +56,25 @@
                             <div class="uk-margin-small-bottom">
                                 <div class="uk-inline">
                                     <a class="uk-form-icon" uk-icon="icon: user"/>
-                                    <input class="uk-input uk-border-rounded" placeholder="Nickname" name="j_username"/>
+                                    <input class="uk-input uk-border-rounded" placeholder="#{etiqueta['logging.nickname']}" name="j_username"/>
                                 </div>
                             </div>
                             <div class="uk-margin-small-bottom">
                                 <div class="uk-inline">
                                     <a class="uk-form-icon" uk-icon="icon: lock"/>
-                                    <input class="uk-input uk-border-rounded" type="password" placeholder="contraseña"  name="j_password"/>
+                                    <input class="uk-input uk-border-rounded" type="password" placeholder="#{etiqueta['password']}"  name="j_password"/>
                                 </div>
                             </div>
                             <div class="uk-margin-small-bottom">
                                 <select class="uk-select uk-border-rounded ">
-                                    <option>#{etiqueta['logging.option.1']}</option>
-                                    <option>#{etiqueta['logging.option.2']}</option>
-                                    <option>#{etiqueta['logging.option.3']}</option>
+                                    <option>opcion 1</option>
+                                    <option>opcion 2</option>
+                                    <option>opcion 3</option>
                                 </select>
                             </div>
                             <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
-                            <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.my.password']}</a>
-                            <a href="#" class="uk-text-center">#{etiqueta['logging.I.do.not.have.an.account']}</a>
+                            <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.password']}</a>
+                            <a href="#" class="uk-text-center">#{etiqueta['logging.not.account']}</a>
                         </div>
                     </li>
                 </ul>
