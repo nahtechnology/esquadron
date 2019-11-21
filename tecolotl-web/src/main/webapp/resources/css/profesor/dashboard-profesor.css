@@ -34,3 +34,8 @@ ul > li > span {
 .uk-modal-dialog .uk-modal-body{
     border:3px solid #0e6dcd;
 }
+.boton-reporte{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 83px;
+}
