@@ -58,6 +58,14 @@
             <from-outcome>mapamental</from-outcome>
             <to-view-id>/profesor/lista-mapa-mental.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>dashboard-maestro</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>admin-alumnos</from-outcome>
+            <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
