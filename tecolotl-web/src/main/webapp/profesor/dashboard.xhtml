@@ -153,7 +153,7 @@
                             rowClasses="tdPrimario"
                             footerClass="thPrimario uk-text-left">
                         <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{coordinacion['detalleprofesor.table.schoolgrade']}</span></f:facet>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.table.schoolgrade']}</span></f:facet>
                             #{grupo.grado}
                         </h:column>
                         <h:column>
@@ -161,7 +161,7 @@
                             #{grupo.grupo}
                         </h:column>
                         <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">total alumnos</span></f:facet>
+                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.total.students']}</span></f:facet>
                             ${grupo.totalAlumno}
                         </h:column>
                         <h:column>
