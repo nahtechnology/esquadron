@@ -247,7 +247,7 @@
         </div>
         <script type="application/javascript">
             var videoPlayer = document.querySelectorAll('.scrollFinal');
-            var player;
+            var player = [];
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
             var mensajeEnviado = "#{alumno['send.message']}";
@@ -258,7 +258,7 @@
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
                     console.log(video.dataset.video);
-                    player = new YT.Player( video, {
+                    temporal = new YT.Player( video, {
                         height: '100%',
                         width: '100%',
                         videoId: video.dataset.video,
@@ -267,6 +267,7 @@
                             'onStateChange': onPlayerStateChange
                         }
                     });
+                    player.push(temporal);
                 });
             }
 

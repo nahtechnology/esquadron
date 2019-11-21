@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         parrafo.querySelectorAll('span').forEach(function (frase) {
             frase.classList.remove('remover');
         });
+        UIkit.util.on('#filtro-seleccion', 'beforeFilter', cancelaReproductor);
     });
     if (answer.querySelector('.trancript-contenedor').dataset.respuesta === "false") {
         answer.querySelectorAll('.trancript-contenedor span').forEach(function (frase) {
@@ -14,3 +15,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         });
     }
 });
+
+function cancelaReproductor() {
+    player[0].pauseVideo();
+}
