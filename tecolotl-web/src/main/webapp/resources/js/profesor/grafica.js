@@ -1,5 +1,9 @@
 var  nivel = ['A1','A2','B1','B2','C1','C2'];
 
+document.addEventListener('DOMContentLoaded', function (evento) {
+   var botonReporte = document.querySelector('#boton-reporte');
+   botonReporte.addEventListener('click',reporteCuantitativo);
+});
 function datosGrupo() {
     console.log("invocada");
     var alumno = [],idalumno = [] , grupos = [],nivel2=[],clases = [] ;
@@ -148,14 +152,14 @@ function DatosGrupo(grado,grupo,idGrup){
     this.idGrup = idGrup;
 }
 
-function ReporteCuantitativo() {
+function reporteCuantitativo() {
     var resporteGrafica = [];
     var grafica = document.querySelectorAll('#canvas > div');
     grafica.forEach(function (grupo) {
         var alumno = grupo.querySelectorAll('div');
         alumno.forEach(function (datos) {
             var datoNombre = datos.querySelector('p > span:first-child').textContent;
-            var datoProgreso = datos.querySelector('progress');
+            var datoProgreso = datos.querySelectorAll('progress');
             var totalDatos = new DatosReporte(datoNombre,datoProgreso[0].value,datoProgreso[1].value,datoProgreso[2].value,datoProgreso[3].value,datoProgreso[4].value,datoProgreso[5].value,8);
             resporteGrafica.push(totalDatos);
         });
