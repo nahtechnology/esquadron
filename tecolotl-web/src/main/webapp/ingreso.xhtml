@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
 <h:head>
-    <title>Registro</title>
+    <title>#{etiqueta['logging.registry']}</title>
     <h:outputStylesheet library="css" name="uikit.css"/>
     <h:outputStylesheet library="css" name="ingreso.css"/>
     <h:outputStylesheet library="css" name="alumno/inicio-sesion.css"/>
@@ -24,8 +24,8 @@
                     </div>
                 </ui:remove>
                 <ul class="login-menu uk-flex uk-flex-center">
-                    <li uk-filter-control=".alumno" class="uk-active"><a href="#">Alumno</a></li>
-                    <li uk-filter-control=".profesor"><a href="#">Profesor</a></li>
+                    <li uk-filter-control=".alumno" class="uk-active"><a href="#">#{etiqueta['logging.student']}</a></li>
+                    <li uk-filter-control=".profesor"><a href="#">#{etiqueta['logging.teacher']}</a></li>
                 </ul>
                 <ul class="form-filter">
                     <li class="alumno">
@@ -35,7 +35,7 @@
                             </c:forEach>
                         </div>
                         <div class=" uk-flex uk-flex-center">
-                            <span style="color: white">Nickname:</span><input  name="j_username" class="uk-input"/>
+                            <span style="color: white">#{etiqueta['logging.nickname']}</span><input  name="j_username" class="uk-input"/>
                             <input type="hidden" name="j_password"/>
                             <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia(event)" class="uk-button boton"/>
                         </div>
@@ -67,14 +67,14 @@
                             </div>
                             <div class="uk-margin-small-bottom">
                                 <select class="uk-select uk-border-rounded ">
-                                    <option>opcion1</option>
-                                    <option>opcion2</option>
-                                    <option>opcion3</option>
+                                    <option>#{etiqueta['logging.option.1']}</option>
+                                    <option>#{etiqueta['logging.option.2']}</option>
+                                    <option>#{etiqueta['logging.option.3']}</option>
                                 </select>
                             </div>
                             <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
-                            <a href="#" class="uk-text-center">Se me olvido mi contraseña</a>
-                            <a href="#" class="uk-text-center">No tengo una cuenta</a>
+                            <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.my.password']}</a>
+                            <a href="#" class="uk-text-center">#{etiqueta['logging.I.do.not.have.an.account']}</a>
                         </div>
                     </li>
                 </ul>
