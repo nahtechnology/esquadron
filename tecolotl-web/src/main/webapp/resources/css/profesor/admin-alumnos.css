@@ -75,6 +75,10 @@ div > div > div > div + div + div + div + div + div > img:hover{
     padding-left: 10px;
 }
 
+.padding-titulo:first-letter{
+    text-transform: uppercase;
+}
+
 .botones{
     display: flex;
     justify-content: flex-end;
