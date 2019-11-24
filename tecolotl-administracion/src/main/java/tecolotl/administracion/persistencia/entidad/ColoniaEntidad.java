@@ -7,7 +7,7 @@ import java.util.StringJoiner;
 
 @Entity
 @Table(name = "colonia", schema = "administracion")
-@SequenceGenerator(name = "generador_defecto", schema = "administracion", sequenceName = "colonia_seq", allocationSize = 1)
+@SequenceGenerator(name = "generador_colonia", schema = "administracion", sequenceName = "colonia_seq", allocationSize = 1)
 @NamedQueries({
 	@NamedQuery(
         name = "ColoniaEntidad.buscaMunicipioEstado",
@@ -33,7 +33,7 @@ public class ColoniaEntidad {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador_defecto")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "generador_colonia")
     public Integer getId() {
         return id;
     }
