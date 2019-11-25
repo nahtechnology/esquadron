@@ -153,7 +153,7 @@
                 <h:form id="formulario-modal-nuevo-profesor" styleClass="uk-form-stacked">
                     <button class="uk-modal-close-default" type="button" uk-close=""/>
                     <div class="uk-modal-header header-color-card">
-                        <h2 class="uk-modal-title titulo-modal">agregar alumno</h2>
+                        <h2 class="uk-modal-title titulo-modal uk-text-capitalize">agregar alumno</h2>
                     </div>
                     <div class="barra-modal"></div>
                     <div class="uk-modal-body">
@@ -174,7 +174,7 @@
                                     </div>
                                     <h:message for="input-nick" styleClass="uk-alert-danger"/>
                                 </div>
-                                <div class="uk-width-1-1@s uk-width-2-5@m  ">
+                                <div class="uk-width-1-1@s uk-width-1-5@m  ">
                                     <h:outputLabel for="input-name" styleClass=" uk-text-capitalize uk-form-label" value="nombre"/>
                                     <h:inputText styleClass="uk-input"
                                                  id="input-name"
@@ -186,7 +186,7 @@
                                     </h:inputText>
                                     <h:message for="input-name" styleClass="uk-alert-danger"/>
                                 </div>
-                                <div class="uk-width-1-1@s uk-width-2-5@m ">
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="input-apellidop" styleClass=" uk-text-capitalize uk-form-label" value="apellidos paterno"/>
                                     <h:inputText styleClass="uk-input"
                                                  id="input-apellidop"
@@ -198,7 +198,7 @@
                                     </h:inputText>
                                     <h:message for="input-apellidop" styleClass="uk-alert-danger"/>
                                 </div>
-                                <div class="uk-width-1-1@s uk-width-2-5@m ">
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="input-apellidom" styleClass=" uk-text-capitalize uk-form-label" value="apellido materno"/>
                                     <h:inputText styleClass="uk-input"
                                                  id="input-apellidom"
@@ -210,7 +210,7 @@
                                     </h:inputText>
                                     <h:message for="input-apellidom" styleClass="uk-alert-danger"/>
                                 </div>
-                                <div class="uk-width-1-1@s uk-width-1-6@s uk-first-column">
+                                <div class="uk-width-1-1@s uk-width-1-6@s">
                                     <h:outputLabel for="fecha-nacimiento" styleClass=" uk-text-capitalize uk-form-label" value="fecha nacimiento"/>
                                     <h:inputText styleClass="uk-input"
                                                  id="fecha-nacimiento"
@@ -223,7 +223,7 @@
                                     </h:inputText>
                                     <h:message for="fecha-nacimiento" styleClass="uk-alert-danger"/>
                                 </div>
-                                <div class="uk-width-1-1@s uk-width-1-6@m uk-first-column">
+                                <div class="uk-width-1-1@s uk-width-1-6@m">
                                     <h:outputLabel for="seleccion-nivel-lenguaje" styleClass="uk-text-capitalize uk-form-label" value="nivel lenguaje"/>
                                     <h:selectOneMenu id="seleccion-nivel-lenguaje" styleClass="selector" value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}">
                                         <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
@@ -234,6 +234,16 @@
                                         <f:validateRequired/>
                                     </h:selectOneMenu>
                                     <h:message for="seleccion-nivel-lenguaje" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-6@m">
+                                    <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="nivel lenguaje"/>
+                                    <h:selectOneMenu id="seleccion-sexo" styleClass="selector" value="#{grupoAlumnoControlador.alumnoModelo.sexo}">
+                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                        <f:selectItem itemValue="m" itemLabel="Masculino"/>
+                                        <f:selectItem itemValue="f" itemLabel="Femenino"/>
+                                        <f:validateRequired/>
+                                    </h:selectOneMenu>
+                                    <h:message for="seleccion-sexo" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s">
                                     <c:forEach begin="1" end="28" var="indice">
