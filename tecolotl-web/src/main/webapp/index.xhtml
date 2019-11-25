@@ -2,18 +2,95 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html lang="en"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+	  xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
       
 <h:head>
 	<title>Esquadron</title>
 	<meta name="google-site-verification" content="DLGw7JmFbDOC2lHAxcYSXxNJuYlID8QR6KrnicJ0oKI" />
+	<h:outputStylesheet library="css" name="uikit.css"/>
+	<h:outputStylesheet library="css" name="landing-esquadron.css"/>
 </h:head>
 <h:body>
+	<ui:remove>
 	<h:link value="Administracion" outcome="/administracion/dashboard.xhtml"/><br/>
 	<h:link value="Coordinador" outcome="/coordinador/dashboard.xhtml"/><br/>
 	<h:link value="Alumno" outcome="/alumno/dashboard.xhtml"/><br/>
 	<h:link value="Profesor" outcome="/profesor/dashboard.xhtml"/><br/>
+	</ui:remove>
+
+	<section class="uk-section">
+		<div class="uk-container">
+
+
+			<div class="imagen-inicio">
+				<div>
+					<h:graphicImage library="img" name="/mounstro/who.svg"/>
+					<h:graphicImage library="img" name="/mounstro/whom.svg"/>
+					<h:graphicImage library="img" name="/mounstro/whose.svg"/>
+				</div>
+				<div>
+					squadron
+				</div>
+			</div>
+
+			<h:panelGroup layout="block" styleClass="uk-child-width-1-3@m uk-margin-large-top uk-grid" pt:uk-grid="">
+				<div >
+					<div class="card-esquadron">
+						<div class="imagen-card">
+							<h:graphicImage library="img" name="alumnos.jpg"/>
+						</div>
+						<div class="contenido-card">
+							<div>
+								<div>
+									<h:graphicImage  pt:uk-tooltip="title: Students" library="img" name="/mounstro/verde.svg"  alt="alumnos"/>
+								</div>
+							</div>
+							<h:link  outcome="/alumno/dashboard.xhtml">
+								<button>ingresar</button>
+							</h:link>
+						</div>
+					</div>
+				</div>
+				<div >
+					<div class="card-esquadron">
+						<div class="imagen-card">
+							<h:graphicImage library="img" name="maestrosjpg.jpg"/>
+						</div>
+						<div class="contenido-card">
+							<div>
+								<h:graphicImage  pt:uk-tooltip="title: Teachers" library="img" name="/mounstro/3ojos.svg"  alt="alumnos"/>
+							</div>
+							<h:link  outcome="/profesor/dashboard.xhtml">
+								<button>ingresar</button>
+							</h:link>
+						</div>
+					</div>
+				</div>
+				<div >
+					<div class="card-esquadron">
+						<div class="imagen-card">
+							<h:graphicImage library="img" name="contactanos.jpg"/>
+						</div>
+						<div class="contenido-card">
+							<div>
+								<h:graphicImage  pt:uk-tooltip="title: coming soon" library="img" name="/mounstro/naranja.svg"  alt="alumnos"/>
+							</div>
+							<a href="#" ><button disabled="disabled">coming soon</button></a>
+						</div>
+					</div>
+				</div>
+
+
+			</h:panelGroup>
+		</div>
+
+	</section>
+
+	<h:outputScript library="js" name="uikit.js"/>
+	<h:outputScript library="js" name="uikit-icons.js"/>
 </h:body>
 </html>
