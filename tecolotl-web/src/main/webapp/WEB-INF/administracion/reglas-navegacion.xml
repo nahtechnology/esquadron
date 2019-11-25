@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+    http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+
+    <!--	Reglas de navegación	-->
+
+    <navigation-rule>
+        <from-view-id>/administracion/dashboard.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>detalle</from-outcome>
+            <to-view-id>/administracion/detalle-escuela.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>catalogo-administracion</from-outcome>
+            <to-view-id>/administracion/catalogo-administracion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/administracion/detalle-escuela.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/administracion/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>catalogo-administracion</from-outcome>
+            <to-view-id>/administracion/catalogo-administracion.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>coordinador</from-outcome>
+            <to-view-id>/administracion/coordinador.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/administracion/detalle-escuela.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/administracion/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>catalogo-administracion</from-outcome>
+            <to-view-id>/administracion/catalogo-administracion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/administracion/catalogo-administracion.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/administracion/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>catalogo-administracion</from-outcome>
+            <to-view-id>/administracion/catalogo-administracion.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+  
+</faces-config>
