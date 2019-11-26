@@ -70,7 +70,6 @@ public class GrupoAlumnoControlador implements Serializable {
     }
 
     public void buscaDetalleAlumnos() {
-
         tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
         profesorGrupoControlador.detalleGrupo(idGrupo);
     }
