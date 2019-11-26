@@ -109,3 +109,12 @@ div > div > div > div + div + div + div + div + div > img:hover{
     background: url("#{resource['img/vacio.svg']}") #FFF5EE no-repeat center center/500px;
 }
 
+progress[value]{
+    width: 200px;
+    height: 40px;
+    -moz-border-radius: 20px;
+    -webkit-border-radius: 20px;
+    border-radius: 20px;
+    border-color: #1665B4;
+}
+
