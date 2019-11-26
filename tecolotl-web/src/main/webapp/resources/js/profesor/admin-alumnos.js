@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 
 function seleccionContrasenia(data) {
     if (typeof data === 'undefined') {
-        formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(7) img').forEach(function (imagen) {
+        formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(8) img').forEach(function (imagen) {
             imagen.addEventListener("click", function (evento) {
                 imagen.classList.toggle('seleccionado');
             });
@@ -32,7 +32,7 @@ function seleccionContrasenia(data) {
         formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
     } else {
         if (data.status === 'success') {
-            formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(7) img').forEach(function (imagen) {
+            formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(8) img').forEach(function (imagen) {
                 imagen.addEventListener("click", function (evento) {
                     imagen.classList.toggle('seleccionado');
                 });
@@ -43,7 +43,7 @@ function seleccionContrasenia(data) {
 }
 
 function cargaContrasenia() {
-    var imagenes = formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(7) img');
+    var imagenes = formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(8) img');
     var seleccionados = [];
     for (i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {

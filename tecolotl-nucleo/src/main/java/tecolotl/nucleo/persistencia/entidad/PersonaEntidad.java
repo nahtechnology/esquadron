@@ -86,7 +86,6 @@ public class PersonaEntidad {
 
     @Basic
     @Column(name = "sexo")
-    @Size(min = 1, max = 1)
     @NotNull
     public Character getSexo() {return sexo;}
     public void setSexo(Character sexo) {this.sexo = sexo;}

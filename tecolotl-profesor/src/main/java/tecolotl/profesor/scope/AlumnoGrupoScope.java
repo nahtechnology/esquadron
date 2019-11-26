@@ -41,6 +41,7 @@ public class AlumnoGrupoScope {
         alumnoEntidad.setApellidoPaterno(alumnoModelo.getApellidoPaterno());
         alumnoEntidad.setApellidoMaterno(alumnoModelo.getApellidoMaterno());
         alumnoEntidad.setNacimiento(alumnoModelo.getNacimiento());
+        alumnoEntidad.setSexo(alumnoModelo.getSexo());
         alumnoEntidad.setNivelLenguajeEntidad(new NivelLenguajeEntidad(alumnoModelo.getNivelLenguajeModelo().getClave()));
         alumnoEntidad.setContrasenia(alumnoModelo.getContrasenia());
         alumnoEntidad.setContraseniaPadreFamilia(new byte[]{});
@@ -51,6 +52,7 @@ public class AlumnoGrupoScope {
             userTransaction.begin();
             entityManager.persist(alumnoEntidad);
             entityManager.persist(grupoAlumnoEntidad);
+            alumnoModelo.setId(alumnoEntidad.getId());
             userTransaction.commit();
         } catch (Exception ex) {
             logger.severe("No se puede insertar por la razon:" + ex);
@@ -60,6 +62,5 @@ public class AlumnoGrupoScope {
                 logger.severe("No se puede insertar por la razon:" + ex);
             }
         }
-        alumnoModelo.setId(alumnoEntidad.getId());
     }
 }

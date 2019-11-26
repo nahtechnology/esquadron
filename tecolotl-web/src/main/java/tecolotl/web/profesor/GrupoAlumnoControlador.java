@@ -65,10 +65,12 @@ public class GrupoAlumnoControlador implements Serializable {
             alumnoGrupoScope.inserta(alumnoModelo, idGrupo);
             alumnoModelo = new AlumnoModelo();
             alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo());
+            buscaDetalleAlumnos();
         }
     }
 
     public void buscaDetalleAlumnos() {
+
         tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
         profesorGrupoControlador.detalleGrupo(idGrupo);
     }
