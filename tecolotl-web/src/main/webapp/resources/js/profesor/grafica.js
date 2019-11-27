@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     var botonReporte = document.querySelector('#boton-reporte');
     var canvasGrafic = document.querySelector('#canvas');
    botonReporte.addEventListener('click',reporteCuantitativo);
+   datosGrupo();
     if (!canvasGrafic.hasChildNodes()){
         console.log('entro');
         botonReporte.disabled = true;
