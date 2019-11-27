@@ -1,8 +1,10 @@
 var alumno = document.querySelector('.alumno');
 var profesor = document.querySelector('.profesor');
+var esloginProfesor = false;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     loginImagen(alumno.querySelectorAll('img'));
+    profesor.querySelector('button').addEventListener('click', loginProfesor);
 });
 
 function loginImagen(imagenes) {
@@ -27,11 +29,20 @@ function cargaContrasenia(evento) {
             seleccionados.push(x.toString().concat(':').concat(y.toString()));
         }
     }
-    if (seleccionados.length === 0) {
+    if (seleccionados.length === 0 && !esloginProfesor) {
         UIkit.modal.alert(mensaje);
         return false;
     } else {
         alumno.querySelector('input[type=hidden]').value = seleccionados.join(',');
         return true;
     }
+}
+
+function loginProfesor(evento) {
+    esloginProfesor = true;
+    let usuario = profesor.querySelector('input[type=text]').value;
+    let contrasenia = profesor.querySelector('input[type=password]').value;
+    alumno.querySelector('input[type=text]').value = usuario;
+    alumno.querySelector('input[type=hidden]').value = contrasenia;
+    alumno.querySelector('input[type=submit]').click();
 }

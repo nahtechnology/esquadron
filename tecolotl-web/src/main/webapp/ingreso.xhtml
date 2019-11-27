@@ -30,7 +30,7 @@
                             </div>
                             <div class=" uk-flex uk-flex-center">
                                 <span style="color: white">#{etiqueta['logging.nickname']}</span>
-                                <input autocomplete="off" name="j_username" class="uk-input"/>
+                                <input autocomplete="off" name="j_username" class="uk-input" type="text"/>
                                 <input type="hidden" name="j_password"/>
                                 <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia(event)" class="uk-button boton"/>
                             </div>
@@ -40,29 +40,27 @@
                         </form>
                     </li>
                     <li class="profesor">
-                        <form action="j_security_check" method="post">
-                            <div class="contenedor-profesor uk-flex uk-flex-center">
-                                <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
-                                <div class="uk-margin-small-bottom">
-                                    <div class="uk-inline">
-                                        <a class="uk-form-icon" uk-icon="icon: user"/>
-                                        <input class="uk-input uk-border-rounded"
-                                               autocomplete="off"
-                                               placeholder="#{etiqueta['logging.nickname']}"
-                                               name="j_username"/>
-                                    </div>
+                        <div class="contenedor-profesor uk-flex uk-flex-center">
+                            <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
+                            <div class="uk-margin-small-bottom">
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon" uk-icon="icon: user"/>
+                                    <input class="uk-input uk-border-rounded" type="text"
+                                           autocomplete="off"
+                                           placeholder="#{etiqueta['logging.nickname']}"
+                                           name="j_username"/>
                                 </div>
-                                <div class="uk-margin-small-bottom">
-                                    <div class="uk-inline">
-                                        <a class="uk-form-icon" uk-icon="icon: lock"/>
-                                        <input class="uk-input uk-border-rounded" type="password" placeholder="#{etiqueta['password']}" name="j_password"/>
-                                    </div>
-                                </div>
-                                <input class="uk-button  uk-border-rounded boton" type="submit" value="#{boton['submit']}"/>
-                                <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.password']}</a>
-                                <a href="#" class="uk-text-center">#{etiqueta['logging.not.account']}</a>
                             </div>
-                        </form>
+                            <div class="uk-margin-small-bottom">
+                                <div class="uk-inline">
+                                    <a class="uk-form-icon" uk-icon="icon: lock"/>
+                                    <input class="uk-input uk-border-rounded" type="password" placeholder="#{etiqueta['password']}" name="j_password"/>
+                                </div>
+                            </div>
+                            <button class="uk-button  uk-border-rounded boton">#{boton['submit']}</button>
+                            <a href="#" class="uk-text-center">#{etiqueta['logging.forgot.password']}</a>
+                            <a href="#" class="uk-text-center">#{etiqueta['logging.not.account']}</a>
+                        </div>
                     </li>
                 </ul>
             </div>

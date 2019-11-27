@@ -219,4 +219,14 @@ public class EscuelaSesionBean implements Serializable {
 		return entityManager.createQuery(criteriaDelete).executeUpdate();
 	}
 
+	/**
+	 * Cuenta el total de alumno que estan registrados a esta escuela
+	 * @param claveCentroTrabajo Clave centro de trabajo de la escuela a buscar
+	 * @return Número de alumno registrados.
+	 */
+	public Long totalAlumno(@NotNull @Size(min = 12, max = 12) String claveCentroTrabajo) {
+		logger.fine(claveCentroTrabajo);
+		return  null;
+		//TODO realizar el query para la busqueda de alumnos
+	}
 }
