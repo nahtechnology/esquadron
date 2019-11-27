@@ -38,14 +38,26 @@
 .caja-14-uno{
     left: calc(52% - ((100%/4)/2) );
 }
+.caja-14-uno>textarea{
+    height: 40px;
+}
+
 .caja-14-dos{
     top: 200px;
     left: 0;
 }
+.caja-14-dos>textarea{
+    height: 40px;
+}
+
 .caja-14-tres{
     top: 200px;
     right: 0;
 }
+.caja-14-tres>textarea{
+    height: 40px;
+}
+
 .caja-14-cuatro{
     bottom: 0;
     left: calc(50% - ((100%/4)/2));
