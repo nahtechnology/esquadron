@@ -160,16 +160,16 @@
                         <div class="uk-margin">
                             <div class="uk-grid-small uk-flex-center uk-grid" uk-grid="">
                                 <div class="uk-width-1-1@s uk-width-1-5@m ">
-                                    <h:outputLabel for="input-nick" styleClass="uk-text-capitalize uk-form-label" value="nick"/>
+                                    <h:outputLabel for="input-nick" styleClass="uk-text-capitalize uk-form-label" value="apodo"/>
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      id="input-nick"
                                                      binding="#{grupoAlumnoControlador.uiInputApodo}"
                                                      pt:placeholder="#{etiqueta['write.text']}"
-                                                     label="nick"
+                                                     label="apodo"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apodo}">
                                             <f:validateRequired/>
-                                            <f:validateLength minimum="3" maximum="20"/>
+                                            <f:validateLength minimum="4" maximum="50"/>
                                         </h:inputText>
                                     </div>
                                     <h:message for="input-nick" styleClass="uk-alert-danger"/>
@@ -179,10 +179,10 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-name"
                                                  pt:placeholder="#{etiqueta['write.text']}"
-                                                 label="Apellido Paterno"
+                                                 label="Nombre"
                                                  value="#{grupoAlumnoControlador.alumnoModelo.nombre}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="3" maximum="20"/>
+                                        <f:validateLength minimum="3" maximum="40"/>
                                     </h:inputText>
                                     <h:message for="input-name" styleClass="uk-alert-danger"/>
                                 </div>
@@ -194,7 +194,7 @@
                                                  label="Apellido Paterno"
                                                  value="#{grupoAlumnoControlador.alumnoModelo.apellidoPaterno}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="3" maximum="20"/>
+                                        <f:validateLength minimum="4" maximum="50"/>
                                     </h:inputText>
                                     <h:message for="input-apellidop" styleClass="uk-alert-danger"/>
                                 </div>
@@ -206,7 +206,7 @@
                                                  label="Apellido Materno"
                                                  value="#{grupoAlumnoControlador.alumnoModelo.apellidoMaterno}">
                                         <f:validateRequired/>
-                                        <f:validateLength minimum="3" maximum="20"/>
+                                        <f:validateLength minimum="4" maximum="50"/>
                                     </h:inputText>
                                     <h:message for="input-apellidom" styleClass="uk-alert-danger"/>
                                 </div>
