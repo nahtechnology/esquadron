@@ -5,6 +5,7 @@ var completarOracion = document.querySelector('.uk-container .complete-sentences
 var answer;
 
 
+
 document.addEventListener('DOMContentLoaded', function (evt) {
     revuelve(relacionarImagen.querySelectorAll('.palabras div'));
     revuelve(ordenarOracion.querySelectorAll('.contenedor-oraciones > div'));
@@ -19,10 +20,12 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 });
 
 function completarOracionRemueve() {
+    var wordsPalabras = [];
     palabras = completarOracion.querySelector('.contedor-oraciones');
     while (palabras.hasChildNodes()) {
         palabras.removeChild(palabras.firstChild);
     }
+    var texto = revolver(wordsPalabras);
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
         otro = parrafo.querySelector('span');
         if (otro.dataset.resuelto === 'true') {
@@ -44,6 +47,7 @@ function completarOracionRemueve() {
     answer = document.querySelector('.complete-sentences');
     agregaRespuestas(answer.querySelector('.remplazar'));
     agregaRespuesta();
+    revolverNodos();
 }
 
 function validaRespuestaImagen(evento) {
@@ -120,4 +124,33 @@ function validaRespuestaCompletarOracion(evento) {
         UIkit.modal.alert(mensajeNoEnvio);
         return false;
     }
+}
+
+function revolver(arreglo) {
+    var indiceActual = arreglo.length, temporal, indiceAleatorio;
+    while (0 !== indiceActual) {
+        indiceAleatorio = Math.floor(Math.random() * indiceActual);
+        indiceActual -= 1;
+        temporal = arreglo[indiceActual];
+        arreglo[indiceActual] = arreglo[indiceAleatorio];
+        arreglo[indiceAleatorio] = temporal;
+    }
+    return arreglo;
+}
+
+function revolverNodos() {
+    var arregloNodo = [];
+    var cotenidoRespuesta = document.querySelector('.complete-sentences .contedor-oraciones');
+    var nodos = document.querySelectorAll('.complete-sentences .contedor-oraciones span');
+    nodos.forEach(function (span) {
+       arregloNodo.push(span);
+    });
+    var nodosBuenos = revolver(arregloNodo);
+    console.log(nodosBuenos);
+    while (cotenidoRespuesta.hasChildNodes()){
+        cotenidoRespuesta.removeChild(palabras.firstChild);
+    }
+    nodosBuenos.forEach(function (nodoBueno) {
+        cotenidoRespuesta.appendChild(nodoBueno);
+    });
 }

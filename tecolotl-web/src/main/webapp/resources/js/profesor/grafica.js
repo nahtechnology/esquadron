@@ -192,7 +192,8 @@ function reporteCuantitativo(evento) {
         });
 
     });
-    var hiddenElemento = document.createElement('a');
+    // var hiddenElemento = document.createElement('a');
+    var hiddenElemento = document.querySelector('#reporte');
     hiddenElemento.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
     hiddenElemento.target = '_blank';
     hiddenElemento.download = 'quantitativeReport'  + '.csv';

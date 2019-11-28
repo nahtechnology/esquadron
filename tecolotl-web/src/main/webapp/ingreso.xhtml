@@ -17,8 +17,8 @@
         <div class="uk-container uk-container-large">
             <div uk-filter="target: .form-filter">
                 <ul class="login-menu uk-flex uk-flex-center">
-                    <li uk-filter-control=".alumno" class="uk-active"><a href="#">#{etiqueta['logging.student']}</a></li>
-                    <li uk-filter-control=".profesor"><a href="#">#{etiqueta['logging.teacher']}</a></li>
+                    <li uk-filter-control=".alumno" class="uk-active"><a href="#">Login</a></li>
+                    <li uk-filter-control=".profesor" style="display: none"><a href="#">#{etiqueta['logging.teacher']}</a></li>
                 </ul>
                 <ul class="form-filter">
                     <li class="alumno">
@@ -39,7 +39,7 @@
                                           rendered="#{not empty param['error']}"/>
                         </form>
                     </li>
-                    <li class="profesor">
+                    <li class="profesor" >
                         <div class="contenedor-profesor uk-flex uk-flex-center">
                             <h:graphicImage library="img" name="icono/esquadron-contorno.svg" styleClass="logo" pt:uk-svg=""/>
                             <div class="uk-margin-small-bottom">
