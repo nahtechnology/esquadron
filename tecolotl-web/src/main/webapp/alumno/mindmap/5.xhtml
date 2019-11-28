@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <f:metadata>
         <f:viewParam name="cardinalidad" value="#{mapaMentalControlador.cardinalidad}" required="true"/>
@@ -89,7 +90,8 @@
                                          id="uno"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
-                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}">
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"
+                                         pt:maxlength="160">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="uno" styleClass="mensaje-alerta-5"/>
@@ -100,7 +102,8 @@
                                          id="dos"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
-                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}">
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"
+                                         pt:maxlength="160">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="dos" styleClass="mensaje-alerta-5"/>
@@ -116,7 +119,8 @@
                                          id="tres"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}">
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"
+                                         pt:maxlength="80">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="tres" styleClass="mensaje-alerta-5"/>
@@ -124,7 +128,8 @@
                                          id="cuatro"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}">
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"
+                                         pt:maxlength="80">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="cuatro" styleClass="mensaje-alerta-5"/>
@@ -132,7 +137,8 @@
                                          id="cinco"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}">
+                                         pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"
+                                         pt:maxlength="80">
                                 <f:validateRequired/>
                             </h:inputTextarea>
                             <h:message for="cinco" styleClass="mensaje-alerta-5"/>
