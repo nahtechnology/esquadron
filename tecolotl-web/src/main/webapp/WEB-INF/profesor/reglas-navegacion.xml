@@ -66,6 +66,16 @@
             <from-outcome>admin-alumnos</from-outcome>
             <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>tablero</from-outcome>
+            <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>grupo</name>
+                    <value>#{profesorGrupoControlador.grupoModelo.id}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -73,6 +83,20 @@
         <navigation-case>
             <from-outcome>califica</from-outcome>
             <to-view-id>/profesor/calificacion-mapamental.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>dashboard-maestro</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tablero</from-outcome>
+            <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>idAlumno</name>
+                    <value>#{profesorGrupoControlador.alumnoModelo.id}</value>
+                </redirect-param>
+            </redirect>
         </navigation-case>
     </navigation-rule>
     
