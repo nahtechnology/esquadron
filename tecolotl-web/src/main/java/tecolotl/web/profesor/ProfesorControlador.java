@@ -7,9 +7,11 @@ import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -21,13 +23,16 @@ public class ProfesorControlador implements Serializable {
     private ProfesorSesionBean profesorSesionBean;
 
     private ProfesorModelo profesorModelo;
-    private EscuelaBaseModelo escuelaBaseModelo;
 
     @PostConstruct
     public void inicio() {
-        escuelaBaseModelo = new EscuelaBaseModelo("21DBA0014J");
-        profesorModelo = profesorSesionBean.busca(1);
-        profesorModelo.setId(1);
+        Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+        profesorModelo = profesorSesionBean.busca(principal.getName());
+    }
+
+    public String cerrarSesion() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml";
     }
 
     public ProfesorModelo getProfesorModelo() {
@@ -38,11 +43,4 @@ public class ProfesorControlador implements Serializable {
         this.profesorModelo = profesorModelo;
     }
 
-    public EscuelaBaseModelo getEscuelaBaseModelo() {
-        return escuelaBaseModelo;
-    }
-
-    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
-        this.escuelaBaseModelo = escuelaBaseModelo;
-    }
 }

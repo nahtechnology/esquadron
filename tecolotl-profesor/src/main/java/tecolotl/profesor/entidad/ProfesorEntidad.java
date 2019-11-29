@@ -34,7 +34,7 @@ import java.util.StringJoiner;
     ),
     @NamedQuery(
         name = "ProfesorEntidad.buscaApodo",
-        query = "select p from ProfesorEntidad p WHERE p.apodo = :apodo"
+        query = "select p from ProfesorEntidad p JOIN FETCH p.escuelaEntidad e WHERE p.apodo = :apodo"
     )
 })
 public class ProfesorEntidad extends PersonaEntidad {

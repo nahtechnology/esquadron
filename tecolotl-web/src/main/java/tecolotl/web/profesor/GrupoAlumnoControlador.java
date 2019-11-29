@@ -57,7 +57,7 @@ public class GrupoAlumnoControlador implements Serializable {
     public void insertaAlumno() {
         FacesMessage facesMessage = new FacesMessage();
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (grupoSesionBean.existeAlumno(profesorControlador.getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
+        if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
             facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
             facesMessage.setSummary("ya existe este apodo");
             facesContext.addMessage(uiInputApodo.getClientId(facesContext), facesMessage);

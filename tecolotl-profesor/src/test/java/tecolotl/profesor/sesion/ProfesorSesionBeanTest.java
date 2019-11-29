@@ -26,6 +26,7 @@ import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -128,6 +129,7 @@ public class ProfesorSesionBeanTest {
             .addPackage(HablarModelo.class.getPackage())
             .addPackage(TareaCompletarModelo.class.getPackage())
             .addPackage(TareaCompletarEntidad.class.getPackage())
+            .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
             //profesor
             .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
             .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
@@ -204,11 +206,24 @@ public class ProfesorSesionBeanTest {
     }
 
     @Test
-    public void elimina(){
+    public void elimina() {
         Integer profesorEliminado = 0;
         profesorEliminado = profesorSesionBean.elimina(-39);
         Assert.assertNotNull(profesorEliminado);
         Assert.assertFalse(profesorEliminado == 0);
     }
 
+    @Test
+    public void buscaApodo() {
+        ProfesorModelo profesorModelo = profesorSesionBean.busca("zonteco");
+        Assert.assertNotNull(profesorModelo);
+        Assert.assertNotNull(profesorModelo.getId());
+        Assert.assertNotNull(profesorModelo.getNombre());
+        Assert.assertNotNull(profesorModelo.getApellidoPaterno());
+        Assert.assertNotNull(profesorModelo.getApellidoMaterno());
+        Assert.assertNotNull(profesorModelo.getApodo());
+        Assert.assertNotNull(profesorModelo.getCorreoEletronico());
+        Assert.assertNotNull(profesorModelo.getSexo());
+        Assert.assertNotNull(profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo());
+    }
 }

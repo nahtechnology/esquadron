@@ -26,7 +26,7 @@ public class DashboardProfesorControlador implements Serializable {
     private Logger logger;
 
     @Inject
-    private ProfesorControlador profesorModelo;
+    private ProfesorControlador profesorControlador;
 
     @Inject
     private CicloEscolarSessionBean cicloEscolarSessionBean;
@@ -46,14 +46,16 @@ public class DashboardProfesorControlador implements Serializable {
     @PostConstruct
     public void init(){
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(
-                profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(), true, profesorModelo.getProfesorModelo().getId());
-        cicloEscolarModelo = cicloEscolarModeloLista.get(0);
-        grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
-                cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
-                profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
-                profesorModelo.getProfesorModelo().getId());
-        alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
-                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
+                profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), true, profesorControlador.getProfesorModelo().getId());
+        if (!cicloEscolarModeloLista.isEmpty()) {
+            cicloEscolarModelo = cicloEscolarModeloLista.get(0);
+            grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
+                    cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
+                    profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(),
+                    profesorControlador.getProfesorModelo().getId());
+            alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
+                    grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
+        }
     }
 
     public void seleccion() {
@@ -65,8 +67,8 @@ public class DashboardProfesorControlador implements Serializable {
         }
         grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
-                profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo(),
-                profesorModelo.getProfesorModelo().getId());
+                profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(),
+                profesorControlador.getProfesorModelo().getId());
         alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
                 grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
     }

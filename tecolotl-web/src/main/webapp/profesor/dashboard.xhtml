@@ -14,9 +14,12 @@
             <li class="nav-sub-active">
                 <span>#{etiqueta['home']}</span>
             </li>
+            <li>
+                <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+            </li>
             <ui:remove>
-            <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/></li>
-            <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
+                <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/></li>
+                <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
             </ui:remove>
         </ul>
         <div class="uk-navbar-left uk-hidden@m">
