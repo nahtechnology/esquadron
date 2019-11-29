@@ -42,34 +42,36 @@
                     <li data-uk-filter-control=".tarea-card"><a href="#">Tareas</a></li>
                     <li data-uk-filter-control=".nivel-card "><a href="#">Asignación de nivel</a></li>
                 </ul>
-                <div class="uk-width-1-3@m uk-first-column uk-margin-bottom">
-                    <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
-                        <div class="uk-card-header border-card">
-                            <div class="uk-grid-small uk-flex-middle uk-grid" uk-grid="">
-                                <div class="uk-width-auto">
-                                    <h:graphicImage styleClass="uk-visible@s nino" library="img" name="/avatar/astronauta-nino.svg" />
-                                </div>
-                                <div class="uk-width-expand">
-                                    <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
-                                        ${profesorGrupoControlador.alumnoModelo.nombre.concat(' ').concat(profesorGrupoControlador.alumnoModelo.apellidoPaterno).concat(' ').concat(profesorGrupoControlador.alumnoModelo.apellidoMaterno)}
-                                    </h3>
-                                </div>
-                                <div class="uk-width-1-1@s">
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Apodo:</span> #{profesorGrupoControlador.alumnoModelo.apodo}</p>
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Nivel de Lenguaje:</span> #{profesorGrupoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-primary">Editar Perfil:</span></p>
+                <div class="uk-grid" uk-grid="">
+                    <div class="uk-width-1-3@m uk-first-column uk-margin-bottom">
+                        <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
+                            <div class="uk-card-header border-card">
+                                <div class="uk-grid-small uk-flex-middle uk-grid" uk-grid="">
+                                    <div class="uk-width-auto">
+                                        <h:graphicImage styleClass="uk-visible@s nino" library="img" name="/avatar/astronauta-nino.svg" />
+                                    </div>
+                                    <div class="uk-width-expand">
+                                        <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
+                                            ${profesorGrupoControlador.alumnoModelo.nombre.concat(' ').concat(profesorGrupoControlador.alumnoModelo.apellidoPaterno).concat(' ').concat(profesorGrupoControlador.alumnoModelo.apellidoMaterno)}
+                                        </h3>
+                                    </div>
+                                    <div class="uk-width-1-1@s">
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Apodo:</span> #{profesorGrupoControlador.alumnoModelo.apodo}</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Nivel de Lenguaje:</span> #{profesorGrupoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-primary">Editar Perfil:</span></p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="uk-card-body padding-card-body">
-                            <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grado:</span> #{profesorGrupoControlador.grupoModelo.grado}</p>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grupo:</span> #{profesorGrupoControlador.grupoModelo.grupo}</p>
+                            <div class="uk-card-body padding-card-body">
+                                <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grado:</span> #{profesorGrupoControlador.grupoModelo.grado}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grupo:</span> #{profesorGrupoControlador.grupoModelo.grupo}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="botones uk-width-2-3@m">
-                    <h:button styleClass="boton-escuadron-base" value="regresar" outcome="tablero"/>
+                    <div class="botones uk-width-2-3@m">
+                        <h:button styleClass="boton-escuadron-base" value="regresar" outcome="tablero"/>
+                    </div>
                 </div>
                 <!--CARDS WRAPPER-->
                 <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-1@m">
