@@ -1,10 +1,12 @@
 package tecolotl.web.profesor;
 
+import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
 import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
 import tecolotl.profesor.scope.AlumnoGrupoScope;
+import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 
@@ -40,10 +42,18 @@ public class GrupoAlumnoControlador implements Serializable {
     @Inject
     private ProfesorGrupoControlador profesorGrupoControlador;
 
+    @Inject
+    private LicenciaSesionBean licenciaSesionBean;
+
+    @Inject
+    private CicloEscolarSessionBean cicloEscolarSessionBean;
+
     private Integer idGrupo;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
+    private int licenciasTotales;
+    private int totalAlumno;
 
     private UIInput uiInputApodo;
 
@@ -52,6 +62,8 @@ public class GrupoAlumnoControlador implements Serializable {
         nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
         alumnoModelo = new AlumnoModelo();
         alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo());
+        licenciasTotales = licenciaSesionBean.cuenta(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
+        buscaTotalAlumno();
     }
 
     public void insertaAlumno() {
@@ -66,12 +78,17 @@ public class GrupoAlumnoControlador implements Serializable {
             alumnoModelo = new AlumnoModelo();
             alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo());
             buscaDetalleAlumnos();
+            buscaTotalAlumno();
         }
     }
 
     public void buscaDetalleAlumnos() {
         tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
         profesorGrupoControlador.detalleGrupo(idGrupo);
+    }
+
+    public void buscaTotalAlumno() {
+        totalAlumno = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
     }
 
     public Integer getIdGrupo() {
@@ -112,5 +129,21 @@ public class GrupoAlumnoControlador implements Serializable {
 
     public void setUiInputApodo(UIInput uiInputApodo) {
         this.uiInputApodo = uiInputApodo;
+    }
+
+    public int getLicenciasTotales() {
+        return licenciasTotales;
+    }
+
+    public void setLicenciasTotales(int licenciasTotales) {
+        this.licenciasTotales = licenciasTotales;
+    }
+
+    public int getTotalAlumno() {
+        return totalAlumno;
+    }
+
+    public void setTotalAlumno(int totalAlumno) {
+        this.totalAlumno = totalAlumno;
     }
 }

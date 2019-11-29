@@ -41,12 +41,13 @@ function cargaContrasenia() {
     document.getElementById('formulario-modal-nuevo-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');
 }
 
-function limpiaFormulario(data) {
-    if (data.status === 'success') {
-        formularioNuevoAlumno.querySelectorAll('input[type=text], input[type=hidden]').forEach(function (entrada) {
-            entrada.value = null;
-        });
-    }
+function limpiaFormulario(evento) {
+    document.querySelectorAll('#formulario-modal-nuevo-profesor input[type=text], input[type=hidden]').forEach(function (entrada) {
+        entrada.value = null;
+    });
+    document.querySelectorAll('#formulario-modal-nuevo-profesor span').forEach(function (error) {
+        error.remove();
+    })
 }
 
 function generarReporte(evento) {

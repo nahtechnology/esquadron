@@ -113,4 +113,14 @@ public class CicloEscolarSessionBean {
         return cicloEscolarEntidadPK;
     }
 
+    /**
+     * Busca el total de alumnos de una escuela siempre y cuando esten en una ciclo escolar activo
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela a buscar
+     * @return
+     */
+    public Long totalAlumnos(@NotNull @Size(max = 14, min = 10) String claveCentroTrabajo) {
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaTotalAlumno", Long.class);
+        return typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
+    }
+
 }

@@ -167,6 +167,7 @@
                                                      binding="#{grupoAlumnoControlador.uiInputApodo}"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="apodo"
+                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apodo}">
                                             <f:validateRequired/>
                                             <f:validateLength minimum="4" maximum="50"/>
@@ -176,80 +177,106 @@
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-5@m  ">
                                     <h:outputLabel for="input-name" styleClass=" uk-text-capitalize uk-form-label" value="nombre"/>
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-name"
-                                                 pt:placeholder="#{etiqueta['write.text']}"
-                                                 label="Nombre"
-                                                 value="#{grupoAlumnoControlador.alumnoModelo.nombre}">
-                                        <f:validateRequired/>
-                                        <f:validateLength minimum="3" maximum="40"/>
-                                    </h:inputText>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-name"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Nombre"
+                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.nombre}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
                                     <h:message for="input-name" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="input-apellidop" styleClass=" uk-text-capitalize uk-form-label" value="apellidos paterno"/>
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-apellidop"
-                                                 pt:placeholder="#{etiqueta['write.text']}"
-                                                 label="Apellido Paterno"
-                                                 value="#{grupoAlumnoControlador.alumnoModelo.apellidoPaterno}">
-                                        <f:validateRequired/>
-                                        <f:validateLength minimum="4" maximum="50"/>
-                                    </h:inputText>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-apellidop"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Apellido Paterno"
+                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.apellidoPaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
                                     <h:message for="input-apellidop" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="input-apellidom" styleClass=" uk-text-capitalize uk-form-label" value="apellido materno"/>
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-apellidom"
-                                                 pt:placeholder="#{etiqueta['write.text']}"
-                                                 label="Apellido Materno"
-                                                 value="#{grupoAlumnoControlador.alumnoModelo.apellidoMaterno}">
-                                        <f:validateRequired/>
-                                        <f:validateLength minimum="4" maximum="50"/>
-                                    </h:inputText>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-apellidom"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Apellido Materno"
+                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.apellidoMaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
                                     <h:message for="input-apellidom" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-6@s">
                                     <h:outputLabel for="fecha-nacimiento" styleClass=" uk-text-capitalize uk-form-label" value="fecha nacimiento"/>
-                                    <h:inputText styleClass="uk-input"
-                                                 id="fecha-nacimiento"
-                                                 pt:placeholder="dd/mm/yyyy"
-                                                 pt:oninput="entradaFecha(event)"
-                                                 label="dd/mm/yyyy"
-                                                 value="#{grupoAlumnoControlador.alumnoModelo.nacimiento}">
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
-                                        <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
-                                        <f:validateRequired/>
-                                    </h:inputText>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="fecha-nacimiento"
+                                                     pt:placeholder="dd/mm/yyyy"
+                                                     pt:oninput="entradaFecha(event)"
+                                                     label="dd/mm/yyyy"
+                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.nacimiento}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                    </div>
                                     <h:message for="fecha-nacimiento" styleClass="uk-alert-danger"/>
                                 </div>
 
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="seleccion-nivel-lenguaje" styleClass="uk-text-capitalize uk-form-label" value="nivel lenguaje"/>
-                                    <h:selectOneMenu id="seleccion-nivel-lenguaje" styleClass="selector" value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}">
-                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
-                                        <f:selectItems value="#{grupoAlumnoControlador.nivelLenguajeModeloLista}"
-                                                       var="nivelLenguaje"
-                                                       itemLabel="#{nivelLenguaje.valor}"
-                                                       itemValue="#{nivelLenguaje.clave}"/>
-                                        <f:validateRequired/>
-                                    </h:selectOneMenu>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu id="seleccion-nivel-lenguaje"
+                                                         styleClass="selector"
+                                                         value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}"
+                                                         disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}">
+                                            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                            <f:selectItems value="#{grupoAlumnoControlador.nivelLenguajeModeloLista}"
+                                                           var="nivelLenguaje"
+                                                           itemLabel="#{nivelLenguaje.valor}"
+                                                           itemValue="#{nivelLenguaje.clave}"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
                                     <h:message for="seleccion-nivel-lenguaje" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="genero"/>
-                                    <h:selectOneMenu id="seleccion-sexo" styleClass="selector" value="#{grupoAlumnoControlador.alumnoModelo.sexo}">
-                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
-                                        <f:selectItem itemValue="m" itemLabel="Masculino"/>
-                                        <f:selectItem itemValue="f" itemLabel="Femenino"/>
-                                        <f:validateRequired/>
-                                    </h:selectOneMenu>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu id="seleccion-sexo"
+                                                         styleClass="selector"
+                                                         value="#{grupoAlumnoControlador.alumnoModelo.sexo}"
+                                                         disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}">
+                                            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                            <f:selectItem itemValue="m" itemLabel="Masculino"/>
+                                            <f:selectItem itemValue="f" itemLabel="Femenino"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
                                     <h:message for="seleccion-sexo" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="lugares disponibles"/>
-                                    <progress value="25" max="250"></progress>
+                                    <div class="uk-form-controls">
+                                        <progress value="#{grupoAlumnoControlador.totalAlumno}" max="#{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}">
+                                            #{grupoAlumnoControlador.totalAlumno} / #{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}
+                                        </progress>
+                                    </div>
                                 </div>
                                 <div class="uk-width-1-1@s">
                                     <c:forEach begin="1" end="28" var="indice">
@@ -266,11 +293,9 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <h:commandButton styleClass="boton-escuadron-base-secundary uk-modal-close"
-                                         value="#{boton['cancel']}">
-                            <f:ajax render="@form" onevent="function funcion(data) { limpiaFormulario(data) }"/>
-                        </h:commandButton>
+                        <button class="boton-escuadron-base-secundary uk-modal-close" onclick="limpiaFormulario(event)">#{boton['cancel']}</button>
                         <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
+                                         disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                          styleClass="boton-escuadron-base uk-margin-left">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); }"
                                     listener="#{grupoAlumnoControlador.insertaAlumno}"

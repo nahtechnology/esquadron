@@ -1,6 +1,7 @@
 package tecolotl.web.profesor;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
