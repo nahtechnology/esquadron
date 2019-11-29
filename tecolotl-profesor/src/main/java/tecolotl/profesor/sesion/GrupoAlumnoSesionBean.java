@@ -81,14 +81,23 @@ public class GrupoAlumnoSesionBean {
      * @return Colección de alumno con sus niveles
      */
     public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<Integer> idGrupoLista) {
-        logger.fine(idGrupoLista.toString());
-        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))", AlumnoTareasNivelEntidad.class);
+        logger.info(idGrupoLista.toString());
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))");
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
         idGrupoLista.forEach(grupo -> stringJoiner.add(String.valueOf(grupo.intValue())));
         query.setParameter(1,stringJoiner.toString());
         List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = new ArrayList<>();
-        for (AlumnoTareasNivelEntidad alumnoTareasNivelEntidad : (List<AlumnoTareasNivelEntidad>)query.getResultList()) {
-            AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo(alumnoTareasNivelEntidad);
+        List<Object[]> lista = query.getResultList();
+        for (Object[] objects : lista) {
+            AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo();
+            alumnoTareasNivelModelo.setIdGrupo((Integer)objects[0]);
+            alumnoTareasNivelModelo.setIdAlumno((Integer)objects[1]);
+            alumnoTareasNivelModelo.setNombre((String)objects[2]);
+            alumnoTareasNivelModelo.setApellidoPaterno((String)objects[3]);
+            alumnoTareasNivelModelo.setApellidoMaterno((String)objects[4]);
+            alumnoTareasNivelModelo.setIdTarea((Integer)objects[5]);
+            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[6]);
+            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[7]);
             alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);
         }
         return alumnoTareasNivelModeloLista;
@@ -97,7 +106,7 @@ public class GrupoAlumnoSesionBean {
      * Busca todas las Actividades que no se asignaron en un Grupo de
      */
     public List<ActividadModelo> buscaActividades(@NotNull Integer idGrupo){
-    Query query = entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN  SELECT tga.id_actividad as nulo\n" +
+    Query query = entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN (SELECT tga.id_actividad as nulo\n" +
             "                FROM\n" +
             "                   profesor.grupo_alumno ga left join\n" +
             "                   alumno.alumno a ON ga.id_alumno = a.id LEFT JOIN\n" +

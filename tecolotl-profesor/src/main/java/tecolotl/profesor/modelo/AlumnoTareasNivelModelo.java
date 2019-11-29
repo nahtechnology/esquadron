@@ -9,7 +9,8 @@ public class AlumnoTareasNivelModelo {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private Short totalTareas;
+    private Integer idTarea;
+    private Integer totalTareas;
     private String  nivelLenguaje;
 
     public AlumnoTareasNivelModelo() {
@@ -21,6 +22,7 @@ public class AlumnoTareasNivelModelo {
         this.nombre = alumnoTareasNivelEntidad.getNombre();
         this.apellidoPaterno = alumnoTareasNivelEntidad.getApellidoPaterno();
         this.apellidoMaterno = alumnoTareasNivelEntidad.getApellidoMaterno();
+        this.idTarea = alumnoTareasNivelEntidad.getIdTarea();
         this.totalTareas = alumnoTareasNivelEntidad.getTotalTareas();
         this.nivelLenguaje = alumnoTareasNivelEntidad.getNivelLenguaje();
     }
@@ -41,11 +43,11 @@ public class AlumnoTareasNivelModelo {
         this.idAlumno = idAlumno;
     }
 
-    public Short getTotalTareas() {
+    public Integer getTotalTareas() {
         return totalTareas;
     }
 
-    public void setTotalTareas(Short totalTareas) {
+    public void setTotalTareas(Integer totalTareas) {
         this.totalTareas = totalTareas;
     }
 
@@ -79,5 +81,13 @@ public class AlumnoTareasNivelModelo {
 
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public Integer getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(Integer idTarea) {
+        this.idTarea = idTarea;
     }
 }

@@ -1,13 +1,27 @@
 package tecolotl.profesor.entidad;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
 
+@SqlResultSetMapping(name = "AlumnoTareasNivelEntidadMapping",
+    entities = {
+        @EntityResult(
+            entityClass = AlumnoTareasNivelEntidad.class,
+            fields = {
+                @FieldResult(name = "id_grupo", column = "idGrupo"),
+                @FieldResult(name = "id_alumn", column = "idAlumno"),
+                @FieldResult(name = "nombre", column = "nombre"),
+                @FieldResult(name = "apellido_paterno", column = "apellidoPaterno"),
+                @FieldResult(name = "apellido_materno", column = "apellidoMaterno"),
+                @FieldResult(name = "id_tarea", column = "idTarea"),
+                @FieldResult(name = "total_tareas_resueltas", column = "totalTareasResueltas"),
+                @FieldResult(name = "nivel_lenguaje", column = "nivelLenguaje"),
+            }
+        )
+    }
+)
 @Entity
 public class AlumnoTareasNivelEntidad implements Serializable {
 
@@ -16,8 +30,23 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private Short totalTareas;
+    private Integer idTarea;
+    private Integer totalTareas;
     private String nivelLenguaje;
+
+    public AlumnoTareasNivelEntidad() {
+    }
+
+    public AlumnoTareasNivelEntidad(Integer idGrupo, Integer idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer idTarea, Integer totalTareas, String nivelLenguaje) {
+        this.idGrupo = idGrupo;
+        this.idAlumno = idAlumno;
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.idTarea = idTarea;
+        this.totalTareas = totalTareas;
+        this.nivelLenguaje = nivelLenguaje;
+    }
 
     @Basic
     @Column(name = "id_grupo")
@@ -69,13 +98,23 @@ public class AlumnoTareasNivelEntidad implements Serializable {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    @Basic
+    @Column(name = "id_tarea")
+    public Integer getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(Integer idTarea) {
+        this.idTarea = idTarea;
+    }
+
     @Id
     @Column(name = "total_tareas_resueltas")
-    public Short getTotalTareas() {
+    public Integer getTotalTareas() {
         return totalTareas;
     }
 
-    public void setTotalTareas(Short totalTareas) {
+    public void setTotalTareas(Integer totalTareas) {
         this.totalTareas = totalTareas;
     }
 
