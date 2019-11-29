@@ -215,6 +215,7 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="fecha-nacimiento"
                                                  pt:placeholder="dd/mm/yyyy"
+                                                 pt:oninput="entradaFecha(event)"
                                                  label="dd/mm/yyyy"
                                                  value="#{grupoAlumnoControlador.alumnoModelo.nacimiento}">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
@@ -252,7 +253,7 @@
                                 </div>
                                 <div class="uk-width-1-1@s">
                                     <c:forEach begin="1" end="28" var="indice">
-                                        <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
+                                        <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" onclick="cambioImagen(event)"/>
                                     </c:forEach>
                                     <h:inputHidden id="input-secret-password"
                                                    value="#{grupoAlumnoControlador.alumnoModelo.contrasenia}">
@@ -271,7 +272,7 @@
                         </h:commandButton>
                         <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
                                          styleClass="boton-escuadron-base uk-margin-left">
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); seleccionContrasenia(data); }"
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); }"
                                     listener="#{grupoAlumnoControlador.insertaAlumno}"
                                     execute="@form"
                                     render="@form formulario-tabla-alumno:tabla-alumno tabla-vacia"/>

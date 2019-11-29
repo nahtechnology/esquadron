@@ -6,8 +6,7 @@ var tablaAlumnos = document.getElementById('formulario-tabla-alumno:tabla-alumno
 
 document.addEventListener('DOMContentLoaded', function (evento) { 
     tabla = document.querySelector('.uk-container table');
-    seleccionContrasenia();
-    formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
+    //formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
     botonResporte.addEventListener('click', generarReporte);
     if(document.querySelector('#tabla-vacia') === null){
         desabilitar();
@@ -21,25 +20,12 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 
 });
 
-
-function seleccionContrasenia(data) {
-    if (typeof data === 'undefined') {
-        formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(9) img').forEach(function (imagen) {
-            imagen.addEventListener("click", function (evento) {
-                imagen.classList.toggle('seleccionado');
-            });
-        });
-        formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
-    } else {
-        if (data.status === 'success') {
-            formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(9) img').forEach(function (imagen) {
-                imagen.addEventListener("click", function (evento) {
-                    imagen.classList.toggle('seleccionado');
-                });
-            });
-            formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
-        }
-    }
+/**
+ * funcion para cuando selecciones una imagen
+ * @param evento evento de click
+ */
+function cambioImagen(evento) {
+    evento.target.classList.toggle('seleccionado')
 }
 
 function cargaContrasenia() {
@@ -85,7 +71,6 @@ function desabilitar() {
         if(celdas[1].innerText === "" && celdas[2].innerText === ""  && celdas[3].innerText === ""  && celdas[4].innerText === "" && celdas[5].innerText === "" && celdas[6].innerText === ""){
              celdas[7].querySelector('button').disabled = true;
         }
-        // console.log(celdas);
     });
 
 }
