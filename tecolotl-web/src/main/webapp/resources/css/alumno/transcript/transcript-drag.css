@@ -2,6 +2,12 @@
     color:var(--personaje);
     font-weight: bolder;
 }
+
+#scrollTranscript>p>strong{
+    font-size: 19px;
+    color: #76448A;
+}
+
 .texto-video{
     color: white;
     margin-top: 20px;

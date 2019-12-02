@@ -107,7 +107,7 @@
                         <li class="ordenar">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Order the sentences</div>
+                                <div uk-dropdown="mode: click">#{alumno['more.activity.help.message.order.sentences']}</div>
                             </div>
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.order.sentences']}</h1>
@@ -138,7 +138,7 @@
                         <li class="relacion-imagen" >
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Match the image with its meaning</div>
+                                <div uk-dropdown="mode: click">#{alumno['more.activity.help.message.match.image']}</div>
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
                             <h:form>
@@ -226,7 +226,7 @@
                         <li class="complete-sentences">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">#{alumno['send.message.sentence.tip']}</div>
+                                <div uk-dropdown="mode: click">#{alumno['more.activity.help.message.select.word']}</div>
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.comple.all.sentences']}</h1>
                             <h:panelGroup layout="block" styleClass="contedor-oraciones uk-sortable" pt:uk-sortable="group: completar" />

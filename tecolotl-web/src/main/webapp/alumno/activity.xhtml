@@ -120,7 +120,7 @@
                         <li class="transcrip">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Watch the video carefully</div>
+                                <div uk-dropdown="mode: click">#{alumno['activity.help.message.video']}</div>
                             </div>
                            <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left">
@@ -134,7 +134,7 @@
                         <li class="match uk-margin-small-top ">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold ">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Match the columns</div>
+                                <div uk-dropdown="mode: click">#{alumno['activity.help.message.match']}</div>
                             </div>
                             <h:form id="formulario-relacionar">
                                 <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="">
@@ -185,7 +185,7 @@
                         <li class="order-words">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Make sentences  using can and  the words provided</div>
+                                <div uk-dropdown="mode: click">#{alumno['activity.help.message.words']}</div>
                             </div>
                             <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
                             <div class="imagen-ordenar">
@@ -219,7 +219,7 @@
                         <li class="answer">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">Watch the video and fill in the blanks</div>
+                                <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
                             </div>
                             <div class="video-activity">
                                 <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
@@ -236,7 +236,7 @@
                             </h:panelGroup>
                             <h:form>
                                 <h:inputHidden value="#{transcripcionControlador.transcripcion}"/>
-                                <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px" value="Send" onclick="return validaContenido()" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px" value="#{boton['submit']}" onclick="return validaContenido()" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <f:ajax listener="#{transcripcionControlador.enviaRespuestas}" execute="@form" onevent="function funcion(data) { transcripcionEnvidad(data); }"/>
                                 </h:commandButton>
                             </h:form>
