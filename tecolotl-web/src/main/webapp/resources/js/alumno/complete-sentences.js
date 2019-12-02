@@ -6,6 +6,7 @@ var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     evitarPreguntas();
+    seleccionSiguiente();
 });
 
 
@@ -81,4 +82,8 @@ function evitarPreguntas() {
             }
         });
     });
+}
+
+function seleccionSiguiente() {
+    document.querySelector('.complete-sentences form ul li.boton-falta').click();
 }

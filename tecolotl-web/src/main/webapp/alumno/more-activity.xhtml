@@ -252,8 +252,7 @@
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form"
                                                             onevent="function funcion(data) {
-                                                                if (data.status === 'success') { completarOracionRemueve();
-                                                                 evitarPreguntas();}
+                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); }
                                                             }"
                                                             listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}"
                                                             render="@form"/>
