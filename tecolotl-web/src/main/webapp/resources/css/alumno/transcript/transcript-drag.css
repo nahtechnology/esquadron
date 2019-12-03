@@ -3,7 +3,12 @@
     font-weight: bolder;
 }
 
-#scrollTranscript>p>strong{
+#scrollTranscript > p > strong{
+    font-size: 19px;
+    color: #76448A;
+}
+
+#scrollTranscript > p > span > strong{
     font-size: 19px;
     color: #76448A;
 }
