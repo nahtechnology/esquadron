@@ -9,7 +9,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "alumno", schema = "alumno")
-@SequenceGenerator(name = "generador_automatico", schema = "alumno", sequenceName = "alumno.alumno_seq")
+@SequenceGenerator(name = "generador_alumno", schema = "alumno", sequenceName = "alumno.alumno_seq")
 @NamedQueries({
     @NamedQuery(
         name = "AlumnoEntidad.busca",
@@ -50,7 +50,7 @@ public class AlumnoEntidad extends PersonaEntidad {
     }
 
     @Id
-    @GeneratedValue(generator = "generador_automatico")
+    @GeneratedValue(generator = "generador_alumno")
     public Integer getId() {
         return id;
     }
