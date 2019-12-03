@@ -130,6 +130,20 @@
                 </redirect-param>
             </redirect>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>dashboard-maestro</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>tablero</from-outcome>
+            <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>idTarea</name>
+                    <value>#{calificacionGramaticaControlador.idTarea}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
