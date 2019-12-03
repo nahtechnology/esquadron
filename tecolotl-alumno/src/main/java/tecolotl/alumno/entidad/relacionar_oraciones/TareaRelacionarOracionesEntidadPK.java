@@ -2,10 +2,7 @@ package tecolotl.alumno.entidad.relacionar_oraciones;
 
 import tecolotl.alumno.entidad.TareaEntidad;
 
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -14,6 +11,7 @@ import java.util.StringJoiner;
 public class TareaRelacionarOracionesEntidadPK implements Serializable {
     private RelacionarOracionesEntidad relacionarOracionesEntidad;
     private TareaEntidad tareaEntidad;
+    private Short vuelta;
 
     @JoinColumn(name = "id_relacionar_oraciones")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,7 +23,6 @@ public class TareaRelacionarOracionesEntidadPK implements Serializable {
         this.relacionarOracionesEntidad = relacionarOracionesEntidad;
     }
 
-
     @JoinColumn(name = "id_tarea")
     @ManyToOne(fetch = FetchType.LAZY)
     public TareaEntidad getTareaEntidad() {
@@ -34,6 +31,16 @@ public class TareaRelacionarOracionesEntidadPK implements Serializable {
 
     public void setTareaEntidad(TareaEntidad tareaEntidad) {
         this.tareaEntidad = tareaEntidad;
+    }
+
+    @Basic
+    @Column(name = "vuelta")
+    public Short getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Short vuelta) {
+        this.vuelta = vuelta;
     }
 
     @Override
@@ -57,6 +64,7 @@ public class TareaRelacionarOracionesEntidadPK implements Serializable {
         return new StringJoiner(", ", TareaRelacionarOracionesEntidadPK.class.getSimpleName() + "[", "]")
                 .add("relacionarOracionesEntidad=" + relacionarOracionesEntidad)
                 .add("tareaEntidad=" + tareaEntidad)
+                .add("vuelta=" + vuelta)
                 .toString();
     }
 }

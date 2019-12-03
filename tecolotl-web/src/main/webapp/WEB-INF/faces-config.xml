@@ -7,6 +7,12 @@
 	<!-- traduccion de las vistas -->
 
 	<application>
+		<locale-config>
+			<default-locale>en</default-locale>
+		</locale-config>
+	</application>
+
+	<application>
 		<resource-bundle>
 			<base-name>etiqueta</base-name>
 			<var>etiqueta</var>
@@ -24,7 +30,7 @@
 			<var>coordinacion</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>alumno_en</base-name>
+			<base-name>alumno</base-name>
 			<var>alumno</var>
 		</resource-bundle>
 		<resource-bundle>

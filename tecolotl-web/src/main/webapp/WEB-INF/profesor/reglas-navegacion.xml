@@ -46,6 +46,10 @@
             <from-outcome>detalle-alumno</from-outcome>
             <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>agregar-csv</from-outcome>
+            <to-view-id>/profesor/agregar-csv.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>

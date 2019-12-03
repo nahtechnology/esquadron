@@ -8,13 +8,16 @@ import java.util.StringJoiner;
 @Entity
 @Table(name = "tarea_relacionar_oracion", schema = "alumno")
 @NamedQueries({
-        @NamedQuery(name = "TareaRelacionarOracionesEntidad.busca", query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe"),
-        @NamedQuery(
-                name = "TareaRelacionarOracionesEntidad.buscaidTarea",
-                query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe JOIN FETCH troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad " +
-                        "WHERE troe.tareaRelacionarOracionesEntidadPK.tareaEntidad.id =  :idTarea ORDER BY troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad.id")
-}
-)
+    @NamedQuery(name = "TareaRelacionarOracionesEntidad.busca", query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe"),
+    @NamedQuery(
+        name = "TareaRelacionarOracionesEntidad.buscaidTarea",
+        query = "SELECT troe FROM TareaRelacionarOracionesEntidad troe JOIN FETCH troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad " +
+                "WHERE troe.tareaRelacionarOracionesEntidadPK.tareaEntidad.id =  :idTarea ORDER BY troe.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad.id"),
+    @NamedQuery(
+        name = "TareaRelacionarOracionesEntidad.respuesta",
+        query = "UPDATE TareaRelacionarOracionesEntidad tro SET tro.respuesta = :respuesta WHERE tro.tareaRelacionarOracionesEntidadPK.vuelta = :vuelta AND " +
+                "tro.tareaRelacionarOracionesEntidadPK.tareaEntidad.id = :idTarea AND tro.tareaRelacionarOracionesEntidadPK.relacionarOracionesEntidad.id = :idOracionRelacionar")
+})
 public class TareaRelacionarOracionesEntidad {
     private TareaRelacionarOracionesEntidadPK tareaRelacionarOracionesEntidadPK;
     private Integer respuesta;

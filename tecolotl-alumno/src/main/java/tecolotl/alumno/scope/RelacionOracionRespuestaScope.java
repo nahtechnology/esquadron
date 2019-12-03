@@ -14,6 +14,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
@@ -45,12 +46,13 @@ public class RelacionOracionRespuestaScope {
         try {
             userTransaction.begin();
             for (TareaRelacionarOracionModelo tareaRelacionarOracionModelo : tareaRelacionarOracionModeloLista) {
-                TareaRelacionarOracionesEntidad tareaRelacionarOracionesEntidad =
-                        entityManager.find(TareaRelacionarOracionesEntidad.class, llavePrimaria(tareaRelacionarOracionModelo));
-                tareaRelacionarOracionesEntidad.setRespuesta(tareaRelacionarOracionModelo.getRespuesta());
+                Query query = entityManager.createNamedQuery("TareaRelacionarOracionesEntidad.respuesta");
+                query.setParameter("respuesta", tareaRelacionarOracionModelo.getRespuesta()).setParameter("vuelta", tareaRelacionarOracionModelo.getVuelta())
+                        .setParameter("idTarea", tareaRelacionarOracionModelo.getIdTarea()).setParameter("idOracionRelacionar", tareaRelacionarOracionModelo.getRelacionarOracionModelo().getId());
+                query.executeUpdate();
             }
-            logger.finer("Se persistieron:".concat(String.valueOf(tareaRelacionarOracionModeloLista.size())));
             userTransaction.commit();
+            logger.finer("Se persistieron:".concat(String.valueOf(tareaRelacionarOracionModeloLista.size())));
         } catch (Exception e) {
             logger.log(Level.SEVERE, "No se puede insertar datos por:".concat(e.getMessage()), e);
             try {
@@ -66,6 +68,8 @@ public class RelacionOracionRespuestaScope {
         tareaRelacionarOracionesEntidadPK.setTareaEntidad(new TareaEntidad(tareaRelacionarOracionModelo.getIdTarea()));
         tareaRelacionarOracionesEntidadPK.setRelacionarOracionesEntidad(
                 new RelacionarOracionesEntidad(tareaRelacionarOracionModelo.getRelacionarOracionModelo().getId()));
+        tareaRelacionarOracionesEntidadPK.setVuelta(tareaRelacionarOracionModelo.getVuelta());
         return tareaRelacionarOracionesEntidadPK;
     }
+
 }

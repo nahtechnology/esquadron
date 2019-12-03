@@ -42,6 +42,7 @@ public class RelacionarOracionControlador {
         for (int i = 0; i < respuestas.length; i++) {
             tareaRelacionarOracionModeloLista.get(i).setRespuesta(Integer.parseInt(respuestas[i]));
         }
+        logger.info(tareaRelacionarOracionModeloLista.toString());
         relacionOracionRespuestaScope.respuesta(tareaRelacionarOracionModeloLista);
     }
 

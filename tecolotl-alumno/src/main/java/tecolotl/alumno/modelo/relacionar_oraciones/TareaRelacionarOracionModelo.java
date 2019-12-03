@@ -17,6 +17,7 @@ public class TareaRelacionarOracionModelo {
     private Integer idTarea;
     private Integer respuesta;
     private Date horaRespuesta;
+    private Short vuelta;
 
     public TareaRelacionarOracionModelo() {
     }
@@ -31,6 +32,7 @@ public class TareaRelacionarOracionModelo {
         this.idTarea = tareaRelacionarOracionesEntidad.getTareaRelacionarOracionesEntidadPK().getTareaEntidad().getId();
         this.respuesta = tareaRelacionarOracionesEntidad.getRespuesta();
         this.horaRespuesta = tareaRelacionarOracionesEntidad.getHoraRespuesta();
+        this.vuelta = tareaRelacionarOracionesEntidad.getTareaRelacionarOracionesEntidadPK().getVuelta();
     }
 
     @NotNull(groups = {RelacionarOracionLlavePrimariaValidacion.class})
@@ -69,6 +71,15 @@ public class TareaRelacionarOracionModelo {
         this.horaRespuesta = horaRespuesta;
     }
 
+    @NotNull
+    public Short getVuelta() {
+        return vuelta;
+    }
+
+    public void setVuelta(Short vuelta) {
+        this.vuelta = vuelta;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -90,6 +101,7 @@ public class TareaRelacionarOracionModelo {
                 .add("idTarea=" + idTarea)
                 .add("respuesta=" + respuesta)
                 .add("horaRespuesta=" + horaRespuesta)
+                .add("vuelta=" + vuelta)
                 .toString();
     }
 
