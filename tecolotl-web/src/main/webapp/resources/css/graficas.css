@@ -43,17 +43,21 @@ div > ul + div > div > div > span{
 }
 
 #formulario-tabla-actividades progress::-webkit-progress-bar{
-    background-color: rgba(52, 73, 94,0.5);
+    /*background-color: rgba(52, 73, 94,0.5);*/
+    background-color:  white;
+    border: solid 1.5px #00a8ec;
 }
 
 #formulario-tabla-actividades progress::-webkit-progress-value{
-    background: rgb(238,2,2);
-    background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);
+    background: #00a8ec;
+    /*background: rgb(238,2,2);
+    background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);*/
 
 }
 
 #formulario-tabla-actividades progress::-moz-progress-bar{
-    background: rgb(238,2,2);
-    background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);
+    background: #00a8ec;
+    /*background: rgb(238,2,2);
+    background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);*/
 }
 

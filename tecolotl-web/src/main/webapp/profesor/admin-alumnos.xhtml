@@ -89,37 +89,37 @@
                                 <span>${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}</span>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">mapa mental</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaMapaMental eq 0}"/>
                                 <span><h:outputText value="${tarea.totalRespuestaMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/></span>
                                 <h:outputText value="/ ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">ordenar palabra</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaGramatica eq 0}"/>
                                 <span><h:outputText value="${tarea.totalRespuestaGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/></span>
                                 <h:outputText value=" / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">relacionar imagen palabra</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.match.image']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadoRelacionar eq 0}"/>
                                 <span><h:outputText value="${tarea.totalRespuestaRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/></span>
                                 <h:outputText value=" / ${tarea.totalAsignadoRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">ordenar oraciones</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.order.prayer']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="#{tarea.totalAsignadaOraciones eq 0}"/>
                                 <span><h:outputText value="#{tarea.totalRespuestaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/></span>
                                 <h:outputText value=" / #{tarea.totalAsignadaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">relacionar pregunta respuesta</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaRelacionarOracion eq 0}"/>
                                 <span><h:outputText value="${tarea.totalRespuestaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/></span>
                                 <h:outputText value=" / ${tarea.totalAsignadaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">completar oraciones</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.complete.prayers']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaCompletar eq 0}"/>
                                 <span><h:outputText value="${tarea.totalRespuestaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/></span>
                                 <h:outputText value=" / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/>
