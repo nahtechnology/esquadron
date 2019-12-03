@@ -131,11 +131,15 @@ div > div > div > div + div + div + div + div + div > img:hover{
 }
 
 progress[value]{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    background: darkgray;
     width: 200px;
     height: 40px;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
     border-radius: 20px;
-    border-color: #1665B4;
+    border: solid 2px #1665B4;
+    overflow: hidden;
 }
 
