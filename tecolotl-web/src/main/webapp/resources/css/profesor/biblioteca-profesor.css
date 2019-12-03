@@ -88,7 +88,7 @@ li .A1{
     width: 80px;
 }
 .A1>div>div>.uk-card-footer > div > div > span{
-    padding-left: 130px;
+    padding-left: 63px;
 }
 .A1>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--psecundary-option-three);
@@ -110,7 +110,7 @@ li .A2{
     width: 80px;
 }
 .A2>div>div>.uk-card-footer > div > div > span{
-    padding-left: 130px;
+    padding-left: 63px;
 }
 .A2>div>div>.uk-card-header>div>div>:nth-child(3){
     color: #D35400;
