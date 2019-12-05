@@ -10,11 +10,11 @@
 
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
     <ui:define name="menu">
-        <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+        <ul class="uk-subnav uk-visible@m " uk-margin="">
             <li class="nav-sub-active">
                 <span>#{etiqueta['home']}</span>
             </li>
-            <li>
+            <li class="borde-menu">
                 <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
             </li>
             <ui:remove>

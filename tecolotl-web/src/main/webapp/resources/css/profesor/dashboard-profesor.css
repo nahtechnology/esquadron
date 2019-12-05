@@ -17,6 +17,8 @@ ul > li > span {
     height: 28px;
     border-radius: 5px;
     text-align: center;
+    font-weight: bold;
+    margin-top: 19px;
     padding-top: 7px;
     padding-left: 10px;
     padding-right: 10px;
@@ -38,4 +40,15 @@ ul > li > span {
     display: flex;
     justify-content: flex-end;
     padding-top: 83px;
+}
+
+.borde-menu{
+    border: 3px solid var(--turquesa-primary-color);
+    height: 28px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: bold;
+    padding-top: 7px;
+    margin-top: 19px;
+    left: 373%;
 }
