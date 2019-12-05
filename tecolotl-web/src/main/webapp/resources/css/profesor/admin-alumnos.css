@@ -143,3 +143,21 @@ progress[value]{
     overflow: hidden;
 }
 
+ul > li > a{
+    font-family: 'Sniglet', "Arial Black";
+    text-transform: capitalize !important;
+    height: 28px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 19px;
+    padding-top: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+ul > li > a:hover{
+    color: var(--turquesa-primary-color) !important;
+    border: 3px solid var(--turquesa-primary-color);
+}
+
