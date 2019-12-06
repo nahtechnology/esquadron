@@ -24,3 +24,17 @@
     background-color: var(--color-barra-nav);
     color: white;
 }
+
+.boton-cerrar{
+    border: 3px solid var(--color-nav-primary);
+    height: 28px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: bold;
+    padding-top: 7px;
+    margin-top: 19px;
+}
+
+.borde-cerrar > form > a{
+    color: #1665B4;
+}

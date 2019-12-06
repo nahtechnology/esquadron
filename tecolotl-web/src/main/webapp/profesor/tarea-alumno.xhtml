@@ -14,8 +14,11 @@
     </f:metadata>
     <ui:define name="menu">
         <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-           <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-            <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
+           <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
+           <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
+           <li class="boton-cerrar">
+               <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+           </li>
         </ul>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
