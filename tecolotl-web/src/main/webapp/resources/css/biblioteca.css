@@ -52,8 +52,8 @@ li .A1{
     color: white;
     width: 80px;
 }
-.A1>div>div>.uk-card-footer > div > div > span{
-    padding-left: 63px;
+.A1>div>div>.uk-card-footer > div > div > span {
+    padding-left: 130px;
 }
 .A1>div>div>.uk-card-header>div>div>:nth-child(3){
     color: var(--psecundary-option-three);
