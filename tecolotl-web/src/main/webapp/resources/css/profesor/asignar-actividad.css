@@ -1,0 +1,14 @@
+.borde-menu1{
+    border: 3px solid var(--color-nav-primary);
+    height: 28px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: bold;
+    padding-top: 7px;
+    margin-top: 19px;
+    left: 670%;
+}
+
+.borde-menu1 > form > a{
+    color: #1665B4;
+}

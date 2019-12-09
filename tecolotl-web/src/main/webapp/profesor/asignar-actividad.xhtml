@@ -14,10 +14,30 @@
         </f:metadata>
         <ui:define name="menu">
 
+            <div class="">
+                <ul class="uk-subnav uk-visible@m " uk-margin="">
+                    <li class="borde-menu1">
+                        <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+                    </li>
+                </ul>
+            </div>
+            <div class="uk-navbar-left uk-hidden@m">
+                <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+            </div>
+            <div id="menu" uk-offcanvas="overlay: true">
+                <div class="uk-offcanvas-bar  ">
+                    <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                    <ul class="uk-nav  nav-sub-offcanvas ">
+                        <li ><h:link outcome="tablero" value="Home" styleClass="letra-color-subnav"/></li>
+                    </ul>
+                </div>
+            </div>
+
         </ui:define>
         <ui:define name="contenido">
             <h:outputStylesheet library="css" name="/profesor/biblioteca-profesor.css"/>
-            <h:outputStylesheet library="css" name="profesor/scroll-profesor.css"/>
+            <h:outputStylesheet library="css" name="/profesor/scroll-profesor.css"/>
+            <h:outputStylesheet library="css" name="/profesor/asignar-actividad.css"/>
             <div class="uk-container" data-uk-filter="target: .js-filter">
                 <div class="uk-width-1-1@m uk-margin-medium-top">
                     <form id="search-form" action="">
