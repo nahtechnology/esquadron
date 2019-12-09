@@ -27,12 +27,14 @@
 
 .boton-cerrar{
     border: 3px solid var(--color-nav-primary);
-    height: 28px;
+    height: 21px;
     width: 130px;
     border-radius: 5px;
-    font-weight: bold;
-    padding-top: 7px;
-    margin-top: 19px;
+    font-weight: bold!important;
+    padding-top: 7px !important;
+    margin-top: 19px !important;
+    text-align: center;
+    left: 145%;
 }
 
 .borde-cerrar > form > a{
