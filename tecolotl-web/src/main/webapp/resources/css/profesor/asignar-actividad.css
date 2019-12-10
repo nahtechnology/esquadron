@@ -12,3 +12,27 @@
 .borde-menu1 > form > a{
     color: #1665B4;
 }
+
+.A1 .uk-card-footer a{
+    color: var(--psecundary-option-three);
+}
+
+.A2 .uk-card-footer a{
+    color: #D35400;
+}
+
+.B1 .uk-card-footer a{
+    color: var(--tsecundary-option-one);
+}
+
+.B2 .uk-card-footer a{
+    color: var(--asecundary-option-one);
+}
+
+.C1 .uk-card-footer a{
+    color: var(--color-nav-primary);
+}
+
+.C2 .uk-card-footer a{
+    color: var(--color-peligro);
+}

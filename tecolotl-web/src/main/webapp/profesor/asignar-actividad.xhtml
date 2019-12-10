@@ -101,10 +101,22 @@
                                                             <h:graphicImage styleClass=" uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
                                                          </h:outputLink>
                                                     </div>
-                                                    <div><h:outputLink pt:data-uk-tooltip="title: Didactic Guide"  value="../resources/guia/#{actividadModelo.idActividad}.pdf" target="_blank" ><h:graphicImage  styleClass=" uk-svg" library="img" name="icono/guia-didactica.svg" pt:uk-svg=""/></h:outputLink></div>
-                                                    <div><h:outputLink pt:data-uk-tooltip="title: Cards"  value="../resources/cartas/#{actividadModelo.idActividad}.pdf" target="_blank" ><span uk-icon="icon: commenting"></span></h:outputLink></div>
-                                                    <div><h:outputLink pt:data-uk-tooltip="title: Discussion"  value="../resources/plantilla/discussion.pdf" target="_blank" ><span uk-icon="icon: file-edit"></span></h:outputLink></div>
-                                                    <div><h:outputLink pt:data-uk-tooltip="title: Lesson"  value="../resources/plantilla/lesson.pdf" target="_blank" ><span uk-icon="icon: pencil"></span></h:outputLink></div>
+                                                    <div><h:outputLink pt:data-uk-tooltip="title: Didactic Guide"  value="../resources/guia/#{actividadModelo.idActividad}.pdf" target="_blank" >
+                                                            <span uk-icon="icon: file-text"></span>
+                                                         </h:outputLink>
+                                                    </div>
+                                                    <div><h:outputLink pt:data-uk-tooltip="title: Cards"  value="../resources/cartas/#{actividadModelo.idActividad}.pdf" target="_blank" >
+                                                            <span uk-icon="icon: commenting"></span>
+                                                         </h:outputLink>
+                                                    </div>
+                                                    <div><h:outputLink pt:data-uk-tooltip="title: Discussion"  value="../resources/plantilla/discussion.pdf" target="_blank" >
+                                                            <span uk-icon="icon: file-edit"></span>
+                                                         </h:outputLink>
+                                                    </div>
+                                                    <div><h:outputLink pt:data-uk-tooltip="title: Lesson"  value="../resources/plantilla/lesson.pdf" target="_blank" >
+                                                            <span uk-icon="icon: pencil"></span>
+                                                         </h:outputLink>
+                                                    </div>
                                                 </h:panelGroup>
                                             </div>
                                             <ui:remove>
