@@ -12,27 +12,22 @@ import java.util.List;
 @Table(name = "tarea", schema = "alumno")
 @SequenceGenerator(name = "generador_automatico", sequenceName = "tarea_seq", schema = "alumno")
 @NamedQueries(value = {
-        @NamedQuery(
-                name = "TareaEntidad.busca",
-                query = "SELECT t FROM TareaEntidad t"
-        ),
-        @NamedQuery(
-                name = "TareaEntidad.buscaActividad",
-                query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
-                        "t.alumnoEntidad.id = :IdAlumno GROUP BY t ORDER BY t.id"
-        ),
-        @NamedQuery(
-                name = "TareaEntidad.aumentaReprodecciones",
-                query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"
-        ),
-        @NamedQuery(
-                name = "TareaEntidad.respuesta",
-                query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta, t.resolviendoTranscript = FALSE WHERE t.id = :idTarea"
-        ),
-        @NamedQuery(
-                name = "TareaEntidad.estatusRespondiendo",
-                query = "UPDATE TareaEntidad t SET t.resolviendoTranscript = :estatus WHERE t.id = :idTarea"
-        )
+    @NamedQuery(
+        name = "TareaEntidad.busca",
+        query = "SELECT t FROM TareaEntidad t"),
+    @NamedQuery(
+        name = "TareaEntidad.buscaActividad",
+        query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
+            "t.alumnoEntidad.id = :IdAlumno GROUP BY t ORDER BY t.id"),
+    @NamedQuery(
+        name = "TareaEntidad.aumentaReprodecciones",
+        query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"),
+    @NamedQuery(
+        name = "TareaEntidad.respuesta",
+        query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta, t.resolviendoTranscript = FALSE WHERE t.id = :idTarea"),
+    @NamedQuery(
+        name = "TareaEntidad.estatusRespondiendo",
+        query = "UPDATE TareaEntidad t SET t.resolviendoTranscript = :estatus WHERE t.id = :idTarea"),
 })
 public class TareaEntidad {
 

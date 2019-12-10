@@ -217,27 +217,33 @@
                             </ul>
                         </li>
                         <li class="answer">
-                            <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
-                                <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
-                                <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
-                            </div>
-                            <div class="video-activity">
-                                <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
-                            </div>
-                            <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
-                                <h:panelGroup layout="block" styleClass="contenedor-padre-activity" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
-                                    <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
-                                </h:panelGroup>
-                                <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
-                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
-                                    <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                            <h:form id="formulario-transcripcion">
+                                <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
+                                    <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
+                                    <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
                                 </div>
-                                <h:graphicImage library="img" styleClass="finalizado movimiento2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
-                            </h:panelGroup>
-                            <h:form>
-                                <h:inputHidden value="#{transcripcionControlador.transcripcion}"/>
-                                <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px" value="#{boton['submit']}" onclick="return validaContenido()" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
-                                    <f:ajax listener="#{transcripcionControlador.enviaRespuestas}" execute="@form" onevent="function funcion(data) { transcripcionEnvidad(data); }"/>
+                                <div class="video-activity">
+                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
+                                </div>
+                                <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
+                                    <h:panelGroup layout="block" styleClass="contenedor-padre-activity" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                        <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
+                                    </h:panelGroup>
+                                    <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                        <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                        <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    </div>
+                                    <h:graphicImage library="img" styleClass="finalizado movimiento2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                </h:panelGroup>
+                                <h:inputHidden id="respuesta" value="#{transcripcionControlador.transcripcion}"/>
+                                <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px"
+                                                 value="#{boton['submit']}"
+                                                 onclick="return validaContenido()"
+                                                 rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                    <f:ajax listener="#{transcripcionControlador.enviaRespuestas}"
+                                            execute="@form"
+                                            onevent="function funcion(data) { transcripcionEnvidad(data); }"
+                                            render="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </li>

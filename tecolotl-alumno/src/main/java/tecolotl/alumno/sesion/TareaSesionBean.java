@@ -48,6 +48,15 @@ public class TareaSesionBean implements Serializable {
     }
 
     /**
+     * Busca los detalles de una tarea por su identificadoe
+     * @param idTarea Identificador de la tarea a buscar
+     * @return {@link TareaModelo} con los datos encontraods
+     */
+    public TareaModelo detalles(@NotNull Integer idTarea) {
+        return new TareaModelo(entityManager.find(TareaEntidad.class, idTarea));
+    }
+
+    /**
      * Busca todas las tareas.
      * @return todas las tareas encontradas.
      */

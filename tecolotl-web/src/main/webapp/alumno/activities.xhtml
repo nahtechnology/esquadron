@@ -96,28 +96,25 @@
                                             </span>
                                            <ui:remove>#{tareaActvidadModelo.idActividad}</ui:remove>
                                         </div>
-
                                     </h:panelGroup>
                                 </div>
-
-                               <div class="uk-card-media-top uk-text-center" data-video="#{tareaActvidadModelo.idActividad}">
-                                   <h:panelGroup layout="block" pt:uk-spinner=""/>
-                                   <div  class="uk-inline-clip uk-transition-toggle" tabindex="0">
-                                       <div class="uk-margin-remove posicion">
+                                <div class="uk-card-media-top uk-text-center" data-video="#{tareaActvidadModelo.idActividad}">
+                                    <h:panelGroup layout="block" pt:uk-spinner=""/>
+                                    <div  class="uk-inline-clip uk-transition-toggle" tabindex="0">
+                                        <div class="uk-margin-remove posicion">
                                            <h:outputText  value="#{tareaActvidadModelo.preguntaDetonadora}"/>
-                                       </div>
-                                       <div class="uk-transition-fade uk-position-cover uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
-                                           <h:panelGroup layout="block" styleClass="uk-inline" pt:uk-lightbox="">
-                                               <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
-                                               <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
-                                           </h:panelGroup>
-                                       </div>
-                                   </div>
+                                        </div>
+                                        <div class="uk-transition-fade uk-position-cover uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
+                                            <h:panelGroup layout="block" styleClass="uk-inline" pt:uk-lightbox="">
+                                                <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
+                                                <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/>
+                                            </h:panelGroup>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div style="" class="uk-card-footer uk-text-center">
+                                <div class="uk-card-footer uk-text-center">
                                     <h:form styleClass="">
-                                        <h:commandButton styleClass="boton" action="#{alumnoControlador.seleccion(tareaActvidadModelo)}" value="assignment"/>
+                                        <h:commandButton styleClass="boton" action="#{alumnoControlador.seleccion(tareaActvidadModelo)}" value="#{alumno['dashboard.homework']}"/>
                                     </h:form>
                                 </div>
                             </div>
@@ -126,17 +123,7 @@
                 </h:panelGroup>
             </div>
         </div>
-        <ui:remove>
-            <h:panelGroup id="modal-pregunta-detonadora" layout="block" styleClass="uk-flex-top fondo-pregunta-detonadora" pt:uk-modal="">
-                <div class="uk-modal-dialog pop-art-modal uk-modal-body uk-margin-auto-vertical">
-                    <button class="uk-modal-close-default" type="button" uk-close=""/>
-    <!--                <h:outputText id="pregunta-detonadora" value="#{actividadAlumno2Controlador.preguntaDetonadora}"/>-->
-                </div>
-            </h:panelGroup>
-        </ui:remove>
-
         <h:outputScript library="js" name="alumno/activities.js"/>
-
     </ui:define>
 </ui:composition>
 </html>

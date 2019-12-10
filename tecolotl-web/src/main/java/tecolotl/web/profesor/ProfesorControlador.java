@@ -8,9 +8,11 @@ import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.List;
@@ -31,8 +33,9 @@ public class ProfesorControlador implements Serializable {
         profesorModelo = profesorSesionBean.busca(principal.getName());
     }
 
-    public String cerrarSesion() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    public String cerrarSesion() throws IOException {
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        externalContext.invalidateSession();
         return "/index.xhtml";
     }
 

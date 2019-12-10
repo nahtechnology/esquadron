@@ -43,6 +43,7 @@ public class AlumnoControlador implements Serializable {
 
     public String seleccion(TareaActividadModelo tareaActividadModelo){
         this.tareaActividadModelo = tareaActividadModelo;
+        tareaActividadModelo.agregarDatos(tareaSesionBean.detalles(tareaActividadModelo.getId()));
         return "transcript";
     }
 

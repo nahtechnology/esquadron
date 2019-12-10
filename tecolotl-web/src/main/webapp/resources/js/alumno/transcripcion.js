@@ -51,8 +51,6 @@ function revolver(arreglo) {
 
 function transcripcionEnvidad(data) {
     if (data.status === 'success') {
-        menuPrincipal.querySelector('li:first-child').setAttribute('uk-filter-control','.transcrip');
-        data.source.disabled = true;
         UIkit.notification(mensajeEnviado, {pos: 'top-right'});
     }
 }
@@ -63,7 +61,7 @@ function validaContenido() {
         answer.querySelectorAll('.remplazar p').forEach(function (respRem) {
             resp = resp.concat(respRem.outerHTML);
         });
-        answer.querySelector('form input[type=hidden]:nth-child(2)').value = resp;
+        document.getElementById('formulario-transcripcion:respuesta').value = resp;
         return true;
     }
     UIkit.modal.alert(mensajeError);
