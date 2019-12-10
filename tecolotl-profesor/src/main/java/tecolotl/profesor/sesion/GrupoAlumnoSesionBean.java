@@ -81,7 +81,6 @@ public class GrupoAlumnoSesionBean {
      * @return Colección de alumno con sus niveles
      */
     public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<Integer> idGrupoLista) {
-        logger.info(idGrupoLista.toString());
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))");
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
         idGrupoLista.forEach(grupo -> stringJoiner.add(String.valueOf(grupo.intValue())));

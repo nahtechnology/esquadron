@@ -37,7 +37,11 @@ import java.util.StringJoiner;
         name = "GrupoEntidad.buscaCiclioEscolarTotalAlumno",
         query = "SELECT new GrupoEntidad(g.id, g.grado, g.grupo, COUNT(ga.grupoAlumnoEntidadPK.alumnoEntidad.id)) FROM GrupoEntidad g LEFT JOIN g.grupoAlumnoEntidad ga " +
                 "WHERE g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio AND g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin AND " +
-                "g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND g.profesorEntidad.id = :idProfesor GROUP BY g.id, g.grado, g.grupo")
+                "g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND g.profesorEntidad.id = :idProfesor GROUP BY g.id, g.grado, g.grupo"),
+    @NamedQuery(
+        name = "GrupoEntidad.cuentaPorProfesor",
+        query = "SELECT g.profesorEntidad.id FROM GrupoEntidad g WHERE g.id = :idGrupo"
+    )
 })
 public class GrupoEntidad {
 

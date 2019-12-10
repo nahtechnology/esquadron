@@ -17,6 +17,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class GrupoAlumnoControlador implements Serializable {
         buscaTotalAlumno();
     }
 
-    public void insertaAlumno() {
+    public void insertaAlumno() throws IOException {
         FacesMessage facesMessage = new FacesMessage();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
@@ -82,9 +83,20 @@ public class GrupoAlumnoControlador implements Serializable {
         }
     }
 
-    public void buscaDetalleAlumnos() {
-        tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
-        profesorGrupoControlador.detalleGrupo(idGrupo);
+    public void buscaDetalleAlumnos() throws IOException {
+        if (grupoSesionBean.pertenece(profesorControlador.getProfesorModelo().getId(), idGrupo)) {
+            tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
+            profesorGrupoControlador.detalleGrupo(idGrupo);
+        } else {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("no-grupo.xhtml");
+        }
+    }
+
+    public void validaParametro() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        if (!facesContext.isPostback() && facesContext.isValidationFailed()) {
+            facesContext.getExternalContext().redirect("no-grupo.xhtml");
+        }
     }
 
     public void buscaTotalAlumno() {

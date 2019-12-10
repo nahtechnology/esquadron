@@ -143,5 +143,13 @@ public class ProfesorSesionBean implements Serializable {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
+    /**
+     * Valida si el profesor tiene asginado el grupo asignado
+     * @param idGrupo Identificador del grupo
+     * @param idProfesor Identifiacdor del Profesor
+     */
+    public void pertenece(@NotNull Integer idGrupo, @NotNull Integer idProfesor) {
+
+    }
 
 }

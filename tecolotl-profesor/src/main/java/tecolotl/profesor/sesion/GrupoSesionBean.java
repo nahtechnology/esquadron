@@ -13,6 +13,7 @@ import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
@@ -160,4 +161,19 @@ public class GrupoSesionBean implements Serializable {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
+    /**
+     * Busca si el profesor tiene asigando el grupo.
+     * @param idProfesor Identificador del profesor.
+     * @param idGrupo Identificador del grupo.
+     * @return True en caso de que concidan, false en cualquier otro caso.
+     */
+    public boolean pertenece(@NotNull Integer idProfesor, @NotNull Integer idGrupo) {
+        TypedQuery<Integer> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cuentaPorProfesor", Integer.class);
+        typedQuery.setParameter("idGrupo", idGrupo);
+        try {
+            return typedQuery.getSingleResult().compareTo(idProfesor) == 0;
+        } catch (NoResultException e) {
+            return false;
+        }
+    }
 }
