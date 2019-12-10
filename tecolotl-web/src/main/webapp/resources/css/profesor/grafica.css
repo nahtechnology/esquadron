@@ -95,7 +95,7 @@
 .graficas p > span:first-child{
     display: inline-block;
     padding: 0 5px;
-    border-bottom:2px solid #00A8EC;
+    /*border-bottom:2px solid #00A8EC;*/
     color: black;
     font-family: Sniglet, 'Arial Blac', sans-serif;
 }
@@ -112,122 +112,197 @@
     padding: 10px;
     /*margin-left: 2px;*/
 }
-.graficas > div progress::-webkit-progress-value{
-    /*border-radius: 5px;*/
-}
-.graficas > div  > div  > progress:nth-child(2)::-webkit-progress-value{
-    border-radius: 8px 0 0 8px;
-}
-.graficas > div  > div  > progress:nth-child(7)::-webkit-progress-value{
-    border-radius: 0 8px 8px 0;
+
+/* graficas colores unificados*/
+.graficas > div > div > progress::-webkit-progress-bar{
+    background-color: #eee;
+    /*border-radius: 2px;*/
+    /*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;*/
 }
 
-.graficas > div  > div  > progress:nth-child(2)::-moz-progress-bar{
-    border-radius: 8px 0 0 8px;
+.graficas > div > div > p +  progress::-webkit-progress-value{
+    background-image:
+            -webkit-linear-gradient(-32deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, rgba(241,25,25,1), rgba(241,25,25,1));
+
+    /*border-radius: 2px;*/
+    background-size: 32px 25px, 100% 100%, 100% 100%;
 }
-.graficas > div  > div  > progress:nth-child(7)::-moz-progress-bar{
-    border-radius: 8px 0 0 8px;
+.graficas > div > div > p + progress +  progress::-webkit-progress-value{
+    background-image:
+            -webkit-linear-gradient(-32deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, rgba(241,25,25,1), rgba(232,86,14,1));
+
+    /*border-radius: 2px;*/
+    background-size: 32px 25px, 100% 100%, 100% 100%;
 }
 
+.graficas > div > div > p + progress + progress +  progress::-webkit-progress-value{
+    background-image:
+            -webkit-linear-gradient(-32deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left,rgba(232,86,14,1),rgba(230,121,32,1));
+
+    /*border-radius: 2px;*/
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
+
+.graficas > div > div > p + progress + progress + progress +  progress::-webkit-progress-value{
+      background-image:
+              -webkit-linear-gradient(-32deg,
+              transparent 33%, rgba(0, 0, 0, .1) 33%,
+              rgba(0,0, 0, .1) 66%, transparent 66%),
+              -webkit-linear-gradient(top,
+              rgba(255, 255, 255, .25),
+              rgba(0, 0, 0, .25)),
+              -webkit-linear-gradient(left, rgba(230,121,32,1), rgba(217,168,44,1));
+
+      /*border-radius: 2px;*/
+      background-size: 32px 25px, 100% 100%, 100% 100%;
+  }
+.graficas > div > div > p + progress + progress + progress + progress +  progress::-webkit-progress-value{
+    background-image:
+            -webkit-linear-gradient(-32deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, rgba(217,168,44,1),rgba(231,235,31,1));
+
+    /*border-radius: 2px;*/
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
+
+.graficas > div > div > p + progress + progress + progress + progress + progress +  progress::-webkit-progress-value{
+    background-image:
+            -webkit-linear-gradient(-32deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left,rgba(231,235,31,1),rgba(81,194,30,1));
+
+    /*border-radius: 2px;*/
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
 
 /*colores de graficas*/
-.graficas > div > :nth-child(6) + div > progress::-webkit-progress-value
+
+/*
+.graficas > div > :nth-child(7) + div > progress::-webkit-progress-value
 {
     background:var(--grafica1);
 }
-.graficas > div > :nth-child(6) + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div > progress::-moz-progress-bar{
     background:var(--grafica1);
 }
-.graficas > div > :nth-child(6) + div + div > progress::-webkit-progress-value
+.graficas > div > :nth-child(7) + div + div > progress::-webkit-progress-value
 {
     background:var(--grafica2);
 }
-.graficas > div > :nth-child(6) + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div > progress::-moz-progress-bar{
     background:var(--grafica2);
 }
-.graficas > div > :nth-child(6) + div + div + div > progress::-webkit-progress-value
+.graficas > div > :nth-child(7) + div + div + div > progress::-webkit-progress-value
 {
     background:var(--grafica3);
 }
-.graficas > div > :nth-child(6) + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div > progress::-moz-progress-bar{
     background:var(--grafica3);
 }
-.graficas > div > :nth-child(6) + div + div + div + div> progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div> progress::-webkit-progress-value{
     background:var(--grafica4);
 }
-.graficas > div > :nth-child(6) + div + div + div + div> progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div> progress::-moz-progress-bar{
     background:var(--grafica4);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div> progress::-webkit-progress-value{
     background:var(--grafica5);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div> progress::-moz-progress-bar{
     background:var(--grafica5);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div> progress::-webkit-progress-value{
     background:var(--grafica6);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div> progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div> progress::-moz-progress-bar{
     background:var(--grafica6);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div +div  > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div +div  > progress::-webkit-progress-value{
     background:var(--grafica7);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div +div  > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div +div  > progress::-moz-progress-bar{
     background:var(--grafica7);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
     background:var(--grafica8);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
     background:var(--grafica8);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
     background:var(--grafica9);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
     background:var(--grafica9);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
     background:var(--grafica10);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
     background:var(--grafica10);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
     background: var(--grafica11);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
     background: var(--grafica11);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
     background: var(--grafica12);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
     background: var(--grafica12);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-webkit-progress-value{
     background: var(--grafica13);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div  > progress::-moz-progress-bar{
     background: var(--grafica13);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
     background: var(--grafica14);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
     background: var(--grafica14);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
     background: var(--grafica15);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
     background: var(--grafica15);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-webkit-progress-value{
     background: var(--grafica16);
 }
-.graficas > div > :nth-child(6) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
+.graficas > div > :nth-child(7) + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div + div > progress::-moz-progress-bar{
     background: var(--grafica16);
 }
 
+*/

@@ -44,20 +44,53 @@ div > ul + div > div > div > span{
 
 #formulario-tabla-actividades progress::-webkit-progress-bar{
     /*background-color: rgba(52, 73, 94,0.5);*/
-    background-color:  white;
-    border: solid 1.5px #00a8ec;
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
 }
 
 #formulario-tabla-actividades progress::-webkit-progress-value{
-    background: #00a8ec;
-    /*background: rgb(238,2,2);
-    background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);*/
+    /*background: #00a8ec;*/
+    /*background: rgb(238,2,2);*/
+    /*background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);*/
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left, rgba(238,2,2,1), rgba(39, 174, 96,1));
+
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
 
 }
 
 #formulario-tabla-actividades progress::-moz-progress-bar{
-    background: #00a8ec;
-    /*background: rgb(238,2,2);
-    background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);*/
+    /*background: #00a8ec;*/
+    /*background: rgb(238,2,2);*/
+    /*background: linear-gradient(90deg, rgba(238,2,2,1) 1%, rgba(227,231,76,0.8715861344537815) 38%, rgba(228,255,0,1) 76%, rgba(39, 174, 96,1) 100%);*/
+    background-image:
+            -moz-linear-gradient(
+                    135deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    #09c,
+                    #f44
+            );
+
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
 }
 

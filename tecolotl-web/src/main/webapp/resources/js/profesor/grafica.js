@@ -89,7 +89,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
     console.log("crear grafica invocada");
     var canvasGrafica = document.querySelector('#canvas');
     var idPersona = [];
+    var levelGrafic;
     var grupo = document.createElement('div');
+    var space = document.createTextNode("\u00A0");
     // console.log(datosGrupo);
 
     datosGrupo.forEach(function (grupo) {
@@ -119,12 +121,13 @@ function crearGrafica(datosGrupo,claseGrupo) {
     // console.log(idPersona);
     for (var indice = 0 ; indice < idPersona.length ; indice++) {
         var porcentajeTotal = 0;
+        var porcentajeNivel  = 0;
         var alumnoGrupo = document.createElement('div');
         var nombreAlumno = document.createElement('p');
         var porcentajeAlumno = document.createElement('span');
         var estiloNombreAlumno = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
-        // console.log(sujeto);
+        console.log(sujeto);
         estiloNombreAlumno.innerHTML = sujeto[0].personaNombre;
         nombreAlumno.appendChild(estiloNombreAlumno);
         alumnoGrupo.appendChild(nombreAlumno);
@@ -133,6 +136,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
             var barraNivel = document.createElement('progress');
             // console.log(sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0));
             var cantidadTarea = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0);
+            var nivelPersona = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0);
             barraNivel.setAttribute('max','18');
             barraNivel.setAttribute('value',cantidadTarea);
             alumnoGrupo.appendChild(barraNivel);
@@ -140,9 +144,29 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 cantidadTarea = 18;
             }
             porcentajeTotal += cantidadTarea;
+
         });
+        if (porcentajeTotal <= 18){
+            levelGrafic = nivel[0];
+            porcentajeNivel = Math.round((porcentajeTotal * 100)/18);
+        }else if(porcentajeTotal > 18 && porcentajeTotal <= 36){
+            levelGrafic = nivel[1];
+            porcentajeNivel = Math.round(((porcentajeTotal - 18)*100)/18);
+        }else if(porcentajeTotal > 36 && porcentajeTotal <= 54){
+            levelGrafic = nivel[2];
+            porcentajeNivel = Math.round(((porcentajeTotal-36) * 100)/18);
+        }else if(porcentajeTotal > 54 && porcentajeTotal <= 72){
+            porcentajeNivel = Math.round(((porcentajeTotal-54) * 100)/18);
+            levelGrafic = nivel[3];
+        }else if(porcentajeTotal > 72 && porcentajeTotal <= 90){
+            porcentajeNivel = Math.round(((porcentajeTotal-72) * 100)/18);
+            levelGrafic = nivel[4];
+        }else if(porcentajeTotal >= 90 ){
+            porcentajeNivel = Math.round(((porcentajeTotal-90) * 100)/18);
+            levelGrafic = nivel[5];
+        }
         porcentajeTotal =  Math.round((porcentajeTotal * 100)/(18*6));
-        porcentajeAlumno.innerHTML = 'porcentaje: '+ porcentajeTotal + '%';
+        porcentajeAlumno.innerText = levelGrafic + ":"+ " \u00A0 \u00A0"  + porcentajeNivel + '%' + " \u00A0 \u00A0" + "Total:" + "\u00A0 \u00A0" + porcentajeTotal + '%';
         nombreAlumno.appendChild(porcentajeAlumno);
         grupo.appendChild(alumnoGrupo);
         canvasGrafica.appendChild(grupo);

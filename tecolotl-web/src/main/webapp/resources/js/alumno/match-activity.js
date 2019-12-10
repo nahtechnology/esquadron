@@ -68,10 +68,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     });
     UIkit.util.on(respuestaDrag2,'added', function () {
         console.log('agregado');
-        drag.forEach(function (box,indice) {
+        arrastrar.forEach(function (box,indice) {
             if (box.innerText === "") {
-                conta[indice] = 0;
-                // console.log(indice);
+                contador[box.dataset.indice] = 0;
+                console.log(indice);
             }
         });
     });
