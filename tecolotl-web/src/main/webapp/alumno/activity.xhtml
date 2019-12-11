@@ -188,7 +188,7 @@
                                 <div uk-dropdown="mode: click">#{alumno['activity.help.message.words']}</div>
                             </div>
                             <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
-                            <div class="imagen-ordenar">
+                            <div class="imagen-ordenar"> 1
                                 <h:graphicImage library="img" name="mounstro/whom.svg"/>
                             </div>
                             <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar scroll-drag" uk-switcher="">
@@ -223,7 +223,9 @@
                                     <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
                                 </div>
                                 <div class="video-activity">
-                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
+                                   <ui:remove><div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div></ui:remove>
+                                    <iframe  width="100%" height="100%" src="http://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}"
+                                            frameborder="0" class="scrollFinal"></iframe>
                                 </div>
                                 <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
                                     <h:panelGroup layout="block" styleClass="contenedor-padre-activity" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">

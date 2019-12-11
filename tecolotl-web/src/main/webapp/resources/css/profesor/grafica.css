@@ -31,7 +31,7 @@
     appearance: none;
     box-sizing: border-box;
     border: none;
-    background: transparent;
+    background: #eee;
 
 }
 .graficas progress::-webkit-progress-bar{
@@ -201,6 +201,141 @@
     /*border-radius: 2px;*/
     background-size: 32px 25px, 100% 100%, 100% 100%;
 }
+
+/*Graficas firefox-------------------------------------------*/
+.graficas > div > div > p +  progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    142deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    rgba(241,25,25,1), rgba(241,25,25,1)
+            );
+
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+    background-color: #eee;
+}
+.graficas > div > div > p + progress +  progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    142deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    rgba(241,25,25,1), rgba(232,86,14,1)
+            );
+
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+    background-color: #eee;
+}
+
+.graficas > div > div > p + progress + progress +  progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    142deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    rgba(232,86,14,1),rgba(230,121,32,1)
+            );
+
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
+
+.graficas > div > div > p + progress + progress + progress +  progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    142deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    rgba(230,121,32,1), rgba(217,168,44,1)
+            );
+
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
+.graficas > div > div > p + progress + progress + progress + progress +  progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    142deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    rgba(217,168,44,1),rgba(231,235,31,1)
+            );
+
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
+
+.graficas > div > div > p + progress + progress + progress + progress + progress +  progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    142deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    rgba(231,235,31,1),rgba(81,194,30,1)
+            );
+
+    background-size: 32px 25px, 100% 100%, 100% 100%;
+}
+
+
 
 /*colores de graficas*/
 
