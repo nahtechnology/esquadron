@@ -93,13 +93,17 @@
                                     <div class="uk-card-body tecolotl-card">
                                         <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
                                     </div>
-                                    <div class="uk-card-footer">
+                                    <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-grid-divider uk-flex uk-flex-middle" pt:data-uk-grid="">
                                             <div class="uk-width-1-1@m uk-text-small text-color-level1 uk-text-bold">
                                                 <h:panelGroup pt:uk-grid="" styleClass="uk-child-width-auto uk-grid uk-grid-small">
-                                                    <div><h:outputLink pt:data-uk-tooltip="title: Grammar"  value="../resources/descargables/#{actividadModelo.idActividad}.pdf" target="_blank">
+                                                    <h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
+                                                    <span uk-icon="icon: file-text" data-uk-tooltip="title:Didactic Guide"></span>
+                                                    <span uk-icon="icon: commenting" data-uk-tooltip="title: Cards"></span>
+                                                    <span uk-icon="icon: file-edit" data-uk-tooltip="title: Discussion"></span>
+                                                    <span uk-icon="icon: pencil" data-uk-tooltip="title: Lesson"></span>
+                                                    <!--<div> <h:outputLink pt:data-uk-tooltip="title: Grammar"  value="../resources/descargables/#{actividadModelo.idActividad}.pdf" target="_blank">
                                                             <h:graphicImage styleClass=" uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
-                                                         </h:outputLink>
                                                     </div>
                                                     <div><h:outputLink pt:data-uk-tooltip="title: Didactic Guide"  value="../resources/guia/#{actividadModelo.idActividad}.pdf" target="_blank" >
                                                             <span uk-icon="icon: file-text"></span>
@@ -116,7 +120,7 @@
                                                     <div><h:outputLink pt:data-uk-tooltip="title: Lesson"  value="../resources/plantilla/lesson.pdf" target="_blank" >
                                                             <span uk-icon="icon: pencil"></span>
                                                          </h:outputLink>
-                                                    </div>
+                                                    </div>-->
                                                 </h:panelGroup>
                                             </div>
                                             <ui:remove>
@@ -163,9 +167,9 @@
                     </div>
                 </div>
             </h:panelGroup>
-
         </ui:define>
         <ui:define name="file-js">
+            <script src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
             <h:outputScript library="js" name="/alumno/filtro.js"/>
             <h:outputScript library="js" name="profesor/asignar-actividad.js"/>
         </ui:define>
