@@ -2,10 +2,10 @@ package tecolotl.web.alumno;
 
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.sesion.GlosarioSesionBean;
+import tecolotl.nucleo.herramienta.AlmacenamientoEnum;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -13,8 +13,6 @@ import java.util.List;
 @RequestScoped
 @Named
 public class GlosarioControlador {
-    private List<GlosarioModelo> glosarioModeloLista;
-    private GlosarioModelo glosarioModelo;
 
     @Inject
     private GlosarioSesionBean glosarioSesionBean;
@@ -22,10 +20,13 @@ public class GlosarioControlador {
     @Inject
     private AlumnoControlador alumnoControlador;
 
+    private List<GlosarioModelo> glosarioModeloLista;
+    private String carpeta;
+
     @PostConstruct
-    public void init(){
-        String idAvtividad = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idActividad");
-        glosarioModeloLista = glosarioSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+    public void init() {
+        glosarioModeloLista = glosarioSesionBean.busca(alumnoControlador.getTareaActividadModelo().getIdActividad());
+        carpeta = AlmacenamientoEnum.IMAGENES_GLOSARIO.name().toLowerCase();
     }
 
     public List<GlosarioModelo> getGlosarioModeloLista() {
@@ -36,11 +37,11 @@ public class GlosarioControlador {
         this.glosarioModeloLista = glosarioModeloLista;
     }
 
-    public GlosarioModelo getGlosarioModelo() {
-        return glosarioModelo;
+    public String getCarpeta() {
+        return carpeta;
     }
 
-    public void setGlosarioModelo(GlosarioModelo glosarioModelo) {
-        this.glosarioModelo = glosarioModelo;
+    public void setCarpeta(String carpeta) {
+        this.carpeta = carpeta;
     }
 }

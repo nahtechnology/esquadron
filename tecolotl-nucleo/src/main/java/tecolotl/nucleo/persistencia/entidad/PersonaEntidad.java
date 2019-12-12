@@ -19,8 +19,6 @@ public class PersonaEntidad {
     private byte[] contrasenia;
     private Character sexo;
 
-
-
     @Basic
     @Column(name = "nombre")
     @Size(min = 3, max = 40)
@@ -88,5 +86,6 @@ public class PersonaEntidad {
     @Column(name = "sexo")
     @NotNull
     public Character getSexo() {return sexo;}
+
     public void setSexo(Character sexo) {this.sexo = sexo;}
 }

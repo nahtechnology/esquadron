@@ -99,15 +99,8 @@ public class GlosarioEntidadTest {
             Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
             Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave());
             Assert.assertNotNull(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad().getValor());
-            Assert.assertNotNull(glosarioEntidad.getImagen());
             Assert.assertNotNull(glosarioEntidad.getSignificado());
         }
-        glosarioEntidadsLista = typedQuery.getResultList();
-        glosarioEntidadsLista = typedQuery.getResultList();
-        glosarioEntidadsLista = typedQuery.getResultList();
-        glosarioEntidadsLista = typedQuery.getResultList();
-
-
     }
 
 }

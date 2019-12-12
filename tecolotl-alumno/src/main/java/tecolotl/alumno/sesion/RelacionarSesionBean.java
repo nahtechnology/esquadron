@@ -52,10 +52,14 @@ public class RelacionarSesionBean {
                 entityManager.createNamedQuery("RelacionarActividadEntidad.buscaActividad", RelacionarActividadEntidad.class);
         List<RelacionarActividadEntidad> relacionarActividadEntidadLista = typedQuery.getResultList();
         logger.finer("Elementos encontraodos".concat(String.valueOf(relacionarActividadEntidadLista.size())));
-        List<RelacionarModelo> relacionarModeloLista = new ArrayList<>();
         return relacionarActividadEntidadLista.stream().map(RelacionarModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Busca las tareas para la biblioteca libre
+     * @param idActivdad
+     * @return
+     */
     public List<RelacionarModelo> bibliotecaLibre(@NotNull @Size(min = 11, max = 11) String idActivdad) {
         logger.fine(idActivdad);
         TypedQuery<RelacionarActividadEntidad> typedQuery = entityManager.createNamedQuery("RelacionarActividadEntidad.buscaBibliotecaLibre", RelacionarActividadEntidad.class);

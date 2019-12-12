@@ -75,49 +75,6 @@ public class GlosarioSesionBean implements Serializable {
     }
 
     /**
-     * Busca la imagen de una glosario.
-     * @param palabra Palabra a la pertence la imagen
-     * @param idClave Identificador de la clase
-     * @return Arreglo de bytes
-     */
-    public byte[] imagen(@NotNull @Size(min = 2, max = 20) String palabra, @NotNull Short idClave) {
-        logger.fine(palabra);
-        logger.fine(idClave.toString());
-        TypedQuery<byte[]> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaImagen", byte[].class);
-        typedQuery.setParameter("palabra", palabra).setParameter("clave", idClave);
-        return typedQuery.getSingleResult();
-    }
-
-    /**
-     * Busca todos los glosarios asignados a una tarea la cual corresponde a un alumno.
-     * @param idTarea Identificador de la tarea
-     * @return Colección de {@link GlosarioModelo}
-     */
-    public List<GlosarioModelo> busca(@NotNull Integer idTarea) {
-        logger.fine(idTarea.toString());
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaNoImganeIdTarea", GlosarioEntidad.class);
-        typedQuery.setParameter("idTarea", idTarea);
-        List<GlosarioEntidad> tareaGlosarioActividadEntidadLista = typedQuery.getResultList();
-        logger.finer("Glosario encontrados:"+tareaGlosarioActividadEntidadLista.size());
-        return tareaGlosarioActividadEntidadLista.stream().map(glosarioEntidad ->
-            new GlosarioModelo(glosarioEntidad, false)
-        ).collect(Collectors.toList());
-    }
-
-    /**
-     * Busca los glosario sin filtro alguno.
-     * @param inicio Posición de la primera fila a buscar.
-     * @param maximo El  máximo de elementos a buscar.
-     * @return Colección de {@link GlosarioModelo}
-     */
-    public List<GlosarioModelo> busca(int inicio, int maximo) {
-        logger.fine("Inicio:".concat(String.valueOf(inicio))); logger.fine("Maximo:".concat(String.valueOf(maximo)));
-        TypedQuery<GlosarioEntidad> typedQuery = entityManager.createNamedQuery("GlosarioEntidad.buscaImagen", GlosarioEntidad.class);
-        typedQuery.setFirstResult(inicio).setMaxResults(maximo);
-        return typedQuery.getResultList().stream().map(glosarioEntidad -> new GlosarioModelo(glosarioEntidad, true)).collect(Collectors.toList());
-    }
-
-    /**
      * Agreaga un nuevo glosario con su relacion en cascada de la actividad que pertenece.
      * @param glosarioModelo Datos del glosario a insertar.
      * @param idActividad Activdad a la que pertenece.
@@ -125,7 +82,6 @@ public class GlosarioSesionBean implements Serializable {
     public void agregar(@NotNull GlosarioModelo glosarioModelo, @NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine(glosarioModelo.toString());
         GlosarioEntidad glosarioEntidad = new GlosarioEntidad(llavePrimaria(glosarioModelo));
-        glosarioEntidad.setImagen(glosarioModelo.getImagen());
         glosarioEntidad.setSignificado(glosarioModelo.getSignificado());
         GlosarioActividadEntidad glosarioActividadEntidad = new GlosarioActividadEntidad(llavePrimaria(glosarioEntidad, idActividad));
         glosarioEntidad.setGlosarioActividadEntidadLista(Arrays.asList(glosarioActividadEntidad));

@@ -15,7 +15,6 @@ public class GlosarioModelo implements Comparable<GlosarioModelo>{
 
     private String palabra;
     private ClaseGlosarioModelo claseGlosarioModelo;
-    private byte[] imagen;
     private String significado;
 
     public GlosarioModelo() {
@@ -37,20 +36,6 @@ public class GlosarioModelo implements Comparable<GlosarioModelo>{
         this.palabra = glosarioEntidad.getGlosarioEntidadPK().getPalabra();
         this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
         this.significado = glosarioEntidad.getSignificado();
-        this.imagen = glosarioEntidad.getImagen();
-    }
-
-    /**
-     * Contruye un glosario partiendo de una entidad, en caso de que imagen falso, la imagen será nula y el significado se asgina,
-     * en caso contrario su asignará la imágen pera no el significado.
-     * @param glosarioEntidad Entidad con los datos para el modelo.
-     * @param imagen Se desea relacionar una imagen
-     */
-    public GlosarioModelo(GlosarioEntidad glosarioEntidad, boolean imagen) {
-        this.palabra = glosarioEntidad.getGlosarioEntidadPK().getPalabra();
-        this.claseGlosarioModelo = new ClaseGlosarioModelo(glosarioEntidad.getGlosarioEntidadPK().getClaseGlosarioEntidad());
-        this.imagen = imagen ? glosarioEntidad.getImagen() : null;
-        this.significado = imagen ? null : glosarioEntidad.getSignificado();
     }
 
     @NotNull(groups = {GlosarioNuevoValidacion.class, GlosarioLlavePrimariaValidacion.class})
@@ -71,15 +56,6 @@ public class GlosarioModelo implements Comparable<GlosarioModelo>{
 
     public void setClaseGlosarioModelo(ClaseGlosarioModelo claseGlosarioModelo) {
         this.claseGlosarioModelo = claseGlosarioModelo;
-    }
-
-    @NotNull
-    public byte[] getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
     }
 
     @NotNull
@@ -104,7 +80,6 @@ public class GlosarioModelo implements Comparable<GlosarioModelo>{
         return new StringJoiner(", ", GlosarioModelo.class.getSimpleName() + "[", "]")
                 .add("palabra='" + palabra + "'")
                 .add("claseGlosarioModelo=" + claseGlosarioModelo)
-                .add("imagen=" + Arrays.toString(imagen))
                 .add("significado='" + significado + "'")
                 .toString();
     }

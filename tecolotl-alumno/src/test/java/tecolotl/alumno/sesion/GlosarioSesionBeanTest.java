@@ -103,7 +103,6 @@ public class GlosarioSesionBeanTest {
         glosarioModeloLista.forEach(glosarioModelo -> {
             assertNotNull(glosarioModelo);
             assertNotNull(glosarioModelo.getPalabra());
-            assertNotNull(glosarioModelo.getImagen());
             assertNotNull(glosarioModelo.getSignificado());
             assertNotNull(glosarioModelo.getClaseGlosarioModelo());
             assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
@@ -113,21 +112,6 @@ public class GlosarioSesionBeanTest {
     @Test
     public void buscaPalabra() {
         List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca("pala", "g9WDeud275U");
-        assertNotNull(glosarioModeloLista);
-        assertFalse(glosarioModeloLista.isEmpty());
-        glosarioModeloLista.forEach(glosarioModelo -> {
-            assertNotNull(glosarioModelo);
-            assertNotNull(glosarioModelo.getPalabra());
-            assertNotNull(glosarioModelo.getImagen());
-            assertNotNull(glosarioModelo.getSignificado());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo());
-            assertNotNull(glosarioModelo.getClaseGlosarioModelo().getValor());
-        });
-    }
-
-    @Test
-    public void buscaTarea() {
-        List<GlosarioModelo> glosarioModeloLista = glosarioSesionBean.busca(4);
         assertNotNull(glosarioModeloLista);
         assertFalse(glosarioModeloLista.isEmpty());
         glosarioModeloLista.forEach(glosarioModelo -> {
@@ -145,7 +129,6 @@ public class GlosarioSesionBeanTest {
         glosarioModelo.setSignificado("Significado");
         glosarioModelo.setPalabra("palabra");
         glosarioModelo.setClaseGlosarioModelo(new ClaseGlosarioModelo((short)2));
-        glosarioModelo.setImagen("palabra".getBytes());
         glosarioSesionBean.agregar(glosarioModelo, "DNHmujbuC74");
         assertNotNull(glosarioModelo);
     }

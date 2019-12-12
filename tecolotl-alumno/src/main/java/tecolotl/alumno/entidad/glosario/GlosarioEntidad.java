@@ -11,25 +11,20 @@ import java.util.StringJoiner;
 @Cacheable
 @Table(name = "glosario", schema = "alumno")
 @NamedQueries(value = {
-        @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg"),
-        @NamedQuery(
-                name = "GlosarioEntidad.buscaPalabra",
-                query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg WHERE g.glosarioEntidadPK.palabra LIKE :palabra"
-        ),
-        @NamedQuery(
-                name = "GlosarioEntidad.buscaImagen",
-                query = "SELECT new GlosarioEntidad(g.glosarioEntidadPK, g.imagen) FROM GlosarioEntidad g"
-        ),
-        @NamedQuery(
-                name = "GlosarioEntidad.buscaNoImganeIdTarea",
-                query = "SELECT new GlosarioEntidad(g.glosarioEntidadPK, g.significado) FROM GlosarioEntidad g JOIN g.glosarioActividadEntidadLista ga " +
-                        "JOIN ga.tareaGlosarioActividadEntidadLista tga WHERE tga.tareaGlosarioActividadEntidadPK.tareaEntidad.id = :idTarea"
-        )
+    @NamedQuery(name = "GlosarioEntidad.busca", query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg"),
+    @NamedQuery(
+        name = "GlosarioEntidad.buscaPalabra",
+        query = "SELECT g FROM GlosarioEntidad g JOIN FETCH g.glosarioEntidadPK.claseGlosarioEntidad cg WHERE g.glosarioEntidadPK.palabra LIKE :palabra"
+    ),
+    @NamedQuery(
+        name = "GlosarioEntidad.buscaNoImganeIdTarea",
+        query = "SELECT new GlosarioEntidad(g.glosarioEntidadPK, g.significado) FROM GlosarioEntidad g JOIN g.glosarioActividadEntidadLista ga " +
+                "JOIN ga.tareaGlosarioActividadEntidadLista tga WHERE tga.tareaGlosarioActividadEntidadPK.tareaEntidad.id = :idTarea"
+    )
 })
 public class GlosarioEntidad {
 
     private GlosarioEntidadPK glosarioEntidadPK;
-    private byte[] imagen;
     private String significado;
     private List<GlosarioActividadEntidad> glosarioActividadEntidadLista;
 
@@ -45,11 +40,6 @@ public class GlosarioEntidad {
         this.significado = significado;
     }
 
-    public GlosarioEntidad(GlosarioEntidadPK glosarioEntidadPK, byte[] imagen) {
-        this(glosarioEntidadPK);
-        this.imagen = imagen;
-    }
-
     @EmbeddedId
     public GlosarioEntidadPK getGlosarioEntidadPK() {
         return glosarioEntidadPK;
@@ -57,17 +47,6 @@ public class GlosarioEntidad {
 
     public void setGlosarioEntidadPK(GlosarioEntidadPK glosarioEntidadPK) {
         this.glosarioEntidadPK = glosarioEntidadPK;
-    }
-
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "imagen")
-    @NotNull
-    public byte[] getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(byte[] imagen) {
-        this.imagen = imagen;
     }
 
     @Basic
@@ -96,7 +75,6 @@ public class GlosarioEntidad {
         return new StringJoiner(", ", GlosarioEntidad.class.getSimpleName() + "[", "]")
                 .add("glosarioEntidad=" + glosarioEntidadPK.toString())
                 .add("palabra='" + glosarioEntidadPK + "'")
-                .add("imagen=" + Arrays.toString(imagen))
                 .add("significado='" + significado + "'")
                 .toString();
     }
