@@ -4,7 +4,6 @@
 
 .oraciones{
     width: 80%;
-    height: 60px;
     padding-left: 10px;
     border: 5px solid #D35400;
     background-color: white;
@@ -12,7 +11,7 @@
     margin-top: 10px;
     color:black;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 18px;
     padding-top: 10px;
 }
 .contenedor-oraciones{
@@ -25,6 +24,9 @@
     align-items: center;
     justify-content: center;
 
+}
+.contenedor-oraciones >  div {
+    min-height: 60px;
 }
 
 .contenedor-imagen {
@@ -275,8 +277,8 @@
 }
 
 .imagen-oracion{
-    width: 90px;
-    height: 90px;
+    width: 70px;
+    height: 70px;
     background: url("#{resource['img/mounstro/who.svg']}") no-repeat center/100% 100%;
     margin-right: 15px;
     border: 5px solid #D35400;

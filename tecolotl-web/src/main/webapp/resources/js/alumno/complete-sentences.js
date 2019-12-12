@@ -75,9 +75,9 @@ function evitarPreguntas() {
     });
     UIkit.util.on(respuestasDrag4,'added', function () {
         console.log('agregado');
-        drag.forEach(function (box,indice) {
+        dragSen.forEach(function (box,indice) {
             if (box.innerText === "") {
-                conta[indice] = 0;
+                cuenta[indice] = 0;
                 // console.log(indice);
             }
         });
