@@ -3,6 +3,7 @@ package tecolotl.web.alumno;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.scope.RelacionarRespuestaScope;
 import tecolotl.alumno.sesion.RelacionarSesionBean;
+import tecolotl.nucleo.herramienta.AlmacenamientoEnum;
 
 import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
@@ -30,10 +31,12 @@ public class RelacionarControlador implements Serializable {
     private Logger logger;
 
     private List<RelacionarModelo> relacionarModeloLista;
+    private String carpeta;
 
     @PostConstruct
     public void inicio() {
         relacionarModeloLista = relacionarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        carpeta = AlmacenamientoEnum.IMAGENES_GLOSARIO.name().toLowerCase();
     }
 
     public void enviaRespuesta() {
@@ -48,6 +51,14 @@ public class RelacionarControlador implements Serializable {
 
     public void setRelacionarModeloLista(List<RelacionarModelo> relacionarModeloLista) {
         this.relacionarModeloLista = relacionarModeloLista;
+    }
+
+    public String getCarpeta() {
+        return carpeta;
+    }
+
+    public void setCarpeta(String carpeta) {
+        this.carpeta = carpeta;
     }
 
 }

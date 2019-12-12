@@ -24,7 +24,7 @@ import java.util.List;
         query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"),
     @NamedQuery(
         name = "TareaEntidad.respuesta",
-        query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta, t.resolviendoTranscript = FALSE WHERE t.id = :idTarea"),
+        query = "UPDATE TareaEntidad t SET t.respuesta = :respuesta, t.calificacion = :calificacion, t.resolviendoTranscript = FALSE WHERE t.id = :idTarea"),
     @NamedQuery(
         name = "TareaEntidad.estatusRespondiendo",
         query = "UPDATE TareaEntidad t SET t.resolviendoTranscript = :estatus WHERE t.id = :idTarea"),
@@ -38,6 +38,7 @@ public class TareaEntidad {
     private Date horaRespuesta;
     private boolean resolviendoTranscript;
     private AlumnoEntidad alumnoEntidad;
+    private Short calificacion;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
     private List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista;
@@ -119,6 +120,16 @@ public class TareaEntidad {
 
     public void setAlumnoEntidad(AlumnoEntidad alumnoEntidad) {
         this.alumnoEntidad = alumnoEntidad;
+    }
+
+    @Basic
+    @Column(name = "calificacion", insertable = false)
+    public Short getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Short calificacion) {
+        this.calificacion = calificacion;
     }
 
     @OneToMany(mappedBy = "tareaGlosarioActividadEntidadPK.tareaEntidad", cascade = {CascadeType.PERSIST})

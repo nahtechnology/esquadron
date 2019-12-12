@@ -146,7 +146,7 @@
                                     <div class="contenedor-imagen scroll-drag">
                                         <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                             <div class="imagen-relacionar uk-margin-auto ">
-                                                <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.idClaseGlosario))}" alt="imagen"/>
+                                                <img data-llave="#{relacionarControlador.carpeta.concat('/').concat(relacionarModelo.palabra).concat('_').concat(relacionarModelo.idClaseGlosario)}" alt="imagen"/>
                                             </div>
                                             <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
                                                 <div class="icono-relacion-img uk-width-auto"></div>

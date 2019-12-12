@@ -146,9 +146,11 @@ public class TareaSesionBean implements Serializable {
      * @param idTarea Identificador de la tarea.
      * @return Número de elementos modificados.
      */
-    public Integer respuesta(@NotNull @Size(min = 100) String respuesta, @NotNull Integer idTarea) {
+    public Integer respuesta(@NotNull @Size(min = 100) String respuesta, @NotNull Integer idTarea, @NotNull Short calificacion) {
         Query query = entityManager.createNamedQuery("TareaEntidad.respuesta");
-        query.setParameter("idTarea", idTarea).setParameter("respuesta", respuesta);
+        query.setParameter("idTarea", idTarea);
+        query.setParameter("respuesta", respuesta);
+        query.setParameter("calificacion", calificacion);
         return query.executeUpdate();
     }
 

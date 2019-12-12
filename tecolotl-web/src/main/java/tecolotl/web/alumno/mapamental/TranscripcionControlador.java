@@ -23,9 +23,10 @@ public class TranscripcionControlador {
 
     private String transcripcion;
     private String activo;
+    private Short calificacion;
 
     public  void enviaRespuestas() {
-        tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId());
+        tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId(), calificacion);
         alumnoControlador.getTareaActividadModelo().setResolviendoTranscript(false);
         alumnoControlador.getTareaActividadModelo().setRespuesta(transcripcion);
     }
@@ -49,5 +50,13 @@ public class TranscripcionControlador {
 
     public void setActivo(String activo) {
         this.activo = activo;
+    }
+
+    public Short getCalificacion() {
+        return calificacion;
+    }
+
+    public void setCalificacion(Short calificacion) {
+        this.calificacion = calificacion;
     }
 }

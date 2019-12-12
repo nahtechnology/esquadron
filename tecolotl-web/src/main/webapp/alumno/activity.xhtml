@@ -238,6 +238,7 @@
                                     <h:graphicImage library="img" styleClass="finalizado movimiento2" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                 </h:panelGroup>
                                 <h:inputHidden id="respuesta" value="#{transcripcionControlador.transcripcion}"/>
+                                <h:inputHidden id="calificacion" value="#{transcripcionControlador.calificacion}"/>
                                 <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px"
                                                  value="#{boton['submit']}"
                                                  onclick="return validaContenido()"
