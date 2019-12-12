@@ -373,31 +373,53 @@ span.personaje{
     display: none;
 }
 .uk-card-footer svg{
-    width: 30px;
+    width: 43px;
     height: 30px;
     display: block;
 }
-.A1 .uk-card-footer svg, .A1 .uk-card-footer svg .icono{
-    stroke: var(--psecundary-option-three);
+.A1 .uk-card-footer svg, .A1 .uk-card-footer svg .icono, .A1 .uk-card-footer svg rect,.A1 .uk-card-footer svg line,.A1 .uk-card-footer svg path,
+.A1 .uk-card-footer svg polygon,.A1 .uk-card-footer svg polyline{
+    stroke: var(--psecundary-option-three)!important;
 }
-.A2 .uk-card-footer svg, .A2 .uk-card-footer svg .icono{
+.A1 .uk-card-footer svg circle{
+    fill: var(--psecundary-option-three)!important; ;
+}
+.A2 .uk-card-footer svg, .A2 .uk-card-footer svg .icono, .A2 .uk-card-footer svg rect,.A2 .uk-card-footer svg line,.A2 .uk-card-footer svg path,
+.A2 .uk-card-footer svg polygon,.A2 .uk-card-footer svg polyline{
     stroke: #D35400;
 
 }
-.B1 .uk-card-footer svg, .B1 .uk-card-footer svg .icono{
+.A2 .uk-card-footer svg circle{
+    fill: var(--psecundary-option-three)!important; ;
+}
+.B1 .uk-card-footer svg, .B1 .uk-card-footer svg .icono, .B1 .uk-card-footer svg rect,.B1 .uk-card-footer svg line,.B1 .uk-card-footer svg path,
+.B1 .uk-card-footer svg polygon,.B1 .uk-card-footer svg polyline{
     stroke: var(--tsecundary-option-one);
 
 }
-.B2 .uk-card-footer svg, .B2 .uk-card-footer svg .icono{
+.B1 .uk-card-footer svg circle{
+    fill: var(--psecundary-option-three)!important; ;
+}
+.B2 .uk-card-footer svg, .B2 .uk-card-footer svg .icono, .B2 .uk-card-footer svg rect,.B2 .uk-card-footer svg line,.B2 .uk-card-footer svg path,
+.B2 .uk-card-footer svg polygon,.B2 .uk-card-footer svg polyline{
     stroke: var(--asecundary-option-one);
-
 }
-.C1 .uk-card-footer svg, .C1 .uk-card-footer svg .icono{
+.B2 .uk-card-footer svg circle{
+    fill: var(--psecundary-option-three)!important; ;
+}
+.C1 .uk-card-footer svg, .C1 .uk-card-footer svg .icono, .C1 .uk-card-footer svg rect,.C1 .uk-card-footer svg line,.C1 .uk-card-footer svg path,
+.C1 .uk-card-footer svg polygon,.C1 .uk-card-footer svg polyline{
     stroke: var(--color-nav-primary);
-
 }
-.C2 .uk-card-footer svg, .C2 .uk-card-footer svg .icono{
+.C1 .uk-card-footer svg circle{
+    fill: var(--psecundary-option-three)!important; ;
+}
+.C2 .uk-card-footer svg, .C2 .uk-card-footer svg .icono, .C2 .uk-card-footer svg rect,.C2 .uk-card-footer svg line,.C2 .uk-card-footer svg path,
+.C2 .uk-card-footer svg polygon,.C2 .uk-card-footer svg polyline{
     stroke: var(--color-peligro);
+}
+.C2 .uk-card-footer svg circle{
+    fill: var(--psecundary-option-three)!important; ;
 }
 
 #formulario-asignar-tarea + input{
