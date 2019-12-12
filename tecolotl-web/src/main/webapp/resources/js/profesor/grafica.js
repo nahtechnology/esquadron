@@ -1,7 +1,11 @@
 var  nivel = ['A1','A2','B1','B2','C1','C2'];
+var cantidadGraficas = 2;
+var botonAtras = document.querySelector('#canvas + div > button:first-child');
+var botonSiguiente = document.querySelector('#canvas + div > button:last-child');
 
 document.addEventListener('DOMContentLoaded', function (evento) {
     var botonReporte = document.querySelector('#boton-reporte');
+
     var canvasGrafic = document.querySelector('#canvas');
    botonReporte.addEventListener('click',reporteCuantitativo);
    datosGrupo();
@@ -9,10 +13,22 @@ document.addEventListener('DOMContentLoaded', function (evento) {
         console.log('entro');
         botonReporte.disabled = true;
         botonReporte.classList.add('boton-disabilitado');
+        botonSiguiente.disabled = true;
+        botonSiguiente.classList.add('boton-disabilitado');
+        botonAtras.disabled = true;
+        botonAtras.classList.add('boton-disabilitado');
+
     }else {
         botonReporte.disabled = false;
         botonReporte.classList.remove('boton-disabilitado');
+        botonSiguiente.disabled = false;
+        botonSiguiente.classList.remove('boton-disabilitado');
+        botonAtras.disabled = false;
+        botonAtras.classList.remove('boton-disabilitado');
     }
+    visualizar();
+    botonAtras.addEventListener('click',function () {paginacionGraficas(1) });
+    botonSiguiente.addEventListener('click',function () {paginacionGraficas(2)});
 });
 function datosGrupo() {
     console.log("invocada");
@@ -233,4 +249,69 @@ function DatosReporte(nombreAlumno,levelA1,levelA2,levelB1,levelB2,levelC1,level
     this.levelC1 = levelC1;
     this.levelC2 = levelC2;
     this.calificacion = calificacion;
+}
+function visualizar() {
+    var graficas = document.querySelectorAll('#canvas > div');
+    var numGraficas = graficas.length;
+    botonAtras.disabled = true;
+    botonAtras.classList.add('boton-disabilitado');
+    if (graficas.length > cantidadGraficas){
+        for (var i = cantidadGraficas; i <= numGraficas ; i++){
+            graficas[i].style.display='none';
+            console.log('dato:' + i);
+        }
+
+    }else {
+        botonSiguiente.disabled = true;
+        botonSiguiente.classList.add('boton-disabilitado');
+    }
+}
+// Paginacion de graficas
+function paginacionGraficas(dato) {
+ var graficas = document.querySelectorAll('#canvas > div');
+ var numGraficas = graficas.length;
+
+
+
+ switch (dato) {
+     case 1 : {
+         cantidadGraficas -= 2;
+         graficas.forEach(function (grafic) {
+            grafic.style.display="none";
+         });
+         for (var i = cantidadGraficas-2; i < cantidadGraficas ; i++){
+             graficas[i].style.display='block';
+         }
+         break;
+     }
+     case 2: {
+
+         graficas.forEach(function (grafic) {
+             grafic.style.display="none";
+         });
+
+         for (var j = cantidadGraficas; j < cantidadGraficas + 2 ; j++){
+             graficas[j].style.display='block';
+         }
+         cantidadGraficas += 2;
+         break;
+     }
+ }
+
+    if (cantidadGraficas > 2){
+        botonAtras.disabled = false;
+        botonAtras.classList.remove('boton-disabilitado');
+    }else{
+        botonAtras.disabled = true;
+        botonAtras.classList.add('boton-disabilitado');
+    }
+
+    if(cantidadGraficas >= numGraficas){
+        botonSiguiente.disabled = true;
+        botonSiguiente.classList.add('boton-disabilitado');
+    }else {
+        botonSiguiente.disabled = false;
+        botonSiguiente.classList.remove('boton-disabilitado');
+    }
+ console.log(numGraficas);
 }
