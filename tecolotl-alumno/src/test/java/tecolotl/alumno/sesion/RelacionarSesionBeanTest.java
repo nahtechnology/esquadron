@@ -96,7 +96,7 @@ public class RelacionarSesionBeanTest {
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {
             assertNotNull(relacionarModelo);
-            assertNotNull(relacionarModelo.getIdClaseGlosario());
+            assertNotNull(relacionarModelo.getClaseGlosarioModelo());
             assertNotNull(relacionarModelo.getPalabra());
             assertNotNull(relacionarModelo.getIdActividad());
         });
@@ -109,7 +109,7 @@ public class RelacionarSesionBeanTest {
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {
             assertNotNull(relacionarModelo);
-            assertNotNull(relacionarModelo.getIdClaseGlosario());
+            assertNotNull(relacionarModelo.getClaseGlosarioModelo());
             assertNotNull(relacionarModelo.getPalabra());
             assertNotNull(relacionarModelo.getIdActividad());
         });

@@ -2,6 +2,7 @@ package tecolotl.alumno.modelo.relacionar;
 
 import tecolotl.alumno.entidad.relacionar.RelacionarActividadEntidad;
 import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
+import tecolotl.alumno.modelo.glosario.ClaseGlosarioModelo;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 
 import javax.validation.constraints.NotNull;
@@ -15,7 +16,7 @@ public class RelacionarModelo {
     private String idActividad;
     private Integer idTarea;
     private String palabra;
-    private Short idClaseGlosario;
+    private ClaseGlosarioModelo claseGlosarioModelo;
     private String respuesta;
     private Date horaRespuesta;
     private Integer vuelta;
@@ -29,8 +30,8 @@ public class RelacionarModelo {
 
     public RelacionarModelo(RelacionarActividadEntidad relacionarActividadEntidad) {
         this.idActividad = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getActividadEntidad().getId();
-        this.idClaseGlosario = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getGlosarioEntidad()
-                .getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave();
+        this.claseGlosarioModelo = new ClaseGlosarioModelo(relacionarActividadEntidad.getRelacionarActividadEntidadPK().getGlosarioEntidad()
+                .getGlosarioEntidadPK().getClaseGlosarioEntidad());
         this.palabra = relacionarActividadEntidad.getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getPalabra();
     }
 
@@ -67,14 +68,6 @@ public class RelacionarModelo {
         this.palabra = palabra;
     }
 
-    public Short getIdClaseGlosario() {
-        return idClaseGlosario;
-    }
-
-    public void setIdClaseGlosario(Short idClaseGlosario) {
-        this.idClaseGlosario = idClaseGlosario;
-    }
-
     public String getRespuesta() {
         return respuesta;
     }
@@ -99,6 +92,14 @@ public class RelacionarModelo {
         this.vuelta = vuelta;
     }
 
+    public ClaseGlosarioModelo getClaseGlosarioModelo() {
+        return claseGlosarioModelo;
+    }
+
+    public void setClaseGlosarioModelo(ClaseGlosarioModelo claseGlosarioModelo) {
+        this.claseGlosarioModelo = claseGlosarioModelo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,13 +107,12 @@ public class RelacionarModelo {
         RelacionarModelo that = (RelacionarModelo) o;
         return idActividad.equals(that.idActividad) &&
                 idTarea.equals(that.idTarea) &&
-                palabra.equals(that.palabra) &&
-                idClaseGlosario.equals(that.idClaseGlosario);
+                palabra.equals(that.palabra);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idActividad, idTarea, palabra, idClaseGlosario);
+        return Objects.hash(idActividad, idTarea, palabra);
     }
 
     @Override
@@ -121,7 +121,6 @@ public class RelacionarModelo {
                 .add("idActividad='" + idActividad + "'")
                 .add("idTarea=" + idTarea)
                 .add("palabra='" + palabra + "'")
-                .add("idClaseGlosario=" + idClaseGlosario)
                 .add("respuesta='" + respuesta + "'")
                 .add("horaRespuesta=" + horaRespuesta)
                 .add("vuelta=" + vuelta)

@@ -3,6 +3,7 @@ package tecolotl.alumno.sesion;
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.entidad.relacionar.*;
+import tecolotl.alumno.modelo.glosario.ClaseGlosarioModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarModelo;
 import tecolotl.alumno.modelo.relacionar.RelacionarOriginalModelo;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
@@ -82,8 +83,8 @@ public class RelacionarSesionBean {
             RelacionarModelo relacionarModelo = new RelacionarModelo();
             relacionarModelo.setIdActividad(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK()
                     .getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getActividadEntidad().getId());
-            relacionarModelo.setIdClaseGlosario(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK()
-                    .getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getClaseGlosarioEntidad().getClave());
+            relacionarModelo.setClaseGlosarioModelo(new ClaseGlosarioModelo(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK()
+                    .getRelacionarActividadEntidad().getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getClaseGlosarioEntidad()));
             relacionarModelo.setPalabra(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getRelacionarActividadEntidad()
                     .getRelacionarActividadEntidadPK().getGlosarioEntidad().getGlosarioEntidadPK().getPalabra());
             relacionarModelo.setIdTarea(tareaRelacionarActividadEntidad.getTareaRelacionarActividadEntidadPK().getTareaEntidad().getId());

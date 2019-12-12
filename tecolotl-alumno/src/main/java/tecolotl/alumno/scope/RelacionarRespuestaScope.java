@@ -41,7 +41,7 @@ public class RelacionarRespuestaScope {
                 query.setParameter("idActividad", relacionarModelo.getIdActividad())
                         .setParameter("idTarea", idTarea)
                         .setParameter("palabra", relacionarModelo.getPalabra())
-                        .setParameter("claveClase", relacionarModelo.getIdClaseGlosario())
+                        .setParameter("claveClase", relacionarModelo.getClaseGlosarioModelo().getClave())
                         .setParameter("respuesta", relacionarModelo.getRespuesta());
                 query.executeUpdate();
             }
