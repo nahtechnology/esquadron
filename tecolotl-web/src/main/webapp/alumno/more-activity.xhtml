@@ -181,7 +181,11 @@
                                     </h:panelGroup>
                                 </h:panelGroup>
                                 <h:commandButton value="#{boton['submit']}" styleClass="boton-enviar boton-trasladar uk-margin" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
-                                    <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form"/>
+                                    <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form" onevent="function imagen(data) {
+                                            console.log(data.status);
+                                            if (data.status === 'success')
+                                               {cargarImagen();}
+                                        }"/>
                                 </h:commandButton>
                             </h:form>
                         </li>

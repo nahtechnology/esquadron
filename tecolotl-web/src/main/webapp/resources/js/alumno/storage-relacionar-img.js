@@ -1,13 +1,21 @@
 var finalPoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
-var imagenes = [];
-var parametros = [];
+
+
 // var contenedorimagen = document.querySelector('.contenedor-img');
-var imagenDocumento = document.querySelectorAll(".imagen-relacionar img");
+
 var ruta = "imagenes_glosario/";
 var imagen = document.createElement('img');
 
 
 document.addEventListener('DOMContentLoaded', function (evt) {
+   cargarImagen();
+});
+
+function cargarImagen() {
+    console.log("entro funcion imagen");
+    var imagenDocumento = document.querySelectorAll(".imagen-relacionar img");
+    var imagenes = [];
+    var parametros = [];
     imagenDocumento.forEach(function (imagen) {
         var contexto = imagen.dataset.llave;
         imagenes.push(contexto);
@@ -36,4 +44,5 @@ document.addEventListener('DOMContentLoaded', function (evt) {
             }
         });
     });
-});
+
+}

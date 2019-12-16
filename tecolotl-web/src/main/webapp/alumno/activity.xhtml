@@ -256,7 +256,10 @@
         </div>
         <script type="application/javascript">
             var videoPlayer = document.querySelectorAll('.scrollFinal');
+            var objDiv = document.getElementById('scrollTranscript');
             var player = [];
+            var timer_is_on = 0;
+            var time;
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
             var mensajeEnviado = "#{alumno['send.message']}";
@@ -286,19 +289,38 @@
 
             var done = false;
             function onPlayerStateChange(event) {
-                if (event.data === YT.PlayerState.PLAYING &amp;&amp; !done) {
-                    console.log('Ocurrio el evento! ');
-                    pageScroll();
-                    done = true;
-                }else {
-                    done = false;
+
+                switch (event.data) {
+                    case 1:{
+                        console.log("reproduciendo");
+                        startCount();
+                        break;
+                    }
+                    case 2:{
+                        stopCount();
+                        console.log("pausado");
+                        break;
+                    }
+
                 }
             }
             function pageScroll() {
-                var objDiv = document.getElementById('scrollTranscript');
-                objDiv.scrollTop = objDiv.scrollTop + 1;
+                objDiv.scrollTop = objDiv.scrollTop + 5;
                 time = setTimeout('pageScroll()', 500);
             }
+
+            function startCount() {
+                if (!timer_is_on) {
+                    timer_is_on = 1;
+                    pageScroll();
+                }
+            }
+
+            function stopCount() {
+                clearTimeout(time);
+                timer_is_on = 0;
+            }
+
         </script>
         <script type="text/javascript">
             document.querySelectorAll('.estilo-contenedor input[type=hidden]').forEach(function (palabra) {
