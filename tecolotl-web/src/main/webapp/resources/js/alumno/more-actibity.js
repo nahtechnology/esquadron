@@ -76,7 +76,7 @@ function respuestaEnvidad(data) {
         data.source.disabled = true;
         UIkit.notification(mensajeEnviado, {pos: 'top-right'});
         var respondido = document.createElement('span');
-        respondido.classList.add('realizado', 'movimiento1');
+        respondido.classList.add('fin-ordenar', 'fin-movimiento');
         ordenarOracion.querySelector('form').appendChild(respondido);
     }
 }
