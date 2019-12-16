@@ -36,7 +36,7 @@ public class ProfesorControlador implements Serializable {
     public String cerrarSesion() throws IOException {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         externalContext.invalidateSession();
-        return "/index.xhtml";
+        return "/index.xhtml?faces-redirect=true";
     }
 
     public ProfesorModelo getProfesorModelo() {

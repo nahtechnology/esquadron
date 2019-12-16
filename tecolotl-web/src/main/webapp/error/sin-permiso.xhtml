@@ -9,7 +9,10 @@
     <title>Sin permiso</title>
 </h:head>
 <h:body>
-    <h1>Estimado usuario, no pudes visitar está página ya que tu rol es:</h1>
+    <h1>Estimado usuario, no pudes visitar está página ya que tu rol es: ${sinPermisoControlador.rol}</h1>
+    <h:form>
+        <h:commandButton value="cerrar sesion" action="#{sinPermisoControlador.cerrarSesion}"/>
+    </h:form>
     <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
 </h:body>
 </html>

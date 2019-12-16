@@ -12,10 +12,14 @@ public class PersonaSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
+    /**
+     * Recupera el rol al que pertenece un usuario
+     * @param apodo Apodo del usuario
+     * @return Nombre del rol al que pertenece el usuario
+     */
     public String rol(@NotNull String apodo) {
         Query query = entityManager.createNativeQuery(
-                "SELECT 'alumno' AS rol FROM alumno.alumno a WHERE a.apodo = ? UNION SELECT 'profesor' AS rol FROM profesor.profesor p WHERE p.apodo = ?",
-                String.class);
+                "SELECT 'alumno' AS rol FROM alumno.alumno a WHERE a.apodo = ? UNION SELECT 'profesor' AS rol FROM profesor.profesor p WHERE p.apodo = ?");
         query.setParameter(1, apodo);
         query.setParameter(2, apodo);
         return (String) query.getSingleResult();

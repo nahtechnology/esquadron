@@ -49,7 +49,7 @@ public class AlumnoControlador implements Serializable {
 
     public String cerrarSesion() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        return "/index.xhtml";
+        return "/index.xhtml?faces-redirect=true";
     }
 
     public String actividadBiliotecaLibre(String idActividad) {

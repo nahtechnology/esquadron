@@ -46,6 +46,11 @@
 		<location>/error/no-encontrado.xhtml</location>
 	</error-page>
 
+	<error-page>
+		<error-code>403</error-code>
+		<location>/error/sin-permiso.xhtml</location>
+	</error-page>
+
 	<!--  Project Stage	-->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
