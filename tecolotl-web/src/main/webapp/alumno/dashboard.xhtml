@@ -138,67 +138,64 @@
                         </h:selectOneRadio>
                     </h:form>
                     <ul>
-                        <li class="">
-                            <!--<h:graphicImage styleClass="vacio" library="img" name="/alumno/pop-art/mensaje5.svg" pt:uk-svg=""/>-->
+                        <li>
                             <h:panelGroup layout="block" styleClass="vacio" rendered="#{empty alumnoControlador.tareaActvidadModeloLista}">#{alumno['dashboard.empty']}</h:panelGroup>
-
                             <h:panelGroup id="tareas" styleClass="fondo-comic5 uk-child-width-1-3@m uk-grid" pt:uk-grid="" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}">
-
                                 <div class="imagen-flexible">
                                     <h:graphicImage styleClass="img-alumno-dashboard uk-display-block uk-animation-shake" library="img" name="mounstro/who.svg" alt="moustrou naranja" pt:uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"/>
-                                   <div class="contenedor-barra">
+                                   <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total ne 0}">
                                        <span>0%</span>
                                        <progress class="uk-progress color1" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/>
                                        <span>100%</span>
-                                   </div>
+                                   </h:panelGroup>
                                 </div>
                                 <div class="imagen-flexible">
-                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.comple.all.sentences']};; pos: right "  />
-                                    <div class="contenedor-barra">
+                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.comple.all.sentences']}; pos: right "  />
+                                    <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total ne 0}">
                                         <span>0%</span>
                                         <progress class="uk-progress color2" value="#{tareasProgresoControlador.tareaResuetasModeloLista[1].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total}"/>
                                         <span>100%</span>
-                                    </div>
+                                    </h:panelGroup>
                                 </div>
                                 <div class="imagen-flexible">
                                     <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.bar.icon.match']}; pos: right "  />
-                                    <div class="contenedor-barra">
+                                    <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
                                         <span>0%</span>
                                         <progress class="uk-progress color3" value="#{tareasProgresoControlador.tareaResuetasModeloLista[2].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total}"/>
                                         <span>100%</span>
-                                    </div>
+                                    </h:panelGroup>
                                 </div>
                             </h:panelGroup>
                             <h:panelGroup id="tareas2" layout="block" styleClass="uk-grid uk-child-width-1-3@m uk-grid" pt:uk-grid="" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}">
                                 <div class="fondo-comic" style="border: 6px solid white; padding: 20px 0;">
                                     <div class="imagen-flexible">
                                         <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.words']}; pos: right "/>
-                                        <div class="contenedor-barra">
+                                        <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color4" value="#{tareasProgresoControlador.tareaResuetasModeloLista[3].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total}"/>
                                             <span>100%</span>
-                                        </div>
+                                        </h:panelGroup>
                                     </div>
                                 </div>
                                 <div class="fondo-comic4 " style="border: 6px solid white; padding: 20px 0;">
                                     <div class="imagen-flexible">
                                         <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['more.activity.title.matching.words']}; pos: right "/>
-                                        <div class="contenedor-barra">
+                                        <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[4].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total}"/>
                                             <span>100%</span>
-                                        </div>
+                                        </h:panelGroup>
                                     </div>
                                 </div>
                                 <div class="fondo-comic6 " style="border: 6px solid white; padding: 20px 0;">
 
                                     <div class="imagen-flexible">
                                         <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/naranja.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.sentences']}; pos: right "/>
-                                        <div class="contenedor-barra">
+                                        <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[5].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total}"/>
                                             <span>100%</span>
-                                        </div>
+                                        </h:panelGroup>
                                     </div>
                                 </div>
                             </h:panelGroup>

@@ -77,7 +77,6 @@ function respuestaEnvidad(data) {
         UIkit.notification(mensajeEnviado, {pos: 'top-right'});
         var respondido = document.createElement('span');
         respondido.classList.add('realizado', 'movimiento1');
-        respondido.textContent = 'Respondido';
         ordenarOracion.querySelector('form').appendChild(respondido);
     }
 }
