@@ -72,6 +72,7 @@
         <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
         <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
+        <h:outputStylesheet library="css" name="/alumno/glosario.css"/>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
 
@@ -89,7 +90,10 @@
                         <h:panelGroup styleClass="contenedor-imagen scroll-drag" layout="block">
                             <ui:repeat value="#{relacionarBiblitecaLibreControler.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                 <div class="imagen-relacionar uk-margin-auto ">
+                                   <ui:remove>
                                     <img src="#{request.contextPath.concat('/imagen-glosario?palabra='.concat(relacionarModelo.palabra).concat('&amp;clave=').concat(relacionarModelo.claseGlosarioModelo.valor))}" class="glosario-img" alt="imagen"/>
+                                   </ui:remove>
+                                    <img data-llave="#{'imagenes_glosario/'.concat(relacionarModelo.palabra).concat('_').concat(relacionarModelo.claseGlosarioModelo.valor)}" alt=""  class="cargando"  src="../../resources/img/alumno/esquadron-animado.svg"/>
                                 </div>
                                 <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
                                     <div class="icono-relacion-img uk-width-auto"></div>
@@ -141,6 +145,8 @@
 <!--        javascript-->
         <h:outputScript library="js" name="/alumno/drag-drop.js"/>
         <h:outputScript library="js" name="/alumno/match-free-library.js"/>
+        <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.587.0.min.js"></script>
+        <h:outputScript library="js" name="/alumno/relacionar-imagen-free.js"/>
     </ui:define>
 </ui:composition>
 </html>

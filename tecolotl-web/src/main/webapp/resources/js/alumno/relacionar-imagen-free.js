@@ -1,4 +1,4 @@
-var finalPoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
+var finalPunto = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
 
 
 // var contenedorimagen = document.querySelector('.contenedor-img');
@@ -8,7 +8,7 @@ var imagen = document.createElement('img');
 
 
 document.addEventListener('DOMContentLoaded', function (evt) {
-   cargarImagen();
+    cargarImagen();
 });
 
 function cargarImagen() {
@@ -21,7 +21,7 @@ function cargarImagen() {
         imagenes.push(contexto);
     });
     var s3 = new AWS.S3({
-        endpoint: finalPoint,
+        endpoint: finalPunto,
         accessKeyId: 'GEXURWPHJX37JPR2VGWY',
         secretAccessKey: 'EOvb5YkVHMViTG12aEvSfsRz5clDgpXGJdlq2UrpHHs'
         //params: {Bucket: "tecolotl-multimedia"}
@@ -35,7 +35,7 @@ function cargarImagen() {
         s3.getObject(parametros[index], function(err, data) {
             if (err) {
                 console.log(err, err.stack);
-                imagenDocumento[index].src = "../resources/img/vacio.svg";
+                imagenDocumento[index].src = "../../resources/img/vacio.svg";
                 imagenDocumento[index].classList.remove("cargando");
                 imagenDocumento[index].classList.add("glosario-img");
             }

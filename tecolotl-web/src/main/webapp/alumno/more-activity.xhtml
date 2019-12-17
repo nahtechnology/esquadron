@@ -86,6 +86,7 @@
         <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
         <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
+        <h:outputStylesheet library="css" name="/alumno/glosario.css"/>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
                 <div uk-filter="target: .js-filter" >
@@ -146,7 +147,7 @@
                                     <div class="contenedor-imagen scroll-drag">
                                         <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                             <div class="imagen-relacionar uk-margin-auto ">
-                                                <img data-llave="#{relacionarControlador.carpeta.concat('/').concat(relacionarModelo.palabra).concat('_').concat(relacionarModelo.claseGlosarioModelo.valor)}" alt="imagen"/>
+                                                <img data-llave="#{relacionarControlador.carpeta.concat('/').concat(relacionarModelo.palabra).concat('_').concat(relacionarModelo.claseGlosarioModelo.valor)}" alt="imagen" class="cargando"  src="../resources/img/alumno/esquadron-animado.svg"/>
                                             </div>
                                             <div class="respuesta-imagen-contenedor uk-flex uk-flex-center" uk-grid="">
                                                 <div class="icono-relacion-img uk-width-auto"></div>
