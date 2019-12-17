@@ -253,14 +253,16 @@ function DatosReporte(nombreAlumno,levelA1,levelA2,levelB1,levelB2,levelC1,level
 function visualizar() {
     var graficas = document.querySelectorAll('#canvas > div');
     var numGraficas = graficas.length;
+    cantidadGraficas = 2;
     botonAtras.disabled = true;
     botonAtras.classList.add('boton-disabilitado');
     if (graficas.length > cantidadGraficas){
-        for (var i = cantidadGraficas; i <= numGraficas ; i++){
+        for (var i = cantidadGraficas; i < numGraficas ; i++){
             graficas[i].style.display='none';
             console.log('dato:' + i);
         }
-
+        botonSiguiente.disabled = false;
+        botonSiguiente.classList.remove('boton-disabilitado');
     }else {
         botonSiguiente.disabled = true;
         botonSiguiente.classList.add('boton-disabilitado');
@@ -291,7 +293,9 @@ function paginacionGraficas(dato) {
          });
 
          for (var j = cantidadGraficas; j < cantidadGraficas + 2 ; j++){
-             graficas[j].style.display='block';
+             if( j < numGraficas){
+                 graficas[j].style.display='block';
+             }
          }
          cantidadGraficas += 2;
          break;
