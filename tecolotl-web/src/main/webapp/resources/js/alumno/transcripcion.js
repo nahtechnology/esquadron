@@ -4,6 +4,7 @@ Funcionaes para la transcripcion
 var answer;
 var menuPrincipal;
 var orderWords;
+var copyRespuestas = [];
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     answer = document.querySelector('.answer');
@@ -22,6 +23,7 @@ function agregaRespuestas(elemento) {
     respuestas = [];
     answer.querySelectorAll('.remplazar .remover').forEach(function (palabra,index) {
         respuestas.push(palabra.textContent);
+        copyRespuestas.push(palabra.textContent);
         palabra.setAttribute("uk-sortable","group: respuesta");
         palabra.setAttribute('class','uk-sortable respuesta-transcript');
         palabra.setAttribute('data-indice',index);
@@ -62,6 +64,7 @@ function validaContenido() {
             resp = resp.concat(respRem.outerHTML);
         });
         document.getElementById('formulario-transcripcion:respuesta').value = resp;
+
         return true;
     }
     UIkit.modal.alert(mensajeError);

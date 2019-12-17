@@ -293,6 +293,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    background-color: white;
 }
 .imagen-relacionar img{
     width: 100%;
