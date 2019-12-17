@@ -58,13 +58,14 @@ function transcripcionEnvidad(data) {
 }
 
 function validaContenido() {
+
     if (((answer.querySelectorAll('.contenedor-respuesta span').length * 100) / totalRespuestasTranscripcion) < 15.0)  {
         resp = '';
         answer.querySelectorAll('.remplazar p').forEach(function (respRem) {
             resp = resp.concat(respRem.outerHTML);
         });
         document.getElementById('formulario-transcripcion:respuesta').value = resp;
-
+        document.getElementById('formulario-transcripcion:calificacion').value = puntaje();
         return true;
     }
     UIkit.modal.alert(mensajeError);
@@ -83,4 +84,20 @@ function eventoClickTransciptcion() {
             video.click();
         });
     }
+}
+
+function puntaje() {
+    var cajarespuesta;
+    var puntos;
+    var totalCadena,respuestaConta = 0;
+    cajarespuesta = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript .respuesta-drag');
+    totalCadena = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript').length;
+    cajarespuesta.forEach(function (comparar,indice) {
+        if (comparar.innerText === copyRespuestas[indice]){
+            console.log("igual" + indice);
+            respuestaConta += 1;
+        }
+    });
+    puntos = Math.round((respuestaConta * 100)/totalCadena);
+    return puntos;
 }
