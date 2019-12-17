@@ -10,11 +10,14 @@
 </h:head>
 <h:body>
     <h:outputStylesheet library="css" name="/error/sin-permiso.css"/>
-    <h:outputStylesheet library="css" name="letra.css"/>
-    <h1>Estimado usuario, no pudes visitar está página ya que tu rol es: ${sinPermisoControlador.rol}</h1>
-    <h:form>
-        <h:commandButton value="cerrar sesion" action="#{sinPermisoControlador.cerrarSesion}"/>
-    </h:form>
+    <p>
+        <h:outputFormat value="#{etiqueta['sin.permiso.title']}">
+           <f:param value="${sinPermisoControlador.rol}"/>
+        </h:outputFormat>
+    </p>
     <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
+    <h:form styleClass="centrado">
+        <h:commandButton styleClass="btnsin-permiso" value="cerrar sesion" action="#{sinPermisoControlador.cerrarSesion}"/>
+    </h:form>
 </h:body>
 </html>
