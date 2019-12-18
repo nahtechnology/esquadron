@@ -161,17 +161,17 @@
                                             </ui:fragment>
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.match.image']}</span></f:facet>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarImagen ne null}"><progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.complete.prayers']}</span></f:facet>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.comple.all.sentences']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionCompletar ne null}"><progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.order.prayer']}</span></f:facet>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.order.sentences']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionOraciones ne null}"><progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
                                         </h:column>
