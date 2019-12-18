@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     document.querySelector('input[type=file]').addEventListener('change', cargaArchivo);
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
-
+    document.querySelector('.botones button').addEventListener('click', insertaAlumno);
 });
 
 
@@ -220,4 +220,28 @@ function validarFila(num) {
     }
 
 
+}
+
+
+function insertaAlumno(evento) {
+    let apodo = document.getElementById('formulario-alumno:apodo');
+    let nombre = document.getElementById('formulario-alumno:nombre');
+    let apelldioPaterno = document.getElementById('formulario-alumno:apellido-paterno');
+    let apelldioMaterno = document.getElementById('formulario-alumno:apellido-materno');
+    let fechaNacimiento = document.getElementById('formulario-alumno:fecha-nacimiento');
+    let sexo = document.getElementById('formulario-alumno:sexo');
+    let nivelLenguaje = document.getElementById('formulario-alumno:nivel-lenguaje');
+    let botonEnviar = document.getElementById('formulario-alumno:enviar');
+    for (let indice = 0; indice < tablaBuena.tBodies[0].rows.length; indice++) {
+        let celdas = tablaBuena.tBodies[0].rows[indice].querySelectorAll('td');
+        apodo.value = celdas[0].textContent;
+        nombre.value = celdas[1].textContent;
+        apelldioPaterno.value = celdas[2].textContent;
+        apelldioMaterno.value = celdas[3].textContent;
+        fechaNacimiento.value = celdas[4].textContent;
+        sexo.value = celdas[5].textContent.trim();
+        nivelLenguaje.value = celdas[6].textContent;
+        botonEnviar.click();
+    }
+    document.getElementById('formulario-alumno:insertar').click();
 }

@@ -14,6 +14,7 @@ public class AlumnoModelo extends PersonaModelo {
     private NivelLenguajeModelo nivelLenguajeModelo;
 
     public AlumnoModelo() {
+        nivelLenguajeModelo = new NivelLenguajeModelo();
     }
 
     public AlumnoModelo(AlumnoEntidad alumnoEntidad) {

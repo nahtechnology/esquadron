@@ -45,7 +45,7 @@ function limpiaFormulario(evento) {
     document.querySelectorAll('#formulario-modal-nuevo-profesor input[type=text], input[type=hidden]').forEach(function (entrada) {
         entrada.value = null;
     });
-    document.querySelectorAll('#formulario-modal-nuevo-profesor span').forEach(function (error) {
+    document.querySelectorAll('#formulario-modal-nuevo-profesor span.uk-alert-danger').forEach(function (error) {
         error.remove();
     })
 }
