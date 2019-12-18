@@ -45,6 +45,11 @@
 		<location>/error/sin-permiso.xhtml</location>
 	</error-page>
 
+	<error-page>
+		<error-code>500</error-code>
+		<location>/error/no-manejable.xhtml</location>
+	</error-page>
+
 	<!--  Project Stage	-->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
