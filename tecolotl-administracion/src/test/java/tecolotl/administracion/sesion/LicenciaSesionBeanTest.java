@@ -110,8 +110,12 @@ public class LicenciaSesionBeanTest {
 
     @Test
     public void cuentaPorEscuela() {
-        int total = licenciaSesionBean.cuenta("21DJN1326E");
-        assertNotEquals(total, 0);
+        LicenciaModelo licenciaModelo = licenciaSesionBean.busca(new Date(), "21PPR0060C");
+        assertNotNull(licenciaModelo);
+        assertNotNull(licenciaModelo.getClaveCentroTrabajo());
+        assertNotNull(licenciaModelo.getContador());
+        assertNotNull(licenciaModelo.getInicio());
+        assertNotNull(licenciaModelo.getAdquisicion());
     }
 
     @Test

@@ -202,7 +202,6 @@
                                                      binding="#{grupoAlumnoControlador.uiInputApodo}"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="apodo"
-                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apodo}">
                                             <f:validateRequired/>
                                             <f:validateLength minimum="4" maximum="50"/>
@@ -217,7 +216,6 @@
                                                      id="input-name"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="Nombre"
-                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.nombre}">
                                             <f:validateRequired/>
                                             <f:validateLength minimum="3" maximum="40"/>
@@ -232,7 +230,6 @@
                                                      id="input-apellidop"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="Apellido Paterno"
-                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apellidoPaterno}">
                                             <f:validateRequired/>
                                             <f:validateLength minimum="4" maximum="50"/>
@@ -247,7 +244,6 @@
                                                      id="input-apellidom"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="Apellido Materno"
-                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apellidoMaterno}">
                                             <f:validateRequired/>
                                             <f:validateLength minimum="4" maximum="50"/>
@@ -263,7 +259,6 @@
                                                      pt:placeholder="dd/mm/yyyy"
                                                      pt:oninput="entradaFecha(event)"
                                                      label="dd/mm/yyyy"
-                                                     disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.nacimiento}">
                                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                                             <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
@@ -278,8 +273,7 @@
                                     <div class="uk-form-controls">
                                         <h:selectOneMenu id="seleccion-nivel-lenguaje"
                                                          styleClass="selector"
-                                                         value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}"
-                                                         disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}">
+                                                         value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}">
                                             <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
                                             <f:selectItems value="#{grupoAlumnoControlador.nivelLenguajeModeloLista}"
                                                            var="nivelLenguaje"
@@ -295,8 +289,7 @@
                                     <div class="uk-form-controls">
                                         <h:selectOneMenu id="seleccion-sexo"
                                                          styleClass="selector"
-                                                         value="#{grupoAlumnoControlador.alumnoModelo.sexo}"
-                                                         disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}">
+                                                         value="#{grupoAlumnoControlador.alumnoModelo.sexo}">
                                             <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
                                             <f:selectItem itemValue="m" itemLabel="Masculino"/>
                                             <f:selectItem itemValue="f" itemLabel="Femenino"/>
@@ -308,10 +301,8 @@
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="lugares disponibles"/>
                                     <div class="uk-form-controls">
-                                        <h:graphicImage library="img" name="boton/barprogress.svg" pt:uk-svg=""/>
-                                       <!-- <progress value="#{grupoAlumnoControlador.totalAlumno}" max="#{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}">
-                                            #{grupoAlumnoControlador.totalAlumno} / #{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}
-                                        </progress> -->
+                                        <progress max="${grupoAlumnoControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
+                                        <span>${grupoAlumnoControlador.alumnosAsignado} / ${grupoAlumnoControlador.totalAlumno}</span>
                                     </div>
                                 </div>
                                 <div class="uk-width-1-1@s">
@@ -331,7 +322,6 @@
                     <div class="uk-modal-footer uk-text-right">
                         <button class="boton-escuadron-base-secundary uk-modal-close" onclick="limpiaFormulario(event)">#{boton['cancel']}</button>
                         <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
-                                         disabled="#{grupoAlumnoControlador.totalAlumno eq (grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia'])}"
                                          styleClass="boton-escuadron-base uk-margin-left">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); }"
                                     listener="#{grupoAlumnoControlador.insertaAlumno}"

@@ -11,6 +11,14 @@ public class LicenciaEntidadPk implements Serializable {
     private Short contador;
     private EscuelaEntidad escuelaEntidad;
 
+    public LicenciaEntidadPk() {
+    }
+
+    public LicenciaEntidadPk(Short contador, String claveCentroTrabajo) {
+        this.contador = contador;
+        this.escuelaEntidad = new EscuelaEntidad(claveCentroTrabajo);
+    }
+
     @Basic
     @Column(name = "contador")
     public Short getContador() {

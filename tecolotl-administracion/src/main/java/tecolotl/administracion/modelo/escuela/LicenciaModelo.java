@@ -16,6 +16,7 @@ public class LicenciaModelo {
     private String claveCentroTrabajo;
     private Date inicio;
     private Date adquisicion;
+    private Short alumnos;
 
     public LicenciaModelo() {
     }
@@ -25,6 +26,7 @@ public class LicenciaModelo {
         claveCentroTrabajo = licenciaEntidad.getLicenciaEntidadPk().getEscuelaEntidad().getClaveCentroTrabajo();
         inicio = licenciaEntidad.getInicio();
         adquisicion = licenciaEntidad.getAdquisicion();
+        alumnos = licenciaEntidad.getAlumnos();
     }
 
     public LicenciaModelo(String claveCentroTrabajo) {
@@ -74,6 +76,14 @@ public class LicenciaModelo {
         this.adquisicion = adquisicion;
     }
 
+    public Short getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(Short alumnos) {
+        this.alumnos = alumnos;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,6 +105,7 @@ public class LicenciaModelo {
         sb.append(", claveCentroTrabajo='").append(claveCentroTrabajo).append('\'');
         sb.append(", inicio=").append(inicio);
         sb.append(", adquisicion=").append(adquisicion);
+        sb.append(", alumnos=").append(alumnos);
         sb.append('}');
         return sb.toString();
     }

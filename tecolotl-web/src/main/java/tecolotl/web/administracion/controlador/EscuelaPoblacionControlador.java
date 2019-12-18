@@ -51,7 +51,6 @@ public class EscuelaPoblacionControlador {
         nombreEscuela = escuelaSesionBean.nombre(claveCentroTrabajo);
         totalAlumnos = escuelaPoblacionModelo.getTotalAlumnos();
         totalProfesores = escuelaPoblacionModelo.getTotalProfesores();
-        totalLicencias = licenciaSesionBean.cuenta(claveCentroTrabajo);
         totalCoordinadores = coordinadorSesionBean.cuenta(claveCentroTrabajo).intValue();
     }
 

@@ -19,6 +19,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @ViewScoped
@@ -53,8 +54,8 @@ public class GrupoAlumnoControlador implements Serializable {
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
-    private int licenciasTotales;
     private int totalAlumno;
+    private int alumnosAsignado;
 
     private UIInput uiInputApodo;
 
@@ -63,7 +64,7 @@ public class GrupoAlumnoControlador implements Serializable {
         nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
         alumnoModelo = new AlumnoModelo();
         alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo());
-        licenciasTotales = licenciaSesionBean.cuenta(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
+        totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
         buscaTotalAlumno();
     }
 
@@ -100,7 +101,7 @@ public class GrupoAlumnoControlador implements Serializable {
     }
 
     public void buscaTotalAlumno() {
-        totalAlumno = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
+        alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
     }
 
     public Integer getIdGrupo() {
@@ -143,19 +144,19 @@ public class GrupoAlumnoControlador implements Serializable {
         this.uiInputApodo = uiInputApodo;
     }
 
-    public int getLicenciasTotales() {
-        return licenciasTotales;
-    }
-
-    public void setLicenciasTotales(int licenciasTotales) {
-        this.licenciasTotales = licenciasTotales;
-    }
-
     public int getTotalAlumno() {
         return totalAlumno;
     }
 
     public void setTotalAlumno(int totalAlumno) {
         this.totalAlumno = totalAlumno;
+    }
+
+    public int getAlumnosAsignado() {
+        return alumnosAsignado;
+    }
+
+    public void setAlumnosAsignado(int alumnosAsignado) {
+        this.alumnosAsignado = alumnosAsignado;
     }
 }

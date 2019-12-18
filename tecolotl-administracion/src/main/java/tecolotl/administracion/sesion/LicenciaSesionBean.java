@@ -11,6 +11,7 @@ import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -21,6 +22,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -57,6 +59,42 @@ public class LicenciaSesionBean implements Serializable {
 		}
 		return licenciaModeloLista;
 	}
+
+    /**
+     * Busca el detalle de una licencia, en caso de no haber se recupera nulo
+     * @param contador contador de la licencia de la escuela
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+     * @return Objecto del tipo {@link LicenciaModelo} con los datos encontrados
+     */
+	public LicenciaModelo busca(@NotNull Short contador, @NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+	    logger.fine(contador.toString());
+	    logger.fine(claveCentroTrabajo);
+	    try {
+            return new LicenciaModelo(entityManager.find(LicenciaEntidad.class, new LicenciaEntidadPk(contador, claveCentroTrabajo)));
+        } catch (NoResultException e) {
+	        return null;
+        }
+    }
+
+    /**
+     * Busca la licencia de una escuela por la fecha
+     * @param fecha Fecha a comparar
+     * @return Datos de la licencia
+     */
+    public LicenciaModelo busca(@NotNull Date fecha,@NotNull @Size(min = 10, max=12) String claveCentroTrabajo) {
+        Calendar calendar = Calendar.getInstance();
+	    calendar.setTime(fecha);
+	    calendar.add(Calendar.YEAR, -1);
+	    TypedQuery<LicenciaEntidad> typedQuery = entityManager.createNamedQuery("LicenciaEntidad.buscaActivo", LicenciaEntidad.class);
+	    typedQuery.setParameter("fechaFin", fecha);
+	    typedQuery.setParameter("fechaInicio", calendar.getTime());
+	    typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+	    try {
+			return new LicenciaModelo(typedQuery.getSingleResult());
+		} catch (NoResultException e) {
+	    	return null;
+		}
+    }
 
 	/**
 	 * Inserta una licencia a una escuela.
@@ -108,21 +146,11 @@ public class LicenciaSesionBean implements Serializable {
 	}
 
 	/**
-	 * Cuenta las licencias por escuela.
-	 * @param claveCentroTrabajo
-	 * @return
-	 */
-	public int cuenta(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
-		logger.fine("Contanto las licencias para la escuela:".concat(claveCentroTrabajo));
-		return entityManager.createNamedQuery("LicenciaEntidad.cuentaPorEscuela", Long.class)
-				.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult().intValue();
-	}
-
-	/**
 	 * Cuenta el total de licencias
 	 * @return Número de licencias encontradas
 	 */
 	public Long cuenta() {
 		return entityManager.createNamedQuery("LicenciaEntidad.cuenta", Long.class).getSingleResult();
 	}
+
 }
