@@ -1,0 +1,4 @@
+table input[type="text"]{
+    width: 80px;
+    border-color: #E31A1A !important;
+}
