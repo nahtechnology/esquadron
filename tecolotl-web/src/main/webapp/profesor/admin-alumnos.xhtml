@@ -308,9 +308,10 @@
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
                                     <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="lugares disponibles"/>
                                     <div class="uk-form-controls">
-                                        <progress value="#{grupoAlumnoControlador.totalAlumno}" max="#{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}">
+                                        <h:graphicImage library="img" name="boton/barprogress.svg" pt:uk-svg=""/>
+                                       <!-- <progress value="#{grupoAlumnoControlador.totalAlumno}" max="#{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}">
                                             #{grupoAlumnoControlador.totalAlumno} / #{grupoAlumnoControlador.licenciasTotales * initParam['alumno.licencia']}
-                                        </progress>
+                                        </progress> -->
                                     </div>
                                 </div>
                                 <div class="uk-width-1-1@s">

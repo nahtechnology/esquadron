@@ -157,4 +157,14 @@ progress[value]{
     padding-right: 10px;
 }
 
+.uk-margin > div > div:nth-child(8) > label + div > svg{
+    width: 100%;
+}
 
+.uk-margin > div > div:nth-child(8) > label + div > svg > .caja{
+    fill: #1E87F0 !important;
+}
+
+.uk-margin > div > div:nth-child(8) > label + div > svg > .progreso{
+    fill: #1665B4 !important;
+}
