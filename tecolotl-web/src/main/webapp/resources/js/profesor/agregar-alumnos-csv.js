@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     document.querySelector('input[type=file]').addEventListener('change', cargaArchivo);
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
-    document.querySelector('.botones button').addEventListener('click', insertaAlumno);
+    document.querySelector('tabla-aceptados + button').addEventListener('click', insertaAlumno);
 });
 
 
