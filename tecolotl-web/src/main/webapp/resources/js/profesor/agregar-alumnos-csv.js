@@ -14,7 +14,9 @@ var ExpresionRegularNivelLenguaje = new RegExp("^[a-c][1-2]$", "i");
 var patronCSV = /(?:,|\n|^)("(?:(?:"")*[^"]*)*"|[^",\n]*|(?:\n|$))/i;
 var alumnos = [];
 var pibote = 0;
-var botonesValidar;
+var indice = [];
+var filasRechazadas;
+
 
 document.addEventListener('DOMContentLoaded', function (evento) {
     document.querySelector('input[type=file]').addEventListener('change', cargaArchivo);
@@ -172,13 +174,30 @@ function cargaIniciada(evento) {
 
 function cargaFinalizada(evento) {
     console.log('archivo finalizado');
-   botonesValidar = document.querySelectorAll('#tabla-rechazados tbody tr > td:last-child');
+    filasRechazadas = document.querySelectorAll('#tabla-rechazados tbody tr');
+ botonesTabla();
+}
+function botonesTabla() {
+    var botonesValidar;
+    botonesValidar = document.querySelectorAll('#tabla-rechazados tbody > tr > td:last-child');
+    console.log(botonesValidar);
+    console.log(botonesValidar.length);
+
+
     botonesValidar.forEach(function (boton,index) {
         boton.addEventListener('click',function () {
             validarFila(index);
         });
+
     });
 }
+
+function numFila() {
+console.log()
+}
+
+
+
 
 function lecturaTerminada(evento) {
     console.log('carga de archivo cancelado');
@@ -198,9 +217,11 @@ function validarDatos(objeto) {
 }
 
 function validarFila(num) {
-    let filasRechazadas = document.querySelectorAll('#tabla-rechazados tbody tr');
+    console.log('entro');
     let alumno = [];
     let usuario;
+    console.log(filasRechazadas);
+    console.log(num);
   filasRechazadas[num].querySelectorAll("td").forEach(function (celda,indice) {
       if(celda.querySelector('input[type=text]')){
           alumno.push(celda.querySelector('input[type=text]').value);
@@ -213,12 +234,12 @@ function validarFila(num) {
     if (usuario.validaApodo() && usuario.validaNombre() && usuario.validaApellidopaterno() && usuario.validaApellidomaterno() && usuario.validaFecha() && usuario.validaNivellenguaje() && usuario.validaGenero() )
     {
         usuario.insertaDatos(tablaBuena);
-        tablaMala.tBodies[0].deleteRow(num);
+        // tablaMala.tBodies[0].deleteRow(num);
+        filasRechazadas[num].style.display = 'none';
 
     }else {
         console.log('no aceptada');
     }
-
 
 }
 
