@@ -1,16 +1,21 @@
 package tecolotl.nucleo.sesion;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.validation.constraints.NotNull;
+import java.util.logging.Logger;
 
 @Stateless
 public class PersonaSesionBean {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    @Inject
+    private Logger logger;
 
     /**
      * Recupera el rol al que pertenece un usuario
