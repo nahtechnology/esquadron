@@ -39,13 +39,18 @@
                 </div>
             </div>
             <div class="botones uk-width-2-3@m">
-                <span>Seleccione un archivo para cargar alumno</span>
-                <input type="file"/>
-                <button>Enviar</button>
+                <div>
+                    <p>Seleccione un archivo para cargar alumno</p>
+                    <input  type="file"/>
+                    <div>
+                        <progress max="${agregarCsvControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
+                        <span>${agregarCsvControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
+                    </div>
+                </div>
             </div>
         </div>
-        <progress max="${agregarCsvControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
-        <span>${agregarCsvControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
+
+
         <h:panelGroup styleClass="uk-flex uk-flex-center uk-flex-wrap" >
             <div class="uk-overflow-auto uk-margin-large-top">
                 <h3 class="uk-text-center">Alumnos Correctos</h3>
@@ -65,6 +70,7 @@
 
                     </tbody>
                 </table>
+                <button class="boton-escuadron-base">Enviar</button>
             </div>
             <div class="uk-overflow-auto uk-margin-large-top uk-margin-large-bottom">
                 <h3 class="uk-text-center">Alumnos Incorrectos</h3>

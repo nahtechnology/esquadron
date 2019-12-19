@@ -2,3 +2,74 @@ table input[type="text"]{
     width: 80px;
     border-color: #E31A1A !important;
 }
+
+.botones input[type="file"]{
+    display: block;
+}
+.botones > div{
+    display: inline-block;
+    padding: 5px;
+    height: auto;
+    border: 2px solid var(--color-nav-primary);
+    border-radius: 5px;
+    box-shadow: 3px 3px 12px #999999;
+}
+.botones div > p,.botones div > input{
+    margin-bottom: 50px;
+}
+.botones progress{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    box-sizing: border-box;
+    border: none;
+    background: darkgrey;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.botones progress::-webkit-progress-bar{
+
+    background-color: #eee;
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+.botones progress::-webkit-progress-value{
+    background-image:
+            -webkit-linear-gradient(-45deg,
+            transparent 33%, rgba(0, 0, 0, .1) 33%,
+            rgba(0,0, 0, .1) 66%, transparent 66%),
+            -webkit-linear-gradient(top,
+            rgba(255, 255, 255, .25),
+            rgba(0, 0, 0, .25)),
+            -webkit-linear-gradient(left,rgba(39, 174, 96,1),rgba(238,2,2,1));
+
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+
+}
+
+.botones progress::-moz-progress-bar{
+    background-image:
+            -moz-linear-gradient(
+                    135deg,
+                    transparent 33%,
+                    rgba(0, 0, 0, 0.1) 33%,
+                    rgba(0, 0, 0, 0.1) 66%,
+                    transparent 66%
+            ),
+            -moz-linear-gradient(
+                    top,
+                    rgba(255, 255, 255, 0.25),
+                    rgba(0, 0, 0, 0.25)
+            ),
+            -moz-linear-gradient(
+                    left,
+                    #09c,
+                    #f44
+            );
+
+    border-radius: 2px;
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}

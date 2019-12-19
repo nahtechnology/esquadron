@@ -183,20 +183,14 @@ function botonesTabla() {
     console.log(botonesValidar);
     console.log(botonesValidar.length);
 
-
     botonesValidar.forEach(function (boton,index) {
         boton.addEventListener('click',function () {
             validarFila(index);
         });
 
     });
+
 }
-
-function numFila() {
-console.log()
-}
-
-
 
 
 function lecturaTerminada(evento) {
@@ -217,6 +211,7 @@ function validarDatos(objeto) {
 }
 
 function validarFila(num) {
+
     console.log('entro');
     let alumno = [];
     let usuario;
