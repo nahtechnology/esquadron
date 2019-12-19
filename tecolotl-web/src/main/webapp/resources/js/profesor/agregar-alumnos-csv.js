@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     document.querySelector('input[type=file]').addEventListener('change', cargaArchivo);
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
-    document.querySelector('#tabla-aceptados + button').addEventListener('click', insertaAlumno);
+    document.querySelector('#tabla-aceptados + div > button').addEventListener('click', insertaAlumno);
 });
 
 
@@ -174,8 +174,14 @@ function cargaIniciada(evento) {
 
 function cargaFinalizada(evento) {
     console.log('archivo finalizado');
+    tablaBuena.tBodies[0].deleteRow(0);
+    tablaMala.tBodies[0].deleteRow(0);
     filasRechazadas = document.querySelectorAll('#tabla-rechazados tbody tr');
- botonesTabla();
+    botonesTabla();
+    var botonFile = document.querySelector('.botones input[type=file]');
+    var textLabel= botonFile.value.split("\\");
+    document.querySelector('.botones label').innerHTML = textLabel[textLabel.length - 1];
+
 }
 function botonesTabla() {
     var botonesValidar;

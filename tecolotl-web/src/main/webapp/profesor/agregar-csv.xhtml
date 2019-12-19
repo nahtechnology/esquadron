@@ -40,20 +40,26 @@
             </div>
             <div class="botones uk-width-2-3@m">
                 <div>
-                    <p>Seleccione un archivo para cargar alumno</p>
-                    <input  type="file"/>
+                    <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Seleccione un archivo para cargar alumno</div>
+                        <label for="archivo"><span>choose your save file ...</span></label>
+                        <input id="archivo" type="file" style="display: none"/>
+                </div>
+
                     <div>
+                        <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Cupo de alumnos</div>
                         <progress max="${agregarCsvControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
                         <span>${agregarCsvControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
                     </div>
-                </div>
             </div>
         </div>
 
 
         <h:panelGroup styleClass="uk-flex uk-flex-center uk-flex-wrap" >
             <div class="uk-overflow-auto uk-margin-large-top">
-                <h3 class="uk-text-center">Alumnos Correctos</h3>
+                <div class="uk-flex uk-flex-right uk-margin-medium-bottom">
+                    <h:button styleClass="boton-escuadron-base" value="regresar" outcome="regresar"/>
+                </div>
+                <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Alumnos Correctos</div>
                 <table id="tabla-aceptados" class="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center">
                     <thead class="thPrimario">
                     <tr class="">
@@ -67,13 +73,19 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                    <tr >
+                        <td colspan="8">
+                            <h:graphicImage library="img" name="vacio.svg" width="280px" height="280px"/>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
-                <button class="boton-escuadron-base">Enviar</button>
+                <div class="uk-flex uk-flex-right">
+                    <button class="boton-escuadron-base">Enviar</button>
+                </div>
             </div>
             <div class="uk-overflow-auto uk-margin-large-top uk-margin-large-bottom">
-                <h3 class="uk-text-center">Alumnos Incorrectos</h3>
+                <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Alumnos Incorrectos</div>
                 <table id="tabla-rechazados" class="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center" >
                     <thead class="thPrimario">
                     <tr>
@@ -88,7 +100,11 @@
                     </tr>
                     </thead>
                     <tbody>
-
+                        <tr >
+                            <td colspan="8">
+                                <h:graphicImage library="img" name="vacio.svg" width="280px" height="280px"/>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
