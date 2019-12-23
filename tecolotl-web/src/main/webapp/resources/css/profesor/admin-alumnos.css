@@ -169,3 +169,16 @@ progress[value]{
 .uk-margin > div > div:nth-child(8) > div{
     position: relative;
 }
+
+.borde-menu1 > form > input + input{
+    color: #1665B4;
+    text-transform: uppercase;
+    background: white;
+    border: 3px solid var(--color-nav-primary);
+    border-radius: 5px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    padding-top: 8px;
+    margin-top: 19px;
+
+}
