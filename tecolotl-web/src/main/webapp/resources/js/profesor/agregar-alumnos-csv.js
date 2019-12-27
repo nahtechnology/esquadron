@@ -16,6 +16,7 @@ var alumnos = [];
 var pibote = 0;
 var indice = [];
 var filasRechazadas;
+var listApodos,apodos = [];
 
 
 document.addEventListener('DOMContentLoaded', function (evento) {
@@ -23,13 +24,19 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
     document.querySelector('#tabla-aceptados + div > button').addEventListener('click', insertaAlumno);
+    listApodos = document.querySelector('ul[style="display: none"]').querySelectorAll('li');
+    listApodos.forEach(function (apodo) {
+        apodos.push(apodo.innerHTML);
+    });
 });
 
 
 Alumno.prototype.validaApodo = function(){
-    return this.apodo.length >= 4 && this.apodo.length <= 50; /* mayor igual 4 y menor igual a 50*/
-};
 
+    return this.apodo.length >= 4 && this.apodo.length <= 50 && apodos.includes(this.apodo) === false; /* mayor igual 4 y menor igual a 50*/
+
+
+};
 Alumno.prototype.validaNombre = function(){
     return this.nombre.length >= 3 && this.nombre.length <= 40;
 };
@@ -59,9 +66,7 @@ Alumno.prototype.validaNivellenguaje = function(){
 };
 
 Alumno.prototype.validaGenero = function(){
-
     return this.genero.trim() === 'F' || this.genero.trim() === 'M';
-
 };
 
 Alumno.prototype.insertaDatos = function (tabla) {
@@ -86,10 +91,12 @@ Alumno.prototype.insertaDatos = function (tabla) {
 
     if(!this.validaApodo()){
         celdaApodo.appendChild(entrada).value = this.apodo;
-        celdaApodo.style.color = "red";
         conteo += 1;
     }else {
-        celdaApodo.innerHTML = this.apodo;
+            celdaApodo.innerHTML = this.apodo;
+            if (apodos.includes(this.apodo) === false){
+                apodos.push(this.apodo);
+            }
     }
     if(!this.validaNombre()){
         celdaNombre.appendChild(entrada).value = this.nombre;
@@ -134,9 +141,13 @@ Alumno.prototype.insertaDatos = function (tabla) {
         boton.classList.add('uk-icon-button','uk-margin-small-right');
         boton.setAttribute('uk-icon','check');
         celdaValida.appendChild(boton);
+    }else{
+        let  celdaValida = fila.insertCell(-1);
+        let boton = document.createElement("span");
+        boton.classList.add('uk-icon-button','uk-margin-small-right');
+        boton.setAttribute('uk-icon','check');
+        celdaValida.appendChild(boton);
     }
-
-
 };
 function cargaArchivo(evento) {
     var fileReader = new FileReader();
@@ -181,7 +192,6 @@ function cargaFinalizada(evento) {
     var botonFile = document.querySelector('.botones input[type=file]');
     var textLabel= botonFile.value.split("\\");
     document.querySelector('.botones label').innerHTML = textLabel[textLabel.length - 1];
-
 }
 function botonesTabla() {
     var botonesValidar;
@@ -193,9 +203,7 @@ function botonesTabla() {
         boton.addEventListener('click',function () {
             validarFila(index);
         });
-
     });
-
 }
 
 
