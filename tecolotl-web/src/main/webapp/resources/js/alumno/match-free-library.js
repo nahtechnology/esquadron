@@ -1,11 +1,13 @@
 var contenedorPalabras;
 var contenedorRespuestas;
+var btnFinish = document.querySelector('form + div + div > input + input');
 var words,letra=[],copyLetras,btnRespuesta;
 document.addEventListener('DOMContentLoaded', function (evt) {
     contenedorPalabras = document.querySelector('.respuesta-imagen');
     btnRespuesta = document.querySelector('form + div > button');
     palabras(contenedorPalabras);
-    btnRespuesta.addEventListener('click',calificar)
+    btnRespuesta.addEventListener('click',calificar);
+    btnFinish.disabled = true;
 });
 
 function palabras(contenedor) {
@@ -56,6 +58,7 @@ function calificar() {
     imgRespuesta.classList.add('puntaje');
     imgRespuesta.style.color="#2ECC71";
     contPuntaje.appendChild(imgRespuesta);
+    btnFinish.disabled = false;
 }
 
 function revolver(arreglo) {

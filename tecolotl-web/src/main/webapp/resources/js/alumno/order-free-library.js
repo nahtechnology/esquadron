@@ -2,11 +2,14 @@ var contenedorOraciones;
 var oraciones;
 var palabras = [],copyPalabras = [];
 var contenedorOracion;
-var botonScores;
+var botonScores , permiso = 0;
+var paginas = document.querySelector('ul.scroll-drag').querySelectorAll('li').length;
+var btnNext =  document.querySelector('ul.uk-switcher + div > input + input');
 document.addEventListener('DOMContentLoaded', function (evt) {
     contenedorOraciones = document.querySelector('.menu-ordenar + ul');
     botonScores = document.querySelectorAll('.scroll-drag button.boton-enviar');
     sentences(contenedorOraciones);
+    btnNext.disabled = true;
     botonScores.forEach(function (boton,index) {
         boton.addEventListener('click',calificar);
     })
@@ -69,10 +72,14 @@ function calificar() {
          res.style.backgroundColor="#E74C3C";
      }
   });
+    permiso += 1;
+    if (permiso >= paginas-1){
+        btnNext.disabled = false;
+    }
     puntaje = Math.round((contador * 100) / answer.length);
     puntos.innerHTML = 'Score:' + puntaje+'%';
     cajaPuntaje.appendChild(puntos);
-    cajaPuntaje.classList.remove('uk-hidden')
+    cajaPuntaje.classList.remove('uk-hidden');
 
 }
 

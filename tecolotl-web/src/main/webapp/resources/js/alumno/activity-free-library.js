@@ -1,12 +1,14 @@
 var contenedorRespuesta , parrafo,respuestas = [], copyRespuesta = [],botonCalificar;
 var contenedorPalabras = document.querySelector('.contenedor-respuesta');
+var btnNext = document.querySelector('input[type=button]');
 
 document.addEventListener('DOMContentLoaded', function (evt) {
      contenedorRespuesta = document.querySelector('.trancript-contenedor');
+
         parrafos(contenedorRespuesta);
         botonCalificar = document.querySelector('.uk-flex-center button');
-        botonCalificar.addEventListener('click',calificar)
-
+        botonCalificar.addEventListener('click',calificar);
+        btnNext.disabled = true;
 });
 
 function parrafos(texto) {
@@ -75,4 +77,5 @@ function calificar() {
     score.classList.add('puntaje');
     score.style.color='#2ECC71';
     document.querySelector('.contenedor-respuesta').appendChild(score);
+    btnNext.disabled = false;
 }
