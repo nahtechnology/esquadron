@@ -1,12 +1,11 @@
 .borde-menu1{
     border: 3px solid var(--color-nav-primary);
-    height: 28px;
-    width: 130px;
+    height: 18px;
     border-radius: 5px;
     font-weight: bold;
     padding-top: 7px;
-    margin-top: 19px;
-    left: 510%;
+    margin-top: 18px !important;
+    left: 160%;
 }
 
 .borde-menu1 > form > a{

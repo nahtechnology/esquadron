@@ -13,17 +13,14 @@
             <f:viewAction action="#{asignarActividadControlador.inicio}"/>
         </f:metadata>
         <ui:define name="menu">
-
-            <div class="">
-                <ul class="uk-subnav uk-visible@m " uk-margin="">
+            <div>
+                <ul class="uk-subnav nav-sub uk-visible@m " >
+                    <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
+                    <li><span>Assign Activity</span></li>
                     <li class="borde-menu1">
                         <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
                     </li>
                 </ul>
-              <ol class="uk-breadcrumb">
-                    <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
-                    <li><span>Assign Activity</span></li>
-                </ol>
             </div>
             <div class="uk-navbar-left uk-hidden@m">
                 <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
@@ -32,7 +29,7 @@
                 <div class="uk-offcanvas-bar  ">
                     <button class="uk-offcanvas-close" type="button" uk-close=""/>
                     <ul class="uk-nav  nav-sub-offcanvas ">
-                        <li ><h:link outcome="tablero" value="Home" styleClass="letra-color-subnav"/></li>
+                        <li ><h:link outcome="dashboard" value="Home" styleClass="letra-color-subnav"/></li>
                     </ul>
                 </div>
             </div>

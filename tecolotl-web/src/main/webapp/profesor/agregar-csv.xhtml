@@ -6,10 +6,34 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
-    <ui:define name="menu">Menu</ui:define>
+    <ui:define name="menu">
+
+        <div>
+            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+                <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
+                <li><h:link outcome="regresar" value="Student Administration"/></li>
+                <li><span>Add Student by CSV</span></li>
+                <li class="borde-menu3">
+                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+                </li>
+            </ul>
+        </div>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar  ">
+                <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li ><h:link outcome="regresar" value="Home" styleClass="letra-color-subnav"/></li>
+                </ul>
+            </div>
+        </div>
+
+    </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/csv-alumnos.css"/>
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Student Administration -- Add Student by CSV</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Add Student by CSV</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
                 <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">

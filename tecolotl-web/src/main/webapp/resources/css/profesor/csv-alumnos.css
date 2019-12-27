@@ -1,4 +1,3 @@
-
 table input[type="text"]{
     width: 80px;
     border-color: #E31A1A !important;
@@ -159,4 +158,23 @@ table input[type="text"]{
 /* Focus */
 .file input:focus ~ .file-custom {
     box-shadow: 0 0 0 .075rem #fff, 0 0 0 .2rem #0074d9;
+}
+
+.borde-menu3 > form > input + input{
+    text-transform: uppercase;
+    background: transparent;
+    font-weight: 800;
+    padding-bottom: 10px;
+    padding-top: 8px;
+}
+
+.borde-menu3{
+    color: #1665B4;
+    border: 3px solid var(--color-nav-primary);
+    height: 18px;
+    border-radius: 5px;
+    font-weight: bold;
+    padding-top: 7px;
+    margin-top: 18px !important;
+    left: 47%;
 }
