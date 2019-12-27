@@ -11,26 +11,21 @@ import java.util.StringJoiner;
 @Table(name = "escuela", schema = "administracion")
 @NamedQueries({
 	@NamedQuery(
-			name = "EscuelaEntidad.busca",
-			query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"
-	),
+		name = "EscuelaEntidad.busca",
+		query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"),
 	@NamedQuery(
-			name = "EscuelaEntidad.detalle",
-			query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad " +
-					"LEFT JOIN FETCH e.motivoBloqueoEntidad WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
-	),
+		name = "EscuelaEntidad.detalle",
+		query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad " +
+				"LEFT JOIN FETCH e.motivoBloqueoEntidad WHERE e.claveCentroTrabajo=:claveCentroTrabajo"),
 	@NamedQuery(
-			name = "EscuelaEntidad.existe",
-			query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"
-	),
+		name = "EscuelaEntidad.existe",
+		query = "SELECT e.nombre FROM EscuelaEntidad e WHERE e.claveCentroTrabajo=:claveCentroTrabajo"),
     @NamedQuery(
-            name = "EscuelaEntidad.buscaNombre",
-            query = "SELECT NEW EscuelaEntidad(e.claveCentroTrabajo, e.nombre) FROM EscuelaEntidad e"
-    ),
+		name = "EscuelaEntidad.buscaNombre",
+		query = "SELECT NEW EscuelaEntidad(e.claveCentroTrabajo, e.nombre) FROM EscuelaEntidad e"),
 	@NamedQuery(
 		name = "EscuelaEntidad.cuentaEscuela",
-		query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e"
-	)
+		query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e")
 })
 public class EscuelaEntidad {
 

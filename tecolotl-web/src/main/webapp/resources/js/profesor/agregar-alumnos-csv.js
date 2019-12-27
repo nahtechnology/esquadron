@@ -217,12 +217,8 @@ function validarDatos(objeto) {
 }
 
 function validarFila(num) {
-
-    console.log('entro');
     let alumno = [];
     let usuario;
-    console.log(filasRechazadas);
-    console.log(num);
   filasRechazadas[num].querySelectorAll("td").forEach(function (celda,indice) {
       if(celda.querySelector('input[type=text]')){
           alumno.push(celda.querySelector('input[type=text]').value);
@@ -232,13 +228,12 @@ function validarFila(num) {
   });
   usuario = new Alumno(alumno[0],alumno[1],alumno[2],alumno[3],alumno[4],alumno[5],alumno[6]);
 
-    if (usuario.validaApodo() && usuario.validaNombre() && usuario.validaApellidopaterno() && usuario.validaApellidomaterno() && usuario.validaFecha() && usuario.validaNivellenguaje() && usuario.validaGenero() )
-    {
+    if (usuario.validaApodo() && usuario.validaNombre() && usuario.validaApellidopaterno() && usuario.validaApellidomaterno() && usuario.validaFecha() && usuario.validaNivellenguaje() && usuario.validaGenero() ) {
         usuario.insertaDatos(tablaBuena);
         // tablaMala.tBodies[0].deleteRow(num);
         filasRechazadas[num].style.display = 'none';
 
-    }else {
+    } else {
         console.log('no aceptada');
     }
 

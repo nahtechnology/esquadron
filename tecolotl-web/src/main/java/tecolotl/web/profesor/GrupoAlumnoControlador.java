@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
@@ -50,6 +51,9 @@ public class GrupoAlumnoControlador implements Serializable {
     @Inject
     private CicloEscolarSessionBean cicloEscolarSessionBean;
 
+    @Inject
+    private Logger logger;
+
     private Integer idGrupo;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
@@ -69,6 +73,7 @@ public class GrupoAlumnoControlador implements Serializable {
     }
 
     public void insertaAlumno() throws IOException {
+        logger.info(alumnoModelo.toString());
         FacesMessage facesMessage = new FacesMessage();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
@@ -78,7 +83,6 @@ public class GrupoAlumnoControlador implements Serializable {
         } else {
             alumnoGrupoScope.inserta(alumnoModelo, idGrupo);
             alumnoModelo = new AlumnoModelo();
-            alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo());
             buscaDetalleAlumnos();
             buscaTotalAlumno();
         }

@@ -88,10 +88,11 @@
             <!-- tabla alumnos -->
             <div class="uk-width-1-1@s">
                 <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo">Alumnos de la clase</h5>
-                <h:form id="formulario-tabla-alumno" rendered="#{not empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}">
+                <h:form id="formulario-tabla-alumno">
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
+                                     rendered="#{not empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
                                      var="tarea"
                                      styleClass="tabla-alumnos uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
                                      headerClass="thPrimario uk-text-center"
@@ -154,32 +155,32 @@
                             </h:column>
                         </h:dataTable>
                     </div>
+                    <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}">
+                        <table class="uk-table uk-table-middle">
+                            <thead class="uk-background-primary">
+                            <tr>
+                                <th><span class="letra-titulo">nombre</span></th>
+                                <th><span class="letra-titulo">#{alumno['for.all.views.mind.map']}</span></th>
+                                <th><span class="letra-titulo">#{alumno['activities.bar.icon.order']}</span></th>
+                                <th><span class="letra-titulo">#{alumno['more.activity.title.match.image']}</span></th>
+                                <th><span class="letra-titulo">#{alumno['more.activity.title.order.prayer']}</span></th>
+                                <th><span class="letra-titulo">#{alumno['more.activity.title.matching.words']}</span></th>
+                                <th><span class="letra-titulo">#{alumno['more.activity.title.complete.prayers']}</span></th>
+                                <th><span class="letra-titulo">#{etiqueta['options']}</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td colspan="8">
+                                    <div class="uk-flex uk-flex-center">
+                                        <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </h:panelGroup>
                 </h:form>
-                <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}">
-                    <table class="uk-table uk-table-middle">
-                    <thead class="uk-background-primary">
-                    <tr>
-                        <th><span class="letra-titulo">nombre</span></th>
-                        <th><span class="letra-titulo">#{alumno['for.all.views.mind.map']}</span></th>
-                        <th><span class="letra-titulo">#{alumno['activities.bar.icon.order']}</span></th>
-                        <th><span class="letra-titulo">#{alumno['more.activity.title.match.image']}</span></th>
-                        <th><span class="letra-titulo">#{alumno['more.activity.title.order.prayer']}</span></th>
-                        <th><span class="letra-titulo">#{alumno['more.activity.title.matching.words']}</span></th>
-                        <th><span class="letra-titulo">#{alumno['more.activity.title.complete.prayers']}</span></th>
-                        <th><span class="letra-titulo">#{etiqueta['options']}</span></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td colspan="8">
-                            <div class="uk-flex uk-flex-center">
-                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
-                            </div>
-                        </td>
-                    </tr>
-                    </tbody>
-                    </table>
-                </h:panelGroup>
             </div>
         </div>
         <!--  Modal nuevo alumno  -->
@@ -199,6 +200,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      id="input-nick"
+                                                     autocomplete="off"
                                                      binding="#{grupoAlumnoControlador.uiInputApodo}"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="apodo"
@@ -214,6 +216,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      id="input-name"
+                                                     autocomplete="off"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="Nombre"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.nombre}">
@@ -228,6 +231,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      id="input-apellidop"
+                                                     autocomplete="off"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="Apellido Paterno"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apellidoPaterno}">
@@ -242,6 +246,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      id="input-apellidom"
+                                                     autocomplete="off"
                                                      pt:placeholder="#{etiqueta['write.text']}"
                                                      label="Apellido Materno"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apellidoMaterno}">
@@ -256,6 +261,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      id="fecha-nacimiento"
+                                                     autocomplete="off"
                                                      pt:placeholder="dd/mm/yyyy"
                                                      pt:oninput="entradaFecha(event)"
                                                      label="dd/mm/yyyy"
@@ -324,9 +330,9 @@
                         <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
                                          styleClass="boton-escuadron-base uk-margin-left">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); }"
-                                    listener="#{grupoAlumnoControlador.insertaAlumno}"
+                                    listener="#{grupoAlumnoControlador.insertaAlumno()}"
                                     execute="@form"
-                                    render="@form formulario-tabla-alumno:tabla-alumno tabla-vacia"/>
+                                    render="@form formulario-tabla-alumno"/>
                         </h:commandButton>
                     </div>
                 </h:form>

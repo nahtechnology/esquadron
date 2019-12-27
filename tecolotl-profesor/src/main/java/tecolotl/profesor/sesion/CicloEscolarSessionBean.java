@@ -12,6 +12,7 @@ import tecolotl.profesor.validacion.CicloEscolarLlavePrimariaValidacion;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.Valid;
@@ -120,7 +121,11 @@ public class CicloEscolarSessionBean {
      */
     public Long totalAlumnos(@NotNull @Size(max = 14, min = 10) String claveCentroTrabajo) {
         TypedQuery<Long> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaTotalAlumno", Long.class);
-        return typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
+        try {
+            return typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo).getSingleResult();
+        } catch (NoResultException e) {
+            return 0L;
+        }
     }
 
 }

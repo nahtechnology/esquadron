@@ -2,6 +2,7 @@ package tecolotl.web.profesor;
 
 import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.alumno.modelo.AlumnoModelo;
+import tecolotl.nucleo.sesion.PersonaSesionBean;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
 import javax.annotation.PostConstruct;
@@ -25,6 +26,9 @@ public class AgregarCsvControlador implements Serializable {
     private ProfesorControlador profesorControlador;
 
     @Inject
+    private PersonaSesionBean personaSesionBean;
+
+    @Inject
     private CicloEscolarSessionBean cicloEscolarSessionBean;
 
     @Inject
@@ -33,15 +37,16 @@ public class AgregarCsvControlador implements Serializable {
     private int totalAlumno;
     private int alumnosAsignado;
     private List<AlumnoModelo> alumnoModeloLista;
+    private List<String> apodos;
     private AlumnoModelo alumnoModelo;
 
     @PostConstruct
     public void inicio() {
-        logger.info("cons");
         alumnoModelo = new AlumnoModelo();
         alumnoModeloLista = new ArrayList<>();
         totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
+        apodos = personaSesionBean.buscaApodo(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
     }
 
     public void agregarLista() {
@@ -84,6 +89,14 @@ public class AgregarCsvControlador implements Serializable {
 
     public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
         this.alumnoModelo = alumnoModelo;
+    }
+
+    public List<String> getApodos() {
+        return apodos;
+    }
+
+    public void setApodos(List<String> apodos) {
+        this.apodos = apodos;
     }
 
 }
