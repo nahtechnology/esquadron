@@ -247,6 +247,40 @@ function validarFila(num) {
 
 }
 
+function cargaVista() {
+   var  salida;
+    var contrasenias = [];
+    while (contrasenias.length < 2) {
+        contrasenias.push(new Contrasenia());
+        contrasenias = removeDups(contrasenias);
+    }
+    salida = contrasenias.sort().join(',');
+    return salida;
+}
+
+function Contrasenia() {
+    this.x = Math.floor(Math.random() * 7);
+    this.y = Math.floor(Math.random() * 7);
+}
+
+Contrasenia.prototype.equals = function (contrasenia) {
+    return this.x === contrasenia.x && this.y === contrasenia.y;
+};
+
+Contrasenia.prototype.toString = function () {
+    return this.x.toString().concat(':').concat(this.y.toString());
+};
+
+function removeDups(names) {
+    let unique = {};
+    names.forEach(function(i) {
+        if(!unique[i]) {
+            unique[i] = true;
+        }
+    });
+    return Object.keys(unique);
+}
+
 
 function insertaAlumno(evento) {
     let apodo = document.getElementById('formulario-alumno:apodo');
@@ -256,6 +290,7 @@ function insertaAlumno(evento) {
     let fechaNacimiento = document.getElementById('formulario-alumno:fecha-nacimiento');
     let sexo = document.getElementById('formulario-alumno:sexo');
     let nivelLenguaje = document.getElementById('formulario-alumno:nivel-lenguaje');
+    let contrasena = document.getElementById('formulario-alumno:contrasenia');
     let botonEnviar = document.getElementById('formulario-alumno:enviar');
     for (let indice = 0; indice < tablaBuena.tBodies[0].rows.length; indice++) {
         let celdas = tablaBuena.tBodies[0].rows[indice].querySelectorAll('td');
@@ -266,6 +301,7 @@ function insertaAlumno(evento) {
         fechaNacimiento.value = celdas[4].textContent;
         sexo.value = celdas[5].textContent.trim();
         nivelLenguaje.value = celdas[6].textContent;
+        contrasena.value = cargaVista();
         botonEnviar.click();
     }
     document.getElementById('formulario-alumno:insertar').click();

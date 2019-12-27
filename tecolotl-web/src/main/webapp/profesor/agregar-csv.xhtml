@@ -120,6 +120,7 @@
             <h:inputHidden id="fecha-nacimiento" value="#{agregarCsvControlador.alumnoModelo.nacimiento}"/>
             <h:inputHidden id="sexo" value="#{agregarCsvControlador.alumnoModelo.sexo}"/>
             <h:inputHidden id="nivel-lenguaje" value="#{agregarCsvControlador.alumnoModelo.nivelLenguajeModelo.valor}"/>
+            <h:inputHidden id="contrasenia" value="#{agregarCsvControlador.alumnoModelo.contrasenia}"/>
             <h:commandButton id="enviar" style="display: none">
                 <f:ajax execute="@form" listener="#{agregarCsvControlador.agregarLista()}"/>
             </h:commandButton>
