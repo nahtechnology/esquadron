@@ -91,7 +91,7 @@
                         <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Fecha Nacimiento</span></th>
                         <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Nivel Lenguaje</span></th>
                         <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Genero</span></th>
-                        <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Validar</span></th>
+                        <th class="uk-text-center"><span class="letra-tabla uk-text-bold">#{etiqueta['options']}</span></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -141,15 +141,14 @@
             <h:inputHidden id="nombre" value="#{agregarCsvControlador.alumnoModelo.nombre}"/>
             <h:inputHidden id="apellido-paterno" value="#{agregarCsvControlador.alumnoModelo.apellidoPaterno}"/>
             <h:inputHidden id="apellido-materno" value="#{agregarCsvControlador.alumnoModelo.apellidoMaterno}"/>
-            <h:inputHidden id="fecha-nacimiento" value="#{agregarCsvControlador.alumnoModelo.nacimiento}"/>
+            <h:inputHidden id="fecha-nacimiento" value="#{agregarCsvControlador.alumnoModelo.nacimiento}">
+                <f:convertDateTime pattern="dd/MM/yyyy"/>
+            </h:inputHidden>
             <h:inputHidden id="sexo" value="#{agregarCsvControlador.alumnoModelo.sexo}"/>
             <h:inputHidden id="nivel-lenguaje" value="#{agregarCsvControlador.alumnoModelo.nivelLenguajeModelo.valor}"/>
             <h:inputHidden id="contrasenia" value="#{agregarCsvControlador.alumnoModelo.contrasenia}"/>
-            <h:commandButton id="enviar" style="display: none">
-                <f:ajax execute="@form" listener="#{agregarCsvControlador.agregarLista()}"/>
-            </h:commandButton>
-            <h:commandButton id="insertar" style="display: none">
-                <f:ajax listener="#{agregarCsvControlador.inserta}"/>
+            <h:commandButton id="enviar" style="display: none" actionListener="#{agregarCsvControlador.inserta}">
+                <f:ajax execute="@form"/>
             </h:commandButton>
         </h:form>
     </ui:define>

@@ -134,20 +134,12 @@ Alumno.prototype.insertaDatos = function (tabla) {
     }else {
         celdaGenero.innerHTML = this.genero;
     }
-
-    if (conteo>0){
-        let  celdaValida = fila.insertCell(-1);
-        let boton = document.createElement("span");
-        boton.classList.add('uk-icon-button','uk-margin-small-right');
-        boton.setAttribute('uk-icon','check');
-        celdaValida.appendChild(boton);
-    }else{
-        let  celdaValida = fila.insertCell(-1);
-        let boton = document.createElement("span");
-        boton.classList.add('uk-icon-button','uk-margin-small-right');
-        boton.setAttribute('uk-icon','check');
-        celdaValida.appendChild(boton);
-    }
+    let  celdaValida = fila.insertCell(-1);
+    let boton = document.createElement("span");
+    boton.classList.add('uk-icon-button','uk-margin-small-right');
+    boton.setAttribute('uk-icon','cloud-upload');
+    boton.addEventListener('click', insertaAlumno);
+    celdaValida.appendChild(boton);
 };
 function cargaArchivo(evento) {
     var fileReader = new FileReader();
@@ -283,6 +275,7 @@ function removeDups(names) {
 
 
 function insertaAlumno(evento) {
+    let celdas = evento.target.parentElement.parentElement.parentElement.querySelectorAll('td');
     let apodo = document.getElementById('formulario-alumno:apodo');
     let nombre = document.getElementById('formulario-alumno:nombre');
     let apelldioPaterno = document.getElementById('formulario-alumno:apellido-paterno');
@@ -292,17 +285,13 @@ function insertaAlumno(evento) {
     let nivelLenguaje = document.getElementById('formulario-alumno:nivel-lenguaje');
     let contrasena = document.getElementById('formulario-alumno:contrasenia');
     let botonEnviar = document.getElementById('formulario-alumno:enviar');
-    for (let indice = 0; indice < tablaBuena.tBodies[0].rows.length; indice++) {
-        let celdas = tablaBuena.tBodies[0].rows[indice].querySelectorAll('td');
-        apodo.value = celdas[0].textContent;
-        nombre.value = celdas[1].textContent;
-        apelldioPaterno.value = celdas[2].textContent;
-        apelldioMaterno.value = celdas[3].textContent;
-        fechaNacimiento.value = celdas[4].textContent;
-        sexo.value = celdas[5].textContent.trim();
-        nivelLenguaje.value = celdas[6].textContent;
-        contrasena.value = cargaVista();
-        botonEnviar.click();
-    }
-    document.getElementById('formulario-alumno:insertar').click();
+    apodo.value = celdas[0].textContent;
+    nombre.value = celdas[1].textContent;
+    apelldioPaterno.value = celdas[2].textContent;
+    apelldioMaterno.value = celdas[3].textContent;
+    fechaNacimiento.value = celdas[4].textContent;
+    sexo.value = celdas[5].textContent.trim();
+    nivelLenguaje.value = celdas[6].textContent;
+    contrasena.value = cargaVista();
+    botonEnviar.click();
 }

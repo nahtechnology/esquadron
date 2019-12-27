@@ -6,11 +6,12 @@ import tecolotl.nucleo.sesion.PersonaSesionBean;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.AbortProcessingException;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
@@ -36,27 +37,19 @@ public class AgregarCsvControlador implements Serializable {
 
     private int totalAlumno;
     private int alumnosAsignado;
-    private List<AlumnoModelo> alumnoModeloLista;
     private List<String> apodos;
     private AlumnoModelo alumnoModelo;
 
     @PostConstruct
     public void inicio() {
         alumnoModelo = new AlumnoModelo();
-        alumnoModeloLista = new ArrayList<>();
         totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
         apodos = personaSesionBean.buscaApodo(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
     }
 
-    public void agregarLista() {
-        logger.info(alumnoModelo.toString());
-        alumnoModeloLista.add(alumnoModelo);
-        alumnoModelo = new AlumnoModelo();
-    }
-
-    public void inserta() {
-        logger.info(alumnoModeloLista.toString());
+    public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {
+        logger.info(ajaxBehaviorEvent.toString());
     }
 
     public int getTotalAlumno() {
@@ -73,14 +66,6 @@ public class AgregarCsvControlador implements Serializable {
 
     public void setAlumnosAsignado(int alumnosAsignado) {
         this.alumnosAsignado = alumnosAsignado;
-    }
-
-    public List<AlumnoModelo> getAlumnoModeloLista() {
-        return alumnoModeloLista;
-    }
-
-    public void setAlumnoModeloLista(List<AlumnoModelo> alumnoModeloLista) {
-        this.alumnoModeloLista = alumnoModeloLista;
     }
 
     public AlumnoModelo getAlumnoModelo() {
