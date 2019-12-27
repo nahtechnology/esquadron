@@ -14,17 +14,15 @@
         <f:event type="postValidate" listener="#{grupoAlumnoControlador.validaParametro}"/>
     </f:metadata>
     <ui:define name="menu">
-        <div class="">
-            <ul class="uk-subnav uk-visible@m " uk-margin="">
+        <div>
+            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                <!-- <li ><h:link outcome="tablero" value="#{etiqueta['home']}" styleClass="borde-home"/></li>-->
-                <li class="borde-menu1">
+                <li><h:link outcome="tablero" value="#{etiqueta['home']}"/></li>
+                <li><span>Student Administration</span></li>
+                <li class="borde-menu2">
                     <h:form><h:commandButton action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
                 </li>
             </ul>
-            <ol class="uk-breadcrumb">
-                <li><h:link outcome="tablero" value="#{etiqueta['home']}"/></li>
-                <li><span>Student Administration</span></li>
-            </ol>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>

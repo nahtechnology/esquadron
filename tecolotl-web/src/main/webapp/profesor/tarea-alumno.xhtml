@@ -15,17 +15,15 @@
     <ui:define name="menu">
         <div>
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-               <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
-               <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
-               <li class="boton-cerrar">
-                   <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
-               </li>
-            </ul>
-            <ol class="uk-breadcrumb">
-                <li><a href="#">Principal</a></li>
-                <li><a href="#">Student Administration</a></li>
+              <!-- <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
+               <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>-->
+                <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
+                <li><h:link outcome="tablero" value="Student Administration"/></li>
                 <li><span>Student Homework</span></li>
-            </ol>
+                <li class="boton-cerrar">
+                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+                </li>
+            </ul>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
@@ -52,8 +50,8 @@
             <div class="uk-container uk-container-expand">
                 <ul class="uk-subnav uk-margin-top nav-default-profesor2 uk-subnav-alumno2">
                     <li class="uk-active" data-uk-filter-control=".actividad-card"><a href="#">Actividad/Alumno</a></li>
-                    <li data-uk-filter-control=".tarea-card"><a href="#">Tareas</a></li>
-                    <li data-uk-filter-control=".nivel-card "><a href="#">Asignación de nivel</a></li>
+                    <!--<li data-uk-filter-control=".tarea-card"><a href="#">Tareas</a></li>
+                    <li data-uk-filter-control=".nivel-card "><a href="#">Asignación de nivel</a></li>-->
                 </ul>
                 <div class="uk-grid" uk-grid="">
                     <div class="uk-width-1-3@m uk-first-column uk-margin-bottom">

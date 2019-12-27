@@ -12,13 +12,11 @@
 ul > li > span {
     font-family: 'Sniglet', "Arial Black", serif;
     color: black !important;
-    text-transform: capitalize !important;
     border: 3px solid var(--turquesa-primary-color);
     height: 28px;
     border-radius: 5px;
     text-align: center;
     font-weight: bold;
-    margin-top: 19px;
     padding-top: 7px;
     padding-left: 10px;
     padding-right: 10px;
@@ -44,13 +42,12 @@ ul > li > span {
 
 .borde-menu{
     border: 3px solid var(--color-nav-primary);
-    height: 28px;
-    width: 130px;
+    height: 19px;
     border-radius: 5px;
     font-weight: bold;
     padding-top: 7px;
-    margin-top: 19px;
-    left: 373%;
+    margin-top: 18px !important;
+    left: 315%;
 }
 
 .borde-menu > form > a{
