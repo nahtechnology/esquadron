@@ -290,8 +290,8 @@ function insertaAlumno(evento) {
     apelldioPaterno.value = celdas[2].textContent;
     apelldioMaterno.value = celdas[3].textContent;
     fechaNacimiento.value = celdas[4].textContent;
-    sexo.value = celdas[5].textContent.trim();
-    nivelLenguaje.value = celdas[6].textContent;
+    sexo.value = celdas[6].textContent.trim();
+    nivelLenguaje.value = celdas[5].textContent;
     contrasena.value = cargaVista();
     botonEnviar.click();
 }

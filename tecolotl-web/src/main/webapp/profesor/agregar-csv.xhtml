@@ -146,9 +146,11 @@
             </h:inputHidden>
             <h:inputHidden id="sexo" value="#{agregarCsvControlador.alumnoModelo.sexo}"/>
             <h:inputHidden id="nivel-lenguaje" value="#{agregarCsvControlador.alumnoModelo.nivelLenguajeModelo.valor}"/>
-            <h:inputHidden id="contrasenia" value="#{agregarCsvControlador.alumnoModelo.contrasenia}"/>
-            <h:commandButton id="enviar" style="display: none" actionListener="#{agregarCsvControlador.inserta}">
-                <f:ajax execute="@form"/>
+            <h:inputHidden id="contrasenia" value="#{agregarCsvControlador.alumnoModelo.contrasenia}">
+                <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+            </h:inputHidden>
+            <h:commandButton id="enviar" style="display: none">
+                <f:ajax execute="@form" listener="#{agregarCsvControlador.inserta}"/>
             </h:commandButton>
         </h:form>
     </ui:define>

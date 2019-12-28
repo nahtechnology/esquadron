@@ -3,6 +3,7 @@ package tecolotl.web.profesor;
 import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.nucleo.sesion.PersonaSesionBean;
+import tecolotl.profesor.scope.AlumnoGrupoScope;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
 import javax.annotation.PostConstruct;
@@ -27,10 +28,16 @@ public class AgregarCsvControlador implements Serializable {
     private ProfesorControlador profesorControlador;
 
     @Inject
+    private ProfesorGrupoControlador profesorGrupoControlador;
+
+    @Inject
     private PersonaSesionBean personaSesionBean;
 
     @Inject
     private CicloEscolarSessionBean cicloEscolarSessionBean;
+
+    @Inject
+    private AlumnoGrupoScope alumnoGrupoScope;
 
     @Inject
     private Logger logger;
@@ -49,7 +56,7 @@ public class AgregarCsvControlador implements Serializable {
     }
 
     public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {
-        logger.info(ajaxBehaviorEvent.toString());
+        alumnoGrupoScope.inserta(alumnoModelo, profesorGrupoControlador.getGrupoModelo().getId());
     }
 
     public int getTotalAlumno() {
