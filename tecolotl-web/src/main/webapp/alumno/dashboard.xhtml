@@ -158,7 +158,7 @@
                                     </h:panelGroup>
                                 </div>
                                 <div class="imagen-flexible">
-                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.bar.icon.match']}; pos: right "  />
+                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.words']}; pos: right "  />
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
                                         <span>0%</span>
                                         <progress class="uk-progress color3" value="#{tareasProgresoControlador.tareaResuetasModeloLista[2].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total}"/>
@@ -169,7 +169,7 @@
                             <h:panelGroup id="tareas2" layout="block" styleClass="uk-grid uk-child-width-1-3@m uk-grid" pt:uk-grid="" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}">
                                 <div class="fondo-comic" style="border: 6px solid white; padding: 20px 0;">
                                     <div class="imagen-flexible">
-                                        <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.words']}; pos: right "/>
+                                        <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.bar.icon.match']}; pos: right "/>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color4" value="#{tareasProgresoControlador.tareaResuetasModeloLista[3].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total}"/>
