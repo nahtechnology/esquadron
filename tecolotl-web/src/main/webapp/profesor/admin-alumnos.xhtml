@@ -40,6 +40,7 @@
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="nah.css"/>
         <h:outputStylesheet library="css" name="profesor/admin-alumnos.css"/>
+        <h:outputStylesheet library="css" name="/profesor/scroll-profesor.css"/>
         <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Student Administration</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -369,8 +370,8 @@
         <h:panelGroup layout="block" id="modal-password" styleClass="" pt:uk-modal="">
             <div class="uk-modal-dialog">
                 <button class="uk-modal-close-default" type="button" uk-close=""/>
-                <div class="uk-modal-header">
-                    <h2 class="uk-modal-title">Headline</h2>
+                <div class="uk-modal-header header-color-card">
+                    <h2 class="uk-modal-title">Passwords</h2>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk-modal-body" pt:uk-overflow-auto="" >
                     <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumno">
@@ -385,6 +386,7 @@
                 </h:panelGroup>
 
                 <div class="uk-modal-footer uk-text-right">
+                    <button class="boton-escuadron-base-secundary" id="boton" type="button">Descardar</button>
                     <button class="boton-maestro-base uk-modal-close" type="button">Close</button>
                 </div>
             </div>
@@ -452,6 +454,21 @@
     </ui:define>
     <ui:define name="file-js">
         <h:outputScript library="js" name="/profesor/contrasena.js" />
+        <h:outputScript library="js" name="/profesor/html2pdf.js"/>
+        <script type="application/javascript">
+            document.querySelector('#boton').addEventListener('click',generatePDF);
+
+            function generatePDF() {
+                // Choose the element that our invoice is rendered in.
+                // const element = document.getElementById("modal-password");
+                const  element = document.querySelector('#modal-password .uk-modal-body');
+                // Choose the element and save the PDF for our user.
+                html2pdf()
+                    .set()
+                    .from(element)
+                    .save();
+            }
+        </script>
     </ui:define>
 </ui:composition>
 

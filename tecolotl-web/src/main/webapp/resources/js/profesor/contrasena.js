@@ -8,6 +8,7 @@ passwords.forEach(function (contra,indice) {
     var img = 0;
 
     var cadena = contra.innerHTML.split(',');
+    contra.innerHTML = "";
     cadena.forEach(function (cuenta) {
         let cadenita;
         cadenita = cuenta.split(':');
@@ -33,9 +34,8 @@ passwords.forEach(function (contra,indice) {
                 img+=parseInt(corde);
                 console.log(img);
                 imagen.src = "../resources/img/alumno/iconos-login/" + img + ".svg";
-                imagen.style.width = "50px";
-                passwords[indice].innerHTML="";
-                passwords[indice].appendChild(imagen);
+                // imagen.style.marginLeft = "5px";
+                contra.appendChild(imagen);
             }
         });
     })
