@@ -42,7 +42,8 @@ public class AlumnoGrupoScope {
         alumnoEntidad.setApellidoMaterno(alumnoModelo.getApellidoMaterno());
         alumnoEntidad.setNacimiento(alumnoModelo.getNacimiento());
         alumnoEntidad.setSexo(alumnoModelo.getSexo());
-        alumnoEntidad.setNivelLenguajeEntidad(new NivelLenguajeEntidad(alumnoModelo.getNivelLenguajeModelo().getClave()));
+        NivelLenguajeEntidad nivelLenguajeEntidad = new NivelLenguajeEntidad(alumnoModelo.getNivelLenguajeModelo().getClave());
+        alumnoEntidad.setNivelLenguajeEntidad(nivelLenguajeEntidad);
         alumnoEntidad.setContrasenia(alumnoModelo.getContrasenia());
         alumnoEntidad.setContraseniaPadreFamilia(new byte[]{});
         alumnoEntidad.setCorreoPadreFamilia("sincorreo@servidor.com");

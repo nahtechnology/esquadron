@@ -145,7 +145,7 @@
                 <f:convertDateTime pattern="dd/MM/yyyy"/>
             </h:inputHidden>
             <h:inputHidden id="sexo" value="#{agregarCsvControlador.alumnoModelo.sexo}"/>
-            <h:inputHidden id="nivel-lenguaje" value="#{agregarCsvControlador.alumnoModelo.nivelLenguajeModelo.valor}"/>
+            <h:inputHidden id="nivel-lenguaje" value="#{agregarCsvControlador.alumnoModelo.nivelLenguajeModelo.clave}"/>
             <h:inputHidden id="contrasenia" value="#{agregarCsvControlador.alumnoModelo.contrasenia}">
                 <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
             </h:inputHidden>

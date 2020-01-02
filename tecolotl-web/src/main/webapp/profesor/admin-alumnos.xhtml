@@ -204,7 +204,7 @@
                                                      label="apodo"
                                                      value="#{grupoAlumnoControlador.alumnoModelo.apodo}">
                                             <f:validateRequired/>
-                                            <f:validateLength minimum="4" maximum="50"/>
+                                            <f:validateLength minimum="4" maximum="40"/>
                                         </h:inputText>
                                     </div>
                                     <h:message for="input-nick" styleClass="uk-alert-danger"/>
@@ -316,7 +316,7 @@
                                     <h:inputHidden id="input-secret-password"
                                                    value="#{grupoAlumnoControlador.alumnoModelo.contrasenia}">
                                         <f:validateRequired/>
-                                        <f:converter converterId="tecoltol.web.convertidor.Contrasenia"/>
+                                        <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                     </h:inputHidden>
                                 </div>
                                 <h:message for="input-secret-password" styleClass="uk-alert-danger"/>

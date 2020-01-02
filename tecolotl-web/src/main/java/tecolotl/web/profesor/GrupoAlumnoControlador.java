@@ -67,7 +67,6 @@ public class GrupoAlumnoControlador implements Serializable {
     public void inicio() {
         nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
         alumnoModelo = new AlumnoModelo();
-        alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo());
         totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
         buscaTotalAlumno();
     }

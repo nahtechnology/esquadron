@@ -31,7 +31,7 @@ public class CatalagoEntidad {
     @Basic
     @Column(name = "valor", unique = true)
     @NotNull
-    @Size(min = 4, max = 30)
+    @Size(min = 2, max = 30)
     public String getValor() {
         return valor;
     }

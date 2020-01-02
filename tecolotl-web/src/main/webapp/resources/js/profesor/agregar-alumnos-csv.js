@@ -291,7 +291,28 @@ function insertaAlumno(evento) {
     apelldioMaterno.value = celdas[3].textContent;
     fechaNacimiento.value = celdas[4].textContent;
     sexo.value = celdas[6].textContent.trim();
-    nivelLenguaje.value = celdas[5].textContent;
+    switch (celdas[5].textContent) {
+        case 'A1':
+            nivelLenguaje.value = 1;
+            break;
+        case 'A2':
+            nivelLenguaje.value = 2;
+            break;
+        case 'B1':
+            nivelLenguaje.value = 3;
+            break;
+        case 'B2':
+            nivelLenguaje.value = 4;
+            break;
+        case 'C1':
+            nivelLenguaje.value = 5;
+            break;
+        case 'C2':
+            nivelLenguaje.value = 6;
+            break;
+    }
     contrasena.value = cargaVista();
     botonEnviar.click();
+    evento.target.parentElement.setAttribute('uk-icon','check');
+    evento.target.parentElement.removeEventListener("click", insertaAlumno);
 }
