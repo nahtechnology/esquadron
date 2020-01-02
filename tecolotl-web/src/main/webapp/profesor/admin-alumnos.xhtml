@@ -72,13 +72,14 @@
             <div class="botones uk-width-2-3@m">
                 <h:button styleClass="boton-maestro-base" value="regresar" outcome="tablero"/>
                 <h:button styleClass="boton-escuadron-base" value="agregar-csv" outcome="agregar-csv"/>
+                <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-password">passwords</button>
                 <button class="boton-escuadron-base reporte"
                         disabled="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista ? 'disabled' : ''}"
                         data-grupo="#{profesorGrupoControlador.grupoModelo.grupo}"
                         data-grado="#{profesorGrupoControlador.grupoModelo.grado}">
                     reporte
                 </button>
-                <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>
+                <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base" disabled=" " >agregar</button>
             </div>
         </div>
 
@@ -363,6 +364,50 @@
             </h:form>
         </h:panelGroup>
         <!--  FIN Modal Eliminar -->
+
+<!--        Modal Password-->
+        <h:panelGroup layout="block" id="modal-password" styleClass="" pt:uk-modal="">
+            <div class="uk-modal-dialog">
+                <button class="uk-modal-close-default" type="button" uk-close=""/>
+                <div class="uk-modal-header">
+                    <h2 class="uk-modal-title">Headline</h2>
+                </div>
+                <h:panelGroup layout="block" styleClass="uk-modal-body" pt:uk-overflow-auto="" >
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
+
+                </h:panelGroup>
+
+                <div class="uk-modal-footer uk-text-right">
+                    <button class="boton-maestro-base uk-modal-close" type="button">Close</button>
+                </div>
+            </div>
+
+        </h:panelGroup>
+
+
         <script type="text/javascript">
             var modalEditar;
             var modalDescarga;
@@ -420,6 +465,9 @@
         </script>
         <h:outputScript library="js" name="nah.js"/>
         <h:outputScript library="js" name="profesor/admin-alumnos.js"/>
+    </ui:define>
+    <ui:define name="file-js">
+        <h:outputScript library="js" name="/profesor/contrasena.js" />
     </ui:define>
 </ui:composition>
 
