@@ -165,7 +165,7 @@
 h1{
     font-size: 30px;
     font-weight: bold;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 [class^="bmap-"] + span{

@@ -11,12 +11,19 @@
         <f:viewAction action="#{listaMapaMentalControlador.busca}"/>
     </f:metadata>
     <ui:define name="menu">
-        <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-            <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-            <ui:remove>
-            <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
-            </ui:remove>
-        </ul>
+        <div>
+            <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+                <!-- <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
+                 <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>-->
+                <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
+                <li><h:link outcome="tablero" value="Student Administration"/></li>
+                <li><h:link outcome="tablero" value="Student Homework"/></li>
+                <li><span>Think-Develop And Share</span></li>
+                <li class="boton-cerrar">
+                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+                </li>
+            </ul>
+        </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
         </div>
@@ -34,6 +41,8 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
         <h:outputStylesheet library="css" name="/profesor/mapa-mental.css"/>
+
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Think-Develop And Share</h1></div>
 
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
