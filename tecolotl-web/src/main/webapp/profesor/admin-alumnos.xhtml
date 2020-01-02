@@ -373,31 +373,15 @@
                     <h2 class="uk-modal-title">Headline</h2>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk-modal-body" pt:uk-overflow-auto="" >
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-                    <p>Mauricio Garcia Gonzalez <span>0:1,0:1</span></p>
-
+                    <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumno">
+                        <p> #{alumno.nombre}
+                            <span>
+                                <h:outputText value="#{alumno.contrasenia}">
+                                    <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                </h:outputText>
+                            </span>
+                        </p>
+                    </ui:repeat>
                 </h:panelGroup>
 
                 <div class="uk-modal-footer uk-text-right">

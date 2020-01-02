@@ -161,4 +161,23 @@ public class GrupoAlumnoSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
+    public List<AlumnoModelo> detalleAlumnos(@NotNull Integer idGrupo) {
+        logger.fine(idGrupo.toString());
+        Query query = entityManager.createNativeQuery("SELECT a.id,a.apodo,a.nombre,a.apellido_paterno,a.apellido_materno,pgp_sym_decrypt_bytea(" +
+                "a.contrasenia, 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256') AS contrasenia " +
+                "FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id WHERE ga.id_grupo = ?");
+        query.setParameter(1, idGrupo);
+        List<AlumnoModelo> alumnoModeloLista = new ArrayList<>();
+        for (Object[] objetos : (List<Object[]>)query.getResultList()) {
+            AlumnoModelo alumnoModelo = new AlumnoModelo();
+            alumnoModelo.setId((Integer) objetos[0]);
+            alumnoModelo.setApodo((String)objetos[1]);
+            alumnoModelo.setNombre((String) objetos[2]);
+            alumnoModelo.setApellidoPaterno((String) objetos[3]);
+            alumnoModelo.setApellidoMaterno((String) objetos[4]);
+            alumnoModelo.setContrasenia((byte[]) objetos[5]);
+            alumnoModeloLista.add(alumnoModelo);
+        }
+        return alumnoModeloLista;
+    }
 }

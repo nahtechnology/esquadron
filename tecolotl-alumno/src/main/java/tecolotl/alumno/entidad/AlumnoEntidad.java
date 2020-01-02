@@ -49,6 +49,11 @@ public class AlumnoEntidad extends PersonaEntidad {
         setApellidoMaterno(apellidoMaterno);
     }
 
+    public AlumnoEntidad(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String apodo, byte[] contrasenia) {
+        super(nombre, apellidoPaterno, apellidoMaterno, apodo, contrasenia);
+        this.id = id;
+    }
+
     @Id
     @GeneratedValue(generator = "generador_alumno")
     public Integer getId() {

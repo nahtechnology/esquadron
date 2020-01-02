@@ -18,8 +18,11 @@ import java.util.StringJoiner;
         name = "GrupoAlumnoEntidad.buscaTotalAlumno",
         query = "SELECT COUNT(ga.grupoAlumnoEntidadPK.alumnoEntidad.id) FROM GrupoAlumnoEntidad ga JOIN ga.grupoAlumnoEntidadPK.grupoEntidad g " +
                 "JOIN g.cicloEscolarEntidad ce WHERE ce.activo = TRUE AND ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo " +
-                "GROUP BY ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo"
-    )
+                "GROUP BY ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo"),
+    @NamedQuery(
+        name = "GrupoAlumnoEntidad.buscaContrasenia",
+        query = "SELECT ga " +
+                "FROM GrupoAlumnoEntidad ga JOIN FETCH ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo")
 })
 public class GrupoAlumnoEntidad {
 

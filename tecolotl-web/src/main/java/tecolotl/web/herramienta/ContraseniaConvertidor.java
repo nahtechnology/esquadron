@@ -19,6 +19,9 @@ public class ContraseniaConvertidor implements Converter {
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object value) {
+        if (value instanceof String) {
+            return value.toString();
+        }
         return value == null ? "" : new String((byte[])value, charset);
     }
 }

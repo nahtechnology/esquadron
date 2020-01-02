@@ -261,4 +261,20 @@ public class GrupoAlumnoSesionBeanTest {
         int grupoAEliminado = grupoAlumnoSesionBean.elimina(grupoAlumnoModelo);
         Assert.assertFalse(grupoAEliminado == 0);
     }
+
+    @Test
+    public void detalleAlumno() {
+        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.detalleAlumnos(1);
+        Assert.assertNotNull(alumnoModeloLista);
+        Assert.assertFalse(alumnoModeloLista.isEmpty());
+        alumnoModeloLista.forEach(alumnoModelo -> {
+            System.out.println(alumnoModelo);
+            Assert.assertNotNull(alumnoModelo.getId());
+            Assert.assertNotNull(alumnoModelo.getNombre());
+            Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
+            Assert.assertNotNull(alumnoModelo.getApellidoMaterno());
+            Assert.assertNotNull(alumnoModelo.getApodo());
+            Assert.assertNotNull(alumnoModelo.getContrasenia());
+        });
+    }
 }

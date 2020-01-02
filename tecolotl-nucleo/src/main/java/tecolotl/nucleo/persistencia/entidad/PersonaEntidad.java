@@ -19,6 +19,17 @@ public class PersonaEntidad {
     private byte[] contrasenia;
     private Character sexo;
 
+    public PersonaEntidad() {
+    }
+
+    public PersonaEntidad(String nombre, String apellidoPaterno, String apellidoMaterno, String apodo, byte[] contrasenia) {
+        this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.apodo = apodo;
+        this.contrasenia = contrasenia;
+    }
+
     @Basic
     @Column(name = "nombre")
     @Size(min = 3, max = 40)
