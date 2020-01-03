@@ -102,6 +102,16 @@
                 </redirect-param>
             </redirect>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>admin-alumnos</from-outcome>
+            <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>grupo</name>
+                    <value>#{profesorGrupoControlador.grupoModelo.id}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
