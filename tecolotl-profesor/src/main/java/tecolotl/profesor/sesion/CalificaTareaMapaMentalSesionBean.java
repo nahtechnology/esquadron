@@ -109,7 +109,7 @@ public class CalificaTareaMapaMentalSesionBean {
     public List<TareaMapaMentalModelo> buscaCalificados(@NotNull Integer idTarea) {
         Query query = entityManager.createNativeQuery("SELECT tma.cardinalidad,tma.vuelta,count(tma.texto_respuesta) AS total_respuesta, ctmm.puntaje " +
                 "FROM alumno.tarea_mapamental_actividad tma JOIN profesor.califica_tarea_mapamental ctmm ON tma.id_tarea = ctmm.id_tarea AND " +
-                "tma.cardinalidad = ctmm.cardinalidad AND tma.vuelta = ctmm.vuelta WHERE tma.id_tarea = 50 GROUP BY tma.cardinalidad, tma.vuelta, ctmm.puntaje", TareaMapaMentalEntidad.class);
+                "tma.cardinalidad = ctmm.cardinalidad AND tma.vuelta = ctmm.vuelta WHERE tma.id_tarea = ? GROUP BY tma.cardinalidad, tma.vuelta, ctmm.puntaje", TareaMapaMentalEntidad.class);
         query.setParameter(1, idTarea);
         return ((List<TareaMapaMentalEntidad>)query.getResultList()).stream().map(TareaMapaMentalModelo::new).collect(Collectors.toList());
     }
