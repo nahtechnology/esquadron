@@ -203,8 +203,10 @@ h1{
     color: white;
 }
 
-.botones > .boton-maestro-base{
-    margin-left: 15px;
+.boton-regresa{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 /*.mapa-mental form .boton-escuadron-base{*/
