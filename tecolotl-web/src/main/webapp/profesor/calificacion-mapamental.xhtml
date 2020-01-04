@@ -18,7 +18,7 @@
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
         <h:panelGroup layout="block" class="mapa-mental">
             <h2 class="uk-text-center">Calificacion Mapa Mental</h2>
-            <h:form styleClass="uk-form-controls uk-grid" pt:uk-grid="" >
+            <h:form id="formulario" styleClass="uk-form-controls uk-grid" pt:uk-grid="" >
                 <h:panelGroup layout="block" styleClass="uk-width-3-4@m uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                     <ui:repeat value="#{calificaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
                         <div>Pregunta:<br/><span>#{tareaMapaMental.pregunta}</span></div>
@@ -28,9 +28,13 @@
                     <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
                     <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
                     <div>
-                        <h:inputTextarea value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}" styleClass="uk-textarea comentario">
+                        <h:outputLabel for="comentario" value="Comentario"/>
+                        <h:inputTextarea value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}"
+                                         id="comentario"
+                                         styleClass="uk-textarea comentario">
                             <f:validateRequired/>
                         </h:inputTextarea>
+                        <h:message for="comentario"/>
                     </div>
                     <div>
                         <h:inputText pt:type="range" pt:min="25" pt:max="100" pt:step="25" styleClass="rango" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
@@ -45,7 +49,7 @@
                     </div>
                     <p>Score: <span style="color: red; font-weight: bold"/></p>
                 </div>
-                <h:commandButton value="Calificar" styleClass="boton-escuadron-base" action="#{calificaMapaMentalControlador.califica}"/>
+                <h:commandButton value="Calificar" styleClass="boton-escuadron-base" action="#{calificaMapaMentalControlador.califica}" onclick="return validaComentario()"/>
             </h:form>
         </h:panelGroup>
         <script type="application/javascript">
@@ -54,14 +58,7 @@
             var rubrica = document.querySelectorAll('.mapa-mental input[type=range] + p > span:first-child + span');
             var score = document.querySelectorAll('.mapa-mental form [class^=bmap-] + p > span');
             var datos = [], texto = [];
-
-            // rubrica.style.color="red";
-            // score.style.color="red";
-            output.forEach(function (value,index) {
-                // value.innerHTML = slider[index].value;
-            });
             rubrica.forEach(function (value,index) {
-
                 switch (slider[index].value) {
                     case "25":
                         rubrica[index].innerHTML = "Deficiente";
@@ -82,9 +79,7 @@
                     default:
                         console.error("Seleccion aun no programada");
                 }
-
             });
-
             slider.forEach(function (value,index){
                 datos[index] = value.value;
                 value.oninput = function() {
@@ -108,13 +103,19 @@
                             break;
                     }
                 };
-
             });
         </script>
-
         <script type="application/javascript">
             var oracion = document.querySelectorAll('.gramatica > div > :nth-child(2n)');
             var respuestaOracion = document.querySelectorAll('.gramatica > div > :nth-child(2n) + div');
+
+            function validaComentario() {
+                if (document.getElementById('formulario:comentario').value === '') {
+                    UIkit.modal.alert('Es necesario escribir un comentario antes de enviar la calificacion');
+                    return false;
+                }
+                return true;
+            }
         </script>
     </ui:define>
 </ui:composition>
