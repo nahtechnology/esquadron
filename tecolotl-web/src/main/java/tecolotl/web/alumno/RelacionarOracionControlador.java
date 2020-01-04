@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -35,6 +36,7 @@ public class RelacionarOracionControlador {
     @PostConstruct
     public void init() {
         tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        tareaRelacionarOracionModeloLista.sort(Comparator.comparing(o -> o.getRelacionarOracionModelo().getId()));
     }
 
     public void llenarTareaModelo(){
