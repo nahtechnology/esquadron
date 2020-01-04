@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -36,14 +37,15 @@ public class RelacionarOracionControlador {
     @PostConstruct
     public void init() {
         tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
-        tareaRelacionarOracionModeloLista.sort(Comparator.comparing(o -> o.getRelacionarOracionModelo().getId()));
     }
 
     public void llenarTareaModelo(){
         String[] respuestas = idRespuesta.split(",");
+        tareaRelacionarOracionModeloLista.sort(Comparator.comparing(o -> o.getRelacionarOracionModelo().getId()));
         for (int i = 0; i < respuestas.length; i++) {
             tareaRelacionarOracionModeloLista.get(i).setRespuesta(Integer.parseInt(respuestas[i]));
         }
+        logger.info(Arrays.toString(respuestas));
         logger.info(tareaRelacionarOracionModeloLista.toString());
         relacionOracionRespuestaScope.respuesta(tareaRelacionarOracionModeloLista);
     }
