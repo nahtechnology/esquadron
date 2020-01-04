@@ -374,10 +374,10 @@
                     <h2 class="uk-modal-title">Passwords</h2>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk-modal-body" pt:uk-overflow-auto="" >
-                    <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumno">
-                        <p> #{alumno.nombre}
+                    <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumnoModelo">
+                        <p> ${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} : ${alumnoModelo.apodo}
                             <span>
-                                <h:outputText value="#{alumno.contrasenia}">
+                                <h:outputText value="${alumnoModelo.contrasenia}">
                                     <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                 </h:outputText>
                             </span>

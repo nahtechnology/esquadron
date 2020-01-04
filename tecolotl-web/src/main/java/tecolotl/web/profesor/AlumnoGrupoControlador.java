@@ -28,7 +28,6 @@ public class AlumnoGrupoControlador {
     @PostConstruct
     public void inicio() {
         alumnoModeloLista = grupoAlumnoSesionBean.detalleAlumnos(profesorGrupoControlador.getGrupoModelo().getId());
-        logger.info(alumnoModeloLista.toString());
     }
 
     public List<AlumnoModelo> getAlumnoModeloLista() {
