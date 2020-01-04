@@ -103,3 +103,19 @@ ul{
     align-content: flex-end;
     flex-wrap: wrap;
 }
+
+.boton-cerrar{
+    border: 3px solid var(--color-nav-primary);
+    height: 21px;
+    width: 130px;
+    border-radius: 5px;
+    font-weight: bold!important;
+    padding-top: 7px !important;
+    margin-top: 19px !important;
+    text-align: center;
+    left: 31%;
+}
+
+.borde-cerrar > form > a{
+    color: #1665B4;
+}
