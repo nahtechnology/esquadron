@@ -178,6 +178,10 @@ h1{
     float: right;
 }
 
+.uk-position-relative > div + a{
+    margin-left: 30%;
+}
+
 /*.mapa-mental form .boton-escuadron-base{*/
 /*    position: relative;*/
 /*    left: calc(60% - (108.91px/2));*/
