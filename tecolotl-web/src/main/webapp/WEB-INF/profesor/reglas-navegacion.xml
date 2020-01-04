@@ -126,6 +126,16 @@
                 </redirect-param>
             </redirect>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>tablero</from-outcome>
+            <to-view-id>/profesor/tarea-alumno.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>idAlumno</name>
+                    <value>#{profesorGrupoControlador.alumnoModelo.id}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
