@@ -50,6 +50,11 @@
 		<location>/error/no-manejable.xhtml</location>
 	</error-page>
 
+	<icon>
+		<small-icon>/resources/img/esquadron.svg</small-icon>
+		<large-icon>/resources/img/esquadron.svg</large-icon>
+	</icon>
+
 	<!--  Project Stage	-->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
