@@ -93,15 +93,10 @@
                         <h:outputLabel for="comentario" value="Comentario"/>
                         <h:inputTextarea value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}"
                                          id="comentario"
-                                         styleClass="uk-textarea comentario">
-                            <f:validateRequired/>
-                        </h:inputTextarea>
-                        <h:message for="comentario"/>
+                                         styleClass="uk-textarea comentario"/>
                     </div>
                     <div>
-                        <h:inputText pt:type="range" pt:min="25" pt:max="100" pt:step="25" styleClass="rango" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}">
-                            <f:validateRequired/>
-                        </h:inputText>
+                        <h:inputText pt:type="range" pt:min="25" pt:max="100" pt:step="25" styleClass="rango" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"/>
                         <p><span /><span style="color: red; font-weight: bold"/></p>
                     </div>
                 </h:panelGroup>
