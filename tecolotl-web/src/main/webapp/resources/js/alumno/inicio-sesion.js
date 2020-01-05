@@ -24,8 +24,8 @@ function cargaContrasenia(evento) {
     let imagenes = alumno.querySelectorAll('img');
     for (let i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
-            x = Math.floor(i / 7);
-            y = i % 7;
+            x = i % 7;
+            y = Math.floor(i / 7);
             seleccionados.push(x.toString().concat(':').concat(y.toString()));
         }
     }
