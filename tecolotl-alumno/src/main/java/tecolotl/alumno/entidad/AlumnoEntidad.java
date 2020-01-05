@@ -9,7 +9,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "alumno", schema = "alumno")
-@SequenceGenerator(name = "generador_alumno", schema = "alumno", sequenceName = "alumno.alumno_seq")
+@SequenceGenerator(name = "generador_alumno", schema = "alumno", sequenceName = "alumno_seq")
 @NamedQueries({
     @NamedQuery(
         name = "AlumnoEntidad.busca",
