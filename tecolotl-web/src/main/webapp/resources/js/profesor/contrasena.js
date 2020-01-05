@@ -34,11 +34,14 @@ passwords.forEach(function (contra,indice) {
                 img+=parseInt(corde);
                 console.log(img);
                 imagen.src = "../resources/img/alumno/iconos-login/" + img + ".svg";
-                // imagen.style.marginLeft = "5px";
+                imagen.style.marginLeft = "5px";
                 contra.appendChild(imagen);
             }
         });
-    })
-})
+    });
+
+});
+
+
 
 });

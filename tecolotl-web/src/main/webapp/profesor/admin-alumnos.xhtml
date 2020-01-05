@@ -373,7 +373,7 @@
                 <div class="uk-modal-header header-color-card">
                     <h2 class="uk-modal-title">Passwords</h2>
                 </div>
-                <h:panelGroup layout="block" styleClass="uk-modal-body" pt:uk-overflow-auto="" >
+                <h:panelGroup layout="block" styleClass="uk-modal-body uk-text-center" pt:uk-overflow-auto="" >
                     <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumnoModelo">
                         <p> ${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} : ${alumnoModelo.apodo}
                             <span>
@@ -457,16 +457,24 @@
         <h:outputScript library="js" name="/profesor/html2pdf.js"/>
         <script type="application/javascript">
             document.querySelector('#boton').addEventListener('click',generatePDF);
+            var contenedorNombre = document.querySelector('.uk-grid');
+            var grupos = contenedorNombre.querySelectorAll('.uk-card .uk-card-body > p');
+            var grupoGrado = "";
 
+            grupos.forEach(function (nombres) {
+                let palabra = nombres.innerText.split(':');
+                grupoGrado += palabra[1];
+            });
+            console.log(grupoGrado);
             function generatePDF() {
                 // Choose the element that our invoice is rendered in.
                 // const element = document.getElementById("modal-password");
                 const  element = document.querySelector('#modal-password .uk-modal-body');
                 // Choose the element and save the PDF for our user.
                 html2pdf()
-                    .set()
+                    .set({ html2canvas: { scale: 4 } })
                     .from(element)
-                    .save();
+                    .save(grupoGrado);
             }
         </script>
     </ui:define>

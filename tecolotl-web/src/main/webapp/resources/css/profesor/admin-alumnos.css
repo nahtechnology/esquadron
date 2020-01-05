@@ -191,6 +191,6 @@ progress[value]{
     left: 125%;
 }
 
-#modal-password .uk-modal-body svg{
-transform: scale(0.1,0.1);
+#modal-password .uk-modal-body > p{
+font-weight: bold;
 }
