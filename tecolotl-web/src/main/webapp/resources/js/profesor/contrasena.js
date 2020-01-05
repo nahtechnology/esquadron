@@ -6,10 +6,11 @@ var passwords = contenedorPassword.querySelectorAll('p > span');
 
 passwords.forEach(function (contra,indice) {
 
+
     var cadena = contra.innerHTML.split(',');
     contra.innerHTML = "";
     cadena.forEach(function (cuenta) {
-        let img = 0;
+        var img = 0;
         let cadenita;
         cadenita = cuenta.split(':');
         console.log(cadenita);
@@ -17,7 +18,6 @@ passwords.forEach(function (contra,indice) {
             var imagen = document.createElement('img');
             if(index === 0){
                 img+=parseInt(corde);
-                console.log(img);
             }else {
                 switch (parseInt(corde)) {
                     case 0:
