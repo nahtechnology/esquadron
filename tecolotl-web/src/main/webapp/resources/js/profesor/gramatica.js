@@ -9,12 +9,12 @@ var calificacion = [];
 var datos = [];
 document.addEventListener('DOMContentLoaded',function (ev) {
     calificarOracion(oracion,respuesta);
-    document.querySelector('#formulario-califica button').addEventListener('click', envioRespuesta);
+    document.querySelector('#formulario-califica input[type=submit]').addEventListener('click', validaRespuesta);
 });
 
 function calificarOracion(oracion,respuesta) {
     oracion.forEach(function (texto,indice) {
-        var textos = new Textos(texto.innerText,respuesta[indice].innerText);
+        var textos = new Textos(texto.innerText,respuesta[indice].value);
         oraciones.push(textos);
     });
     oraciones.forEach(function (value) {
