@@ -251,7 +251,7 @@ function cargaVista() {
 }
 
 function Contrasenia() {
-    this.x = Math.floor(Math.random() * 7);
+    this.x = Math.floor(Math.random() * 4);
     this.y = Math.floor(Math.random() * 7);
 }
 
