@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded',function (ev) {
 
 function calificarOracion(oracion,respuesta) {
     oracion.forEach(function (texto,indice) {
-        var textos = new Textos(texto.innerText,respuesta[indice].value);
+        let oracionTexto = texto.innerHTML.split(".");
+        var textos = new Textos(oracionTexto[0],respuesta[indice].value);
         oraciones.push(textos);
     });
     oraciones.forEach(function (value) {
@@ -90,7 +91,8 @@ function calificarOracion(oracion,respuesta) {
 
         if(calculo <= 25) {
             slider[index].value = "1";
-            score[index].innerHTML = Math.round(calculo);
+            // score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = 25;
             rubrica[index].innerHTML = "Deficiente";
         }
         if(calculo > 25 && calculo <= 50 ){
