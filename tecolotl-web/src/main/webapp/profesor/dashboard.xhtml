@@ -14,12 +14,8 @@
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                 <li><span>#{etiqueta['home']}</span></li>
                 <li class="borde-menu">
-                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
+                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
                 </li>
-                <ui:remove>
-                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/></li>
-                    <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
-                </ui:remove>
             </ul>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
@@ -29,10 +25,6 @@
             <div class="uk-offcanvas-bar">
                 <ul class="uk-nav  nav-sub-offcanvas ">
                     <li class="nav-sub-active"><span class="uk-text-capitalize">#{etiqueta['home']}</span></li>
-                    <ui:remove>
-                    <li class="uk-text-uppercase"><h:link outcome="biblioteca-profesor" styleClass="letra-color-subnav uk-text-capitalize" value="library"/> </li>
-                    <li class="uk-text-uppercase"><h:link outcome="perfil" styleClass="letra-color-subnav uk-text-capitalize" value="edit profile"/></li>
-                    </ui:remove>
                 </ul>
             </div>
         </div>
