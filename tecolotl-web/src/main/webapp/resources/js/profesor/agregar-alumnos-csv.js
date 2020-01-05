@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
     document.querySelector('#tabla-aceptados + div > button').addEventListener('click', insertaAlumno);
-    listApodos = document.querySelector('ul[style="display: none"]').querySelectorAll('li');
+    listApodos = document.querySelector('#apodos').querySelectorAll('li');
     listApodos.forEach(function (apodo) {
         apodos.push(apodo.innerHTML);
     });
@@ -70,8 +70,7 @@ Alumno.prototype.validaGenero = function(){
 };
 
 Alumno.prototype.insertaDatos = function (tabla) {
-    let entrada = document.createElement('input');
-    entrada.setAttribute('type','text');
+
     let fila = tabla.tBodies[0].insertRow();
     let conteo = 0;
     let celdaApodo = fila.insertCell();
@@ -90,7 +89,9 @@ Alumno.prototype.insertaDatos = function (tabla) {
 
 
     if(!this.validaApodo()){
-        celdaApodo.appendChild(entrada).value = this.apodo;
+        let inputApodo = document.createElement('input');
+        inputApodo.setAttribute('type','text');
+        celdaApodo.appendChild(inputApodo).value = this.apodo;
         conteo += 1;
     }else {
             celdaApodo.innerHTML = this.apodo;
@@ -99,37 +100,49 @@ Alumno.prototype.insertaDatos = function (tabla) {
             }
     }
     if(!this.validaNombre()){
-        celdaNombre.appendChild(entrada).value = this.nombre;
+        let inputNombre = document.createElement('input');
+        inputNombre.setAttribute('type','text');
+        celdaNombre.appendChild(inputNombre).value = this.nombre;
         conteo += 1;
     }else {
         celdaNombre.innerHTML = this.nombre;
     }
     if(!this.validaApellidomaterno()){
-        celdaApellidoMaterno.appendChild(entrada).value = this.apellidomaterno;
+        let inputApellidomaterno = document.createElement('input');
+        inputApellidomaterno.setAttribute('type','text');
+        celdaApellidoMaterno.appendChild(inputApellidomaterno).value = this.apellidomaterno;
         conteo += 1;
     }else{
         celdaApellidoMaterno.innerHTML = this.apellidomaterno;
     }
     if(!this.validaApellidopaterno()){
-        celdaApellidoPaterno.appendChild(entrada).value = this.apellidopaterno;
+        let inputApellidopaterno = document.createElement('input');
+        inputApellidopaterno.setAttribute('type','text');
+        celdaApellidoPaterno.appendChild(inputApellidopaterno).value = this.apellidopaterno;
         conteo += 1;
     }else {
         celdaApellidoPaterno.innerHTML = this.apellidopaterno;
     }
     if(!this.validaFecha()){
-        celdaFechaNacimento.appendChild(entrada).value = this.fechanacimento;
+        let inputFecha = document.createElement('input');
+        inputFecha.setAttribute('type','text');
+        celdaFechaNacimento.appendChild(inputFecha).value = this.fechanacimento;
         conteo += 1;
     }else{
         celdaFechaNacimento.innerHTML = this.fechanacimento;
     }
     if(!this.validaNivellenguaje()){
-        celdaNivelLenguaje.appendChild(entrada).value = this.nivellenguaje;
+        let inputLenguaje = document.createElement('input');
+        inputLenguaje.setAttribute('type','text');
+        celdaNivelLenguaje.appendChild(inputLenguaje).value = this.nivellenguaje;
         conteo += 1;
     }else{
         celdaNivelLenguaje.innerHTML = this.nivellenguaje;
     }
     if(!this.validaGenero()){
-        celdaGenero.appendChild(entrada).value = this.genero;
+        let inputGenero = document.createElement('input');
+        inputGenero.setAttribute('type','text');
+        celdaGenero.appendChild(inputGenero).value = this.genero;
         conteo += 1;
     }else {
         celdaGenero.innerHTML = this.genero;
