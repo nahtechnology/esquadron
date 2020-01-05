@@ -36,6 +36,7 @@ public class CalificaMapaMentalControlador {
     }
 
     public String califica() {
+        logger.info(calificaTareaMapaMentalModelo.toString());
         calificaTareaMapaMentalSesionBean.respuesta(calificaTareaMapaMentalModelo);
         return "tareas";
     }

@@ -117,6 +117,10 @@
     <navigation-rule>
         <from-view-id>/profesor/calificacion-mapamental.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>dashboard-maestro</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>tareas</from-outcome>
             <to-view-id>/profesor/lista-mapa-mental.xhtml</to-view-id>
             <redirect include-view-params="true">
@@ -133,6 +137,16 @@
                 <redirect-param>
                     <name>idAlumno</name>
                     <value>#{profesorGrupoControlador.alumnoModelo.id}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>admin-alumnos</from-outcome>
+            <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>grupo</name>
+                    <value>#{profesorGrupoControlador.grupoModelo.id}</value>
                 </redirect-param>
             </redirect>
         </navigation-case>
