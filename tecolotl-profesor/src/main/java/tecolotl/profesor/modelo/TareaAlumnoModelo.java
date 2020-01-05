@@ -9,6 +9,7 @@ public class TareaAlumnoModelo {
     private int id;
     private Date fechaAsignacion;
     private String idActividad;
+    private Short calificacionTrascirpcion;
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
     private Short calificacionGramatica;
@@ -27,6 +28,7 @@ public class TareaAlumnoModelo {
         this.id = tareaAlumnoEntidad.getId();
         this.fechaAsignacion = tareaAlumnoEntidad.getFechaAsignacion();
         this.idActividad = tareaAlumnoEntidad.getIdActividad();
+        this.calificacionTrascirpcion = tareaAlumnoEntidad.getCalificacionTrascirpcion();
         this.calificacionMapamental = tareaAlumnoEntidad.getCalificacionMapamental();
         this.calificacionRelacionarImagen = tareaAlumnoEntidad.getCalificacionRelacionarImagen();
         this.calificacionGramatica = tareaAlumnoEntidad.getCalificacionGramatica();
@@ -66,6 +68,7 @@ public class TareaAlumnoModelo {
     public void setCalificacionGramatica(Short calificacionGramatica) {
         this.calificacionGramatica = calificacionGramatica;
     }
+
     public Short getCalificacionOraciones() {
         return calificacionOraciones;
     }
@@ -104,5 +107,13 @@ public class TareaAlumnoModelo {
 
     public void setIdActividad(String idActividad) {
         this.idActividad = idActividad;
+    }
+
+    public Short getCalificacionTrascirpcion() {
+        return calificacionTrascirpcion;
+    }
+
+    public void setCalificacionTrascirpcion(Short calificacionTrascirpcion) {
+        this.calificacionTrascirpcion = calificacionTrascirpcion;
     }
 }

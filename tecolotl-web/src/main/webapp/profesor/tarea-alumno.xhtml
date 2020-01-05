@@ -137,6 +137,10 @@
                                             </h:outputText>
                                         </h:column>
                                         <h:column>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">transcript</span></f:facet>
+                                            <progress value="#{tareaAlumno.calificacionTrascirpcion}" min="0" max="100"/>
+                                        </h:column>
+                                        <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">

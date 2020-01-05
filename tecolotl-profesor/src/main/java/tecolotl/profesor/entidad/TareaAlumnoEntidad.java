@@ -11,6 +11,7 @@ public class TareaAlumnoEntidad {
     private int id;
     private Date fechaAsignacion;
     private String idActividad;
+    private Short calificacionTrascirpcion;
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
     private Short calificacionGramatica;
@@ -62,6 +63,7 @@ public class TareaAlumnoEntidad {
     public void setCalificacionOraciones(Short calificacionOraciones) {
         this.calificacionOraciones = calificacionOraciones;
     }
+
     @Column(name = "calificacion_relacionar_oracion")
     public Short getCalificacionRelacionarOraciones() {
         return calificacionRelacionarOraciones;
@@ -70,6 +72,7 @@ public class TareaAlumnoEntidad {
     public void setCalificacionRelacionarOraciones(Short calificacionRelacionarOraciones) {
         this.calificacionRelacionarOraciones = calificacionRelacionarOraciones;
     }
+
     @Column(name = "calificacion_completar")
     public Short getCalificacionCompletar() {
         return calificacionCompletar;
@@ -78,6 +81,7 @@ public class TareaAlumnoEntidad {
     public void setCalificacionCompletar(Short calificacionCompletar) {
         this.calificacionCompletar = calificacionCompletar;
     }
+
     @Column(name = "fecha_asignacion ")
     public Date getFechaAsignacion() {
         return fechaAsignacion;
@@ -93,5 +97,14 @@ public class TareaAlumnoEntidad {
 
     public void setIdActividad(String idActividad) {
         this.idActividad = idActividad;
+    }
+
+    @Column(name = "calificacion_transcripcion")
+    public Short getCalificacionTrascirpcion() {
+        return calificacionTrascirpcion;
+    }
+
+    public void setCalificacionTrascirpcion(Short calificacionTrascirpcion) {
+        this.calificacionTrascirpcion = calificacionTrascirpcion;
     }
 }
