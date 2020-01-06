@@ -91,12 +91,15 @@
                         </div>
                         <div class="uk-width-expand uk-text-right panel-icons">
                             <h:form id="formulario-agregar-profesor">
+                                <ui:remove>
                                 <h:commandLink styleClass="uk-icon-link"
                                                pt:uk-icon="icon: plus-circle; ratio: 1.5"
                                                pt:uk-toggle="target: #modal-escuela"
                                                pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000">
                                     <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela" onevent="function limpia(data) { limpiaSelect(data); }"/>
                                 </h:commandLink>
+                                </ui:remove>
+                                <a href="#" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-profesor" uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
                             </h:form>
                         </div>
                     </div>
@@ -138,8 +141,36 @@
             </div>
         </div>
 
-
-
+        <h:panelGroup layout="block" id="modal-profesor" styleClass="uk-modal-container" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-profesor" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            <h:outputText value="Nuevo Profesor" styleClass="letra-titulo" rendered="#{empty administracionProfesorControlador.profesorModelo.id}"/>
+                            <h:outputText value="Actualiza Profesor" styleClass="letra-titulo" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}"/>
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <div uk-grid="">
+                            <div class="uk-width-1-1@s uk-width-1-6@m">
+                                <h:outputLabel value="apodo" for="apodo"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="apodo"
+                                                 value="#{administracionProfesorControlador.profesorModelo.apodo}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="40"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="apodo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <h:commandButton value="enviar"/>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
 
     </ui:define>
 

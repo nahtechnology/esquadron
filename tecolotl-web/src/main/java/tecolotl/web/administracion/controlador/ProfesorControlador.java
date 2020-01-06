@@ -50,4 +50,12 @@ public class ProfesorControlador {
     public void setProfesorModeloLista(List<ProfesorModelo> profesorModeloLista) {
         this.profesorModeloLista = profesorModeloLista;
     }
+
+    public ProfesorModelo getProfesorModelo() {
+        return profesorModelo;
+    }
+
+    public void setProfesorModelo(ProfesorModelo profesorModelo) {
+        this.profesorModelo = profesorModelo;
+    }
 }
