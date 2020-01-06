@@ -7,6 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <ui:composition template="/template/administracion/dashboard.xhtml">
+    <f:metadata>
+        <f:viewParam name="escuela" value="#{administracionProfesorControlador.claveCentroTrabajo}"/>
+    </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{etiqueta['menu']}</li>
@@ -102,8 +105,14 @@
                 </div>
             </div>
         </div>
-
-
+        <h:dataTable id="table-prfesor"
+                     value="#{administracionProfesorControlador.profesorModeloLista}"
+                     var="profesorModelo">
+            <h:column>
+                <f:facet name="haeder">Nombre</f:facet>
+                ${profesorModelo.nombre}
+            </h:column>
+        </h:dataTable>
     </ui:define>
 
 </ui:composition>

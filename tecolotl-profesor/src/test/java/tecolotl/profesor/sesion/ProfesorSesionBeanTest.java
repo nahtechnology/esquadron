@@ -141,7 +141,7 @@ public class ProfesorSesionBeanTest {
     private ProfesorSesionBean profesorSesionBean;
 
     @Test
-    public void busca(){
+    public void busca() {
         List<ProfesorModelo> profesorModeloLista = profesorSesionBean.busca();
         Assert.assertNotNull(profesorModeloLista);
         Assert.assertFalse(profesorModeloLista.isEmpty());
@@ -150,6 +150,25 @@ public class ProfesorSesionBeanTest {
             Assert.assertNotNull(profesorModelo.getId());
             Assert.assertNotNull(profesorModelo.getEscuelaBaseModelo());
         }
+    }
+
+    @Test
+    public void buscaPorEscuela() {
+        List<ProfesorModelo> profesorModeloLista = profesorSesionBean.buscaPorEscuela("21DBA0014J");
+        Assert.assertNotNull(profesorModeloLista);
+        Assert.assertFalse(profesorModeloLista.isEmpty());
+        profesorModeloLista.forEach(profesor -> {
+            Assert.assertNotNull(profesor);
+            Assert.assertNotNull(profesor.getId());
+            Assert.assertNotNull(profesor.getNombre());
+            Assert.assertNotNull(profesor.getApellidoPaterno());
+            Assert.assertNotNull(profesor.getApellidoMaterno());
+            Assert.assertNotNull(profesor.getSexo());
+            Assert.assertNotNull(profesor.getCorreoEletronico());
+            Assert.assertNull(profesor.getContrasenia());
+            Assert.assertNull(profesor.getEscuelaBaseModelo());
+            Assert.assertNull(profesor.getGrupoModeloLista());
+        });
     }
 
     @Test

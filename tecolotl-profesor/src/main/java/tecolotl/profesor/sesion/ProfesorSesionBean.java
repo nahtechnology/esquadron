@@ -145,11 +145,13 @@ public class ProfesorSesionBean implements Serializable {
 
     /**
      * Valida si el profesor tiene asginado el grupo asignado
-     * @param idGrupo Identificador del grupo
-     * @param idProfesor Identifiacdor del Profesor
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela.
+     * @return Coleción de {@link ProfesorModelo}
      */
-    public void pertenece(@NotNull Integer idGrupo, @NotNull Integer idProfesor) {
-
+    public List<ProfesorModelo> buscaPorEscuela(@NotNull String claveCentroTrabajo) {
+        TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaIdEscuela", ProfesorEntidad.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+        return typedQuery.getResultList().stream().map(ProfesorModelo::new).collect(Collectors.toList());
     }
 
 }
