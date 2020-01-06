@@ -9,6 +9,7 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <f:metadata>
         <f:viewParam name="escuela" value="#{administracionProfesorControlador.claveCentroTrabajo}"/>
+        <f:viewAction action="#{administracionProfesorControlador.inicio}"/>
     </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
@@ -101,18 +102,17 @@
                     </div>
                 </div>
                 <div class="uk-card-body">
-
+                    <h:dataTable id="table-prfesor"
+                                 value="#{administracionProfesorControlador.profesorModeloLista}"
+                                 var="profesorModelo">
+                        <h:column>
+                            <f:facet name="haeder">Nombre</f:facet>
+                            ${profesorModelo.nombre}
+                        </h:column>
+                    </h:dataTable>
                 </div>
             </div>
         </div>
-        <h:dataTable id="table-prfesor"
-                     value="#{administracionProfesorControlador.profesorModeloLista}"
-                     var="profesorModelo">
-            <h:column>
-                <f:facet name="haeder">Nombre</f:facet>
-                ${profesorModelo.nombre}
-            </h:column>
-        </h:dataTable>
     </ui:define>
 
 </ui:composition>
