@@ -202,22 +202,25 @@ public class ProfesorSesionBeanTest {
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("El Juanito");
-        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
+        profesorModelo.setCorreoEletronico("correo_profesor@servidor.com");
+        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBA0014J"));
+        profesorModelo.setContrasenia(new byte[]{});
+        profesorModelo.setSexo('M');
         profesorSesionBean.inserta(profesorModelo);
         Assert.assertNotNull(profesorModelo);
     }
 
     @Test
     public void actualiza(){
-        ProfesorModelo profesorModelo = new ProfesorModelo(-38);
+        ProfesorModelo profesorModelo = new ProfesorModelo(-45);
         profesorModelo.setNombre("Eliminando");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("Don Levantones");
+        profesorModelo.setCorreoEletronico("nuevocorreo@nossirve.com");
+        profesorModelo.setSexo('F');
+        profesorModelo.setContrasenia(new byte[]{});
         EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("21DBS0029K");
-        escuelaBaseModelo.setNombre("AGUSTIN MELGAR");
-        escuelaBaseModelo.setDomicilio("RAFAEL CAÑEDO BENITEX");
-        escuelaBaseModelo.setNumeroExterior("12234");
         profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
 
         int elementosModificados = profesorSesionBean.actualiza(profesorModelo);

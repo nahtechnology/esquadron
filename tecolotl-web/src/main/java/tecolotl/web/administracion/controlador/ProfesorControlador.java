@@ -17,9 +17,22 @@ public class ProfesorControlador {
 
     private String claveCentroTrabajo;
     private List<ProfesorModelo> profesorModeloLista;
+    private ProfesorModelo profesorModelo;
 
     public void inicio() {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
+    }
+
+    public void busca(Integer idProfesor) {
+        profesorModelo = profesorSesionBean.busca(idProfesor);
+    }
+
+    public void inserta() {
+        profesorSesionBean.inserta(profesorModelo);
+    }
+
+    public void actualiza() {
+        profesorSesionBean.actualiza(profesorModelo);
     }
 
     public String getClaveCentroTrabajo() {

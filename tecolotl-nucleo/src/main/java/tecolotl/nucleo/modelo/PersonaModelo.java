@@ -31,7 +31,6 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
     private byte[] contrasenia;
 
     @NotNull(groups = {PersonaNuevaValidacion.class})
-    @Size(max = 1, groups = {PersonaNuevaValidacion.class})
     private Character sexo;
 
     public PersonaModelo(){

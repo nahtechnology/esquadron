@@ -53,6 +53,7 @@ public class ProfesorSesionBean implements Serializable {
         profesorEntidad.setApodo(profesorModelo.getApodo());
         profesorEntidad.setContrasenia(profesorModelo.getContrasenia());
         profesorEntidad.setCorreoEletronico(profesorModelo.getCorreoEletronico());
+        profesorEntidad.setSexo(profesorModelo.getSexo());
         profesorEntidad.setEscuelaEntidad(new EscuelaEntidad(profesorModelo.getEscuelaBaseModelo().getClaveCentroTrabajo()));
         entityManager.persist(profesorEntidad);
         profesorModelo.setId(profesorEntidad.getId());
@@ -124,6 +125,7 @@ public class ProfesorSesionBean implements Serializable {
                 .set(root.get("apellidoPaterno"), profesorModelo.getApellidoPaterno())
                 .set(root.get("apellidoMaterno"), profesorModelo.getApellidoMaterno())
                 .set(root.get("apodo"), profesorModelo.getApodo())
+                .set(root.get("sexo"), profesorModelo.getSexo())
                 .set(root.get("correoEletronico"), profesorModelo.getCorreoEletronico());
         criteriaUpdate.where(predicate);
         return entityManager.createQuery(criteriaUpdate).executeUpdate();
