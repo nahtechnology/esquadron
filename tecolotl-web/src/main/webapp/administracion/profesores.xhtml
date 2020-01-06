@@ -152,16 +152,85 @@
                     </div>
                     <div class="uk-modal-body">
                         <div uk-grid="">
-                            <div class="uk-width-1-1@s uk-width-1-6@m">
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
                                 <h:outputLabel value="apodo" for="apodo"/>
                                 <div class="uk-form-controls">
                                     <h:inputText id="apodo"
+                                                 class="uk-input"
                                                  value="#{administracionProfesorControlador.profesorModelo.apodo}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="3" maximum="40"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="apodo"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel value="nombre" for="nombre"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="nombre"
+                                                 class="uk-input"
+                                                 value="#{administracionProfesorControlador.profesorModelo.nombre}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="40"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel value="apellidoPaterno" for="apellidoPaterno"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="apellidoPaterno"
+                                                 class="uk-input"
+                                                 value="#{administracionProfesorControlador.profesorModelo.apellidoPaterno}">
+                                        <f:validateRequired/>
+                                        <f:validateLength minimum="3" maximum="50"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel value="apellidoMaterno" for="apellidoMaterno"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="apellidoMaterno"
+                                                 class="uk-input"
+                                                 value="#{administracionProfesorControlador.profesorModelo.apellidoMaterno}">
+                                           <f:validateRequired/>
+                                           <f:validateLength minimum="3" maximum="50"/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel value="sexo" for="sexo"/>
+                                <div class="uk-form-controls">
+                                    <h:selectOneMenu id="sexo"
+                                                     styleClass="uk-select"
+                                                     value="#{administracionProfesorControlador.profesorModelo.sexo}">
+                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                        <f:selectItem itemValue="m" itemLabel="Masculino"/>
+                                        <f:selectItem itemValue="f" itemLabel="Femenino"/>
+                                        <f:validateRequired/>
+                                    </h:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel value="contrasenia" for="contrasenia"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="contrasenia"
+                                                 type="password"
+                                                 styleClass="uk-input"
+                                                 value="#{administracionProfesorControlador.profesorModelo.contrasenia}">
+                                            <f:validateRequired/>
+                                            <f:validateLength/>
+                                    </h:inputText>
+                                </div>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-3@m">
+                                <h:outputLabel value="correoEletronico" for="correoEletronico"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="correoEletronico"
+                                                 value="#{administracionProfesorControlador.profesorModelo.correoEletronico}">
+    |                                        <f:validateRequired/>
+                                             <f:validateLength/>
+                                    </h:inputText>
+                                </div>
                             </div>
                         </div>
                     </div>
