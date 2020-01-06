@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="/template/administracion/dashboard.xhtml">
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-parent uk-open">
+                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <ul class="uk-nav-sub">
+                    <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></a></li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog']}</span></h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="catalogo-administracion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.administrator']}</span></h:link></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.coordinator']}</span></h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="tablas.css"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
+        <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
+        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+
+        <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-margin-auto-left uk-margin-auto-right uk-flex uk-flex-center" pt:data-uk-grid="">
+            <div class="uk-text-center">
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.coor']}</span></span>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalCoordinadores}" id="total-coordinadores"/></h1>
+            </div>
+            <div class="uk-text-center">
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalProfesores}" id="total-profesor"/></h1>
+            </div>
+            <div class="uk-text-center">
+                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
+                <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
+                <div class="uk-text-small">
+                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : escuelaPoblacionControlador.totalAlumnos / (initParam['alumno.licencia'] * escuelaPoblacionControlador.totalLicencias)}" id="porcentaje-alumno">
+                        <f:convertNumber type="percent"/>
+                    </h:outputText>  #{administracion['dashboard.header.student.used']}.
+                </div>
+            </div>
+        </h:panelGroup>
+        <div>
+            <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                <div class="uk-card-header">
+                    <div class="uk-grid uk-grid-small">
+                        <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{administracion['dashboard.titulo']}</span></h4></div>
+                        <div class="uk-width-1-3">
+                            <h:form styleClass="uk-search largo-buscar" id="formulario-filtrado-escuela">
+                                <div class="uk-inline">
+                                    <h:commandLink styleClass="uk-form-icon uk-form-icon-flip uk-light uk-background-primary"
+                                                   id="comando-busqueda"
+                                                   pt:uk-icon="icon: search"
+                                                   pt:uk-tooltip="title: Dar click en la lupa para buscar; delay:2000; pos:right"
+                                                   rendered="#{empty escuelaDashboardControlador.busqueda}">
+                                        <f:ajax render="formulario-tabla-escuela @form" execute="filtrado" listener="#{escuelaDashboardControlador.actualizaDataModel}"/>
+                                    </h:commandLink>
+                                    <h:commandLink styleClass="uk-form-icon uk-light uk-form-icon-flip uk-background-secondary"
+                                                   pt:uk-icon="icon: close"
+                                                   pt:uk-tooltip="title: Dar click para borrar busqueda; delay:2000; pos:right"
+                                                   action="#{escuelaDashboardControlador.actualizaDataModel}"
+                                                   rendered="#{not empty escuelaDashboardControlador.busqueda}">
+                                        <f:setPropertyActionListener value="#{null}" target="#{escuelaDashboardControlador.busqueda}"/>
+                                        <f:ajax render="formulario-tabla-escuela @form"/>
+                                    </h:commandLink>
+                                    <h:inputText id="filtrado" disabled="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}"
+                                                 styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar uk-light'}"
+                                                 pt:placeholder="#{etiqueta['search']}"
+                                                 autocomplete="off"
+                                                 value="#{escuelaDashboardControlador.busqueda}"
+                                                 pt:uk-tooltip="title: #{empty escuelaDashboardControlador.collectionDataModel.wrappedData
+                                                        ? administracion['dashboard.search.tooltip.diseble']
+                                                        : administracion['dashboard.search.tooltip.enable']}; delay:2000; pos:left">
+                                    </h:inputText>
+                                </div>
+                            </h:form>
+                        </div>
+                        <div class="uk-width-expand uk-text-right panel-icons">
+                            <h:form id="formulario-agregar-profesor">
+                                <h:commandLink styleClass="uk-icon-link"
+                                               pt:uk-icon="icon: plus-circle; ratio: 1.5"
+                                               pt:uk-toggle="target: #modal-escuela"
+                                               pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000">
+                                    <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela" onevent="function limpia(data) { limpiaSelect(data); }"/>
+                                </h:commandLink>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                <div class="uk-card-body">
+
+                </div>
+            </div>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>
+
+</html>
