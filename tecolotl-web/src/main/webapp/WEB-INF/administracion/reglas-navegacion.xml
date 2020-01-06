@@ -33,6 +33,10 @@
             <from-outcome>coordinador</from-outcome>
             <to-view-id>/administracion/coordinador.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>profesor</from-outcome>
+            <to-view-id>/administracion/profesores.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>

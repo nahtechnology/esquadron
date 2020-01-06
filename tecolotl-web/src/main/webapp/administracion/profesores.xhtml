@@ -102,17 +102,45 @@
                     </div>
                 </div>
                 <div class="uk-card-body">
-                    <h:dataTable id="table-prfesor"
-                                 value="#{administracionProfesorControlador.profesorModeloLista}"
-                                 var="profesorModelo">
-                        <h:column>
-                            <f:facet name="haeder">Nombre</f:facet>
-                            ${profesorModelo.nombre}
-                        </h:column>
-                    </h:dataTable>
+                    <h:panelGroup layout="block" rendered="#{empty administracionProfesorControlador.profesorModeloLista}">
+                        <table class="uk-table uk-table-middle">
+                            <thead class="uk-background-primary">
+                            <tr>
+                                <th class="uk-text-center"><span class="letra-titulo">Apodo</span></th>
+                                <th class="uk-text-center"><span class="letra-titulo">Nombre</span></th>
+                                <th class="uk-text-center"><span class="letra-titulo">Sexo</span></th>
+                                <th class="uk-text-center"><span class="letra-titulo">Correo</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="uk-flex uk-flex-center">
+                                            <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </h:panelGroup>
+                    <ui:remove>
+                        <h:dataTable id="table-prfesor"
+                                     value="#{administracionProfesorControlador.profesorModeloLista}"
+                                     var="profesorModelo"
+                                     rendered="#{not empty administracionProfesorControlador.profesorModeloLista}"   >
+                            <h:column>
+                                <f:facet name="haeder">Nombre</f:facet>
+                                ${profesorModelo.nombre}
+                            </h:column>
+                        </h:dataTable>
+                    </ui:remove>
                 </div>
             </div>
         </div>
+
+
+
+
     </ui:define>
 
 </ui:composition>
