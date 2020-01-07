@@ -6,10 +6,12 @@ import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @RequestScoped
 @Named(value = "administracionProfesorControlador")
@@ -18,12 +20,16 @@ public class ProfesorControlador {
     @Inject
     private ProfesorSesionBean profesorSesionBean;
 
+    @Inject
+    protected Logger logger;
+
     private String claveCentroTrabajo;
     private List<ProfesorModelo> profesorModeloLista;
     private ProfesorModelo profesorModelo;
 
     @PostConstruct
     public void init() {
+        logger.info("contruyendo");
         profesorModelo = new ProfesorModelo();
     }
 
@@ -31,8 +37,13 @@ public class ProfesorControlador {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
     }
 
-    public void busca(UUID idProfesor) {
-        profesorModelo = profesorSesionBean.busca(idProfesor);
+    public void busca(AjaxBehaviorEvent event) {
+        logger.info(event.toString());
+        //profesorModelo = profesorSesionBean.busca(idProfesor);
+    }
+
+    public void llamdaAjax(AjaxBehaviorEvent event) {
+        logger.info("llamda Ajax");
     }
 
     public void inserta(String claveCentroTrabajo) {
@@ -68,4 +79,5 @@ public class ProfesorControlador {
     public void setProfesorModelo(ProfesorModelo profesorModelo) {
         this.profesorModelo = profesorModelo;
     }
+
 }

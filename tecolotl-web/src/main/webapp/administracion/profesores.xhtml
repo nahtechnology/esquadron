@@ -104,7 +104,7 @@
                                      styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada"
                                      headerClass="uk-background-primary letra-titulo uk-text-center"
                                      columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
-
+                            <h:column><f:facet name="header">Id</f:facet>#{profesorModelo.id}</h:column>
                             <h:column>
                                 <f:facet name="header">Apodo</f:facet>
                                 ${profesorModelo.apodo}
@@ -129,16 +129,11 @@
                                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                         <ul class="uk-nav uk-dropdown-nav">
                                             <li>
-                                                <a href="#">
-                                                    <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
-                                                    <span class="uk-text-middle"><h:outputText value="#{boton['active']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
-                                                    <span class="uk-text-middle"><h:outputText value="#{boton['active']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                </a>
+                                                <h:commandLink pt:uk-toggle="target: #modal-profesor">
+                                                    <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                    <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                    <f:ajax listener="#{administracionProfesorControlador.llamdaAjaxo}"/>
+                                                </h:commandLink>
                                             </li>
                                         </ul>
                                     </h:panelGroup>
@@ -275,6 +270,7 @@
                 </h:form>
             </div>
         </h:panelGroup>
+
         <h:outputScript library="js" name="administracion/profesores.js"/>
         <h:outputScript library="js" name="tabla-profesor.js"/>
     </ui:define>
