@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -67,7 +68,7 @@ public class AlumnoSesionBean implements Serializable {
      * @param idAlumno Identificador del alumno.
      * @return DetalleAlumnoModelo con los datos.
      */
-    public DetalleAlumnoModelo detalle(@NotNull Integer idAlumno) {
+    public DetalleAlumnoModelo detalle(@NotNull UUID idAlumno) {
         logger.fine(idAlumno.toString());
         DetalleAlumnoModelo detalleAlumnoModelo  = new DetalleAlumnoModelo();
         TypedQuery<TareaAlumnoVistaEntidad> typedQuery =

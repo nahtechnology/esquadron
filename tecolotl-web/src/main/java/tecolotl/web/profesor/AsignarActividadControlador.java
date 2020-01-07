@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -34,7 +35,7 @@ public class AsignarActividadControlador implements Serializable {
     private Logger logger;
 
     private List<ActividadModelo> actividadModeloLista;
-    private Integer grupo;
+    private UUID grupo;
     private String actividad;
 
     public void inicio() {
@@ -60,11 +61,11 @@ public class AsignarActividadControlador implements Serializable {
         this.actividadModeloLista = actividadModeloLista;
     }
 
-    public Integer getGrupo() {
+    public UUID getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(Integer grupo) {
+    public void setGrupo(UUID grupo) {
         this.grupo = grupo;
     }
 

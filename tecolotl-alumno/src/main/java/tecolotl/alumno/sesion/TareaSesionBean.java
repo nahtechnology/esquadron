@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -83,7 +84,7 @@ public class TareaSesionBean implements Serializable {
      * @param idAlumno Identificador del alumno.
      * @return Colección de {@link TareaActividadModelo}
      */
-    public List<TareaActividadModelo> buscaActividad(@NotNull Integer idAlumno) {
+    public List<TareaActividadModelo> buscaActividad(@NotNull UUID idAlumno) {
         logger.fine(idAlumno.toString());
         Query query = entityManager.createNativeQuery("select t.id,t.asignacion,t.resolviendo_transcript,tga.id_actividad,a.pregunta_detonadora\n" +
                 "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea join\n" +

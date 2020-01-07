@@ -9,7 +9,6 @@ import java.util.*;
 
 @Entity
 @Table(name = "alumno", schema = "alumno")
-@SequenceGenerator(name = "generador_alumno", schema = "alumno", sequenceName = "alumno_seq")
 @NamedQueries({
     @NamedQuery(
         name = "AlumnoEntidad.busca",
@@ -29,7 +28,7 @@ import java.util.*;
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
-    private Integer id;
+    private UUID id;
     private NivelLenguajeEntidad nivelLenguajeEntidad;
     private Date nacimiento;
     private String correoPadreFamilia;
@@ -38,29 +37,28 @@ public class AlumnoEntidad extends PersonaEntidad {
     public AlumnoEntidad() {
     }
 
-    public AlumnoEntidad(Integer id) {
+    public AlumnoEntidad(UUID id) {
         this.id = id;
     }
 
-    public AlumnoEntidad(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno) {
+    public AlumnoEntidad(UUID id, String nombre, String apellidoPaterno, String apellidoMaterno) {
         setId(id);
         setNombre(nombre);
         setApellidoPaterno(apellidoPaterno);
         setApellidoMaterno(apellidoMaterno);
     }
 
-    public AlumnoEntidad(Integer id, String nombre, String apellidoPaterno, String apellidoMaterno, String apodo, byte[] contrasenia) {
+    public AlumnoEntidad(UUID id, String nombre, String apellidoPaterno, String apellidoMaterno, String apodo, byte[] contrasenia) {
         super(nombre, apellidoPaterno, apellidoMaterno, apodo, contrasenia);
         this.id = id;
     }
 
     @Id
-    @GeneratedValue(generator = "generador_alumno")
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -106,6 +104,11 @@ public class AlumnoEntidad extends PersonaEntidad {
 
     public void setContraseniaPadreFamilia(byte[] contraseniaPadreFamilia) {
         this.contraseniaPadreFamilia = contraseniaPadreFamilia;
+    }
+
+    @PrePersist
+    public void creaUUID(){
+        this.id = UUID.randomUUID();
     }
 
     @Override

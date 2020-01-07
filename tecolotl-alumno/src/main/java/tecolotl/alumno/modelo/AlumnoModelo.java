@@ -5,10 +5,11 @@ import tecolotl.nucleo.modelo.PersonaModelo;
 
 import java.util.Date;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class AlumnoModelo extends PersonaModelo {
 
-    private Integer id;
+    private UUID id;
     private Date nacimiento;
     private String correoPadreFamilia;
     private NivelLenguajeModelo nivelLenguajeModelo;
@@ -25,11 +26,11 @@ public class AlumnoModelo extends PersonaModelo {
         this.nivelLenguajeModelo = new NivelLenguajeModelo(alumnoEntidad.getNivelLenguajeEntidad());
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -90,7 +91,7 @@ public class ActividadSesionBean implements Serializable {
      * @param idAlumno Identificador del alumno.
      * @return Colección
      */
-    public List<ActividadModelo> busca(@NotNull Integer idAlumno) {
+    public List<ActividadModelo> busca(@NotNull UUID idAlumno) {
         logger.fine(idAlumno.toString());
         TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaBibliotecaLibre", ActividadEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);

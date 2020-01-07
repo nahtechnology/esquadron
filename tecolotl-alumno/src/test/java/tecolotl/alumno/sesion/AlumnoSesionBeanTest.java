@@ -54,6 +54,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(Arquillian.class)
 public class AlumnoSesionBeanTest {
@@ -160,7 +161,7 @@ public class AlumnoSesionBeanTest {
 
     @Test
     public void detalle() {
-        DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(1);
+        DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(UUID.randomUUID());
         Assert.assertNotNull(detalleAlumnoModelo);
         Assert.assertNotNull(detalleAlumnoModelo.getTotalTareas());
         Assert.assertNotNull(detalleAlumnoModelo.getGrado());

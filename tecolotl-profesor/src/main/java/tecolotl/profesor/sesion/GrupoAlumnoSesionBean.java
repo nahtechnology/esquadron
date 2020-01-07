@@ -172,7 +172,7 @@ public class GrupoAlumnoSesionBean {
         List<AlumnoModelo> alumnoModeloLista = new ArrayList<>();
         for (Object[] objetos : (List<Object[]>)query.getResultList()) {
             AlumnoModelo alumnoModelo = new AlumnoModelo();
-            alumnoModelo.setId((Integer) objetos[0]);
+            alumnoModelo.setId((UUID) objetos[0]);
             alumnoModelo.setApodo((String)objetos[1]);
             alumnoModelo.setNombre((String) objetos[2]);
             alumnoModelo.setApellidoPaterno((String) objetos[3]);

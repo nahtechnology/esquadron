@@ -9,7 +9,7 @@ import java.util.UUID;
 public class GrupoAlumnoModelo {
 
     @NotNull
-    private Integer idAlumno;
+    private UUID idAlumno;
 
     @NotNull
     private UUID idGrupo;
@@ -21,11 +21,11 @@ public class GrupoAlumnoModelo {
         this.idAlumno = grupoAlumnoEntidad.getGrupoAlumnoEntidadPK().getAlumnoEntidad().getId();
     }
 
-    public Integer getIdAlumno() {
+    public UUID getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Integer idAlumno) {
+    public void setIdAlumno(UUID idAlumno) {
         this.idAlumno = idAlumno;
     }
 

@@ -248,7 +248,7 @@ public class GrupoAlumnoSesionBeanTest {
     @Test
     public void inserta(){
         GrupoAlumnoModelo grupoAlumnoModelo = new GrupoAlumnoModelo();
-        grupoAlumnoModelo.setIdAlumno(5);
+        grupoAlumnoModelo.setIdAlumno(UUID.randomUUID());
         grupoAlumnoModelo.setIdGrupo(UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
         grupoAlumnoSesionBean.inserta(grupoAlumnoModelo);
         Assert.assertNotNull(grupoAlumnoModelo);
@@ -258,7 +258,7 @@ public class GrupoAlumnoSesionBeanTest {
     public void elimina(){
         GrupoAlumnoModelo grupoAlumnoModelo = new GrupoAlumnoModelo();
         grupoAlumnoModelo.setIdGrupo(UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
-        grupoAlumnoModelo.setIdAlumno(5);
+        grupoAlumnoModelo.setIdAlumno(UUID.randomUUID());
         int grupoAEliminado = grupoAlumnoSesionBean.elimina(grupoAlumnoModelo);
         Assert.assertFalse(grupoAEliminado == 0);
     }

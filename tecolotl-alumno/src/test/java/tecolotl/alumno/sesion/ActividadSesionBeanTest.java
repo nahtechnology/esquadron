@@ -45,6 +45,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -149,7 +150,7 @@ public class ActividadSesionBeanTest {
 
     @Test
     public void buscaIdActividad() {
-        List<ActividadModelo> actividadModeloList = actividadSesionBean.busca(1);
+        List<ActividadModelo> actividadModeloList = actividadSesionBean.busca(UUID.randomUUID());
         assertNotNull(actividadModeloList);
     }
 
