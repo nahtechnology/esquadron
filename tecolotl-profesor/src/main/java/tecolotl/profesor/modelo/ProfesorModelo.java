@@ -15,11 +15,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class ProfesorModelo extends PersonaModelo {
 
     @NotNull(groups = {ProfesorLlavePrimaria.class})
-    private Integer id;
+    private UUID id;
 
     @NotNull
     @Valid
@@ -51,15 +52,15 @@ public class ProfesorModelo extends PersonaModelo {
         CicloEscolarModelo cicloEscolarModelo;
     }
 
-    public ProfesorModelo(Integer id) {
+    public ProfesorModelo(UUID id) {
         this.id = id;
     }
 
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

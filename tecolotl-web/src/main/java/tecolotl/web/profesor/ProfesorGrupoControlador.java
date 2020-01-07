@@ -24,7 +24,7 @@ public class ProfesorGrupoControlador implements Serializable {
     private GrupoModelo grupoModelo;
     private AlumnoModelo alumnoModelo;
 
-    public void detalleGrupo(@NotNull Integer idGrupo) {
+    public void detalleGrupo(@NotNull String idGrupo) {
         grupoModelo = grupoSesionBean.buscaId(idGrupo);
     }
 

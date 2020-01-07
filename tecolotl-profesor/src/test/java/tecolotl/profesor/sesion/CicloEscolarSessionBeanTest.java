@@ -67,6 +67,7 @@ import javax.inject.Inject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -145,7 +146,7 @@ public class CicloEscolarSessionBeanTest {
 
     @Test
     public void busca() {
-        List<CicloEscolarModelo> cicloEscolarModeloLista = cicloEscolarSessionBean.busca("21DBA0014J", true, 1);
+        List<CicloEscolarModelo> cicloEscolarModeloLista = cicloEscolarSessionBean.busca("21DBA0014J", true, UUID.fromString("7176589b-a3ca-472f-bf00-c253c351ddcc"));
         assertNotNull(cicloEscolarModeloLista);
         assertFalse(cicloEscolarModeloLista.isEmpty());
         cicloEscolarModeloLista.forEach(cicloEscolarModelo -> {

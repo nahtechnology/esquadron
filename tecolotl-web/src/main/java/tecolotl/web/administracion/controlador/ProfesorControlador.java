@@ -7,6 +7,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.UUID;
 
 @RequestScoped
 @Named(value = "administracionProfesorControlador")
@@ -23,7 +24,7 @@ public class ProfesorControlador {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
     }
 
-    public void busca(Integer idProfesor) {
+    public void busca(UUID idProfesor) {
         profesorModelo = profesorSesionBean.busca(idProfesor);
     }
 

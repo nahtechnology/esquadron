@@ -70,6 +70,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
@@ -161,7 +162,7 @@ public class GrupoSesionBeanTest {
 
     @Test
     public void buscaProfesor(){
-        List<GrupoModelo> grupoModeloLista = grupoSesionBean.busca(1);
+        List<GrupoModelo> grupoModeloLista = grupoSesionBean.busca("1");
         Assert.assertNotNull(grupoModeloLista);
         Assert.assertFalse(grupoModeloLista.isEmpty());
         logger.info(grupoModeloLista.toString());
@@ -181,15 +182,15 @@ public class GrupoSesionBeanTest {
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2019"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2020"));
         cicloEscolarModelo.setIdEscuela("21DBA0051N");
-        grupoModelo.setIdProfesor(1);
+        grupoModelo.setIdProfesor(UUID.fromString("7176589b-a3ca-472f-bf00-c253c351ddcc"));
         grupoSesionBean.inserta(grupoModelo);
         Assert.assertNotNull(grupoModelo.getId());
-        Assert.assertNotEquals(grupoModelo.getId().intValue(), 0);
+        Assert.assertNotEquals(grupoModelo.getId(), "");
     }
 
     @Test
     public void actualiza() {
-        GrupoModelo grupoModelo = new GrupoModelo(-38);
+        GrupoModelo grupoModelo = new GrupoModelo("-38");
         grupoModelo.setGrado((short)2);
         grupoModelo.setGrupo('C');
         grupoSesionBean.actualiza(grupoModelo);
@@ -199,7 +200,7 @@ public class GrupoSesionBeanTest {
     public void buscaConTotal() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         List<GrupoModelo> grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
-                dateFormat.parse("2019-09-14"), dateFormat.parse("2020-09-14"), "21DBA0014J", 1);
+                dateFormat.parse("2019-09-14"), dateFormat.parse("2020-09-14"), "21DBA0014J", UUID.fromString("7176589b-a3ca-472f-bf00-c253c351ddcc"));
         Assert.assertNotNull(grupoModeloLista);
         Assert.assertFalse(grupoModeloLista.isEmpty());
         for (GrupoModelo grupoModelo : grupoModeloLista) {

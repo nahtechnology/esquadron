@@ -25,7 +25,7 @@ import java.util.StringJoiner;
 @Entity
 public class AlumnoTareasNivelEntidad implements Serializable {
 
-    private Integer idGrupo;
+    private String idGrupo;
     private Integer idAlumno;
     private String nombre;
     private String apellidoPaterno;
@@ -37,7 +37,7 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     public AlumnoTareasNivelEntidad() {
     }
 
-    public AlumnoTareasNivelEntidad(Integer idGrupo, Integer idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer idTarea, Integer totalTareas, String nivelLenguaje) {
+    public AlumnoTareasNivelEntidad(String idGrupo, Integer idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer idTarea, Integer totalTareas, String nivelLenguaje) {
         this.idGrupo = idGrupo;
         this.idAlumno = idAlumno;
         this.nombre = nombre;
@@ -50,11 +50,11 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     @Basic
     @Column(name = "id_grupo")
-    public Integer getIdGrupo() {
+    public String getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Integer idGrupo) {
+    public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
     }
 

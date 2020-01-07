@@ -34,7 +34,7 @@ public class AlumnoGrupoScope {
      * @param alumnoModelo Datos del nuevo alumno a ser ingresaod
      * @param idGrupo grupo donde se agrega dicho alumno
      */
-    public void inserta(@NotNull AlumnoModelo alumnoModelo, @NotNull Integer idGrupo) {
+    public void inserta(@NotNull AlumnoModelo alumnoModelo, @NotNull String idGrupo) {
         AlumnoEntidad alumnoEntidad = new AlumnoEntidad();
         alumnoEntidad.setApodo(alumnoModelo.getApodo());
         alumnoEntidad.setNombre(alumnoModelo.getNombre());

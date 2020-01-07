@@ -66,6 +66,7 @@ import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(Arquillian.class)
 public class ProfesorSesionBeanTest {
@@ -173,7 +174,7 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaId() {
-        ProfesorModelo profesorModelo = profesorSesionBean.busca(1);
+        ProfesorModelo profesorModelo = profesorSesionBean.busca("1");
         Assert.assertNotNull(profesorModelo);
         Assert.assertNotNull(profesorModelo.getId());
         Assert.assertNotNull(profesorModelo.getCorreoEletronico());
@@ -183,7 +184,7 @@ public class ProfesorSesionBeanTest {
         Assert.assertNotNull(profesorModelo.getNombre());
     }
 
-    @Test
+    /*@Test
     public void inserta2(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
         profesorModelo.setNombre("Eliminando");
@@ -193,11 +194,12 @@ public class ProfesorSesionBeanTest {
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBS0029K"));
         profesorSesionBean.inserta(profesorModelo);
         Assert.assertNotNull(profesorModelo);
-    }
+    }*/
 
     @Test
     public void inserta(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
+        profesorModelo.setId(UUID.randomUUID());
         profesorModelo.setNombre("Jesus");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
@@ -211,8 +213,23 @@ public class ProfesorSesionBeanTest {
     }
 
     @Test
+    public void inserta2(){
+        ProfesorModelo profesorModelo = new ProfesorModelo();
+        profesorModelo.setNombre("Jesusa");
+        profesorModelo.setApellidoPaterno("Reyes");
+        profesorModelo.setApellidoMaterno("Sanchez");
+        profesorModelo.setApodo("El mesias");
+        profesorModelo.setCorreoEletronico("correo_prueba@servidor.com");
+        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBA0014G"));
+        profesorModelo.setContrasenia(new byte[]{});
+        profesorModelo.setSexo('F');
+        profesorSesionBean.inserta(profesorModelo);
+        Assert.assertNotNull(profesorModelo);
+    }
+
+    @Test
     public void actualiza(){
-        ProfesorModelo profesorModelo = new ProfesorModelo(-45);
+        ProfesorModelo profesorModelo = new ProfesorModelo();
         profesorModelo.setNombre("Eliminando");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");

@@ -1,5 +1,6 @@
 package tecolotl.profesor.sesion;
 
+import org.hibernate.validator.constraints.Length;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
@@ -23,6 +24,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -91,7 +93,7 @@ public class ProfesorSesionBean implements Serializable {
      * @param idProfesor Identificado del profesor.
      * @return un profesor.
      */
-    public ProfesorModelo busca(@NotNull Integer idProfesor){
+    public ProfesorModelo busca(@NotNull UUID idProfesor){
         return new ProfesorModelo(entityManager.find(ProfesorEntidad.class, idProfesor));
     }
 
@@ -100,6 +102,7 @@ public class ProfesorSesionBean implements Serializable {
      * @param apodo Apodo con el que buscar
      * @return {@link ProfesorModelo} con los datos encontrados
      */
+
     public ProfesorModelo busca(@NotNull String apodo) {
         TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaApodo", ProfesorEntidad.class);
         typedQuery.setParameter("apodo", apodo);

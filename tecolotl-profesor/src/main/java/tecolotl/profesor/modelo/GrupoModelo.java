@@ -6,23 +6,20 @@ import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.*;
 
 public class GrupoModelo {
 
-    private Integer id;
+    private String id;
     private Short grado;
     private Character grupo;
-    private Integer idProfesor;
+    private UUID idProfesor;
     private int totalAlumno;
 
     public GrupoModelo() {
     }
 
-    public GrupoModelo(Integer id) {
+    public GrupoModelo(String id) {
         this.id = id;
     }
 
@@ -51,20 +48,20 @@ public class GrupoModelo {
     }
 
     @NotNull
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     @NotNull(groups = {GrupoNuevoValidacion.class})
-    public Integer getIdProfesor() {
+    public UUID getIdProfesor() {
         return idProfesor;
     }
 
-    public void setIdProfesor(Integer idProfesor) {
+    public void setIdProfesor(UUID idProfesor) {
         this.idProfesor = idProfesor;
     }
 
@@ -78,10 +75,13 @@ public class GrupoModelo {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         GrupoModelo that = (GrupoModelo) o;
-        return id.equals(that.id) &&
+        return totalAlumno == that.totalAlumno &&
+                id.equals(that.id) &&
                 grado.equals(that.grado) &&
                 grupo.equals(that.grupo) &&
                 idProfesor.equals(that.idProfesor);
@@ -89,17 +89,17 @@ public class GrupoModelo {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, grado, grupo, idProfesor);
+        return Objects.hash(id, grado, grupo, idProfesor, totalAlumno);
     }
 
     @Override
     public String toString() {
-        return "GrupoModelo{" +
-                "id=" + id +
-                ", grado=" + grado +
-                ", grupo=" + grupo +
-                ", idProfesor=" + idProfesor +
-                '}';
+        return new StringJoiner(", ", GrupoModelo.class.getSimpleName() + "[", "]")
+                .add("id='" + id + "'")
+                .add("grado=" + grado)
+                .add("grupo=" + grupo)
+                .add("idProfesor='" + idProfesor + "'")
+                .add("totalAlumno=" + totalAlumno)
+                .toString();
     }
-
 }

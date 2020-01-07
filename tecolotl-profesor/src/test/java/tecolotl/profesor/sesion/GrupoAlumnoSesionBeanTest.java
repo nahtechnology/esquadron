@@ -163,7 +163,7 @@ public class GrupoAlumnoSesionBeanTest {
     }
 
     @Test public void buscaGrupo() {
-        List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(1);
+        List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca("1");
         Assert.assertNotNull(tareaAlumnoGrupoModeloLista);
         Assert.assertFalse(tareaAlumnoGrupoModeloLista.isEmpty());
         tareaAlumnoGrupoModeloLista.forEach(tareaAlumnoGrupoModelo -> {
@@ -188,7 +188,7 @@ public class GrupoAlumnoSesionBeanTest {
     }
 
     @Test public void buscaAlumnos() {
-        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno(1);
+        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno("1");
         Assert.assertNotNull(alumnoModeloLista);
         Assert.assertFalse(alumnoModeloLista.isEmpty());
         alumnoModeloLista.forEach(alumnoModelo -> {
@@ -201,7 +201,7 @@ public class GrupoAlumnoSesionBeanTest {
         });
     }
     @Test public void buscaActividades(){
-        List<ActividadModelo> actividadModelos = grupoAlumnoSesionBean.buscaActividades(1);
+        List<ActividadModelo> actividadModelos = grupoAlumnoSesionBean.buscaActividades("1");
         Assert.assertNotNull(actividadModelos);
         Assert.assertFalse(actividadModelos.isEmpty());
         actividadModelos.forEach(actividadModelo -> {
@@ -229,12 +229,12 @@ public class GrupoAlumnoSesionBeanTest {
         alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo((short)1));
         alumnoModelo.setNacimiento(new Date());
         alumnoModelo.setContrasenia("1:1,2:2".getBytes(StandardCharsets.UTF_8));
-        alumnoGrupoScope.inserta(alumnoModelo, 1);
+        alumnoGrupoScope.inserta(alumnoModelo, "1");
         Assert.assertNotNull(alumnoModelo.getId());
     }
 
     @Test public void buscaAlumnoNivel() {
-        List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(Arrays.asList(4));
+        List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(Arrays.asList("4"));
         Assert.assertNotNull(alumnoTareasNivelModeloLista);
         Assert.assertFalse(alumnoTareasNivelModeloLista.isEmpty());
         for (AlumnoTareasNivelModelo alumnoTareasNivelModelo : alumnoTareasNivelModeloLista) {
@@ -264,7 +264,7 @@ public class GrupoAlumnoSesionBeanTest {
 
     @Test
     public void detalleAlumno() {
-        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.detalleAlumnos(1);
+        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.detalleAlumnos("1");
         Assert.assertNotNull(alumnoModeloLista);
         Assert.assertFalse(alumnoModeloLista.isEmpty());
         alumnoModeloLista.forEach(alumnoModelo -> {

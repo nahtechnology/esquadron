@@ -69,7 +69,7 @@ public class GrupoAlumnoSesionBean {
      * @param idGrupo Identificador del grupo
      * @return Colección de {@link TareaAlumnoGrupoModelo}
      */
-    public List<TareaAlumnoGrupoModelo> busca(@NotNull Integer idGrupo) {
+    public List<TareaAlumnoGrupoModelo> busca(@NotNull String idGrupo) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tareas_grupo(?)", TareaAlumnoGrupoEntidad.class);
         query.setParameter(1, idGrupo);
         return ((List<TareaAlumnoGrupoEntidad>)query.getResultList()).stream().map(TareaAlumnoGrupoModelo::new).collect(Collectors.toList());
@@ -80,16 +80,17 @@ public class GrupoAlumnoSesionBean {
      * @param idGrupoLista catalogo de grupos
      * @return Colección de alumno con sus niveles
      */
-    public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<Integer> idGrupoLista) {
+    //TODO Checar PuerQuery
+    public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<String> idGrupoLista) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))");
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
-        idGrupoLista.forEach(grupo -> stringJoiner.add(String.valueOf(grupo.intValue())));
+        idGrupoLista.forEach(grupo -> stringJoiner.add(grupo));
         query.setParameter(1,stringJoiner.toString());
         List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = new ArrayList<>();
         List<Object[]> lista = query.getResultList();
         for (Object[] objects : lista) {
             AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo();
-            alumnoTareasNivelModelo.setIdGrupo((Integer)objects[0]);
+            alumnoTareasNivelModelo.setIdGrupo((String)objects[0]);
             alumnoTareasNivelModelo.setIdAlumno((Integer)objects[1]);
             alumnoTareasNivelModelo.setNombre((String)objects[2]);
             alumnoTareasNivelModelo.setApellidoPaterno((String)objects[3]);
@@ -104,7 +105,7 @@ public class GrupoAlumnoSesionBean {
     /**
      * Busca todas las Actividades que no se asignaron en un Grupo de
      */
-    public List<ActividadModelo> buscaActividades(@NotNull Integer idGrupo){
+    public List<ActividadModelo> buscaActividades(@NotNull String idGrupo){
     Query query = entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN (SELECT tga.id_actividad as nulo\n" +
             "                FROM\n" +
             "                   profesor.grupo_alumno ga left join\n" +
@@ -122,7 +123,7 @@ public class GrupoAlumnoSesionBean {
         return ((List<ActividadEntidad>) query.getResultList()).stream().map(ActividadModelo::new).collect(Collectors.toList());
     }
 
-    public List<AlumnoModelo> buscaAlumno(@NotNull Integer idGrupo) {
+    public List<AlumnoModelo> buscaAlumno(@NotNull String idGrupo) {
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaAlumnosPorGrupo", AlumnoEntidad.class);
         typedQuery.setParameter("idGrupo", idGrupo);
         List<AlumnoEntidad> alumnoEntidadLista = typedQuery.getResultList();
@@ -161,7 +162,7 @@ public class GrupoAlumnoSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
-    public List<AlumnoModelo> detalleAlumnos(@NotNull Integer idGrupo) {
+    public List<AlumnoModelo> detalleAlumnos(@NotNull String idGrupo) {
         logger.fine(idGrupo.toString());
         Query query = entityManager.createNativeQuery("SELECT a.id,a.apodo,a.nombre,a.apellido_paterno,a.apellido_materno,pgp_sym_decrypt_bytea(" +
                 "a.contrasenia, 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256') AS contrasenia " +

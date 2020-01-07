@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Map;
+import java.util.UUID;
 
 @Named(value = "coordinadorDashboardTablaControlador")
 @ViewScoped
@@ -18,7 +19,7 @@ public class DashboardTablaControlador implements Serializable {
     @Inject
     private ProfesorSesionBean profesorSesionBean;
 
-    private Map<Integer, ProfesorDashboardModelo> profesorDashboardModeloMapa;
+    private Map<UUID, ProfesorDashboardModelo> profesorDashboardModeloMapa;
     private HtmlDataTable htmlDataTable;
     private String claveCentroTrabajo;
 
@@ -28,11 +29,11 @@ public class DashboardTablaControlador implements Serializable {
         //profesorDashboardModeloMapa = profesorSesionBean.busca(claveCentroTrabajo);
     }
 
-    public Map<Integer, ProfesorDashboardModelo> getProfesorDashboardModeloMapa() {
+    public Map<UUID, ProfesorDashboardModelo> getProfesorDashboardModeloMapa() {
         return profesorDashboardModeloMapa;
     }
 
-    public void setProfesorDashboardModeloMapa(Map<Integer, ProfesorDashboardModelo> profesorDashboardModeloMapa) {
+    public void setProfesorDashboardModeloMapa(Map<UUID, ProfesorDashboardModelo> profesorDashboardModeloMapa) {
         this.profesorDashboardModeloMapa = profesorDashboardModeloMapa;
     }
 

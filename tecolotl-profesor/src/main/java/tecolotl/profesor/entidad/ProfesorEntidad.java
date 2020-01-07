@@ -1,5 +1,7 @@
 package tecolotl.profesor.entidad;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.loader.plan.spi.QuerySpaceUidNotRegisteredException;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
@@ -8,12 +10,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @Entity
 @Table(schema = "profesor", name = "profesor", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"apodo"})
 })
-@SequenceGenerator(name = "secuencia", schema = "profesor", sequenceName = "profesor_seq")
 @NamedQueries({
     @NamedQuery(name = "ProfesorEntidad.busca", query = "SELECT p FROM ProfesorEntidad p"),
     @NamedQuery(
@@ -39,25 +41,25 @@ import java.util.StringJoiner;
 })
 public class ProfesorEntidad extends PersonaEntidad {
 
-    private Integer id;
+    private UUID id;
     private String correoEletronico;
     private EscuelaEntidad escuelaEntidad;
     private List<GrupoEntidad> grupoEntidadLista;
+    public UUID generador;
 
     public ProfesorEntidad() {
     }
 
-    public ProfesorEntidad(Integer id) {
+    public ProfesorEntidad(UUID id) {
         this.id = id;
     }
 
     @Id
-    @GeneratedValue(generator = "secuencia", strategy = GenerationType.IDENTITY)
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -92,10 +94,15 @@ public class ProfesorEntidad extends PersonaEntidad {
         this.correoEletronico = correoEletronico;
     }
 
+    @PrePersist
+    public void creaUUID(){
+        this.id = UUID.randomUUID();
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", ProfesorEntidad.class.getSimpleName() + "[", "]")
-                .add("id=" + id)
+                .add("id='" + id + "'")
                 .add("correoEletronico='" + correoEletronico + "'")
                 .add("escuelaEntidad=" + escuelaEntidad)
                 .add("grupoEntidadLista=" + grupoEntidadLista)

@@ -16,6 +16,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -34,7 +35,7 @@ public class DashboardControlador implements Serializable {
 
     private ProfesorModelo profesorModelo;
     private UIInput uiInputApodo;
-    private Map<Integer, ProfesorDashboardModelo> profesorDashboardModeloMapa;
+    private Map<UUID, ProfesorDashboardModelo> profesorDashboardModeloMapa;
     private HtmlInputHidden htmlInputHidden;
 
     @PostConstruct

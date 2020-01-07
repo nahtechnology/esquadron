@@ -20,6 +20,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -47,7 +48,7 @@ public class CicloEscolarSessionBean {
      */
     public List<CicloEscolarModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
                                           boolean activo,
-                                          @NotNull Integer idProfesor) {
+                                          @NotNull UUID idProfesor) {
         logger.fine(claveCentroTrabajo);
         TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.buscaIdEscuela", CicloEscolarEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);

@@ -1,5 +1,6 @@
 package tecolotl.profesor.entidad;
 
+import org.omg.CORBA.StringHolder;
 import tecolotl.alumno.modelo.AlumnoModelo;
 
 import javax.persistence.*;
@@ -45,7 +46,7 @@ import java.util.StringJoiner;
 })
 public class GrupoEntidad {
 
-    private Integer id;
+    private String id;
     private Short grado;
     private Character grupo;
     private ProfesorEntidad profesorEntidad;
@@ -56,11 +57,11 @@ public class GrupoEntidad {
     public GrupoEntidad() {
     }
 
-    public GrupoEntidad(Integer id) {
+    public GrupoEntidad(String id) {
         this.id = id;
     }
 
-    public GrupoEntidad(Integer id, Short grado, Character grupo, Long totalAlumno) {
+    public GrupoEntidad(String id, Short grado, Character grupo, Long totalAlumno) {
         this.id = id;
         this.grado = grado;
         this.grupo = grupo;
@@ -69,11 +70,11 @@ public class GrupoEntidad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador_secuencia")
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

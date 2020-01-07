@@ -24,6 +24,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -60,7 +61,7 @@ public class GrupoSesionBean implements Serializable {
      * @param idGrupo
      * @return
      */
-    public GrupoModelo buscaId(@NotNull Integer idGrupo) {
+    public GrupoModelo buscaId(@NotNull String idGrupo) {
         return new GrupoModelo(entityManager.find(GrupoEntidad.class, idGrupo));
     }
 
@@ -96,7 +97,7 @@ public class GrupoSesionBean implements Serializable {
      * @param claveCentroTrabajo Clave centro de trabajo de la escuela
      * @return Colección de {@link GrupoModelo}
      */
-    public List<GrupoModelo> buscaTotalAlumno(@NotNull Date inicio, @NotNull Date fin, @NotNull String claveCentroTrabajo, @NotNull Integer idProfesor) {
+    public List<GrupoModelo> buscaTotalAlumno(@NotNull Date inicio, @NotNull Date fin, @NotNull String claveCentroTrabajo, @NotNull UUID idProfesor) {
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaCiclioEscolarTotalAlumno", GrupoEntidad.class);
         typedQuery.setParameter("inicio", inicio).setParameter("fin", fin)
                 .setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("idProfesor", idProfesor);
@@ -114,7 +115,7 @@ public class GrupoSesionBean implements Serializable {
      * Busca todos los grupos perteneciente a un profesor.
      * @return Lista de todos los Grupos.
      */
-    public List<GrupoModelo> busca(@NotNull Integer idProfesor){
+    public List<GrupoModelo> busca(@NotNull String idProfesor){
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaProfesor", GrupoEntidad.class);
         typedQuery.setParameter("idProfesor", idProfesor);
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
@@ -167,11 +168,11 @@ public class GrupoSesionBean implements Serializable {
      * @param idGrupo Identificador del grupo.
      * @return True en caso de que concidan, false en cualquier otro caso.
      */
-    public boolean pertenece(@NotNull Integer idProfesor, @NotNull Integer idGrupo) {
-        TypedQuery<Integer> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cuentaPorProfesor", Integer.class);
+    public boolean pertenece(@NotNull UUID idProfesor, @NotNull String idGrupo) {
+        TypedQuery<String> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cuentaPorProfesor", String.class);
         typedQuery.setParameter("idGrupo", idGrupo);
         try {
-            return typedQuery.getSingleResult().compareTo(idProfesor) == 0;
+            return typedQuery.getSingleResult().compareTo(idProfesor.toString()) == 0;
         } catch (NoResultException e) {
             return false;
         }

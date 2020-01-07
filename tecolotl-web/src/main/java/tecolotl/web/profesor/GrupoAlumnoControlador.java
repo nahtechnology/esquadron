@@ -54,7 +54,7 @@ public class GrupoAlumnoControlador implements Serializable {
     @Inject
     private Logger logger;
 
-    private Integer idGrupo;
+    private String idGrupo;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
@@ -107,11 +107,11 @@ public class GrupoAlumnoControlador implements Serializable {
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
     }
 
-    public Integer getIdGrupo() {
+    public String getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Integer idGrupo) {
+    public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
     }
 
