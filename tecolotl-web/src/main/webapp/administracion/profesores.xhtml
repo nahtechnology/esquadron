@@ -240,6 +240,9 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button type="reset" class="uk-button uk-button-default uk-modal-close ">
+                            cancelar
+                        </button>
                         <h:commandButton value="enviar" styleClass="uk-button uk-button-secondary">
                             <f:ajax execute="@form" listener="#{administracionProfesorControlador.inserta}" render="@form"/>
                         </h:commandButton>

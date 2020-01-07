@@ -1,11 +1,9 @@
 var modalProfresor;
 
-document.addEventListener('DOMContentLoaded', ejecucionIicio);
+document.addEventListener('DOMContentLoaded', ejecucionInicio);
 
-function ejecucionIicio(evento) {
+function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
 }
 
-function limpia() {
 
-}
