@@ -223,12 +223,12 @@
                             <div class="uk-width-1-1@s uk-width-1-6@m">
                                 <h:outputLabel value="sexo" for="sexo"/>
                                 <div class="uk-form-controls">
-                                    <h:selectOneMenu id="sexo"
-                                                     styleClass="uk-select"
+                                    <h:selectOneMenu class="uk-select"
+                                                     id="sexo"
                                                      value="#{administracionProfesorControlador.profesorModelo.sexo}">
                                         <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['options']}" noSelectionOption="true"/>
-                                        <f:selectItem itemValue="m" itemLabel="Masculino"/>
-                                        <f:selectItem itemValue="f" itemLabel="Femenino"/>
+                                        <f:selectItem itemValue="m" itemLabel="masculino"/>
+                                        <f:selectItem itemValue="f" itemLabel="femenino"/>
                                         <f:validateRequired/>
                                     </h:selectOneMenu>
                                 </div>

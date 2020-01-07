@@ -5,10 +5,15 @@ document.addEventListener('DOMContentLoaded', ejecucionInicio);
 function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
     modalProfresor.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
+    elimina();
 }
 
 function cierra(evento) {
     cerrarModal(null, "modalProfresor");
+}
+
+function elimina() {
+    modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
 }
 
 function cerrarModal(data , modal) {
