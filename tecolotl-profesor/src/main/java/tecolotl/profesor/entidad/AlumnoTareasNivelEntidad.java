@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @SqlResultSetMapping(name = "AlumnoTareasNivelEntidadMapping",
     entities = {
@@ -25,7 +26,7 @@ import java.util.StringJoiner;
 @Entity
 public class AlumnoTareasNivelEntidad implements Serializable {
 
-    private String idGrupo;
+    private UUID idGrupo;
     private Integer idAlumno;
     private String nombre;
     private String apellidoPaterno;
@@ -37,7 +38,7 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     public AlumnoTareasNivelEntidad() {
     }
 
-    public AlumnoTareasNivelEntidad(String idGrupo, Integer idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer idTarea, Integer totalTareas, String nivelLenguaje) {
+    public AlumnoTareasNivelEntidad(UUID idGrupo, Integer idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer idTarea, Integer totalTareas, String nivelLenguaje) {
         this.idGrupo = idGrupo;
         this.idAlumno = idAlumno;
         this.nombre = nombre;
@@ -50,11 +51,11 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     @Basic
     @Column(name = "id_grupo")
-    public String getIdGrupo() {
+    public UUID getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(String idGrupo) {
+    public void setIdGrupo(UUID idGrupo) {
         this.idGrupo = idGrupo;
     }
 

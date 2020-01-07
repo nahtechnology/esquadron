@@ -91,7 +91,7 @@ public class GrupoAlumnoSesionBean {
         List<Object[]> lista = query.getResultList();
         for (Object[] objects : lista) {
             AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo();
-            alumnoTareasNivelModelo.setIdGrupo((String)objects[0]);
+            alumnoTareasNivelModelo.setIdGrupo((UUID) objects[0]);
             alumnoTareasNivelModelo.setIdAlumno((Integer)objects[1]);
             alumnoTareasNivelModelo.setNombre((String)objects[2]);
             alumnoTareasNivelModelo.setApellidoPaterno((String)objects[3]);
@@ -106,7 +106,7 @@ public class GrupoAlumnoSesionBean {
     /**
      * Busca todas las Actividades que no se asignaron en un Grupo de
      */
-    public List<ActividadModelo> buscaActividades(@NotNull String idGrupo){
+    public List<ActividadModelo> buscaActividades(@NotNull UUID idGrupo){
     Query query = entityManager.createNativeQuery(" SELECT * FROM  alumno.actividad AS a LEFT JOIN (SELECT tga.id_actividad as nulo\n" +
             "                FROM\n" +
             "                   profesor.grupo_alumno ga left join\n" +
@@ -124,7 +124,7 @@ public class GrupoAlumnoSesionBean {
         return ((List<ActividadEntidad>) query.getResultList()).stream().map(ActividadModelo::new).collect(Collectors.toList());
     }
 
-    public List<AlumnoModelo> buscaAlumno(@NotNull String idGrupo) {
+    public List<AlumnoModelo> buscaAlumno(@NotNull UUID idGrupo) {
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaAlumnosPorGrupo", AlumnoEntidad.class);
         typedQuery.setParameter("idGrupo", idGrupo);
         List<AlumnoEntidad> alumnoEntidadLista = typedQuery.getResultList();
@@ -141,7 +141,7 @@ public class GrupoAlumnoSesionBean {
     }
 
 
-    public Integer tarea(@NotNull Integer idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
+    public Integer tarea(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?)");
         query.setParameter(1, idGrupo).setParameter(2, idActividad);
         return (Integer)query.getSingleResult();

@@ -189,7 +189,7 @@ public class GrupoAlumnoSesionBeanTest {
     }
 
     @Test public void buscaAlumnos() {
-        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno("1");
+        List<AlumnoModelo> alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno(UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
         Assert.assertNotNull(alumnoModeloLista);
         Assert.assertFalse(alumnoModeloLista.isEmpty());
         alumnoModeloLista.forEach(alumnoModelo -> {
@@ -202,7 +202,7 @@ public class GrupoAlumnoSesionBeanTest {
         });
     }
     @Test public void buscaActividades(){
-        List<ActividadModelo> actividadModelos = grupoAlumnoSesionBean.buscaActividades("1");
+        List<ActividadModelo> actividadModelos = grupoAlumnoSesionBean.buscaActividades(UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
         Assert.assertNotNull(actividadModelos);
         Assert.assertFalse(actividadModelos.isEmpty());
         actividadModelos.forEach(actividadModelo -> {
@@ -249,7 +249,7 @@ public class GrupoAlumnoSesionBeanTest {
     public void inserta(){
         GrupoAlumnoModelo grupoAlumnoModelo = new GrupoAlumnoModelo();
         grupoAlumnoModelo.setIdAlumno(5);
-        grupoAlumnoModelo.setIdGrupo(3);
+        grupoAlumnoModelo.setIdGrupo(UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
         grupoAlumnoSesionBean.inserta(grupoAlumnoModelo);
         Assert.assertNotNull(grupoAlumnoModelo);
     }
@@ -257,7 +257,7 @@ public class GrupoAlumnoSesionBeanTest {
     @Test
     public void elimina(){
         GrupoAlumnoModelo grupoAlumnoModelo = new GrupoAlumnoModelo();
-        grupoAlumnoModelo.setIdGrupo(2);
+        grupoAlumnoModelo.setIdGrupo(UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
         grupoAlumnoModelo.setIdAlumno(5);
         int grupoAEliminado = grupoAlumnoSesionBean.elimina(grupoAlumnoModelo);
         Assert.assertFalse(grupoAEliminado == 0);

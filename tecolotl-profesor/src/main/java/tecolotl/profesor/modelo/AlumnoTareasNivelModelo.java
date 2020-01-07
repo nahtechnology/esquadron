@@ -2,9 +2,11 @@ package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.AlumnoTareasNivelEntidad;
 
+import java.util.UUID;
+
 public class AlumnoTareasNivelModelo {
 
-    private String idGrupo;
+    private UUID idGrupo;
     private Integer idAlumno;
     private String nombre;
     private String apellidoPaterno;
@@ -27,11 +29,11 @@ public class AlumnoTareasNivelModelo {
         this.nivelLenguaje = alumnoTareasNivelEntidad.getNivelLenguaje();
     }
 
-    public String getIdGrupo() {
+    public UUID getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(String idGrupo) {
+    public void setIdGrupo(UUID idGrupo) {
         this.idGrupo = idGrupo;
     }
 

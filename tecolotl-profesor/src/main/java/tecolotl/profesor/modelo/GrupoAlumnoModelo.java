@@ -4,6 +4,7 @@ import tecolotl.profesor.entidad.GrupoAlumnoEntidad;
 
 import javax.validation.constraints.NotNull;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class GrupoAlumnoModelo {
 
@@ -11,7 +12,7 @@ public class GrupoAlumnoModelo {
     private Integer idAlumno;
 
     @NotNull
-    private Integer idGrupo;
+    private UUID idGrupo;
 
     public GrupoAlumnoModelo() {
     }
@@ -28,11 +29,11 @@ public class GrupoAlumnoModelo {
         this.idAlumno = idAlumno;
     }
 
-    public Integer getIdGrupo() {
+    public UUID getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(Integer idGrupo) {
+    public void setIdGrupo(UUID idGrupo) {
         this.idGrupo = idGrupo;
     }
 
