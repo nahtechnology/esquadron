@@ -3,6 +3,7 @@ package tecolotl.web.administracion.controlador;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,6 +20,11 @@ public class ProfesorControlador {
     private String claveCentroTrabajo;
     private List<ProfesorModelo> profesorModeloLista;
     private ProfesorModelo profesorModelo;
+
+    @PostConstruct
+    public void init() {
+        profesorModelo = new ProfesorModelo();
+    }
 
     public void inicio() {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
