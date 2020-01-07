@@ -135,6 +135,10 @@
                                                     <f:ajax listener="#{administracionProfesorControlador.llamdaAjaxo}"/>
                                                 </h:commandLink>
                                             </li>
+                                            <li class="uk-nav-divider"/>
+                                            <li>
+                                                <a href="#modal-eliminar"><h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/> #{boton['remove']}</a>
+                                            </li>
                                         </ul>
                                     </h:panelGroup>
                                 </div>
