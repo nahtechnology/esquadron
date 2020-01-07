@@ -115,7 +115,8 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Sexo</f:facet>
-                                ${profesorModelo.sexo}
+                                    <h:outputText rendered="#{'M' eq profesorModelo.sexo}" value="Masculino"/>
+                                    <h:outputText rendered="#{'F' eq profesorModelo.sexo}" value="Femenino"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Correo</f:facet>
@@ -148,8 +149,14 @@
                 </div>
                 <div class="uk-card-footer" id="botones-navegacion">
                     <div></div>
-                    <button class="uk-button  uk-margin-small-left"><h:graphicImage library="img" name="/boton/anterior-deshabilitado.svg"/></button>
-                    <button class="uk-button uk-margin-small-left"><h:graphicImage library="img" name="/boton/siguiente-deshabilitado.svg"/></button>
+                    <button class="uk-button  uk-margin-small-left"><h:graphicImage library="img" name="/boton/anterior-deshabilitado.svg" pt:uk-svg=""/></button>
+                    <button class="uk-button uk-margin-small-left"><h:graphicImage library="img" name="/boton/siguiente-deshabilitado.svg" pt:uk-svg=""/></button>
+                    <select class="uk-select uk-margin-small-left uk-form-width-medium">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                    </select>
                 </div>
             </div>
         </div>

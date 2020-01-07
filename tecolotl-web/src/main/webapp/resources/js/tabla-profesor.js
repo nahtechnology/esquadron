@@ -1,32 +1,36 @@
 document.addEventListener("DOMContentLoaded", function (ev) {
-    const pagina = 5;
+    var pagina = 5;
     var tablaMaestra = document.querySelector('.tabla');
     var botones = tablaMaestra.querySelectorAll('#botones-navegacion button');
-    botones[0].disabled = true;
-    botones[0].classList.add('uk-button-default');
+
     var tabla = new Tabla(tablaMaestra.querySelector('.tabla-paginada'), pagina);
-    var etiqueta = tablaMaestra.querySelector('#botones-navegacion > div');
-    tabla.paginacion(0);
-    tablaMaestra.querySelector('input[type=text]').addEventListener('input',function (evento) {
-        tabla.busca(this.value);
-        if(this.value === ""){
-            tabla.paginacion(0);
-        }
+    // var etiqueta = tablaMaestra.querySelector('#botones-navegacion > div');   <------para mostrar la cantidad de paginas
+    inicializacionPaginacion(tabla,botones,pagina);
+
+    // tablaMaestra.querySelector('input[type=text]').addEventListener('input',function (evento) {
+    //     tabla.busca(this.value);
+    //     if(this.value === ""){
+    //         tabla.paginacion(0);
+    //     }
+    // });
+
+
+    var paginacion = tablaMaestra.querySelector('#botones-navegacion select');
+    paginacion.addEventListener('change',function (evento) {
+        pagina = parseInt(evento.target.value);
+        tabla.pagina = pagina;
+        tabla.actual = 0;
+        inicializacionPaginacion(tabla,botones,pagina);
     });
-   if(tabla.filas.length <= pagina){
-       botones[1].disabled = true;
-       botones[1].classList.add('uk-button-default');
-   } else{
-       botones[1].classList.add('uk-button-secondary');
-   }
-    for (var indice = 0; indice < Math.ceil(tabla.filas.length / tabla.pagina); indice++) {
-        var numeral = document.createElement('span');
-        numeral.textContent = indice + 1;
-        etiqueta.appendChild(numeral);
-    }
+
+    // for (var indice = 0; indice < Math.ceil(tabla.filas.length / tabla.pagina); indice++) {
+    //     var numeral = document.createElement('span');
+    //     numeral.textContent = indice + 1;
+    //     etiqueta.appendChild(numeral);
+    // }
     botones[1].addEventListener('click', function (evento) {
         tabla.paginacion(1);
-        if (tabla.actual * tabla.pagina + tabla.pagina > tabla.filas.length) {
+        if (tabla.actual * tabla.pagina + tabla.pagina >= tabla.filas.length) {
             botones[1].disabled = true;
             botones[1].classList.add('uk-button-default');
             botones[1].classList.remove('uk-button-secondary');
@@ -56,6 +60,18 @@ document.addEventListener("DOMContentLoaded", function (ev) {
     });
 
 });
+function inicializacionPaginacion(tabla,botones,pagina) {
+    botones[0].disabled = true;
+    botones[0].classList.add('uk-button-default');
+    tabla.paginacion(0);
+    if(tabla.filas.length <= pagina){
+        botones[1].disabled = true;
+        botones[1].classList.add('uk-button-default');
+    } else{
+        botones[1].disabled = false;
+        botones[1].classList.add('uk-button-secondary');
+    }
+}
 
 function Tabla(tabla, pagina) {
     this.tabla = tabla;
