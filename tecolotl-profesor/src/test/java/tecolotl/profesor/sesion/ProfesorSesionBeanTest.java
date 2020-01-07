@@ -215,12 +215,12 @@ public class ProfesorSesionBeanTest {
     @Test
     public void inserta2(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
-        profesorModelo.setNombre("Jesusa");
-        profesorModelo.setApellidoPaterno("Reyes");
-        profesorModelo.setApellidoMaterno("Sanchez");
-        profesorModelo.setApodo("El mesias");
-        profesorModelo.setCorreoEletronico("correo_prueba@servidor.com");
-        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBA0014G"));
+        profesorModelo.setNombre("Darnes");
+        profesorModelo.setApellidoPaterno("Vilariño");
+        profesorModelo.setApellidoMaterno("Ayala");
+        profesorModelo.setApodo("Mamá Darnes");
+        profesorModelo.setCorreoEletronico("ellasitenia@servidor.com");
+        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("00000000XX"));
         profesorModelo.setContrasenia(new byte[]{});
         profesorModelo.setSexo('F');
         profesorSesionBean.inserta(profesorModelo);
