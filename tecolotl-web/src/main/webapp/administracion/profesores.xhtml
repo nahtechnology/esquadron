@@ -126,17 +126,15 @@
                             </tbody>
                         </table>
                     </h:panelGroup>
-                    <ui:remove>
-                        <h:dataTable id="table-prfesor"
-                                     value="#{administracionProfesorControlador.profesorModeloLista}"
-                                     var="profesorModelo"
-                                     rendered="#{not empty administracionProfesorControlador.profesorModeloLista}"   >
-                            <h:column>
-                                <f:facet name="haeder">Nombre</f:facet>
-                                ${profesorModelo.nombre}
-                            </h:column>
-                        </h:dataTable>
-                    </ui:remove>
+                    <h:dataTable id="table-prfesor"
+                                 value="#{administracionProfesorControlador.profesorModeloLista}"
+                                 var="profesorModelo"
+                                 rendered="#{not empty administracionProfesorControlador.profesorModeloLista}">
+                        <h:column>
+                            <f:facet name="haeder">Nombre</f:facet>
+                            ${profesorModelo.nombre}
+                        </h:column>
+                    </h:dataTable>
                 </div>
             </div>
         </div>
@@ -227,7 +225,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText id="correoEletronico"
                                                  value="#{administracionProfesorControlador.profesorModelo.correoEletronico}">
-    |                                        <f:validateRequired/>
+                                             <f:validateRequired/>
                                              <f:validateLength/>
                                     </h:inputText>
                                 </div>
