@@ -54,11 +54,11 @@
                 </div>
             </div>
         </h:panelGroup>
-        <div>
-            <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+        <div class="uk-margin-large-top">
+            <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
                 <div class="uk-card-header">
                     <div class="uk-grid uk-grid-small">
-                        <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{administracion['dashboard.titulo']}</span></h4></div>
+                        <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Teachers</span></h4></div>
                         <div class="uk-width-1-3">
                             <h:form styleClass="uk-search largo-buscar" id="formulario-filtrado-escuela">
                                 <div class="uk-inline">
@@ -91,15 +91,12 @@
                         </div>
                         <div class="uk-width-expand uk-text-right panel-icons">
                             <h:form id="formulario-agregar-profesor">
-                                <ui:remove>
                                 <h:commandLink styleClass="uk-icon-link"
                                                pt:uk-icon="icon: plus-circle; ratio: 1.5"
                                                pt:uk-toggle="target: #modal-escuela"
                                                pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000">
                                     <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela" onevent="function limpia(data) { limpiaSelect(data); }"/>
                                 </h:commandLink>
-                                </ui:remove>
-                                <a href="#" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-profesor" uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
                             </h:form>
                         </div>
                     </div>
@@ -126,15 +123,58 @@
                             </tbody>
                         </table>
                     </h:panelGroup>
-                    <h:dataTable id="table-prfesor"
-                                 value="#{administracionProfesorControlador.profesorModeloLista}"
-                                 var="profesorModelo"
-                                 rendered="#{not empty administracionProfesorControlador.profesorModeloLista}">
-                        <h:column>
-                            <f:facet name="haeder">Nombre</f:facet>
-                            ${profesorModelo.nombre}
-                        </h:column>
-                    </h:dataTable>
+                        <h:dataTable id="table-prfesor"
+                                     value="#{administracionProfesorControlador.profesorModeloLista}"
+                                     var="profesorModelo"
+                                     rendered="#{not empty administracionProfesorControlador.profesorModeloLista}"
+                                     styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada"
+                                     headerClass="uk-background-primary letra-titulo uk-text-center"
+                                     columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
+
+                            <h:column>
+                                <f:facet name="header">Apodo</f:facet>
+                                ${profesorModelo.apodo}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Nombre</f:facet>
+                                ${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Sexo</f:facet>
+                                ${profesorModelo.sexo}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Correo</f:facet>
+                                ${profesorModelo.correoEletronico}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Opciones</f:facet>
+                                <div class="uk-inline">
+                                    <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
+                                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
+                                        <ul class="uk-nav uk-dropdown-nav">
+                                            <li>
+                                                <a href="#">
+                                                    <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
+                                                    <span class="uk-text-middle"><h:outputText value="#{boton['active']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
+                                                    <span class="uk-text-middle"><h:outputText value="#{boton['active']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </h:panelGroup>
+                                </div>
+                            </h:column>
+                        </h:dataTable>
+                </div>
+                <div class="uk-card-footer" id="botones-navegacion">
+                    <div></div>
+                    <button class="uk-button  uk-margin-small-left"><h:graphicImage library="img" name="/boton/anterior-deshabilitado.svg"/></button>
+                    <button class="uk-button uk-margin-small-left"><h:graphicImage library="img" name="/boton/siguiente-deshabilitado.svg"/></button>
                 </div>
             </div>
         </div>
@@ -251,6 +291,7 @@
             </div>
         </h:panelGroup>
         <h:outputScript library="js" name="administracion/profesores.js"/>
+        <h:outputScript library="js" name="tabla-profesor.js"/>
     </ui:define>
 
 </ui:composition>
