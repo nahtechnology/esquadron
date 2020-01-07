@@ -1,7 +1,5 @@
 package tecolotl.profesor.entidad;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.loader.plan.spi.QuerySpaceUidNotRegisteredException;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
@@ -37,6 +35,10 @@ import java.util.UUID;
     @NamedQuery(
         name = "ProfesorEntidad.buscaApodo",
         query = "select p from ProfesorEntidad p JOIN FETCH p.escuelaEntidad e WHERE p.apodo = :apodo"
+    ),
+    @NamedQuery(
+            name = "ProfesorEntidad.eliminaProfesor",
+            query = "select count (g.id) from GrupoEntidad g where g.profesorEntidad.id = :idProfesor"
     )
 })
 public class ProfesorEntidad extends PersonaEntidad {

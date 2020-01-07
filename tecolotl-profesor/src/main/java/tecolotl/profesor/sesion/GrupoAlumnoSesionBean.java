@@ -27,6 +27,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -69,7 +70,7 @@ public class GrupoAlumnoSesionBean {
      * @param idGrupo Identificador del grupo
      * @return Colección de {@link TareaAlumnoGrupoModelo}
      */
-    public List<TareaAlumnoGrupoModelo> busca(@NotNull String idGrupo) {
+    public List<TareaAlumnoGrupoModelo> busca(@NotNull UUID idGrupo) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tareas_grupo(?)", TareaAlumnoGrupoEntidad.class);
         query.setParameter(1, idGrupo);
         return ((List<TareaAlumnoGrupoEntidad>)query.getResultList()).stream().map(TareaAlumnoGrupoModelo::new).collect(Collectors.toList());
@@ -81,10 +82,10 @@ public class GrupoAlumnoSesionBean {
      * @return Colección de alumno con sus niveles
      */
     //TODO Checar PuerQuery
-    public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<String> idGrupoLista) {
+    public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<UUID> idGrupoLista) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))");
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
-        idGrupoLista.forEach(grupo -> stringJoiner.add(grupo));
+        idGrupoLista.forEach(grupo -> stringJoiner.add(grupo.toString()));
         query.setParameter(1,stringJoiner.toString());
         List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = new ArrayList<>();
         List<Object[]> lista = query.getResultList();
@@ -162,7 +163,7 @@ public class GrupoAlumnoSesionBean {
         return entityManager.createQuery(criteriaDelete).executeUpdate();
     }
 
-    public List<AlumnoModelo> detalleAlumnos(@NotNull String idGrupo) {
+    public List<AlumnoModelo> detalleAlumnos(@NotNull UUID idGrupo) {
         logger.fine(idGrupo.toString());
         Query query = entityManager.createNativeQuery("SELECT a.id,a.apodo,a.nombre,a.apellido_paterno,a.apellido_materno,pgp_sym_decrypt_bytea(" +
                 "a.contrasenia, 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256') AS contrasenia " +

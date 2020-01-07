@@ -52,6 +52,10 @@ public class GrupoSesionBean implements Serializable {
         grupoEntidad.setGrado(grupoModelo.getGrado());
         grupoEntidad.setGrupo(grupoModelo.getGrupo());
         grupoEntidad.setProfesorEntidad(new ProfesorEntidad(grupoModelo.getIdProfesor()));
+        grupoEntidad.setCicloEscolarEntidad(new CicloEscolarEntidad(new CicloEscolarEntidadPK(
+                grupoModelo.getCicloEscolarModelo().getInicio(),
+                grupoModelo.getCicloEscolarModelo().getFin(),
+                grupoModelo.getCicloEscolarModelo().getIdEscuela())));
         entityManager.persist(grupoEntidad);
         grupoModelo.setId(grupoEntidad.getId());
     }
@@ -61,7 +65,7 @@ public class GrupoSesionBean implements Serializable {
      * @param idGrupo
      * @return
      */
-    public GrupoModelo buscaId(@NotNull String idGrupo) {
+    public GrupoModelo buscaId(@NotNull UUID idGrupo) {
         return new GrupoModelo(entityManager.find(GrupoEntidad.class, idGrupo));
     }
 
@@ -115,7 +119,7 @@ public class GrupoSesionBean implements Serializable {
      * Busca todos los grupos perteneciente a un profesor.
      * @return Lista de todos los Grupos.
      */
-    public List<GrupoModelo> busca(@NotNull String idProfesor){
+    public List<GrupoModelo> busca(@NotNull UUID idProfesor){
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaProfesor", GrupoEntidad.class);
         typedQuery.setParameter("idProfesor", idProfesor);
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
@@ -153,7 +157,7 @@ public class GrupoSesionBean implements Serializable {
      * @param idGrupo id del Grupo a eliminar.
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
-    public Integer elimina(@NotNull Integer idGrupo){
+    public Integer elimina(@NotNull UUID idGrupo){
         logger.fine(idGrupo.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete criteriaDelete = criteriaBuilder.createCriteriaDelete(GrupoEntidad.class);
@@ -168,7 +172,7 @@ public class GrupoSesionBean implements Serializable {
      * @param idGrupo Identificador del grupo.
      * @return True en caso de que concidan, false en cualquier otro caso.
      */
-    public boolean pertenece(@NotNull UUID idProfesor, @NotNull String idGrupo) {
+    public boolean pertenece(@NotNull UUID idProfesor, @NotNull UUID idGrupo) {
         TypedQuery<String> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cuentaPorProfesor", String.class);
         typedQuery.setParameter("idGrupo", idGrupo);
         try {

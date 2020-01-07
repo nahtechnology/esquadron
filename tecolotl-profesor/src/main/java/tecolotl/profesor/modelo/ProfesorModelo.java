@@ -1,16 +1,12 @@
 package tecolotl.profesor.modelo;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.nucleo.modelo.PersonaModelo;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.profesor.entidad.ProfesorEntidad;
-import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 import tecolotl.profesor.validacion.ProfesorLlavePrimaria;
 import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;

@@ -10,16 +10,17 @@ import java.util.*;
 
 public class GrupoModelo {
 
-    private String id;
+    private UUID id;
     private Short grado;
     private Character grupo;
     private UUID idProfesor;
+    private CicloEscolarModelo cicloEscolarModelo;
     private int totalAlumno;
 
     public GrupoModelo() {
     }
 
-    public GrupoModelo(String id) {
+    public GrupoModelo(UUID id) {
         this.id = id;
     }
 
@@ -48,11 +49,11 @@ public class GrupoModelo {
     }
 
     @NotNull
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -73,6 +74,14 @@ public class GrupoModelo {
         this.totalAlumno = totalAlumno;
     }
 
+    public CicloEscolarModelo getCicloEscolarModelo() {
+        return cicloEscolarModelo;
+    }
+
+    public void setCicloEscolarModelo(CicloEscolarModelo cicloEscolarModelo) {
+        this.cicloEscolarModelo = cicloEscolarModelo;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -84,21 +93,23 @@ public class GrupoModelo {
                 id.equals(that.id) &&
                 grado.equals(that.grado) &&
                 grupo.equals(that.grupo) &&
-                idProfesor.equals(that.idProfesor);
+                idProfesor.equals(that.idProfesor) &&
+                cicloEscolarModelo.equals(that.cicloEscolarModelo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, grado, grupo, idProfesor, totalAlumno);
+        return Objects.hash(id, grado, grupo, idProfesor, cicloEscolarModelo, totalAlumno);
     }
 
     @Override
     public String toString() {
         return new StringJoiner(", ", GrupoModelo.class.getSimpleName() + "[", "]")
-                .add("id='" + id + "'")
+                .add("id=" + id)
                 .add("grado=" + grado)
                 .add("grupo=" + grupo)
-                .add("idProfesor='" + idProfesor + "'")
+                .add("idProfesor=" + idProfesor)
+                .add("cicloEscolarModelo=" + cicloEscolarModelo)
                 .add("totalAlumno=" + totalAlumno)
                 .toString();
     }

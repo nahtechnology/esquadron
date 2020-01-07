@@ -15,6 +15,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -34,7 +35,7 @@ public class AlumnoGrupoScope {
      * @param alumnoModelo Datos del nuevo alumno a ser ingresaod
      * @param idGrupo grupo donde se agrega dicho alumno
      */
-    public void inserta(@NotNull AlumnoModelo alumnoModelo, @NotNull String idGrupo) {
+    public void inserta(@NotNull AlumnoModelo alumnoModelo, @NotNull UUID idGrupo) {
         AlumnoEntidad alumnoEntidad = new AlumnoEntidad();
         alumnoEntidad.setApodo(alumnoModelo.getApodo());
         alumnoEntidad.setNombre(alumnoModelo.getNombre());

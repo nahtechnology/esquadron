@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.UUID;
 
 @SessionScoped
 @Named
@@ -24,7 +25,7 @@ public class ProfesorGrupoControlador implements Serializable {
     private GrupoModelo grupoModelo;
     private AlumnoModelo alumnoModelo;
 
-    public void detalleGrupo(@NotNull String idGrupo) {
+    public void detalleGrupo(@NotNull UUID idGrupo) {
         grupoModelo = grupoSesionBean.buscaId(idGrupo);
     }
 

@@ -25,6 +25,7 @@ import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -77,7 +78,6 @@ public class CicloEscolarSessionBeanTest {
     @Deployment
     public static WebArchive createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "prueba.war")
-                //nucleo
                 //nucleo
                 .addPackage(CorreoEnum.class.getPackage()).addPackage(CatalogoModelo.class.getPackage()).addPackage(CatalagoEntidad.class.getPackage())
                 .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
@@ -134,6 +134,7 @@ public class CicloEscolarSessionBeanTest {
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
                 .addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
@@ -146,7 +147,7 @@ public class CicloEscolarSessionBeanTest {
 
     @Test
     public void busca() {
-        List<CicloEscolarModelo> cicloEscolarModeloLista = cicloEscolarSessionBean.busca("21DBA0014J", true, UUID.fromString("7176589b-a3ca-472f-bf00-c253c351ddcc"));
+        List<CicloEscolarModelo> cicloEscolarModeloLista = cicloEscolarSessionBean.busca("21DBA0014J", true, UUID.fromString("f64d1fd6-67e0-423a-a2a8-4eb866b18b6d"));
         assertNotNull(cicloEscolarModeloLista);
         assertFalse(cicloEscolarModeloLista.isEmpty());
         cicloEscolarModeloLista.forEach(cicloEscolarModelo -> {
@@ -165,7 +166,7 @@ public class CicloEscolarSessionBeanTest {
         cicloEscolarModelo.setDescripcion("Ciclo escolar 2020 a 2021");
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
-        cicloEscolarModelo.setIdEscuela("21DBA0051N");
+        cicloEscolarModelo.setIdEscuela("21DBA0014J");
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
         cicloEscolarSessionBean.busca(cicloEscolarModelo);
         assertNotNull(cicloEscolarModelo.getDescripcion());

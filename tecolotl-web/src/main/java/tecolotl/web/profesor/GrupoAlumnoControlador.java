@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -54,7 +55,7 @@ public class GrupoAlumnoControlador implements Serializable {
     @Inject
     private Logger logger;
 
-    private String idGrupo;
+    private UUID idGrupo;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
@@ -107,11 +108,11 @@ public class GrupoAlumnoControlador implements Serializable {
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
     }
 
-    public String getIdGrupo() {
+    public UUID getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(String idGrupo) {
+    public void setIdGrupo(UUID idGrupo) {
         this.idGrupo = idGrupo;
     }
 

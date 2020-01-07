@@ -162,7 +162,7 @@ public class GrupoSesionBeanTest {
 
     @Test
     public void buscaProfesor(){
-        List<GrupoModelo> grupoModeloLista = grupoSesionBean.busca("1");
+        List<GrupoModelo> grupoModeloLista = grupoSesionBean.busca(UUID.fromString("f64d1fd6-67e0-423a-a2a8-4eb866b18b6d"));
         Assert.assertNotNull(grupoModeloLista);
         Assert.assertFalse(grupoModeloLista.isEmpty());
         logger.info(grupoModeloLista.toString());
@@ -179,10 +179,26 @@ public class GrupoSesionBeanTest {
         grupoModelo.setGrado((short)1);
         grupoModelo.setGrupo('B');
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
-        cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2019"));
-        cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("22/08/2020"));
-        cicloEscolarModelo.setIdEscuela("21DBA0051N");
-        grupoModelo.setIdProfesor(UUID.fromString("7176589b-a3ca-472f-bf00-c253c351ddcc"));
+        cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
+        cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
+        cicloEscolarModelo.setIdEscuela("21DBA0014J");
+        grupoModelo.setCicloEscolarModelo(cicloEscolarModelo);
+        grupoModelo.setIdProfesor(UUID.fromString("f64d1fd6-67e0-423a-a2a8-4eb866b18b6d"));
+        grupoSesionBean.inserta(grupoModelo);
+        Assert.assertNotNull(grupoModelo.getId());
+        Assert.assertNotEquals(grupoModelo.getId(), "");
+    }
+    @Test
+    public void inserta2() throws ParseException {
+        GrupoModelo grupoModelo = new GrupoModelo();
+        grupoModelo.setGrado((short)2);
+        grupoModelo.setGrupo('C');
+        CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
+        cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
+        cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
+        cicloEscolarModelo.setIdEscuela("21DBA0014J");
+        grupoModelo.setCicloEscolarModelo(cicloEscolarModelo);
+        grupoModelo.setIdProfesor(UUID.fromString("f64d1fd6-67e0-423a-a2a8-4eb866b18b6d"));
         grupoSesionBean.inserta(grupoModelo);
         Assert.assertNotNull(grupoModelo.getId());
         Assert.assertNotEquals(grupoModelo.getId(), "");
@@ -190,9 +206,9 @@ public class GrupoSesionBeanTest {
 
     @Test
     public void actualiza() {
-        GrupoModelo grupoModelo = new GrupoModelo("-38");
-        grupoModelo.setGrado((short)2);
-        grupoModelo.setGrupo('C');
+        GrupoModelo grupoModelo = new GrupoModelo(UUID.fromString("f673954a-8429-4f33-9bab-161a94975c50"));
+        grupoModelo.setGrado((short)3);
+        grupoModelo.setGrupo('A');
         grupoSesionBean.actualiza(grupoModelo);
     }
 
@@ -200,7 +216,7 @@ public class GrupoSesionBeanTest {
     public void buscaConTotal() throws ParseException {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         List<GrupoModelo> grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
-                dateFormat.parse("2019-09-14"), dateFormat.parse("2020-09-14"), "21DBA0014J", UUID.fromString("7176589b-a3ca-472f-bf00-c253c351ddcc"));
+                dateFormat.parse("2020-01-01"), dateFormat.parse("2021-01-01"), "21DBA0014J", UUID.fromString("f64d1fd6-67e0-423a-a2a8-4eb866b18b6d"));
         Assert.assertNotNull(grupoModeloLista);
         Assert.assertFalse(grupoModeloLista.isEmpty());
         for (GrupoModelo grupoModelo : grupoModeloLista) {
@@ -218,7 +234,7 @@ public class GrupoSesionBeanTest {
 
     @Test
     public void elimina(){
-        int grupoEl = grupoSesionBean.elimina(-38);
+        int grupoEl = grupoSesionBean.elimina(UUID.fromString("8605bf7e-6902-4f6f-ae5a-7931211786d9"));
         Assert.assertFalse(grupoEl == 0);
     }
 }

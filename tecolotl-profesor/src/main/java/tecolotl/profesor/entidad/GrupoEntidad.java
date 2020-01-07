@@ -1,18 +1,12 @@
 package tecolotl.profesor.entidad;
 
-import org.omg.CORBA.StringHolder;
-import tecolotl.alumno.modelo.AlumnoModelo;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.UUID;
 
 @Entity
 @Table(name = "grupo", schema = "profesor")
-@SequenceGenerator(name = "generador_secuencia", sequenceName = "grupo_seq", schema = "profesor")
 @NamedQueries({
     @NamedQuery(name ="GrupoEntidad.busca", query = "SELECT g FROM GrupoEntidad g"),
     @NamedQuery(
@@ -46,7 +40,7 @@ import java.util.StringJoiner;
 })
 public class GrupoEntidad {
 
-    private String id;
+    private UUID id;
     private Short grado;
     private Character grupo;
     private ProfesorEntidad profesorEntidad;
@@ -57,11 +51,11 @@ public class GrupoEntidad {
     public GrupoEntidad() {
     }
 
-    public GrupoEntidad(String id) {
+    public GrupoEntidad(UUID id) {
         this.id = id;
     }
 
-    public GrupoEntidad(String id, Short grado, Character grupo, Long totalAlumno) {
+    public GrupoEntidad(UUID id, Short grado, Character grupo, Long totalAlumno) {
         this.id = id;
         this.grado = grado;
         this.grupo = grupo;
@@ -69,12 +63,11 @@ public class GrupoEntidad {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador_secuencia")
-    public String getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -140,6 +133,11 @@ public class GrupoEntidad {
 
     public void setTotalAlumno(int totalAlumno) {
         this.totalAlumno = totalAlumno;
+    }
+
+    @PrePersist
+    public void creaUUID(){
+        this.id = UUID.randomUUID();
     }
 
 }
