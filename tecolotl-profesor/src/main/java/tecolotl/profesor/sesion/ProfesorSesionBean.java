@@ -139,7 +139,7 @@ public class ProfesorSesionBean implements Serializable {
      * @param idProfesor dato para eliminar el profesor.
      * @return numero de elementos modificados, 0 en caso de no existir.
      */
-    public Integer elimina(@NotNull Integer idProfesor){
+    public Integer elimina(@NotNull UUID idProfesor){
         logger.fine(idProfesor.toString());
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete<ProfesorEntidad> criteriaDelete = criteriaBuilder.createCriteriaDelete(ProfesorEntidad.class);

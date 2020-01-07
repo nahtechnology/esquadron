@@ -174,7 +174,7 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaId() {
-        ProfesorModelo profesorModelo = profesorSesionBean.busca("1");
+        ProfesorModelo profesorModelo = profesorSesionBean.busca(UUID.fromString("f64d1fd6-67e0-423a-a2a8-4eb866b18b6d"));
         Assert.assertNotNull(profesorModelo);
         Assert.assertNotNull(profesorModelo.getId());
         Assert.assertNotNull(profesorModelo.getCorreoEletronico());
@@ -230,14 +230,15 @@ public class ProfesorSesionBeanTest {
     @Test
     public void actualiza(){
         ProfesorModelo profesorModelo = new ProfesorModelo();
+        profesorModelo.setId(UUID.fromString("43ed2caa-617c-4501-954d-f91eb4bf1b17"));
         profesorModelo.setNombre("Eliminando");
         profesorModelo.setApellidoPaterno("Reyes");
         profesorModelo.setApellidoMaterno("Sanchez");
         profesorModelo.setApodo("Don Levantones");
         profesorModelo.setCorreoEletronico("nuevocorreo@nossirve.com");
         profesorModelo.setSexo('F');
-        profesorModelo.setContrasenia(new byte[]{});
-        EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("21DBS0029K");
+        profesorModelo.setContrasenia("123".getBytes());
+        EscuelaBaseModelo escuelaBaseModelo = new EscuelaBaseModelo("21DBA0014J");
         profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
 
         int elementosModificados = profesorSesionBean.actualiza(profesorModelo);
@@ -247,14 +248,14 @@ public class ProfesorSesionBeanTest {
     @Test
     public void elimina() {
         Integer profesorEliminado = 0;
-        profesorEliminado = profesorSesionBean.elimina(-39);
+        profesorEliminado = profesorSesionBean.elimina(UUID.fromString("5fb11b30-4e04-4bf1-8d34-a893237389c4"));
         Assert.assertNotNull(profesorEliminado);
         Assert.assertFalse(profesorEliminado == 0);
     }
 
     @Test
     public void buscaApodo() {
-        ProfesorModelo profesorModelo = profesorSesionBean.busca("zonteco");
+        ProfesorModelo profesorModelo = profesorSesionBean.busca("El Juanito");
         Assert.assertNotNull(profesorModelo);
         Assert.assertNotNull(profesorModelo.getId());
         Assert.assertNotNull(profesorModelo.getNombre());
