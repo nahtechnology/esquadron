@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function (ev) {
-    const pagina = 1;
+    const pagina = 5;
     var tablaMaestra = document.querySelector('.tabla');
     var botones = tablaMaestra.querySelectorAll('#botones-navegacion button');
     botones[0].disabled = true;

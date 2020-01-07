@@ -1,5 +1,6 @@
 package tecolotl.web.administracion.controlador;
 
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 
@@ -34,8 +35,10 @@ public class ProfesorControlador {
         profesorModelo = profesorSesionBean.busca(idProfesor);
     }
 
-    public void inserta() {
+    public void inserta(String claveCentroTrabajo) {
+        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo(claveCentroTrabajo));
         profesorSesionBean.inserta(profesorModelo);
+        profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
     }
 
     public void actualiza() {
