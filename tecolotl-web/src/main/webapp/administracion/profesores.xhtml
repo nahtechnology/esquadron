@@ -216,7 +216,7 @@
                                                  styleClass="uk-input"
                                                  value="#{administracionProfesorControlador.profesorModelo.contrasenia}">
                                             <f:validateRequired/>
-                                            <f:validateLength/>
+                                            <f:validateLength />
                                     </h:inputText>
                                 </div>
                             </div>
@@ -224,9 +224,10 @@
                                 <h:outputLabel value="correoEletronico" for="correoEletronico"/>
                                 <div class="uk-form-controls">
                                     <h:inputText id="correoEletronico"
+                                                 styleClass="uk-input"
                                                  value="#{administracionProfesorControlador.profesorModelo.correoEletronico}">
                                              <f:validateRequired/>
-                                             <f:validateLength/>
+                                             <f:validateLength minimum="5" maximum="150"/>
                                     </h:inputText>
                                 </div>
                             </div>
