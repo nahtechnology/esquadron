@@ -173,10 +173,10 @@ public class GrupoSesionBean implements Serializable {
      * @return True en caso de que concidan, false en cualquier otro caso.
      */
     public boolean pertenece(@NotNull UUID idProfesor, @NotNull UUID idGrupo) {
-        TypedQuery<String> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cuentaPorProfesor", String.class);
+        TypedQuery<UUID> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cuentaPorProfesor", UUID.class);
         typedQuery.setParameter("idGrupo", idGrupo);
         try {
-            return typedQuery.getSingleResult().compareTo(idProfesor.toString()) == 0;
+            return typedQuery.getSingleResult().compareTo(idProfesor) == 0;
         } catch (NoResultException e) {
             return false;
         }

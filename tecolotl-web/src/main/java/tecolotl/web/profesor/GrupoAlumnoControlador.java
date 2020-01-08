@@ -55,7 +55,7 @@ public class GrupoAlumnoControlador implements Serializable {
     @Inject
     private Logger logger;
 
-    private UUID idGrupo;
+    private String idGrupo;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
@@ -81,7 +81,7 @@ public class GrupoAlumnoControlador implements Serializable {
             facesMessage.setSummary("ya existe este apodo");
             facesContext.addMessage(uiInputApodo.getClientId(facesContext), facesMessage);
         } else {
-            alumnoGrupoScope.inserta(alumnoModelo, idGrupo);
+            alumnoGrupoScope.inserta(alumnoModelo, UUID.fromString(idGrupo));
             alumnoModelo = new AlumnoModelo();
             buscaDetalleAlumnos();
             buscaTotalAlumno();
@@ -89,9 +89,9 @@ public class GrupoAlumnoControlador implements Serializable {
     }
 
     public void buscaDetalleAlumnos() throws IOException {
-        if (grupoSesionBean.pertenece(profesorControlador.getProfesorModelo().getId(), idGrupo)) {
-            tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(idGrupo);
-            profesorGrupoControlador.detalleGrupo(idGrupo);
+        if (grupoSesionBean.pertenece(profesorControlador.getProfesorModelo().getId(), UUID.fromString(idGrupo))) {
+            tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(UUID.fromString(idGrupo));
+            profesorGrupoControlador.detalleGrupo(UUID.fromString(idGrupo));
         } else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("no-grupo.xhtml");
         }
@@ -108,11 +108,11 @@ public class GrupoAlumnoControlador implements Serializable {
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
     }
 
-    public UUID getIdGrupo() {
+    public String getIdGrupo() {
         return idGrupo;
     }
 
-    public void setIdGrupo(UUID idGrupo) {
+    public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
     }
 
