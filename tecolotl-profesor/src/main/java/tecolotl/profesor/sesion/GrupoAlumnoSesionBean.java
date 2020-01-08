@@ -83,7 +83,7 @@ public class GrupoAlumnoSesionBean {
      */
     //TODO Checar PuerQuery
     public List<AlumnoTareasNivelModelo> buscaAlumnoNivel(@NotNull @Size(min = 1) List<UUID> idGrupoLista) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS INTEGER[]))");
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas_resueltas(CAST (? AS uuid[]))");
         final StringJoiner stringJoiner = new StringJoiner(",", "{", "}");
         idGrupoLista.forEach(grupo -> stringJoiner.add(grupo.toString()));
         query.setParameter(1,stringJoiner.toString());
@@ -91,12 +91,12 @@ public class GrupoAlumnoSesionBean {
         List<Object[]> lista = query.getResultList();
         for (Object[] objects : lista) {
             AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo();
-            alumnoTareasNivelModelo.setIdGrupo((UUID) objects[0]);
-            alumnoTareasNivelModelo.setIdAlumno((Integer)objects[1]);
+            alumnoTareasNivelModelo.setIdGrupo(UUID.fromString((String) objects[0]));
+            alumnoTareasNivelModelo.setIdAlumno(UUID.fromString((String)objects[1]));
             alumnoTareasNivelModelo.setNombre((String)objects[2]);
             alumnoTareasNivelModelo.setApellidoPaterno((String)objects[3]);
             alumnoTareasNivelModelo.setApellidoMaterno((String)objects[4]);
-            alumnoTareasNivelModelo.setIdTarea((Integer)objects[5]);
+            alumnoTareasNivelModelo.setIdTarea(objects[5] == null ? null : UUID.fromString((String)objects[5]));
             alumnoTareasNivelModelo.setTotalTareas((Integer)objects[6]);
             alumnoTareasNivelModelo.setNivelLenguaje((String)objects[7]);
             alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);

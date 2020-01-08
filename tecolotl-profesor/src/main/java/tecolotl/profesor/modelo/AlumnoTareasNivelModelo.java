@@ -7,11 +7,11 @@ import java.util.UUID;
 public class AlumnoTareasNivelModelo {
 
     private UUID idGrupo;
-    private Integer idAlumno;
+    private UUID idAlumno;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private Integer idTarea;
+    private UUID idTarea;
     private Integer totalTareas;
     private String  nivelLenguaje;
 
@@ -37,11 +37,11 @@ public class AlumnoTareasNivelModelo {
         this.idGrupo = idGrupo;
     }
 
-    public Integer getIdAlumno() {
+    public UUID getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Integer idAlumno) {
+    public void setIdAlumno(UUID idAlumno) {
         this.idAlumno = idAlumno;
     }
 
@@ -85,11 +85,11 @@ public class AlumnoTareasNivelModelo {
         this.apellidoMaterno = apellidoMaterno;
     }
 
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 }

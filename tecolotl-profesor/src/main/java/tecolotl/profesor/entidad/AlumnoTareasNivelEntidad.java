@@ -27,18 +27,18 @@ import java.util.UUID;
 public class AlumnoTareasNivelEntidad implements Serializable {
 
     private UUID idGrupo;
-    private Integer idAlumno;
+    private UUID idAlumno;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private Integer idTarea;
+    private UUID idTarea;
     private Integer totalTareas;
     private String nivelLenguaje;
 
     public AlumnoTareasNivelEntidad() {
     }
 
-    public AlumnoTareasNivelEntidad(UUID idGrupo, Integer idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer idTarea, Integer totalTareas, String nivelLenguaje) {
+    public AlumnoTareasNivelEntidad(UUID idGrupo, UUID idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, UUID idTarea, Integer totalTareas, String nivelLenguaje) {
         this.idGrupo = idGrupo;
         this.idAlumno = idAlumno;
         this.nombre = nombre;
@@ -61,11 +61,11 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     @Basic
     @Column(name = "id_alumno")
-    public Integer getIdAlumno() {
+    public UUID getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Integer idAlumno) {
+    public void setIdAlumno(UUID idAlumno) {
         this.idAlumno = idAlumno;
     }
 
@@ -101,11 +101,11 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     @Basic
     @Column(name = "id_tarea")
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 
