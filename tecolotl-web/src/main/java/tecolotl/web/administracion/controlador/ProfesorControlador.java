@@ -6,16 +6,19 @@ import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named(value = "administracionProfesorControlador")
-public class ProfesorControlador {
+public class ProfesorControlador implements Serializable {
 
     @Inject
     private ProfesorSesionBean profesorSesionBean;
@@ -29,7 +32,6 @@ public class ProfesorControlador {
 
     @PostConstruct
     public void init() {
-        logger.info("contruyendo");
         profesorModelo = new ProfesorModelo();
     }
 
@@ -37,23 +39,21 @@ public class ProfesorControlador {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
     }
 
-    public void busca(AjaxBehaviorEvent event) {
-        logger.info(event.toString());
-        //profesorModelo = profesorSesionBean.busca(idProfesor);
-    }
-
-    public void llamdaAjax(AjaxBehaviorEvent event) {
-        logger.info("llamda Ajax");
+    public void busca(ProfesorModelo profesorModelo) {
+        this.profesorModelo = profesorModelo;
     }
 
     public void inserta(String claveCentroTrabajo) {
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo(claveCentroTrabajo));
         profesorSesionBean.inserta(profesorModelo);
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
+        profesorModelo = new ProfesorModelo();
     }
 
     public void actualiza() {
         profesorSesionBean.actualiza(profesorModelo);
+        profesorModeloLista = profesorSesionBean.buscaPorEscuela(profesorModeloLista.get(0).getEscuelaBaseModelo().getClaveCentroTrabajo());
+        profesorModelo = new ProfesorModelo();
     }
 
     public String getClaveCentroTrabajo() {

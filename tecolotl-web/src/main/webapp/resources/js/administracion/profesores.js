@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', ejecucionInicio);
 function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
     modalProfresor.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
+    abrirModal();
     elimina();
 }
 
@@ -41,4 +42,12 @@ function cerrarModal(data , modal) {
             }
         }
     }
+}
+
+
+function abrirModal() {
+    UIkit.util.on('#modal-profesor', 'shown', function () {
+        modalProfresor.querySelector('.uk-modal-header').click();
+        modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
+    });
 }

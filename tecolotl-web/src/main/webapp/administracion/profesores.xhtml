@@ -101,16 +101,16 @@
                                      value="#{administracionProfesorControlador.profesorModeloLista}"
                                      var="profesorModelo"
                                      rendered="#{not empty administracionProfesorControlador.profesorModeloLista}"
-                                     styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada"
+                                     styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada tabla-profesor"
                                      headerClass="uk-background-primary letra-titulo uk-text-center"
                                      columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
                             <h:column><f:facet name="header">Id</f:facet>#{profesorModelo.id}</h:column>
                             <h:column>
-                                <f:facet name="header">Apodo</f:facet>
+                                <f:facet name="header">apodo</f:facet>
                                 ${profesorModelo.apodo}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Nombre</f:facet>
+                                <f:facet name="header">nombre</f:facet>
                                 ${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}
                             </h:column>
                             <h:column>
@@ -119,20 +119,20 @@
                                     <h:outputText rendered="#{'F' eq profesorModelo.sexo || 'f' eq profesorModelo.sexo}" value="Femenino"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Correo</f:facet>
+                                <f:facet name="header">correo</f:facet>
                                 ${profesorModelo.correoEletronico}
                             </h:column>
                             <h:column>
-                                <f:facet name="header">Opciones</f:facet>
+                                <f:facet name="header">opciones</f:facet>
                                 <div class="uk-inline">
                                     <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
-                                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
+                                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
                                         <ul class="uk-nav uk-dropdown-nav">
                                             <li>
                                                 <h:commandLink pt:uk-toggle="target: #modal-profesor">
                                                     <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                     <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                    <f:ajax listener="#{administracionProfesorControlador.llamdaAjaxo}"/>
+                                                    <f:ajax listener="#{administracionProfesorControlador.busca(profesorModelo)}" render="formulario-modal-profesor"/>
                                                 </h:commandLink>
                                             </li>
                                             <li class="uk-nav-divider"/>
@@ -193,7 +193,7 @@
 
         <h:panelGroup layout="block" id="modal-profesor" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <h:form id="formulario-profesor" styleClass="uk-form-stacked">
+                <h:form id="formulario-modal-profesor" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
                             <h:outputText value="Nuevo Profesor" styleClass="letra-titulo" rendered="#{empty administracionProfesorControlador.profesorModelo.id}"/>
@@ -295,11 +295,17 @@
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right">
                             #{boton['cancel']}
                         </button>
-                        <h:commandButton value="enviar" styleClass="uk-button uk-button-secondary">
+                        <h:commandButton value="${boton['add']}" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta(administracionProfesorControlador.claveCentroTrabajo)}"
                                     render="@form formulario-tabla"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor'); }"/>
+                        </h:commandButton>
+                        <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
+                            <f:ajax execute="@form"
+                                    listener="#{administracionProfesorControlador.actualiza}"
+                                    render="@form formulario-tabla"
+                                    onevent="function funcion(data) { cerrarModal(data, 'modalProfresor') }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
