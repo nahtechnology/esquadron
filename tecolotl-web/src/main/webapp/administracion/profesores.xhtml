@@ -115,8 +115,8 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Sexo</f:facet>
-                                    <h:outputText rendered="#{'M' eq profesorModelo.sexo}" value="Masculino"/>
-                                    <h:outputText rendered="#{'F' eq profesorModelo.sexo}" value="Femenino"/>
+                                    <h:outputText rendered="#{'M' eq profesorModelo.sexo || 'm' eq profesorModelo.sexo}" value="Masculino"/>
+                                    <h:outputText rendered="#{'F' eq profesorModelo.sexo || 'f' eq profesorModelo.sexo}" value="Femenino"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">Correo</f:facet>
@@ -134,6 +134,10 @@
                                                     <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                     <f:ajax listener="#{administracionProfesorControlador.llamdaAjaxo}"/>
                                                 </h:commandLink>
+                                            </li>
+                                            <li class="uk-nav-divider"/>
+                                            <li>
+                                                <a href="#modal-eliminar"><h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/> #{boton['remove']}</a>
                                             </li>
                                         </ul>
                                     </h:panelGroup>
@@ -153,6 +157,36 @@
                         <option value="20">20</option>
                     </select>
                 </div>
+            </div>
+        </div>
+
+        <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-top">
+            <div class="uk-card-header">
+                <h4 class="uk-text-capitalize"><span class="uk-text-middle">Groups</span></h4>
+            </div>
+            <div class="uk-card-body">
+                <table class="uk-table">
+                    <thead class="uk-background-primary letra-titulo">
+                        <tr>
+                            <td class="uk-text-center ">Grado</td>
+                            <td class="uk-text-center">Grupo</td>
+                            <td class="uk-text-center">Total Alumno</td>
+                            <td class="uk-text-center">Opcion</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="4">
+                                <div class="uk-flex uk-flex-center">
+                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="uk-card-footer">
+
             </div>
         </div>
 
