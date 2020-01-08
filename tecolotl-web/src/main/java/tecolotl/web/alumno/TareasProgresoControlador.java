@@ -10,6 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -29,7 +30,7 @@ public class TareasProgresoControlador {
     private List<TareaResuetasModelo> tareaResuetasModeloLista;
 
     public void buscaTareasRealizadas() {
-        tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(idTarea);
+        tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(UUID.fromString("72406be2-3710-4370-a892-98dfec006c9d"));
     }
 
     public Integer getIdTarea() {

@@ -221,7 +221,7 @@ public class GrupoAlumnoSesionBeanTest {
 
     }
 
-    @Test public void insertaAlumo() {
+    @Test public void insertaAlumno() {
         AlumnoModelo alumnoModelo = new AlumnoModelo();
         alumnoModelo.setApodo("antonio");
         alumnoModelo.setNombre("Antonio");
@@ -229,8 +229,9 @@ public class GrupoAlumnoSesionBeanTest {
         alumnoModelo.setApellidoMaterno("Valerdi");
         alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo((short)1));
         alumnoModelo.setNacimiento(new Date());
+        alumnoModelo.setSexo('m');
         alumnoModelo.setContrasenia("1:1,2:2".getBytes(StandardCharsets.UTF_8));
-        alumnoGrupoScope.inserta(alumnoModelo, UUID.fromString("43ed2caa-617c-4501-954d-f91eb4bf1b17"));
+        alumnoGrupoScope.inserta(alumnoModelo, UUID.fromString("e5ee7964-f87c-4225-985b-89263b8b6346"));
         Assert.assertNotNull(alumnoModelo.getId());
     }
 

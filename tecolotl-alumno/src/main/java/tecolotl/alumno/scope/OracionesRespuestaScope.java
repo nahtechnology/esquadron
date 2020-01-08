@@ -17,6 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +33,7 @@ public class OracionesRespuestaScope {
     @Inject
     private UserTransaction userTransaction;
 
-    public void respuesta(@NotNull @Size(min = 1) List<TareaOracionesModelo> tareaOracionesModeloLista,@NotNull Integer idTarea) {
+    public void respuesta(@NotNull @Size(min = 1) List<TareaOracionesModelo> tareaOracionesModeloLista,@NotNull UUID idTarea) {
         logger.finer(tareaOracionesModeloLista.toString());
         try{
             userTransaction.begin();
@@ -51,7 +52,7 @@ public class OracionesRespuestaScope {
         }
     }
 
-    private TareaOracionesEntidadPK llaveprimaria(TareaOracionesModelo tareaOracionesModelo, Integer idTarea){
+    private TareaOracionesEntidadPK llaveprimaria(TareaOracionesModelo tareaOracionesModelo, UUID idTarea){
         OracionesEntidadPK oracionesEntidadPK = new OracionesEntidadPK(
                 new ActividadEntidad(
                         tareaOracionesModelo.getOracionesModelo().getActividadModelo().getIdVideo()),

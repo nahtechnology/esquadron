@@ -24,6 +24,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -73,7 +74,7 @@ public class RelacionarSesionBean {
      * @param idTarea Identificador de la tarea.
      * @return Coleción de {@link RelacionarModelo}
      */
-    public List<RelacionarModelo> busca(@NotNull Integer idTarea) {
+    public List<RelacionarModelo> busca(@NotNull UUID idTarea) {
         logger.fine(idTarea.toString());
         TypedQuery<TareaRelacionarActividadEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaRelacionarActividadEntidad.buscaTarea", TareaRelacionarActividadEntidad.class);

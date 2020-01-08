@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -24,7 +25,7 @@ public class CalificacionGramaticaControlador implements Serializable {
     @Inject
     private Logger logger;
 
-    private int idTarea;
+    private UUID idTarea;
     private List<GramaticaModelo> gramaticaModeloLista;
 
     public void buscaTareas() {
@@ -37,11 +38,11 @@ public class CalificacionGramaticaControlador implements Serializable {
         return "tareas";
     }
 
-    public int getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(int idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 

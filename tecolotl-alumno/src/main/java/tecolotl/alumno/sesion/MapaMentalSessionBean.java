@@ -17,6 +17,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -59,7 +60,7 @@ public class MapaMentalSessionBean {
      * @return Coleción de {@link TareaMapaMentalModelo}
      *
      */
-    public List<TareaMapaMentalModelo> busca(@NotNull Integer idTarea) {
+    public List<TareaMapaMentalModelo> busca(@NotNull UUID idTarea) {
         logger.finer(idTarea.toString());
         TypedQuery<TareaMapaMentalActividadEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaidTarea", TareaMapaMentalActividadEntidad.class);
@@ -76,7 +77,7 @@ public class MapaMentalSessionBean {
      * @param idActividad Identificador de la actvidad
      */
     public void respuesta(@NotNull TareaMapaMentalModelo tareaMapaMentalModelo,
-                          @NotNull Integer idTarea,
+                          @NotNull UUID idTarea,
                           @NotNull @Size(min = 11, max = 11) String idActividad) {
         logger.fine(tareaMapaMentalModelo.toString()); logger.fine(idTarea.toString()); logger.fine(idActividad);
         validadorSessionBean.validacion(tareaMapaMentalModelo, MapaMentalLlavePrimariaValidacion.class);
@@ -90,7 +91,7 @@ public class MapaMentalSessionBean {
      * @param idTarea Identificador de las tareas.
      * @return {@link MapaMentalResueltoModelo} con los datos.
      */
-    public List<MapaMentalResueltoModelo> buscaResuelto(@NotNull Integer idTarea) {
+    public List<MapaMentalResueltoModelo> buscaResuelto(@NotNull UUID idTarea) {
         logger.fine(idTarea.toString());
         TypedQuery<Object[]> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaResueltos", Object[].class);
         typedQuery.setParameter("idTarea", idTarea);
@@ -104,7 +105,7 @@ public class MapaMentalSessionBean {
      * @param cardinalidad cardinalidad del mapa mental.
      * @return Colección de {@link TareaMapaMentalModelo}
      */
-    public List<TareaMapaMentalModelo> busca(@NotNull Integer idTarea, @NotNull Short cardinalidad) {
+    public List<TareaMapaMentalModelo> busca(@NotNull UUID idTarea, @NotNull Short cardinalidad) {
         logger.fine(idTarea.toString());
         logger.fine(cardinalidad.toString());
         TypedQuery<TareaMapaMentalActividadEntidad> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaMapaMental", TareaMapaMentalActividadEntidad.class);
@@ -112,7 +113,7 @@ public class MapaMentalSessionBean {
         return typedQuery.getResultList().stream().map(TareaMapaMentalModelo::new).collect(Collectors.toList());
     }
 
-    private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelo, Integer idTarea, String idActividad) {
+    private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelo, UUID idTarea, String idActividad) {
         TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK = new TareaMapaMentalActividadEntidadPK();
         tareaMapaMentalActividadEntidadPK.setTareaEntidad(new TareaEntidad(idTarea));
         MapaMentalEntidadPK mapaMentalEntidadPK = new MapaMentalEntidadPK();

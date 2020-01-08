@@ -40,6 +40,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -101,7 +102,7 @@ public class MapaMentalSessionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<TareaMapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(1);
+        List<TareaMapaMentalModelo> mapaMentalModeloLista = mapaMentalSessionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(mapaMentalModeloLista);
         assertFalse(mapaMentalModeloLista.isEmpty());
         mapaMentalModeloLista.forEach(mapaMentalModelo -> {
@@ -121,12 +122,12 @@ public class MapaMentalSessionBeanTest {
         tareaMapaMentalModelo.setCodigo("e3f5ee64f2daf5919d752d107749155a");
         tareaMapaMentalModelo.setRespuesta("Respuesta");
         tareaMapaMentalModelo.setCardinalidad((short)6);
-        mapaMentalSessionBean.respuesta(tareaMapaMentalModelo, 5, "00000000000");
+        mapaMentalSessionBean.respuesta(tareaMapaMentalModelo, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"), "00000000000");
     }
 
     @Test
     public void buscaResuelto() {
-        List<MapaMentalResueltoModelo> mapaMentalResueltoModeloLista = mapaMentalSessionBean.buscaResuelto(1);
+        List<MapaMentalResueltoModelo> mapaMentalResueltoModeloLista = mapaMentalSessionBean.buscaResuelto(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(mapaMentalResueltoModeloLista);
         assertFalse(mapaMentalResueltoModeloLista.isEmpty());
         mapaMentalResueltoModeloLista.forEach(mapaMentalResueltoModelo -> {
@@ -138,7 +139,7 @@ public class MapaMentalSessionBeanTest {
 
     @Test
     public void buscaIdTareaCardinalidad() {
-        List<TareaMapaMentalModelo> tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(4, (short)14);
+        List<TareaMapaMentalModelo> tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"), (short)14);
         assertNotNull(tareaMapaMentalModeloLista);
         assertFalse(tareaMapaMentalModeloLista.isEmpty());
         tareaMapaMentalModeloLista.forEach(tareaMapaMentalModelo -> {

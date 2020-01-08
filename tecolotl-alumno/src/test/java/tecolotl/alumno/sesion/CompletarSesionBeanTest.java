@@ -40,6 +40,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -88,7 +89,7 @@ public class CompletarSesionBeanTest {
 
     @Test
     public void busca() {
-        List<TareaCompletarModelo> tareaCompletarModeloLista = completarSesionBean.busca(4);
+        List<TareaCompletarModelo> tareaCompletarModeloLista = completarSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(tareaCompletarModeloLista);
         assertFalse(tareaCompletarModeloLista.isEmpty());
         tareaCompletarModeloLista.forEach(tareaCompletarModelo -> {

@@ -10,6 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -42,7 +43,7 @@ public class TareaGramaticaControlador {
         gramaticaSesionBean.respuesta(gramaticaModelo, alumnoControlador.getTareaActividadModelo().getId());
     }
 
-    public void incrementaReporduccion(short reproducciones, Integer idTarea) {
+    public void incrementaReporduccion(short reproducciones, UUID idTarea) {
         tareaSesionBean.reproducciones(reproducciones,idTarea);
         for (TareaActividadModelo tareaActvidadModelo : alumnoControlador.getTareaActvidadModeloLista()) {
             if (tareaActvidadModelo.getId().compareTo(idTarea) == 0) {

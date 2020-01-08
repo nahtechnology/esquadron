@@ -34,6 +34,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(Arquillian.class)
 public class GramaticaSesionBeanTest {
@@ -87,7 +88,7 @@ public class GramaticaSesionBeanTest {
 
     @Test
     public void buscarTareaGramatica(){
-        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(141);
+        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         Assert.assertNotNull(gramaticaModeloLista);
         Assert.assertFalse(gramaticaModeloLista.isEmpty());
         for (GramaticaModelo gramaticaModelo : gramaticaModeloLista){

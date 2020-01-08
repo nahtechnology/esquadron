@@ -22,6 +22,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -64,7 +65,7 @@ public class GramaticaSesionBean implements Serializable {
      * @param idTarea ID_Actividad a buscar en TareaGramatica
      * @return una colección de {@link GramaticaModelo}
      */
-    public List<GramaticaModelo> busca(@NotNull Integer idTarea){
+    public List<GramaticaModelo> busca(@NotNull UUID idTarea){
         TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaTarea", TareaGramaticaEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
         List<TareaGramaticaEntidad> tareaGramaticaEntidadLista = typedQuery.getResultList();
@@ -76,7 +77,7 @@ public class GramaticaSesionBean implements Serializable {
      * @param gramaticaModelo Datos de gramatica
      * @param idTarea Identidificador de la tarea
      */
-    public void respuesta(@NotNull GramaticaModelo gramaticaModelo, @NotNull Integer idTarea) {
+    public void respuesta(@NotNull GramaticaModelo gramaticaModelo, @NotNull UUID idTarea) {
         TareaGramaticaEntidad tareaGramaticaEntidad = entityManager.find(TareaGramaticaEntidad.class, llavePrimaria(gramaticaModelo, idTarea));
         tareaGramaticaEntidad.setRespuesta(gramaticaModelo.getRespuesta());
     }
@@ -94,7 +95,7 @@ public class GramaticaSesionBean implements Serializable {
         entityManager.persist(gramaticaEntidad);
     }
 
-    private TareaGramaticaEntidadPK llavePrimaria(GramaticaModelo gramaticaModelo, Integer idTarea) {
+    private TareaGramaticaEntidadPK llavePrimaria(GramaticaModelo gramaticaModelo, UUID idTarea) {
         TareaGramaticaEntidadPK tareaGramaticaEntidadPK = new TareaGramaticaEntidadPK();
         tareaGramaticaEntidadPK.setTareaEntidad(new TareaEntidad(idTarea));
         GramaticaEntidadPK gramaticaEntidadPK = new GramaticaEntidadPK();

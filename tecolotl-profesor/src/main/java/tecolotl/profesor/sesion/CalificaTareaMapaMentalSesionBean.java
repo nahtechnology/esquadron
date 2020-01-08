@@ -18,6 +18,7 @@ import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -79,7 +80,7 @@ public class CalificaTareaMapaMentalSesionBean {
      * @param idTarea Identificador de las tareas
      * @return Colección de {@link TareaAlumnoModelo}
      */
-    public List<TareaAlumnoModelo> busca(@NotNull Integer idTarea) {
+    public List<TareaAlumnoModelo> busca(@NotNull UUID idTarea) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tareas_alumno(?)", TareaAlumnoEntidad.class);
         query.setParameter(1, idTarea);
         return ((List<TareaAlumnoEntidad>)query.getResultList()).stream().map(TareaAlumnoModelo::new).collect(Collectors.toList());
@@ -92,7 +93,7 @@ public class CalificaTareaMapaMentalSesionBean {
      * @param intento Nuevo de vuelta
      * @return {@link CalificaTareaMapaMentalModelo} con los datos encontrados
      */
-    public CalificaTareaMapaMentalModelo busca(@NotNull Integer idTarea, @NotNull Short cardinalidad, @NotNull Short intento) {
+    public CalificaTareaMapaMentalModelo busca(@NotNull UUID idTarea, @NotNull Short cardinalidad, @NotNull Short intento) {
         CalificaTareaMapamentalEntidadPK calificaTareaMapamentalEntidadPK = new CalificaTareaMapamentalEntidadPK();
         calificaTareaMapamentalEntidadPK.setVuelta(intento);
         calificaTareaMapamentalEntidadPK.setCardinalidad(cardinalidad);
@@ -106,7 +107,7 @@ public class CalificaTareaMapaMentalSesionBean {
      * @param idTarea Identificador de la tarea
      * @return Coleccion de
      */
-    public List<TareaMapaMentalModelo> buscaCalificados(@NotNull Integer idTarea) {
+    public List<TareaMapaMentalModelo> buscaCalificados(@NotNull UUID idTarea) {
         Query query = entityManager.createNativeQuery("SELECT tma.cardinalidad,tma.vuelta,count(tma.texto_respuesta) AS total_respuesta, ctmm.puntaje " +
                 "FROM alumno.tarea_mapamental_actividad tma JOIN profesor.califica_tarea_mapamental ctmm ON tma.id_tarea = ctmm.id_tarea AND " +
                 "tma.cardinalidad = ctmm.cardinalidad AND tma.vuelta = ctmm.vuelta WHERE tma.id_tarea = ? GROUP BY tma.cardinalidad, tma.vuelta, ctmm.puntaje", TareaMapaMentalEntidad.class);

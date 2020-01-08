@@ -48,6 +48,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(Arquillian.class)
 public class OracionesSesionBeanTest {
@@ -104,7 +105,7 @@ public class OracionesSesionBeanTest {
 
     @Test
     public void buscaTareaOraciones(){
-        List<TareaOracionesModelo> tareaOracionesModeloLista = oracionesSesionBean.busca(4);
+        List<TareaOracionesModelo> tareaOracionesModeloLista = oracionesSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         Assert.assertNotNull(tareaOracionesModeloLista);
         Assert.assertFalse(tareaOracionesModeloLista.isEmpty());
         for(TareaOracionesModelo tareaOracionesModelo : tareaOracionesModeloLista){

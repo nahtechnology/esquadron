@@ -6,10 +6,11 @@ import tecolotl.profesor.entidad.CalificaTareaMapamentalEntidadPK;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class CalificaTareaMapaMentalModelo {
 
-    private Integer idTarea;
+    private UUID idTarea;
     private Short cardinalidad;
     private Short vuelta;
     private String comentario;
@@ -19,7 +20,7 @@ public class CalificaTareaMapaMentalModelo {
     public CalificaTareaMapaMentalModelo() {
     }
 
-    public CalificaTareaMapaMentalModelo(Integer idTarea, Short cardinalidad, Short vuelta, String comentario, Short opuntaje, Date momento) {
+    public CalificaTareaMapaMentalModelo(UUID idTarea, Short cardinalidad, Short vuelta, String comentario, Short opuntaje, Date momento) {
         this.idTarea = idTarea;
         this.cardinalidad = cardinalidad;
         this.vuelta = vuelta;
@@ -39,11 +40,11 @@ public class CalificaTareaMapaMentalModelo {
     }
 
     @NotNull
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 

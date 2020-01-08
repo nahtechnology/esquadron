@@ -7,10 +7,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class TareaModelo {
 
-    private Integer id;
+    private UUID id;
     private Date asignacion;
     private Short reproducciones;
     private String respuesta;
@@ -21,7 +22,7 @@ public class TareaModelo {
     public TareaModelo() {
     }
 
-    public TareaModelo(Integer id) {
+    public TareaModelo(UUID id) {
         this.id = id;
     }
 
@@ -36,11 +37,11 @@ public class TareaModelo {
     }
 
     @NotNull
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

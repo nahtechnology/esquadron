@@ -10,6 +10,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.UUID;
 
 @RequestScoped
 @Named
@@ -22,7 +23,8 @@ public class TareaAlumnoControlador {
     private ProfesorGrupoControlador profesorGrupoControlador;
 
     private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
-    private Integer idAlumno;
+    //TODO cambiar nombre de la variable por idTarea de acuerdo al metodo del SesionBean
+    private UUID idAlumno;
 
     public void detalle() {
         tareaAlumnoModeloLista = calificaTareaMapaMentalSesionBean.busca(idAlumno);
@@ -37,11 +39,11 @@ public class TareaAlumnoControlador {
         this.tareaAlumnoModeloLista = tareaAlumnoModeloLista;
     }
 
-    public Integer getIdAlumno() {
+    public UUID getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Integer idAlumno) {
+    public void setIdAlumno(UUID idAlumno) {
         this.idAlumno = idAlumno;
     }
 }

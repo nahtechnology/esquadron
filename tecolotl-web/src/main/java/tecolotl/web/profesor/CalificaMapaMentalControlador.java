@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @RequestScoped
@@ -24,7 +25,7 @@ public class CalificaMapaMentalControlador {
     @Inject
     private Logger logger;
 
-    private Integer idTarea;
+    private UUID idTarea;
     private Short cardinalidad;
     private Short intento;
     private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
@@ -49,11 +50,11 @@ public class CalificaMapaMentalControlador {
         this.tareaMapaMentalModeloLista = tareaMapaMentalModeloLista;
     }
 
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 

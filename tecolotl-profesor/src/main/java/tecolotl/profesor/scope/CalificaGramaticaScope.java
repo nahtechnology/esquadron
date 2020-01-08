@@ -20,6 +20,7 @@ import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -35,7 +36,7 @@ public class CalificaGramaticaScope {
     @Resource
     private UserTransaction userTransaction;
 
-    public void inserta(@NotNull @Size List<GramaticaModelo> gramaticaModeloLista, @NotNull Integer idTarea) {
+    public void inserta(@NotNull @Size List<GramaticaModelo> gramaticaModeloLista, @NotNull UUID idTarea) {
         logger.info(gramaticaModeloLista.toString());
         logger.info(idTarea.toString());
         try {

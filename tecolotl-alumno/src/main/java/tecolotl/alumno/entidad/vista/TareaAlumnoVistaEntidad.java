@@ -5,6 +5,7 @@ import org.hibernate.annotations.Immutable;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @Entity
 @Immutable
@@ -15,7 +16,7 @@ import java.util.StringJoiner;
 public class TareaAlumnoVistaEntidad {
 
     private Integer totalTareas;
-    private Integer idAlumno;
+    private UUID idAlumno;
     private Character grupo;
     private Short grado;
     private Date inicio;
@@ -35,11 +36,11 @@ public class TareaAlumnoVistaEntidad {
     }
 
     @Column(name = "id_alumno")
-    public Integer getIdAlumno() {
+    public UUID getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(Integer idAlumno) {
+    public void setIdAlumno(UUID idAlumno) {
         this.idAlumno = idAlumno;
     }
 

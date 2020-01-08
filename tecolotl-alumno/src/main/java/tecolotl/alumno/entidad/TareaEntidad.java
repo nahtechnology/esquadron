@@ -7,10 +7,11 @@ import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.StringJoiner;
+import java.util.UUID;
 
 @Entity
 @Table(name = "tarea", schema = "alumno")
-@SequenceGenerator(name = "generador_automatico", sequenceName = "tarea_seq", schema = "alumno")
 @NamedQueries(value = {
     @NamedQuery(
         name = "TareaEntidad.busca",
@@ -31,7 +32,7 @@ import java.util.List;
 })
 public class TareaEntidad {
 
-    private Integer id;
+    private UUID id;
     private Short reproducciones;
     private Date asignacion;
     private String respuesta;
@@ -46,17 +47,16 @@ public class TareaEntidad {
     public TareaEntidad() {
     }
 
-    public TareaEntidad(Integer id) {
+    public TareaEntidad(UUID id) {
         this.id = id;
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "generador_automatico")
-    public Integer getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
@@ -159,4 +159,25 @@ public class TareaEntidad {
         this.tareaRelacionarActividadEntidadLista = tareaRelacionarActividadEntidadLista;
     }
 
+    @PrePersist
+    public void creaUUID(){
+        this.id = UUID.randomUUID();
+    }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", TareaEntidad.class.getSimpleName() + "[", "]")
+                .add("id=" + id)
+                .add("reproducciones=" + reproducciones)
+                .add("asignacion=" + asignacion)
+                .add("respuesta='" + respuesta + "'")
+                .add("horaRespuesta=" + horaRespuesta)
+                .add("resolviendoTranscript=" + resolviendoTranscript)
+                .add("alumnoEntidad=" + alumnoEntidad)
+                .add("calificacion=" + calificacion)
+                .add("tareaGlosarioActividadEntidadLista=" + tareaGlosarioActividadEntidadLista)
+                .add("tareaMapaMentalActividadEntidadLista=" + tareaMapaMentalActividadEntidadLista)
+                .add("tareaRelacionarActividadEntidadLista=" + tareaRelacionarActividadEntidadLista)
+                .toString();
+    }
 }

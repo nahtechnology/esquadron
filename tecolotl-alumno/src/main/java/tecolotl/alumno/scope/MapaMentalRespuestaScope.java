@@ -15,6 +15,7 @@ import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,7 +32,7 @@ public class MapaMentalRespuestaScope {
     private UserTransaction userTransaction;
 
     public void respuesta(@NotNull @Size(min = 1) List<TareaMapaMentalModelo> tareaMapaMentalModeloLista,
-                          @NotNull Integer idTarea,
+                          @NotNull UUID idTarea,
                           @NotNull String idActividad) {
         logger.fine(tareaMapaMentalModeloLista.toString());
         logger.fine(idTarea.toString());
@@ -54,7 +55,7 @@ public class MapaMentalRespuestaScope {
         }
     }
 
-    private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelom, Integer idTarea, String idActividad) {
+    private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelom, UUID idTarea, String idActividad) {
         MapaMentalEntidadPK mapaMentalEntidadPK = new MapaMentalEntidadPK(tareaMapaMentalModelom.getCodigo(), tareaMapaMentalModelom.getCardinalidad());
         return new TareaMapaMentalActividadEntidadPK(
                 new MapaMentalActividadEntidad(

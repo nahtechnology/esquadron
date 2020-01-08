@@ -40,6 +40,7 @@ public class PersonaModelo implements Comparable<PersonaModelo>{
         this.nombre = personaEntidad.getNombre();
         this.apellidoPaterno = personaEntidad.getApellidoPaterno();
         this.apellidoMaterno = personaEntidad.getApellidoMaterno();
+        this.contrasenia = personaEntidad.getContrasenia();
         this.apodo = personaEntidad.getApodo();
         this.sexo = personaEntidad.getSexo();
         this.contrasenia = personaEntidad.getContrasenia();

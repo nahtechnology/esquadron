@@ -4,10 +4,11 @@ import tecolotl.profesor.entidad.CalificaTareaGramaticaEntidad;
 
 import java.util.Date;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class CalificaTareaGramaticaModelo {
 
-    private Integer idTarea;
+    private UUID idTarea;
     private String idActividad;
     private String codigo;
     private Short vuelta;
@@ -17,7 +18,7 @@ public class CalificaTareaGramaticaModelo {
     public CalificaTareaGramaticaModelo() {
     }
 
-    public CalificaTareaGramaticaModelo(Integer idTarea, String idActividad, String codigo, Short vuelta, Short puntaje, Date momento) {
+    public CalificaTareaGramaticaModelo(UUID idTarea, String idActividad, String codigo, Short vuelta, Short puntaje, Date momento) {
         this.idTarea = idTarea;
         this.idActividad = idActividad;
         this.codigo = codigo;
@@ -35,11 +36,11 @@ public class CalificaTareaGramaticaModelo {
         this.momento = calificaTareaGramaticaEntidad.getMomento();
     }
 
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 

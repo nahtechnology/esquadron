@@ -10,11 +10,12 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class TareaRelacionarOracionModelo {
 
     private RelacionarOracionModelo relacionarOracionModelo;
-    private Integer idTarea;
+    private UUID idTarea;
     private Integer respuesta;
     private Date horaRespuesta;
     private Short vuelta;
@@ -22,7 +23,7 @@ public class TareaRelacionarOracionModelo {
     public TareaRelacionarOracionModelo() {
     }
 
-    public TareaRelacionarOracionModelo(Integer idRelacionarOracion, Integer idTarea) {
+    public TareaRelacionarOracionModelo(Integer idRelacionarOracion, UUID idTarea) {
         this.relacionarOracionModelo = new RelacionarOracionModelo(idRelacionarOracion);
         this.idTarea = idTarea;
     }
@@ -46,11 +47,11 @@ public class TareaRelacionarOracionModelo {
     }
 
     @NotNull
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 

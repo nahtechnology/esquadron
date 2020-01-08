@@ -206,7 +206,7 @@ public class ProfesorSesionBeanTest {
         profesorModelo.setApodo("El Juanito");
         profesorModelo.setCorreoEletronico("correo_profesor@servidor.com");
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo("21DBA0014J"));
-        profesorModelo.setContrasenia(new byte[]{});
+        profesorModelo.setContrasenia("1:1,2:2".getBytes());
         profesorModelo.setSexo('M');
         profesorSesionBean.inserta(profesorModelo);
         Assert.assertNotNull(profesorModelo);

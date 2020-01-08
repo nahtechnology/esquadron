@@ -42,14 +42,15 @@ public class AlumnoGrupoScope {
         alumnoEntidad.setApellidoPaterno(alumnoModelo.getApellidoPaterno());
         alumnoEntidad.setApellidoMaterno(alumnoModelo.getApellidoMaterno());
         alumnoEntidad.setNacimiento(alumnoModelo.getNacimiento());
-        alumnoEntidad.setSexo(alumnoModelo.getSexo());
+        alumnoEntidad.setSexo(Character.toLowerCase(alumnoModelo.getSexo()));
         NivelLenguajeEntidad nivelLenguajeEntidad = new NivelLenguajeEntidad(alumnoModelo.getNivelLenguajeModelo().getClave());
         alumnoEntidad.setNivelLenguajeEntidad(nivelLenguajeEntidad);
         alumnoEntidad.setContrasenia(alumnoModelo.getContrasenia());
-        alumnoEntidad.setContraseniaPadreFamilia(new byte[]{});
+        alumnoEntidad.setContraseniaPadreFamilia(alumnoModelo.getContrasenia());
         alumnoEntidad.setCorreoPadreFamilia("sincorreo@servidor.com");
         GrupoEntidad grupoEntidad = new GrupoEntidad(idGrupo);
         GrupoAlumnoEntidad grupoAlumnoEntidad = new GrupoAlumnoEntidad(new GrupoAlumnoEntidadPK(grupoEntidad, alumnoEntidad));
+        logger.info("Datos del nuevo alumno\n".concat(alumnoEntidad.toString()));
         try {
             userTransaction.begin();
             entityManager.persist(alumnoEntidad);

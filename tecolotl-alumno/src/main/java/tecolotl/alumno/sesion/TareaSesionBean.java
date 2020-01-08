@@ -53,7 +53,7 @@ public class TareaSesionBean implements Serializable {
      * @param idTarea Identificador de la tarea a buscar
      * @return {@link TareaModelo} con los datos encontraods
      */
-    public TareaModelo detalles(@NotNull Integer idTarea) {
+    public TareaModelo detalles(@NotNull UUID idTarea) {
         return new TareaModelo(entityManager.find(TareaEntidad.class, idTarea));
     }
 
@@ -72,7 +72,7 @@ public class TareaSesionBean implements Serializable {
      * @param idAlumno Identificador del alumno
      * @return Colección de {@link TareaModelo}
      */
-    public List<TareaModelo> busca(@NotNull Integer idAlumno) {
+    public List<TareaModelo> busca(@NotNull UUID idAlumno) {
         logger.fine(idAlumno.toString());
         TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaActividad", TareaEntidad.class);
         typedQuery.setParameter("IdAlumno", idAlumno);
@@ -88,13 +88,15 @@ public class TareaSesionBean implements Serializable {
         logger.fine(idAlumno.toString());
         Query query = entityManager.createNativeQuery("select t.id,t.asignacion,t.resolviendo_transcript,tga.id_actividad,a.pregunta_detonadora\n" +
                 "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea join\n" +
-                "alumno.actividad a on tga.id_actividad = a.id_video where t.id_alumno=? group by t.id, t.asignacion, \n" +
+                "alumno.actividad a on tga.id_actividad = a.id_video where t.id_alumno= ? group by t.id, t.asignacion, \n" +
                 "tga.id_actividad, a.pregunta_detonadora ORDER BY t.asignacion");
         query.setParameter(1, idAlumno);
         List<TareaActividadModelo> tareaActividadModeloLista = new ArrayList<>();
+        logger.info(query.getResultList().toString());
         for (Object[] objetos : (List<Object[]>)query.getResultList()) {
+            logger.severe   ("Estos son los datos de los objetos".concat(objetos.toString()));
             TareaActividadModelo tareaActividadModelo = new TareaActividadModelo();
-            tareaActividadModelo.setId((Integer) objetos[0]);
+            tareaActividadModelo.setId((UUID) objetos[0]);
             tareaActividadModelo.setAsignacion((Date)objetos[1]);
             tareaActividadModelo.setResolviendoTranscript((Boolean)objetos[2]);
             tareaActividadModelo.setIdActividad((String)objetos[3]);
@@ -109,7 +111,7 @@ public class TareaSesionBean implements Serializable {
      * @param idTarea Identificador de la tarea.
      * @return Colección de {@link TareaResuetasModelo}
      */
-    public List<TareaResuetasModelo> tareasResuelta(@NotNull Integer idTarea) {
+    public List<TareaResuetasModelo> tareasResuelta(@NotNull UUID idTarea) {
         logger.fine(idTarea.toString());
         Query query = entityManager.createNativeQuery("SELECT * FROM alumno.busca_tarea(?)", TareasResueltasEntidad.class);
         query.setParameter(1, idTarea);
@@ -122,7 +124,7 @@ public class TareaSesionBean implements Serializable {
      * @param idTarea identificador de la tarea.
      * @return Número de elementos modificados.
      */
-    public Integer reproducciones(@NotNull Short incremento, @NotNull Integer idTarea) {
+    public Integer reproducciones(@NotNull Short incremento, @NotNull UUID idTarea) {
         Query query = entityManager.createNamedQuery("TareaEntidad.aumentaReprodecciones");
         query.setParameter("idTarea", idTarea).setParameter("reproducciones", incremento);
         return query.executeUpdate();
@@ -130,14 +132,14 @@ public class TareaSesionBean implements Serializable {
 
     /**
      * Elimina una tarea por llave primaria
-     * @param id dato para eliminar una tarea
+     * @param idTarea dato para eliminar una tarea
      * @return numero de elementos eliminados, 0 en caso de no existir
      */
-    public int elimina(@NotNull @Min(1) Integer id){
+    public int elimina(@NotNull @Min(1) UUID idTarea){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete<TareaEntidad> tareaEntidadCriteriaDelete = criteriaBuilder.createCriteriaDelete(TareaEntidad.class);
         Root<TareaEntidad> root = tareaEntidadCriteriaDelete.from(TareaEntidad.class);
-        tareaEntidadCriteriaDelete.where(criteriaBuilder.equal(root.get("id"),id));
+        tareaEntidadCriteriaDelete.where(criteriaBuilder.equal(root.get("id"),idTarea));
         return entityManager.createQuery(tareaEntidadCriteriaDelete).executeUpdate();
     }
 
@@ -147,7 +149,7 @@ public class TareaSesionBean implements Serializable {
      * @param idTarea Identificador de la tarea.
      * @return Número de elementos modificados.
      */
-    public Integer respuesta(@NotNull @Size(min = 100) String respuesta, @NotNull Integer idTarea, @NotNull Short calificacion) {
+    public Integer respuesta(@NotNull @Size(min = 100) String respuesta, @NotNull UUID idTarea, @NotNull Short calificacion) {
         Query query = entityManager.createNamedQuery("TareaEntidad.respuesta");
         query.setParameter("idTarea", idTarea);
         query.setParameter("respuesta", respuesta);
@@ -161,7 +163,7 @@ public class TareaSesionBean implements Serializable {
      * @param activo estus de la tarea, true para saber si aun sigue respondiendo, false en caso contrario.
      * @return Número de elementos modificados.
      */
-    public Integer estatus(@NotNull Integer idTarea, boolean activo) {
+    public Integer estatus(@NotNull UUID idTarea, boolean activo) {
         Query query = entityManager.createNamedQuery("TareaEntidad.estatusRespondiendo");
         query.setParameter("idTarea", idTarea).setParameter("estatus", activo);
         return query.executeUpdate();

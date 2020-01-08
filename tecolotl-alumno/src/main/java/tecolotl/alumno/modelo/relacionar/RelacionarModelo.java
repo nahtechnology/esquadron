@@ -10,11 +10,12 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class RelacionarModelo {
 
     private String idActividad;
-    private Integer idTarea;
+    private UUID idTarea;
     private String palabra;
     private ClaseGlosarioModelo claseGlosarioModelo;
     private String respuesta;
@@ -52,11 +53,11 @@ public class RelacionarModelo {
     }
 
     @NotNull(groups = {RelacionarLlavePrimariaValidacion.class})
-    public Integer getIdTarea() {
+    public UUID getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(UUID idTarea) {
         this.idTarea = idTarea;
     }
 

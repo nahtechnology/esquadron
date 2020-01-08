@@ -40,6 +40,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -117,7 +118,7 @@ public class RelacionarSesionBeanTest {
 
     @Test
     public void buscaTarea() {
-        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(121);
+        List<RelacionarModelo> relacionarSesionBeanLista = relacionarSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(relacionarSesionBeanLista);
         assertFalse(relacionarSesionBeanLista.isEmpty());
         relacionarSesionBeanLista.forEach(relacionarModelo -> {
@@ -133,7 +134,7 @@ public class RelacionarSesionBeanTest {
     public void respuesta() {
         RelacionarModelo relacionarModelo = new RelacionarModelo();
         relacionarModelo.setIdActividad("0_1NU60qHWs");
-        relacionarModelo.setIdTarea(2);
+        relacionarModelo.setIdTarea(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         relacionarSesionBean.respuesta(relacionarModelo, "8c373fd1a64c1a3083fff348caf4b4ab");
     }
 }

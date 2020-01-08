@@ -55,6 +55,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import javax.inject.Inject;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @RunWith(Arquillian.class)
 public class AlumnoSesionBeanTest {
@@ -117,6 +118,9 @@ public class AlumnoSesionBeanTest {
     @Inject
     private AlumnoSesionBean alumnoSesionBean;
 
+    @Inject
+    private Logger logger;
+
     @Test
     public void busca(){
         List<AlumnoModelo> alumnoModeloLista = alumnoSesionBean.busca();
@@ -129,6 +133,7 @@ public class AlumnoSesionBeanTest {
             Assert.assertNotNull(alumnoModelo.getApellidoPaterno());
             Assert.assertNotNull(alumnoModelo.getApellidoMaterno());
             Assert.assertNotNull(alumnoModelo.getApodo());
+            logger.info(String.valueOf(alumnoModelo.getContrasenia()));
             Assert.assertNotNull(alumnoModelo.getContrasenia());
             Assert.assertNotNull(alumnoModelo.getNacimiento());
             Assert.assertNotNull(alumnoModelo.getCorreoPadreFamilia());
@@ -142,7 +147,7 @@ public class AlumnoSesionBeanTest {
 
     @Test
     public void buscaID(){
-        AlumnoModelo alumnoModelo = alumnoSesionBean.busca(1);
+        AlumnoModelo alumnoModelo = alumnoSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         Assert.assertNotNull(alumnoModelo);
         Assert.assertNotNull(alumnoModelo.getId());
         Assert.assertNotNull(alumnoModelo.getNombre());
@@ -161,7 +166,7 @@ public class AlumnoSesionBeanTest {
 
     @Test
     public void detalle() {
-        DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(UUID.randomUUID());
+        DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         Assert.assertNotNull(detalleAlumnoModelo);
         Assert.assertNotNull(detalleAlumnoModelo.getTotalTareas());
         Assert.assertNotNull(detalleAlumnoModelo.getGrado());
@@ -175,7 +180,7 @@ public class AlumnoSesionBeanTest {
 
     @Test
     public void buscaApodo() {
-        AlumnoModelo alumnoModelo = alumnoSesionBean.busca("jonhas");
+        AlumnoModelo alumnoModelo = alumnoSesionBean.busca("antonio");
         Assert.assertNotNull(alumnoModelo);
         Assert.assertNotNull(alumnoModelo.getId());
         Assert.assertNotNull(alumnoModelo.getNacimiento());

@@ -29,7 +29,7 @@ public class ProfesorGrupoControlador implements Serializable {
         grupoModelo = grupoSesionBean.buscaId(idGrupo);
     }
 
-    public void detalleAlumno(@NotNull Integer idAlumno) {
+    public void detalleAlumno(@NotNull UUID idAlumno) {
         alumnoModelo = alumnoSesionBean.busca(idAlumno);
     }
 

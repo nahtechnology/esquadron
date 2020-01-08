@@ -40,6 +40,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -89,7 +90,7 @@ public class HablarSesionBeanTest {
 
     @Test
     public void busca() {
-        List<HablarModelo> hablarModeloLista = hablarSesionBean.busca(5);
+        List<HablarModelo> hablarModeloLista = hablarSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(hablarModeloLista);
         assertFalse(hablarModeloLista.isEmpty());
     }

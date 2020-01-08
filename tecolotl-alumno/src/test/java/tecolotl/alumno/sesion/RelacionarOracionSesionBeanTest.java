@@ -35,6 +35,7 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
@@ -81,7 +82,7 @@ public class RelacionarOracionSesionBeanTest {
 
     @Test
     public void busca() {
-        List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(5);
+        List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(tareaRelacionarOracionModeloLista);
         assertFalse(tareaRelacionarOracionModeloLista.isEmpty());
         tareaRelacionarOracionModeloLista.forEach(tareaRelacionarOracionModelo -> {
@@ -97,22 +98,22 @@ public class RelacionarOracionSesionBeanTest {
     @Test
     public void respuesta() {
         List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista = new ArrayList<>();
-        TareaRelacionarOracionModelo tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(75, 5);
+        TareaRelacionarOracionModelo tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(75, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         tareaRelacionarOracionModelo.setRespuesta(80);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
-        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(76, 5);
+        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(76, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         tareaRelacionarOracionModelo.setRespuesta(79);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
-        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(77, 5);
+        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(77, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         tareaRelacionarOracionModelo.setRespuesta(78);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
-        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(78, 5);
+        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(78, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         tareaRelacionarOracionModelo.setRespuesta(77);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
-        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(79, 5);
+        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(79, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         tareaRelacionarOracionModelo.setRespuesta(76);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
-        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(80, 5);
+        tareaRelacionarOracionModelo = new TareaRelacionarOracionModelo(80, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         tareaRelacionarOracionModelo.setRespuesta(75);
         tareaRelacionarOracionModeloLista.add(tareaRelacionarOracionModelo);
         relacionOracionRespuestaScope.respuesta(tareaRelacionarOracionModeloLista);

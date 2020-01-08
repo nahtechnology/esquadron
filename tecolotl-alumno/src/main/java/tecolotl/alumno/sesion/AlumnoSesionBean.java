@@ -54,7 +54,7 @@ public class AlumnoSesionBean implements Serializable {
      * @param idAlumno Identificador del alumno.
      * @return Colección de {@link AlumnoModelo}
      */
-    public AlumnoModelo busca(@NotNull Integer idAlumno){
+    public AlumnoModelo busca(@NotNull UUID idAlumno){
         logger.fine(idAlumno.toString());
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscaId", AlumnoEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);

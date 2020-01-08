@@ -17,6 +17,7 @@ import javax.transaction.UserTransaction;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +33,7 @@ public class RelacionarRespuestaScope {
     @Inject
     private UserTransaction userTransaction;
 
-    public void respuesta(@NotNull @Size(min = 1) List<RelacionarModelo> relacionarModeloLista, @NotNull final Integer idTarea) {
+    public void respuesta(@NotNull @Size(min = 1) List<RelacionarModelo> relacionarModeloLista, @NotNull final UUID idTarea) {
         relacionarModeloLista.forEach(relacionarModelo -> logger.fine(relacionarModelo.toString()));
         try{
             userTransaction.begin();

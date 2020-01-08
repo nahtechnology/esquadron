@@ -14,6 +14,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -30,7 +31,7 @@ public class RelacionarOracionSesionBean {
     @Inject
     private Logger logger;
 
-    public List<TareaRelacionarOracionModelo> busca(@NotNull Integer idTarea) {
+    public List<TareaRelacionarOracionModelo> busca(@NotNull UUID idTarea) {
         logger.fine(idTarea.toString());
         TypedQuery<TareaRelacionarOracionesEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaRelacionarOracionesEntidad.buscaidTarea", TareaRelacionarOracionesEntidad.class);
