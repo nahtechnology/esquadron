@@ -6,8 +6,8 @@
     <defaultProtocol type="Servlet 3.0"/>
     <container qualifier="remoto" default="true">
         <configuration>
-            <property name="managementPort">9995</property>
-            <property name="managementAddress">localhost</property>
+            <property name="managementPort">9990</property>
+            <property name="managementAddress">192.168.0.103</property>
             <property name="username">usuario</property>
             <property name="password">1234</property>
         </configuration>

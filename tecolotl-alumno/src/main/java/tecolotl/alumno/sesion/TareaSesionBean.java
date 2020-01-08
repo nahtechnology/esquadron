@@ -86,17 +86,16 @@ public class TareaSesionBean implements Serializable {
      */
     public List<TareaActividadModelo> buscaActividad(@NotNull UUID idAlumno) {
         logger.fine(idAlumno.toString());
-        Query query = entityManager.createNativeQuery("select t.id,t.asignacion,t.resolviendo_transcript,tga.id_actividad,a.pregunta_detonadora\n" +
-                "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea join\n" +
-                "alumno.actividad a on tga.id_actividad = a.id_video where t.id_alumno= ? group by t.id, t.asignacion, \n" +
+        Query query = entityManager.createNativeQuery("select CAST (t.id as varchar),t.asignacion,t.resolviendo_transcript,tga.id_actividad,a.pregunta_detonadora " +
+                "from alumno.tarea t inner join alumno.tarea_glosario_actividad tga on t.id=tga.id_tarea join " +
+                "alumno.actividad a on tga.id_actividad = a.id_video where t.id_alumno= ? group by t.id, t.asignacion, " +
                 "tga.id_actividad, a.pregunta_detonadora ORDER BY t.asignacion");
         query.setParameter(1, idAlumno);
         List<TareaActividadModelo> tareaActividadModeloLista = new ArrayList<>();
-        logger.info(query.getResultList().toString());
         for (Object[] objetos : (List<Object[]>)query.getResultList()) {
             logger.severe   ("Estos son los datos de los objetos".concat(objetos.toString()));
             TareaActividadModelo tareaActividadModelo = new TareaActividadModelo();
-            tareaActividadModelo.setId((UUID) objetos[0]);
+            tareaActividadModelo.setId(UUID.fromString((String) objetos[0]));
             tareaActividadModelo.setAsignacion((Date)objetos[1]);
             tareaActividadModelo.setResolviendoTranscript((Boolean)objetos[2]);
             tareaActividadModelo.setIdActividad((String)objetos[3]);
