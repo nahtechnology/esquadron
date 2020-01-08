@@ -137,7 +137,8 @@
                                             </li>
                                             <li class="uk-nav-divider"/>
                                             <li>
-                                                <a href="#modal-eliminar"><h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/> #{boton['remove']}</a>
+                                                <a href="#modal-eliminar" uk-toggle="" class="uk-text-danger primera-mayuscula">
+                                                    <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>#{boton['remove']}</a>
                                             </li>
                                         </ul>
                                     </h:panelGroup>
@@ -299,6 +300,29 @@
                                     listener="#{administracionProfesorControlador.inserta(administracionProfesorControlador.claveCentroTrabajo)}"
                                     render="@form formulario-tabla"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor'); }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+
+        <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="form-elimina" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header fondo-peligro">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
+                            Eliminar Profesor:
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <p>
+                            ¿Esta serguro de eliminar al profesor:   ?
+                        </p>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">#{boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
+
                         </h:commandButton>
                     </div>
                 </h:form>
