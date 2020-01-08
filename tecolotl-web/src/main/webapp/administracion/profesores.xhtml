@@ -34,43 +34,15 @@
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        <div uk-grid="">
+        <div class="uk-width-1-1">
 
-        <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl uk-margin-auto-left uk-margin-auto-right uk-flex uk-flex-center" pt:data-uk-grid="">
-            <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.coor']}</span></span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalCoordinadores}" id="total-coordinadores"/></h1>
-            </div>
-            <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalProfesores}" id="total-profesor"/></h1>
-            </div>
-            <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
-                <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
-                <div class="uk-text-small">
-                    <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : escuelaPoblacionControlador.totalAlumnos / (initParam['alumno.licencia'] * escuelaPoblacionControlador.totalLicencias)}" id="porcentaje-alumno">
-                        <f:convertNumber type="percent"/>
-                    </h:outputText>  #{administracion['dashboard.header.student.used']}.
-                </div>
-            </div>
-        </h:panelGroup>
-        <div class="uk-margin-large-top">
             <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
                 <div class="uk-card-header">
                     <div class="uk-grid uk-grid-small">
                         <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Teachers</span></h4></div>
                         <div class="uk-width-expand uk-text-right panel-icons">
-                            <h:form id="formulario-agregar-profesor">
-                                <ui:remove>
-                                <h:commandLink styleClass="uk-icon-link"
-                                               pt:uk-icon="icon: plus-circle; ratio: 1.5"
-                                               pt:uk-toggle="target: #modal-escuela"
-                                               pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000">
-                                    <f:ajax listener="#{escuelaDashboardControlador.limpiaDetalleModelo}" render="formulario-escuela" onevent="function limpia(data) { limpiaSelect(data); }"/>
-                                </h:commandLink>
-                                </ui:remove>
-                                <a href="#" class="uk-icon-link" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-profesor" uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
-                            </h:form>
+                            <a href="#" class="uk-icon-link" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-profesor" uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
                         </div>
                     </div>
                 </div>
@@ -107,7 +79,11 @@
                             <h:column><f:facet name="header">Id</f:facet>#{profesorModelo.id}</h:column>
                             <h:column>
                                 <f:facet name="header">apodo</f:facet>
-                                ${profesorModelo.apodo}
+                                <h:commandLink value="${profesorModelo.apodo}">
+                                    <f:setPropertyActionListener value="#{profesorModelo.id}" target="#{cicloEscolarControlador.idProfesor}"/>
+                                    <f:setPropertyActionListener value="#{administracionProfesorControlador.claveCentroTrabajo}" target="#{cicloEscolarControlador.claveCentroTrabajo}"/>
+                                    <f:ajax listener="#{cicloEscolarControlador.busca}" render=""/>
+                                </h:commandLink>
                             </h:column>
                             <h:column>
                                 <f:facet name="header">nombre</f:facet>
@@ -138,7 +114,7 @@
                                             <li class="uk-nav-divider"/>
                                             <li>
                                                 <a href="#modal-eliminar" uk-toggle="" class="uk-text-danger primera-mayuscula">
-                                                    <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>#{boton['remove']}</a>
+                                                <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>#{boton['remove']}</a>
                                             </li>
                                         </ul>
                                     </h:panelGroup>
@@ -161,36 +137,84 @@
             </div>
         </div>
 
-        <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-top">
+        <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-top uk-width-1-2">
             <div class="uk-card-header">
-                <h4 class="uk-text-capitalize"><span class="uk-text-middle">Groups</span></h4>
+                <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Ciclo escolar</span></h4></div>
+                <div class="uk-width-expand uk-text-right panel-icons">
+                    <a href="#" class="uk-icon-link" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: " uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
+                </div>
             </div>
             <div class="uk-card-body">
-                <table class="uk-table">
-                    <thead class="uk-background-primary letra-titulo">
-                        <tr>
-                            <td class="uk-text-center ">Grado</td>
-                            <td class="uk-text-center">Grupo</td>
-                            <td class="uk-text-center">Total Alumno</td>
-                            <td class="uk-text-center">Opcion</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="4">
-                                <div class="uk-flex uk-flex-center">
-                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h:form id="formulario-ciclo-escolar">
+                    <ui:fragment render="#{empty cicloEscolarControlador.cicloEscolarModeloLista}">
+                        <table class="uk-table">
+                            <thead class="uk-background-primary letra-titulo">
+                                <tr>
+                                    <td class="uk-text-center ">Inicio</td>
+                                    <td class="uk-text-center">Fin</td>
+                                    <td class="uk-text-center">Descripcion</td>
+                                    <td class="uk-text-center">Activo</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4">
+                                        <div class="uk-flex uk-flex-center">
+                                            <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ui:fragment>
+                    <h:dataTable id="tabla-ciclo-escolar"
+                                 rendered="#{not empty cicloEscolarControlador.cicloEscolarModeloLista}"
+                                 value="#{cicloEscolarControlador.cicloEscolarModeloLista}"
+                                 var="cicloEscolarModelo"
+                                 styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada tabla-profesor"
+                                 headerClass="uk-background-primary letra-titulo uk-text-center"
+                                 columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
+                        <h:column>
+                            <f:facet name="header">Inicio</f:facet>
+                            ${cicloEscolarModelo.inicio}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Fin</f:facet>
+                            ${cicloEscolarModelo.inicio}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Descripcion</f:facet>
+                            ${cicloEscolarModelo.descripcion}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Activo</f:facet>
+                            <span uk-icon="${cicloEscolarModelo.isActivo() ? 'check' : 'ban'}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Opciones</f:facet>
+                            <div class="uk-inline">
+                                <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
+                                <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
+                                    <ul class="uk-nav uk-dropdown-nav">
+                                        <li>
+                                            Opciones
+                                        </li>
+                                        <li class="uk-nav-divider"/>
+                                        <li>
+                                            Opciones
+                                        </li>
+                                    </ul>
+                                </h:panelGroup>
+                            </div>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
             </div>
             <div class="uk-card-footer">
 
             </div>
         </div>
-
+        </div>
         <h:panelGroup layout="block" id="modal-profesor" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-modal-profesor" styleClass="uk-form-stacked">
@@ -256,7 +280,6 @@
                                     <h:selectOneMenu class="uk-select"
                                                      id="sexo"
                                                      value="#{administracionProfesorControlador.profesorModelo.sexo}">
-                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['options']}" noSelectionOption="true"/>
                                         <f:selectItem itemValue="m" itemLabel="masculino"/>
                                         <f:selectItem itemValue="f" itemLabel="femenino"/>
                                         <f:validateRequired/>

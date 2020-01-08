@@ -78,7 +78,7 @@ public class PersonaEntidad {
         this.apodo = apodo;
     }
 
-    @Basic(fetch = FetchType.LAZY)
+    @Basic
     @Column(name = "contrasenia")
     @ColumnTransformer(
             read = "pgp_sym_decrypt_bytea(contrasenia, 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256')",

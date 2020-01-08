@@ -58,6 +58,18 @@ public class CicloEscolarSessionBean {
     }
 
     /**
+     * Busca todos los ciclos escolares de una escuela
+     * @param claveCentroTrabajo  Clave centro de trabajo de una escuela
+     * @return Colección de Ciclo escolares.
+     */
+    public List<CicloEscolarModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        logger.fine(claveCentroTrabajo);
+        TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.buscaEscuela", CicloEscolarEntidad.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+        return typedQuery.getResultList().stream().map(CicloEscolarModelo::new).collect(Collectors.toList());
+    }
+
+    /**
      * Busca la descripcion de un ciclo escolar
      * @param cicloEscolarModelo Datos del ciclo escolar
      * @return Ciclo Escolar encontrado

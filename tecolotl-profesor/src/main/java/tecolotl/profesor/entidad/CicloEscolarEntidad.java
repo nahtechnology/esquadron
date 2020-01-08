@@ -2,6 +2,7 @@ package tecolotl.profesor.entidad;
 
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 
+import javax.inject.Named;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -18,7 +19,10 @@ import java.util.StringJoiner;
         query = "SELECT DISTINCT ce FROM CicloEscolarEntidad ce JOIN ce.grupoEntidadLista g " +
                 "WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND ce.activo = :activo " +
                 "AND g.profesorEntidad.id = :idProfesor"
-    )
+    ),
+    @NamedQuery(
+        name = "CicloEscolarEntidad.buscaEscuela",
+        query = "SELECT ce FROM CicloEscolarEntidad ce WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
 })
 public class CicloEscolarEntidad {
 
