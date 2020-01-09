@@ -34,6 +34,7 @@
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        <h:outputStylesheet library="css" name="/administracion/profesores.css"/>
         <div uk-grid="">
         <div class="uk-width-1-1">
 
@@ -363,16 +364,47 @@
                 <h:form id="formulario-modal-cicloEscolar" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">
-                            Nuevo Ciclo Escolar
+                            nuevo ciclo escolar
                         </p>
                     </div>
                     <div class="uk-modal-body">
                         <div uk-grid="">
-                            <div class="uk-width-1-1@s uk-width-1-6@m">
-                                <label for="fecha1">Inicio</label>
-                                <input type="text" id="fecha1" name="fecha1"/>
+                            <div class="uk-width-1-1@s uk-width-1-4@m">
+                                <h:outputLabel value="fecha inicio" for="fecha-inicio"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="fecha-inicio"
+                                                 class="uk-input">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="fecha-inicio" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-4@m">
+                                <h:outputLabel value="fecha fin" for="fecha-fin"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="fecha-fin"
+                                                 class="uk-input">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="fecha-fin" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                            </div>
+                            <div class="uk-width-1-1@s uk-width-1-2@m">
+                                <h:outputLabel value="descripción" for="descripcion"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="descripcion"
+                                                 class="uk-input">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="descripcion" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
                         </div>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button type="reset" class="uk-button uk-button-default uk-margin-small-right">
+                            #{boton['cancel']}
+                        </button>
                     </div>
                 </h:form>
             </div>
