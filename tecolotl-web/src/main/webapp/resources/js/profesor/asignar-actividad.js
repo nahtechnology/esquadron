@@ -54,9 +54,6 @@ function agregaListener(ejercicios) {
         iconos[3].addEventListener('click', function (evento) {
             descargaDocumento('discussion.pdf', { Bucket: 'tecolotl-multimedia', Key: 'plantilla/discussion' })
         });
-        iconos[4].addEventListener('click', function (evento) {
-            descargaDocumento('lesson.pdf', { Bucket: 'tecolotl-multimedia', Key: 'plantilla/lesson' });
-        })
     });
 }
 
