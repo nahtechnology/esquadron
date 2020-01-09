@@ -25,24 +25,24 @@ public class CalificacionGramaticaControlador implements Serializable {
     @Inject
     private Logger logger;
 
-    private UUID idTarea;
+    private String idTarea;
     private List<GramaticaModelo> gramaticaModeloLista;
 
     public void buscaTareas() {
-        gramaticaModeloLista = gramaticaSesionBean.busca(idTarea);
+        gramaticaModeloLista = gramaticaSesionBean.busca(UUID.fromString(idTarea));
     }
 
     public String enviaRespuesta() {
         logger.info(gramaticaModeloLista.toString());
-        calificaGramaticaScope.inserta(gramaticaModeloLista, idTarea);
+        calificaGramaticaScope.inserta(gramaticaModeloLista, UUID.fromString(idTarea));
         return "tareas";
     }
 
-    public UUID getIdTarea() {
+    public String getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(UUID idTarea) {
+    public void setIdTarea(String idTarea) {
         this.idTarea = idTarea;
     }
 
