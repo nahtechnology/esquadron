@@ -11,11 +11,16 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.entidad.ActividadEntidad;
+import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
+import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.glosario.GlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
+import tecolotl.alumno.entidad.hablar.HablarEntidad;
+import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -39,6 +44,7 @@ import tecolotl.alumno.validacion.mapamental.MapaMentalLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar.RelacionarLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar_oraciones.RelacionarOracionLlavePrimariaValidacion;
 import tecolotl.alumno.validacion.relacionar_oraciones.TareaRelacionarOracionRespuestaValidacion;
+import tecolotl.nucleo.herramienta.CorreoEnum;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
@@ -56,6 +62,18 @@ public class OracionesSesionBeanTest {
     @Deployment
     public static Archive<?> createDeployment(){
         return ShrinkWrap.create(WebArchive.class, "test.war")
+                //nucleo
+                .addPackage(CorreoEnum.class.getPackage()).addPackage(CatalogoModelo.class.getPackage()).addPackage(CatalagoEntidad.class.getPackage())
+                .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
+                //administracion
+
+                //alumno
+                .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
+                .addPackage(ActividadEntidad.class.getPackage()).addPackage(MapaMentalModelo.class.getPackage()).addPackage(GlosarioModelo.class.getPackage())
+                .addPackage(ActividadModelo.class.getPackage()).addPackage(ActividadSesionBean.class.getPackage())
+                .addPackage(MapaMentalLlavePrimariaValidacion.class.getPackage()).addPackage(GlosarioNuevoValidacion.class.getPackage())
+                .addPackage(ActividadNuevaValidacion.class.getPackage())
+                .addPackage(RelacionarModelo.class.getPackage())
                 .addPackage(MapaMentalEntidad.class.getPackage()).addPackage(GlosarioEntidad.class.getPackage())
                 .addPackage(ActividadEntidad.class.getPackage())
                 .addPackage(TareaGramaticaEntidad.class.getPackage())
@@ -94,8 +112,14 @@ public class OracionesSesionBeanTest {
                 .addPackage(OracionesEntidad.class.getPackage())
                 .addPackage(OracionesSesionBean.class.getPackage())
                 .addPackage(LoggerProducer.class.getPackage())
+                .addPackage(HablarEntidad.class.getPackage())
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
+                .addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
+                //profesor
+                .addPackage(TareaOracionesModelo.class.getPackage())
+                .addPackage(HablarModelo.class.getPackage())
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -105,7 +129,7 @@ public class OracionesSesionBeanTest {
 
     @Test
     public void buscaTareaOraciones(){
-        List<TareaOracionesModelo> tareaOracionesModeloLista = oracionesSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
+        List<TareaOracionesModelo> tareaOracionesModeloLista = oracionesSesionBean.busca(UUID.fromString("72406be2-3710-4370-a892-98dfec006c9d"));
         Assert.assertNotNull(tareaOracionesModeloLista);
         Assert.assertFalse(tareaOracionesModeloLista.isEmpty());
         for(TareaOracionesModelo tareaOracionesModelo : tareaOracionesModeloLista){

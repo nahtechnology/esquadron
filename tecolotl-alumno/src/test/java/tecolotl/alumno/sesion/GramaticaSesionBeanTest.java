@@ -88,7 +88,7 @@ public class GramaticaSesionBeanTest {
 
     @Test
     public void buscarTareaGramatica(){
-        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
+        List<GramaticaModelo> gramaticaModeloLista = gramaticaSesionBean.busca(UUID.fromString("72406be2-3710-4370-a892-98dfec006c9d"));
         Assert.assertNotNull(gramaticaModeloLista);
         Assert.assertFalse(gramaticaModeloLista.isEmpty());
         for (GramaticaModelo gramaticaModelo : gramaticaModeloLista){

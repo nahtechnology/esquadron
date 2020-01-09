@@ -83,6 +83,8 @@ public class MapaMentalSessionBean {
         validadorSessionBean.validacion(tareaMapaMentalModelo, MapaMentalLlavePrimariaValidacion.class);
         TareaMapaMentalActividadEntidad tareaMapaMentalActividadEntidad =
                 entityManager.find(TareaMapaMentalActividadEntidad.class, llavePrimaria(tareaMapaMentalModelo, idTarea, idActividad));
+        logger.info("Este es el objeto: ");
+        logger.info(tareaMapaMentalActividadEntidad.toString());
         tareaMapaMentalActividadEntidad.setTextoRespuesta(tareaMapaMentalModelo.getRespuesta());
     }
 
@@ -113,6 +115,7 @@ public class MapaMentalSessionBean {
         return typedQuery.getResultList().stream().map(TareaMapaMentalModelo::new).collect(Collectors.toList());
     }
 
+    //TODO el parámetro "vuelta" no puede ser null o arrojara un NullPointerException
     private TareaMapaMentalActividadEntidadPK llavePrimaria(TareaMapaMentalModelo tareaMapaMentalModelo, UUID idTarea, String idActividad) {
         TareaMapaMentalActividadEntidadPK tareaMapaMentalActividadEntidadPK = new TareaMapaMentalActividadEntidadPK();
         tareaMapaMentalActividadEntidadPK.setTareaEntidad(new TareaEntidad(idTarea));
@@ -124,6 +127,7 @@ public class MapaMentalSessionBean {
                         new MapaMentalActividadEntidadPK(new MapaMentalEntidad(mapaMentalEntidadPK), new ActividadEntidad(idActividad))
                 )
         );
+        tareaMapaMentalActividadEntidadPK.setVuelta(tareaMapaMentalModelo.getVuelta());
         return tareaMapaMentalActividadEntidadPK;
     }
 

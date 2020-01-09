@@ -43,6 +43,8 @@ import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import javax.inject.Inject;
 
 import java.util.List;
+import java.util.UUID;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -84,6 +86,9 @@ public class GlosarioSesionBeanTest {
 
     @Inject
     private GlosarioSesionBean glosarioSesionBean;
+
+    @Inject
+    private Logger logger;
 
     @Test
     public void buscaId() {
@@ -135,6 +140,7 @@ public class GlosarioSesionBeanTest {
 
     @Test
     public void buscaIdActividad() {
-        String idActividad = glosarioSesionBean.buscaActividad(1);
+        String idActividad = glosarioSesionBean.buscaActividad(UUID.fromString("72406be2-3710-4370-a892-98dfec006c9d"));
+        logger.info(idActividad);
     }
 }

@@ -46,6 +46,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -92,6 +93,9 @@ public class ActividadSesionBeanTest {
 
     @Inject
     private ActividadSesionBean actividadSesionBean;
+
+    @Inject
+    private Logger logger;
 
     @Test
     public void buscaTodos() {
@@ -150,8 +154,9 @@ public class ActividadSesionBeanTest {
 
     @Test
     public void buscaIdActividad() {
-        List<ActividadModelo> actividadModeloList = actividadSesionBean.busca(UUID.randomUUID());
+        List<ActividadModelo> actividadModeloList = actividadSesionBean.busca(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         assertNotNull(actividadModeloList);
+        logger.info(actividadModeloList.toString());
     }
 
     @Test

@@ -15,6 +15,7 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -97,7 +98,8 @@ public class GlosarioSesionBean implements Serializable {
      * @param idTarea Identificador de la tarea.
      * @return {@link String} con el identificador de la actividad
      */
-    public String buscaActividad(@NotNull Integer idTarea) {
+    //TODO Corregi el query porque me regresaba una columna, en vez de un solo resultado.
+    public String buscaActividad(@NotNull UUID idTarea) {
         logger.fine(idTarea.toString());
         TypedQuery<String> typedQuery = entityManager.createNamedQuery("TareaGlosarioActividadEntidad.buscaActividadPorTarea", String.class);
         typedQuery.setParameter("idTarea", idTarea);

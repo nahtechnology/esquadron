@@ -15,7 +15,7 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "TareaGlosarioActividadEntidad.buscaActividadPorTarea",
                 query = "SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM TareaGlosarioActividadEntidad tga WHERE " +
-                        "tga.tareaGlosarioActividadEntidadPK.tareaEntidad.id = :idTarea"
+                        "tga.tareaGlosarioActividadEntidadPK.tareaEntidad.id = :idTarea GROUP BY tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id"
         )
 })
 public class TareaGlosarioActividadEntidad {
