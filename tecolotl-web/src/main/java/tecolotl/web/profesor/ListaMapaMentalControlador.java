@@ -16,18 +16,18 @@ public class ListaMapaMentalControlador {
     @Inject
     private CalificaTareaMapaMentalSesionBean calificaTareaMapaMentalSesionBean;
 
-    private UUID idTarea;
+    private String idTarea;
     private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
 
     public void busca() {
-        tareaMapaMentalModeloLista = calificaTareaMapaMentalSesionBean.buscaCalificados(idTarea);
+        tareaMapaMentalModeloLista = calificaTareaMapaMentalSesionBean.buscaCalificados(UUID.fromString(idTarea));
     }
 
-    public UUID getIdTarea() {
+    public String getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(UUID idTarea) {
+    public void setIdTarea(String idTarea) {
         this.idTarea = idTarea;
     }
 

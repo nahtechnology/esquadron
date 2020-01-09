@@ -25,15 +25,15 @@ public class CalificaMapaMentalControlador {
     @Inject
     private Logger logger;
 
-    private UUID idTarea;
+    private String idTarea;
     private Short cardinalidad;
     private Short intento;
     private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
     private CalificaTareaMapaMentalModelo calificaTareaMapaMentalModelo = new CalificaTareaMapaMentalModelo();
 
     public void busca() {
-        tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(idTarea, cardinalidad);
-        calificaTareaMapaMentalModelo = calificaTareaMapaMentalSesionBean.busca(idTarea, cardinalidad, intento);
+        tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(UUID.fromString(idTarea), cardinalidad);
+        calificaTareaMapaMentalModelo = calificaTareaMapaMentalSesionBean.busca(UUID.fromString(idTarea), cardinalidad, intento);
     }
 
     public String califica() {
@@ -50,11 +50,11 @@ public class CalificaMapaMentalControlador {
         this.tareaMapaMentalModeloLista = tareaMapaMentalModeloLista;
     }
 
-    public UUID getIdTarea() {
+    public String getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(UUID idTarea) {
+    public void setIdTarea(String idTarea) {
         this.idTarea = idTarea;
     }
 
