@@ -13,7 +13,9 @@ import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
+import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
 import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
+import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
@@ -27,6 +29,7 @@ import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.MapaMentalEntidad;
 import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
 import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -60,7 +63,9 @@ import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.profesor.entidad.CicloEscolarEntidad;
+import tecolotl.profesor.entidad.CicloEscolarEntidadPK;
 import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
+import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
 import tecolotl.profesor.validacion.*;
 
@@ -130,6 +135,7 @@ public class CalificaTareaMapaMentalSesionBeanTest {
                 .addPackage(HablarModelo.class.getPackage())
                 .addPackage(TareaCompletarModelo.class.getPackage())
                 .addPackage(TareaCompletarEntidad.class.getPackage())
+                .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
