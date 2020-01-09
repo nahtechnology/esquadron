@@ -238,3 +238,16 @@ h2{
     text-align: center;
     font-weight: bold;
 }
+
+@media screen and (max-width: 768px){
+    .imagen-inicio > div:first-child + div{
+        font-size: 100px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .imagen-inicio > div:first-child + div{
+        font-size: 46px;
+    }
+}
+
