@@ -1,14 +1,17 @@
 package tecolotl.profesor.entidad;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 public class TareaAlumnoEntidad {
 
-    private int id;
+    private UUID id;
     private Date fechaAsignacion;
     private String idActividad;
     private Short calificacionTrascirpcion;
@@ -21,11 +24,12 @@ public class TareaAlumnoEntidad {
 
 
     @Id
-    public int getId() {
+    @Type(type = "pg-uuid")
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

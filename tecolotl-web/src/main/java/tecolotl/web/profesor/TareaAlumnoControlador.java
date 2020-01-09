@@ -24,11 +24,11 @@ public class TareaAlumnoControlador {
 
     private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
     //TODO cambiar nombre de la variable por idTarea de acuerdo al metodo del SesionBean
-    private UUID idAlumno;
+    private String idAlumno;
 
     public void detalle() {
-        tareaAlumnoModeloLista = calificaTareaMapaMentalSesionBean.busca(idAlumno);
-        profesorGrupoControlador.detalleAlumno(idAlumno);
+        tareaAlumnoModeloLista = calificaTareaMapaMentalSesionBean.busca(UUID.fromString(idAlumno));
+        profesorGrupoControlador.detalleAlumno(UUID.fromString(idAlumno));
     }
 
     public List<TareaAlumnoModelo> getTareaAlumnoModeloLista() {
@@ -39,11 +39,11 @@ public class TareaAlumnoControlador {
         this.tareaAlumnoModeloLista = tareaAlumnoModeloLista;
     }
 
-    public UUID getIdAlumno() {
+    public String getIdAlumno() {
         return idAlumno;
     }
 
-    public void setIdAlumno(UUID idAlumno) {
+    public void setIdAlumno(String idAlumno) {
         this.idAlumno = idAlumno;
     }
 }

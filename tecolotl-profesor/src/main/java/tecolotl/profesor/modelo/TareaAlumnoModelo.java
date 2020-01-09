@@ -3,10 +3,11 @@ package tecolotl.profesor.modelo;
 import tecolotl.profesor.entidad.TareaAlumnoEntidad;
 
 import java.util.Date;
+import java.util.UUID;
 
 public class TareaAlumnoModelo {
 
-    private int id;
+    private UUID id;
     private Date fechaAsignacion;
     private String idActividad;
     private Short calificacionTrascirpcion;
@@ -20,7 +21,7 @@ public class TareaAlumnoModelo {
     public TareaAlumnoModelo() {
     }
 
-    public TareaAlumnoModelo(int id) {
+    public TareaAlumnoModelo(UUID id) {
         this.id = id;
     }
 
@@ -37,11 +38,11 @@ public class TareaAlumnoModelo {
         this.calificacionCompletar = tareaAlumnoEntidad.getCalificacionCompletar();
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
