@@ -85,11 +85,11 @@ public class AlumnoRequestScopeTest {
         alumnoModelo.setApellidoPaterno("Bodoque");
         alumnoModelo.setApellidoMaterno("Huachic");
         alumnoModelo.setNacimiento(new Date());
-        alumnoModelo.setApodo("Juanito");
-        alumnoModelo.setSexo('M');
+        alumnoModelo.setApodo("elPatron");
+        alumnoModelo.setSexo('m');
         alumnoModelo.setNivelLenguajeModelo(new NivelLenguajeModelo((short)2));
         alumnoModelo.setCorreoPadreFamilia("juan.carlos.bodoque@ejemplo.com");
-        alumnoModelo.setContrasenia("123456".getBytes());
+        alumnoModelo.setContrasenia("0:0,1:1".getBytes());
         alumnoModeloLista.add(alumnoModelo);
         alumnoRequestScope.agregarAlumnos(alumnoModeloLista);
     }

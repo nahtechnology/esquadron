@@ -19,6 +19,7 @@ public class GrupoAlumnoModelo {
 
     public GrupoAlumnoModelo(GrupoAlumnoEntidad grupoAlumnoEntidad){
         this.idAlumno = grupoAlumnoEntidad.getGrupoAlumnoEntidadPK().getAlumnoEntidad().getId();
+        this.idGrupo = grupoAlumnoEntidad.getGrupoAlumnoEntidadPK().getGrupoEntidad().getId();
     }
 
     public UUID getIdAlumno() {

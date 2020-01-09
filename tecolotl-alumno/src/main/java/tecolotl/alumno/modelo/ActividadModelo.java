@@ -46,6 +46,7 @@ public class ActividadModelo {
         this.lenguaje = actividadEntidad.getLenguaje();
         this.tiempo = actividadEntidad.getTiempo();
         this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
+        this.setTranscripcion(actividadEntidad.getTrasncripcion());
     }
 
     @NotNull

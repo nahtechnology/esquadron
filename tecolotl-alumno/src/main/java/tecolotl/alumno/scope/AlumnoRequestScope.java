@@ -42,7 +42,7 @@ public class AlumnoRequestScope {
                 alumnoEntidad.setSexo(alumnoModelo.getSexo());
                 alumnoEntidad.setNivelLenguajeEntidad(new NivelLenguajeEntidad(alumnoModelo.getNivelLenguajeModelo().getClave()));
                 alumnoEntidad.setCorreoPadreFamilia(alumnoModelo.getCorreoPadreFamilia());
-                alumnoEntidad.setContraseniaPadreFamilia("123456".getBytes());
+                alumnoEntidad.setContraseniaPadreFamilia(alumnoModelo.getContrasenia());
                 alumnoEntidad.setContrasenia(alumnoModelo.getContrasenia());
                 entityManager.persist(alumnoEntidad);
             });

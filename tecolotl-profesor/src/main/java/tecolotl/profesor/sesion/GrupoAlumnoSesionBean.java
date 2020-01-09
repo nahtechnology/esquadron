@@ -45,10 +45,10 @@ public class GrupoAlumnoSesionBean {
      * @param grupoAlumnoModelo dato para poder insertar un nuecvo GrupoAlumno.
      */
     public void inserta(@NotNull GrupoAlumnoModelo grupoAlumnoModelo){
-        logger.fine(grupoAlumnoModelo.toString());
+        logger.info(grupoAlumnoModelo.toString());
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
-
+        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
         GrupoAlumnoEntidad grupoAlumnoEntidad = new GrupoAlumnoEntidad();
         grupoAlumnoEntidad.setGrupoAlumnoEntidadPK(grupoAlumnoEntidadPK);
         entityManager.persist(grupoAlumnoEntidad);
@@ -156,6 +156,7 @@ public class GrupoAlumnoSesionBean {
         logger.fine(grupoAlumnoModelo.toString());
         GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
         grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(grupoAlumnoModelo.getIdAlumno()));
+        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoAlumnoModelo.getIdGrupo()));
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete criteriaDelete = criteriaBuilder.createCriteriaDelete(GrupoAlumnoEntidad.class);
         Root<GrupoAlumnoEntidad> root = criteriaDelete.from(GrupoAlumnoEntidad.class);
