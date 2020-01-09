@@ -3,10 +3,11 @@ package tecolotl.profesor.modelo;
 import tecolotl.profesor.entidad.TareaAlumnoGrupoEntidad;
 
 import java.util.StringJoiner;
+import java.util.UUID;
 
 public class TareaAlumnoGrupoModelo {
 
-    private int id;
+    private UUID id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -49,11 +50,11 @@ public class TareaAlumnoGrupoModelo {
         this.totalAsignadaCompletar = tareaAlumnoGrupoEntidad.getTotalAsignadaCompletar();
     }
 
-    public int getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
