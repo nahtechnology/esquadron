@@ -93,61 +93,61 @@
                         <h:dataTable id="tabla-alumno"
                                      value="#{grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
                                      rendered="#{not empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}"
-                                     var="tarea"
+                                     var="tareaAlumnoGrupoModelo"
                                      styleClass="tabla-alumnos uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown uk-margin-top"
                                      headerClass="thPrimario uk-text-center"
                                      columnClasses="uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small uk-margin-auto"
                                      rowClasses="tdPrimario uk-margin-small">
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">nombre</span></f:facet>
-                                <span>${tarea.nombre.concat(' ').concat(tarea.apellidoPaterno).concat(' ').concat(tarea.apellidoMaterno)}</span>
+                                <span>${tareaAlumnoGrupoModelo.nombre.concat(' ').concat(tareaAlumnoGrupoModelo.apellidoPaterno).concat(' ').concat(tareaAlumnoGrupoModelo.apellidoMaterno)}</span>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
-                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaMapaMental eq 0}"/>
-                                <span><h:outputText value="${tarea.totalRespuestaMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/></span>
-                                <h:outputText value="/ ${tarea.totalAsignadaMapaMental} / ${tarea.calificadoMapaMental}" rendered="${tarea.totalAsignadaMapaMental ne 0}"/>
+                                <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental eq 0}"/>
+                                <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/></span>
+                                <h:outputText value="/ ${tareaAlumnoGrupoModelo.totalAsignadaMapaMental} / ${tareaAlumnoGrupoModelo.calificadoMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
-                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaGramatica eq 0}"/>
-                                <span><h:outputText value="${tarea.totalRespuestaGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/></span>
-                                <h:outputText value=" / ${tarea.totalAsignadaGramatica} / ${tarea.totalCalificadasGramatica}" rendered="${tarea.totalAsignadaGramatica ne 0}"/>
+                                <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica eq 0}"/>
+                                <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaGramatica}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica ne 0}"/></span>
+                                <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaGramatica} / ${tareaAlumnoGrupoModelo.totalCalificadasGramatica}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.match']}</span></f:facet>
-                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadoRelacionar eq 0}"/>
-                                <span><h:outputText value="${tarea.totalRespuestaRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/></span>
-                                <h:outputText value=" / ${tarea.totalAsignadoRelacionar}" rendered="${tarea.totalAsignadoRelacionar ne 0}"/>
+                                <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar eq 0}"/>
+                                <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaRelacionar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar ne 0}"/></span>
+                                <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadoRelacionar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.order.sentences']}</span></f:facet>
-                                <h:outputText pt:uk-icon="ban" rendered="#{tarea.totalAsignadaOraciones eq 0}"/>
-                                <span><h:outputText value="#{tarea.totalRespuestaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/></span>
-                                <h:outputText value=" / #{tarea.totalAsignadaOraciones}" rendered="#{tarea.totalAsignadaOraciones ne 0}"/>
+                                <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones eq 0}"/>
+                                <span><h:outputText value="#{tareaAlumnoGrupoModelo.totalRespuestaOraciones}" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones ne 0}"/></span>
+                                <h:outputText value=" / #{tareaAlumnoGrupoModelo.totalAsignadaOraciones}" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
-                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaRelacionarOracion eq 0}"/>
-                                <span><h:outputText value="${tarea.totalRespuestaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/></span>
-                                <h:outputText value=" / ${tarea.totalAsignadaRelacionarOracion}" rendered="${tarea.totalAsignadaRelacionarOracion ne 0}"/>
+                                <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion eq 0}"/>
+                                <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaRelacionarOracion}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion ne 0}"/></span>
+                                <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.comple.all.sentences']}</span></f:facet>
-                                <h:outputText pt:uk-icon="ban" rendered="${tarea.totalAsignadaCompletar eq 0}"/>
-                                <span><h:outputText value="${tarea.totalRespuestaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/></span>
-                                <h:outputText value=" / ${tarea.totalAsignadaCompletar}" rendered="${tarea.totalAsignadaCompletar ne 0}"/>
+                                <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaCompletar eq 0}"/>
+                                <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaCompletar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaCompletar ne 0}"/></span>
+                                <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaCompletar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaCompletar ne 0}"/>
                             </h:column>
                             <h:column >
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{etiqueta['options']}</span></f:facet>
                                 <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
-                                <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
+                                <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                         <li>
                                             <h:link outcome="detalle-alumno">
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary"/>
                                                 <span class="uk-text-middle uk-text-primary"><h:outputText value="Detalle"/></span>
-                                                <f:param name="idAlumno" value="#{tarea.id}"/>
+                                                <f:param name="idAlumno" value="#{tareaAlumnoGrupoModelo.id}"/>
                                             </h:link>
                                         </li>
                                     </ul>

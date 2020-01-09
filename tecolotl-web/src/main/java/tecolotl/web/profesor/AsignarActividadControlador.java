@@ -35,16 +35,17 @@ public class AsignarActividadControlador implements Serializable {
     private Logger logger;
 
     private List<ActividadModelo> actividadModeloLista;
-    private UUID grupo;
+    private String grupo;
     private String actividad;
 
     public void inicio() {
-        actividadModeloLista = tareasAlumnoSesionBean.busca(grupo);
+        actividadModeloLista = tareasAlumnoSesionBean.busca(UUID.fromString(grupo));
+        logger.info(actividadModeloLista.toString());
     }
 
     public String asiganarTarea() {
         for (String string : actividad.split(",")) {
-            grupoAlumnoSesionBean.tarea(grupo, string);
+            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), string);
         }
         return "dashboard";
     }
@@ -61,11 +62,11 @@ public class AsignarActividadControlador implements Serializable {
         this.actividadModeloLista = actividadModeloLista;
     }
 
-    public UUID getGrupo() {
+    public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(UUID grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 
