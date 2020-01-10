@@ -55,7 +55,7 @@ function calificar() {
     });
 
     if(respuestaAlumno.length !== respuestas.length){
-        UIkit.modal.alert('Necesitas llenar todas las respuestas.');
+        UIkit.modal.alert(mensajeRestriccion);
         return false;
     }
 
