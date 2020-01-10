@@ -20,13 +20,14 @@ function loginImagen(imagenes) {
 }
 
 function cargaContrasenia(evento) {
-    let seleccionados = [];
+    let seleccionados = [],contra=[];
     let imagenes = alumno.querySelectorAll('img');
     for (let i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
-            x = i % 7;
-            y = Math.floor(i / 7);
-            seleccionados.push(x.toString().concat(':').concat(y.toString()));
+            // x = i % 7;
+            // y = Math.floor(i / 7);
+            // seleccionados.push(x.toString().concat(':').concat(y.toString()));
+            seleccionados.push(i);
         }
     }
     if (seleccionados.length === 0 && !esloginProfesor) {
@@ -34,6 +35,7 @@ function cargaContrasenia(evento) {
         return false;
     } else {
         alumno.querySelector('input[type=hidden]').value = seleccionados.join(',');
+        console.log(prueba);
         return true;
     }
 }

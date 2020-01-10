@@ -279,48 +279,56 @@ console.log(usuario);
 
 function cargaVista() {
    var  salida , aux1,aux2;
-    var contrasenias= new Array();
-
+    var contrasenias = [];
     while (contrasenias.length < 2) {
-        contrasenias.push(new Contrasenia());
-        contrasenias = removeDups(contrasenias);
+        var numeroAlteatorio = Math.floor(Math.random() * 27);
+        if (!contrasenias.includes(numeroAlteatorio)) {
+            contrasenias.push(numeroAlteatorio);
+        }
     }
-    aux1 = contrasenias[0];
-    aux2 = contrasenias[1];
-    if((parseInt(aux1.charAt(0),10) > (parseInt(aux2.charAt(0),10))) || ( ((parseInt(aux1.charAt(0),10) == (parseInt(aux2.charAt(0),10)) && ((parseInt(aux1.charAt(2),10) > (parseInt(aux2.charAt(2),10))) ))) ) ){
-        console.log(aux1, aux2, contrasenias);
-        contrasenias[0] = aux2;
-        contrasenias[1] = aux1;
-        console.log(contrasenias);
-    }
+    contrasenias.sort((a,b) => a - b);
+
+    // while (contrasenias.length < 2) {
+    //     contrasenias.push(new Contrasenia());
+    //     contrasenias = removeDups(contrasenias);
+    // }
+    // aux1 = contrasenias[0];
+    // aux2 = contrasenias[1];
+    // if((parseInt(aux1.charAt(0),10) > (parseInt(aux2.charAt(0),10))) || ( ((parseInt(aux1.charAt(0),10) == (parseInt(aux2.charAt(0),10)) && ((parseInt(aux1.charAt(2),10) > (parseInt(aux2.charAt(2),10))) ))) ) ){
+    //     console.log(aux1, aux2, contrasenias);
+    //     contrasenias[0] = aux2;
+    //     contrasenias[1] = aux1;
+    //     console.log(contrasenias);
+    // }
     salida = contrasenias.join(',');
-    console.log(contrasenias.toString());
+    // console.log(contrasenias.toString());
 
     return salida;
 }
 
-function Contrasenia() {
-    this.x = Math.floor(Math.random() * 7);
-    this.y = Math.floor(Math.random() * 4);
-}
 
-Contrasenia.prototype.equals = function (contrasenia) {
-    return this.x === contrasenia.x && this.y === contrasenia.y;
-};
+// function Contrasenia() {
+//     this.x = Math.floor(Math.random() * 7);
+//     this.y = Math.floor(Math.random() * 4);
+// }
+//
+// Contrasenia.prototype.equals = function (contrasenia) {
+//     return this.x === contrasenia.x && this.y === contrasenia.y;
+// };
 
-Contrasenia.prototype.toString = function () {
-    return this.x.toString().concat(':').concat(this.y.toString());
-};
+// Contrasenia.prototype.toString = function () {
+//     return this.x.toString().concat(':').concat(this.y.toString());
+// };
 
-function removeDups(names) {
-    let unique = {};
-    names.forEach(function(i) {
-        if(!unique[i]) {
-            unique[i] = true;
-        }
-    });
-    return Object.keys(unique);
-}
+// function removeDups(names) {
+//     let unique = {};
+//     names.forEach(function(i) {
+//         if(!unique[i]) {
+//             unique[i] = true;
+//         }
+//     });
+//     return Object.keys(unique);
+// }
 
 
 function insertaAlumno(evento) {
