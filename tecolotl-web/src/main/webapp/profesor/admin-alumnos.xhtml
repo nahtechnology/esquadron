@@ -64,7 +64,7 @@
                         </div>
                     </div>
                     <div class="uk-card-body padding-card-body">
-                        <h3 class="uk-text-uppercase uk-text-bold ">grupo</h3>
+                        <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
                         <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
                     </div>
@@ -80,7 +80,7 @@
                         data-grado="#{profesorGrupoControlador.grupoModelo.grado}">
                     reporte
                 </button>
-                <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base" disabled=" " >agregar</button>
+                <!--<button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base" disabled="disabled">agregar</button>-->
             </div>
         </div>
 
@@ -305,7 +305,7 @@
                                     <h:message for="seleccion-sexo" styleClass="uk-alert-danger"/>
                                 </div>
                                 <div class="uk-width-1-1@s uk-width-1-5@m">
-                                    <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="lugares disponibles"/>
+                                    <span>lugares disponibles</span>
                                     <div class="uk-form-controls">
                                         <progress max="${grupoAlumnoControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
                                         <span>${grupoAlumnoControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
@@ -326,12 +326,13 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="boton-escuadron-base-secundary uk-modal-close" onclick="limpiaFormulario(event)">#{boton['cancel']}</button>
+                        <button class="boton-escuadron-base-secundary uk-modal-close" type="reset">#{boton['cancel']}</button>
                         <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
                                          styleClass="boton-escuadron-base uk-margin-left">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); }"
                                     listener="#{grupoAlumnoControlador.insertaAlumno()}"
                                     execute="@form"
+                                    onerror="error"
                                     render="@form formulario-tabla-alumno"/>
                         </h:commandButton>
                     </div>
@@ -440,6 +441,7 @@
                         case "modalAgregarAlumno":
                             if (modalAgregarAlumno.querySelector('.uk-alert-danger') === null) {
                                 UIkit.modal(modalAgregarAlumno).hide();
+                                modalAgregarAlumno.querySelector('form').reset();
                             }
                             break;
 

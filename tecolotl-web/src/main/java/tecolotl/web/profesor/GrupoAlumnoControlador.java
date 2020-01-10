@@ -72,9 +72,10 @@ public class GrupoAlumnoControlador implements Serializable {
         buscaTotalAlumno();
     }
 
-    public void insertaAlumno() throws IOException {
+    public void insertaAlumno() {
         logger.info(alumnoModelo.toString());
-        FacesMessage facesMessage = new FacesMessage();
+        alumnoModelo = new AlumnoModelo();
+    /*    FacesMessage facesMessage = new FacesMessage();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
             facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
@@ -85,7 +86,7 @@ public class GrupoAlumnoControlador implements Serializable {
             alumnoModelo = new AlumnoModelo();
             buscaDetalleAlumnos();
             buscaTotalAlumno();
-        }
+        }*/
     }
 
     public void buscaDetalleAlumnos() throws IOException {

@@ -13,7 +13,6 @@ passwords.forEach(function (contra,indice) {
         var img = 0;
         let cadenita;
         cadenita = cuenta.split(':');
-        console.log(cadenita);
         cadenita.forEach(function (corde,index) {
             var imagen = document.createElement('img');
             if(index === 0){
@@ -33,7 +32,6 @@ passwords.forEach(function (contra,indice) {
                         img += 22;
                         break;
                 }
-                console.log(img);
                 imagen.src = "../resources/img/alumno/iconos-login/" + img + ".svg";
                 imagen.style.marginLeft = "5px";
                 contra.appendChild(imagen);

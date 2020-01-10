@@ -75,3 +75,8 @@ function desabilitar() {
     });
 
 }
+
+
+function error(data) {
+    console.error(data);
+}
