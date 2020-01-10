@@ -68,8 +68,8 @@
                     </div>
                 </div>
             </div>
-            <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{empty dashboardProfesorControlador.cicloEscolarModeloLista}">
-                No hay ciclo escolares asignados o se encuentran inabilitados.
+            <h:panelGroup layout="block" styleClass="uk-width-2-3@m uk-text-bold uk-flex uk-flex-center uk-flex-middle" rendered="#{empty dashboardProfesorControlador.cicloEscolarModeloLista}">
+               <span class="titulo-section">No hay ciclo escolares asignados o se encuentran inabilitados.</span>
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
                 <h:form id="formulario-grupo" styleClass="uk-form-horizontal">
