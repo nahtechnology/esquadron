@@ -77,7 +77,9 @@
                                      styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada tabla-profesor"
                                      headerClass="uk-background-primary letra-titulo uk-text-center"
                                      columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
-                            <h:column><f:facet name="header">Id</f:facet>#{profesorModelo.id}</h:column>
+                            <h:column>
+                                <f:facet name="header">Id</f:facet>#{profesorModelo.id}
+                            </h:column>
                             <h:column>
                                 <f:facet name="header">apodo</f:facet>
                                 <h:commandLink value="${profesorModelo.apodo}">
@@ -112,10 +114,19 @@
                                                     <f:ajax listener="#{administracionProfesorControlador.busca(profesorModelo)}" render="formulario-modal-profesor"/>
                                                 </h:commandLink>
                                             </li>
+                                            <li>
+                                                <h:commandLink>
+                                                    <h:outputText pt:uk-icon="icon: users" styleClass="uk-margin-small-right uk-icon"/>
+                                                    <span class="uk-text-middle"><span class="primera-mayuscula uk-display-inline-block">grupos</span></span>
+                                                </h:commandLink>
+                                            </li>
                                             <li class="uk-nav-divider"/>
                                             <li>
-                                                <a href="#modal-eliminar" uk-toggle="" class="uk-text-danger primera-mayuscula">
-                                                <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>#{boton['remove']}</a>
+                                                <h:commandLink pt:uk-toggle="target: #modal-eliminar " styleClass="uk-text-danger primera-mayuscula">
+                                                    <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>
+                                                    <h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block" />
+                                                    <f:ajax listener="#{administracionProfesorControlador.elimina(profesorModelo)}" render="form-elimina"/>
+                                                </h:commandLink>
                                             </li>
                                         </ul>
                                     </h:panelGroup>
@@ -281,6 +292,7 @@
                                     <h:selectOneMenu class="uk-select"
                                                      id="sexo"
                                                      value="#{administracionProfesorControlador.profesorModelo.sexo}">
+                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['options']}" noSelectionOption="true"/>
                                         <f:selectItem itemValue="m" itemLabel="masculino"/>
                                         <f:selectItem itemValue="f" itemLabel="femenino"/>
                                         <f:validateRequired/>
@@ -346,7 +358,8 @@
                     </div>
                     <div class="uk-modal-body">
                         <p>
-                            ¿Esta serguro de eliminar al profesor:   ?
+                            <h:outputText value="¿Esta serguro de eliminar al profesor:   ?" rendered="#{0 eq administracionProfesorControlador.eliminar}"/>
+                            <h:outputText value="¡No se puede Eliminar al profesor por que tiene asignado alumnos!" rendered="#{0 ne administracionProfesorControlador.eliminar}"/>
                         </p>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">

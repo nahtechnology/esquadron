@@ -62,24 +62,34 @@
                     </div>
                 </div>
             </div>
-            <div class="botones uk-width-2-3@m">
+            <h:panelGroup layout="block" styleClass="botones uk-width-2-3@m">
                 <div>
                     <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Seleccione un archivo para cargar alumno</div>
                     <label for="archivo"><span>choose your save file ...</span></label>
                     <input id="archivo" type="file" style="display: none"/>
                 </div>
-                <div>
+                <h:panelGroup layout="block" id="cupo-alumnos">
                     <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Cupo de alumnos</div>
-                    <progress max="${agregarCsvControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
+                    <progress max="${agregarCsvControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"/>
                     <span>${agregarCsvControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
+                </h:panelGroup>
+                <div class="uk-margin-medium-top">
+<!--                    <button class="boton-escuadron-base">Limpiar</button>-->
+                    <h:form>
+                        <h:commandButton id="apodos-ver" styleClass="boton-escuadron-base" value="Limpiar">
+                            <f:ajax  listener="#{agregarCsvControlador.actualizar}"
+                                    render="apodos-filas"
+                                    onevent="function apodosBase(data) {
+                                      limpiar();
+                                    }"/>
+                        </h:commandButton>
+                    </h:form>
+                    <h:button styleClass="boton-escuadron-base" value="regresar" outcome="regresar"/>
                 </div>
-            </div>
+            </h:panelGroup>
         </div>
         <h:panelGroup styleClass="uk-flex uk-flex-center uk-flex-wrap" >
             <div class="uk-overflow-auto uk-margin-large-top">
-                <div class="uk-flex uk-flex-right uk-margin-medium-bottom">
-                    <h:button styleClass="boton-escuadron-base" value="regresar" outcome="regresar"/>
-                </div>
                 <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Alumnos Correctos</div>
                 <table id="tabla-aceptados" class="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center">
                     <thead class="thPrimario">
@@ -102,9 +112,11 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="uk-flex uk-flex-right">
-                    <button class="boton-escuadron-base">Enviar</button>
-                </div>
+                <ui:remove>
+                    <div class="uk-flex uk-flex-right">
+                        <button class="boton-escuadron-base">Enviar</button>
+                    </div>
+                </ui:remove>
             </div>
             <div class="uk-overflow-auto uk-margin-large-top uk-margin-large-bottom">
                 <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Alumnos Incorrectos</div>
@@ -131,11 +143,13 @@
                 </table>
             </div>
         </h:panelGroup>
-        <ul id="apodos" style="display: none">
-            <ui:repeat value="#{agregarCsvControlador.apodos}" var="apodo">
-                <li>${apodo}</li>
-            </ui:repeat>
-        </ul>
+        <h:panelGroup layout="block" id="apodos-filas">
+            <ul id="apodos">
+                    <ui:repeat value="#{agregarCsvControlador.apodos}" var="apodo">
+                        <li>${apodo}</li>
+                    </ui:repeat>
+            </ul>
+        </h:panelGroup>
         <h:form id="formulario-alumno">
             <h:inputHidden id="apodo" value="#{agregarCsvControlador.alumnoModelo.apodo}"/>
             <h:inputHidden id="nombre" value="#{agregarCsvControlador.alumnoModelo.nombre}"/>
@@ -150,7 +164,8 @@
                 <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
             </h:inputHidden>
             <h:commandButton id="enviar" style="display: none">
-                <f:ajax execute="@form" listener="#{agregarCsvControlador.inserta}"/>
+                <f:ajax execute="@form" listener="#{agregarCsvControlador.inserta}"
+                render="cupo-alumnos apodos-filas"/>
             </h:commandButton>
         </h:form>
     </ui:define>

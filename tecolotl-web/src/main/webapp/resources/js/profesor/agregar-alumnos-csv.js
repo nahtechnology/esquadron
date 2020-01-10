@@ -16,18 +16,18 @@ var alumnos = [];
 var pibote = 0;
 var indice = [];
 var filasRechazadas;
-var listApodos,apodos = [];
+var apodos = [];
 
 
 document.addEventListener('DOMContentLoaded', function (evento) {
     document.querySelector('input[type=file]').addEventListener('change', cargaArchivo);
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
-    document.querySelector('#tabla-aceptados + div > button').addEventListener('click', insertaAlumno);
-    listApodos = document.querySelector('#apodos').querySelectorAll('li');
-    listApodos.forEach(function (apodo) {
-        apodos.push(apodo.innerHTML);
-    });
+    // document.querySelector('#tabla-aceptados + div > button').addEventListener('click', insertaAlumno);
+
+    agregarApodos();
+    // botonBorrar = document.querySelector('.botones input[type=file]');
+    // botonBorrar.addEventListener('click',limpiar);
 });
 
 
@@ -91,6 +91,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaApodo()){
         let inputApodo = document.createElement('input');
         inputApodo.setAttribute('type','text');
+        inputApodo.setAttribute('uk-tooltip','El apodo debe tener minimo 4 caracteres o ya existe');
         celdaApodo.appendChild(inputApodo).value = this.apodo;
         conteo += 1;
     }else {
@@ -126,6 +127,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaFecha()){
         let inputFecha = document.createElement('input');
         inputFecha.setAttribute('type','text');
+        inputFecha.setAttribute('uk-tooltip','El formato dede ser dd/mm/yyyy');
         celdaFechaNacimento.appendChild(inputFecha).value = this.fechanacimento;
         conteo += 1;
     }else{
@@ -134,6 +136,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaNivellenguaje()){
         let inputLenguaje = document.createElement('input');
         inputLenguaje.setAttribute('type','text');
+        inputLenguaje.setAttribute('uk-tooltip','A1,A2,B1,B2,C1,C2 valores permitidos');
         celdaNivelLenguaje.appendChild(inputLenguaje).value = this.nivellenguaje;
         conteo += 1;
     }else{
@@ -142,6 +145,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaGenero()){
         let inputGenero = document.createElement('input');
         inputGenero.setAttribute('type','text');
+        inputGenero.setAttribute('uk-tooltip','deber ser M o F');
         celdaGenero.appendChild(inputGenero).value = this.genero;
         conteo += 1;
     }else {
@@ -151,7 +155,9 @@ Alumno.prototype.insertaDatos = function (tabla) {
     let boton = document.createElement("span");
     boton.classList.add('uk-icon-button','uk-margin-small-right');
     boton.setAttribute('uk-icon','cloud-upload');
-    boton.addEventListener('click', insertaAlumno);
+    if (conteo === 0){
+        boton.addEventListener('click', insertaAlumno);
+    }
     celdaValida.appendChild(boton);
 };
 function cargaArchivo(evento) {
@@ -232,39 +238,69 @@ function validarDatos(objeto) {
 function validarFila(num) {
     let alumno = [];
     let usuario;
+    let apodito = 0;
   filasRechazadas[num].querySelectorAll("td").forEach(function (celda,indice) {
       if(celda.querySelector('input[type=text]')){
           alumno.push(celda.querySelector('input[type=text]').value);
+          if(indice === 0){
+              apodito = 1;
+          }
       }else{
           alumno.push(celda.innerHTML.trim());
       }
   });
   usuario = new Alumno(alumno[0],alumno[1],alumno[2],alumno[3],alumno[4],alumno[5],alumno[6]);
+console.log(usuario);
+    switch (apodito) {
+        case 0: {
+            apodos.splice( apodos.indexOf(alumno[0]), 1 );
+            if (usuario.validaNombre() && usuario.validaApellidopaterno() && usuario.validaApellidomaterno() && usuario.validaFecha() && usuario.validaNivellenguaje() && usuario.validaGenero() ) {
+                usuario.insertaDatos(tablaBuena);
+                // tablaMala.tBodies[0].deleteRow(num);
+                filasRechazadas[num].style.display = 'none';
+            } else {
+                console.log('no aceptada');
+            }
 
-    if (usuario.validaApodo() && usuario.validaNombre() && usuario.validaApellidopaterno() && usuario.validaApellidomaterno() && usuario.validaFecha() && usuario.validaNivellenguaje() && usuario.validaGenero() ) {
-        usuario.insertaDatos(tablaBuena);
-        // tablaMala.tBodies[0].deleteRow(num);
-        filasRechazadas[num].style.display = 'none';
-
-    } else {
-        console.log('no aceptada');
+        } break;
+        case 1: {
+            if (usuario.validaApodo() && usuario.validaNombre() && usuario.validaApellidopaterno() && usuario.validaApellidomaterno() && usuario.validaFecha() && usuario.validaNivellenguaje() && usuario.validaGenero() ) {
+                usuario.insertaDatos(tablaBuena);
+                // tablaMala.tBodies[0].deleteRow(num);
+                filasRechazadas[num].style.display = 'none';
+            } else {
+                console.log('no aceptada');
+            }
+        }break;
     }
+
 
 }
 
 function cargaVista() {
-   var  salida;
-    var contrasenias = [];
+   var  salida , aux1,aux2;
+    var contrasenias= new Array();
+
     while (contrasenias.length < 2) {
         contrasenias.push(new Contrasenia());
         contrasenias = removeDups(contrasenias);
     }
-    salida = contrasenias.sort().join(',');
+    aux1 = contrasenias[0];
+    aux2 = contrasenias[1];
+    if((parseInt(aux1.charAt(0),10) > (parseInt(aux2.charAt(0),10))) || ( ((parseInt(aux1.charAt(0),10) == (parseInt(aux2.charAt(0),10)) && ((parseInt(aux1.charAt(2),10) > (parseInt(aux2.charAt(2),10))) ))) ) ){
+        console.log(aux1, aux2, contrasenias);
+        contrasenias[0] = aux2;
+        contrasenias[1] = aux1;
+        console.log(contrasenias);
+    }
+    salida = contrasenias.join(',');
+    console.log(contrasenias.toString());
+
     return salida;
 }
 
 function Contrasenia() {
-     this.x = Math.floor(Math.random() * 7);
+    this.x = Math.floor(Math.random() * 7);
     this.y = Math.floor(Math.random() * 4);
 }
 
@@ -328,4 +364,39 @@ function insertaAlumno(evento) {
     botonEnviar.click();
     evento.target.parentElement.setAttribute('uk-icon','check');
     evento.target.parentElement.removeEventListener("click", insertaAlumno);
+}
+
+function agregarApodos() {
+    var listApodos = document.querySelector('#apodos').querySelectorAll('li');
+    listApodos.forEach(function (apodo) {
+        apodos.push(apodo.innerHTML);
+    });
+}
+
+function limpiar() {
+    while (tablaBuena.tBodies[0].hasChildNodes()){
+        tablaBuena.tBodies[0].removeChild(tablaBuena.tBodies[0].firstChild);
+    }
+    while (tablaMala.tBodies[0].hasChildNodes()){
+        tablaMala.tBodies[0].removeChild(tablaMala.tBodies[0].firstChild);
+    }
+    let imagVacio = document.createElement('img');
+    let imagVacio2 = document.createElement('img');
+    imagVacio.src="../resources/img/vacio.svg";
+    imagVacio.width = 280;
+    imagVacio2.src="../resources/img/vacio.svg";
+    imagVacio2.width = 280;
+    let filaBuena = tablaBuena.tBodies[0].insertRow();
+    let filaMala = tablaMala.tBodies[0].insertRow();
+    let filaImgBuena = filaBuena.insertCell();
+    filaImgBuena.setAttribute('colspan','8');
+    filaImgBuena.appendChild(imagVacio);
+    let filaImgMala = filaMala.insertCell();
+    filaImgMala.setAttribute('colspan','8');
+    filaImgMala.appendChild(imagVacio2);
+
+    document.querySelector('input[type=file]').value="";
+    apodos = [];
+    agregarApodos();
+    document.querySelector('.botones label').innerHTML="choose your save file ...";
 }

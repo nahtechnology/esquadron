@@ -29,6 +29,7 @@ public class ProfesorControlador implements Serializable {
     private String claveCentroTrabajo;
     private List<ProfesorModelo> profesorModeloLista;
     private ProfesorModelo profesorModelo;
+    private  Integer eliminar;
 
     @PostConstruct
     public void init() {
@@ -55,6 +56,10 @@ public class ProfesorControlador implements Serializable {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(profesorModeloLista.get(0).getEscuelaBaseModelo().getClaveCentroTrabajo());
         profesorModelo = new ProfesorModelo();
     }
+    public void elimina(ProfesorModelo profesorModelo){
+       eliminar = profesorSesionBean.elimina(profesorModelo.getId());
+       logger.info(String.valueOf(eliminar));
+    }
 
     public String getClaveCentroTrabajo() {
         return claveCentroTrabajo;
@@ -80,4 +85,11 @@ public class ProfesorControlador implements Serializable {
         this.profesorModelo = profesorModelo;
     }
 
+    public Integer getEliminar() {
+        return eliminar;
+    }
+
+    public void setEliminar(Integer eliminar) {
+        this.eliminar = eliminar;
+    }
 }

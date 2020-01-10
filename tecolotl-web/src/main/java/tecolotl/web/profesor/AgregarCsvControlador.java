@@ -58,6 +58,13 @@ public class AgregarCsvControlador implements Serializable {
     public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {
         logger.info(alumnoModelo.toString());
         alumnoGrupoScope.inserta(alumnoModelo, profesorGrupoControlador.getGrupoModelo().getId());
+        this.alumnosAsignado++;
+
+
+    }
+
+    public void actualizar(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {
+        apodos = personaSesionBean.buscaApodo(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
     }
 
     public int getTotalAlumno() {

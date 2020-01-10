@@ -11,7 +11,7 @@ table input[type="text"]{
 }
 .botones > div{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
 }
 .botones > div > span{
@@ -177,4 +177,8 @@ table input[type="text"]{
     padding-top: 7px;
     margin-top: 18px !important;
     left: 47%;
+}
+.uk-tooltip{
+    font-size: 12px;
+    text-transform: none;
 }
