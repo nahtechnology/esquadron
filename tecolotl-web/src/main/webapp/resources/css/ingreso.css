@@ -117,9 +117,3 @@ ul.login-menu > li > a:hover{
     }
 }
 
-@media screen and (max-width: 500px){
-    body{
-        height: 150vh;
-        width: 114vw;
-    }
-}

@@ -118,7 +118,32 @@
     }
 
     .contenedor + div{
-        width: 320px;
+        width: 295px;
+        display: flex;
+        flex-direction: column;
+    }
+    .contenedor + div > span{
+        color: white;
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    .contenedor + div > span + input{
+        margin-bottom: 15px;
+    }
+    .contenedor + div > span + input + input + .boton{
+        width: 150px !important;
+        margin-left: 25%;
+    }
+
+    .contenedor{
+        width: auto;
+        margin-right: 27px;
+    }
+    .contenedor + div + span{
+        text-align: center;
+        text-align: -webkit-center;
+        position: absolute;
+        margin-left: 25px;
     }
 
 }
