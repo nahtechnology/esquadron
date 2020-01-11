@@ -152,12 +152,15 @@ Alumno.prototype.insertaDatos = function (tabla) {
         celdaGenero.innerHTML = this.genero;
     }
     let  celdaValida = fila.insertCell(-1);
-    let boton = document.createElement("span");
-    boton.classList.add('uk-icon-button','uk-margin-small-right');
-    boton.setAttribute('uk-icon','cloud-upload');
+    let boton = document.createElement("img");
+    boton.width="24";
+    boton.src="../resources/img/upload.png";
+    // boton.classList.add('uk-icon-button','uk-margin-small-right');
+    // boton.setAttribute('uk-icon','cloud-upload');
     if (conteo === 0){
         boton.addEventListener('click', insertaAlumno);
     }
+
     celdaValida.appendChild(boton);
 };
 function cargaArchivo(evento) {
@@ -288,51 +291,17 @@ function cargaVista() {
     }
     contrasenias.sort((a,b) => a - b);
 
-    // while (contrasenias.length < 2) {
-    //     contrasenias.push(new Contrasenia());
-    //     contrasenias = removeDups(contrasenias);
-    // }
-    // aux1 = contrasenias[0];
-    // aux2 = contrasenias[1];
-    // if((parseInt(aux1.charAt(0),10) > (parseInt(aux2.charAt(0),10))) || ( ((parseInt(aux1.charAt(0),10) == (parseInt(aux2.charAt(0),10)) && ((parseInt(aux1.charAt(2),10) > (parseInt(aux2.charAt(2),10))) ))) ) ){
-    //     console.log(aux1, aux2, contrasenias);
-    //     contrasenias[0] = aux2;
-    //     contrasenias[1] = aux1;
-    //     console.log(contrasenias);
-    // }
     salida = contrasenias.join(',');
-    // console.log(contrasenias.toString());
 
     return salida;
 }
 
 
-// function Contrasenia() {
-//     this.x = Math.floor(Math.random() * 7);
-//     this.y = Math.floor(Math.random() * 4);
-// }
-//
-// Contrasenia.prototype.equals = function (contrasenia) {
-//     return this.x === contrasenia.x && this.y === contrasenia.y;
-// };
-
-// Contrasenia.prototype.toString = function () {
-//     return this.x.toString().concat(':').concat(this.y.toString());
-// };
-
-// function removeDups(names) {
-//     let unique = {};
-//     names.forEach(function(i) {
-//         if(!unique[i]) {
-//             unique[i] = true;
-//         }
-//     });
-//     return Object.keys(unique);
-// }
 
 
 function insertaAlumno(evento) {
-    let celdas = evento.target.parentElement.parentElement.parentElement.querySelectorAll('td');
+    console.log(evento);
+    let celdas = evento.target.parentElement.parentElement.querySelectorAll('td');
     let apodo = document.getElementById('formulario-alumno:apodo');
     let nombre = document.getElementById('formulario-alumno:nombre');
     let apelldioPaterno = document.getElementById('formulario-alumno:apellido-paterno');
@@ -370,7 +339,7 @@ function insertaAlumno(evento) {
     }
     contrasena.value = cargaVista();
     botonEnviar.click();
-    evento.target.parentElement.setAttribute('uk-icon','check');
+    evento.target.src="../resources/img/checked.png";
     evento.target.parentElement.removeEventListener("click", insertaAlumno);
 }
 
