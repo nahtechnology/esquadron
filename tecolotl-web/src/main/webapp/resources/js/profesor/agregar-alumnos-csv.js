@@ -42,11 +42,11 @@ Alumno.prototype.validaNombre = function(){
 };
 
 Alumno.prototype.validaApellidopaterno = function(){
-    return this.apellidopaterno.length >= 4 && this.apellidopaterno.length <= 50;
+    return this.apellidopaterno.length >= 3 && this.apellidopaterno.length <= 50;
 };
 
 Alumno.prototype.validaApellidomaterno = function(){
-    return this.apellidomaterno.length >= 4 && this.apellidomaterno.length <= 50;
+    return this.apellidomaterno.length >= 3 && this.apellidomaterno.length <= 50;
 };
 
 Alumno.prototype.validaFecha = function(){
