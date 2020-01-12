@@ -44,7 +44,7 @@ public class PersonaEntidad {
 
     @Basic
     @Column(name = "apellido_paterno")
-    @Size(min = 4, max = 50)
+    @Size(max = 50)
     @NotNull
     public String getApellidoPaterno() {
         return apellidoPaterno;
@@ -56,7 +56,7 @@ public class PersonaEntidad {
 
     @Basic
     @Column(name = "apellido_materno")
-    @Size(min = 4, max = 50)
+    @Size(max = 50)
     @NotNull
     public String getApellidoMaterno() {
         return apellidoMaterno;
