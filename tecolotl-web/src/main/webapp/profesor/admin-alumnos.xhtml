@@ -375,8 +375,9 @@
                     <h2 class="uk-modal-title">Passwords</h2>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk-modal-body uk-text-center" pt:uk-overflow-auto="" >
-                    <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumnoModelo">
-                        <p> ${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} : ${alumnoModelo.apodo}
+                    <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumnoModelo" varStatus="conta">
+                        <p>
+                            ${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} : ${alumnoModelo.apodo}
                             <span>
                                 <h:outputText value="${alumnoModelo.contrasenia}">
                                     <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
@@ -456,7 +457,7 @@
     </ui:define>
     <ui:define name="file-js">
         <h:outputScript library="js" name="/profesor/contrasena.js" />
-        <h:outputScript library="js" name="/profesor/html2pdf.js"/>
+        <h:outputScript library="js" name="/html2pdf.bundle.min.js"/>
         <script type="application/javascript">
             document.querySelector('#boton').addEventListener('click',generatePDF);
             var contenedorNombre = document.querySelector('.uk-grid');
@@ -471,12 +472,33 @@
             function generatePDF() {
                 // Choose the element that our invoice is rendered in.
                 // const element = document.getElementById("modal-password");
-                const  element = document.querySelector('#modal-password .uk-modal-body');
+                var  element = document.querySelector('#modal-password .uk-modal-body');
+                element.classList.remove('uk-overflow-auto');
+                element.removeAttribute('style');
+                element.removeAttribute('uk-overflow-auto');
+                element.style.minHeight="150px";
+                element.style.height="auto";
                 // Choose the element and save the PDF for our user.
-                html2pdf()
-                    .set({ html2canvas: { scale: 4 } })
-                    .from(element)
-                    .save(grupoGrado);
+                const opt = {
+                    margin: 1,
+                    filename: grupoGrado,
+                    html2canvas: {
+                        dpi: 192,
+                        letterRendering: true
+                    },
+                    jsPDF: {
+                        unit: 'in',
+                        format: 'letter',
+                        orientation: 'portrait'
+                    }
+                };
+                html2pdf().set(opt).from(element).save();
+                    // .set({ html2canvas: { scale: 4 } })
+                    // .from(element)
+                    // .save(grupoGrado);
+                element.removeAttribute('style');
+                element.setAttribute('uk-overflow-auto','');
+                element.classList.add('uk-overflow-auto');
 
             }
         </script>

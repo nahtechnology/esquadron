@@ -144,7 +144,7 @@ progress[value]{
 }
 
 .borde-home{
-    font-family: 'Sniglet', "Arial Black";
+    font-family: 'Sniglet', "Arial Black", serif;
     text-transform: capitalize !important;
     height: 28px;
     border: 3px solid var(--turquesa-primary-color);
@@ -194,3 +194,5 @@ progress[value]{
 #modal-password .uk-modal-body > p{
 font-weight: bold;
 }
+
+
