@@ -9,6 +9,7 @@ public class ActividadModelo {
     private String tema;
     private String nivelLenguaje;
     private int codigoNivelLenguaje;
+    private String mapamental;
 
     public ActividadModelo() {
     }
@@ -19,6 +20,7 @@ public class ActividadModelo {
         this.tema = actividadEntidad.getTema();
         this.nivelLenguaje = actividadEntidad.getNivelLenguaje();
         this.codigoNivelLenguaje = actividadEntidad.getCodigoNivelLenguaje();
+        this.mapamental = actividadEntidad.getMapamental();
     }
 
     public String getIdActividad() {
@@ -59,5 +61,13 @@ public class ActividadModelo {
 
     public void setCodigoNivelLenguaje(int codigoNivelLenguaje) {
         this.codigoNivelLenguaje = codigoNivelLenguaje;
+    }
+
+    public String getMapamental() {
+        return mapamental;
+    }
+
+    public void setMapamental(String mapamental) {
+        this.mapamental = mapamental;
     }
 }

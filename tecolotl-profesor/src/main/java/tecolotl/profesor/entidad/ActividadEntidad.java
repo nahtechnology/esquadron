@@ -13,6 +13,7 @@ public class ActividadEntidad {
     private String tema;
     private String nivelLenguaje;
     private int codigoNivelLenguaje;
+    private String mapamental;
 
     @Id
     @Column(name = "id_actividad")
@@ -58,5 +59,14 @@ public class ActividadEntidad {
 
     public void setCodigoNivelLenguaje(int codigoNivelLenguaje) {
         this.codigoNivelLenguaje = codigoNivelLenguaje;
+    }
+
+    @Column(name = "mapa_mental")
+    public String getMapamental() {
+        return mapamental;
+    }
+
+    public void setMapamental(String mapamental) {
+        this.mapamental = mapamental;
     }
 }
