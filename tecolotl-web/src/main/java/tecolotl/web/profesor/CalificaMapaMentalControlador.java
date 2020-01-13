@@ -5,6 +5,7 @@ import tecolotl.alumno.sesion.MapaMentalSessionBean;
 import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
 import tecolotl.profesor.sesion.CalificaTareaMapaMentalSesionBean;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -29,7 +30,12 @@ public class CalificaMapaMentalControlador {
     private Short cardinalidad;
     private Short intento;
     private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
-    private CalificaTareaMapaMentalModelo calificaTareaMapaMentalModelo = new CalificaTareaMapaMentalModelo();
+    private CalificaTareaMapaMentalModelo calificaTareaMapaMentalModelo;
+
+    @PostConstruct
+    public void inicio() {
+        calificaTareaMapaMentalModelo = new CalificaTareaMapaMentalModelo();
+    }
 
     public void busca() {
         tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(UUID.fromString(idTarea), cardinalidad);

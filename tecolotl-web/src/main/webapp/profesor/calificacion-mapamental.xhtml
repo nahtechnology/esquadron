@@ -86,17 +86,27 @@
                         <div>Pregunta:<br/><span>#{tareaMapaMental.pregunta}</span></div>
                         <div>Respuesta:<br/><span>#{tareaMapaMental.respuesta}</span></div>
                     </ui:repeat>
-                    <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.idTarea}"/>
-                    <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
-                    <h:inputHidden value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
+                    <h:inputHidden id="tarea" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.idTarea}">
+                        <f:converter converterId="tecolotl.web.UUIDConverter"/>
+                    </h:inputHidden>
+                    <h:inputHidden id="vuelta" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
+                    <h:inputHidden id="cardinalidad" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
                     <div>
                         <h:outputLabel for="comentario" value="Comentario"/>
                         <h:inputTextarea value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}"
+                                         disabled="#{not empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}"
                                          id="comentario"
                                          styleClass="uk-textarea comentario"/>
                     </div>
                     <div>
-                        <h:inputText pt:type="range" pt:min="25" pt:max="100" pt:step="25" styleClass="rango" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"/>
+                        <h:inputText pt:type="range"
+                                     pt:min="25"
+                                     pt:max="100"
+                                     pt:step="25"
+                                     id="rango"
+                                     styleClass="rango"
+                                     disabled="#{not empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"
+                                     value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"/>
                         <p><span /><span style="color: red; font-weight: bold"/></p>
                     </div>
                 </h:panelGroup>
@@ -104,7 +114,10 @@
                     <div class="bmap-#{calificaMapaMentalControlador.tareaMapaMentalModeloLista[0].cardinalidad}"></div>
                     <p>Score: <span style="color: red; font-weight: bold"/></p>
                 </div>
-                <h:commandButton value="Calificar" styleClass="boton-escuadron-base" action="#{calificaMapaMentalControlador.califica}" onclick="return validaComentario()"/>
+                <h:commandButton value="Calificar"
+                                 styleClass="boton-escuadron-base"
+                                 rendered="#{empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"
+                                 action="#{calificaMapaMentalControlador.califica}" onclick="return validaComentario()"/>
             </h:form>
         </h:panelGroup>
         <script type="application/javascript">
@@ -163,6 +176,11 @@
         <script type="application/javascript">
             var oracion = document.querySelectorAll('.gramatica > div > :nth-child(2n)');
             var respuestaOracion = document.querySelectorAll('.gramatica > div > :nth-child(2n) + div');
+
+            document.addEventListener('DOMContentLoaded', function (evento) {
+                rango = document.getElementById('formulario:rango');
+                rango.value = "75";
+            });
 
             function validaComentario() {
                 if (document.getElementById('formulario:comentario').value === '') {

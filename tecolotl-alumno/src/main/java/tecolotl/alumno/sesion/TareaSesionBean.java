@@ -93,7 +93,7 @@ public class TareaSesionBean implements Serializable {
         query.setParameter(1, idAlumno);
         List<TareaActividadModelo> tareaActividadModeloLista = new ArrayList<>();
         for (Object[] objetos : (List<Object[]>)query.getResultList()) {
-            logger.severe   ("Estos son los datos de los objetos".concat(objetos.toString()));
+            logger.fine("Estos son los datos de los objetos".concat(objetos.toString()));
             TareaActividadModelo tareaActividadModelo = new TareaActividadModelo();
             tareaActividadModelo.setId(UUID.fromString((String) objetos[0]));
             tareaActividadModelo.setAsignacion((Date)objetos[1]);
