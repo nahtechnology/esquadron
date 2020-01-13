@@ -82,29 +82,34 @@
                 <div>
                     <div class="titulo-section uk-text-center uk-text-bold uk-margin-bottom">Tareas Mapa Mental Asigandas</div>
                 </div>
-                <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-3@l uk-child-width-1-2@m" pt:uk-grid="">
-                    <ui:repeat value="#{listaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
-                        <div class="uk-position-relative">
-                            <div class="bmap-#{tareaMapaMental.cardinalidad}">
-                                <h:panelGroup layout="block" styleClass="respondido" rendered="#{tareaMapaMental.totalRespuestas gt 0}">
-                                    <span>Respondido</span>
-                                </h:panelGroup>
+                <h:panelGroup layout="block" styleClass="uk- uk-grid uk-child-width-1-2@l" pt:uk-grid="">
+                    <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@l uk-child-width-1-2@m" pt:uk-grid="">
+                        <ui:repeat value="#{listaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
+                            <div class="uk-position-relative">
+                                <div class="bmap-#{tareaMapaMental.cardinalidad}">
+                                    <h:panelGroup layout="block" styleClass="respondido" rendered="#{tareaMapaMental.totalRespuestas gt 0}">
+                                        <span>Respondido</span>
+                                    </h:panelGroup>
+                                </div>
+                                <ui:remove>
+                                    Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
+                                    <span>Respondido: #{tareaMapaMental.totalRespuestas}</span>
+                                </ui:remove>
+                                <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
+                                        outcome="califica"
+                                        styleClass="boton-escuadron-base"
+                                        rendered="#{tareaMapaMental.totalRespuestas gt 0}">
+                                    <f:param name="idTarea" value="#{listaMapaMentalControlador.idTarea}"/>
+                                    <f:param name="cardinalidad" value="#{tareaMapaMental.cardinalidad}"/>
+                                    <f:param name="intento" value="#{tareaMapaMental.vuelta}"/>
+                                </h:link>
                             </div>
-                            <ui:remove>
-                                Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
-                                <span>Respondido: #{tareaMapaMental.totalRespuestas}</span>
-                            </ui:remove>
-                            <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
-                                    outcome="califica"
-                                    styleClass="boton-escuadron-base"
-                                    rendered="#{tareaMapaMental.totalRespuestas gt 0}">
-                                <f:param name="idTarea" value="#{listaMapaMentalControlador.idTarea}"/>
-                                <f:param name="cardinalidad" value="#{tareaMapaMental.cardinalidad}"/>
-                                <f:param name="intento" value="#{tareaMapaMental.vuelta}"/>
-                            </h:link>
-                        </div>
-                        Total Respuestas: #{tareaMapaMental.totalRespuestas}
-                    </ui:repeat>
+                            <div class="acomodar">
+                                <p class="titulo-section uk-text-center uk-text-bold">Total Respuestas:</p>
+                                <span>#{tareaMapaMental.totalRespuestas}</span>
+                            </div>
+                        </ui:repeat>
+                    </h:panelGroup>
                 </h:panelGroup>
             </div>
         </div>

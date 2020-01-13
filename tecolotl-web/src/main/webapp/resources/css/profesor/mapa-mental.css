@@ -40,3 +40,15 @@
 .borde-cerrar > form > a{
     color: #1665B4;
 }
+
+.acomodar{
+    display: flex;
+    flex-direction: column;
+}
+
+.acomodar > p + span{
+    border: 1.5px solid #1665B4;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
