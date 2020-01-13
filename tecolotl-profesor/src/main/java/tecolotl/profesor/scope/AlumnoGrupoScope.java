@@ -36,7 +36,6 @@ public class AlumnoGrupoScope {
      * @param idGrupo grupo donde se agrega dicho alumno
      */
     public void inserta(@NotNull AlumnoModelo alumnoModelo, @NotNull UUID idGrupo) {
-        UUID llavePrimaria;
         AlumnoEntidad alumnoEntidad = new AlumnoEntidad();
         alumnoEntidad.setApodo(alumnoModelo.getApodo());
         alumnoEntidad.setNombre(alumnoModelo.getNombre());

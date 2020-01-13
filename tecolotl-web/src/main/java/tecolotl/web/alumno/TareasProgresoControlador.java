@@ -26,18 +26,18 @@ public class TareasProgresoControlador {
     @Inject
     private AlumnoControlador alumnoControlador;
 
-    private Integer idTarea;
+    private String idTarea;
     private List<TareaResuetasModelo> tareaResuetasModeloLista;
 
     public void buscaTareasRealizadas() {
-        tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(UUID.fromString("72406be2-3710-4370-a892-98dfec006c9d"));
+        tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(UUID.fromString(idTarea));
     }
 
-    public Integer getIdTarea() {
+    public String getIdTarea() {
         return idTarea;
     }
 
-    public void setIdTarea(Integer idTarea) {
+    public void setIdTarea(String idTarea) {
         this.idTarea = idTarea;
     }
 
