@@ -132,7 +132,7 @@
                                 <!--<h:outputText value="Respondido" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>-->
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
                                 <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar boton-trasladar uk-margin" value="Send" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
-                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data) }"/>
+                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data) }" render="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
