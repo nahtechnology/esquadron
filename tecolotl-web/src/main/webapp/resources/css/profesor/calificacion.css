@@ -209,6 +209,10 @@ h1{
     align-items: flex-end;
 }
 
+#formulario > input + div + div + input{
+    margin-bottom: 15px;
+}
+
 /*.mapa-mental form .boton-escuadron-base{*/
 /*    position: relative;*/
 /*    left: calc(60% - (108.91px/2));*/
