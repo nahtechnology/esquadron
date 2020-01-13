@@ -109,7 +109,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
     var grupo = document.createElement('div');
     var space = document.createTextNode("\u00A0");
     // console.log(datosGrupo);
-
+    grupo.classList.add('scroll-profesor');
     datosGrupo.forEach(function (grupo) {
         if(!idPersona.includes(grupo.personaId)){
             idPersona.push(grupo.personaId);

@@ -92,64 +92,64 @@ Alumno.prototype.insertaDatos = function (tabla) {
         let inputApodo = document.createElement('input');
         inputApodo.setAttribute('type','text');
         inputApodo.setAttribute('uk-tooltip','El apodo debe tener minimo 4 caracteres o ya existe');
-        celdaApodo.appendChild(inputApodo).value = this.apodo;
+        celdaApodo.appendChild(inputApodo).value = this.apodo.trim();
         conteo += 1;
     }else {
-            celdaApodo.innerHTML = this.apodo;
-            if (apodos.includes(this.apodo) === false){
-                apodos.push(this.apodo);
+            celdaApodo.innerHTML = this.apodo.trim();
+            if (apodos.includes(this.apodo.trim()) === false){
+                apodos.push(this.apodo.trim());
             }
     }
     if(!this.validaNombre()){
         let inputNombre = document.createElement('input');
         inputNombre.setAttribute('type','text');
-        celdaNombre.appendChild(inputNombre).value = this.nombre;
+        celdaNombre.appendChild(inputNombre).value = this.nombre.trim();
         conteo += 1;
     }else {
-        celdaNombre.innerHTML = this.nombre;
+        celdaNombre.innerHTML = this.nombre.trim();
     }
     if(!this.validaApellidomaterno()){
         let inputApellidomaterno = document.createElement('input');
         inputApellidomaterno.setAttribute('type','text');
-        celdaApellidoMaterno.appendChild(inputApellidomaterno).value = this.apellidomaterno;
+        celdaApellidoMaterno.appendChild(inputApellidomaterno).value = this.apellidomaterno.trim();
         conteo += 1;
     }else{
-        celdaApellidoMaterno.innerHTML = this.apellidomaterno;
+        celdaApellidoMaterno.innerHTML = this.apellidomaterno.trim();
     }
     if(!this.validaApellidopaterno()){
         let inputApellidopaterno = document.createElement('input');
         inputApellidopaterno.setAttribute('type','text');
-        celdaApellidoPaterno.appendChild(inputApellidopaterno).value = this.apellidopaterno;
+        celdaApellidoPaterno.appendChild(inputApellidopaterno).value = this.apellidopaterno.trim();
         conteo += 1;
     }else {
-        celdaApellidoPaterno.innerHTML = this.apellidopaterno;
+        celdaApellidoPaterno.innerHTML = this.apellidopaterno.trim();
     }
     if(!this.validaFecha()){
         let inputFecha = document.createElement('input');
         inputFecha.setAttribute('type','text');
         inputFecha.setAttribute('uk-tooltip','El formato dede ser dd/mm/yyyy');
-        celdaFechaNacimento.appendChild(inputFecha).value = this.fechanacimento;
+        celdaFechaNacimento.appendChild(inputFecha).value = this.fechanacimento.trim();
         conteo += 1;
     }else{
-        celdaFechaNacimento.innerHTML = this.fechanacimento;
+        celdaFechaNacimento.innerHTML = this.fechanacimento.trim();
     }
     if(!this.validaNivellenguaje()){
         let inputLenguaje = document.createElement('input');
         inputLenguaje.setAttribute('type','text');
         inputLenguaje.setAttribute('uk-tooltip','A1,A2,B1,B2,C1,C2 valores permitidos');
-        celdaNivelLenguaje.appendChild(inputLenguaje).value = this.nivellenguaje;
+        celdaNivelLenguaje.appendChild(inputLenguaje).value = this.nivellenguaje.trim();
         conteo += 1;
     }else{
-        celdaNivelLenguaje.innerHTML = this.nivellenguaje;
+        celdaNivelLenguaje.innerHTML = this.nivellenguaje.trim();
     }
     if(!this.validaGenero()){
         let inputGenero = document.createElement('input');
         inputGenero.setAttribute('type','text');
         inputGenero.setAttribute('uk-tooltip','deber ser M o F');
-        celdaGenero.appendChild(inputGenero).value = this.genero;
+        celdaGenero.appendChild(inputGenero).value = this.genero.trim();
         conteo += 1;
     }else {
-        celdaGenero.innerHTML = this.genero;
+        celdaGenero.innerHTML = this.genero.trim();
     }
     let  celdaValida = fila.insertCell(-1);
     let boton = document.createElement("img");

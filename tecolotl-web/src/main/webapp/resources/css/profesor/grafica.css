@@ -335,6 +335,11 @@
     background-size: 32px 25px, 100% 100%, 100% 100%;
 }
 
+.graficas div{
+    max-height: 400px;
+    overflow: auto;
+}
+
 
 
 /*colores de graficas*/

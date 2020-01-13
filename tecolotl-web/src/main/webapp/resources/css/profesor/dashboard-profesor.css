@@ -53,3 +53,29 @@ ul > li > span {
 .borde-menu > form > a{
     color: #1665B4;
 }
+
+.scroll-profesor{
+    scrollbar-color: var(--turquesa-primary-color) var(--turquesa-primary-color);
+    scrollbar-width: thin;
+}
+
+.scroll-profesor::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+.scroll-profesor::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 8px black;
+    border-radius: 10px;
+}
+
+/* Handle */
+.scroll-profesor::-webkit-scrollbar-thumb {
+    background: var(--turquesa-primary-color);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.scroll-profesor::-webkit-scrollbar-thumb:hover {
+    background: rgba(52, 73, 94, 0.5);
+}

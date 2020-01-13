@@ -156,17 +156,17 @@
                         </h:dataTable>
                     </div>
                     <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista}">
-                        <table class="uk-table uk-table-middle">
-                            <thead class="uk-background-primary">
+                        <table class="tabla-alumnos uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria">
+                            <thead class="">
                             <tr>
-                                <th><span class="letra-titulo">nombre</span></th>
-                                <th><span class="letra-titulo">#{alumno['for.all.views.mind.map']}</span></th>
-                                <th><span class="letra-titulo">#{alumno['activities.bar.icon.order']}</span></th>
-                                <th><span class="letra-titulo">#{alumno['more.activity.title.match.image']}</span></th>
-                                <th><span class="letra-titulo">#{alumno['more.activity.title.order.prayer']}</span></th>
-                                <th><span class="letra-titulo">#{alumno['more.activity.title.matching.words']}</span></th>
-                                <th><span class="letra-titulo">#{alumno['more.activity.title.complete.prayers']}</span></th>
-                                <th><span class="letra-titulo">#{etiqueta['options']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">nombre</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{alumno['for.all.views.mind.map']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{alumno['activities.bar.icon.order']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{alumno['more.activity.title.match.image']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{alumno['more.activity.title.order.prayer']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{alumno['more.activity.title.matching.words']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{alumno['more.activity.title.complete.prayers']}</span></th>
+                                <th class="thPrimario"><span class="letra-titulo">#{etiqueta['options']}</span></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -481,7 +481,7 @@
                 // Choose the element and save the PDF for our user.
                 const opt = {
                     margin: 1,
-                    filename: grupoGrado,
+                    filename: grupoGrado.concat('.pdf'),
                     html2canvas: {
                         dpi: 192,
                         letterRendering: true
