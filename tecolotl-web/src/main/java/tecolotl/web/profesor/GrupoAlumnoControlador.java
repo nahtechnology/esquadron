@@ -56,6 +56,7 @@ public class GrupoAlumnoControlador implements Serializable {
     private Logger logger;
 
     private String idGrupo;
+    private String idProfesor;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
     private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
@@ -92,7 +93,7 @@ public class GrupoAlumnoControlador implements Serializable {
     public void buscaDetalleAlumnos() throws IOException {
         if (grupoSesionBean.pertenece(profesorControlador.getProfesorModelo().getId(), UUID.fromString(idGrupo))) {
             tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(UUID.fromString(idGrupo));
-            profesorGrupoControlador.detalleGrupo(UUID.fromString(idGrupo));
+            profesorGrupoControlador.detalleGrupo(UUID.fromString(idGrupo), profesorControlador.getProfesorModelo().getId());
         } else {
             FacesContext.getCurrentInstance().getExternalContext().redirect("no-grupo.xhtml");
         }
@@ -115,6 +116,14 @@ public class GrupoAlumnoControlador implements Serializable {
 
     public void setIdGrupo(String idGrupo) {
         this.idGrupo = idGrupo;
+    }
+
+    public String getIdProfesor() {
+        return idProfesor;
+    }
+
+    public void setIdProfesor(String idProfesor) {
+        this.idProfesor = idProfesor;
     }
 
     public List<TareaAlumnoGrupoModelo> getTareaAlumnoGrupoModeloLista() {

@@ -5,6 +5,7 @@ import tecolotl.profesor.entidad.CicloEscolarEntidad;
 import tecolotl.profesor.entidad.CicloEscolarEntidadPK;
 import tecolotl.profesor.entidad.GrupoEntidad;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.validacion.GrupoLlavePrimariaValidacion;
 import tecolotl.profesor.validacion.GrupoNuevoValidacion;
@@ -12,10 +13,7 @@ import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -65,8 +63,22 @@ public class GrupoSesionBean implements Serializable {
      * @param idGrupo
      * @return
      */
-    public GrupoModelo buscaId(@NotNull UUID idGrupo) {
-        return new GrupoModelo(entityManager.find(GrupoEntidad.class, idGrupo));
+    public GrupoModelo buscaId(@NotNull UUID idGrupo, @NotNull UUID idProfesor) {
+        TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaGrupoPorProfesor", GrupoEntidad.class);
+        typedQuery.setParameter("idGrupo", idGrupo);
+        typedQuery.setParameter("idProfesor", idProfesor);
+        List<GrupoEntidad> grupoEntidad = typedQuery.getResultList();
+        if (!grupoEntidad.isEmpty()){
+            GrupoModelo grupoModelo = new GrupoModelo();
+            grupoModelo.setId(grupoEntidad.get(0).getId());
+            grupoModelo.setGrado(grupoEntidad.get(0).getGrado());
+            grupoModelo.setGrupo(grupoEntidad.get(0).getGrupo());
+            grupoModelo.setIdProfesor(grupoEntidad.get(0).getProfesorEntidad().getId());
+            grupoModelo.setCicloEscolarModelo(new CicloEscolarModelo(grupoEntidad.get(0).getCicloEscolarEntidad()));
+            return grupoModelo;
+        }else{
+            return null;
+        }
     }
 
     /**

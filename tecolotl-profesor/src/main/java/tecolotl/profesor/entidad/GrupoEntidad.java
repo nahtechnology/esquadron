@@ -35,8 +35,10 @@ import java.util.UUID;
                 "g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND g.profesorEntidad.id = :idProfesor GROUP BY g.id, g.grado, g.grupo"),
     @NamedQuery(
         name = "GrupoEntidad.cuentaPorProfesor",
-        query = "SELECT g.profesorEntidad.id FROM GrupoEntidad g WHERE g.id = :idGrupo"
-    )
+        query = "SELECT g.profesorEntidad.id FROM GrupoEntidad g WHERE g.id = :idGrupo"),
+    @NamedQuery(
+            name = "GrupoEntidad.buscaGrupoPorProfesor",
+            query = "select g from GrupoEntidad g where g.id = :idGrupo and g.profesorEntidad.id = :idProfesor")
 })
 public class GrupoEntidad {
 
