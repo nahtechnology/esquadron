@@ -99,7 +99,8 @@
                                              id="uno"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                                 pt:maxlength="70">
+                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             pt:maxlength="70">
                                     <f:validateRequired/>
                                 </h:inputTextarea>
                                 <h:message for="uno" styleClass="mensaje-mapa-4"/>
@@ -110,6 +111,7 @@
                                              id="dos"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                             pt:placeholder="#{etiqueta['write.text']}"
                                              pt:maxlength="70">
                                     <f:validateRequired/>
                                 </h:inputTextarea>
@@ -120,7 +122,8 @@
                                                  id="tres"
                                                  disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                                  value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                                 pt:maxlength="70"   >
+                                                 pt:placeholder="#{etiqueta['write.text']}"
+                                                 pt:maxlength="70">
                                     <f:validateRequired/>
                                 </h:inputTextarea>
                                 <h:message for="tres" styleClass=""/>

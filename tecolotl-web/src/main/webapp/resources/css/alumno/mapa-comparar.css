@@ -25,21 +25,19 @@
     box-sizing: border-box;
 }
 .posicion-texarea-comparar{
-
     min-width: 60%;
     max-width: 60%;
     min-height: 90px;
     max-height: 90px;
     box-sizing: border-box;
-    border: none;
 }
+
 .posicion-texarea-comparar-dos{
     min-width: 72%;
     max-width: 72%;
     min-height: 85px;
     max-height: 85px;
     box-sizing: border-box;
-    border: none;
 }
 [class^="posicion-texarea-"]:focus{
     border: 1px solid rgba(0,0,0,0.3);

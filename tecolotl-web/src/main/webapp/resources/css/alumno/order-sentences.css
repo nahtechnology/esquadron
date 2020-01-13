@@ -311,7 +311,8 @@
 }
 
 .oraciones-relacion-img{
-    height: 50px;
+    height: auto;
+    min-height: 50px;
     padding-left: 10px;
     border: 5px solid #D35400;
     background-color: white;
