@@ -382,44 +382,44 @@ span.personaje{
     stroke: var(--psecundary-option-three)!important;
 }
 .A1 .uk-card-footer svg circle{
-    fill: var(--psecundary-option-three)!important; ;
+    fill: var(--psecundary-option-three)!important;
 }
 .A2 .uk-card-footer svg, .A2 .uk-card-footer svg .icono, .A2 .uk-card-footer svg rect,.A2 .uk-card-footer svg line,.A2 .uk-card-footer svg path,
 .A2 .uk-card-footer svg polygon,.A2 .uk-card-footer svg polyline{
-    stroke: #D35400;
+    stroke: #D35400 !important;
 
 }
 .A2 .uk-card-footer svg circle{
-    fill: var(--psecundary-option-three)!important; ;
+    fill: #D35400 !important;
 }
 .B1 .uk-card-footer svg, .B1 .uk-card-footer svg .icono, .B1 .uk-card-footer svg rect,.B1 .uk-card-footer svg line,.B1 .uk-card-footer svg path,
 .B1 .uk-card-footer svg polygon,.B1 .uk-card-footer svg polyline{
-    stroke: var(--tsecundary-option-one);
+    stroke: var(--tsecundary-option-one) !important;
 
 }
 .B1 .uk-card-footer svg circle{
-    fill: var(--psecundary-option-three)!important; ;
+    fill: var(--tsecundary-option-one)!important;
 }
 .B2 .uk-card-footer svg, .B2 .uk-card-footer svg .icono, .B2 .uk-card-footer svg rect,.B2 .uk-card-footer svg line,.B2 .uk-card-footer svg path,
 .B2 .uk-card-footer svg polygon,.B2 .uk-card-footer svg polyline{
-    stroke: var(--asecundary-option-one);
+    stroke: var(--asecundary-option-one) !important;
 }
 .B2 .uk-card-footer svg circle{
-    fill: var(--psecundary-option-three)!important; ;
+    fill: var(--asecundary-option-one)!important;
 }
 .C1 .uk-card-footer svg, .C1 .uk-card-footer svg .icono, .C1 .uk-card-footer svg rect,.C1 .uk-card-footer svg line,.C1 .uk-card-footer svg path,
 .C1 .uk-card-footer svg polygon,.C1 .uk-card-footer svg polyline{
-    stroke: var(--color-nav-primary);
+    stroke: var(--color-nav-primary)!important;
 }
 .C1 .uk-card-footer svg circle{
-    fill: var(--psecundary-option-three)!important; ;
+    fill: var(--color-nav-primary)!important;
 }
 .C2 .uk-card-footer svg, .C2 .uk-card-footer svg .icono, .C2 .uk-card-footer svg rect,.C2 .uk-card-footer svg line,.C2 .uk-card-footer svg path,
 .C2 .uk-card-footer svg polygon,.C2 .uk-card-footer svg polyline{
-    stroke: var(--color-peligro);
+    stroke: var(--color-peligro) !important;
 }
 .C2 .uk-card-footer svg circle{
-    fill: var(--psecundary-option-three)!important; ;
+    fill: var(--color-peligro)!important; ;
 }
 
 #formulario-asignar-tarea + input{
