@@ -76,3 +76,24 @@
     cursor: pointer;
     color: var(--turquesa-primary-color)!important;
 }
+
+#temario > div > div + div{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: auto;
+}
+
+#temario > div > div + div > span{
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    height: auto;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+#temario > div > div + div > span:hover{
+    cursor: pointer;
+    color: var(--turquesa-primary-color);
+    border: 2px solid var(--turquesa-primary-color);
+}

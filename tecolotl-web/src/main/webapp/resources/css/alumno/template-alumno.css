@@ -6,6 +6,10 @@ body{
     font-family: 'Sniglet', sans-serif;
 }
 
+#left-col > div > img + h6{
+    word-wrap: break-word;
+}
+
 #top-head {
     z-index: 9;
     top: 0;

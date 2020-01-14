@@ -108,10 +108,17 @@ function descargaDocumento(nombreArchivo, llave) {
 
 function temariosActividad() {
     var temas =document.querySelectorAll('.uk-card .uk-card-header > div > div:first-child > :last-child');
-    var contenedorTemas = document.querySelector('#temario > div > ul');
+    var contenedorTemas = document.querySelector('#temario > div > div + div');
     temas.forEach(function (textoTemas) {
         misTemas.add(textoTemas.innerText);
     });
+    misTemas.forEach(function (temas) {
+        let texto = document.createElement('span');
+        texto.addEventListener('click',holaFiltro);
+        texto.innerText = temas;
+        contenedorTemas.appendChild(texto);
+    });
+    /*
     misTemas.forEach(function (temas) {
         let lista = document.createElement('li');
         let texto = document.createElement('span');
@@ -119,6 +126,5 @@ function temariosActividad() {
         texto.innerText = temas;
         lista.appendChild(texto);
         contenedorTemas.appendChild(lista);
-    });
-
+    });*/
 }
