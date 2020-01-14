@@ -66,3 +66,13 @@
 #temario > div > div > span:hover{
     cursor: pointer;
 }
+
+.js-filter .uk-card .uk-card-footer ul > li{
+    text-align: center;
+    font-family: Sniglet, 'Arial Blac', sans-serif;
+    color: black;
+}
+.js-filter .uk-card .uk-card-footer ul > li:hover{
+    cursor: pointer;
+    color: var(--turquesa-primary-color)!important;
+}

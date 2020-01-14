@@ -1,6 +1,7 @@
 var ejercicios;
 var niveles,temarioBtn,cuerpo;
 var misTemas = new Set();
+var mapas;
 
 document.addEventListener('DOMContentLoaded', function (evento) {
     var btnClose = document.querySelector('#temario > div > div > span');
@@ -54,7 +55,17 @@ var s3 = new AWS.S3({
 
 function agregaListener(ejercicios) {
     ejercicios.forEach(function (ejercicio) {
+        let cadenaMapas = ejercicio.dataset.mapas.split(',');
+        let contenedorListaMapa= ejercicio.querySelector('div > div > ul');
+        // console.log(cadenaMapas[0]);
         actividad = ejercicio.dataset.actividad;
+        mapas = ejercicio.dataset.mapas;
+
+        cadenaMapas.forEach(function (numeroMapa) {
+           let linkMapa = document.createElement('li');
+           linkMapa.innerHTML ="Mental-map-".concat(numeroMapa) ;
+           contenedorListaMapa.appendChild(linkMapa);
+        });
         iconos = ejercicio.querySelectorAll('svg');
         iconos[0].addEventListener('click', function (evento) {
             descargaDocumento('grammar.pdf', { Bucket: "tecolotl-multimedia", Key: "descargables/".concat(ejercicio.dataset.actividad) });
@@ -65,8 +76,14 @@ function agregaListener(ejercicios) {
         iconos[2].addEventListener('click', function (evento) {
             descargaDocumento('cards.pdf', { Bucket: 'tecolotl-multimedia', Key: 'cartas/'.concat(ejercicio.dataset.actividad) });
         });
+        contenedorListaMapa.querySelectorAll('li').forEach(function (linkMap,index) {
+          linkMap.addEventListener('click',function (evento) {
+              descargaDocumento('mental_map_'.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
+          })
+        })
+
         // iconos[3].addEventListener('click', function (evento) {
-        //     descargaDocumento('discussion.pdf', { Bucket: 'tecolotl-multimedia', Key: 'plantilla/discussion' })
+        //     descargaDocumento('mental_map.pdf', { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(ejercicio.dataset.mapas) });
         // });
     });
 }

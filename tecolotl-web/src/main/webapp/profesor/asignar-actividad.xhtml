@@ -85,7 +85,7 @@
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
                         <li class="#{actividadModelo.nivelLenguaje}" data-tags="#{actividadModelo.preguntaDetonadora.toLowerCase()} #{actividadModelo.tema.toLowerCase()}" data-actividad="#{actividadModelo.idActividad}">
-                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.nivelLenguaje}"  >
+                            <h:panelGroup layout="block" styleClass="card-actividad #{actividadModelo.nivelLenguaje}" >
                                 <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border">
                                     <div class="uk-card-header border-card">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
@@ -109,12 +109,19 @@
                                     <div class="uk-card-body tecolotl-card">
                                         <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
                                     </div>
-                                    <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}">
+                                    <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}" data-mapas="#{actividadModelo.mapamental}">
                                         <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                                     <span data-uk-tooltip="title: Grammar"><h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/></span>
                                                     <span data-uk-tooltip="title:Didactic Guide" uk-icon="icon: file-text"/>
                                                     <span data-uk-tooltip="title: Cards" uk-icon="icon: commenting"/>
-                                                    <span data-uk-tooltip="title: Think-Develop and Share" uk-icon="icon: file-edit"/>
+                                                    <div class="uk-inline">
+                                                        <button data-uk-tooltip="title: Think-Develop and Share" uk-icon="icon: file-edit"/>
+                                                        <div uk-dropdown="">
+                                                            <ul class="uk-nav uk-dropdown-nav">
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
                                             <ui:remove>
                                                 <div class="uk-width-expand ">
                                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-child-width-1-5" pt:uk-grid="">
