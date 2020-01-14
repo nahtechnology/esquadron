@@ -40,14 +40,16 @@ ul > li > span {
     padding-top: 83px;
 }
 
-.borde-menu{
+.uk-container > ul + div{
     border: 3px solid var(--color-nav-primary);
-    height: 19px;
+    height: 32px;
     border-radius: 5px;
     font-weight: bold;
-    padding-top: 7px;
-    margin-top: 18px !important;
-    left: 315%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    margin-bottom: 19px !important;
+    text-transform: ;
 }
 
 .borde-menu > form > a{

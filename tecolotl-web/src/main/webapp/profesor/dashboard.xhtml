@@ -10,13 +10,11 @@
 
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
     <ui:define name="menu">
-        <div>
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                 <li><span>#{etiqueta['home']}</span></li>
-                <li class="borde-menu">
-                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
-                </li>
             </ul>
+        <div>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
