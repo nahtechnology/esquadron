@@ -35,3 +35,34 @@
 .C2 .uk-card-footer a{
     color: var(--color-peligro);
 }
+
+#temario
+{
+
+}
+#temario > div{
+    display: none;
+    z-index: 1024;
+    min-height: 200px;
+    width: 100%;
+    background-color: #f4f3ed;
+    border: 3px solid var(--turquesa-primary-color);
+    border-radius: 8px;
+    padding: 20px;
+}
+#temario > div.temario-open{
+    display: block;
+}
+#temario > div.temario-open > ul > li > span{
+    border: none;
+}
+#temario > div.temario-open > ul > li > span:hover{
+    cursor: pointer;
+    color: var(--turquesa-primary-color) !important;
+}
+#temario + div > span{
+    height: 22px;
+}
+#temario > div > div > span:hover{
+    cursor: pointer;
+}

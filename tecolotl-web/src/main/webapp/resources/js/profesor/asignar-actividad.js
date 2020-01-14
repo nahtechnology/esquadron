@@ -1,10 +1,24 @@
 var ejercicios;
-var niveles;
+var niveles,temarioBtn,cuerpo;
+var misTemas = new Set();
 
 document.addEventListener('DOMContentLoaded', function (evento) {
+    var btnClose = document.querySelector('#temario > div > div > span');
     ejercicios = document.querySelector('.js-filter');
     niveles = document.querySelectorAll('.uk-subnav-alumno li:not(:first-child)');
     agregaListener(ejercicios.querySelectorAll('li .uk-card-footer'));
+    temariosActividad();
+    temarioBtn = document.querySelector('#temario + div > span');
+    temarioBtn.addEventListener('click',function () {
+        var temas = document.querySelector('#temario > div');
+        temas.classList.toggle('temario-open');
+    });
+    btnClose.addEventListener('click',function () {
+        var temas = document.querySelector('#temario > div');
+        temas.classList.toggle('temario-open');
+    });
+
+
 });
 
 
@@ -51,9 +65,9 @@ function agregaListener(ejercicios) {
         iconos[2].addEventListener('click', function (evento) {
             descargaDocumento('cards.pdf', { Bucket: 'tecolotl-multimedia', Key: 'cartas/'.concat(ejercicio.dataset.actividad) });
         });
-        iconos[3].addEventListener('click', function (evento) {
-            descargaDocumento('discussion.pdf', { Bucket: 'tecolotl-multimedia', Key: 'plantilla/discussion' })
-        });
+        // iconos[3].addEventListener('click', function (evento) {
+        //     descargaDocumento('discussion.pdf', { Bucket: 'tecolotl-multimedia', Key: 'plantilla/discussion' })
+        // });
     });
 }
 
@@ -73,4 +87,21 @@ function descargaDocumento(nombreArchivo, llave) {
             document.body.removeChild(hiperVinculo);
         }
     });
+}
+
+function temariosActividad() {
+    var temas =document.querySelectorAll('.uk-card .uk-card-header > div > div:first-child > :last-child');
+    var contenedorTemas = document.querySelector('#temario > div > ul');
+    temas.forEach(function (textoTemas) {
+        misTemas.add(textoTemas.innerText);
+    });
+    misTemas.forEach(function (temas) {
+        let lista = document.createElement('li');
+        let texto = document.createElement('span');
+        texto.addEventListener('click',holaFiltro);
+        texto.innerText = temas;
+        lista.appendChild(texto);
+        contenedorTemas.appendChild(lista);
+    });
+
 }

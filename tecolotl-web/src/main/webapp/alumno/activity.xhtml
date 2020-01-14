@@ -91,7 +91,7 @@
         <h:outputStylesheet library="css" name="/alumno/transcript/ordenar-palabra.css"/>
         <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
-        <script src="https://www.youtube.com/iframe_api"></script>
+<!--        <script src="https://www.youtube.com/iframe_api"></script>-->
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" id="filtro-seleccion" pt:uk-filter="target: .js-filter">
@@ -265,6 +265,10 @@
             var mensajeNoEnviar = "#{alumno['send.message.not.send']}";
             var mensajeError = "#{alumno['send.message.error']}";
             var mensajeTrnascripcion = "#{alumno['send.message.transcript']}";
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {

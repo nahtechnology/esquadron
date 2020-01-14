@@ -72,7 +72,7 @@
         <h:outputStylesheet library="css" name="/alumno/transcript/variables-alumno.css"/>
         <h:outputStylesheet library="css" name="alumno/transcript/transcript.css"/>
         <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
-        <script src="https://www.youtube.com/iframe_api"></script>
+<!--        <script src="https://www.youtube.com/iframe_api"></script>-->
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
                 <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
@@ -105,6 +105,10 @@
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
             var mensajeRestriccion = "#{alumno['title.description.full.request']}";
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {

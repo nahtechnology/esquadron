@@ -3,7 +3,14 @@ var searchVal = UIkit.util.$('.search-filter');
 var searchQus= UIkit.util.$('.search-question');
 var filterBtn = UIkit.util.$$('li[data-uk-filter-control] a');
 var formEl = UIkit.util.$('#search-form');
-var debounce;
+var debounce, tiempo;
+var temary;
+
+document.addEventListener('DOMContentLoaded', function (evento) {
+
+temary = UIkit.util.$$('#temario > div > ul > li');
+});
+
 
 UIkit.util.on(search, 'keyup', function() {
 	clearTimeout(debounce);
@@ -22,6 +29,26 @@ UIkit.util.on(search, 'keyup', function() {
 		searchVal.click();
 	}, 300);
 });
+
+
+//filtro por temas
+function holaFiltro(even){
+	var value2 = even.target.innerText;
+	var temas = document.querySelector('#temario > div');
+	console.log(value2);
+	var finalValue2 = value2.toLowerCase();
+	// var finalValue2 = value.toLowerCase();
+
+	var searchTerm2 = '';
+
+	if (value2.length){
+		searchTerm2 = '[data-tags*="' + finalValue2+ '"]';
+	}
+	UIkit.util.attr(searchVal, 'data-uk-filter-control', searchTerm2);
+	searchVal.click();
+	temas.classList.toggle('temario-open');
+}
+
 
 // prevent send form on press enter
 UIkit.util.on(formEl, 'keypress', function(e) {
