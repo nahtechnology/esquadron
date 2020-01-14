@@ -75,16 +75,16 @@
                 </h:panelGroup>
                 <div class="uk-margin-medium-top">
 <!--                    <button class="boton-escuadron-base">Limpiar</button>-->
+                    <h:button styleClass="boton-maestro-base" value="regresar" outcome="regresar"/>
                     <h:form>
                         <h:commandButton id="apodos-ver" styleClass="boton-escuadron-base" value="Limpiar">
                             <f:ajax  listener="#{agregarCsvControlador.actualizar}"
-                                    render="apodos-filas"
-                                    onevent="function apodosBase(data) {
+                                     render="apodos-filas"
+                                     onevent="function apodosBase(data) {
                                       limpiar();
                                     }"/>
                         </h:commandButton>
                     </h:form>
-                    <h:button styleClass="boton-escuadron-base" value="regresar" outcome="regresar"/>
                 </div>
             </h:panelGroup>
         </div>
