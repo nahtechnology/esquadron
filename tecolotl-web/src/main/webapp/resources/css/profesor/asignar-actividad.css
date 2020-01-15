@@ -83,3 +83,8 @@
     color: var(--turquesa-primary-color);
     border: 2px solid var(--turquesa-primary-color);
 }
+
+.regresa-asigna{
+    border: 0px !important;
+    height: 55px !important;
+}

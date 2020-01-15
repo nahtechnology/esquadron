@@ -25,18 +25,9 @@
     color: white;
 }
 
-.boton-cerrar{
-    border: 3px solid var(--color-nav-primary);
-    height: 21px;
-    width: 130px;
-    border-radius: 5px;
-    font-weight: bold!important;
-    padding-top: 7px !important;
-    margin-top: 19px !important;
-    text-align: center;
-    left: 58%;
-}
-
-.borde-cerrar > form > a{
-    color: #1665B4;
+.elimina{
+    border: none !important;
+    height: unset !important;
+    text-transform: initial !important;
+    font-weight: initial !important;
 }
