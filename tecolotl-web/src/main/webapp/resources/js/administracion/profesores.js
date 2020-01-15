@@ -1,16 +1,20 @@
 var modalProfresor;
+var modalGrupo;
 
 document.addEventListener('DOMContentLoaded', ejecucionInicio);
 
 function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
+    modalGrupo = document.getElementById('modal-grupo');
     modalProfresor.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
+    modalGrupo.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
     abrirModal();
     elimina();
 }
 
 function cierra(evento) {
     cerrarModal(null, "modalProfresor");
+    cerrarModal(null, "modalGrupo");
 }
 
 function elimina() {
@@ -25,6 +29,11 @@ function cerrarModal(data , modal) {
                     UIkit.modal(modalProfresor).hide();
                 }
                 break;
+            case 'modalGrupo':
+                if (modalGrupo.querySelector('.uk-text-danger') === null) {
+                    UIkit.modal(modalGrupo).hide();
+                }
+                break;
             default :
                 console.error('Aun no se programa este modal:' + modal);
         }
@@ -34,7 +43,11 @@ function cerrarModal(data , modal) {
                 case 'modalProfresor' :
                     if (modalProfresor.querySelector('.uk-text-danger') === null) {
                         UIkit.modal(modalProfresor).hide();
-                        document.getElementById('formulario-profesor').reset();
+                    }
+                    break;
+                case 'modalGrupo':
+                    if (modalGrupo.querySelector('.uk-text-danger') === null) {
+                        UIkit.modal(modalGrupo).hide();
                     }
                     break;
                 default :
@@ -50,4 +63,7 @@ function abrirModal() {
         modalProfresor.querySelector('.uk-modal-header').click();
         modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
     });
+    UIkit.util.on('#modal-grupo', 'shown', function () {
+        modalGrupo.querySelector('.uk-modal-header').click();
+    })
 }

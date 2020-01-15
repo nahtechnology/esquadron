@@ -8,7 +8,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
-public class GrupoModelo {
+public class GrupoModelo implements Cloneable{
 
     private UUID id;
     private Short grado;
@@ -113,4 +113,15 @@ public class GrupoModelo {
                 .add("totalAlumno=" + totalAlumno)
                 .toString();
     }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        GrupoModelo grupoModelo = new GrupoModelo();
+        char grupo = this.grupo;
+        grupoModelo.setGrupo(grupo);
+        short grado = this.getGrado();
+        grupoModelo.setGrado(grado);
+        return grupoModelo;
+    }
+
 }

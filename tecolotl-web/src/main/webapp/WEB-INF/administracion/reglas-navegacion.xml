@@ -62,5 +62,13 @@
             <to-view-id>/administracion/catalogo-administracion.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/administracion/profesores.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>grupo</from-outcome>
+            <to-view-id>/administracion/grupo.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
   
 </faces-config>
