@@ -5,7 +5,19 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Este grupo no ha sido asignado a usted"/>
-</f:view>
+<h:head>
+    <title>Este no es su Grupo</title>
+</h:head>
+<h:body>
+    <h:outputStylesheet library="css" name="/profesor/no-grupo.css"/>
+    <h:outputStylesheet library="css" name="letra.css"/>
+
+    <p class="lescuadron">Este grupo no ha sido asignado a usted</p>
+    <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
+    <div class="centrado">
+        <button class="btn-atras" onclick="goBack()">Atrás</button>
+    </div>
+
+</h:body>
+<h:outputScript library="js" name="/profesor/no-grupo.js"/>
 </html>
