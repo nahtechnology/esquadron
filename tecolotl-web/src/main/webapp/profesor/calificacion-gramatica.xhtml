@@ -11,16 +11,16 @@
         <f:viewAction action="#{calificacionGramaticaControlador.buscaTareas()}"/>
     </f:metadata>
     <ui:define name="menu">
-        <div>
+
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                 <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
                 <li><h:link outcome="admin-alumnos" value="Student Administration"/></li>
                 <li><h:link outcome="tareas" value="Student Homework"/></li>
                 <li><span>Word Game</span></li>
-                <li class="boton-cerrar">
-                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
-                </li>
             </ul>
+
+        <div>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>

@@ -54,6 +54,7 @@ ul > li > span {
 
 .uk-container > ul + div > form > input + a{
     color: #1665B4;
+    font-size: 14px;
 }
 
 .scroll-profesor{
