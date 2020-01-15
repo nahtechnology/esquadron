@@ -49,10 +49,10 @@ ul > li > span {
     padding-right: 20px;
     padding-top: 5px;
     margin-bottom: 19px !important;
-    text-transform: ;
+    text-transform: uppercase;
 }
 
-.borde-menu > form > a{
+.uk-container > ul + div > form > input + a{
     color: #1665B4;
 }
 

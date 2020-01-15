@@ -1,17 +1,3 @@
-.borde-menu1{
-    border: 3px solid var(--color-nav-primary);
-    height: 18px;
-    border-radius: 5px;
-    font-weight: bold;
-    padding-top: 7px;
-    margin-top: 18px !important;
-    left: 160%;
-}
-
-.borde-menu1 > form > a{
-    color: #1665B4;
-}
-
 .A1 .uk-card-footer a{
     color: var(--psecundary-option-three);
 }

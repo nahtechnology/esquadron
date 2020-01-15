@@ -8,15 +8,14 @@
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
     <ui:define name="menu">
 
-        <div>
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                 <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
                 <li><h:link outcome="regresar" value="Student Administration"/></li>
                 <li><span>Add Student by CSV</span></li>
-                <li class="borde-menu3">
-                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
-                </li>
             </ul>
+
+        <div>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="Cerrar Sesion"/></h:form>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
