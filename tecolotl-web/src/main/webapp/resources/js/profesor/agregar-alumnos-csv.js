@@ -17,15 +17,26 @@ var pibote = 0;
 var indice = [];
 var filasRechazadas;
 var apodos = [];
+var cupo,margenCupo ;
 
 
 document.addEventListener('DOMContentLoaded', function (evento) {
     document.querySelector('input[type=file]').addEventListener('change', cargaArchivo);
     tablaBuena = document.querySelector('#tabla-aceptados');
     tablaMala = document.querySelector('#tabla-rechazados');
+    let totalCupo = document.querySelector('#cupo-alumnos > span').innerText.split('/')[0];
     // document.querySelector('#tabla-aceptados + div > button').addEventListener('click', insertaAlumno);
-
     agregarApodos();
+    cupo = document.querySelector('#cupo-alumnos > span').innerText.split('/')[1];
+    margenCupo = parseInt(cupo) * 0.10;
+    if(parseInt(totalCupo) >= (parseInt(cupo) + Math.round(margenCupo)) ){
+        desactivarDescarga();
+    }
+    if(parseInt(totalCupo) >= parseInt(cupo)){
+        let mensaje = document.querySelector('#cupo-alumnos > span');
+        mensaje.style.color = "red";
+    }
+
     // botonBorrar = document.querySelector('.botones input[type=file]');
     // botonBorrar.addEventListener('click',limpiar);
 });
@@ -300,47 +311,58 @@ function cargaVista() {
 
 
 function insertaAlumno(evento) {
-    console.log(evento);
-    let celdas = evento.target.parentElement.parentElement.querySelectorAll('td');
-    let apodo = document.getElementById('formulario-alumno:apodo');
-    let nombre = document.getElementById('formulario-alumno:nombre');
-    let apelldioPaterno = document.getElementById('formulario-alumno:apellido-paterno');
-    let apelldioMaterno = document.getElementById('formulario-alumno:apellido-materno');
-    let fechaNacimiento = document.getElementById('formulario-alumno:fecha-nacimiento');
-    let sexo = document.getElementById('formulario-alumno:sexo');
-    let nivelLenguaje = document.getElementById('formulario-alumno:nivel-lenguaje');
-    let contrasena = document.getElementById('formulario-alumno:contrasenia');
-    let botonEnviar = document.getElementById('formulario-alumno:enviar');
-    apodo.value = celdas[0].textContent;
-    nombre.value = celdas[1].textContent;
-    apelldioPaterno.value = celdas[2].textContent;
-    apelldioMaterno.value = celdas[3].textContent;
-    fechaNacimiento.value = celdas[4].textContent;
-    sexo.value = celdas[6].textContent.trim();
-    switch (celdas[5].textContent) {
-        case 'A1':
-            nivelLenguaje.value = 1;
-            break;
-        case 'A2':
-            nivelLenguaje.value = 2;
-            break;
-        case 'B1':
-            nivelLenguaje.value = 3;
-            break;
-        case 'B2':
-            nivelLenguaje.value = 4;
-            break;
-        case 'C1':
-            nivelLenguaje.value = 5;
-            break;
-        case 'C2':
-            nivelLenguaje.value = 6;
-            break;
+    let  totalCupo = document.querySelector('#cupo-alumnos > span').innerText.split('/')[0];
+
+    if(parseInt(totalCupo) >= parseInt(cupo)){
+        let mensaje = document.querySelector('#cupo-alumnos > span');
+        mensaje.style.color = "red";
     }
-    contrasena.value = cargaVista();
-    botonEnviar.click();
-    evento.target.src="../resources/img/checked.png";
-    evento.target.parentElement.removeEventListener("click", insertaAlumno);
+
+    console.log(totalCupo + '' + (parseInt(cupo) + Math.round(margenCupo)));
+    if (parseInt(totalCupo) <= (parseInt(cupo) + Math.round(margenCupo))){
+        let celdas = evento.target.parentElement.parentElement.querySelectorAll('td');
+        let apodo = document.getElementById('formulario-alumno:apodo');
+        let nombre = document.getElementById('formulario-alumno:nombre');
+        let apelldioPaterno = document.getElementById('formulario-alumno:apellido-paterno');
+        let apelldioMaterno = document.getElementById('formulario-alumno:apellido-materno');
+        let fechaNacimiento = document.getElementById('formulario-alumno:fecha-nacimiento');
+        let sexo = document.getElementById('formulario-alumno:sexo');
+        let nivelLenguaje = document.getElementById('formulario-alumno:nivel-lenguaje');
+        let contrasena = document.getElementById('formulario-alumno:contrasenia');
+        let botonEnviar = document.getElementById('formulario-alumno:enviar');
+        apodo.value = celdas[0].textContent;
+        nombre.value = celdas[1].textContent;
+        apelldioPaterno.value = celdas[2].textContent;
+        apelldioMaterno.value = celdas[3].textContent;
+        fechaNacimiento.value = celdas[4].textContent;
+        sexo.value = celdas[6].textContent.trim();
+        switch (celdas[5].textContent) {
+            case 'A1':
+                nivelLenguaje.value = 1;
+                break;
+            case 'A2':
+                nivelLenguaje.value = 2;
+                break;
+            case 'B1':
+                nivelLenguaje.value = 3;
+                break;
+            case 'B2':
+                nivelLenguaje.value = 4;
+                break;
+            case 'C1':
+                nivelLenguaje.value = 5;
+                break;
+            case 'C2':
+                nivelLenguaje.value = 6;
+                break;
+        }
+        contrasena.value = cargaVista();
+        botonEnviar.click();
+        evento.target.src="../resources/img/checked.png";
+        evento.target.parentElement.removeEventListener("click", insertaAlumno);
+    }else {
+      desactivarDescarga();
+    }
 }
 
 function agregarApodos() {
@@ -376,4 +398,11 @@ function limpiar() {
     apodos = [];
     agregarApodos();
     document.querySelector('.botones label').innerHTML="choose your save file ...";
+}
+
+function desactivarDescarga() {
+    UIkit.modal.alert('Ya no puedes agregar mas Alumnos');
+    let boton = document.querySelector('.botones input[type=file]');
+    document.querySelector('.botones label').innerHTML = "DENEGADO";
+    boton.disabled = true;
 }

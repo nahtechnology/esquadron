@@ -85,7 +85,7 @@ function datosGrupo() {
 
    // console.log(clases);
     if (!canvasGrafica.hasChildNodes()){
-        console.log('entro');
+        // console.log('entro');
         botonReport.disabled = true;
         botonReport.classList.add('boton-disabilitado');
     }else{
@@ -102,7 +102,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
     var level4 = document.createElement('span');
     var level5 = document.createElement('span');
     var level6 = document.createElement('span');
-    console.log("crear grafica invocada");
+    // console.log("crear grafica invocada");
     var canvasGrafica = document.querySelector('#canvas');
     var idPersona = [];
     var levelGrafic;
@@ -143,7 +143,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
         var porcentajeAlumno = document.createElement('span');
         var estiloNombreAlumno = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
-        console.log(sujeto);
+        // console.log(sujeto);
         estiloNombreAlumno.innerHTML = sujeto[0].personaNombre;
         nombreAlumno.appendChild(estiloNombreAlumno);
         alumnoGrupo.appendChild(nombreAlumno);
@@ -224,7 +224,7 @@ function reporteCuantitativo(evento) {
             var totalDatos = new DatosReporte(datoNombre,datoProgreso[0].value,datoProgreso[1].value,datoProgreso[2].value,datoProgreso[3].value,datoProgreso[4].value,datoProgreso[5].value,8);
             resporteGrafica.push(totalDatos);
         });
-        console.log(resporteGrafica);
+        // console.log(resporteGrafica);
         csv = 'Nombre'+ "," + nivel.join().concat('\n');
         resporteGrafica.forEach(function (reporte,index) {
               csv += reporte.nombreAlumno + "," + reporte.levelA1 + "," + reporte.levelA2 + "," + reporte.levelB1 + "," +
@@ -259,7 +259,7 @@ function visualizar() {
     if (graficas.length > cantidadGraficas){
         for (var i = cantidadGraficas; i < numGraficas ; i++){
             graficas[i].style.display='none';
-            console.log('dato:' + i);
+            // console.log('dato:' + i);
         }
         botonSiguiente.disabled = false;
         botonSiguiente.classList.remove('boton-disabilitado');
