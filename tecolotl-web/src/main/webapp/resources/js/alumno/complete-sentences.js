@@ -6,7 +6,12 @@ var cajaAnswer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     evitarPreguntas();
-    seleccionSiguiente();
+    // seleccionSiguiente();
+    document.querySelector('li[uk-filter-control=".complete-sentences"]').addEventListener('click' ,function () {
+        console.log('entro');
+        let botonPosicion = document.querySelector('#colocar2');
+        setTimeout(function(){ botonPosicion.click(); }, 1000)
+    });
 });
 
 
@@ -84,6 +89,6 @@ function evitarPreguntas() {
     });
 }
 
-function seleccionSiguiente() {
-    document.querySelector('.complete-sentences form ul li.boton-falta').click();
-}
+// function seleccionSiguiente() {
+//     document.querySelector('.complete-sentences form ul li.boton-falta').click();
+// }

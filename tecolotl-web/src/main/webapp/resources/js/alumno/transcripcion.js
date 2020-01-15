@@ -7,6 +7,12 @@ var orderWords;
 var copyRespuestas = [];
 
 document.addEventListener('DOMContentLoaded', function (evt) {
+    document.querySelector('li[uk-filter-control=".order-words"]').addEventListener('click' ,function () {
+        console.log('entro');
+        let botonPosicion = document.querySelector('#colocar');
+        setTimeout(function(){ botonPosicion.click(); }, 1000)
+
+    });
     answer = document.querySelector('.answer');
     menuPrincipal = document.querySelector('.uk-container .uk-subnav');
     orderWords = document.querySelector('.order-words');

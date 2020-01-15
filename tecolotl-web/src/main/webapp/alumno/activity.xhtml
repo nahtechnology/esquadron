@@ -8,7 +8,6 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
     <ui:define name="hamburguesa">
-
         <div class="color-nav uk-hidden@m">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
                 <div class="">
@@ -47,6 +46,7 @@
         </div>
     </ui:define>
     <ui:define name="menu">
+        <a href="#contenedor-words" id="colocar" style="display: none" >boton</a>
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
             <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
@@ -195,7 +195,7 @@
                                     <li class="#{empty gramatica.respuesta ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                 </ui:repeat>
                             </ul>
-                            <ul class="uk-switcher uk-margin scroll-drag">
+                            <ul class="uk-switcher uk-margin scroll-drag" id="contenedor-words">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica">
                                     <li>
                                         <h:graphicImage library="img" styleClass="movimiento2 finalizado" name="/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta}"/>

@@ -46,6 +46,7 @@
         </div>
     </ui:define>
     <ui:define name="menu">
+        <a href="#contenedor-oraciones" id="colocar2" style="display: none" >boton</a>
         <div class="left-content-box  content-box-dark">
             <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
             <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
@@ -242,7 +243,7 @@
                                             <li class="#{empty texto.respuesta ? 'boton-falta' : 'boton-listo'}">#{estatus.index + 1}</li>
                                         </ui:repeat>
                                     </ul>
-                                    <ul class="uk-switcher uk-margin remplazar">
+                                    <ul class="uk-switcher uk-margin remplazar" id="contenedor-oraciones">
                                         <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
                                                 <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
