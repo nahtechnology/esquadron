@@ -116,7 +116,7 @@
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaGramatica} / ${tareaAlumnoGrupoModelo.totalCalificadasGramatica}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.match']}</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaRelacionar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadoRelacionar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar ne 0}"/>
@@ -128,7 +128,7 @@
                                 <h:outputText value=" / #{tareaAlumnoGrupoModelo.totalAsignadaOraciones}" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.match']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaRelacionarOracion}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion ne 0}"/>
