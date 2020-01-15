@@ -23,7 +23,7 @@ function agregaRespuestas(elemento) {
     respuestas = [];
     answer.querySelectorAll('.remplazar .remover').forEach(function (palabra,index) {
         respuestas.push(palabra.textContent);
-        copyRespuestas.push(palabra.textContent);
+        copyRespuestas.push(palabra.textContent.trim());
         palabra.setAttribute("uk-sortable","group: respuesta");
         palabra.setAttribute('class','uk-sortable respuesta-transcript');
         palabra.setAttribute('data-indice',index);
@@ -93,11 +93,13 @@ function puntaje() {
     cajarespuesta = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript .respuesta-drag');
     totalCadena = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript').length;
     cajarespuesta.forEach(function (comparar,indice) {
-        if (comparar.innerText === copyRespuestas[indice]){
-            console.log("igual" + indice);
+        // console.log(comparar.innerText.trim() + '='+ copyRespuestas[indice] );
+        if (comparar.innerText.trim() === copyRespuestas[indice]){
+            // console.log('igual');
             respuestaConta += 1;
-        }
+        }else{console.log('no igual')}
     });
     puntos = Math.round((respuestaConta * 100)/totalCadena);
+    console.log(puntos);
     return puntos;
 }

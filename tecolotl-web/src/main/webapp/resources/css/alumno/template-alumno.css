@@ -461,14 +461,14 @@ iframe {
     height: 200px;
     background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
     position: absolute;
-    top: calc(50% - 125px);
-    left: calc(50% - 125px);
+    /*top: calc(50% - 125px);*/
+    /*left: calc(50% - 125px);*/
     z-index: 6;
 }
 
 .movimiento{
-    left: 65%;
-    top: 43%;
+    right: 5%;
+    top: 15%;
     transform: rotate(15deg);
 }
 
@@ -823,8 +823,8 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
     .movimiento{
-        top: 23%;
-        left: 63%;
+        top: 17%;
+        right: 3%;
     }
 
     .mov1{
@@ -865,7 +865,7 @@ textarea::-webkit-scrollbar-thumb:hover {
         height: 110px;
     }
     .desplaza2{
-        left: 0%;
+        left: 0;
         top: 13%;
         transform: rotate(15deg);
     }
@@ -895,7 +895,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
 
     .movimiento{
-        top: 28%;
+        top: 22%;
     }
 
     .mov1{
