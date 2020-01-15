@@ -97,9 +97,9 @@ function puntaje() {
         if (comparar.innerText.trim() === copyRespuestas[indice]){
             // console.log('igual');
             respuestaConta += 1;
-        }else{console.log('no igual')}
+        }
     });
     puntos = Math.round((respuestaConta * 100)/totalCadena);
-    console.log(puntos);
+    // console.log(puntos);
     return puntos;
 }
