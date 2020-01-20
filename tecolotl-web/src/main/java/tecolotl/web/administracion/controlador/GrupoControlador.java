@@ -1,12 +1,13 @@
 package tecolotl.web.administracion.controlador;
 
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
+import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
@@ -14,11 +15,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -38,7 +39,11 @@ public class GrupoControlador implements Serializable {
     private Map<Integer, CicloEscolarModelo> cicloEscolarModeloMapa;
     private List<GrupoModelo> grupoModeloLista;
     private GrupoModelo grupoModelo;
+    private CicloEscolarModelo cicloEscolarModelo;
     private Integer cicloEscolar;
+    private ProfesorModelo profesorModelo;
+    private EscuelaBaseModelo escuelaBaseModelo;
+
     private String profesor;
     private String claveCentroTrabajo;
 
@@ -46,34 +51,44 @@ public class GrupoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        logger.info("construyendo");
+        grupoModelo = new GrupoModelo();
+        profesorModelo = new ProfesorModelo();
+        escuelaBaseModelo = new EscuelaBaseModelo();
     }
 
     public void inicio() {
-        cicloEscolarModeloMapa = cicloEscolarSessionBean.busca(claveCentroTrabajo, true, UUID.fromString(profesor))
+        profesorModelo.setId(UUID.fromString(profesor));
+        escuelaBaseModelo.setClaveCentroTrabajo(claveCentroTrabajo);
+        cicloEscolarModeloMapa = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo(), true, profesorModelo.getId())
                 .stream().collect(Collectors.toMap(c -> c.hashCode(), Function.identity()));
-        grupoModelo = new GrupoModelo();
     }
 
     public void busca() {
         if (cicloEscolar != null) {
-            CicloEscolarModelo cicloEscolarModelo = cicloEscolarModeloMapa.get(cicloEscolar);
-            logger.info(profesor);
-            grupoModeloLista = grupoSesionBean.busca(cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(), claveCentroTrabajo, UUID.fromString(profesor));
+            cicloEscolarModelo = cicloEscolarModeloMapa.get(cicloEscolar);
+            grupoModeloLista = grupoSesionBean.busca(cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(), escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo.getId());
         } else {
             grupoModeloLista = null;
         }
     }
 
     public void agrega() {
+        Predicate<GrupoModelo> predicateGrupo = p -> p.getGrupo().compareTo(grupoModelo.getGrupo()) == 0;
+        Predicate<GrupoModelo> predicateGrado = p -> p.getGrado().compareTo(grupoModelo.getGrado()) == 0;
         logger.info(grupoModelo.toString());
-        if (cicloEscolarModeloMapa.containsKey(grupoModelo.hashCode())) {
+        if (grupoModeloLista.stream().anyMatch(predicateGrupo.and(predicateGrado))) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.validationFailed();
             facesContext.addMessage(
-                    htmlInputText.getClientId(),
+                    htmlInputText.getClientId(facesContext),
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "El grupo: " + grupoModelo.getGrado().toString() + " " + grupoModelo.getGrupo().toString() + " ya existe", null));
         } else {
-            logger.info("guardando");
+            grupoModelo.setCicloEscolarModelo(cicloEscolarModelo);
+            grupoModelo.setIdProfesor(profesorModelo.getId());
+            grupoSesionBean.inserta(grupoModelo);
+            grupoModelo.setCicloEscolarModelo(null);
+            grupoModeloLista.add(grupoModelo);
+            grupoModelo = new GrupoModelo();
         }
     }
 
@@ -131,5 +146,13 @@ public class GrupoControlador implements Serializable {
 
     public void setHtmlInputText(HtmlInputText htmlInputText) {
         this.htmlInputText = htmlInputText;
+    }
+
+    public CicloEscolarModelo getCicloEscolarModelo() {
+        return cicloEscolarModelo;
+    }
+
+    public void setCicloEscolarModelo(CicloEscolarModelo cicloEscolarModelo) {
+        this.cicloEscolarModelo = cicloEscolarModelo;
     }
 }

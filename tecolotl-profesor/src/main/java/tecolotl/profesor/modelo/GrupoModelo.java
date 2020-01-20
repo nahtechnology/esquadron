@@ -84,22 +84,15 @@ public class GrupoModelo implements Cloneable{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         GrupoModelo that = (GrupoModelo) o;
-        return totalAlumno == that.totalAlumno &&
-                id.equals(that.id) &&
-                grado.equals(that.grado) &&
-                grupo.equals(that.grupo) &&
-                idProfesor.equals(that.idProfesor) &&
-                cicloEscolarModelo.equals(that.cicloEscolarModelo);
+        return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, grado, grupo, idProfesor, cicloEscolarModelo, totalAlumno);
+        return Objects.hash(id);
     }
 
     @Override

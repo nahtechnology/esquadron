@@ -2,34 +2,44 @@ package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.profesor.modelo.ProfesorModelo;
+import tecolotl.profesor.sesion.ProfesorSesionBean;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.List;
+import java.io.Serializable;
 
-@RequestScoped
+@SessionScoped
 @Named
-public class EscuelaControlador {
+public class EscuelaControlador implements Serializable {
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
 
-    private List<EscuelaBaseModelo> escuelaBaseModeloLista;
+    @Inject
+    private ProfesorSesionBean profesorSesionBean;
 
-    public String busca(String claveCentroTrabajo) {
-        return escuelaSesionBean.nombre(claveCentroTrabajo);
+    private EscuelaBaseModelo escuelaBaseModelo;
+    private ProfesorModelo profesorModelo;
+
+    public void busca(String claveCentroTrabajo) {
+        escuelaBaseModelo = escuelaSesionBean.busca(claveCentroTrabajo);
     }
 
-    public void busca(){
-        escuelaBaseModeloLista = escuelaSesionBean.nombre();
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
     }
 
-    public List<EscuelaBaseModelo> getEscuelaBaseModeloLista() {
-        return escuelaBaseModeloLista;
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
     }
 
-    public void setEscuelaBaseModeloLista(List<EscuelaBaseModelo> escuelaBaseModeloLista) {
-        this.escuelaBaseModeloLista = escuelaBaseModeloLista;
+    public ProfesorModelo getProfesorModelo() {
+        return profesorModelo;
+    }
+
+    public void setProfesorModelo(ProfesorModelo profesorModelo) {
+        this.profesorModelo = profesorModelo;
     }
 }
