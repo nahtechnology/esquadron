@@ -227,6 +227,13 @@ public class GrupoAlumnoSesionBeanTest {
 
     }
 
+    @Test
+    public void buscaTotalAlumnos(){
+        Long total = grupoAlumnoSesionBean.buscaTotalAlumnosGrupo(UUID.fromString("102ac185-1172-4a68-9f25-76750c33228e"));
+        Assert.assertNotNull(total);
+        logger.info(total.toString());
+    }
+
     @Test public void insertaAlumno() {
         AlumnoModelo alumnoModelo = new AlumnoModelo();
         alumnoModelo.setApodo("antonio");

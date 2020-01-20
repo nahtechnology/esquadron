@@ -140,6 +140,17 @@ public class GrupoAlumnoSesionBean {
         return alumnoModeloLista;
     }
 
+    /**
+     * Busca el total de alumnos por Grupo.
+     * @param idGrupo id del grupo.
+     * @return el total de alumnos por Grupo.
+     */
+    public Long buscaTotalAlumnosGrupo(@NotNull UUID idGrupo){
+        TypedQuery typedQuery = entityManager.createNamedQuery("GrupoAlumnoEntidad.buscaTotalAlumnosPorGrupo", Long.class);
+        typedQuery.setParameter("idGrupo", idGrupo);
+        return (Long) typedQuery.getSingleResult();
+    }
+
 
     public Integer tarea(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?)");
