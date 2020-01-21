@@ -27,7 +27,7 @@
                 <h:outputText value="Este profesor aun no tiene relacionado un ciclo escolar" rendered="#{empty grupoControlador.cicloEscolarModeloMapa}"/>
                 <h:form id="formulario-" rendered="#{not empty grupoControlador.cicloEscolarModeloMapa}">
                     Ciclo escolares:
-                    <h:selectOneMenu id="seleccion-ciclo-escolar" value="#{grupoControlador.cicloEscolar}">
+                    <h:selectOneMenu id="seleccion-ciclo-escolar" styleClass="uk-select" value="#{grupoControlador.cicloEscolar}">
                         <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
                         <f:selectItems value="#{grupoControlador.cicloEscolarModeloMapa.entrySet().toArray()}"
                                        var="cicloEscolarModelo"
@@ -73,32 +73,46 @@
                                          rendered="${not empty grupoControlador.grupoModeloLista}"
                                          value="#{grupoControlador.grupoModeloLista}"
                                          var="grupoModelo"
-                                         styleClass="tabla-grupo">
+                                         first="0"
+                                         rows="2"
+                                         styleClass="tabla-grupo uk-table uk-table-divider uk-table-middle uk-table-hover"
+                                         headerClass="uk-background-primary uk-text-center"
+                                         columnClasses="uk-text-center,uk-text-center,uk-text-center">
                                 <h:column>
-                                    <f:facet name="header">grado</f:facet>
+                                    <f:facet name="header">
+                                        <h:outputText styleClass="letra-titulo"
+                                                      value="grado"/>
+                                    </f:facet>
                                     ${grupoModelo.grado}
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">grupo</f:facet>
+                                    <f:facet name="header">
+                                        <h:outputText styleClass="letra-titulo"
+                                                      value="grupo"/>
+                                    </f:facet>
                                     ${grupoModelo.grupo}
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">#{etiqueta['options']}</f:facet>
+                                    <f:facet name="header">
+                                        <h:outputText styleClass="letra-titulo"
+                                                      value="#{etiqueta['options']}"/>
+                                    </f:facet>
                                     <div class="uk-inline">
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-grupo">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-grupo">
-                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block uk-text-primary"/></span>
                                                         <f:ajax listener="#{administracionProfesorControlador.busca(profesorModelo)}" render="formulario-modal-profesor"/>
                                                     </h:commandLink>
                                                 </li>
+                                                <li class="uk-nav-divider"/>
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
-                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block uk-text-danger"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
                                                         <f:ajax render="grupo-mensaje-eliminar boton-borrar-grupo"/>
                                                     </h:commandLink>
@@ -170,11 +184,13 @@
 <!--        Modal eliminar grupo        -->
         <h:panelGroup layout="block" id="modal-borrar-grupo" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header uk-background-secondary">
+                <div class="uk-modal-header fondo-peligro">
                     <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">borrar grupo</p>
                 </div>
                 <div class="uk-modal-body">
                     <h:outputFormat id="grupo-mensaje-eliminar"
+                                    styleClass="primera-mayuscula"
+                                    style="display: inline-block"
                                     value="#{grupoControlador.grupoModelo.totalAlumno eq 0 ? administracion['profesores.borrargrupo'] : administracion['profesores.no.borrargrupo']}">
                         <f:param value="${grupoControlador.grupoModelo.grado}"/>
                         <f:param value="${grupoControlador.grupoModelo.grupo}"/>
