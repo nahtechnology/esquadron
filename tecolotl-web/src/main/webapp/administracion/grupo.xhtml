@@ -136,6 +136,7 @@
                                 <h:outputLabel value="Grupo" for="grupo"/>
                                 <div class="uk-form-controls">
                                     <h:inputText id="grupo"
+                                                 pt:oninput="mayuscula(event)"
                                                  value="#{grupoControlador.grupoModelo.grupo}"
                                                  class="uk-input">
                                         <f:validateRequired/>

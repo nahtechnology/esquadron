@@ -4,6 +4,18 @@ document.addEventListener('DOMContentLoaded', inicio);
 
 function inicio(evento) {
     modalGrupo = document.getElementById('modal-grupo');
+    seleccion();
+}
+
+function seleccion() {
+    let selecciona = document.querySelector('#formulario- > input + select > option');
+    selecciona.selected = true;
+}
+
+function mayuscula(evento) {
+    if(evento.inputType === 'insertText'){
+        evento.target.value = evento.target.value.toUpperCase();
+    }
 }
 
 function cerrarModal(data, modal) {
