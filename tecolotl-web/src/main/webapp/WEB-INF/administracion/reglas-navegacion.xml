@@ -70,5 +70,19 @@
             <to-view-id>/administracion/grupo.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/administracion/grupo.xhtml</from-view-id>
+        <navigation-case>
+            <redirect>
+                <redirect-param>
+                    <name>escuela</name>
+                    <value>#{grupoControlador}</value>
+                </redirect-param>
+            </redirect>
+            <from-outcome>ir-atras</from-outcome>
+            <to-view-id>/administracion/profesores.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
   
 </faces-config>
