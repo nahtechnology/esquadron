@@ -95,6 +95,14 @@
                                                         <f:ajax listener="#{administracionProfesorControlador.busca(profesorModelo)}" render="formulario-modal-profesor"/>
                                                     </h:commandLink>
                                                 </li>
+                                                <li>
+                                                    <h:commandLink pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
+                                                        <f:ajax render="grupo-mensaje-eliminar boton-borrar-grupo"/>
+                                                    </h:commandLink>
+                                                </li>
                                             </ul>
                                         </h:panelGroup>
                                     </div>
@@ -157,6 +165,31 @@
                         </h:commandButton>
                     </div>
                 </h:form>
+            </div>
+        </h:panelGroup>
+<!--        Modal eliminar grupo        -->
+        <h:panelGroup layout="block" id="modal-borrar-grupo" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <div class="uk-modal-header uk-background-secondary">
+                    <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">borrar grupo</p>
+                </div>
+                <div class="uk-modal-body">
+                    <h:outputFormat id="grupo-mensaje-eliminar"
+                                    value="#{grupoControlador.grupoModelo.totalAlumno eq 0 ? administracion['profesores.borrargrupo'] : administracion['profesores.no.borrargrupo']}">
+                        <f:param value="${grupoControlador.grupoModelo.grado}"/>
+                        <f:param value="${grupoControlador.grupoModelo.grupo}"/>
+                        <f:param value="${grupoControlador.grupoModelo.totalAlumno}"/>
+                    </h:outputFormat>
+                </div>
+                <div class="uk-modal-footer uk-flex uk-flex-right">
+                    <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{boton['cancel']}</button>
+                    <h:commandButton id="boton-borrar-grupo"
+                                     disabled="#{grupoControlador.grupoModelo.totalAlumno ne 0}"
+                                     value="#{boton['remove']}"
+                                     styleClass="uk-button uk-button-danger uk-modal-close">
+                        <f:ajax listener="#{grupoControlador.borrar}" render="formulario-grupo"/>
+                    </h:commandButton>
+                </div>
             </div>
         </h:panelGroup>
         <h:outputScript library="js" name="administracion/grupo.js"/>

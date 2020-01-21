@@ -1,9 +1,12 @@
 var modalGrupo;
+var modalBorrarGrupo;
 
 document.addEventListener('DOMContentLoaded', inicio);
 
 function inicio(evento) {
     modalGrupo = document.getElementById('modal-grupo');
+    modalBorrarGrupo = document.getElementById('modal-borrar-grupo');
+    abreModal();
     seleccion();
 }
 
@@ -18,6 +21,11 @@ function mayuscula(evento) {
     }
 }
 
+function abreModal() {
+    //beforeshow
+    UIkit.util.on('#modal-borrar-grupo', 'beforeshow', () => modalBorrarGrupo.querySelector('.uk-modal-header').click());
+}
+
 function cerrarModal(data, modal) {
     if (data && data.status === 'success') {
         setTimeout(function () {
@@ -30,7 +38,7 @@ function cerrarModal(data, modal) {
                 default:
                     console.error('Aun no existe modal:' + modal);
             }
-        }, 5000);
+        }, 100);
     } else {
         switch (modal) {
             case 'modalGrupo':

@@ -5,6 +5,7 @@ import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
+import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 
 import javax.annotation.PostConstruct;
@@ -32,6 +33,9 @@ public class GrupoControlador implements Serializable {
 
     @Inject
     private GrupoSesionBean grupoSesionBean;
+
+    @Inject
+    private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     @Inject
     private Logger logger;
@@ -90,6 +94,17 @@ public class GrupoControlador implements Serializable {
             grupoModeloLista.add(grupoModelo);
             grupoModelo = new GrupoModelo();
         }
+    }
+
+    public void totalAlumnos() {
+        grupoModelo.setTotalAlumno(grupoAlumnoSesionBean.buscaTotalAlumnosGrupo(grupoModelo.getId()).intValue());
+        logger.info(grupoModelo.toString());
+    }
+
+    public void borrar() {
+        grupoSesionBean.elimina(grupoModelo.getId());
+        grupoModeloLista.remove(grupoModelo);
+        grupoModelo = new GrupoModelo();
     }
 
     public String getProfesor() {
