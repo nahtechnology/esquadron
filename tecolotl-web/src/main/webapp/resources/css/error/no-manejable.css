@@ -11,8 +11,7 @@ body{
     height: 100vh;
     justify-content: center;
     align-content: center;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 h1{
@@ -22,10 +21,7 @@ h1{
 }
 
 img{
-    display: block;
-    width: 25%;
-    display: flex;
-    justify-content: center;
+    transform: scale(0.8);
 }
 
 .btnsin-permiso{
