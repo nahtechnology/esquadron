@@ -110,10 +110,9 @@ public class GrupoModelo implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         GrupoModelo grupoModelo = new GrupoModelo();
-        char grupo = this.grupo;
-        grupoModelo.setGrupo(grupo);
-        short grado = this.getGrado();
-        grupoModelo.setGrado(grado);
+        grupoModelo.setId(this.getId());
+        grupoModelo.setGrupo(new Character(this.grupo));
+        grupoModelo.setGrado(new Short(this.grado));
         return grupoModelo;
     }
 

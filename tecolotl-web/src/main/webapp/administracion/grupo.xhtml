@@ -33,7 +33,7 @@
                                        var="cicloEscolarModelo"
                                        itemValue="#{cicloEscolarModelo.key}"
                                        itemLabel="#{cicloEscolarModelo.value.descripcion}"/>
-                        <f:ajax listener="#{grupoControlador.busca}" render="formulario-grupo formulario-modal-cicloEscolar:ciclo-escolar"/>
+                        <f:ajax listener="#{grupoControlador.busca}" render="formulario-grupo formulario-modal-grupo:ciclo-escolar"/>
                     </h:selectOneMenu>
                 </h:form>
             </div>
@@ -73,8 +73,6 @@
                                          rendered="${not empty grupoControlador.grupoModeloLista}"
                                          value="#{grupoControlador.grupoModeloLista}"
                                          var="grupoModelo"
-                                         first="0"
-                                         rows="2"
                                          styleClass="tabla-grupo uk-table uk-table-divider uk-table-middle uk-table-hover"
                                          headerClass="uk-background-primary uk-text-center"
                                          columnClasses="uk-text-center,uk-text-center,uk-text-center">
@@ -102,17 +100,18 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-grupo">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-grupo">
-                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block uk-text-primary"/></span>
-                                                        <f:ajax listener="#{administracionProfesorControlador.busca(profesorModelo)}" render="formulario-modal-profesor"/>
+                                                    <h:commandLink pt:uk-toggle="target: #modal-grupo" action="#{grupoControlador.clonaGrupo}">
+                                                        <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
+                                                        <f:ajax render="formulario-modal-grupo"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
-                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block uk-text-danger"/></span>
+                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
+                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
                                                         <f:ajax render="grupo-mensaje-eliminar boton-borrar-grupo"/>
                                                     </h:commandLink>
@@ -127,13 +126,15 @@
                 </div>
             </div>
         </div>
-<!--    modal para agreagar o modificar  un grupo    -->
+<!--        modal para agreagar o modificar  un grupo      -->
         <h:panelGroup layout="block" id="modal-grupo" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <h:form id="formulario-modal-cicloEscolar" styleClass="uk-form-stacked">
+                <h:form id="formulario-modal-grupo" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">
-                            nuevo grupo
+                            <h:outputText rendered="#{empty grupoControlador.grupoModelo.id}" value="nuevo grupo"/>
+                            <h:outputText rendered="#{not empty grupoControlador.grupoModelo.id}" value="actualiza grupo"/>
+                            <h:inputHidden id="id" value="#{grupoControlador.grupoModelo.id}"/>
                         </p>
                     </div>
                     <div class="uk-modal-body">
@@ -171,9 +172,21 @@
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right">#{boton['cancel']}</button>
-                        <h:commandButton id="enviar-grupo" value="#{boton['add']}" styleClass="uk-button uk-button-primary">
+                        <h:commandButton id="enviar-grupo"
+                                         value="#{boton['add']}"
+                                         rendered="#{empty grupoControlador.grupoModelo.id}"
+                                         styleClass="uk-button uk-button-primary">
                             <f:ajax execute="grado grupo"
                                     listener="#{grupoControlador.agrega}"
+                                    render="@form formulario-grupo"
+                                    onevent="function funcion(data) { cerrarModal(data, 'modalGrupo') }"/>
+                        </h:commandButton>
+                        <h:commandButton id="actualiza-grupo"
+                                         value="#{boton['update']}"
+                                         rendered="#{not empty grupoControlador.grupoModelo.id}"
+                                         styleClass="uk-button uk-button-primary">
+                            <f:ajax execute="id grado grupo"
+                                    listener="#{grupoControlador.actualiza}"
                                     render="@form formulario-grupo"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalGrupo') }"/>
                         </h:commandButton>

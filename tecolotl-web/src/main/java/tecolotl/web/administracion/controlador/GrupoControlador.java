@@ -16,6 +16,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -77,10 +78,7 @@ public class GrupoControlador implements Serializable {
     }
 
     public void agrega() {
-        Predicate<GrupoModelo> predicateGrupo = p -> p.getGrupo().compareTo(grupoModelo.getGrupo()) == 0;
-        Predicate<GrupoModelo> predicateGrado = p -> p.getGrado().compareTo(grupoModelo.getGrado()) == 0;
-        logger.info(grupoModelo.toString());
-        if (grupoModeloLista.stream().anyMatch(predicateGrupo.and(predicateGrado))) {
+        if (grupoModeloLista.stream().anyMatch(grupoModeloPredicate())) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             facesContext.validationFailed();
             facesContext.addMessage(
@@ -96,15 +94,38 @@ public class GrupoControlador implements Serializable {
         }
     }
 
+    public void actualiza() {
+        logger.info("actualizando:"+grupoModelo.toString());
+        if (grupoModeloLista.stream().anyMatch(grupoModeloPredicate())) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            facesContext.validationFailed();
+            facesContext.addMessage(
+                    htmlInputText.getClientId(facesContext),
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "El grupo: " + grupoModelo.getGrado().toString() + " " + grupoModelo.getGrupo().toString() + " ya existe", null));
+        } else {
+            grupoSesionBean.actualiza(grupoModelo);
+            grupoModelo = new GrupoModelo();
+        }
+    }
+
     public void totalAlumnos() {
         grupoModelo.setTotalAlumno(grupoAlumnoSesionBean.buscaTotalAlumnosGrupo(grupoModelo.getId()).intValue());
-        logger.info(grupoModelo.toString());
     }
 
     public void borrar() {
         grupoSesionBean.elimina(grupoModelo.getId());
         grupoModeloLista.remove(grupoModelo);
         grupoModelo = new GrupoModelo();
+    }
+
+    private Predicate<GrupoModelo> grupoModeloPredicate() {
+        Predicate<GrupoModelo> predicateGrupo = p -> p.getGrupo().compareTo(grupoModelo.getGrupo()) == 0;
+        Predicate<GrupoModelo> predicateGrado = p -> p.getGrado().compareTo(grupoModelo.getGrado()) == 0;
+        return predicateGrupo.and(predicateGrado);
+    }
+
+    public void clonaGrupo() throws CloneNotSupportedException {
+        grupoModelo = (GrupoModelo) grupoModelo.clone();
     }
 
     public String getProfesor() {
@@ -169,5 +190,13 @@ public class GrupoControlador implements Serializable {
 
     public void setCicloEscolarModelo(CicloEscolarModelo cicloEscolarModelo) {
         this.cicloEscolarModelo = cicloEscolarModelo;
+    }
+
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
+    }
+
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
     }
 }

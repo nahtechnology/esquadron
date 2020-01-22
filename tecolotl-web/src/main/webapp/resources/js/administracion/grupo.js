@@ -24,6 +24,7 @@ function mayuscula(evento) {
 function abreModal() {
     //beforeshow
     UIkit.util.on('#modal-borrar-grupo', 'beforeshow', () => modalBorrarGrupo.querySelector('.uk-modal-header').click());
+    UIkit.util.on('#modal-grupo', 'beforeshow', () => modalBorrarGrupo.querySelector('.uk-modal-header').click());
 }
 
 function cerrarModal(data, modal) {
