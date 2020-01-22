@@ -63,14 +63,14 @@
                             <div class="uk-width-1-3">
                                 <h:form styleClass="uk-search largo-buscar" id="formulario-filtrado-escuela">
                                     <div class="uk-inline">
-                                        <h:commandLink styleClass="uk-form-icon uk-form-icon-flip uk-light uk-background-primary"
+                                        <h:commandLink styleClass="uk-form-icon uk-form-icon-flip uk-light busca"
                                                        id="comando-busqueda"
                                                        pt:uk-icon="icon: search"
                                                        pt:uk-tooltip="title: Dar click en la lupa para buscar; delay:2000; pos:right"
                                                        rendered="#{empty escuelaDashboardControlador.busqueda}">
                                             <f:ajax render="formulario-tabla-escuela @form" execute="filtrado" listener="#{escuelaDashboardControlador.actualizaDataModel}"/>
                                         </h:commandLink>
-                                        <h:commandLink styleClass="uk-form-icon uk-light uk-form-icon-flip uk-background-secondary"
+                                        <h:commandLink styleClass="uk-form-icon uk-light uk-text-bold uk-form-icon-flip salir"
                                                        pt:uk-icon="icon: close"
                                                        pt:uk-tooltip="title: Dar click para borrar busqueda; delay:2000; pos:right"
                                                        action="#{escuelaDashboardControlador.actualizaDataModel}"
@@ -79,7 +79,7 @@
                                             <f:ajax render="formulario-tabla-escuela @form"/>
                                         </h:commandLink>
                                         <h:inputText id="filtrado" disabled="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}"
-                                                     styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar uk-light'}"
+                                                     styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar uk-light fuente'}"
                                                      pt:placeholder="#{etiqueta['search']}"
                                                      autocomplete="off"
                                                      value="#{escuelaDashboardControlador.busqueda}"

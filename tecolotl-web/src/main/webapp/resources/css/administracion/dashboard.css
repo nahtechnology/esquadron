@@ -73,3 +73,25 @@ svg .icono {
 .primer-letra::first-letter{
     color:blue;
 }
+
+.salir{
+    background: black;
+}
+
+.salir:hover{
+    background: white;
+    border: black 2px solid;
+}
+
+.fuente:focus{
+    color: white;
+}
+
+.busca{
+    background: #1e87f0;
+}
+
+.busca:hover{
+    background: black;
+    color: white;
+}
