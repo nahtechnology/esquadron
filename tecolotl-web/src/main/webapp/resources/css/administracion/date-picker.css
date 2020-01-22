@@ -104,3 +104,12 @@
     fill: #999999;
 }
 
+.btn-estilo{
+    padding: 7px 10px !important;
+    line-height: initial !important;
+    width: 50%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
