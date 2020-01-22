@@ -77,7 +77,7 @@
             <redirect>
                 <redirect-param>
                     <name>escuela</name>
-                    <value>#{grupoControlador}</value>
+                    <value>#{grupoControlador.escuelaBaseModelo.claveCentroTrabajo}</value>
                 </redirect-param>
             </redirect>
             <from-outcome>ir-atras</from-outcome>
