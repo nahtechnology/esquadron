@@ -8,11 +8,17 @@ function inicio(evento) {
     modalBorrarGrupo = document.getElementById('modal-borrar-grupo');
     abreModal();
     seleccion();
+    elimina();
 }
 
 function seleccion() {
     let selecciona = document.querySelector('#formulario- > input + select > option');
     selecciona.selected = true;
+}
+
+function elimina() {
+    let eliminacion = document.querySelector('#formulario- > input + select');
+    eliminacion.removeAttribute("size");
 }
 
 function mayuscula(evento) {
