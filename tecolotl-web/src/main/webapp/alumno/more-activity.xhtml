@@ -258,7 +258,7 @@
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form"
                                                             onevent="function funcion(data) {
-                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); }
+                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); siguienteEjercicio()}
                                                             }"
                                                             listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}"
                                                             render="@form"/>
@@ -286,6 +286,13 @@
                 });
                 console.log(respuestas.join('|'));
                 document.getElementById('tareaOraciones:tareaOracionesInput').value = respuestas.join('|');
+            }
+
+            function siguienteEjercicio() {
+                let ordenarPalabra = document.querySelectorAll('.complete-sentences .uk-subnav li.boton-falta');
+                if (ordenarPalabra.length !== 0) {
+                    setTimeout(() => ordenarPalabra[0].click() , 1000);
+                }
             }
         </script>
         <h:outputScript library="js" name="alumno/more-actibity.js"/>
