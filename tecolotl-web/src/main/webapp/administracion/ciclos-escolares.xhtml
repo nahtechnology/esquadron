@@ -100,10 +100,11 @@
                 </div>
             </div>
             <h:dataTable id="tabla-ciclos-escolares"
+                         binding="#{ciclosEscolaresControlador.htmlDataTable}"
                          value="#{ciclosEscolaresControlador.cicloEscolarModeloLista}"
                          var="cicloEscolar"
                          styleClass="uk-table uk-table-divider"
-                         headerClass="uk-background-primary">
+                         headerClass="uk-background-primary" >
                 <h:column>
                     <f:facet name="header"><h:outputText value="Clave Centro de Trabajo" styleClass="letra-titulo"/></f:facet>#{cicloEscolar.idEscuela}</h:column>
                 <h:column>
@@ -117,18 +118,112 @@
                 <h:column>
                     <f:facet name="header"><h:outputText value="Opciones" styleClass="letra-titulo"/></f:facet>
                     <h:outputText pt:uk-icon="more-vertical" styleClass="uk-icon-button uk-text-center"/>
-                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdowm="mode: click">
+                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                         <ul class="uk-nav uk-dropdown-nav uk-text-left">
                             <li>
-                                <h:commandButton styleClass="uk-text-primary" pt:uk-toggle="target: #modal-editaCicloEscolar" >
-                                    <h:outputText styleClass="uk-margin-small-right uk-icon" pt:uk-icon="icon: file-edit"/>
-
-                                </h:commandButton>
+                                <h:commandLink value="Editar" styleClass="uk-margin-small" pt:type="button" pt:uk-icon="icon: file-edit" pt:uk-toggle="target: #modal-editaCicloEscolar" action="#{ciclosEscolaresControlador.seleccionaCicloEscolar}"/>
+                            </li>
+                            <li>
+                                <a class="uk-margin-small-right"  type="button" uk-icon="icon: trash" uk-toggle="target: #modal-eliminaCicloEscolar">Eliminar</a>
                             </li>
                         </ul>
                     </h:panelGroup>
                 </h:column>
             </h:dataTable>
+            <div id="modal-editaCicloEscolar" class="uk-flex-center" uk-modal="">
+                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+                    <h:form styleClass="uk-grid" pt:ukgrid="">
+                        <div class="uk-width-1-2">
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Clave Centro de Trabajo" styleClass="uk-form-label" for="clave-centro1"/>
+                                <h:inputText id="clave-centro1"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.idEscuela}"
+                                             disabled="true"
+                                             styleClass="uk-input">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="10" maximum="10"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Descripcion" styleClass="uk-form-label" for="descripcion1"/>
+                                <h:inputText id="descripcion1"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}"
+                                             styleClass="uk-input">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="20" maximum="50"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Estatus" styleClass="uk-form-label" for="estatus1"/><br/>
+                                <h:selectBooleanCheckbox id="estatus1"
+                                                         value="#{ciclosEscolaresControlador.cicloEscolarModelo.activo}"
+                                                         styleClass="uk-checkbox" >
+                                </h:selectBooleanCheckbox>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Inicio" styleClass="uk-form-label" for="inicio1"/>
+                                <h:inputText a:type="date" id="inicio1"
+                                             pt:placeholder="DD/MM/YYYY"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}"
+                                             disabled="true"
+                                             styleClass="uk-input">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Fin" styleClass="uk-form-label" for="fin1"/>
+                                <h:inputText a:type="date" id="fin1"
+                                             pt:placeholder="DD/MM/YYYY"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}"
+                                             disabled="true"
+                                             styleClass="uk-input ">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1 uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <h:commandButton styleClass="uk-button uk-button-primary" value="Actualizar">
+                                <f:ajax execute="@form" listener="#{ciclosEscolaresControlador.actualizaCicloEscolar}" render="tabla-ciclos-escolares" onevent="function exit(){
+                                UIkit.modal(document.getElementById('modal-CicloEscolar')).hide();
+                            }"/>
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <div id="modal-eliminaCicloEscolar" class="uk-flex-center" uk-modal="">
+                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+                    <h:form styleClass="uk-grid" pt:ukgrid="">
+                        <div class="uk-width-1-2">
+                            <div class="uk-form-controls uk-margin-small">
+                                <label class="uk-form-label" for="inicio2"/>
+                                <h:inputText a:type="date" id="inicio2" pt:placeholder="DD/MM/YYYY" value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}" styleClass="uk-input">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <div class="uk-form-controls uk-margin-small">
+                                <label class="uk-form-label" for="fin2"/>
+                                <h:inputText a:type="date" id="fin2" pt:placeholder="DD/MM/YYYY" value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}" styleClass="uk-input">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1 uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar">
+                                <f:ajax execute="@form" listener="#{ciclosEscolaresControlador.eliminaCicloEscolar}" render="tabla-ciclos-escolares" onevent="function exit(){
+                                UIkit.modal(document.getElementById('modal-CicloEscolar')).hide();
+                            }"/>
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
         </div>
     </ui:define>
 </ui:composition>

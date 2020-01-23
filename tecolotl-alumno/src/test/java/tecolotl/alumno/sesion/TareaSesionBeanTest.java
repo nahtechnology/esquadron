@@ -24,6 +24,7 @@ import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEnti
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
+import tecolotl.alumno.modelo.TareaAlumnoModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.modelo.completar.TareaCompletarModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
@@ -189,6 +190,13 @@ public class TareaSesionBeanTest {
     public void decrementaReproducciones() {
         int modificaciones = tareaSesionBean.reproducciones((short) -1, UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
         Assert.assertNotEquals(modificaciones, 0);
+    }
+
+    @Test
+    public void buscaCalificaciones(){
+        List<TareaAlumnoModelo> tareaAlumnoModeloLista = tareaSesionBean.buscaCalificaciones(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"));
+        Assert.assertNotNull(tareaAlumnoModeloLista);
+        Assert.assertFalse(tareaAlumnoModeloLista.isEmpty());
     }
 
 }

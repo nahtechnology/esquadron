@@ -7,6 +7,7 @@ import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.component.html.HtmlDataTable;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -24,6 +25,7 @@ public class CiclosEscolaresControlador {
 
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
     private CicloEscolarModelo cicloEscolarModelo;
+    private HtmlDataTable htmlDataTable;
 
     @PostConstruct
     public void buscaCiclosEscolares(){
@@ -35,6 +37,17 @@ public class CiclosEscolaresControlador {
         logger.info("Datos del ciclo escolar: ".concat(cicloEscolarModelo.toString()));
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca("21DBA0014J");
+    }
+
+    public void seleccionaCicloEscolar(){
+        this.cicloEscolarModelo = (CicloEscolarModelo) htmlDataTable.getRowData();
+        logger.info("Estos son los datos actualizados: ".concat(cicloEscolarModelo.toString()));
+    }
+    public void actualizaCicloEscolar(){
+
+    }
+    public void eliminaCicloEscolar(){
+
     }
 
     public List<CicloEscolarModelo> getCicloEscolarModeloLista() {
@@ -51,5 +64,13 @@ public class CiclosEscolaresControlador {
 
     public void setCicloEscolarModelo(CicloEscolarModelo cicloEscolarModelo) {
         this.cicloEscolarModelo = cicloEscolarModelo;
+    }
+
+    public HtmlDataTable getHtmlDataTable() {
+        return htmlDataTable;
+    }
+
+    public void setHtmlDataTable(HtmlDataTable htmlDataTable) {
+        this.htmlDataTable = htmlDataTable;
     }
 }
