@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC
+        "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:a="http://xmlns.jcp.org/jsf/composite">
+<ui:composition template="/template/administracion/dashboard.xhtml" >
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-parent">
+                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent uk-open">
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog']}</span></h:link>
+                <ul class="uk-nav-sub">
+                    <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.administrator']}</span></a></li>
+                    <li><h:link outcome="catalogo-coordinacion"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.catalog.coordinator']}</span></h:link></li>
+                </ul>
+            </li>
+            <li class="uk-parent">
+                <h:link><h:outputText pt:uk-icon="database" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.coordinator']}</span></h:link>
+                <ul class="uk-nav-sub">
+                    <li><h:link outcome="dashboard-coordinador"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                    <li><h:link outcome="detalle-profesor"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.admingroup']}</span></h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
+    <ui:define name="contenido">
+        <div class="uk-card uk-card-default">
+            <button class="uk-button uk-button-default uk-margin-small-right" type="button" uk-toggle="target: #modal-CicloEscolar">Agregar Ciclo Escolar</button>
+            <div id="modal-CicloEscolar" class="uk-flex-center" uk-modal="">
+                <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+                    <h:form styleClass="uk-grid" pt:ukgrid="">
+                        <div class="uk-width-1-2">
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Clave Centro de Trabajo" styleClass="uk-form-label" for="clave-centro"/>
+                                <h:inputText id="clave-centro"
+                                             pt:placeholder="21DBA0014J"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.idEscuela}"
+                                             styleClass="uk-input">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="10" maximum="10"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Descripcion" styleClass="uk-form-label" for="descripcion"/>
+                                <h:inputText id="descripcion"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}"
+                                             styleClass="uk-input">
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="20" maximum="50"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Estatus" styleClass="uk-form-label" for="estatus"/><br/>
+                                <h:selectBooleanCheckbox id="estatus"
+                                                         value="#{ciclosEscolaresControlador.cicloEscolarModelo.activo}"
+                                                         styleClass="uk-checkbox" >
+                                </h:selectBooleanCheckbox>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-2">
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Inicio" styleClass="uk-form-label" for="inicio"/>
+                                <h:inputText a:type="date" id="inicio"
+                                             pt:placeholder="DD/MM/YYYY"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}"
+                                             styleClass="uk-input">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Fin" styleClass="uk-form-label" for="fin"/>
+                                <h:inputText a:type="date" id="fin"
+                                             pt:placeholder="DD/MM/YYYY"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}"
+                                             styleClass="uk-input ">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                </h:inputText>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1 uk-text-right">
+                            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                            <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar">
+                                <f:ajax execute="@form" listener="#{ciclosEscolaresControlador.insertaCicloEscolar}" render="tabla-ciclos-escolares" onevent="function exit(){
+                                UIkit.modal(document.getElementById('modal-CicloEscolar')).hide();
+                            }"/>
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+            <h:dataTable id="tabla-ciclos-escolares"
+                         value="#{ciclosEscolaresControlador.cicloEscolarModeloLista}"
+                         var="cicloEscolar"
+                         styleClass="uk-table uk-table-divider"
+                         headerClass="uk-background-primary">
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Clave Centro de Trabajo" styleClass="letra-titulo"/></f:facet>#{cicloEscolar.idEscuela}</h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Inicio" styleClass="letra-titulo"/></f:facet>#{cicloEscolar.inicio}</h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Fin" styleClass="letra-titulo"/></f:facet>#{cicloEscolar.fin}</h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Descripcion" styleClass="letra-titulo"/></f:facet>#{cicloEscolar.descripcion}</h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Estatus" styleClass="letra-titulo"/></f:facet><h:outputText value="Activo" rendered="#{cicloEscolar.activo}"/><h:outputText value="Inactivo" rendered="#{not cicloEscolar.activo}"/></h:column>
+                <h:column>
+                    <f:facet name="header"><h:outputText value="Opciones" styleClass="letra-titulo"/></f:facet>
+                    <h:outputText pt:uk-icon="more-vertical" styleClass="uk-icon-button uk-text-center"/>
+                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdowm="mode: click">
+                        <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                            <li>
+                                <h:commandButton styleClass="uk-text-primary" pt:uk-toggle="target: #modal-editaCicloEscolar" >
+                                    <h:outputText styleClass="uk-margin-small-right uk-icon" pt:uk-icon="icon: file-edit"/>
+
+                                </h:commandButton>
+                            </li>
+                        </ul>
+                    </h:panelGroup>
+                </h:column>
+            </h:dataTable>
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

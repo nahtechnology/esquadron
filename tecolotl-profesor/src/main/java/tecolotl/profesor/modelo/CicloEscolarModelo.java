@@ -8,6 +8,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.Objects;
+import java.util.StringJoiner;
 
 public class CicloEscolarModelo {
 
@@ -72,12 +73,12 @@ public class CicloEscolarModelo {
         this.idEscuela = idEscuela;
     }
 
-    public Boolean isActivo() {
-        return activo;
-    }
-
     public void setActivo(Boolean activo) {
         this.activo = activo;
+    }
+
+    public Boolean getActivo() {
+        return activo;
     }
 
     @Override
@@ -97,11 +98,12 @@ public class CicloEscolarModelo {
 
     @Override
     public String toString() {
-        return "CicloEscolarSessionBean{" +
-                "inicio=" + inicio +
-                ", fin=" + fin +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+        return new StringJoiner(", ", CicloEscolarModelo.class.getSimpleName() + "[", "]")
+                .add("inicio=" + inicio)
+                .add("fin=" + fin)
+                .add("descripcion='" + descripcion + "'")
+                .add("activo=" + activo)
+                .add("idEscuela='" + idEscuela + "'")
+                .toString();
     }
-
 }

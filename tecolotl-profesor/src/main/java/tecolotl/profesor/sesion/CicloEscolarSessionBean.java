@@ -110,7 +110,7 @@ public class CicloEscolarSessionBean {
     public void actualiza(@NotNull @Valid CicloEscolarModelo cicloEscolarModelo) {
         CicloEscolarEntidad cicloEscolarEntidad = entityManager.find(CicloEscolarEntidad.class, llavePrimaria(cicloEscolarModelo));
         cicloEscolarEntidad.setDescripcion(cicloEscolarModelo.getDescripcion());
-        cicloEscolarEntidad.setActivo(cicloEscolarModelo.isActivo());
+        cicloEscolarEntidad.setActivo(cicloEscolarModelo.getActivo());
     }
 
     /**

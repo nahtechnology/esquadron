@@ -97,4 +97,14 @@ public class CicloEscolarEntidad {
     public int hashCode() {
         return Objects.hash(cicloEscolarPK, activo, descripcion);
     }
+
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", CicloEscolarEntidad.class.getSimpleName() + "[", "]")
+                .add("cicloEscolarPK=" + cicloEscolarPK)
+                .add("activo=" + activo)
+                .add("descripcion='" + descripcion + "'")
+                .add("grupoEntidadLista=" + grupoEntidadLista)
+                .toString();
+    }
 }

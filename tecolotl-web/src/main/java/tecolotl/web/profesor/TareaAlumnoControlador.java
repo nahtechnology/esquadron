@@ -23,7 +23,6 @@ public class TareaAlumnoControlador {
     private ProfesorGrupoControlador profesorGrupoControlador;
 
     private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
-    //TODO cambiar nombre de la variable por idTarea de acuerdo al metodo del SesionBean
     private String idAlumno;
 
     public void detalle() {

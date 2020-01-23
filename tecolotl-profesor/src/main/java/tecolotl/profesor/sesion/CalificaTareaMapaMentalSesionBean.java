@@ -77,12 +77,12 @@ public class CalificaTareaMapaMentalSesionBean {
 
     /**
      * Busca las tareas asignadas de un alumno
-     * @param idTarea Identificador de las tareas
+     * @param idAlumno Identificador del alumno
      * @return Colección de {@link TareaAlumnoModelo}
      */
-    public List<TareaAlumnoModelo> busca(@NotNull UUID idTarea) {
+    public List<TareaAlumnoModelo> busca(@NotNull UUID idAlumno) {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.tareas_alumno(?)", TareaAlumnoEntidad.class);
-        query.setParameter(1, idTarea);
+        query.setParameter(1, idAlumno);
         return ((List<TareaAlumnoEntidad>)query.getResultList()).stream().map(TareaAlumnoModelo::new).collect(Collectors.toList());
     }
 

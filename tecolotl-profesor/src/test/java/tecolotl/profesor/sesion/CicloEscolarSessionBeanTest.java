@@ -160,12 +160,13 @@ public class CicloEscolarSessionBeanTest {
     }
 
     @Test
-    @InSequence(1)
+    //@InSequence(1)
     public void inserta() throws ParseException {
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
         cicloEscolarModelo.setDescripcion("Ciclo escolar 2020 a 2021");
-        cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
-        cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
+        cicloEscolarModelo.setActivo(false);
+        cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/02/2020"));
+        cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/02/2021"));
         cicloEscolarModelo.setIdEscuela("21DBA0014J");
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
         cicloEscolarSessionBean.busca(cicloEscolarModelo);
@@ -184,7 +185,7 @@ public class CicloEscolarSessionBeanTest {
     }
 
     @Test
-    @InSequence(2)
+    //@InSequence(2)
     public void actualiza() throws ParseException {
         String cambios = "cambios";
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();

@@ -3,6 +3,7 @@ package tecolotl.alumno.sesion;
 import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.TareaActividadModelo;
+import tecolotl.alumno.modelo.TareaAlumnoModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -166,6 +167,17 @@ public class TareaSesionBean implements Serializable {
         Query query = entityManager.createNamedQuery("TareaEntidad.estatusRespondiendo");
         query.setParameter("idTarea", idTarea).setParameter("estatus", activo);
         return query.executeUpdate();
+    }
+
+    /**
+     * Busca las tareas con calificaciones de un alumno
+     * @param idAlumno id del alumno
+     * @return lista de tareas del alumno con calificaciones
+     */
+    public List<TareaAlumnoModelo> buscaCalificaciones(@NotNull UUID idAlumno) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM alumno.tareas_alumno(?)", TareaAlumnoEntidad.class);
+        query.setParameter(1, idAlumno);
+        return ((List<TareaAlumnoEntidad>)query.getResultList()).stream().map(TareaAlumnoModelo::new).collect(Collectors.toList());
     }
 
 }

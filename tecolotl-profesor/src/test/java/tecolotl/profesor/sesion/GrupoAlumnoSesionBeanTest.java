@@ -229,7 +229,7 @@ public class GrupoAlumnoSesionBeanTest {
 
     @Test
     public void buscaTotalAlumnos(){
-        Long total = grupoAlumnoSesionBean.buscaTotalAlumnosGrupo(UUID.fromString("102ac185-1172-4a68-9f25-76750c33228e"));
+        Long total = grupoAlumnoSesionBean.buscaTotalAlumnosGrupo(UUID.fromString("e94f59fd-97ef-489b-805d-7ac034f2c024"));
         Assert.assertNotNull(total);
         logger.info(total.toString());
     }
