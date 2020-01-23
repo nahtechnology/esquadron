@@ -208,7 +208,7 @@
                                             <h:inputHidden value="#{tareaGramaticaControlador.respuesta}"/>
                                             <h:commandButton value="Send" styleClass="boton-enviar boton-trasladar" onclick="return completarPalabra(event)" rendered="#{empty gramatica.respuesta}">
                                                 <f:ajax listener="#{tareaGramaticaControlador.enviarRespuesta(gramatica.codigo, gramatica.actividadModelo.idVideo, gramatica.vuelta, gramatica.palabra)}"
-                                                        execute="@form" onevent="function funcion(data) { remueveOrdenador(data) }"/>
+                                                        execute="@form" onevent="function funcion(data) { remueveOrdenador(data); siguienteEjercicio() }"/>
                                             </h:commandButton>
                                         </h:form>
                                     </li>
@@ -396,7 +396,15 @@
                 }
             }
 
+            function siguienteEjercicio() {
+                let ordenarPalabra = document.querySelectorAll('.order-words .uk-subnav li.boton-falta');
+                if (ordenarPalabra.length !== 0) {
+                    setTimeout(() => ordenarPalabra[0].click() , 1000);
+                }
+            }
+
             document.addEventListener('DOMContentLoaded', estaResuelto);
+
             function estaResuelto() {
                 if (document.querySelector('.match').getAttribute('value') === 'true'){
                     var boton = document.getElementById('formulario-relacionar:buttonEnviar');
