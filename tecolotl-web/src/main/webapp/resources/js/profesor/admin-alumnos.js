@@ -1,6 +1,5 @@
 var tabla;
 var alumnos = [];
-var formularioNuevoAlumno = document.getElementById('formulario-modal-nuevo-profesor');
 var botonResporte = document.querySelector('.uk-container button.reporte');
 var tablaAlumnos = document.getElementById('formulario-tabla-alumno:tabla-alumno');
 
@@ -20,26 +19,6 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 
 });
 
-/**
- * funcion para cuando selecciones una imagen
- * @param evento evento de click
- */
-function cambioImagen(evento) {
-    evento.target.classList.toggle('seleccionado')
-}
-
-function cargaContrasenia() {
-    var imagenes = formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(9) img');
-    var seleccionados = [];
-    for (i = 0; i < imagenes.length; i++) {
-        if (imagenes[i].classList.contains('seleccionado')) {
-            x = Math.floor(i / 7);
-            y = i % 7;
-            seleccionados.push(x.toString().concat(':').concat(y.toString()));
-        }
-    }
-    document.getElementById('formulario-modal-nuevo-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');
-}
 
 function limpiaFormulario(evento) {
     document.querySelectorAll('#formulario-modal-nuevo-profesor input[type=text], input[type=hidden]').forEach(function (entrada) {

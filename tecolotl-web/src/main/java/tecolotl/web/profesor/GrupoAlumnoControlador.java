@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -27,9 +28,6 @@ import java.util.logging.Logger;
 @ViewScoped
 @Named
 public class GrupoAlumnoControlador implements Serializable {
-
-    @Inject
-    private NivelLenguajeSesionBean nivelLenguajeSesionBean;
 
     @Inject
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
@@ -58,7 +56,6 @@ public class GrupoAlumnoControlador implements Serializable {
     private String idGrupo;
     private String idProfesor;
     private List<TareaAlumnoGrupoModelo> tareaAlumnoGrupoModeloLista;
-    private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
     private AlumnoModelo alumnoModelo;
     private int totalAlumno;
     private int alumnosAsignado;
@@ -67,15 +64,14 @@ public class GrupoAlumnoControlador implements Serializable {
 
     @PostConstruct
     public void inicio() {
-        nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
         alumnoModelo = new AlumnoModelo();
         totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
         buscaTotalAlumno();
     }
 
-    public void insertaAlumno() {
+    public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) {
+        logger.info(ajaxBehaviorEvent.toString());
         logger.info(alumnoModelo.toString());
-        alumnoModelo = new AlumnoModelo();
     /*    FacesMessage facesMessage = new FacesMessage();
         FacesContext facesContext = FacesContext.getCurrentInstance();
         if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
@@ -140,14 +136,6 @@ public class GrupoAlumnoControlador implements Serializable {
 
     public void setAlumnoModelo(AlumnoModelo alumnoModelo) {
         this.alumnoModelo = alumnoModelo;
-    }
-
-    public List<NivelLenguajeModelo> getNivelLenguajeModeloLista() {
-        return nivelLenguajeModeloLista;
-    }
-
-    public void setNivelLenguajeModeloLista(List<NivelLenguajeModelo> nivelLenguajeModeloLista) {
-        this.nivelLenguajeModeloLista = nivelLenguajeModeloLista;
     }
 
     public UIInput getUiInputApodo() {

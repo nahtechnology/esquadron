@@ -9,6 +9,8 @@ function Alumno(apodo, nombre, apellidopaterno, apellidomaterno, fechanacimiento
     this.genero = genero;
 }
 
+var formularioNuevoAlumno = document.getElementById('formulario-modal-nuevo-profesor');
+
 var ExpresionRegularFecha = new  RegExp("^([1-9]|(0)[1-9]|[1-2][0-9]|(3)[0-1])(\\/)([1-9]|((0)[1-9])|((1)[0-2]))(\\/)\\d{4}$","i");
 var ExpresionRegularNivelLenguaje = new RegExp("^[a-c][1-2]$", "i");
 var patronCSV = /(?:,|\n|^)("(?:(?:"")*[^"]*)*"|[^",\n]*|(?:\n|$))/i;
@@ -405,4 +407,25 @@ function desactivarDescarga() {
     let boton = document.querySelector('.botones input[type=file]');
     document.querySelector('.botones label').innerHTML = "DENEGADO";
     boton.disabled = true;
+}
+
+function cargaContrasenia() {
+    var imagenes = formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(9) img');
+    var seleccionados = [];
+    for (i = 0; i < imagenes.length; i++) {
+        if (imagenes[i].classList.contains('seleccionado')) {
+            x = Math.floor(i / 7);
+            y = i % 7;
+            seleccionados.push(x.toString().concat(':').concat(y.toString()));
+        }
+    }
+    document.getElementById('formulario-modal-nuevo-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');
+}
+
+/**
+ * funcion para cuando selecciones una imagen
+ * @param evento evento de click
+ */
+function cambioImagen(evento) {
+    evento.target.classList.toggle('seleccionado')
 }

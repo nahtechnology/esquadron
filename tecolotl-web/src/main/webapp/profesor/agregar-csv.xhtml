@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
     <ui:define name="menu">
 
@@ -70,11 +71,12 @@
                 <h:panelGroup layout="block" id="cupo-alumnos">
                     <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">Cupo de alumnos</div>
                     <progress max="${agregarCsvControlador.totalAlumno}" value="${agregarCsvControlador.alumnosAsignado}"/>
-                    <span>${agregarCsvControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
+                    <span>${agregarCsvControlador.alumnosAsignado}/${agregarCsvControlador.totalAlumno}</span>
                 </h:panelGroup>
                 <div class="uk-margin-medium-top">
 <!--                    <button class="boton-escuadron-base">Limpiar</button>-->
                     <h:button styleClass="boton-maestro-base" value="regresar" outcome="regresar"/>
+                    <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>
                     <h:form>
                         <h:commandButton id="apodos-ver" styleClass="boton-escuadron-base" value="Limpiar">
                             <f:ajax  listener="#{agregarCsvControlador.actualizar}"
@@ -93,7 +95,7 @@
                 <table id="tabla-aceptados" class="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center">
                     <thead class="thPrimario">
                     <tr class="">
-                        <th class="uk-text-center" ><span class="letra-tabla uk-text-bold">Apodo</span></th>
+                        <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Apodo</span></th>
                         <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Nombre</span></th>
                         <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Apellido Paterno</span></th>
                         <th class="uk-text-center"><span class="letra-tabla uk-text-bold">Apellido Materno</span></th>
@@ -167,8 +169,163 @@
                 render="cupo-alumnos apodos-filas" />
             </h:commandButton>
         </h:form>
+        <!--  Modal nuevo alumno  -->
+        <h:panelGroup layout="block" id="modal-nuevo-alumno" styleClass="uk-modal-container" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-modal-nuevo-profesor" styleClass="uk-form-stacked">
+                    <button class="uk-modal-close-default" type="button" uk-close=""/>
+                    <div class="uk-modal-header header-color-card">
+                        <h2 class="uk-modal-title titulo-modal uk-text-capitalize">agregar alumno</h2>
+                    </div>
+                    <div class="barra-modal"></div>
+                    <div class="uk-modal-body">
+                        <div class="uk-margin">
+                            <div class="uk-grid-small uk-flex-center uk-grid" uk-grid="">
+                                <div class="uk-width-1-1@s uk-width-1-5@m ">
+                                    <h:outputLabel for="input-nick" styleClass="uk-text-capitalize uk-form-label" value="apodo"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-nick"
+                                                     autocomplete="off"
+                                                     binding="#{agregarCsvControlador.uiInputApodo}"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="apodo"
+                                                     value="#{agregarCsvControlador.alumnoModelo.apodo}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-nick" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m  ">
+                                    <h:outputLabel for="input-name" styleClass=" uk-text-capitalize uk-form-label" value="nombre"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-name"
+                                                     autocomplete="off"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Nombre"
+                                                     value="#{agregarCsvControlador.alumnoModelo.nombre}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-name" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="input-apellidop" styleClass=" uk-text-capitalize uk-form-label" value="apellidos paterno"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-apellidop"
+                                                     autocomplete="off"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Apellido Paterno"
+                                                     value="#{agregarCsvControlador.alumnoModelo.apellidoPaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-apellidop" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="input-apellidom" styleClass=" uk-text-capitalize uk-form-label" value="apellido materno"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-apellidom"
+                                                     autocomplete="off"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Apellido Materno"
+                                                     value="#{agregarCsvControlador.alumnoModelo.apellidoMaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-apellidom" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-6@s">
+                                    <h:outputLabel for="input-fecha-nacimiento" styleClass=" uk-text-capitalize uk-form-label" value="fecha nacimiento"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-fecha-nacimiento"
+                                                     autocomplete="off"
+                                                     pt:placeholder="dd/mm/yyyy"
+                                                     pt:oninput="entradaFecha(event)"
+                                                     label="dd/mm/yyyy"
+                                                     value="#{agregarCsvControlador.alumnoModelo.nacimiento}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-fecha-nacimiento" styleClass="uk-alert-danger"/>
+                                </div>
+
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="seleccion-nivel-lenguaje" styleClass="uk-text-capitalize uk-form-label" value="nivel lenguaje"/>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu id="seleccion-nivel-lenguaje"
+                                                         styleClass="selector"
+                                                         value="#{agregarCsvControlador.alumnoModelo.nivelLenguajeModelo.clave}">
+                                            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                            <f:selectItems value="#{agregarCsvControlador.nivelLenguajeModeloLista}"
+                                                           var="nivelLenguaje"
+                                                           itemLabel="#{nivelLenguaje.valor}"
+                                                           itemValue="#{nivelLenguaje.clave}"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message for="seleccion-nivel-lenguaje" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="genero"/>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu id="seleccion-sexo"
+                                                         styleClass="selector"
+                                                         value="#{agregarCsvControlador.alumnoModelo.sexo}">
+                                            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                            <f:selectItem itemValue="m" itemLabel="Masculino"/>
+                                            <f:selectItem itemValue="f" itemLabel="Femenino"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message for="seleccion-sexo" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <span>lugares disponibles</span>
+                                    <div class="uk-form-controls">
+                                        <progress max="${agregarCsvControlador.totalAlumno}" value="${agregarCsvControlador.alumnosAsignado}"/>
+                                        <span>${agregarCsvControlador.alumnosAsignado}/${agregarCsvControlador.totalAlumno}</span>
+                                    </div>
+                                </div>
+                                <div class="uk-width-1-1@s">
+                                    <c:forEach begin="1" end="28" var="indice">
+                                        <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" onclick="cambioImagen(event)"/>
+                                    </c:forEach>
+                                    <h:inputHidden id="input-secret-password"
+                                                   value="#{agregarCsvControlador.alumnoModelo.contrasenia}">
+                                        <f:validateRequired/>
+                                        <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                    </h:inputHidden>
+                                </div>
+                                <h:message for="input-secret-password" styleClass="uk-alert-danger"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="boton-escuadron-base-secundary uk-modal-close" type="reset">#{boton['cancel']}</button>
+                        <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
+                                         styleClass="boton-escuadron-base uk-margin-left">
+                            <f:ajax listener="#{agregarCsvControlador.inserta}"
+                                    execute="@form"
+                                    render="@form"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
     </ui:define>
     <ui:define name="file-js">
+        <h:outputScript library="js" name="nah.js"/>
         <h:outputScript library="js" name="profesor/agregar-alumnos-csv.js"/>
     </ui:define>
 </ui:composition>

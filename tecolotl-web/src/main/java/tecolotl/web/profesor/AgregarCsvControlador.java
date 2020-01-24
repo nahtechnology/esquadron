@@ -2,11 +2,14 @@ package tecolotl.web.profesor;
 
 import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.alumno.modelo.AlumnoModelo;
+import tecolotl.alumno.modelo.NivelLenguajeModelo;
+import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
 import tecolotl.nucleo.sesion.PersonaSesionBean;
 import tecolotl.profesor.scope.AlumnoGrupoScope;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.component.UIInput;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
@@ -40,16 +43,23 @@ public class AgregarCsvControlador implements Serializable {
     private AlumnoGrupoScope alumnoGrupoScope;
 
     @Inject
+    private NivelLenguajeSesionBean nivelLenguajeSesionBean;
+
+    @Inject
     private Logger logger;
 
     private int totalAlumno;
     private int alumnosAsignado;
     private List<String> apodos;
     private AlumnoModelo alumnoModelo;
+    private List<NivelLenguajeModelo> nivelLenguajeModeloLista;
+
+    private UIInput uiInputApodo;
 
     @PostConstruct
     public void inicio() {
         alumnoModelo = new AlumnoModelo();
+        nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
         totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
         apodos = personaSesionBean.buscaApodo(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
@@ -99,4 +109,19 @@ public class AgregarCsvControlador implements Serializable {
         this.apodos = apodos;
     }
 
+    public UIInput getUiInputApodo() {
+        return uiInputApodo;
+    }
+
+    public void setUiInputApodo(UIInput uiInputApodo) {
+        this.uiInputApodo = uiInputApodo;
+    }
+
+    public List<NivelLenguajeModelo> getNivelLenguajeModeloLista() {
+        return nivelLenguajeModeloLista;
+    }
+
+    public void setNivelLenguajeModeloLista(List<NivelLenguajeModelo> nivelLenguajeModeloLista) {
+        this.nivelLenguajeModeloLista = nivelLenguajeModeloLista;
+    }
 }
