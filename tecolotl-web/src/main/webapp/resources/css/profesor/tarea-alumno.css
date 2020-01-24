@@ -1,7 +1,10 @@
 .boton-regresa{
     display: flex;
+    display: -webkit-flex;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
     align-items: flex-end;
+    -webkit-align-items: flex-end;
 }
 
 .boton-maestro-base{

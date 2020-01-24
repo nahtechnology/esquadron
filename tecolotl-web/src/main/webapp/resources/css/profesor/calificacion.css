@@ -64,7 +64,10 @@
 
 .mapa-mental form > :nth-child(3) {
     display: flex;
+    display: -webkit-flex;
+    -webkit-align-content: center;
     align-content: center;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 }
 
@@ -100,8 +103,11 @@
     width: 70%;
     height: 95px;
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;+
     justify-content: center;
+    -webkit-justify-content: center;
 }
 .respondido span{
     font-weight: bold;
@@ -155,8 +161,11 @@
 
 .mapa-mental form [class^="uk-width-1-3"]{
     display: flex;
+    display: -webkit-flex;
     align-items: center;
+    -webkit-align-items: center;
     flex-wrap: nowrap;
+    -webkit-flex-wrap: nowrap;
     font-size: 17px;
     font-weight: bolder;
     font-style: italic;
@@ -205,8 +214,11 @@ h1{
 
 .boton-regresa{
     display: flex;
+    display: -webkit-flex;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
     align-items: flex-end;
+    -webkit-align-items: flex-end;
 }
 
 #formulario > input + div + div + input{

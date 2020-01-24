@@ -81,8 +81,12 @@ div > div > div > div + div + div + div + div + div > img:hover{
 
 .botones{
     display: flex;
+    display: -webkit-flex;
+    -webkit-justify-content: flex-end;
     justify-content: flex-end;
-    align-content: flex-end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
 }
 
@@ -113,7 +117,10 @@ div > div > div > div + div + div + div + div + div > img:hover{
 #tabla-vacia > div:first-child{
     background-color: #ceccc2;
     display: flex;
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
+    -webkit-justify-content: space-between;
     justify-content: space-between;
 }
 #tabla-vacia > div:first-child span{

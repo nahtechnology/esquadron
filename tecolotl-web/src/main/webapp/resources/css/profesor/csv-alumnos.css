@@ -5,14 +5,21 @@ table input[type="text"]{
 
 .botones{
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
+    -webkit-justify-content: center;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     flex-direction: column;
+    -webkit-flex-direction: column;
 }
 .botones > div{
     display: flex;
+    display: -webkit-flex;
     justify-content: flex-end;
+    -webkit-justify-content: flex-end;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
 }
 .botones > div > span{
     margin-top: 3px;
@@ -31,12 +38,14 @@ table input[type="text"]{
 }
 .botones label{
     display: inline-flex;
+    display: -webkit-inline-flex;
     height: 30px;
     width: 60%;
     border: 2px solid #0e6dcd;
     border-radius: 30px;
     margin-top: 10px;
     justify-content: center;
+    -webkit-justify-content: center;
     font-size: 18px;
     font-weight: bold;
 }

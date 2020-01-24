@@ -43,7 +43,9 @@
 
 .acomodar{
     display: flex;
+    display: -webkit-flex;
     flex-direction: column;
+    -webkit-flex-direction: column;
 }
 
 .acomodar > p + span{

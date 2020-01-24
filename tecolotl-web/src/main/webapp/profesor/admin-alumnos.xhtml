@@ -187,7 +187,157 @@
         <!--  Modal nuevo alumno  -->
         <h:panelGroup layout="block" id="modal-nuevo-alumno" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-modal-nuevo-profesor" styleClass="uk-form-stacked">
+                    <button class="uk-modal-close-default" type="button" uk-close=""/>
+                    <div class="uk-modal-header header-color-card">
+                        <h2 class="uk-modal-title titulo-modal uk-text-capitalize">agregar alumno</h2>
+                    </div>
+                    <div class="barra-modal"></div>
+                    <div class="uk-modal-body">
+                        <div class="uk-margin">
+                            <div class="uk-grid-small uk-flex-center uk-grid" uk-grid="">
+                                <div class="uk-width-1-1@s uk-width-1-5@m ">
+                                    <h:outputLabel for="input-nick" styleClass="uk-text-capitalize uk-form-label" value="apodo"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-nick"
+                                                     autocomplete="off"
+                                                     binding="#{grupoAlumnoControlador.uiInputApodo}"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="apodo"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.apodo}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-nick" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m  ">
+                                    <h:outputLabel for="input-name" styleClass=" uk-text-capitalize uk-form-label" value="nombre"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-name"
+                                                     autocomplete="off"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Nombre"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.nombre}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-name" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="input-apellidop" styleClass=" uk-text-capitalize uk-form-label" value="apellidos paterno"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-apellidop"
+                                                     autocomplete="off"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Apellido Paterno"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.apellidoPaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-apellidop" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="input-apellidom" styleClass=" uk-text-capitalize uk-form-label" value="apellido materno"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="input-apellidom"
+                                                     autocomplete="off"
+                                                     pt:placeholder="#{etiqueta['write.text']}"
+                                                     label="Apellido Materno"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.apellidoMaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="4" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="input-apellidom" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-6@s">
+                                    <h:outputLabel for="fecha-nacimiento" styleClass=" uk-text-capitalize uk-form-label" value="fecha nacimiento"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText styleClass="uk-input"
+                                                     id="fecha-nacimiento"
+                                                     autocomplete="off"
+                                                     pt:placeholder="dd/mm/yyyy"
+                                                     pt:oninput="entradaFecha(event)"
+                                                     label="dd/mm/yyyy"
+                                                     value="#{grupoAlumnoControlador.alumnoModelo.nacimiento}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                            <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
+                                            <f:validateRequired/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="fecha-nacimiento" styleClass="uk-alert-danger"/>
+                                </div>
 
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="seleccion-nivel-lenguaje" styleClass="uk-text-capitalize uk-form-label" value="nivel lenguaje"/>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu id="seleccion-nivel-lenguaje"
+                                                         styleClass="selector"
+                                                         value="#{grupoAlumnoControlador.alumnoModelo.nivelLenguajeModelo.clave}">
+                                            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                            <f:selectItems value="#{grupoAlumnoControlador.nivelLenguajeModeloLista}"
+                                                           var="nivelLenguaje"
+                                                           itemLabel="#{nivelLenguaje.valor}"
+                                                           itemValue="#{nivelLenguaje.clave}"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message for="seleccion-nivel-lenguaje" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <h:outputLabel for="seleccion-sexo" styleClass="uk-text-capitalize uk-form-label" value="genero"/>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu id="seleccion-sexo"
+                                                         styleClass="selector"
+                                                         value="#{grupoAlumnoControlador.alumnoModelo.sexo}">
+                                            <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                                            <f:selectItem itemValue="m" itemLabel="Masculino"/>
+                                            <f:selectItem itemValue="f" itemLabel="Femenino"/>
+                                            <f:validateRequired/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message for="seleccion-sexo" styleClass="uk-alert-danger"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-5@m">
+                                    <span>lugares disponibles</span>
+                                    <div class="uk-form-controls">
+                                        <progress max="${grupoAlumnoControlador.totalAlumno}" value="${grupoAlumnoControlador.alumnosAsignado}"></progress>
+                                        <span>${grupoAlumnoControlador.alumnosAsignado}/${grupoAlumnoControlador.totalAlumno}</span>
+                                    </div>
+                                </div>
+                                <div class="uk-width-1-1@s">
+                                    <c:forEach begin="1" end="28" var="indice">
+                                        <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" onclick="cambioImagen(event)"/>
+                                    </c:forEach>
+                                    <h:inputHidden id="input-secret-password"
+                                                   value="#{grupoAlumnoControlador.alumnoModelo.contrasenia}">
+                                        <f:validateRequired/>
+                                        <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                    </h:inputHidden>
+                                </div>
+                                <h:message for="input-secret-password" styleClass="uk-alert-danger"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="boton-escuadron-base-secundary uk-modal-close" type="reset">#{boton['cancel']}</button>
+                        <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
+                                         styleClass="boton-escuadron-base uk-margin-left">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalAgregarAlumno'); }"
+                                    listener="#{grupoAlumnoControlador.insertaAlumno()}"
+                                    execute="@form"
+                                    onerror="error"
+                                    render="@form formulario-tabla-alumno"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
             </div>
         </h:panelGroup>
         <!--  Modal Eliminar -->

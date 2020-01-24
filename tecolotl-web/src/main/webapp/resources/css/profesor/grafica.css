@@ -40,6 +40,12 @@
     /*border-radius: 8px;*/
 
 }
+.graficas > div {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+
+}
 .graficas > div > span{
     display: inline-block;
     width: calc(100%/6);
@@ -446,3 +452,10 @@
 }
 
 */
+
+@media screen and (max-width: 1000px){
+    .graficas > div{
+        width: 100%;
+        margin-top: 20px;
+    }
+}
