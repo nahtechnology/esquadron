@@ -2,6 +2,7 @@ package tecolotl.web.alumno;
 
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.TareaActividadModelo;
+import tecolotl.alumno.modelo.TareaAlumnoModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.sesion.TareaSesionBean;
 
@@ -28,9 +29,11 @@ public class TareasProgresoControlador {
 
     private String idTarea;
     private List<TareaResuetasModelo> tareaResuetasModeloLista;
+    private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
 
     public void buscaTareasRealizadas() {
         tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(UUID.fromString(idTarea));
+        tareaAlumnoModeloLista = tareaSesionBean.buscaCalificaciones(alumnoControlador.getAlumnoModelo().getId());
     }
 
     public String getIdTarea() {
@@ -47,5 +50,13 @@ public class TareasProgresoControlador {
 
     public void setTareaResuetasModeloLista(List<TareaResuetasModelo> tareaResuetasModeloLista) {
         this.tareaResuetasModeloLista = tareaResuetasModeloLista;
+    }
+
+    public List<TareaAlumnoModelo> getTareaAlumnoModeloLista() {
+        return tareaAlumnoModeloLista;
+    }
+
+    public void setTareaAlumnoModeloLista(List<TareaAlumnoModelo> tareaAlumnoModeloLista) {
+        this.tareaAlumnoModeloLista = tareaAlumnoModeloLista;
     }
 }
