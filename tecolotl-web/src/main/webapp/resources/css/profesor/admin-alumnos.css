@@ -53,10 +53,6 @@ div > div > div > div + div + div + div + div + div > img:hover{
     transform: scale(1.5,1.5);
 }
 
-.selector{
-    height: 40px;
-}
-
 .padding-titulo{
     padding-left: 10px;
 }

@@ -239,3 +239,7 @@ table input[type="text"]{
 #formulario-modal-nuevo-profesor div:nth-of-type(9) img:hover {
     transform: scale(1.5,1.5);
 }
+
+.selector{
+    height: 40px;
+}
