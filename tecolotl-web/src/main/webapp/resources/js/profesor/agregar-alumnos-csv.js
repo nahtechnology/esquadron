@@ -407,6 +407,7 @@ function desactivarDescarga() {
     let boton = document.querySelector('.botones input[type=file]');
     document.querySelector('.botones label').innerHTML = "DENEGADO";
     boton.disabled = true;
+    document.querySelector('.botones .agregar').disabled = true;
 }
 
 function cargaContrasenia() {

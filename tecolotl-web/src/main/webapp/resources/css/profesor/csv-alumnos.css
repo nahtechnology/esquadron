@@ -228,3 +228,14 @@ table input[type="text"]{
 .seleccionado {
     transform: scale(1.5,1.5);
 }
+
+#formulario-modal-nuevo-profesor div:nth-of-type(9) img {
+    width: 40px;
+    height: 40px;
+    transition: all 1s linear;
+    cursor: pointer;
+}
+
+#formulario-modal-nuevo-profesor div:nth-of-type(9) img:hover {
+    transform: scale(1.5,1.5);
+}
