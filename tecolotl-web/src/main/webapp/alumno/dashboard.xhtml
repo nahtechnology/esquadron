@@ -149,10 +149,13 @@
                                             </h:panelGroup>
                                         </div>
 <!--                                    </div>-->
-                                    <div class="uk-transition-fade uk-overlay-default  califica">
+                                    <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total ne 0}">
                                         <p class="uk-text-capitalize">#{alumno['more.activity.title.matching.words']}</p>
-                                        <h:outputText  value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.tareaAlumnoModeloLista[0].calificacionRelacionarImagen}"/>
-                                    </div>
+                                        <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
+                                           <h:outputText rendered="#{calificacion.id eq tareasProgresoControlador.idTarea }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionRelacionarImagen eq -1 ? 'sin responder' : calificacion.calificacionRelacionarImagen}"/>
+                                        </ui:repeat>
+                                        <ui:remove> <h:outputText  value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.idTarea}"/> </ui:remove>
+                                    </h:panelGroup>
                                    <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total ne 0}">
                                        <span>0%</span>
                                        <progress class="uk-progress color1" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/>
@@ -168,10 +171,12 @@
                                         </div>
 
 <!--                                    </div>-->
-                                    <div class="uk-transition-fade uuk-overlay-default  califica">
+                                    <h:panelGroup layout="block" styleClass="uk-transition-fade uuk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total ne 0}">
                                         <p class="uk-text-capitalize">#{alumno['activities.title.comple.all.sentences']}</p>
-                                        <h:outputText value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.tareaAlumnoModeloLista[0].calificacionCompletar}"/>
-                                    </div>
+                                        <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
+                                            <h:outputText rendered="#{calificacion.id eq tareasProgresoControlador.idTarea }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionCompletar eq -1 ? 'sin responder' : calificacion.calificacionCompletar}"/>
+                                        </ui:repeat>
+                                    </h:panelGroup>
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total ne 0}">
                                         <span>0%</span>
                                         <progress class="uk-progress color2" value="#{tareasProgresoControlador.tareaResuetasModeloLista[1].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total}"/>
@@ -187,10 +192,12 @@
                                         </div>
 
 <!--                                    </div>-->
-                                    <div class="uk-transition-fade  uk-overlay-default  califica">
+                                    <h:panelGroup layout="block" styleClass="uk-transition-fade  uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
                                         <p class="uk-text-capitalize">#{alumno['activities.title.order.words']}</p>
-                                        <h:outputText value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.tareaAlumnoModeloLista[0].calificacionGramatica}"/>
-                                    </div>
+                                        <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
+                                            <h:outputText rendered="#{calificacion.id eq tareasProgresoControlador.idTarea }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionGramatica eq -1 ? 'sin responder' : calificacion.calificacionGramatica}"/>
+                                        </ui:repeat>
+                                    </h:panelGroup>
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
                                         <span>0%</span>
                                         <progress class="uk-progress color3" value="#{tareasProgresoControlador.tareaResuetasModeloLista[2].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total}"/>
@@ -206,10 +213,12 @@
                                                     <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"/>
                                                 </h:panelGroup>
                                             </div>
-                                            <div class="uk-transition-fade  uk-overlay-default  califica">
+                                            <h:panelGroup layout="block" styleClass="uk-transition-fade  uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
                                                 <p class="uk-text-capitalize">#{alumno['for.all.views.mind.map']}</p>
-                                                <h:outputText value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.tareaAlumnoModeloLista[0].calificacionMapamental}"/>
-                                            </div>
+                                                <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
+                                                    <h:outputText rendered="#{calificacion.id eq tareasProgresoControlador.idTarea }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionMapamental eq -1 ? 'sin responder' : calificacion.calificacionMapamental}"/>
+                                                </ui:repeat>
+                                            </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color4" value="#{tareasProgresoControlador.tareaResuetasModeloLista[3].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total}"/>
@@ -224,10 +233,12 @@
                                                     <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.sentences']}; pos: right "/>
                                                 </h:panelGroup>
                                             </div>
-                                            <div class="uk-transition-fade uk-overlay-default califica">
+                                            <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
                                                 <p class="uk-text-capitalize">#{alumno['activities.title.order.sentences']}</p>
-                                                <h:outputText value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.tareaAlumnoModeloLista[0].calificacionOraciones}"/>
-                                            </div>
+                                                <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
+                                                    <h:outputText rendered="#{calificacion.id eq tareasProgresoControlador.idTarea }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionOraciones eq -1 ? 'sin responder' : calificacion.calificacionOraciones } "/>
+                                                </ui:repeat>
+                                            </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[4].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total}"/>
@@ -242,10 +253,12 @@
                                                     <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/naranja.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.bar.icon.match']}; pos: right"/>
                                                 </h:panelGroup>
                                             </div>
-                                            <div class="uk-transition-fade uk-overlay-default califica">
+                                            <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">
                                                 <p class="uk-text-capitalize">#{alumno['activities.bar.icon.match']}</p>
-                                                <h:outputText value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.tareaAlumnoModeloLista[0].calificacionRelacionarOraciones}"/>
-                                            </div>
+                                                <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
+                                                    <h:outputText rendered="#{calificacion.id eq tareasProgresoControlador.idTarea }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionRelacionarOraciones eq -1 ? 'sin responder' : calificacion.calificacionRelacionarOraciones}"/>
+                                                </ui:repeat>
+                                            </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">
                                             <span>0%</span>
                                             <progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[5].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total}"/>
