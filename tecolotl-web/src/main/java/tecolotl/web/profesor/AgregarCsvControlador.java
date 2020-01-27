@@ -7,9 +7,12 @@ import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
 import tecolotl.nucleo.sesion.PersonaSesionBean;
 import tecolotl.profesor.scope.AlumnoGrupoScope;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
+import tecolotl.profesor.sesion.GrupoSesionBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AbortProcessingException;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
@@ -46,6 +49,9 @@ public class AgregarCsvControlador implements Serializable {
     private NivelLenguajeSesionBean nivelLenguajeSesionBean;
 
     @Inject
+    private GrupoSesionBean grupoSesionBean;
+
+    @Inject
     private Logger logger;
 
     private int totalAlumno;
@@ -66,11 +72,17 @@ public class AgregarCsvControlador implements Serializable {
     }
 
     public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {
-        logger.info(alumnoModelo.toString());
-        alumnoGrupoScope.inserta(alumnoModelo, profesorGrupoControlador.getGrupoModelo().getId());
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
+            FacesMessage facesMessage = new FacesMessage();
+            facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
+            facesMessage.setSummary("ya existe este apodo");
+            facesContext.addMessage(uiInputApodo.getClientId(facesContext), facesMessage);
+        } else {
+            alumnoGrupoScope.inserta(alumnoModelo, profesorGrupoControlador.getGrupoModelo().getId());
+            alumnoModelo = new AlumnoModelo();
+        }
         this.alumnosAsignado++;
-
-
     }
 
     public void actualizar(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {

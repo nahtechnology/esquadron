@@ -411,13 +411,11 @@ function desactivarDescarga() {
 }
 
 function cargaContrasenia() {
-    var imagenes = formularioNuevoAlumno.querySelectorAll('.uk-modal-body div:nth-child(9) img');
+    var imagenes = document.querySelectorAll('#imagenes img');
     var seleccionados = [];
     for (i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
-            x = Math.floor(i / 7);
-            y = i % 7;
-            seleccionados.push(x.toString().concat(':').concat(y.toString()));
+            seleccionados.push(i);
         }
     }
     document.getElementById('formulario-modal-nuevo-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');

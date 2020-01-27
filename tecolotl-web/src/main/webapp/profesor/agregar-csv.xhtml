@@ -81,9 +81,7 @@
                         <h:commandButton id="apodos-ver" styleClass="boton-escuadron-base" value="Limpiar">
                             <f:ajax  listener="#{agregarCsvControlador.actualizar}"
                                      render="apodos-filas"
-                                     onevent="function apodosBase(data) {
-                                      limpiar();
-                                    }"/>
+                                     onevent="function apodosBase(data) { if (data.status === 'success') { limpiar() } }"/>
                         </h:commandButton>
                     </h:form>
                 </div>
@@ -297,7 +295,7 @@
                                         <span>${agregarCsvControlador.alumnosAsignado}/${agregarCsvControlador.totalAlumno}</span>
                                     </div>
                                 </div>
-                                <div class="uk-width-1-1@s">
+                                <div id="imagenes" class="uk-width-1-1@s">
                                     <c:forEach begin="1" end="28" var="indice">
                                         <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" onclick="cambioImagen(event)"/>
                                     </c:forEach>
@@ -316,6 +314,7 @@
                         <h:commandButton value="#{boton['add']}" onclick="cargaContrasenia()"
                                          styleClass="boton-escuadron-base uk-margin-left">
                             <f:ajax listener="#{agregarCsvControlador.inserta}"
+                                    onevent="function funcion(data) { cierraModal(data); }"
                                     execute="@form"
                                     render="@form"/>
                         </h:commandButton>
@@ -327,6 +326,7 @@
     <ui:define name="file-js">
         <h:outputScript library="js" name="nah.js"/>
         <h:outputScript library="js" name="profesor/agregar-alumnos-csv.js"/>
+        <h:outputScript library="js" name="profesor/agregar-alumno-modal.js"/>
     </ui:define>
 </ui:composition>
 </html>

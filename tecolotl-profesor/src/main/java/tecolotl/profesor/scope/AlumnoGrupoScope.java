@@ -49,8 +49,6 @@ public class AlumnoGrupoScope {
         alumnoEntidad.setContraseniaPadreFamilia(alumnoModelo.getContrasenia());
         alumnoEntidad.setCorreoPadreFamilia("sincorreo@servidor.com");
         GrupoEntidad grupoEntidad = new GrupoEntidad(idGrupo);
-//      GrupoAlumnoEntidad grupoAlumnoEntidad = new GrupoAlumnoEntidad(new GrupoAlumnoEntidadPK(grupoEntidad, alumnoEntidad));
-        logger.info("Datos del nuevo alumno\n".concat(alumnoEntidad.toString()));
         try {
             userTransaction.begin();
             entityManager.persist(alumnoEntidad);
