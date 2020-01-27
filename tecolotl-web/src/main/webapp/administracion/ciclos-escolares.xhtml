@@ -121,10 +121,21 @@
                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                         <ul class="uk-nav uk-dropdown-nav uk-text-left">
                             <li>
-                                <h:commandLink value="Editar" styleClass="uk-margin-small" pt:type="button" pt:uk-icon="icon: file-edit" pt:uk-toggle="target: #modal-editaCicloEscolar" action="#{ciclosEscolaresControlador.seleccionaCicloEscolar}"/>
+                                <h:commandLink value="Editar"
+                                               styleClass="uk-margin-small"
+                                               pt:type="button"
+                                               pt:uk-icon="icon: file-edit"
+                                               pt:uk-toggle="target: #modal-editaCicloEscolar"
+                                               ><f:ajax listener="#{ciclosEscolaresControlador.seleccionaCicloEscolar}" render="edita-cicloEscolar"/></h:commandLink>
                             </li>
                             <li>
-                                <a class="uk-margin-small-right"  type="button" uk-icon="icon: trash" uk-toggle="target: #modal-eliminaCicloEscolar">Eliminar</a>
+                                <h:commandLink value="Eliminar"
+                                               styleClass="uk-margin-small-right"
+                                               pt:type="button"
+                                               pt:uk-icon="icon: trash"
+                                               pt:uk-toggle="target: #modal-eliminaCicloEscolar"
+                                                ><f:ajax listener="#{ciclosEscolaresControlador.seleccionaCicloEscolar}" render="elimina-cicloEscolar"/>
+                                </h:commandLink>
                             </li>
                         </ul>
                     </h:panelGroup>
@@ -132,14 +143,16 @@
             </h:dataTable>
             <div id="modal-editaCicloEscolar" class="uk-flex-center" uk-modal="">
                 <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-                    <h:form styleClass="uk-grid" pt:ukgrid="">
+                    <h:form id="edita-cicloEscolar" styleClass="uk-grid" pt:ukgrid="">
                         <div class="uk-width-1-2">
                             <div class="uk-form-controls uk-margin-small">
                                 <h:outputLabel value="Clave Centro de Trabajo" styleClass="uk-form-label" for="clave-centro1"/>
                                 <h:inputText id="clave-centro1"
                                              value="#{ciclosEscolaresControlador.cicloEscolarModelo.idEscuela}"
-                                             disabled="true"
+                                             pt:readonly="readonly"
+                                             required="true"
                                              styleClass="uk-input">
+                                    <f:ajax/>
                                     <f:validateRequired/>
                                     <f:validateLength minimum="10" maximum="10"/>
                                 </h:inputText>
@@ -149,6 +162,7 @@
                                 <h:inputText id="descripcion1"
                                              value="#{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}"
                                              styleClass="uk-input">
+                                    <f:ajax/>
                                     <f:validateRequired/>
                                     <f:validateLength minimum="20" maximum="50"/>
                                 </h:inputText>
@@ -158,6 +172,7 @@
                                 <h:selectBooleanCheckbox id="estatus1"
                                                          value="#{ciclosEscolaresControlador.cicloEscolarModelo.activo}"
                                                          styleClass="uk-checkbox" >
+                                    <f:ajax/>
                                 </h:selectBooleanCheckbox>
                             </div>
                         </div>
@@ -167,9 +182,11 @@
                                 <h:inputText a:type="date" id="inicio1"
                                              pt:placeholder="DD/MM/YYYY"
                                              value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}"
-                                             disabled="true"
+                                             required="true"
+                                             pt:readonly="readonly"
                                              styleClass="uk-input">
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    <f:ajax/>
                                 </h:inputText>
                             </div>
                             <div class="uk-form-controls uk-margin-small">
@@ -177,9 +194,11 @@
                                 <h:inputText a:type="date" id="fin1"
                                              pt:placeholder="DD/MM/YYYY"
                                              value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}"
-                                             disabled="true"
+                                             required="true"
+                                             pt:readonly="readonly"
                                              styleClass="uk-input ">
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    <f:ajax/>
                                 </h:inputText>
                             </div>
                         </div>
@@ -187,7 +206,7 @@
                             <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
                             <h:commandButton styleClass="uk-button uk-button-primary" value="Actualizar">
                                 <f:ajax execute="@form" listener="#{ciclosEscolaresControlador.actualizaCicloEscolar}" render="tabla-ciclos-escolares" onevent="function exit(){
-                                UIkit.modal(document.getElementById('modal-CicloEscolar')).hide();
+                                UIkit.modal(document.getElementById('modal-editaCicloEscolar')).hide();
                             }"/>
                             </h:commandButton>
                         </div>
@@ -196,28 +215,73 @@
             </div>
             <div id="modal-eliminaCicloEscolar" class="uk-flex-center" uk-modal="">
                 <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-                    <h:form styleClass="uk-grid" pt:ukgrid="">
+                    <h:form id="elimina-cicloEscolar" styleClass="uk-grid" pt:ukgrid="">
+                        <h2 class="uk-h2">¿Desea eliminar el ciclo escolar?</h2>
                         <div class="uk-width-1-2">
                             <div class="uk-form-controls uk-margin-small">
-                                <label class="uk-form-label" for="inicio2"/>
-                                <h:inputText a:type="date" id="inicio2" pt:placeholder="DD/MM/YYYY" value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}" styleClass="uk-input">
-                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                <h:outputLabel value="Clave Centro de Trabajo" styleClass="uk-form-label" for="clave-centro2"/>
+                                <h:inputText id="clave-centro2"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.idEscuela}"
+                                             pt:readonly="readonly"
+                                             required="true"
+                                             styleClass="uk-input">
+                                    <f:ajax/>
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="10" maximum="10"/>
                                 </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Descripcion" styleClass="uk-form-label" for="descripcion2"/>
+                                <h:inputText id="descripcion2"
+                                             pt:readonly="readonly"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}"
+                                             styleClass="uk-input">
+                                    <f:ajax/>
+                                    <f:validateRequired/>
+                                    <f:validateLength minimum="20" maximum="50"/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Estatus" styleClass="uk-form-label" for="estatus2"/><br/>
+                                <h:selectBooleanCheckbox id="estatus2"
+                                                         disabled="true"
+                                                         value="#{ciclosEscolaresControlador.cicloEscolarModelo.activo}"
+                                                         styleClass="uk-checkbox" >
+                                    <f:ajax/>
+                                </h:selectBooleanCheckbox>
                             </div>
                         </div>
                         <div class="uk-width-1-2">
                             <div class="uk-form-controls uk-margin-small">
-                                <label class="uk-form-label" for="fin2"/>
-                                <h:inputText a:type="date" id="fin2" pt:placeholder="DD/MM/YYYY" value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}" styleClass="uk-input">
+                                <h:outputLabel value="Inicio" styleClass="uk-form-label" for="inicio2"/>
+                                <h:inputText a:type="date" id="inicio2"
+                                             pt:placeholder="DD/MM/YYYY"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}"
+                                             required="true"
+                                             pt:readonly="readonly"
+                                             styleClass="uk-input">
                                     <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    <f:ajax/>
+                                </h:inputText>
+                            </div>
+                            <div class="uk-form-controls uk-margin-small">
+                                <h:outputLabel value="Fin" styleClass="uk-form-label" for="fin2"/>
+                                <h:inputText a:type="date" id="fin2"
+                                             pt:placeholder="DD/MM/YYYY"
+                                             value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}"
+                                             required="true"
+                                             pt:readonly="readonly"
+                                             styleClass="uk-input ">
+                                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    <f:ajax/>
                                 </h:inputText>
                             </div>
                         </div>
                         <div class="uk-width-1-1 uk-text-right">
                             <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                            <h:commandButton styleClass="uk-button uk-button-primary" value="Agregar">
+                            <h:commandButton styleClass="uk-button uk-button-danger" value="Eliminar">
                                 <f:ajax execute="@form" listener="#{ciclosEscolaresControlador.eliminaCicloEscolar}" render="tabla-ciclos-escolares" onevent="function exit(){
-                                UIkit.modal(document.getElementById('modal-CicloEscolar')).hide();
+                                UIkit.modal(document.getElementById('modal-eliminaCicloEscolar')).hide();
                             }"/>
                             </h:commandButton>
                         </div>
