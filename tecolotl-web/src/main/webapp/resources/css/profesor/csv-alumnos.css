@@ -297,3 +297,16 @@ table input[type="text"]{
     border: solid 3px #00a8ec;
     overflow: hidden;
 }
+
+.uk-margin > div > div:nth-child(8) > div > span{
+    font-weight: bold;
+    position: absolute;
+    left: 34%;
+    top: 3%;
+    font-size: 22px;
+    color: white;
+}
+
+.uk-margin > div > div:nth-child(8) > div{
+    position: relative;
+}
