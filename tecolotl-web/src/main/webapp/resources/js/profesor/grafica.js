@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 });
 function datosGrupo() {
     console.log("invocada");
-    var alumno = [],idalumno = [] , grupos = [],nivel2=[],clases = [] ;
+    var alumno = [],idalumno = [] , grupos = [],nivel2=[],clases = [],nivelAlumnoIngles=[] ;
     var tabla = document.querySelectorAll('table[class*=tabla-profesor-dropdown] tbody tr');
     var datosAlumnos = document.querySelector('#graficas ');
     var listaDatos = datosAlumnos.querySelectorAll('div');
@@ -49,7 +49,7 @@ function datosGrupo() {
 
     listaDatos.forEach(function (datos) {
        var algo = datos.querySelectorAll("span");
-       var letras = new GraficaAlumno(algo[0].innerText,algo[1].innerText,algo[2].innerText,algo[3].innerText,algo[4].innerText);
+       var letras = new GraficaAlumno(algo[0].innerText,algo[1].innerText,algo[2].innerText,algo[3].innerText,algo[4].innerText,algo[5].innerText);
        alumno.push(letras);
     });
 
@@ -63,6 +63,7 @@ function datosGrupo() {
         if (!grupos.includes(persona.idGrupo)){
             grupos.push(persona.idGrupo);
         }
+
     });
     tabla.forEach(function (table) {
         var grado = table.querySelector('td:first-child').innerText;
@@ -76,7 +77,7 @@ function datosGrupo() {
    grupos.forEach(function (value, index) {
        var graficas = [];
        alumno.filter(person => person.idGrupo.localeCompare(grupos[index]) === 0).forEach(function (grafica) {
-                var persona = new DatosGrafica(grafica.idAlumo,grafica.nombreCompleto,grafica.totalTareas,grafica.nivelLenjuaje,grafica.idGrupo);
+                var persona = new DatosGrafica(grafica.idAlumo,grafica.nombreCompleto,grafica.totalTareas,grafica.nivelLenjuaje,grafica.idGrupo,grafica.nivelLenguajeAlumno);
                 graficas.push(persona);
        });
        crearGrafica(graficas,clases);
@@ -143,16 +144,59 @@ function crearGrafica(datosGrupo,claseGrupo) {
         var porcentajeAlumno = document.createElement('span');
         var estiloNombreAlumno = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
+        // var nivelAlumno = (sujeto[0].personaNivel !== "" ? sujeto[0].personaNivel : 'N/A');
+        var nivelAlumno ;
+
+        switch(parseInt(sujeto[0].personaNivelIngles)) {
+            case 1 :{
+                nivelAlumno = 'A1';
+            }
+            break;
+            case 2 :{
+                nivelAlumno = 'A2';
+            }
+                break;
+            case 3 :{
+                nivelAlumno = 'B1';
+            }
+                break;
+            case 4 :{
+                nivelAlumno = 'B2';
+            }
+                break;
+            case 5 :{
+                nivelAlumno = 'C1';
+            }
+                break;
+            case 6 :{
+                nivelAlumno = 'C2';
+            }
+                break;
+        }
+
+        // var nivelesAlumno = [];
+
+        // sujeto.forEach(function (alguien,index) {
+        //     if(!nivel[index].includes(alguien.personaNivel)){
+        //         nivelesAlumno.push(alguien.personaNivel);
+        //     }
+        //    nivelesAlumno.push(alguien.personaNivel);
+        // });
+
+
         // console.log(sujeto);
+        // console.log(nivelesAlumno);
         estiloNombreAlumno.innerHTML = sujeto[0].personaNombre;
         nombreAlumno.appendChild(estiloNombreAlumno);
         alumnoGrupo.appendChild(nombreAlumno);
+
 
         nivel.forEach(function (lenguajeNivel) {
             var barraNivel = document.createElement('progress');
             // console.log(sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0));
             var cantidadTarea = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0);
             var nivelPersona = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0);
+
             barraNivel.setAttribute('max','18');
             barraNivel.setAttribute('value',cantidadTarea);
             alumnoGrupo.appendChild(barraNivel);
@@ -182,7 +226,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
             levelGrafic = nivel[5];
         }
         porcentajeTotal =  Math.round((porcentajeTotal * 100)/(18*6));
-        porcentajeAlumno.innerText = levelGrafic + ":"+ " \u00A0 \u00A0"  + porcentajeNivel + '%' + " \u00A0 \u00A0" + "Total:" + "\u00A0 \u00A0" + porcentajeTotal + '%';
+        porcentajeAlumno.innerText = nivelAlumno + ":"+ " \u00A0 \u00A0"  + porcentajeNivel + '%' + " \u00A0 \u00A0" + "Total:" + "\u00A0 \u00A0" + porcentajeTotal + '%';
         nombreAlumno.appendChild(porcentajeAlumno);
         grupo.appendChild(alumnoGrupo);
         canvasGrafica.appendChild(grupo);
@@ -190,20 +234,22 @@ function crearGrafica(datosGrupo,claseGrupo) {
 }
 
 
-function GraficaAlumno(idGrupo,idAlumno,nombreCompleto,totalTareas,nivelLenguaje) {
+function GraficaAlumno(idGrupo,idAlumno,nombreCompleto,totalTareas,nivelLenguaje,nivelLenguajeAlumno) {
     this.idGrupo = idGrupo;
     this.idAlumo = idAlumno;
     this.nombreCompleto = nombreCompleto;
     this.totalTareas = totalTareas;
     this.nivelLenjuaje = nivelLenguaje;
+    this.nivelLenguajeAlumno = nivelLenguajeAlumno
 }
 
-function DatosGrafica(personaId,personaNombre,tareasNivel,personaNivel,personaGrupo) {
+function DatosGrafica(personaId,personaNombre,tareasNivel,personaNivel,personaGrupo,personaNivelIngles) {
     this.personaId = personaId;
     this.personaNombre = personaNombre;
     this.tareasNivel = parseInt(tareasNivel);
     this.personaNivel = personaNivel;
     this.personaGrupo = personaGrupo;
+    this.personaNivelIngles = personaNivelIngles;
 }
 
 function DatosGrupo(grado,grupo,idGrup){
