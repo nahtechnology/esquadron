@@ -334,10 +334,33 @@ iframe {
  padding-right:80px;
 }
 
- .color1::-webkit-progress-value {
+.rojo::-webkit-progress-value{
+    background-color: red !important;
+    transition: width 0.6s ease;
+}
+.rojo::-moz-progress-bar{
+    background-color: red !important;
+}
+.rojo::-ms-fill{
+    background-color: var(--naranja-primary-color) !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.amarillo{
+
+}
+
+.verde{
+
+}
+
+.color1::-webkit-progress-value {
     background-color: var(--naranja-primary-color) !important;
     transition: width 0.6s ease;
 }
+
  .color1::-moz-progress-bar {
     background-color: var(--naranja-primary-color) !important;
 }
