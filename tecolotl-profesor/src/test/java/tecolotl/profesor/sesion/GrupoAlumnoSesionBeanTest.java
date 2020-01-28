@@ -249,7 +249,7 @@ public class GrupoAlumnoSesionBeanTest {
     }
 
     @Test public void buscaAlumnoNivel() {
-        List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(Arrays.asList(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209")));
+        List<AlumnoTareasNivelModelo> alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(Arrays.asList(UUID.fromString("290471d9-f654-4442-b9ed-a4ea1b5ed401")));
         Assert.assertNotNull(alumnoTareasNivelModeloLista);
         Assert.assertFalse(alumnoTareasNivelModeloLista.isEmpty());
         for (AlumnoTareasNivelModelo alumnoTareasNivelModelo : alumnoTareasNivelModeloLista) {

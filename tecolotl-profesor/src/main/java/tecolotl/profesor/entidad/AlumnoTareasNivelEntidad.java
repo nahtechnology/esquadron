@@ -28,6 +28,7 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     private UUID idGrupo;
     private UUID idAlumno;
+    private Short nivelLenguajeAlumno;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -38,9 +39,10 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     public AlumnoTareasNivelEntidad() {
     }
 
-    public AlumnoTareasNivelEntidad(UUID idGrupo, UUID idAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, UUID idTarea, Integer totalTareas, String nivelLenguaje) {
+    public AlumnoTareasNivelEntidad(UUID idGrupo, UUID idAlumno, Short nivelLenguajeAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, UUID idTarea, Integer totalTareas, String nivelLenguaje) {
         this.idGrupo = idGrupo;
         this.idAlumno = idAlumno;
+        this.nivelLenguajeAlumno = nivelLenguajeAlumno;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
@@ -129,6 +131,16 @@ public class AlumnoTareasNivelEntidad implements Serializable {
         this.nivelLenguaje = nivelLenguaje;
     }
 
+    @Id
+    @Column(name = "nivel_lenguaje_alumno")
+    public Short getNivelLenguajeAlumno() {
+        return nivelLenguajeAlumno;
+    }
+
+    public void setNivelLenguajeAlumno(Short nivelLenguajeAlumno) {
+        this.nivelLenguajeAlumno = nivelLenguajeAlumno;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -136,6 +148,7 @@ public class AlumnoTareasNivelEntidad implements Serializable {
         AlumnoTareasNivelEntidad that = (AlumnoTareasNivelEntidad) o;
         return idGrupo.equals(that.idGrupo) &&
                 idAlumno.equals(that.idAlumno) &&
+                nivelLenguajeAlumno.equals(that.nivelLenguajeAlumno) &&
                 nombre.equals(that.nombre) &&
                 apellidoPaterno.equals(that.apellidoPaterno) &&
                 apellidoMaterno.equals(that.apellidoMaterno) &&
@@ -145,14 +158,20 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idGrupo, idAlumno, nombre, apellidoPaterno, apellidoMaterno, totalTareas, nivelLenguaje);
+        return Objects.hash(idGrupo, idAlumno, nivelLenguajeAlumno, nombre, apellidoPaterno, apellidoMaterno, totalTareas, nivelLenguaje);
     }
+
 
     @Override
     public String toString() {
         return new StringJoiner(", ", AlumnoTareasNivelEntidad.class.getSimpleName() + "[", "]")
                 .add("idGrupo=" + idGrupo)
                 .add("idAlumno=" + idAlumno)
+                .add("nivelLenguajeAlumno=" + nivelLenguajeAlumno)
+                .add("nombre='" + nombre + "'")
+                .add("apellidoPaterno='" + apellidoPaterno + "'")
+                .add("apellidoMaterno='" + apellidoMaterno + "'")
+                .add("idTarea=" + idTarea)
                 .add("totalTareas=" + totalTareas)
                 .add("nivelLenguaje='" + nivelLenguaje + "'")
                 .toString();

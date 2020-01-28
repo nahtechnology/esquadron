@@ -93,12 +93,13 @@ public class GrupoAlumnoSesionBean {
             AlumnoTareasNivelModelo alumnoTareasNivelModelo = new AlumnoTareasNivelModelo();
             alumnoTareasNivelModelo.setIdGrupo(UUID.fromString((String) objects[0]));
             alumnoTareasNivelModelo.setIdAlumno(UUID.fromString((String)objects[1]));
-            alumnoTareasNivelModelo.setNombre((String)objects[2]);
-            alumnoTareasNivelModelo.setApellidoPaterno((String)objects[3]);
-            alumnoTareasNivelModelo.setApellidoMaterno((String)objects[4]);
-            alumnoTareasNivelModelo.setIdTarea(objects[5] == null ? null : UUID.fromString((String)objects[5]));
-            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[6]);
-            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[7]);
+            alumnoTareasNivelModelo.setNivelLenguajeAlumno((Short)objects[2]);
+            alumnoTareasNivelModelo.setNombre((String)objects[3]);
+            alumnoTareasNivelModelo.setApellidoPaterno((String)objects[4]);
+            alumnoTareasNivelModelo.setApellidoMaterno((String)objects[5]);
+            alumnoTareasNivelModelo.setIdTarea(objects[6] == null ? null : UUID.fromString((String)objects[6]));
+            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[7]);
+            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[8]);
             alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);
         }
         return alumnoTareasNivelModeloLista;
