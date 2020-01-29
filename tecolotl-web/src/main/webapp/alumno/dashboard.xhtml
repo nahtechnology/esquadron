@@ -152,8 +152,7 @@
                                     <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total ne 0}">
                                         <p class="uk-text-capitalize">#{alumno['more.activity.title.matching.words']}</p>
                                         <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
-                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionRelacionarImagen gt 25)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionRelacionarImagen}"/>
-                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionRelacionarImagen le  25)   }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionRelacionarImagen eq -1 ? 'sin responder' : '25'}"/>
+                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionRelacionarImagen eq -1 ? 'sin responder' : calificacion.calificacionRelacionarImagen }"/>
                                         </ui:repeat>
                                         <ui:remove> <h:outputText  value="#{alumno['dashboard.score']}: #{tareasProgresoControlador.idTarea}"/> </ui:remove>
                                     </h:panelGroup>
@@ -175,8 +174,7 @@
                                     <h:panelGroup layout="block" styleClass="uk-transition-fade uuk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total ne 0}">
                                         <p class="uk-text-capitalize">#{alumno['activities.title.comple.all.sentences']}</p>
                                         <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
-                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionCompletar gt 25)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionCompletar}"/>
-                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionCompletar le  25)   }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionCompletar eq -1 ? 'sin responder' : '25'}"/>
+                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionCompletar eq -1 ? 'sin responder' : calificacion.calificacionCompletar }"/>
                                         </ui:repeat>
                                     </h:panelGroup>
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total ne 0}">
@@ -197,8 +195,7 @@
                                     <h:panelGroup layout="block" styleClass="uk-transition-fade  uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
                                         <p class="uk-text-capitalize">#{alumno['activities.title.order.words']}</p>
                                         <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
-                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionGramatica gt 25)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionGramatica}"/>
-                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionGramatica le  25)   }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionGramatica eq -1 ? 'sin responder' : '25'}"/>
+                                            <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionGramatica eq -1 ? 'sin responder' : calificacion.calificacionGramatica}"/>
                                         </ui:repeat>
                                     </h:panelGroup>
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
@@ -219,8 +216,7 @@
                                             <h:panelGroup layout="block" styleClass="uk-transition-fade  uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
                                                 <p class="uk-text-capitalize">#{alumno['for.all.views.mind.map']}</p>
                                                 <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
-                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionMapamental gt 25)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionMapamental}"/>
-                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionMapamental le  25)   }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionMapamental eq -1 ? 'sin responder' : '25'}"/>
+                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionMapamental eq -1 ? 'sin responder' : calificacion.calificacionMapamental}"/>
                                                 </ui:repeat>
                                             </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
@@ -240,8 +236,7 @@
                                             <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
                                                 <p class="uk-text-capitalize">#{alumno['activities.title.order.sentences']}</p>
                                                 <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
-                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionOraciones gt 25)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionOraciones}"/>
-                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionOraciones le  25)   }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionOraciones eq -1 ? 'sin responder' : '25'}"/>
+                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionOraciones eq -1 ? 'sin responder' : calificacion.calificacionOraciones}"/>
                                                 </ui:repeat>
                                             </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
@@ -261,8 +256,7 @@
                                             <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">
                                                 <p class="uk-text-capitalize">#{alumno['activities.bar.icon.match']}</p>
                                                 <ui:repeat value="#{tareasProgresoControlador.tareaAlumnoModeloLista}" var="calificacion">
-                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionRelacionarOraciones gt 25)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionRelacionarOraciones}"/>
-                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea) and (calificacion.calificacionRelacionarOraciones le  25)   }" value="#{alumno['dashboard.score']}: #{calificacion.calificacionRelacionarOraciones eq -1 ? 'sin responder' : '25'}"/>
+                                                    <h:outputText rendered="#{(calificacion.id eq tareasProgresoControlador.idTarea)   }" value="#{alumno['dashboard.score']}: #{ calificacion.calificacionRelacionarOraciones eq -1 ? 'sin responder' : calificacion.calificacionRelacionarOraciones}"/>
                                                 </ui:repeat>
                                             </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">
