@@ -270,12 +270,15 @@
                             <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">#{administracion['schooldetail.licenses']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
+                                    <ui:remove>
                                     <h:commandLink styleClass="uk-icon-button  uk-icon">
                                         <f:ajax render="formulario-licencia formulario-paginacion-licencia" listener="#{licenciasControlador.inserta}"/>
                                         <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"
                                                       styleClass="uk-text-primary"
                                                       pt:uk-tooltip="title:#{administracion['schooldetail.lisense.tooltip.add']}; delay:2000; pos: top"/>
                                     </h:commandLink>
+                                    </ui:remove>
+                                    <a href="#" class="uk-icon-link" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-licencia" uk-tooltip="title:#{administracion['schooldetail.lisense.tooltip.add']}; pos: left; delay: 2000"/>
                                 </h:form>
                             </div>
                         </div>
@@ -509,9 +512,9 @@
                 </h:form>
             </div>
         </h:panelGroup>
-        <h:panelGroup layout="block" id="modal-modificar-licencia" pt:uk-modal="">
+        <h:panelGroup layout="block" id="modal-licencia" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <h:form id="formulario-modifica-licencia" styleClass="uk-form-stacked">
+                <h:form id="formulario-modal-licencia" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold">
                             <h:outputFormat styleClass="letra-titulo primera-mayuscula" value="#{administracion['schooldetail.modal.updatelicense.title']}" style="display: block">
@@ -519,8 +522,8 @@
                             </h:outputFormat>
                         </p>
                     </div>
-                    <div class="uk-modal-body uk-flex uk-flex-center">
-
+                    <div class="uk-modal-body">
+                        <h:inputText value="#{licenciasControlador.licenciaModelo.inicio}"/>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
