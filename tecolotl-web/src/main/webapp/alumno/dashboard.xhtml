@@ -158,7 +158,7 @@
                                     </h:panelGroup>
                                    <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total ne 0}">
                                        <span>0%</span>
-                                       <progress class="uk-progress color1" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/>
+                                       <progress class="uk-progress rojo" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/>
                                        <span>100%</span>
                                    </h:panelGroup>
                                 </div>
@@ -283,7 +283,9 @@
                 var linkVideo = "https://www.youtube.com/embed/";
                 var linkImagen = "https://i.ytimg.com/vi/";
                 var botones = document.querySelectorAll('.formulario-tareas-progreso  tbody > tr > td > input[type=radio]');
+
                 var boton = document.querySelector('.formulario-tareas-progreso  tbody > tr > td:first-child > input[type=radio]');
+
                 boton.click();
                 var idVideos = document.querySelectorAll('.formulario-tareas-progreso  tbody > tr > td > label');
                 idVideos.forEach(function (id) {
@@ -330,3 +332,4 @@
 
 </ui:composition>
 </html>
+

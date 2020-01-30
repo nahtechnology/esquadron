@@ -342,18 +342,42 @@ iframe {
     background-color: red !important;
 }
 .rojo::-ms-fill{
-    background-color: var(--naranja-primary-color) !important;
+    background-color: red !important;
     transition: width 0.6s ease;
     /* 1 */
     border: 0;
 }
 
-.amarillo{
-
+.amarillo::-webkit-progress-value {
+    background-color: yellow !important;
+    transition: width 0.6s ease;
 }
 
-.verde{
+.amarillo::-moz-progress-bar{
+    background-color: yellow !important;
+}
 
+.amarillo::-ms-fill{
+    background-color: yellow !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
+}
+
+.verde::-webkit-progress-value {
+    background-color: green !important;
+    transition: width 0.6s ease;
+}
+
+.verde::-moz-progress-bar{
+    background-color: green !important;
+}
+
+.verde::-ms-fill{
+    background-color: green !important;
+    transition: width 0.6s ease;
+    /* 1 */
+    border: 0;
 }
 
 .color1::-webkit-progress-value {
