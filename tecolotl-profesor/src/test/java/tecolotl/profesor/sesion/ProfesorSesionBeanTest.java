@@ -255,7 +255,7 @@ public class ProfesorSesionBeanTest {
 
     @Test
     public void buscaApodo() {
-        ProfesorModelo profesorModelo = profesorSesionBean.busca("El Juanito");
+        ProfesorModelo profesorModelo = profesorSesionBean.busca("El Juanito", true);
         Assert.assertNotNull(profesorModelo);
         Assert.assertNotNull(profesorModelo.getId());
         Assert.assertNotNull(profesorModelo.getNombre());

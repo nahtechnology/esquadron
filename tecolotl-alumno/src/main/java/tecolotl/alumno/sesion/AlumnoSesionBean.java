@@ -43,9 +43,9 @@ public class AlumnoSesionBean implements Serializable {
      * @param apodo Apodo a ser buscado
      * @return
      */
-    public AlumnoModelo busca(@NotNull @Size String apodo) {
+    public AlumnoModelo busca(@NotNull @Size String apodo, boolean galaxia) {
         TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscaApodo", AlumnoEntidad.class);
-        typedQuery.setParameter("apodo", apodo);
+        typedQuery.setParameter("apodo", galaxia ? apodo.split(",")[0] : apodo);
         return new AlumnoModelo(typedQuery.getSingleResult());
     }
 
