@@ -224,8 +224,8 @@
                                     <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
                                 </div>
                                 <div class="video-activity">
-                                   <ui:remove><div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal" ></div></ui:remove>
-                                    <iframe  width="100%" height="100%" src="https://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}"
+                                  <ui:remove><div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal" ></div></ui:remove>
+                                    <iframe   id="video-drag" width="100%" height="100%" allowfullscreen="0" src="https://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}"
                                             frameborder="0" class="scrollFinal"></iframe>
                                 </div>
                                 <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
@@ -246,7 +246,7 @@
                                                  rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
                                     <f:ajax listener="#{transcripcionControlador.enviaRespuestas}"
                                             execute="@form"
-                                            onevent="function funcion(data) { transcripcionEnvidad(data); }"
+                                            onevent="function funcion(data) { transcripcionEnvidad(data);}"
                                             render="@form"/>
                                 </h:commandButton>
                             </h:form>
@@ -256,6 +256,7 @@
             </div>
         </div>
         <script type="application/javascript">
+
             var videoPlayer = document.querySelectorAll('.scrollFinal');
             var objDiv = document.getElementById('scrollTranscript');
             var player = [];
@@ -273,7 +274,8 @@
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
             document.querySelector('.transcrip > div:nth-child(2) > div:first-child > span').addEventListener('click',reproducir);
-
+            var contenedorTranscripVideo = document.querySelector("[uk-filter-control='.answer']");
+            contenedorTranscripVideo.addEventListener('click',botonPlay);
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
                     console.log(video.dataset.video);
@@ -296,7 +298,6 @@
 
             var done = false;
             function onPlayerStateChange(event) {
-
                 switch (event.data) {
                     case 0:{
                         var contenedorVideo =  document.querySelector('.scrollFinal');
@@ -351,6 +352,13 @@
                 logo.classList.toggle('visibilidad');
                 barra.classList.toggle('visibilidad');
                 player[0].playVideo();
+            }
+            
+            function  botonPlay() {
+                let boton = document.querySelector('.video-activity');
+                var video = boton.querySelector('#video-drag');
+
+                console.log(video.src);
             }
         </script>
         <script type="text/javascript">
@@ -440,6 +448,8 @@
                 }
             }
         </script>
+        
+        
         <h:outputScript library="js" name="alumno/transcripcion.js"/>
 <!--        <h:outputScript library="js" name="alumno/activity.js"/>-->
     </ui:define>
