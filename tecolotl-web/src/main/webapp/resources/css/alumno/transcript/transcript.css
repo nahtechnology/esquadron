@@ -12,6 +12,19 @@
     /*font-weight: bold;*/
 
 }
+.finalVideo{
+    background: url("#{resource['img/esquadron.svg']}") no-repeat top left/90px,url("#{resource['img/esquadron.svg']}") no-repeat bottom right/90px;
+    background-color: #2E0239 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.visibilidad{
+    display: none;
+}
+.transcrip > div:nth-child(2) > div:first-child > span{
+    cursor: pointer;
+}
 .letra-perdonaje{
     color: #5F8DD3;
     font-weight: bold;
@@ -69,7 +82,12 @@
 .transcrip-contenedor p{
     width: 100%;
 }
-
+span[uk-icon*="youtube"]:hover {
+    fill: red;
+}
+span[uk-icon*="youtube"] {
+    fill: white;
+}
 
 ul{
     list-style: none;

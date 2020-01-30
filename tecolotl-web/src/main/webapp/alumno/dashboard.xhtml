@@ -274,6 +274,7 @@
         </div>
 
         <script type="application/javascript">
+            var tiempo;
             document.addEventListener("DOMContentLoaded", radio);
             function radio() {
                 var contenedorVideo = document.querySelector('#video-actividad');
@@ -309,11 +310,23 @@
                         var linkCompleto = linkImagen.concat(videos[index].trim());
                          imagen.setAttribute('src',linkCompleto.concat('/mqdefault.jpg'));
                         contenedorVideo.appendChild(imagen);
+                        tiempo = setTimeout(puntaje,1500);
                     });
                 });
 
+                setTimeout(boton.click(),2000);
+
             }
+
+            function puntaje() {
+                console.log('puntaje');
+                var escore = document.querySelectorAll('.califica');
+                console.log(escore);
+                clearTimeout(tiempo);
+            }
+
         </script>
     </ui:define>
+
 </ui:composition>
 </html>
