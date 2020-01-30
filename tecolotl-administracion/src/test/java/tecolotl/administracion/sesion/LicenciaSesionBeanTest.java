@@ -102,8 +102,9 @@ public class LicenciaSesionBeanTest {
 
     @Test
     public void actualiza() {
-        LicenciaModelo licenciaModelo = new LicenciaModelo((short)1, "0000000000");
+        LicenciaModelo licenciaModelo = new LicenciaModelo((short)0, "21PES0490M");
         licenciaModelo.setInicio(new Date());
+        licenciaModelo.setAlumnos((short)48);
         int modificados = licenciaSesionBean.actualiza(licenciaModelo);
         Assert.assertFalse(modificados == 0);
     }

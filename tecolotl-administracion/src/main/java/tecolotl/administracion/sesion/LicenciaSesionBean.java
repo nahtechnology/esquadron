@@ -119,6 +119,7 @@ public class LicenciaSesionBean implements Serializable {
 		CriteriaUpdate<LicenciaEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(LicenciaEntidad.class);
 		Root<LicenciaEntidad> root = criteriaUpdate.from(LicenciaEntidad.class);
 		criteriaUpdate.set(root.get("inicio"), licenciaModelo.getInicio());
+		criteriaUpdate.set(root.get("alumnos"), licenciaModelo.getAlumnos());
 		criteriaUpdate.where(criteriaBuilder.equal(root.get("licenciaEntidadPk"), creaLlave(licenciaModelo)));
 		return entityManager.createQuery(criteriaUpdate).executeUpdate();
 	}
