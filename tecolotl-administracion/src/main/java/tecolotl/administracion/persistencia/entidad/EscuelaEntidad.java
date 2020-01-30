@@ -25,17 +25,21 @@ import java.util.StringJoiner;
 		query = "SELECT NEW EscuelaEntidad(e.claveCentroTrabajo, e.nombre) FROM EscuelaEntidad e"),
 	@NamedQuery(
 		name = "EscuelaEntidad.cuentaEscuela",
-		query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e")
+		query = "SELECT COUNT(e.claveCentroTrabajo) FROM EscuelaEntidad e"),
+	@NamedQuery(
+		name = "EscuelaEntidad.buscaGalaxia",
+		query = "SELECT new EscuelaEntidad (e.claveCentroTrabajo, e.galaxia) FROM EscuelaEntidad e")
 })
 public class EscuelaEntidad {
 
     private String claveCentroTrabajo;
-    private ColoniaEntidad coloniaEntidad;
-    private MotivoBloqueoEntidad motivoBloqueoEntidad;
     private String nombre;
 	private String domicilio;
 	private String numeroInterior;
 	private String numeroExterior;
+	private Integer galaxia;
+	private ColoniaEntidad coloniaEntidad;
+	private MotivoBloqueoEntidad motivoBloqueoEntidad;
 	private List<ContactoEntidad> contactoEntidadLista;
 
 	public EscuelaEntidad() {
@@ -48,6 +52,11 @@ public class EscuelaEntidad {
 	public EscuelaEntidad(String claveCentroTrabajo, String nombre) {
 		this.claveCentroTrabajo = claveCentroTrabajo;
 		this.nombre = nombre;
+	}
+
+	public EscuelaEntidad(String claveCentroTrabajo, Integer galaxia) {
+		this.claveCentroTrabajo = claveCentroTrabajo;
+		this.galaxia = galaxia;
 	}
 
 	@Id
@@ -127,6 +136,16 @@ public class EscuelaEntidad {
 
 	public void setNumeroExterior(String numeroExterior) {
 		this.numeroExterior = numeroExterior;
+	}
+
+	@Basic
+	@Column(name = "galaxia")
+	public Integer getGalaxia() {
+		return galaxia;
+	}
+
+	public void setGalaxia(Integer galaxia) {
+		this.galaxia = galaxia;
 	}
 
 	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad", fetch = FetchType.LAZY)
