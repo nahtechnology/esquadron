@@ -2,19 +2,16 @@ package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
-import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-@XmlRootElement
 public class ActividadModelo {
 
     private String idVideo;
