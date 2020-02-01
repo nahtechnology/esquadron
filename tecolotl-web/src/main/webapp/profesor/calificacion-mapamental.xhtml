@@ -18,10 +18,10 @@
                 <!-- <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
                  <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>-->
                 <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
-                <li><h:link outcome="admin-alumnos" value="Student Administration"/></li>
-                <li><h:link outcome="tablero" value="Student Homework"/></li>
-                <li><h:link outcome="tareas" value="Think-Develop And Share"/></li>
-                <li><span>Rate Think-Develop And Share</span></li>
+                <li><h:link outcome="admin-alumnos" value="#{profesor['student.administration.title']}"/></li>
+                <li><h:link outcome="tablero" value="#{profesor['student.homework']}"/></li>
+                <li><h:link outcome="tareas" value="#{profesor['think-develop.and.share']}"/></li>
+                <li><span>Rate #{profesor['think-develop.and.share']}</span></li>
                 <li>
                     <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
                 </li>
@@ -45,7 +45,7 @@
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
        <h:panelGroup layout="block" class="mapa-mental">
 
-            <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Rate Think-Develop And Share</h1></div>
+            <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Rate #{profesor['think-develop.and.share']}</h1></div>
 
             <div class="uk-grid" uk-grid="">
                 <div class="uk-width-1-3@m">
