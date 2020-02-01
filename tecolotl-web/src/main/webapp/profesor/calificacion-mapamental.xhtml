@@ -62,29 +62,29 @@
                                     <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
                                 </div>
                                 <div class="uk-width-1-1@s">
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname: </span>#{profesorControlador.profesorModelo.apodo}</p>
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
-                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
+                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.nickname']} : </span>#{profesorControlador.profesorModelo.apodo}</p>
+                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.mail']}: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+<!--                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>-->
                                 </div>
                             </div>
                         </div>
                         <div class="uk-card-body padding-card-body">
-                            <h3 class="uk-text-uppercase uk-text-bold ">grupo</h3>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
+                            <h3 class="uk-text-uppercase uk-text-bold ">#{profesor['evaluate.developandshare.group']}</h3>
+                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.grade']}: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
+                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.group']}: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
                         </div>
                     </div>
                 </div>
                 <div class="boton-regresa uk-width-2-3@m">
-                    <h:button styleClass="boton-maestro-base" value="regresar" outcome="tareas"/>
+                    <h:button styleClass="boton-maestro-base" value="#{boton['back']}" outcome="tareas"/>
                 </div>
             </div>
 
             <h:form id="formulario" styleClass="uk-form-controls uk-grid" pt:uk-grid="" >
                 <h:panelGroup layout="block" styleClass="uk-width-3-4@m uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                     <ui:repeat value="#{calificaMapaMentalControlador.tareaMapaMentalModeloLista}" var="tareaMapaMental">
-                        <div>Pregunta:<br/><span>#{tareaMapaMental.pregunta}</span></div>
-                        <div>Respuesta:<br/><span>#{tareaMapaMental.respuesta}</span></div>
+                        <div>#{etiqueta['question']}:<br/><span>#{tareaMapaMental.pregunta}</span></div>
+                        <div>#{etiqueta['reply']}:<br/><span>#{tareaMapaMental.respuesta}</span></div>
                     </ui:repeat>
                     <h:inputHidden id="tarea" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.idTarea}">
                         <f:converter converterId="tecolotl.web.UUIDConverter"/>
@@ -92,7 +92,7 @@
                     <h:inputHidden id="vuelta" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.vuelta}"/>
                     <h:inputHidden id="cardinalidad" value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.cardinalidad}"/>
                     <div>
-                        <h:outputLabel for="comentario" value="Comentario"/>
+                        <h:outputLabel for="comentario" value="#{etiqueta['commentary']}"/>
                         <h:inputTextarea value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}"
                                          disabled="#{not empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.comentario}"
                                          id="comentario"
@@ -114,7 +114,7 @@
                     <div class="bmap-#{calificaMapaMentalControlador.tareaMapaMentalModeloLista[0].cardinalidad}"></div>
                     <p>Score: <span style="color: red; font-weight: bold"/></p>
                 </div>
-                <h:commandButton value="Calificar"
+                <h:commandButton value="#{boton['evaluate']}"
                                  styleClass="boton-escuadron-base"
                                  rendered="#{empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"
                                  action="#{calificaMapaMentalControlador.califica}" onclick="return validaComentario()"/>
@@ -129,7 +129,7 @@
             rubrica.forEach(function (value,index) {
                 switch (slider[index].value) {
                     case "25":
-                        rubrica[index].innerHTML = "Deficiente";
+                        rubrica[index].innerHTML = "Deficit";
                         score[index].innerHTML = "25";
                         break;
                     case "50":
@@ -137,11 +137,11 @@
                         score[index].innerHTML = "50";
                         break;
                     case "75":
-                        rubrica[index].innerHTML = "Bueno";
+                        rubrica[index].innerHTML = "Good";
                         score[index].innerHTML = "75";
                         break;
                     case "100":
-                        rubrica[index].innerHTML = "Excelente";
+                        rubrica[index].innerHTML = "Excellent";
                         score[index].innerHTML = "100";
                         break;
                     default:
@@ -154,7 +154,7 @@
 
                     switch (this.value) {
                         case "25":
-                            rubrica[index].innerHTML = "Deficiente";
+                            rubrica[index].innerHTML = "Deficit";
                             score[index].innerHTML = "25";
                             break;
                         case "50":
@@ -162,11 +162,11 @@
                             score[index].innerHTML = "50";
                             break;
                         case "75":
-                            rubrica[index].innerHTML = "Bueno";
+                            rubrica[index].innerHTML = "Good";
                             score[index].innerHTML = "75";
                             break;
                         case "100":
-                            rubrica[index].innerHTML = "Excelente";
+                            rubrica[index].innerHTML = "Excellent";
                             score[index].innerHTML = "100";
                             break;
                     }
