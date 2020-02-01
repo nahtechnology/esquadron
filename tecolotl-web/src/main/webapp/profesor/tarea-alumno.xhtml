@@ -44,13 +44,13 @@
         <h:outputStylesheet library="css" name="graficas.css"/>
         <h:outputStylesheet library="css" name="/profesor/tarea-alumno.css"/>
 
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Student Homework</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
         <!--CARDS WRAPPER-->
         <section class="uk-section uk-section-default uk-section-default uk-padding-remove-top " data-uk-filter="target: .js-filter">
             <div class="uk-container uk-container-expand">
                 <ul class="uk-subnav uk-margin-top nav-default-profesor2 uk-subnav-alumno2">
-                    <li class="uk-active" data-uk-filter-control=".actividad-card"><a href="#">Actividad/Alumno</a></li>
+                    <li class="uk-active" data-uk-filter-control=".actividad-card"><a href="#">#{profesor['tareas.alumno.title.description']}</a></li>
                     <!--<li data-uk-filter-control=".tarea-card"><a href="#">Tareas</a></li>
                     <li data-uk-filter-control=".nivel-card "><a href="#">Asignación de nivel</a></li>-->
                 </ul>
@@ -68,16 +68,15 @@
                                         </h3>
                                     </div>
                                     <div class="uk-width-1-1@s">
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Apodo:</span> #{profesorGrupoControlador.alumnoModelo.apodo}</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Nivel de Lenguaje:</span> #{profesorGrupoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
-                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-primary">Editar Perfil:</span></p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">#{profesor['tareas.alumno.nickname']}:</span> #{profesorGrupoControlador.alumnoModelo.apodo}</p>
+                                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">#{profesor['tareas.alumno.level']}:</span> #{profesorGrupoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="uk-card-body padding-card-body">
                                 <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grado:</span> #{profesorGrupoControlador.grupoModelo.grado}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">Grupo:</span> #{profesorGrupoControlador.grupoModelo.grupo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">#{profesor['tareas.alumno.grade']}:</span> #{profesorGrupoControlador.grupoModelo.grado}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">#{profesor['tareas.alumno.group']}:</span> #{profesorGrupoControlador.grupoModelo.grupo}</p>
                             </div>
                         </div>
                     </div>
@@ -88,7 +87,7 @@
                 <!--CARDS WRAPPER-->
                 <h:panelGroup layout="block" styleClass="uk-margin uk-grid uk-child-width-1-1@m">
                     <div>
-                        <div class="titulo-section uk-text-center uk-text-bold">Filtros</div>
+                        <div class="titulo-section uk-text-center uk-text-bold">#{profesor['tareas.alumno.title.table']}</div>
                     </div>
                 </h:panelGroup>
                 <div class="js-filter" data-uk-sortable="handle: .drag-icon">
@@ -130,17 +129,17 @@
                                                  rowClasses="tdPrimario"
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">tarea</span></f:facet>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.homework']}</span></f:facet>
                                             <img class="img-previa" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg"/>
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">asignacion</span></f:facet>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.assigned']}</span></f:facet>
                                             <h:outputText value="#{tareaAlumno.fechaAsignacion}">
                                                 <f:convertDateTime pattern="dd-MM-yyyy"/>
                                             </h:outputText>
                                         </h:column>
                                         <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">transcript</span></f:facet>
+                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.transcript']}</span></f:facet>
                                             <progress value="#{tareaAlumno.calificacionTrascirpcion}" min="0" max="100"/>
                                         </h:column>
                                         <h:column>
