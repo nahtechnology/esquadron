@@ -30,7 +30,7 @@ public class ProfesorControlador implements Serializable {
     @PostConstruct
     public void inicio() {
         Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-        profesorModelo = profesorSesionBean.busca(principal.getName());
+        profesorModelo = profesorSesionBean.busca(principal.getName(), true);
     }
 
     public String cerrarSesion() throws IOException {

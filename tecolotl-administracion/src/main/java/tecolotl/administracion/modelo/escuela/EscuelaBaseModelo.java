@@ -29,6 +29,8 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     @Size(max = 15, min = 1)
     private String numeroExterior;
 
+    private Integer galaxia;
+
     public EscuelaBaseModelo() {
     }
 
@@ -42,6 +44,7 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
         domicilio = escuelaEntidad.getDomicilio();
         numeroExterior = escuelaEntidad.getNumeroExterior();
         numeroInterior = escuelaEntidad.getNumeroInterior();
+        galaxia = escuelaEntidad.getGalaxia();
     }
 
     @Override
@@ -87,6 +90,14 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
 
     public void setNumeroExterior(String numeroExterior) {
         this.numeroExterior = numeroExterior;
+    }
+
+    public Integer getGalaxia() {
+        return galaxia;
+    }
+
+    public void setGalaxia(Integer galaxia) {
+        this.galaxia = galaxia;
     }
 
     @Override

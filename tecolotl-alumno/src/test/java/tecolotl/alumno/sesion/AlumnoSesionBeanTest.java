@@ -180,7 +180,7 @@ public class AlumnoSesionBeanTest {
 
     @Test
     public void buscaApodo() {
-        AlumnoModelo alumnoModelo = alumnoSesionBean.busca("antonio");
+        AlumnoModelo alumnoModelo = alumnoSesionBean.busca(UUID.fromString("antonio"));
         Assert.assertNotNull(alumnoModelo);
         Assert.assertNotNull(alumnoModelo.getId());
         Assert.assertNotNull(alumnoModelo.getNacimiento());

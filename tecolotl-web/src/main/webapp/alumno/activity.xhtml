@@ -123,8 +123,10 @@
                                 <div uk-dropdown="mode: click">#{alumno['activity.help.message.video']}</div>
                             </div>
                            <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
-                               <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left">
+                               <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left uk-position-relative">
                                    <div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
+                                   <div class="barra-publicidad"></div>
+                                   <span uk-icon="icon: youtube; ratio: 4" class="visibilidad"/>
                                </div>
                                <div id="scrollTranscript" class="uk-width-1-2@m uk-text-justify transcrip-contenedor tam-contenido scroll-alumno letra-guion borde-guion transcripcion">
                                    <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false"/>
@@ -222,7 +224,7 @@
                                     <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
                                 </div>
                                 <div class="video-activity">
-                                   <ui:remove><div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div></ui:remove>
+                                   <ui:remove><div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal" ></div></ui:remove>
                                     <iframe  width="100%" height="100%" src="https://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}"
                                             frameborder="0" class="scrollFinal"></iframe>
                                 </div>
@@ -270,6 +272,7 @@
             tag.src = "https://www.youtube.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            document.querySelector('.transcrip > div:nth-child(2) > div:first-child > span').addEventListener('click',reproducir);
 
             function onYouTubeIframeAPIReady() {
                 videoPlayer.forEach(function (video) {
@@ -295,6 +298,17 @@
             function onPlayerStateChange(event) {
 
                 switch (event.data) {
+                    case 0:{
+                        var contenedorVideo =  document.querySelector('.scrollFinal');
+                        var logo = document.querySelector('.transcrip > div:nth-child(2) > div:first-child > span');
+                        var barra = document.querySelector('.barra-publicidad');
+                        console.log('finalizado');
+                       contenedorVideo.style.display = 'none';
+                       contenedorVideo.parentElement.classList.add('finalVideo');
+                       logo.classList.toggle('visibilidad');
+                       barra.classList.toggle('visibilidad');
+                        break;
+                    }
                     case 1:{
                         console.log("reproduciendo");
                         startCount();
@@ -311,7 +325,7 @@
             function pageScroll() {
                 objDiv.scrollTop = objDiv.scrollTop + 5;
                 // time = setTimeout('pageScroll()', 500); tiempo correcto para los videos
-                time = setTimeout('pageScroll()', 800);
+                time = setTimeout('pageScroll()', 400);
             }
 
             function startCount() {
@@ -326,6 +340,18 @@
                 timer_is_on = 0;
             }
 
+            function reproducir() {
+                console.log('hola');
+                var contenedorVideo =  document.querySelector('.scrollFinal');
+                var logo = document.querySelector('.transcrip > div:nth-child(2) > div:first-child > span');
+                var barra = document.querySelector('.barra-publicidad');
+                console.log('finalizado');
+                contenedorVideo.style.display = 'block';
+                contenedorVideo.parentElement.classList.remove('finalVideo');
+                logo.classList.toggle('visibilidad');
+                barra.classList.toggle('visibilidad');
+                player[0].playVideo();
+            }
         </script>
         <script type="text/javascript">
             document.querySelectorAll('.estilo-contenedor input[type=hidden]').forEach(function (palabra) {
@@ -420,6 +446,8 @@
     <ui:define name="enlaces-js">
         <h:outputScript library="js" name="/alumno/drag-prueba.js"/>
         <h:outputScript library="js" name="/alumno/match-activity.js"/>
+
     </ui:define>
 </ui:composition>
+
 </html>
