@@ -25,7 +25,7 @@ function parrafos(texto) {
      });
      copyRespuesta = respuestas.slice();
      revolver(copyRespuesta).forEach(function (texto,contador) {
-         console.log(texto);
+         // console.log(texto);
          var palabra = document.createElement('span');
          palabra.innerHTML=texto;
          palabra.classList.add('respuesta-drag');
@@ -63,7 +63,7 @@ function calificar() {
 
 
     for (var inicio = 0; inicio < respuestas.length; inicio++){
-        console.log(respuestaAlumno[inicio] + '=' + respuestas[inicio]);
+        // console.log(respuestaAlumno[inicio] + '=' + respuestas[inicio]);
 
         if(respuestaAlumno[inicio] === respuestas[inicio]){
             contador++;
