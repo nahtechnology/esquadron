@@ -18,7 +18,7 @@
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                <!-- <li ><h:link outcome="tablero" value="#{etiqueta['home']}" styleClass="borde-home"/></li>-->
                 <li><h:link outcome="tablero" value="#{etiqueta['home']}"/></li>
-                <li><span>Student Administration</span></li>
+                <li><span>#{profesor['student.administration.title']}</span></li>
             </ul>
 
         <div class="borde-menu2">
@@ -42,7 +42,7 @@
         <h:outputStylesheet library="css" name="nah.css"/>
         <h:outputStylesheet library="css" name="profesor/admin-alumnos.css"/>
         <h:outputStylesheet library="css" name="/profesor/scroll-profesor.css"/>
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Student Administration</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['student.administration.title']}</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
                 <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
@@ -58,28 +58,28 @@
                                 <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
                             </div>
                             <div class="uk-width-1-1@s">
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname: </span>#{profesorControlador.profesorModelo.apodo}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.nickname']} : </span>#{profesorControlador.profesorModelo.apodo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['student.administration.mail']} :</span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+<!--                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>-->
                             </div>
                         </div>
                     </div>
                     <div class="uk-card-body padding-card-body">
-                        <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
-                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
-                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
+                        <h3 class="uk-text-uppercase uk-text-bold">#{profesor['student.administration.group']}</h3>
+                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['student.administration.group']}: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
+                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['student.administration.grade']}: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
                     </div>
                 </div>
             </div>
             <div class="botones uk-width-2-3@m">
-                <h:button styleClass="boton-maestro-base" value="regresar" outcome="tablero"/>
-                <h:button styleClass="boton-escuadron-base" value="agregar" outcome="agregar-csv"/>
-                <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-password">passwords</button>
+                <h:button styleClass="boton-maestro-base" value="#{boton['back']}" outcome="tablero"/>
+                <h:button styleClass="boton-escuadron-base" value="#{boton['add']}" outcome="agregar-csv"/>
+                <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-password">#{boton['passwords']}</button>
                 <button class="boton-escuadron-base reporte"
                         disabled="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista ? 'disabled' : ''}"
                         data-grupo="#{profesorGrupoControlador.grupoModelo.grupo}"
                         data-grado="#{profesorGrupoControlador.grupoModelo.grado}">
-                    reporte
+                    #{boton['report']}
                 </button>
 <!--                <button uk-toggle="target: #modal-nuevo-alumno" class="boton-escuadron-base">agregar</button>-->
             </div>
@@ -88,7 +88,7 @@
         <div class="uk-grid uk-grid-medium uk-margin-large-bottom" data-uk-grid="">
             <!-- tabla alumnos -->
             <div class="uk-width-1-1@s">
-                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo">Alumnos de la clase</h5>
+                <h5 class="uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo">#{profesor['student.administration.title.students.class']}</h5>
                 <h:form id="formulario-tabla-alumno">
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
@@ -100,7 +100,7 @@
                                      columnClasses="uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small,uk-width-small uk-margin-auto"
                                      rowClasses="tdPrimario uk-margin-small">
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">nombre</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['student.administration.colum.name']}</span></f:facet>
                                 <span>${tareaAlumnoGrupoModelo.nombre.concat(' ').concat(tareaAlumnoGrupoModelo.apellidoPaterno).concat(' ').concat(tareaAlumnoGrupoModelo.apellidoMaterno)}</span>
                             </h:column>
                             <h:column>
@@ -147,7 +147,7 @@
                                         <li>
                                             <h:link outcome="detalle-alumno">
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary"/>
-                                                <span class="uk-text-middle uk-text-primary"><h:outputText value="Detalle"/></span>
+                                                <span class="uk-text-middle uk-text-primary"><h:outputText value="#{etiqueta['detail']}"/></span>
                                                 <f:param name="idAlumno" value="#{tareaAlumnoGrupoModelo.id}"/>
                                             </h:link>
                                         </li>
@@ -217,7 +217,7 @@
             <div class="uk-modal-dialog">
                 <button class="uk-modal-close-default" type="button" uk-close=""/>
                 <div class="uk-modal-header header-color-card">
-                    <h2 class="uk-modal-title">Passwords</h2>
+                    <h2 class="uk-modal-title">#{profesor['student.administration.title.passwords']}</h2>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk-modal-body uk-text-center" pt:uk-overflow-auto="" >
                     <ui:repeat value="#{alumnoGrupoControlador.alumnoModeloLista}" var="alumnoModelo" varStatus="conta">
@@ -233,8 +233,8 @@
                 </h:panelGroup>
 
                 <div class="uk-modal-footer uk-text-right">
-                    <button class="boton-escuadron-base-secundary" id="boton" type="button">Descargar</button>
-                    <button class="boton-maestro-base uk-modal-close" type="button">Close</button>
+                    <button class="boton-escuadron-base-secundary" id="boton" type="button">#{boton['download']}</button>
+                    <button class="boton-maestro-base uk-modal-close" type="button">#{boton['cancel']}</button>
                 </div>
             </div>
 

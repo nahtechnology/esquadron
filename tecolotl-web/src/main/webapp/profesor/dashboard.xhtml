@@ -67,7 +67,7 @@
                 </div>
             </div>
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m uk-text-bold uk-flex uk-flex-center uk-flex-middle" rendered="#{empty dashboardProfesorControlador.cicloEscolarModeloLista}">
-               <span class="titulo-section">No hay ciclo escolares asignados o se encuentran inabilitados.</span>
+               <span class="titulo-section">#{profesor['student.administration.error']}</span>
             </h:panelGroup>
             <h:panelGroup layout="block" styleClass="uk-width-2-3@m" rendered="#{not empty dashboardProfesorControlador.cicloEscolarModeloLista}">
                 <h:form id="formulario-grupo" styleClass="uk-form-horizontal">
@@ -116,7 +116,7 @@
                     </h:panelGroup>
                 </h:form>
                 <div class="boton-reporte">
-                    <button id="boton-reporte" class="boton-escuadron-base">Reporte</button>
+                    <button id="boton-reporte" class="boton-escuadron-base">#{boton['report']}</button>
                 </div>
             </h:panelGroup>
         </div>
@@ -133,7 +133,7 @@
 
         </h:panelGroup>
         <div class="uk-flex uk-flex-center">
-            <button class="boton-escuadron-base">Atras</button><button class="boton-escuadron-base uk-margin-medium-left">Siguiente</button>
+            <button class="boton-escuadron-base">#{boton['back']}</button><button class="boton-escuadron-base uk-margin-medium-left">#{boton['next']}</button>
         </div>
         <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom">
             <div class="uk-text-bold uk-margin-remove-bottom titulo-section padding-titulo primera-mayuscula">

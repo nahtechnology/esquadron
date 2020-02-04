@@ -3,10 +3,7 @@ package tecolotl.web.alumno;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
-import tecolotl.alumno.modelo.TareaModelo;
-import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
-import tecolotl.alumno.sesion.GlosarioSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +14,6 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.List;
-import java.util.logging.Logger;
 
 @SessionScoped
 @Named

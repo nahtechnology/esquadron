@@ -158,7 +158,7 @@
                                     </h:panelGroup>
                                    <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total ne 0}">
                                        <span>0%</span>
-                                       <progress class="uk-progress color1" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/>
+                                       <progress class="uk-progress" value="#{tareasProgresoControlador.tareaResuetasModeloLista[0].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[0].total}"/>
                                        <span>100%</span>
                                    </h:panelGroup>
                                 </div>
@@ -179,7 +179,7 @@
                                     </h:panelGroup>
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total ne 0}">
                                         <span>0%</span>
-                                        <progress class="uk-progress color2" value="#{tareasProgresoControlador.tareaResuetasModeloLista[1].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total}"/>
+                                        <progress class="uk-progress" value="#{tareasProgresoControlador.tareaResuetasModeloLista[1].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[1].total}"/>
                                         <span>100%</span>
                                     </h:panelGroup>
                                 </div>
@@ -200,7 +200,7 @@
                                     </h:panelGroup>
                                     <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total ne 0}">
                                         <span>0%</span>
-                                        <progress class="uk-progress color3" value="#{tareasProgresoControlador.tareaResuetasModeloLista[2].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total}"/>
+                                        <progress class="uk-progress" value="#{tareasProgresoControlador.tareaResuetasModeloLista[2].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[2].total}"/>
                                         <span>100%</span>
                                     </h:panelGroup>
                                 </div>
@@ -221,7 +221,7 @@
                                             </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
                                             <span>0%</span>
-                                            <progress class="uk-progress color4" value="#{tareasProgresoControlador.tareaResuetasModeloLista[3].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total}"/>
+                                            <progress class="uk-progress" value="#{tareasProgresoControlador.tareaResuetasModeloLista[3].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total}"/>
                                             <span>100%</span>
                                         </h:panelGroup>
                                     </div>
@@ -241,7 +241,7 @@
                                             </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
                                             <span>0%</span>
-                                            <progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[4].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total}"/>
+                                            <progress class="uk-progress" value="#{tareasProgresoControlador.tareaResuetasModeloLista[4].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total}"/>
                                             <span>100%</span>
                                         </h:panelGroup>
                                     </div>
@@ -261,7 +261,7 @@
                                             </h:panelGroup>
                                         <h:panelGroup styleClass="contenedor-barra" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">
                                             <span>0%</span>
-                                            <progress class="uk-progress color5" value="#{tareasProgresoControlador.tareaResuetasModeloLista[5].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total}"/>
+                                            <progress class="uk-progress" value="#{tareasProgresoControlador.tareaResuetasModeloLista[5].respuesta}" max="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total}"/>
                                             <span>100%</span>
                                         </h:panelGroup>
                                     </div>
@@ -283,7 +283,9 @@
                 var linkVideo = "https://www.youtube.com/embed/";
                 var linkImagen = "https://i.ytimg.com/vi/";
                 var botones = document.querySelectorAll('.formulario-tareas-progreso  tbody > tr > td > input[type=radio]');
+
                 var boton = document.querySelector('.formulario-tareas-progreso  tbody > tr > td:first-child > input[type=radio]');
+
                 boton.click();
                 var idVideos = document.querySelectorAll('.formulario-tareas-progreso  tbody > tr > td > label');
                 idVideos.forEach(function (id) {
@@ -318,10 +320,32 @@
 
             }
 
+
             function puntaje() {
                 console.log('puntaje');
+                var barras = document.querySelectorAll('.padding-contenedor progress');
                 var escore = document.querySelectorAll('.califica');
-                console.log(escore);
+                var nivel = escore[0].innerText.split(':')[1];
+                console.log(barras);
+
+                if(parseInt(nivel) &gt; 0 &amp;&amp; parseInt(nivel) &lt; 25){
+                    barras[3].classList.add("rojo");
+                }
+                else if(parseInt(nivel) &gt; 26 &amp;&amp; parseInt(nivel) &lt; 85){
+                    barras[3].classList.add("amarillo");
+                }
+                else{
+                    barras[3].classList.add("verde");
+                }
+
+
+                escore.forEach(calcula);
+
+                function calcula(asigna, numero, score) {
+                    score[numero] = asigna.innerText;
+                    console.log(score[numero].innerText.split(':')[1]);
+                }
+
                 clearTimeout(tiempo);
             }
 
@@ -330,3 +354,4 @@
 
 </ui:composition>
 </html>
+

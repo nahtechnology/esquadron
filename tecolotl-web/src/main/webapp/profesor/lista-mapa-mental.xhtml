@@ -16,9 +16,9 @@
                 <!-- <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
                  <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>-->
                 <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
-                <li><h:link outcome="admin-alumnos" value="Student Administration"/></li>
+                <li><h:link outcome="admin-alumnos" value="#{profesor['student.administration.title']}"/></li>
                 <li><h:link outcome="tablero" value="Student Homework"/></li>
-                <li><span>Think-Develop And Share</span></li>
+                <li><span>#{profesor['think-develop.and.share']}</span></li>
             </ul>
 
         <div>
@@ -32,7 +32,7 @@
             <div class="uk-offcanvas-bar  ">
                 <button class="uk-offcanvas-close" type="button" uk-close=""/>
                 <ul class="uk-nav  nav-sub-offcanvas ">
-                    <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
+                    <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
                     <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
                 </ul>
             </div>
@@ -43,7 +43,7 @@
         <h:outputStylesheet library="css" name="/profesor/calificacion.css"/>
         <h:outputStylesheet library="css" name="/profesor/mapa-mental.css"/>
 
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Think-Develop And Share</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['think-develop.and.share']}</h1></div>
 
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -60,28 +60,28 @@
                                 <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
                             </div>
                             <div class="uk-width-1-1@s">
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname: </span>#{profesorControlador.profesorModelo.apodo}</p>
-                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.nickname']}: </span>#{profesorControlador.profesorModelo.apodo}</p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.email']}: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
                             </div>
                         </div>
                     </div>
                     <div class="uk-card-body padding-card-body">
-                        <h3 class="uk-text-uppercase uk-text-bold ">grupo</h3>
-                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
-                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
+                        <h3 class="uk-text-uppercase uk-text-bold ">#{profesor['dashboard.group']}</h3>
+                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.table.schoolgrade']}: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
+                        <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.group']}: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
                     </div>
                 </div>
             </div>
             <div class="boton-regresa uk-width-2-3@m">
-                <h:button styleClass="boton-maestro-base" value="regresar" outcome="tablero"/>
+                <h:button styleClass="boton-maestro-base" value="#{boton['back']}" outcome="tablero"/>
             </div>
         </div>
 
         <div class="uk-section">
             <div class="uk-container ">
                 <div>
-                    <div class="titulo-section uk-text-center uk-text-bold uk-margin-bottom">Tareas Mapa Mental Asigandas</div>
+                    <div class="titulo-section uk-text-center uk-text-bold uk-margin-bottom">#{profesor['assignments.mind.map.tasks']}</div>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk- uk-grid uk-child-width-1-2@l" pt:uk-grid="">
                     <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@l uk-child-width-1-2@m" pt:uk-grid="">
@@ -89,7 +89,7 @@
                             <div class="uk-position-relative">
                                 <div class="bmap-#{tareaMapaMental.cardinalidad}">
                                     <h:panelGroup layout="block" styleClass="respondido" rendered="#{tareaMapaMental.totalRespuestas gt 0}">
-                                        <span>Respondido</span>
+                                        <span>#{profesor['finished']}</span>
                                     </h:panelGroup>
                                 </div>
                                 <ui:remove>
@@ -106,7 +106,7 @@
                                 </h:link>
                             </div>
                             <div class="acomodar">
-                                <p class="titulo-section uk-text-center uk-text-bold">Total Respuestas:</p>
+                                <p class="titulo-section uk-text-center uk-text-bold">#{profesor['total.answers']}:</p>
                                 <span>#{tareaMapaMental.totalRespuestas}</span>
                             </div>
                         </ui:repeat>

@@ -14,9 +14,9 @@
 
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
                 <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
-                <li><h:link outcome="admin-alumnos" value="Student Administration"/></li>
+                <li><h:link outcome="admin-alumnos" value="#{profesor['student.administration.title']}"/></li>
                 <li><h:link outcome="tareas" value="Student Homework"/></li>
-                <li><span>Word Game</span></li>
+                <li><span>#{profesor['calificacion.gramatica.title']}</span></li>
             </ul>
 
         <div>
@@ -26,11 +26,11 @@
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
         </div>
         <div id="menu" uk-offcanvas="overlay: true">
-            <div class="uk-offcanvas-bar  ">
+            <div class="uk-offcanvas-bar">
                 <button class="uk-offcanvas-close" type="button" uk-close=""/>
                 <ul class="uk-nav  nav-sub-offcanvas ">
                     <li ><h:link outcome="dashboard-maestro" value="Home" styleClass="letra-color-subnav"/></li>
-                    <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>
+                    <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="#{profesor['calificacion.gramatica.grouo']}"/></li>
                 </ul>
             </div>
         </div>
@@ -38,7 +38,7 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/gramatica.css"/>
 
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">Word Game</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['student.administration.title']}</h1></div>
 
       <div class="uk-grid" uk-grid="">
         <div class="uk-width-1-3@m">
@@ -55,21 +55,20 @@
                             <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
                         </div>
                         <div class="uk-width-1-1@s">
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Nickname: </span>#{profesorControlador.profesorModelo.apodo}</p>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Email: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
-                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>
+                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{etiqueta['logging.nickname']}: </span>#{profesorControlador.profesorModelo.apodo}</p>
+                            <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{etiqueta['correo.electronico']}: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
                         </div>
                     </div>
                 </div>
                 <div class="uk-card-body padding-card-body">
-                    <h3 class="uk-text-uppercase uk-text-bold ">grupo</h3>
-                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grado: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
-                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">Grupo: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
+                    <h3 class="uk-text-uppercase uk-text-bold ">#{profesor['dashboard.group']}</h3>
+                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.group']}: </span>#{profesorGrupoControlador.grupoModelo.grado}</p>
+                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['dashboard.table.schoolgrade']}: </span>#{profesorGrupoControlador.grupoModelo.grupo}</p>
                 </div>
             </div>
         </div>
         <div class="boton-regresa2 uk-width-2-3@m">
-            <h:button styleClass="boton-maestro-base2" value="regresar" outcome="tareas"/>
+            <h:button styleClass="boton-maestro-base2" value="#{boton['back']}" outcome="tareas"/>
         </div>
     </div>
 
@@ -80,10 +79,10 @@
                             <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                                 <div class="uk-width-3-5@m">
                                     <span>#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].palabra}</span>
-                                    <h:inputText styleClass="uk-textarea" disabled="true" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].respuesta}" pt:placeholder="Sin respuesta"/>
+                                    <h:inputText styleClass="uk-textarea" disabled="true" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].respuesta}" pt:placeholder="#{profesor['calificacion.gramatica.not.answer']}"/>
                                 </div>
                                 <div class="uk-width-2-5@m">
-                                    <span/> <span>Score:</span>
+                                    <span/> <span>#{profesor['calificacion.gramatica.score']}:</span>
                                     <h:inputText styleClass="rango" pt:type="range"  pt:min="1" pt:max="4"  pt:step="1" value="#{calificacionGramaticaControlador.gramaticaModeloLista[estatus.index].calificacion}"/>
                                 </div>
                             </h:panelGroup>
@@ -97,11 +96,11 @@
         </div>
         <h:panelGroup layout="block" id="modal-valida-calificacion" pt:uk-modal="">
             <div class="uk-modal-dialog uk-modal-body">
-                <h2 class="uk-modal-title">Tareas incompletas</h2>
-                Al parecer este estudiante no ha terminado de resolver sus todas sus tareas, ¿Está seguro que desea calificar dichos ejercicios?
+                <h2 class="uk-modal-title">#{profesor['calificacion.gramatica.not.homework']}</h2>
+                #{profesor['calificacion.gramatica.message.error']}
                 <p class="uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancelar</button>
-                    <button class="uk-button uk-button-primary" type="button">Aceptar</button>
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
+                    <button class="uk-button uk-button-primary" type="button">#{boton['accept']}</button>
                 </p>
             </div>
         </h:panelGroup>

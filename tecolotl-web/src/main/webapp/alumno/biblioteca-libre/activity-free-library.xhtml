@@ -79,14 +79,16 @@
                     <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
                     <div uk-dropdown="mode: click">Watch the video and fill in the blanks</div>
                 </div>
-                <div class="video-activity">
+                <div class="video-activity uk-position-relative">
                     <div data-video="#{alumnoControlador.actividadModeloBibliotecaLibre.idVideo}" class="scrollFinal"></div>
+                    <div class="barra-publicidad"></div>
+                    <span  uk-icon="icon: youtube; ratio: 4" class="visibilidad"/>
                 </div>
                 <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
                     <h:panelGroup layout="block" styleClass="contenedor-padre-activity" >
                         <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta" pt:cls-no-drag="uk-sortable-nodrag"/>
                     </h:panelGroup>
-                    <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" >
+                    <div id="scrollTranscript" class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" >
                         <h:outputText value="#{actividadBibliotecaLibre.transcripcion}" escape="false" />
                     </div>
                 </h:panelGroup>
@@ -103,11 +105,15 @@
             var videoPlayer = document.querySelectorAll('.scrollFinal');
             var player;
             var totalRespuestasTranscripcion = 0;
+            var timer_is_on = 0;
+            var time;
+            var objDiv = document.getElementById('scrollTranscript');
             var ordenarPalabras = document.querySelector('.order-words');
             var mensajeRestriccion = "#{alumno['title.description.full.request']}";
             var tag = document.createElement('script');
             tag.src = "https://www.youtube.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
+            document.querySelector('.video-activity  > span').addEventListener('click',reproducir);
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
             function onYouTubeIframeAPIReady() {
@@ -131,18 +137,48 @@
 
             var done = false;
             function onPlayerStateChange(event) {
-                if (event.data === YT.PlayerState.PLAYING &amp;&amp; !done) {
-                    console.log('Ocurrio el evento! ');
-                    pageScroll();
-                    done = true;
-                }else {
-                    done = false;
+                switch (event.data) {
+                    case 0: {
+                        var contenedorVideo = document.querySelector('.scrollFinal');
+                        var logo = document.querySelector('.video-activity  > span');
+                        var barra = document.querySelector('.barra-publicidad');
+                        console.log('finalizado');
+                        contenedorVideo.style.display = 'none';
+                        contenedorVideo.parentElement.classList.add('finalVideo');
+                        logo.classList.toggle('visibilidad');
+                        barra.classList.toggle('visibilidad');
+
+                        break;
+                    }
+                    case 1: {
+                        console.log("reproduciendo");
+
+                        break;
+                    }
+                    case 2: {
+                        console.log("pausado");
+                        break;
+                    }
                 }
+
+
+
+
+
             }
-            function pageScroll() {
-                var objDiv = document.getElementById('scrollTranscript');
-                objDiv.scrollTop = objDiv.scrollTop + 1;
-                time = setTimeout('pageScroll()', 500);
+
+            function reproducir(event) {
+                        var contenedorVideo =  document.querySelector('.scrollFinal');
+                        var logo = document.querySelector('.video-activity > span');
+                        var barra = document.querySelector('.barra-publicidad');
+                        contenedorVideo.style.display = 'block';
+                        contenedorVideo.parentElement.classList.remove('finalVideo');
+                        logo.classList.toggle('visibilidad');
+                        barra.classList.toggle('visibilidad');
+                        player.playVideo();
+
+
+
             }
         </script>
         <h:outputScript library="js" name="/alumno/activity-free-library.js"/>

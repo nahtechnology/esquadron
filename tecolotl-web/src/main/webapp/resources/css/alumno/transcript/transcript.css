@@ -128,7 +128,7 @@ ul{
     width: 100%;
     background: url("#{resource['img/esquadron.svg']}") repeat-x center/70px rgba(0, 0, 45,0.6);
     position: absolute;
-    bottom: 50px;
+    bottom: 46px;
     z-index: 1000;
 }
 
