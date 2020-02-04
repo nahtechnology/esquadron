@@ -1,0 +1,34 @@
+<svg version="1.1" viewBox="0 0 1029 535" preserveAspectRatio="xMinYMin meet" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+    <linearGradient id="grad1"   x1="0%" y1="0%" x2="0%" y2="70%">
+      <stop offset="0%" style="stop-color:rgb(251,251,252); stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:rgb(217,218,220); stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <rect class="principal" width="1029" height="535" fill="url(#grad1)"/>
+
+  <polyline points="1029,0 514.5,120.5 1029,535"/>
+  <polyline points="0,535 514.5,120.5 0,0"/>
+
+  <pattern id="patron-punto" x="0" y="0" width="15" height="15" patternUnits="userSpaceOnUse">
+    <circle  cx="5" cy="5" r="5" fill="#A0A1A5"/>
+  </pattern>
+
+  <polyline points="514.5,390 1029,217.5 514.5,120.5 0,217.5 " style="fill:#c5c5c5"/>
+
+<path d="M 145,523  a100,100 40 1,1 250,0" fill="url(#patron-punto)"/>
+<path d="M 1020,423  A100,100 80 1,1 1020,170" fill="url(#patron-punto)"/>
+<path d="M 790,13  A100,100 80 1,1 590,10" fill="url(#patron-punto)"/>
+
+/*se da estilos al svg*/
+  <style>
+    polyline{
+      fill: #Cfcfcf;
+    }
+
+
+  </style>
+
+</svg>
