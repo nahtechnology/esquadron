@@ -45,5 +45,7 @@ public class PersonaSesionBean {
         return (List<String>)query.getResultList();
     }
 
+
+
 }
 
