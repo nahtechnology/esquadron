@@ -27,7 +27,7 @@ import java.util.UUID;
     @NamedQuery(
         name = "GrupoEntidad.buscaAlumnoApodo",
         query = "SELECT count(a.id) FROM GrupoEntidad g JOIN g.grupoAlumnoEntidad ga JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a " +
-                "WHERE g.profesorEntidad.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND a.apodo = :apodo"),
+                "WHERE g.profesorEntidad.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND a.apodo = :apodo "),
     @NamedQuery(
         name = "GrupoEntidad.buscaCiclioEscolarTotalAlumno",
         query = "SELECT new GrupoEntidad(g.id, g.grado, g.grupo, COUNT(ga.grupoAlumnoEntidadPK.alumnoEntidad.id)) FROM GrupoEntidad g LEFT JOIN g.grupoAlumnoEntidad ga " +

@@ -8,6 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.security.Principal;
+import java.util.logging.Logger;
 
 @RequestScoped
 @Named
@@ -19,11 +20,14 @@ public class SinPermisoControlador {
     @Inject
     private Principal principal;
 
+    @Inject
+    private Logger logger;
+
     private String rol;
 
     @PostConstruct
     public void inicio() {
-        rol = personaSesionBean.rol(principal.getName());
+        rol = personaSesionBean.rol(principal.getName().split(",")[0]);
     }
 
     public String cerrarSesion() {

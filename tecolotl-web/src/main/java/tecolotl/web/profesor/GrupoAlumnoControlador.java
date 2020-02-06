@@ -69,23 +69,6 @@ public class GrupoAlumnoControlador implements Serializable {
         buscaTotalAlumno();
     }
 
-    public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) {
-        logger.info(ajaxBehaviorEvent.toString());
-        logger.info(alumnoModelo.toString());
-    /*    FacesMessage facesMessage = new FacesMessage();
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
-            facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
-            facesMessage.setSummary("ya existe este apodo");
-            facesContext.addMessage(uiInputApodo.getClientId(facesContext), facesMessage);
-        } else {
-            alumnoGrupoScope.inserta(alumnoModelo, UUID.fromString(idGrupo));
-            alumnoModelo = new AlumnoModelo();
-            buscaDetalleAlumnos();
-            buscaTotalAlumno();
-        }*/
-    }
-
     public void buscaDetalleAlumnos() throws IOException {
         if (grupoSesionBean.pertenece(profesorControlador.getProfesorModelo().getId(), UUID.fromString(idGrupo))) {
             tareaAlumnoGrupoModeloLista = grupoAlumnoSesionBean.busca(UUID.fromString(idGrupo));
