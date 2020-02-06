@@ -6,15 +6,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>#{etiqueta['no.es.manejable.title']}</title>
+    <meta http-equiv="Refresh" content="0; URL=${noManjableControlador.rol}/index.xhtml"/>
 </h:head>
+<f:metadata>
+    <f:event type="preRenderView" listener="#{noManjableControlador.inicio}"></f:event>
+</f:metadata>
 <h:body>
-    <h:outputStylesheet library="css" name="/error/no-manejable.css"/>
-    <h:outputStylesheet library="css" name="letra.css"/>
-    <h1>#{etiqueta['no.manejable.title']}</h1>
-    <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
-    <h:form styleClass="centrado">
-        <h:commandButton styleClass="btnsin-permiso" value="regresar" action="#{noManjableControlador.regresoPrincipal}"/>
-    </h:form>
+
 </h:body>
 </html>
