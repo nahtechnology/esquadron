@@ -24,12 +24,15 @@ public class NoManjableControlador {
 
     private String rol;
 
-    @PostConstruct
     public void inicio() {
         rol = personaSesionBean.rol(principal.getName());
     }
 
-    public String regresoPrincipal() {
-        return "/"+ rol + "/dashboard.xhtml?faces-redirect=true";
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 }
