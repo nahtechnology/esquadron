@@ -317,39 +317,10 @@
                 });
 
                 setTimeout(boton.click(),2000);
-
-            }
-
-
-            function puntaje() {
-                console.log('puntaje');
-                var barras = document.querySelectorAll('.padding-contenedor progress');
-                var escore = document.querySelectorAll('.califica');
-                var nivel = escore[0].innerText.split(':')[1];
-                console.log(barras);
-
-                if(parseInt(nivel) &gt; 0 &amp;&amp; parseInt(nivel) &lt; 25){
-                    barras[3].classList.add("rojo");
-                }
-                else if(parseInt(nivel) &gt; 26 &amp;&amp; parseInt(nivel) &lt; 85){
-                    barras[3].classList.add("amarillo");
-                }
-                else{
-                    barras[3].classList.add("verde");
-                }
-
-
-                escore.forEach(calcula);
-
-                function calcula(asigna, numero, score) {
-                    score[numero] = asigna.innerText;
-                    console.log(score[numero].innerText.split(':')[1]);
-                }
-
-                clearTimeout(tiempo);
             }
 
         </script>
+        <h:outputScript library="js" name="alumno/calificacion.js"/>
     </ui:define>
 
 </ui:composition>

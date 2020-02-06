@@ -1,6 +1,7 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.nucleo.sesion.PersonaSesionBean;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 
@@ -24,10 +25,14 @@ public class ProfesorControlador implements Serializable {
     private ProfesorSesionBean profesorSesionBean;
 
     @Inject
+    private PersonaSesionBean personaSesionBean;
+
+    @Inject
     protected Logger logger;
 
     private String claveCentroTrabajo;
     private List<ProfesorModelo> profesorModeloLista;
+    private List<String> apodos;
     private ProfesorModelo profesorModelo;
     private  Integer eliminar;
 
@@ -38,6 +43,10 @@ public class ProfesorControlador implements Serializable {
 
     public void inicio() {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
+    }
+
+    public void buscaApodos(){
+        apodos = personaSesionBean.buscaApodo(claveCentroTrabajo);
     }
 
     public void busca(ProfesorModelo profesorModelo) {
@@ -91,5 +100,13 @@ public class ProfesorControlador implements Serializable {
 
     public void setEliminar(Integer eliminar) {
         this.eliminar = eliminar;
+    }
+
+    public List<String> getApodos() {
+        return apodos;
+    }
+
+    public void setApodos(List<String> apodos) {
+        this.apodos = apodos;
     }
 }
