@@ -6,7 +6,7 @@ let validacion;
 document.addEventListener('DOMContentLoaded', function (evt) {
     formulario = document.querySelector('form');
     usuario = formulario.querySelector('input[type=text]');
-    galaxia = usuario.nextElementSibling;
+    galaxia = usuario.nextElementSibling.nextElementSibling;
     validacion = formulario.querySelector('p');
     loginImagen(formulario.querySelectorAll('img'));
 });
