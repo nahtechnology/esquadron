@@ -701,6 +701,9 @@ aside ul > li > a > img {
         width: 40px;
         height: 40px;
     }
+    #seccion3 > div:first-child > div > div > input {
+        height: 50px;
+    }
 }
 
 @media screen and (max-width: 1000px){
