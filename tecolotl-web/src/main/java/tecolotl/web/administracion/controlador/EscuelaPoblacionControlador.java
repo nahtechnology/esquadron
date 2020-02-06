@@ -43,7 +43,7 @@ public class EscuelaPoblacionControlador {
 
     @PostConstruct
     public void init() {
-        nombreEscuela = resourceBundle.getString("dashboard.school.notselected");
+        //nombreEscuela = resourceBundle.getString("dashboard.school.notselected");
     }
 
     public void actualiza() {

@@ -6,12 +6,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <title>No manejable</title>
+    <title>#{etiqueta['no.es.manejable.title']}</title>
 </h:head>
 <h:body>
     <h:outputStylesheet library="css" name="/error/no-manejable.css"/>
     <h:outputStylesheet library="css" name="letra.css"/>
-    <h1>Estimado usuario tenemos un inconveniente contacte a su administrador</h1>
+    <h1>#{etiqueta['no.manejable.title']}</h1>
     <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
     <h:form styleClass="centrado">
         <h:commandButton styleClass="btnsin-permiso" value="regresar" action="#{noManjableControlador.regresoPrincipal}"/>
