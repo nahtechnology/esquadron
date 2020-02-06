@@ -14,7 +14,7 @@ function barrasValor() {
     });
     barra.forEach(function (progres) {
         let valor = document.createElement('span');
-       valor.innerHTML = '%'+ progres.querySelector('progress').value;
+       valor.innerHTML = progres.querySelector('progress').value + '%';
        progres.insertBefore(valor,progres.querySelector('progress'));
     });
 
