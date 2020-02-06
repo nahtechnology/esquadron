@@ -202,10 +202,10 @@ p{
 }
 footer{
     height: 20vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    margin-bottom: 20px;
+    margin-left: 45px;
+    margin-right: 45px;
+    padding-top: 50px;
 }
 
 footer img{
@@ -220,12 +220,13 @@ footer h5{
 ul{
     list-style: none;
 }
-nav p{
+nav > span{
     font-size: 25px;
+    display: inline-block;
     color: white;
     font-family: e-squadron, sans-serif;
     margin-left: 50px;
-    margin-top: 10px;
+    margin-top: 31px;
 }
 header{
     height: 40px;
@@ -234,6 +235,7 @@ header{
 }
 header nav{
     width: 100%;
+    height: 48px;
     background: url("#{resource['img/landing/squadron.svg']}") no-repeat 10px center/40px 40px var(--morado-primario);
     border-radius: 8px;
     padding: 5px 0;
@@ -435,7 +437,6 @@ aside ul > li > a > img {
 
 .aparece{
     display: none !important;
-
 }
 
 
@@ -479,7 +480,6 @@ aside ul > li > a > img {
 #seccion2 > div:last-child > div{
       align-self: center;
     }
-
 
 /*seccion 2 mobile*/
 .secccion2-mobile{
@@ -527,15 +527,15 @@ aside ul > li > a > img {
     margin-left: 30px;
 }
 
-#seccion3> div:first-child > div > div > input{
-    /* display: inline-flex; */
+#seccion3 > div:first-child > div > div > input{
     height: 55px;
+    /* display: inline-flex; */
     /*background-color: var(--morado-secundario);*/
     width: 60%;
     border-radius: 8px;
     font-family: oswaldbold, sans-serif;
     font-size: 16px;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     border: 3px solid white;
 }
 #seccion3 > div:first-child > div > div > div{
@@ -648,13 +648,16 @@ aside ul > li > a > img {
 #seccion4 > div:nth-child(2) > div:nth-child(2){
     align-self: flex-start;
 }
- footer{
+ footer > div{
     background-color: var(--morado-primario);
     border-radius: 8px;
-     margin-bottom: 20px;
-     margin-left: 45px;
-     margin-right: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+     height: 100%;
 }
+
 
 /*fin seccion 4*/
 
@@ -673,9 +676,30 @@ aside ul > li > a > img {
     color: white;
 }
 
+#seccion3 > div > div > div:last-child > div:hover{
+    cursor: pointer;
+    color: var(--morado-secundario);
+    background-color: white;
+    border-color: var(--morado-secundario);
+}
+
+.inputError{
+    border: 2px solid #E31A1A !important;
+}
+
 @media screen and (max-width: 1281px){
     #seccion3> div:first-child > div > div > div{
         font-size: 19px;
+        height: 47px;
+        width: 37%;
+    }
+    aside ul > li {
+        width: 54px;
+        height: 54px;
+    }
+    aside ul > li > a > img {
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -734,8 +758,12 @@ aside ul > li > a > img {
     }
     header nav{
         border-radius: initial;
+        height: 41px;
     }
     header  ul{
+        display: none;
+    }
+    header > nav  > span{
         display: none;
     }
     header > nav > div{
@@ -748,6 +776,10 @@ aside ul > li > a > img {
         justify-content: space-between;
         align-items: center;
 
+    }
+    header > nav > div > span:first-child{
+        font-family: e-squadron, Sans-serif, serif;
+        margin-top: 12px;
     }
 
     header > nav > div > span:last-child{
@@ -769,6 +801,7 @@ aside ul > li > a > img {
     header > nav > div > input{
         display: none;
     }
+
 
     #inicio{
       height: auto;
@@ -887,7 +920,8 @@ aside ul > li > a > img {
         margin-bottom: 20px;
          margin-left: 0;
          margin-right: 0;
-        height: 15vh;
+        height: 20vh;
+
     }
 
     .secccion2-mobile{
@@ -926,6 +960,9 @@ aside ul > li > a > img {
 
     header nav{
         background-image: none;
+    }
+    footer img {
+        width: 12%;
     }
 
 }

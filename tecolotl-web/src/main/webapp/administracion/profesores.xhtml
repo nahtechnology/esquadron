@@ -162,6 +162,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText id="apodo"
                                                  class="uk-input"
+                                                 binding="#{administracionProfesorControlador.uiInputApodo}"
                                                  value="#{administracionProfesorControlador.profesorModelo.apodo}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="3" maximum="40"/>

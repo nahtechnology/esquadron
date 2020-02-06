@@ -32,7 +32,7 @@
     width: 100% !important;
 }
 
-.boton{
+.boton-login{
     /*background-color: #242C33;*/
     background: linear-gradient(to bottom right,#31B7F5 , #AF08F3 );
     color: white;
@@ -52,6 +52,7 @@ a {
     color: white;
     margin: 10px;
 }
+
 
 a:hover {
     color: purple;
@@ -81,6 +82,8 @@ ul.login-menu > li > a:hover{
     padding: 8px;
     border-radius: 8px;
 }
+
+
 
 .uk-subnav li.uk-active a{
     background-color: rgba(255, 255, 255, 0.3);

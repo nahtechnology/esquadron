@@ -33,7 +33,7 @@
 		<div id="inicio">
 			<header>
 				<nav>
-					<p>squadron</p>
+					<span>squadron</span>
 					<ul>
 						<li>
 							<h:link  outcome="/profesor/dashboard.xhtml" value="Login Teachers"/>
@@ -223,24 +223,24 @@
 				<div>
 					<div>
 						<div>
-							<input type="text" name="" placeholder="Nombre"/>
+							<input type="text" name="" placeholder="Nombre" maxlength="60"/>
 							<h:graphicImage library="img" name="/alumno/planetas/tierra.svg" alt=""/>
 						</div>
 						<div>
-							<input type="text" name="" placeholder="Colegio"/>
+							<input type="text" name="" placeholder="Colegio" maxlength="60"/>
 							<h:graphicImage library="img" name="/alumno/planetas/planeta1.svg" alt=""/>
 						</div>
 						<div>
-							<input type="text" name="" placeholder="Cuidad"/>
+							<input type="text" name="" placeholder="Cuidad" maxlength="60"/>
 							<h:graphicImage library="img" name="/alumno/planetas/planeta2.svg" alt=""/>
 						</div>
 						<div>
-							<input type="email" name="" placeholder="Correo"/>
+							<input type="email" name="" placeholder="Correo" maxlength="60"/>
 							<h:graphicImage library="img" name="alumno/planetas/planeta3.svg" alt=""/>
 						</div>
 						<div>
-							<input type="tel" name="" placeholder="Telefono"/>
-							<h:graphicImage library="img" name="alumno/planetas/planeta3.svg" alt=""/>
+							<input type="tel" name="" placeholder="Telefono" maxlength="15" pattern="[0-9]{3}-[0-9]{8}"/>
+							<h:graphicImage library="img" name="alumno/planetas/planeta4.svg" alt=""/>
 						</div>
 						<div>
 							<div>Free treal!</div>
@@ -352,8 +352,10 @@
 			</div>
 		</section>
 		<footer>
+			<div>
 			<h:graphicImage library="img" name="landing/squadron.svg"/>
-			<h5>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, perferendis.</h5>
+			</div>
+<!--			<h5>esquadron</h5>-->
 		</footer>
 	</div>
 
@@ -361,5 +363,7 @@
 	<h:outputScript library="js" name="landing/landing.js"/>
 	<script type="application/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"/>
 	<h:outputScript library="js" name="landing/animacion-espacio.js"/>
+    <h:outputScript library="js" name="smtp.js"/>
+	<h:outputScript library="js" name="email.js"/>
 </h:body>
 </html>
