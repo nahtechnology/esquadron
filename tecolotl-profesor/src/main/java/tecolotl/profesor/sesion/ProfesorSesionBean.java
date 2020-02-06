@@ -114,18 +114,6 @@ public class ProfesorSesionBean implements Serializable {
      */
     public void actualiza(@NotNull ProfesorModelo profesorModelo){
         logger.fine(profesorModelo.toString());
-        /*CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-        CriteriaUpdate<ProfesorEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(ProfesorEntidad.class);
-        Root<ProfesorEntidad> root = criteriaUpdate.from(ProfesorEntidad.class);
-        Predicate predicate = criteriaBuilder.equal(root.get("id"), profesorModelo.getId());
-        criteriaUpdate.set(root.get("contrasenia"), "pgp_sym_decrypt_bytea("+profesorModelo.getContrasenia()+", 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256')")
-                .set(root.get("nombre"), profesorModelo.getNombre())
-                .set(root.get("apellidoPaterno"), profesorModelo.getApellidoPaterno())
-                .set(root.get("apellidoMaterno"), profesorModelo.getApellidoMaterno())
-                .set(root.get("apodo"), profesorModelo.getApodo())
-                .set(root.get("sexo"), profesorModelo.getSexo())
-                .set(root.get("correoEletronico"), profesorModelo.getCorreoEletronico());
-        criteriaUpdate.where(predicate);*/
         ProfesorEntidad profesorEntidad = entityManager.find(ProfesorEntidad.class,profesorModelo.getId());
         profesorEntidad.setContrasenia(profesorModelo.getContrasenia());
         profesorEntidad.setNombre(profesorModelo.getNombre());
@@ -168,4 +156,7 @@ public class ProfesorSesionBean implements Serializable {
         return typedQuery.getResultList().stream().map(ProfesorModelo::new).collect(Collectors.toList());
     }
 
+    public int buscaPorApodo(@NotNull String apodo) {
+        return 0;
+    }
 }

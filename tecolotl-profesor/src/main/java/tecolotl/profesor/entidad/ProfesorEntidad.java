@@ -37,9 +37,13 @@ import java.util.UUID;
         query = "select p from ProfesorEntidad p JOIN FETCH p.escuelaEntidad e WHERE p.apodo = :apodo"
     ),
     @NamedQuery(
-            name = "ProfesorEntidad.eliminaProfesor",
-            query = "select count (g.id) from GrupoEntidad g where g.profesorEntidad.id = :idProfesor"
-    )
+        name = "ProfesorEntidad.eliminaProfesor",
+        query = "select count (g.id) from GrupoEntidad g where g.profesorEntidad.id = :idProfesor"
+    )/*,
+    @NamedQuery(
+        name = "ProfesorEntidad.buscaApodoEscuela",
+        query = "select count(p.id) from ProfesorEntidad p JOIN FETCH p.escuelaEntidad e WHERE p.apodo = :apodo"
+    ),*/
 })
 public class ProfesorEntidad extends PersonaEntidad {
 
