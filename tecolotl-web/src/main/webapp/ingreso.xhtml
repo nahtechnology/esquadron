@@ -35,9 +35,11 @@
                 <div class="uk-flex uk-flex-wrap uk-flex-center uk-margin-medium-top">
                     <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia()" class="uk-button boton-login"/>
                 </div>
+                <div class="uk-flex uk-flex-wrap uk-flex-center uk-margin-small-top">
                 <h:outputText value="Usuario o contraseña incorrectos, por favor intenta de nuevo"
-                              styleClass="uk-margin-small-top"
+                              styleClass="uk-margin-small-top mensaje-error"
                               rendered="#{not empty param['error']}"/>
+                </div>
             </form>
         </div>
     </div>

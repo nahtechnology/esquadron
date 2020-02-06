@@ -160,3 +160,11 @@
 .centrado-boton{
     margin: auto;
 }
+
+.mensaje-error{
+display: inline-block;
+    color: #E31A1A;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 8px;
+}
