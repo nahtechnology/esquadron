@@ -100,11 +100,13 @@ public class LicenciaSesionBean implements Serializable {
 	 * Inserta una licencia a una escuela.
 	 * @param claveCentroTrabajo Datos de la escuela.
 	 */
-	public void inserta(@NotNull String claveCentroTrabajo) {
+	public void inserta(@NotNull String claveCentroTrabajo, @NotNull LicenciaModelo licenciaModelo) {
 		logger.fine(claveCentroTrabajo);
 		LicenciaEntidadPk licenciaEntidadPk = new LicenciaEntidadPk();
 		licenciaEntidadPk.setEscuelaEntidad(new EscuelaEntidad(claveCentroTrabajo));
 		LicenciaEntidad licenciaEntidad = new LicenciaEntidad(licenciaEntidadPk);
+		licenciaEntidad.setAlumnos(licenciaModelo.getAlumnos());
+		licenciaEntidad.setInicio(licenciaModelo.getInicio());
 		entityManager.persist(licenciaEntidad);
 	}
 

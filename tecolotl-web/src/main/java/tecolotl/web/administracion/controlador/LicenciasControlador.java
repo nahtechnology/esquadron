@@ -33,7 +33,7 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
     }
 
     public void inserta() {
-        licenciaSesionBean.inserta(claveCentroTrabajo);
+        licenciaSesionBean.inserta(claveCentroTrabajo, licenciaModelo);
         actualizaDataModel();
     }
 

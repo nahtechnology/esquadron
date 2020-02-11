@@ -517,20 +517,53 @@
                 <h:form id="formulario-modal-licencia" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold">
-                            <h:outputFormat styleClass="letra-titulo primera-mayuscula" value="#{administracion['schooldetail.modal.updatelicense.title']}" style="display: block">
+                            <h:outputFormat styleClass="letra-titulo primera-mayuscula"
+                                            rendered="#{not empty licenciasControlador.licenciaModelo.contador}"
+                                            value="#{administracion['schooldetail.modal.updatelicense.title']}"
+                                            style="display: block">
                                 <f:param value="#{licenciasControlador.licenciaModelo.contador}"/>
                             </h:outputFormat>
+                            <h:outputFormat styleClass="letra-titulo primera-mayuscula uk-display-inline-block"
+                                            rendered="#{empty licenciasControlador.licenciaModelo.contador}"
+                                            value="nueva licencia"/>
                         </p>
                     </div>
                     <div class="uk-modal-body">
-                        <h:inputText value="#{licenciasControlador.licenciaModelo.inicio}"/>
+                        <h:panelGroup styleClass="uk-grid"  pt:uk-grid="" >
+                            <div class="uk-width-1-2">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="fecha inicio" for="fecha-inicio" />
+                                <div class="uk-form-controls">
+                                    <h:inputText id="fecha-inicio"
+                                                 styleClass="uk-input"
+                                                 value="#{licenciasControlador.licenciaModelo.inicio}"
+                                                 pt:placeholder="dd/MM/yyyy"
+                                                 pt:oninput="entradaFecha(event)">
+                                        <f:validateRequired/>
+                                        <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="fecha-inicio" styleClass="uk-text-danger"/>
+                            </div>
+                            <div class="uk-width-1-2">
+                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="alumnos" value="alumnos"/>
+                                <div class="uk-form-controls">
+                                    <h:inputText id="alumnos"
+                                                 styleClass="uk-input uk-text-capitalize"
+                                                 value="#{licenciasControlador.licenciaModelo.alumnos}">
+                                        <f:validateRequired/>
+                                    </h:inputText>
+                                </div>
+                                <h:message for="alumnos" styleClass="uk-text-danger"/>
+                            </div>
+                        </h:panelGroup>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" >
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
-                                    render="formulario-licencia" execute="@form"
-                                    listener="#{licenciasControlador.actualiza}"/>
+                                    render="formulario-licencia @form" execute="@form"
+                                    listener="#{licenciasControlador.inserta}"/>
                         </h:commandButton>
                     </div>
                 </h:form>
