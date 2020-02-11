@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 import java.util.UUID;
 
@@ -45,7 +46,7 @@ public class ProfesorModelo extends PersonaModelo {
         setApellidoMaterno(profesorModelo.getApellidoMaterno());
         setNombre(profesorModelo.getNombre());
         setCorreoEletronico(profesorModelo.getCorreoEletronico());
-        CicloEscolarModelo cicloEscolarModelo;
+        setContrasenia(profesorModelo.getContrasenia());
     }
 
     public ProfesorModelo(UUID id) {
@@ -94,4 +95,19 @@ public class ProfesorModelo extends PersonaModelo {
                 .add(super.toString())
                 .toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProfesorModelo that = (ProfesorModelo) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id);
+    }
+
 }

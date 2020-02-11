@@ -38,7 +38,11 @@ import java.util.UUID;
         query = "SELECT g.profesorEntidad.id FROM GrupoEntidad g WHERE g.id = :idGrupo"),
     @NamedQuery(
             name = "GrupoEntidad.buscaGrupoPorProfesor",
-            query = "select g from GrupoEntidad g where g.id = :idGrupo and g.profesorEntidad.id = :idProfesor")
+            query = "select g from GrupoEntidad g where g.id = :idGrupo and g.profesorEntidad.id = :idProfesor"),
+    @NamedQuery(
+            name = "GrupoEntidad.totalGrupo",
+            query = "SELECT count (g) FROM GrupoEntidad g WHERE g.profesorEntidad.id = :idProfesor"
+    )
 })
 public class GrupoEntidad {
 

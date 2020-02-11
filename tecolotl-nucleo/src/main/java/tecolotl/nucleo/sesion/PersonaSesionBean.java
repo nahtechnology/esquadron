@@ -28,8 +28,8 @@ public class PersonaSesionBean {
     public String rol(@NotNull String apodo) {
         Query query = entityManager.createNativeQuery(
                 "SELECT 'alumno' AS rol FROM alumno.alumno a WHERE a.apodo = ? UNION SELECT 'profesor' AS rol FROM profesor.profesor p WHERE p.apodo = ?");
-        query.setParameter(1, apodo);
-        query.setParameter(2, apodo);
+        query.setParameter(1, apodo.split(",")[0]);
+        query.setParameter(2, apodo.split(",")[0]);
         return (String) query.getSingleResult();
     }
 

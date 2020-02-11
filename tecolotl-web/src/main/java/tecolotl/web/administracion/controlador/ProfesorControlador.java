@@ -1,21 +1,22 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.nucleo.sesion.PersonaSesionBean;
 import tecolotl.profesor.modelo.ProfesorModelo;
+import tecolotl.profesor.sesion.GrupoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.event.AbortProcessingException;
-import javax.faces.event.AjaxBehaviorEvent;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.UUID;
+import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @ViewScoped
 @Named(value = "administracionProfesorControlador")
@@ -25,16 +26,17 @@ public class ProfesorControlador implements Serializable {
     private ProfesorSesionBean profesorSesionBean;
 
     @Inject
-    private PersonaSesionBean personaSesionBean;
+    private GrupoSesionBean grupoSesionBean;
 
     @Inject
-    protected Logger logger;
+    private Logger logger;
 
     private String claveCentroTrabajo;
+    private EscuelaBaseModelo escuelaBaseModelo;
     private List<ProfesorModelo> profesorModeloLista;
-    private List<String> apodos;
     private ProfesorModelo profesorModelo;
-    private  Integer eliminar;
+    private UIInput uiInputApodo;
+    private Long totalGrupos;
 
     @PostConstruct
     public void init() {
@@ -43,31 +45,38 @@ public class ProfesorControlador implements Serializable {
 
     public void inicio() {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
-    }
-
-    public void buscaApodos(){
-        apodos = personaSesionBean.buscaApodo(claveCentroTrabajo);
+        escuelaBaseModelo = new EscuelaBaseModelo(claveCentroTrabajo);
     }
 
     public void busca(ProfesorModelo profesorModelo) {
-        this.profesorModelo = profesorModelo;
+        this.profesorModelo = new ProfesorModelo(profesorModelo);
     }
 
-    public void inserta(String claveCentroTrabajo) {
-        profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo(claveCentroTrabajo));
-        profesorSesionBean.inserta(profesorModelo);
-        profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
-        profesorModelo = new ProfesorModelo();
+    public void inserta() {
+        if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo.getApodo())) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este profesor ya existe", null);
+            facesContext.addMessage(uiInputApodo.getClientId(facesContext), facesMessage);
+        } else {
+            profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
+            profesorSesionBean.inserta(profesorModelo);
+            profesorModeloLista.add(profesorModelo);
+            profesorModelo = new ProfesorModelo();
+        }
     }
 
     public void actualiza() {
         profesorSesionBean.actualiza(profesorModelo);
-        profesorModeloLista = profesorSesionBean.buscaPorEscuela(profesorModeloLista.get(0).getEscuelaBaseModelo().getClaveCentroTrabajo());
         profesorModelo = new ProfesorModelo();
     }
-    public void elimina(ProfesorModelo profesorModelo){
-       eliminar = profesorSesionBean.elimina(profesorModelo.getId());
-       logger.info(String.valueOf(eliminar));
+
+    public void buscaTotalGlumno() {
+        totalGrupos = grupoSesionBean.totalPorProfesor(profesorModelo.getId());
+    }
+
+    public void elimina(){
+       profesorSesionBean.elimina(profesorModelo.getId());
+        profesorModelo = new ProfesorModelo();
     }
 
     public String getClaveCentroTrabajo() {
@@ -94,19 +103,19 @@ public class ProfesorControlador implements Serializable {
         this.profesorModelo = profesorModelo;
     }
 
-    public Integer getEliminar() {
-        return eliminar;
+    public UIInput getUiInputApodo() {
+        return uiInputApodo;
     }
 
-    public void setEliminar(Integer eliminar) {
-        this.eliminar = eliminar;
+    public void setUiInputApodo(UIInput uiInputApodo) {
+        this.uiInputApodo = uiInputApodo;
     }
 
-    public List<String> getApodos() {
-        return apodos;
+    public Long getTotalGrupos() {
+        return totalGrupos;
     }
 
-    public void setApodos(List<String> apodos) {
-        this.apodos = apodos;
+    public void setTotalGrupos(Long totalGrupos) {
+        this.totalGrupos = totalGrupos;
     }
 }

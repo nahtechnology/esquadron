@@ -1,13 +1,12 @@
 var modalProfresor;
-var modalGrupo;
+var modalEliminar;
 
 document.addEventListener('DOMContentLoaded', ejecucionInicio);
 
 function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
-    modalGrupo = document.getElementById('modal-grupo');
+    modalEliminar = document.getElementById('modal-eliminar');
     modalProfresor.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
-    modalGrupo.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
     abrirModal();
     elimina();
 }
@@ -29,10 +28,8 @@ function cerrarModal(data , modal) {
                     UIkit.modal(modalProfresor).hide();
                 }
                 break;
-            case 'modalGrupo':
-                if (modalGrupo.querySelector('.uk-text-danger') === null) {
-                    UIkit.modal(modalGrupo).hide();
-                }
+            case 'modal-eliminar':
+                UIkit.modal(modalEliminar).hide();
                 break;
             default :
                 console.error('Aun no se programa este modal:' + modal);
@@ -45,10 +42,8 @@ function cerrarModal(data , modal) {
                         UIkit.modal(modalProfresor).hide();
                     }
                     break;
-                case 'modalGrupo':
-                    if (modalGrupo.querySelector('.uk-text-danger') === null) {
-                        UIkit.modal(modalGrupo).hide();
-                    }
+                case 'modal-eliminar':
+                    UIkit.modal(modalEliminar).hide();
                     break;
                 default :
                     console.error('Aun no se programa este modal:' + modal);
@@ -63,7 +58,7 @@ function abrirModal() {
         modalProfresor.querySelector('.uk-modal-header').click();
         modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
     });
-    UIkit.util.on('#modal-grupo', 'shown', function () {
-        modalGrupo.querySelector('.uk-modal-header').click();
-    })
+    UIkit.util.on('#modal-eliminar', 'show', function () {
+        modalEliminar.querySelector('.uk-modal-header').click();
+    });
 }

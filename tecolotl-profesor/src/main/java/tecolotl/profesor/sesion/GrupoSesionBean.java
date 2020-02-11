@@ -147,6 +147,21 @@ public class GrupoSesionBean implements Serializable {
     }
 
     /**
+     * Valida si existe el alumno o profesor
+     * @param apodo Apodoa del profesor o del alumno.
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela.
+     * @return true en case de ser xistir, false en cualquien otro caso
+     */
+    public boolean existeAlumnoProfesor(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
+                                       @NotNull @Size(min = 4, max = 40) String apodo) {
+        TypedQuery<Long> typedQuery = entityManager.createQuery(
+                "SELECT count(p.id) + count(a.id) FROM GrupoEntidad g JOIN g.grupoAlumnoEntidad ga JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a JOIN " +
+                "g.profesorEntidad p WHERE (p.apodo = :apodo OR a.apodo = :apodo) AND p.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo", Long.class);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("apodo", apodo);
+        return typedQuery.getSingleResult().intValue() >= 1;
+    }
+
+    /**
      * Actualiza la información de un Grupo.
      * @param grupoModelo  datos para poder actualizar el Grupo.
      * @return numero de elementos modificados, 0 en caso de no existir.
@@ -192,5 +207,15 @@ public class GrupoSesionBean implements Serializable {
         } catch (NoResultException e) {
             return false;
         }
+    }
+
+    /**
+     * Busca el total de grupos que contiene una escuela
+     * @param idProfesor Identificador del profesor
+     * @return Total de alumno
+     */
+    public Long totalPorProfesor(@NotNull UUID idProfesor) {
+        return entityManager.createNamedQuery("GrupoEntidad.totalGrupo", Long.class)
+                .setParameter("idProfesor", idProfesor).getSingleResult();
     }
 }

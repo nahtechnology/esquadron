@@ -34,7 +34,7 @@
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
-        <h:outputStylesheet library="css" name="/administracion/profesores.css"/>
+        <h:outputStylesheet library="css" name="administracion/profesores.css"/>
         <div uk-grid="">
             <div class="uk-width-1-1">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
@@ -106,7 +106,8 @@
                                                     <h:commandLink pt:uk-toggle="target: #modal-profesor">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                        <f:ajax listener="#{administracionProfesorControlador.busca(profesorModelo)}" render="formulario-modal-profesor"/>
+                                                        <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
+                                                        <f:ajax render="formulario-modal-profesor" listener="#{administracionProfesorControlador.busca(profesorModelo)}"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li>
@@ -119,10 +120,11 @@
                                                 </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-eliminar " styleClass="uk-text-danger primera-mayuscula">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-eliminar " styleClass="uk-text-danger primera-mayuscula" action="#{administracionProfesorControlador.buscaTotalGlumno()}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>
                                                         <h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block" />
-                                                        <f:ajax listener="#{administracionProfesorControlador.elimina(profesorModelo)}" render="formulario-grupo"/>
+                                                        <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
+                                                        <f:ajax render="form-elimina"/>
                                                     </h:commandLink>
                                                 </li>
                                             </ul>
@@ -163,6 +165,7 @@
                                     <h:inputText id="apodo"
                                                  class="uk-input"
                                                  binding="#{administracionProfesorControlador.uiInputApodo}"
+                                                 disabled="#{not empty administracionProfesorControlador.profesorModelo.id}"
                                                  value="#{administracionProfesorControlador.profesorModelo.apodo}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="3" maximum="40"/>
@@ -223,13 +226,13 @@
                             <div class="uk-width-1-1@s uk-width-1-3@m">
                                 <h:outputLabel value="contrasenia" for="contrasenia"/>
                                 <div class="uk-form-controls">
-                                    <h:inputText id="contrasenia"
+                                    <h:inputSecret id="contrasenia"
                                                  type="password"
                                                  styleClass="uk-input"
                                                  value="#{administracionProfesorControlador.profesorModelo.contrasenia}">
                                             <f:validateRequired/>
                                             <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
-                                    </h:inputText>
+                                    </h:inputSecret>
                                 </div>
                                 <h:message for="contrasenia" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
@@ -248,12 +251,10 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button type="reset" class="uk-button uk-button-default uk-margin-small-right">
-                            #{boton['cancel']}
-                        </button>
+                        <button type="reset" class="uk-button uk-button-default uk-margin-small-right">#{boton['cancel']}</button>
                         <h:commandButton value="${boton['add']}" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
-                                    listener="#{administracionProfesorControlador.inserta(administracionProfesorControlador.claveCentroTrabajo)}"
+                                    listener="#{administracionProfesorControlador.inserta()}"
                                     render="@form formulario-tabla"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor'); }"/>
                         </h:commandButton>
@@ -267,31 +268,33 @@
                 </h:form>
             </div>
         </h:panelGroup>
-
         <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="form-elimina" styleClass="uk-form-stacked">
                     <div class="uk-modal-header fondo-peligro">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
-                            Eliminar Profesor:
+                            <span class="letra-titulo">Eliminar Profesor</span>
                         </p>
                     </div>
                     <div class="uk-modal-body">
                         <p>
-                            <h:outputText value="¿Esta serguro de eliminar al profesor:   ?" rendered="#{0 eq administracionProfesorControlador.eliminar}"/>
-                            <h:outputText value="¡No se puede Eliminar al profesor por que tiene asignado alumnos!" rendered="#{0 ne administracionProfesorControlador.eliminar}"/>
+                            <h:outputFormat value="¿Esta serguro de eliminar al profesor: {0} ?" rendered="#{0 eq administracionProfesorControlador.totalGrupos}">
+                                <f:param value="${administracionProfesorControlador.profesorModelo.nombre} ${administracionProfesorControlador.profesorModelo.apellidoPaterno} ${administracionProfesorControlador.profesorModelo.apellidoPaterno}"/>
+                            </h:outputFormat>
+                            <h:outputFormat value="¡No se puede Eliminar al profesor por que tiene {0} grupos asignado!" rendered="#{0 ne administracionProfesorControlador.totalGrupos}">
+                                <f:param value="${administracionProfesorControlador.totalGrupos}"/>
+                            </h:outputFormat>
                         </p>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
-
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}" disabled="#{0 ne administracionProfesorControlador.totalGrupos}">
+                            <f:ajax listener="#{administracionProfesorControlador.elimina}" render="formulario-tabla"/>
                         </h:commandButton>
                     </div>
                 </h:form>
             </div>
         </h:panelGroup>
-
         <h:outputScript library="js" name="administracion/profesores.js"/>
         <h:outputScript library="js" name="tabla-profesor.js"/>
     </ui:define>

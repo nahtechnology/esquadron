@@ -73,7 +73,7 @@ public class AgregarCsvControlador implements Serializable {
 
     public void inserta(AjaxBehaviorEvent ajaxBehaviorEvent) throws AbortProcessingException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
-        if (grupoSesionBean.existeAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
+        if (grupoSesionBean.existeAlumnoProfesor(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(), alumnoModelo.getApodo())) {
             FacesMessage facesMessage = new FacesMessage();
             facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
             facesMessage.setSummary("ya existe este apodo");

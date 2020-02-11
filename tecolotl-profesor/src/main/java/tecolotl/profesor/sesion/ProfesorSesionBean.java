@@ -119,7 +119,7 @@ public class ProfesorSesionBean implements Serializable {
         profesorEntidad.setNombre(profesorModelo.getNombre());
         profesorEntidad.setApellidoPaterno(profesorModelo.getApellidoPaterno());
         profesorEntidad.setApellidoMaterno(profesorModelo.getApellidoMaterno());
-        profesorEntidad.setApodo(profesorModelo.getApodo());
+        //profesorEntidad.setApodo(profesorModelo.getApodo());
         profesorEntidad.setSexo(profesorModelo.getSexo());
         profesorEntidad.setCorreoEletronico(profesorModelo.getCorreoEletronico());
 
@@ -156,7 +156,4 @@ public class ProfesorSesionBean implements Serializable {
         return typedQuery.getResultList().stream().map(ProfesorModelo::new).collect(Collectors.toList());
     }
 
-    public int buscaPorApodo(@NotNull String apodo) {
-        return 0;
-    }
 }
