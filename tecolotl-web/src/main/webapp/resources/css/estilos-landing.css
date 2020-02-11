@@ -726,7 +726,12 @@ aside ul > li > a > img {
     }
 }
 
-@media screen and (max-width: 768px){
+/*@media screen and (max-width: 768px){*/
+/*    */
+/*}*/
+
+@media screen and (max-width: 768px) {
+
     #inicio > div > div:last-of-type > p{
         font-size: 19px;
     }
@@ -747,9 +752,6 @@ aside ul > li > a > img {
         min-width: 113px;
         margin-right: 8px;
     }
-}
-
-@media screen and (max-width: 600px) {
     #contenido{
         width: 100%;
         margin-left: 0;
@@ -764,7 +766,7 @@ aside ul > li > a > img {
     }
     header nav{
         border-radius: initial;
-        height: 41px;
+        height: 47px;
     }
     header  ul{
         display: none;
@@ -929,8 +931,10 @@ aside ul > li > a > img {
          margin-left: 0;
          margin-right: 0;
         height: 20vh;
-
+        padding-top: 0;
     }
+
+
 
     .secccion2-mobile{
          display: flex;
@@ -951,7 +955,9 @@ aside ul > li > a > img {
         -webkit-flex-wrap: wrap;
         justify-content: center;
         -webkit-justify-content: center;
+        align-items: center;
         margin-bottom: 50px;
+        flex-direction: column;
     }
     .secccion2-mobile > div > img{
         width: 40%;
@@ -981,5 +987,16 @@ aside ul > li > a > img {
         width: 12%;
     }
 
+    #seccion3 div:last-child{
+        height: 200px;
 
+    }
+
+
+}
+
+@media screen and (max-width: 600px){
+    footer > div{
+        height:70%;
+    }
 }
