@@ -606,9 +606,13 @@ aside ul > li > a > img {
 }
 #seccion4 > div:nth-child(2){
     display: flex;
+    display: -webkit-flex;
     flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
     align-items: flex-end;
+    -webkit-align-items: flex-end;
     justify-content: space-between;
+    -webkit-justify-content: space-between;
 }
 #seccion4 > div:nth-child(2) > div{
     width: 31%;
@@ -654,7 +658,6 @@ aside ul > li > a > img {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
      height: 100%;
 }
 
@@ -916,9 +919,11 @@ aside ul > li > a > img {
         padding-bottom: 10px;
         text-align:center;
     }
+    #seccion4 > div:nth-child(2){
+       height: 200px;
+    }
 
     footer {
-        background-color: var(--morado-primario);
         border-radius: initial;
         margin-bottom: 20px;
          margin-left: 0;
@@ -929,20 +934,28 @@ aside ul > li > a > img {
 
     .secccion2-mobile{
          display: flex;
+        display: -webkit-flex;
         flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
         justify-content: center;
+        -webkit-justify-content: center;
         flex-direction: column;
+        -webkit-flex-direction: column;
 
     }
     .secccion2-mobile > div {
         height: auto;
         display: flex;
+        display: -webkit-flex;
         flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
         justify-content: center;
+        -webkit-justify-content: center;
         margin-bottom: 50px;
     }
     .secccion2-mobile > div > img{
         width: 40%;
+        height: 40%;
 
     }
     .secccion2-mobile > div > div{
@@ -967,5 +980,6 @@ aside ul > li > a > img {
     footer img {
         width: 12%;
     }
+
 
 }
