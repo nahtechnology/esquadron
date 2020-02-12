@@ -89,7 +89,7 @@
     height: 55px !important;
 }
 
-[class^="A"]>div>div>.uk-card-footer > div > div > span {
+[class^="A"]>div>div>.uk-card-footer > div > div > span,[class^="B"]>div>div>.uk-card-footer > div > div > span,[class^="C"]>div>div>.uk-card-footer > div > div > span {
 padding-left: 0;
 }
 
