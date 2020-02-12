@@ -95,9 +95,7 @@ public class LicenciaSesionBeanTest {
 
     @Test
     public void inserta() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_YEAR, 1);
-        licenciaSesionBean.inserta("21DBS0029K");
+        licenciaSesionBean.inserta("21DBS0029K", new LicenciaModelo());
     }
 
     @Test
