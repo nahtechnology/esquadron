@@ -85,6 +85,23 @@
 }
 
 .regresa-asigna{
-    border: 0px !important;
+    border: 0 !important;
     height: 55px !important;
+}
+
+[class^="A"]>div>div>.uk-card-footer > div > div > span {
+padding-left: 0;
+}
+
+.uk-card-footer  .uk-dropdown{
+    min-width: 160px;
+    padding: 10px 15px;
+}
+
+.uk-card-footer  .uk-dropdown > span{
+    color: black;
+}
+.uk-card-footer  .uk-dropdown > span:hover{
+    color: var(--turquesa-primary-color);
+    cursor: pointer;
 }

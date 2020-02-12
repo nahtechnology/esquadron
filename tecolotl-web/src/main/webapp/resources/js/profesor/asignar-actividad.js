@@ -66,7 +66,7 @@ function agregaListener(ejercicios) {
            linkMapa.innerHTML ="Mental-map-".concat(numeroMapa) ;
            contenedorListaMapa.appendChild(linkMapa);
         });
-        iconos = ejercicio.querySelectorAll('svg');
+        iconos = ejercicio.querySelectorAll('.uk-inline > div > span');
         iconos[0].addEventListener('click', function (evento) {
             descargaDocumento('grammar.pdf', { Bucket: "tecolotl-multimedia", Key: "descargables/".concat(ejercicio.dataset.actividad) });
         });
