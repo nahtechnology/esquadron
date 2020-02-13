@@ -209,3 +209,16 @@ function entradaFecha(evento) {
             break;
     }
 }
+
+function entradaNumero(evento) {
+    switch (evento.inputType) {
+        case 'insertText':
+            let codigo = evento.data.charCodeAt(0);
+            if (codigo < 48 || codigo > 57 ) {
+                evento.target.value = evento.target.value.slice(0, -1);
+            }
+            break;
+        case 'deleteContentBackward':
+            break;
+    }
+}

@@ -2,19 +2,27 @@ package tecolotl.web.profesor.validacion;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
+import javax.inject.Inject;
 import java.util.Date;
+import java.util.logging.Logger;
 
-@FacesValidator("tecolotl.web.profesor.FechaFutura")
+@FacesValidator(value = "tecolotl.web.profesor.FechaFutura")
 public class FechaFuturaValidacion implements Validator {
+
+    @Inject
+    private Logger logger;
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Date fechaValidar = (Date)value;
         Date hoy = new Date();
+        UIInput uiInput = (UIInput)component;
+        logger.info(uiInput.getLocalValue().toString());
         if (fechaValidar != null && fechaValidar.after(hoy)) {
             FacesMessage facesMessage = new FacesMessage();
             facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);

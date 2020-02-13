@@ -4,6 +4,7 @@ import tecolotl.administracion.persistencia.entidad.LicenciaEntidad;
 import tecolotl.administracion.validacion.escuela.LicenciaActualizaValidacion;
 import tecolotl.administracion.validacion.escuela.LicenciaNuevaValidacion;
 
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -76,6 +77,8 @@ public class LicenciaModelo {
         this.adquisicion = adquisicion;
     }
 
+    @NotNull
+    @Max(250)
     public Short getAlumnos() {
         return alumnos;
     }

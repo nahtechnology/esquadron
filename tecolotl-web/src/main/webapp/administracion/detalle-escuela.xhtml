@@ -538,9 +538,9 @@
                                                  value="#{licenciasControlador.licenciaModelo.inicio}"
                                                  pt:placeholder="dd/MM/yyyy"
                                                  pt:oninput="entradaFecha(event)">
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                                         <f:validateRequired/>
                                         <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
-                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="fecha-inicio" styleClass="uk-text-danger"/>
@@ -549,6 +549,7 @@
                                 <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="alumnos" value="alumnos"/>
                                 <div class="uk-form-controls">
                                     <h:inputText id="alumnos"
+                                                 pt:oninput="entradaNumero(event)"
                                                  styleClass="uk-input uk-text-capitalize"
                                                  value="#{licenciasControlador.licenciaModelo.alumnos}">
                                         <f:validateRequired/>
@@ -560,38 +561,10 @@
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" >
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['add']}" >
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
-                                    render="formulario-licencia @form" execute="@form"
+                                    render="@form" execute="@form"
                                     listener="#{licenciasControlador.inserta}"/>
-                        </h:commandButton>
-                    </div>
-                </h:form>
-            </div>
-        </h:panelGroup>
-        <h:panelGroup layout="block" id="modal-elimina-licencia" pt:uk-modal="">
-            <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <h:form id="formulario-eliminar-licencia">
-                    <div class="uk-modal-header fondo-peligro">
-                        <p class="uk-h4 uk-text-center uk-text-bold">
-                            <h:outputFormat value="#{administracion['schooldetail.modal.deletelicense.title']}" styleClass="letra-titulo primera-mayuscula" style="display: block">
-                                <f:param value="#{licenciasControlador.licenciaModelo.contador}"/>
-                            </h:outputFormat>
-                        </p>
-                    </div>
-                    <div class="uk-modal-body">
-                        <ul class="uk-list uk-list-divider fondo-peligro-lista">
-                            <li>Tiene asignado 23 alumno</li>
-<!--                            TODO realizar las consultas para recuperar la cantidad de alumnos asiganos a una escuela -->
-                            <li>Tiene asginado 2 profesores</li>
-                        </ul>
-                    </div>
-                    <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-margin-small-left" value="#{boton['remove']}">
-                            <f:ajax execute="@form"
-                                    listener="#{licenciasControlador.elimina}"
-                                    render="formulario-licencia formulario-paginacion-licencia"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -602,12 +575,11 @@
             var modalEliminar;
             var modalLicencia;
             var modalEditar;
-            var modalEliminaLicencia;
             document.addEventListener("DOMContentLoaded", function (evt) {
                 limpiaSelect();
                 modalAgregar = document.querySelector('#modal-agregar-contacto');
                 modalEliminar = document.querySelector('#modal-eliminar-contacto');
-                modalLicencia = document.querySelector('#modal-modificar-licencia');
+                modalLicencia = document.querySelector('#modal-licencia');
                 modalEliminaLicencia = document.querySelector('#modal-elimina-licencia');
                 UIkit.util.on('#modal-eliminar-contacto', 'show', function () {
                     modalEliminar.querySelector('.uk-modal-body').click();
