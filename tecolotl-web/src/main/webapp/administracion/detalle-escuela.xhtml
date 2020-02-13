@@ -332,22 +332,19 @@
                                          footerClass="uk-background-primary uk-text-left"
                                          columnClasses=",,uk-text-center,uk-text-center,uk-text-center,uk-text-center" >
                                 <h:column>
-                                    <f:facet name="header">
-                                        <h:outputText styleClass="letra-titulo"
-                                                      value="#{administracion['schooldetail.lisense.id']}"/>
-                                    </f:facet>
-                                    #{licencia.contador}
+                                    <f:facet name="header"><span class="letra-titulo">alumnos</span></f:facet>
+                                    #{licencia.alumnos}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.datestart']}"/></f:facet>
                                     <h:outputText value="#{licencia.inicio}">
-                                        <f:convertDateTime dateStyle="short"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.lisense.dateacquisition']}"/></f:facet>
                                     <h:outputText value="#{licencia.adquisicion}">
-                                        <f:convertDateTime dateStyle="short"/>
+                                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
@@ -357,24 +354,11 @@
                                         <h:panelGroup layout="block" pt:uk-dropdown="boundary: .tabla-licencia; mode: click" id="licencia-menu">
                                             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                 <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-modificar-licencia" styleClass="uk-text-primary">
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-licencia" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
                                                         <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
-                                                        <f:ajax render="formulario-modifica-licencia" onevent="function funcion(data) { creaFechaSelector(data, null); }"/>
-                                                    </h:commandLink>
-                                                </li>
-                                                <ui:fragment rendered="#{licenciasControlador.htmlDataTable.rowIndex eq licenciasControlador.htmlDataTable.rows}">
-                                                    <li class="uk-nav-divider"/>
-                                                </ui:fragment>
-                                                <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-elimina-licencia"
-                                                                   styleClass="uk-text-danger"
-                                                                   rendered="#{licenciasControlador.htmlDataTable.rowIndex eq (licenciasControlador.htmlDataTable.rows + 1)}">
-                                                        <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
-                                                        <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
-                                                        <f:ajax render="formulario-eliminar-licencia"/>
+                                                        <f:ajax render="formulario-modal-licencia"/>
                                                     </h:commandLink>
                                                 </li>
                                             </ul>
@@ -521,7 +505,6 @@
                                             rendered="#{not empty licenciasControlador.licenciaModelo.contador}"
                                             value="#{administracion['schooldetail.modal.updatelicense.title']}"
                                             style="display: block">
-                                <f:param value="#{licenciasControlador.licenciaModelo.contador}"/>
                             </h:outputFormat>
                             <h:outputFormat styleClass="letra-titulo primera-mayuscula uk-display-inline-block"
                                             rendered="#{empty licenciasControlador.licenciaModelo.contador}"
@@ -539,8 +522,8 @@
                                                  pt:placeholder="dd/MM/yyyy"
                                                  pt:oninput="entradaFecha(event)">
                                         <f:convertDateTime pattern="dd/MM/yyyy"/>
+                                        <f:validator validatorId="tecolotl.web.validacion.FechaPasada"/>
                                         <f:validateRequired/>
-                                        <f:validator validatorId="tecolotl.web.profesor.FechaFutura"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="fecha-inicio" styleClass="uk-text-danger"/>
@@ -560,11 +543,18 @@
                         </h:panelGroup>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['add']}" >
+                        <h:commandButton styleClass="uk-button uk-button-default" value="#{boton['cancel']}">
+                            <f:ajax render="@form" listener="#{licenciasControlador.limpiaModal}" onevent="function cerrar(data) { cierraModal(undefined, 'modalLicencia') }"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['add']}" rendered="#{empty licenciasControlador.licenciaModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
-                                    render="@form" execute="@form"
+                                    render="formulario-licencia @form" execute="@form"
                                     listener="#{licenciasControlador.inserta}"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" rendered="#{not empty licenciasControlador.licenciaModelo.contador}">
+                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
+                                    render="formulario-licencia @form" execute="@form"
+                                    listener="#{licenciasControlador.actualiza}"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -580,18 +570,14 @@
                 modalAgregar = document.querySelector('#modal-agregar-contacto');
                 modalEliminar = document.querySelector('#modal-eliminar-contacto');
                 modalLicencia = document.querySelector('#modal-licencia');
-                modalEliminaLicencia = document.querySelector('#modal-elimina-licencia');
                 UIkit.util.on('#modal-eliminar-contacto', 'show', function () {
                     modalEliminar.querySelector('.uk-modal-body').click();
                 });
                 UIkit.util.on('#modal-agregar-contacto', 'show', function () {
                     modalAgregar.querySelector('.uk-modal-body').click();
                 });
-                UIkit.util.on('#modal-modificar-licencia', 'show', function () {
+                UIkit.util.on('#modal-licencia', 'show', function () {
                     modalLicencia.querySelector('.uk-modal-body').click();
-                });
-                UIkit.util.on('#modal-elimina-licencia', 'show', function () {
-                    modalEliminaLicencia.querySelector('.uk-modal-body').click();
                 });
                 document.querySelectorAll('.selectorFecha').forEach(function (value) {
                     var selectorFecha = new SelectorFecha();
@@ -620,30 +606,41 @@
                 }
             }
             function cierraModal(data,modal) {
-                if (data.status === "success"){
+                if (!data) {
                     switch (modal) {
-                        case "modalEliminar":
-                            if (modalEliminar.querySelector('.uk-text-danger') === null) {
-                                UIkit.modal(modalEliminar).hide();
-                            }
-                            break;
-                        case "modalAgregar":
-                            if (modalAgregar.querySelector('.uk-text-danger') === null){
-                                UIkit.modal(modalAgregar).hide();
-                            }
-                            break;
                         case "modalLicencia":
                             if (modalLicencia.querySelector('.uk-text-danger') === null){
                                 UIkit.modal(modalLicencia).hide();
                             }
                             break;
-                        case "modalEditar":
-                            if (modalEditar.querySelector('.uk-text-danger') === null){
-                                UIkit.modal(modalEditar).hide();
-                            }
-                            break;
                         default: console.error(modal);
-
+                    }
+                } else {
+                    if (data.status === "success"){
+                        switch (modal) {
+                            case "modalEliminar":
+                                if (modalEliminar.querySelector('.uk-text-danger') === null) {
+                                    UIkit.modal(modalEliminar).hide();
+                                }
+                                break;
+                            case "modalAgregar":
+                                if (modalAgregar.querySelector('.uk-text-danger') === null){
+                                    UIkit.modal(modalAgregar).hide();
+                                }
+                                break;
+                            case "modalLicencia":
+                                if (modalLicencia.querySelector('.uk-text-danger') === null){
+                                    UIkit.modal(modalLicencia).hide();
+                                    modalLicencia.querySelectorAll('input').forEach(entrada => entrada.value = '');
+                                }
+                                break;
+                            case "modalEditar":
+                                if (modalEditar.querySelector('.uk-text-danger') === null){
+                                    UIkit.modal(modalEditar).hide();
+                                }
+                                break;
+                            default: console.error(modal);
+                        }
                     }
                 }
             }

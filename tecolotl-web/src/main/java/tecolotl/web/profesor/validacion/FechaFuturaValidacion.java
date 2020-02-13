@@ -21,8 +21,6 @@ public class FechaFuturaValidacion implements Validator {
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         Date fechaValidar = (Date)value;
         Date hoy = new Date();
-        UIInput uiInput = (UIInput)component;
-        logger.info(uiInput.getLocalValue().toString());
         if (fechaValidar != null && fechaValidar.after(hoy)) {
             FacesMessage facesMessage = new FacesMessage();
             facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);

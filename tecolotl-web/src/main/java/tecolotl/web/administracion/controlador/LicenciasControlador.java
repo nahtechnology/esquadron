@@ -49,6 +49,10 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
         actualizaDataModel();
     }
 
+    public void limpiaModal() {
+        licenciaModelo = new LicenciaModelo();
+    }
+
     @Override
     public void actualizaDataModel() {
         setCollectionDataModel(new CollectionDataModel<>(licenciaSesionBean.busca(claveCentroTrabajo)));
