@@ -32,7 +32,7 @@ setInterval(slider,5000);
         } else {
             console.log(data);
             video.src = URL.createObjectURL(new Blob([data.Body], {type: data.ContentType}));
-
+            document.querySelector('.video-escuadron > div').classList.add('aparece');
         }
 
     });

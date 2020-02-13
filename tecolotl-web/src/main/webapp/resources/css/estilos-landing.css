@@ -686,6 +686,16 @@ aside ul > li > a > img {
     border-color: var(--morado-secundario);
 }
 
+.prueba{
+    background: url("https://i.ytimg.com/vi/70tcgH90Nx0/mqdefault.jpg")  center/100% 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+
 .inputError{
     border: 2px solid #E31A1A !important;
 }
@@ -836,7 +846,7 @@ aside ul > li > a > img {
     }
 
     #inicio > div > div:first-of-type > div:last-child > img{
-      width: 90%;
+      width: 68%;
       height: 90%;
     }
     #inicio > div > div:first-of-type > div:last-child{
@@ -873,7 +883,9 @@ aside ul > li > a > img {
     }
     .video-escuadron{
       width: 100%;
+        height: 100%;
     }
+
 
     #seccion3{
         height: auto;

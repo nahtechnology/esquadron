@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded',function () {
         } else {
             console.log(data);
             video.src = URL.createObjectURL(new Blob([data.Body], {type: data.ContentType}));
-
+            document.querySelector('.video-alumno > div').style.display="none";
         }
 
     });
