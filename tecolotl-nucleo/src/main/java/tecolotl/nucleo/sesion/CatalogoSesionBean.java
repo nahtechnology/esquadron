@@ -49,7 +49,6 @@ public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalagoEnti
      * Busca un catálogo por si identificado.
      * @param clave Identificador a ser buscado, No puede ser nulo o mínimo a cero.
      * @return {@link M} Con los datos recuperados
-     * @throws ReflectiveOperationException En caso de no poder llamar los metodos,
      */
     public M busca(@NotNull @Min(0) Short clave) {
         M m = null;
@@ -66,7 +65,6 @@ public class CatalogoSesionBean<M extends CatalogoModelo, E extends CatalagoEnti
     /**
      * Busca todos los elementos de una catálogo
      * @return Una colección con los elementos encontrados, coleccion vacia en caso de no existir
-     * @throws ReflectiveOperationException En caso de no poder llamar al constructor
      */
     public List<M> busca() {
         List<M> modeloLista = new ArrayList<>();

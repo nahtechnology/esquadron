@@ -69,7 +69,12 @@ public class ProfesorSesionBean implements Serializable {
         Long totalProfesores = typedQuery.getSingleResult();
         EscuelaPoblacionModelo escuelaPoblacionModelo = new EscuelaPoblacionModelo();
         escuelaPoblacionModelo.setTotalProfesores(totalProfesores.intValue());
-        //TODO conteo de los alumnos
+        Query query = entityManager.createNativeQuery(
+                "SELECT sum(grupo.total_alumno) FROM (SELECT count(ga.id_grupo) AS total_alumno FROM profesor.profesor AS p LEFT JOIN profesor.grupo AS g ON p.id = g.id_profesor " +
+                "LEFT JOIN profesor.ciclo_escolar ce ON g.inicio = ce.inicio and g.fin = ce.fin and g.id_escuela = ce.id_escuela JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo " +
+                "WHERE p.id_escuela = ? AND ce.activo = TRUE GROUP BY p.id) AS grupo");
+        query.setParameter(1, claveCentroTrabajo);
+        escuelaPoblacionModelo.setTotalAlumnos(((Number)query.getSingleResult()).intValue());
         return escuelaPoblacionModelo;
     }
 

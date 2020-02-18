@@ -123,4 +123,10 @@ public class LicenciaSesionBeanTest {
         assertNotNull(total);
         assertNotEquals(total, Long.valueOf(0));
     }
+
+    @Test
+    public void totalAlumnos() {
+        int totalAlumno = licenciaSesionBean.totalAlumno("00000000XX");
+        assertFalse(totalAlumno == 0);
+    }
 }

@@ -28,9 +28,6 @@ public class EscuelaPoblacionControlador {
     private EscuelaSesionBean escuelaSesionBean;
 
     @Inject
-    private CoordinadorSesionBean coordinadorSesionBean;
-
-    @Inject
     @TipoMensaje(MensajeBundle.ADMINISTRACION)
     private ResourceBundle resourceBundle;
 
@@ -38,20 +35,14 @@ public class EscuelaPoblacionControlador {
     private String nombreEscuela;
     private int totalAlumnos;
     private int totalProfesores;
-    private int totalLicencias;
-    private int totalCoordinadores;
-
-    @PostConstruct
-    public void init() {
-        //nombreEscuela = resourceBundle.getString("dashboard.school.notselected");
-    }
+    private int totalAlumnosLicencias;
 
     public void actualiza() {
         EscuelaPoblacionModelo escuelaPoblacionModelo = profesorSesionBean.total(claveCentroTrabajo);
         nombreEscuela = escuelaSesionBean.nombre(claveCentroTrabajo);
         totalAlumnos = escuelaPoblacionModelo.getTotalAlumnos();
         totalProfesores = escuelaPoblacionModelo.getTotalProfesores();
-        totalCoordinadores = coordinadorSesionBean.cuenta(claveCentroTrabajo).intValue();
+        totalAlumnosLicencias = licenciaSesionBean.totalAlumno(claveCentroTrabajo);
     }
 
     public void buscaEscuela() {
@@ -74,14 +65,6 @@ public class EscuelaPoblacionControlador {
         this.totalProfesores = totalProfesores;
     }
 
-    public int getTotalLicencias() {
-        return totalLicencias;
-    }
-
-    public void setTotalLicencias(int totalLicencias) {
-        this.totalLicencias = totalLicencias;
-    }
-
     public String getClaveCentroTrabajo() {
         return claveCentroTrabajo;
     }
@@ -98,11 +81,11 @@ public class EscuelaPoblacionControlador {
         this.nombreEscuela = nombreEscuela;
     }
 
-    public int getTotalCoordinadores() {
-        return totalCoordinadores;
+    public int getTotalAlumnosLicencias() {
+        return totalAlumnosLicencias;
     }
 
-    public void setTotalCoordinadores(int totalCoordinadores) {
-        this.totalCoordinadores = totalCoordinadores;
+    public void setTotalAlumnosLicencias(int totalAlumnosLicencias) {
+        this.totalAlumnosLicencias = totalAlumnosLicencias;
     }
 }

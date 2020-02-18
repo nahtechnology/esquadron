@@ -10,10 +10,7 @@ import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaUpdate;
 import javax.persistence.criteria.Root;
@@ -147,6 +144,19 @@ public class LicenciaSesionBean implements Serializable {
 		licenciaEntidadPk.setEscuelaEntidad(new EscuelaEntidad(licenciaModelo.getClaveCentroTrabajo()));
 		return licenciaEntidadPk;
 	}
+
+    /**
+     * Busca el total de alumnos que puede tener una escuela regitradps, buscando por el total de licencias
+     * y que esten en el rango de escuelas de su fecha de inicio
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+     * @return total de alumnos
+     */
+	public int totalAlumno(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
+        Query query = entityManager.createNativeQuery("SELECT sum(l.alumnos)FROM administracion.licencia AS l WHERE " +
+                "current_date BETWEEN l.inicio AND l.inicio + INTERVAL '1 year' AND l.id_escuela = ?");
+        query.setParameter(1, claveCentroTrabajo);
+        return ((Number)query.getSingleResult()).intValue();
+    }
 
 	/**
 	 * Cuenta el total de licencias
