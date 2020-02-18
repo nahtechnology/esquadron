@@ -66,7 +66,7 @@ public class AgregarCsvControlador implements Serializable {
     public void inicio() {
         alumnoModelo = new AlumnoModelo();
         nivelLenguajeModeloLista = nivelLenguajeSesionBean.busca();
-        totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
+        totalAlumno = licenciaSesionBean.totalAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
         alumnosAsignado = cicloEscolarSessionBean.totalAlumnos(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).intValue();
         apodos = personaSesionBean.buscaApodo(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
     }

@@ -65,7 +65,7 @@ public class GrupoAlumnoControlador implements Serializable {
     @PostConstruct
     public void inicio() {
         alumnoModelo = new AlumnoModelo();
-        totalAlumno = licenciaSesionBean.busca(new Date(), profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo()).getAlumnos();
+        totalAlumno = licenciaSesionBean.totalAlumno(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
         buscaTotalAlumno();
     }
 
