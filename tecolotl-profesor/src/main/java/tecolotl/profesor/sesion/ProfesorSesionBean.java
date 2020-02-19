@@ -74,7 +74,8 @@ public class ProfesorSesionBean implements Serializable {
                 "LEFT JOIN profesor.ciclo_escolar ce ON g.inicio = ce.inicio and g.fin = ce.fin and g.id_escuela = ce.id_escuela JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo " +
                 "WHERE p.id_escuela = ? AND ce.activo = TRUE GROUP BY p.id) AS grupo");
         query.setParameter(1, claveCentroTrabajo);
-        escuelaPoblacionModelo.setTotalAlumnos(((Number)query.getSingleResult()).intValue());
+        Object resp = query.getSingleResult();
+        escuelaPoblacionModelo.setTotalAlumnos( resp == null ? 0 : ((Number)resp).intValue());
         return escuelaPoblacionModelo;
     }
 

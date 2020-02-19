@@ -42,7 +42,7 @@
             </div>
             <div class="uk-text-center">
                 <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">alumnos sobre pasados</span></span>
-                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnosLicencias}" id="total-alumnos-registro"/></h1>
+                <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos - escuelaPoblacionControlador.totalAlumnosLicencias le 0 ? 0 : escuelaPoblacionControlador.totalAlumnos - escuelaPoblacionControlador.totalAlumnosLicencias}" id="total-alumnos-registro"/></h1>
             </div>
         </h:panelGroup>
         <div class="uk-grid uk-grid-medium" data-uk-grid="">

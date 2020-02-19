@@ -155,7 +155,8 @@ public class LicenciaSesionBean implements Serializable {
         Query query = entityManager.createNativeQuery("SELECT sum(l.alumnos)FROM administracion.licencia AS l WHERE " +
                 "current_date BETWEEN l.inicio AND l.inicio + INTERVAL '1 year' AND l.id_escuela = ?");
         query.setParameter(1, claveCentroTrabajo);
-        return ((Number)query.getSingleResult()).intValue();
+        Object resp = query.getSingleResult();
+        return (resp == null ? '0' : ((Number)resp).intValue());
     }
 
 	/**
