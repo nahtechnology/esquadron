@@ -40,7 +40,10 @@
     color: white;
     font-family: Sans-serif;
 }
-
+.caja-input-10{
+    height: 50px;
+    box-sizing: content-box;
+}
 .caja-texto-10{
     box-sizing: content-box;
     min-height: 90px;

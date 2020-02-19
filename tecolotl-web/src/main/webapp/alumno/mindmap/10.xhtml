@@ -125,7 +125,12 @@
                         </div>
                         <div class="fondo-imagen-10 ">
                             <div class="titulo-imagen-10 ">
-                                <h3 class="titulo-10">Main idea</h3>
+                                <h:inputText styleClass="caja-input-10"
+                                 id="principal-idea"
+                                 pt:placeholder = "Main Idea"
+                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}">
+                                 <f:validateRequired/>
+                                </h:inputText>
                             </div>
                         </div>
                         <div class="globo-10">
