@@ -121,6 +121,28 @@
 		</user-data-constraint>
 	</security-constraint>
 
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>seguridad-administracion</web-resource-name>
+			<url-pattern>/administracion/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+			<http-method>TRACE</http-method>
+			<http-method>HEAD</http-method>
+			<http-method>DELETE</http-method>
+			<http-method>CONNECT</http-method>
+			<http-method>OPTIONS</http-method>
+			<http-method>PUT</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>usuario-administrador</description>
+			<role-name>administrador</role-name>
+		</auth-constraint>
+		<user-data-constraint>
+			<transport-guarantee>NONE</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
 	<!--  autentificacion por formulario  -->
 	<login-config>
 		<auth-method>FORM</auth-method>
@@ -137,6 +159,9 @@
 	</security-role>
 	<security-role>
 		<role-name>profesor</role-name>
+	</security-role>
+	<security-role>
+		<role-name>administrador</role-name>
 	</security-role>
 
 </web-app>
