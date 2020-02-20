@@ -197,6 +197,29 @@
         </div>
 
         <h:outputScript library="js" name="/profesor/grafica.js"/>
+        <script type="application/javascript">
+            document.addEventListener('DOMContentLoaded',() =>{
+               let btnReport = document.querySelector('#boton-reporte');
+               let tablaGrupos = document.querySelectorAll('#formulario-tabla table tbody > tr > td:last-child  ul > li:first-child > a');
+               let idGrupos = [];
+               tablaGrupos.forEach(table =>{
+                  let cadenaUrl = table.href;
+                  idGrupos.push(cadenaUrl.split("=")[1])
+               });
+               let cadenaIdGrupos = idGrupos.join(",");
+               console.log(cadenaIdGrupos);
+                btnReport.addEventListener('click',()=>{
+                    var hiddenElemento = document.querySelector('#reporte');
+                    hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
+                    // hiddenElemento.target = '_blank';
+                    hiddenElemento.download = 'reporte'  + '.pdf';
+                    hiddenElemento.click();
+                });
+            });
+
+
+
+        </script>
     </ui:define>
 
 </ui:composition>

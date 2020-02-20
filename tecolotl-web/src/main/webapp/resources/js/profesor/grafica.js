@@ -4,23 +4,23 @@ var botonAtras = document.querySelector('#canvas + div > button:first-child');
 var botonSiguiente = document.querySelector('#canvas + div > button:last-child');
 
 document.addEventListener('DOMContentLoaded', function (evento) {
-    var botonReporte = document.querySelector('#boton-reporte');
+    // var botonReporte = document.querySelector('#boton-reporte');
 
     var canvasGrafic = document.querySelector('#canvas');
-   botonReporte.addEventListener('click',reporteCuantitativo);
+   // botonReporte.addEventListener('click',reporteCuantitativo);
    datosGrupo();
     if (!canvasGrafic.hasChildNodes()){
         console.log('entro');
-        botonReporte.disabled = true;
-        botonReporte.classList.add('boton-disabilitado');
+       // botonReporte.disabled = true;
+       // botonReporte.classList.add('boton-disabilitado');
         botonSiguiente.disabled = true;
         botonSiguiente.classList.add('boton-disabilitado');
         botonAtras.disabled = true;
         botonAtras.classList.add('boton-disabilitado');
 
     }else {
-        botonReporte.disabled = false;
-        botonReporte.classList.remove('boton-disabilitado');
+       // botonReporte.disabled = false;
+       // botonReporte.classList.remove('boton-disabilitado');
         botonSiguiente.disabled = false;
         botonSiguiente.classList.remove('boton-disabilitado');
         botonAtras.disabled = false;

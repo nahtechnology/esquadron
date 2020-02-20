@@ -1,3 +1,28 @@
 #formulario-modal-cicloEscolar label{
     text-transform: capitalize;
 }
+
+#formulario-modal-profesor .uk-modal-body > div > div:last-child{
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px 40px;
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+    position: relative;
+    left: 32%;
+    margin-top: 30px;
+}
+
+#formulario-modal-profesor .uk-modal-body > div > div:last-child > img{
+    width: 40px;
+    height: 40px;
+    transition: all 0.5s linear;
+    cursor: pointer;
+}
+#formulario-modal-profesor .uk-modal-body > div > div:last-child > img:hover{
+   transform: scale(1.5,1.5);
+}
+
+.seleccionado{
+    transform: scale(1.5,1.5);
+}

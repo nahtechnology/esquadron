@@ -7,6 +7,12 @@ function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
     modalEliminar = document.getElementById('modal-eliminar');
     modalProfresor.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
+    var imagenesContra = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
+    imagenesContra.forEach(img => {
+       img.addEventListener('click',() => {
+            img.classList.toggle("seleccionado");
+       });
+    });
     abrirModal();
     elimina();
 }
@@ -61,4 +67,15 @@ function abrirModal() {
     UIkit.util.on('#modal-eliminar', 'show', function () {
         modalEliminar.querySelector('.uk-modal-header').click();
     });
+}
+
+function cargaContrasenia() {
+    var imagenes = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
+    var seleccionados = [];
+    for (i = 0; i < imagenes.length; i++) {
+        if (imagenes[i].classList.contains('seleccionado')) {
+            seleccionados.push(i);
+        }
+    }
+    document.getElementById('formulario-modal-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');
 }
