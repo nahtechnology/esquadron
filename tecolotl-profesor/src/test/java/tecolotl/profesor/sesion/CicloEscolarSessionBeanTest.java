@@ -160,6 +160,21 @@ public class CicloEscolarSessionBeanTest {
     }
 
     @Test
+    public void buscaEscuela() {
+        List<CicloEscolarModelo> cicloEscolarModeloLista = cicloEscolarSessionBean.busca("NO21JKBB5E");
+        assertNotNull(cicloEscolarModeloLista);
+        assertFalse(cicloEscolarModeloLista.isEmpty());
+        cicloEscolarModeloLista.forEach(cicloEscolarModelo -> {
+            assertNotNull(cicloEscolarModelo);
+            assertNotNull(cicloEscolarModelo.getActivo());
+            assertNotNull(cicloEscolarModelo.getDescripcion());
+            assertNotNull(cicloEscolarModelo.getFin());
+            assertNotNull(cicloEscolarModelo.getInicio());
+            assertNotNull(cicloEscolarModelo.getIdEscuela());
+        });
+    }
+
+    @Test
     //@InSequence(1)
     public void inserta() throws ParseException {
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();

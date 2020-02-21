@@ -25,33 +25,29 @@ public class CiclosEscolaresControlador implements Serializable {
 
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
     private CicloEscolarModelo cicloEscolarModelo;
-    private HtmlDataTable htmlDataTable;
     private String claveCentroTrabajo;
 
     @PostConstruct
     public void buscaCiclosEscolares() {
         cicloEscolarModelo = new CicloEscolarModelo();
-        claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
-        cicloEscolarModelo.setIdEscuela(claveCentroTrabajo);
-        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
-
     }
 
-    public void insertaCicloEscolar() {
+    public void inicia() {
+        cicloEscolarModelo.setIdEscuela(claveCentroTrabajo);
+        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
+    }
+
+    public void inserta() {
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
     }
 
-    public void seleccionaCicloEscolar() {
-        cicloEscolarModelo = cicloEscolarModeloLista.get(htmlDataTable.getRowIndex());
-    }
-
-    public void actualizaCicloEscolar() {
+    public void actualiza() {
         cicloEscolarSessionBean.actualiza(cicloEscolarModelo);
          cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
     }
 
-    public void eliminaCicloEscolar() {
+    public void elimina() {
         cicloEscolarSessionBean.elimina(cicloEscolarModelo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
     }
@@ -72,11 +68,11 @@ public class CiclosEscolaresControlador implements Serializable {
         this.cicloEscolarModelo = cicloEscolarModelo;
     }
 
-    public HtmlDataTable getHtmlDataTable() {
-        return htmlDataTable;
+    public String getClaveCentroTrabajo() {
+        return claveCentroTrabajo;
     }
 
-    public void setHtmlDataTable(HtmlDataTable htmlDataTable) {
-        this.htmlDataTable = htmlDataTable;
+    public void setClaveCentroTrabajo(String claveCentroTrabajo) {
+        this.claveCentroTrabajo = claveCentroTrabajo;
     }
 }
