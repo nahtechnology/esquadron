@@ -63,22 +63,22 @@ function agregaListener(ejercicios) {
 
         cadenaMapas.forEach(function (numeroMapa) {
            let linkMapa = document.createElement('li');
-           linkMapa.innerHTML ="Mental-map-".concat(numeroMapa) ;
+           linkMapa.innerHTML ="Mindmap_".concat(numeroMapa) ;
            contenedorListaMapa.appendChild(linkMapa);
         });
         iconos = ejercicio.querySelectorAll('.uk-inline > div > span');
         iconos[0].addEventListener('click', function (evento) {
-            descargaDocumento('grammar.pdf', { Bucket: "tecolotl-multimedia", Key: "descargables/".concat(ejercicio.dataset.actividad) });
+            descargaDocumento('Grammar.pdf', { Bucket: "tecolotl-multimedia", Key: "descargables/".concat(ejercicio.dataset.actividad) });
         });
         iconos[1].addEventListener('click', function (evento) {
-            descargaDocumento('didactic_guide.pdf', { Bucket: "tecolotl-multimedia", Key: "guia/".concat(ejercicio.dataset.actividad) });
+            descargaDocumento('Lesson_Plan.pdf', { Bucket: "tecolotl-multimedia", Key: "guia/".concat(ejercicio.dataset.actividad) });
         });
         iconos[2].addEventListener('click', function (evento) {
-            descargaDocumento('cards.pdf', { Bucket: 'tecolotl-multimedia', Key: 'cartas/'.concat(ejercicio.dataset.actividad) });
+            descargaDocumento('Disussion_cards.pdf', { Bucket: 'tecolotl-multimedia', Key: 'cartas/'.concat(ejercicio.dataset.actividad) });
         });
         contenedorListaMapa.querySelectorAll('li').forEach(function (linkMap,index) {
           linkMap.addEventListener('click',function (evento) {
-              descargaDocumento('mental_map_'.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
+              descargaDocumento('Mindmap_'.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
           })
         })
 

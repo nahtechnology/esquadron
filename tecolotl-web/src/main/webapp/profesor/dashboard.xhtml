@@ -116,7 +116,7 @@
                     </h:panelGroup>
                 </h:form>
                 <div class="boton-reporte">
-                    <button id="boton-reporte" class="boton-escuadron-base">#{boton['report']}</button>
+                    <button id="boton-reporte" class="boton-escuadron-base">#{profesor['report']}</button>
                 </div>
             </h:panelGroup>
         </div>
@@ -212,7 +212,7 @@
                     var hiddenElemento = document.querySelector('#reporte');
                     hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
                     // hiddenElemento.target = '_blank';
-                    hiddenElemento.download = 'reporte'  + '.pdf';
+                    // hiddenElemento.download = 'reporte'  + '.pdf';
                     hiddenElemento.click();
                 });
             });

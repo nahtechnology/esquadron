@@ -119,7 +119,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
     // console.log(datosGrupo[0].personaGrupo);
     claseGrupo.forEach(function (clg) {
         if (clg.idGrup === datosGrupo[0].personaGrupo){
-            titleGrupo.innerHTML ='Grupo: ' + clg.grado + ' ' +clg.grupo;
+            titleGrupo.innerHTML ='Group: ' + clg.grado + ' ' +clg.grupo;
         }
     });
     level1.innerHTML='A1';
@@ -363,5 +363,5 @@ function paginacionGraficas(dato) {
         botonSiguiente.disabled = false;
         botonSiguiente.classList.remove('boton-disabilitado');
     }
- console.log(numGraficas);
+ // console.log(numGraficas);
 }
