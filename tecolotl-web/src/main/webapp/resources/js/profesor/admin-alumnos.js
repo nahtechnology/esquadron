@@ -39,12 +39,12 @@ function generarReporte(evento) {
     // }
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const grupo = urlParams.get('grupo');
+    var grupo = urlParams.get('grupo');
     var hiddenElement = document.createElement('a');
     console.log(grupo);
-    hiddenElement.href = `http://reportes.e-squadron.com.mx/reporte-grupo?grupo=561ee273-db1e-4952-88c2-ae67f3ac50c1`;
+    hiddenElement.href = "http://reportes.e-squadron.com.mx/reporte-grupo?grupo=".concat(grupo);
     // hiddenElement.target = '_blank';
-    hiddenElement.download = 'activityreport_group' + evento.target.dataset.grado + evento.target.dataset.grupo + '.pdf';
+    // hiddenElement.download = 'activityreport_group' + evento.target.dataset.grado + evento.target.dataset.grupo + '.pdf';
     hiddenElement.click();
 }
 
