@@ -1,5 +1,6 @@
 package tecolotl.web.administracion.controlador;
 
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
@@ -26,6 +27,7 @@ public class CiclosEscolaresControlador implements Serializable {
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
     private CicloEscolarModelo cicloEscolarModelo;
     private String claveCentroTrabajo;
+    private EscuelaBaseModelo escuelaBaseModelo;
 
     @PostConstruct
     public void buscaCiclosEscolares() {
@@ -35,21 +37,27 @@ public class CiclosEscolaresControlador implements Serializable {
     public void inicia() {
         cicloEscolarModelo.setIdEscuela(claveCentroTrabajo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
+        escuelaBaseModelo = new EscuelaBaseModelo(claveCentroTrabajo);
     }
 
     public void inserta() {
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
-        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
+        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+    }
+
+    public void activa() {
+        cicloEscolarModelo.setActivo(!cicloEscolarModelo.getActivo());
+        cicloEscolarSessionBean.actualiza(cicloEscolarModelo);
     }
 
     public void actualiza() {
         cicloEscolarSessionBean.actualiza(cicloEscolarModelo);
-         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
+         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
     }
 
     public void elimina() {
         cicloEscolarSessionBean.elimina(cicloEscolarModelo);
-        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(claveCentroTrabajo);
+        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
     }
 
     public List<CicloEscolarModelo> getCicloEscolarModeloLista() {
