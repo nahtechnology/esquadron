@@ -28,6 +28,7 @@ public class CiclosEscolaresControlador implements Serializable {
     private CicloEscolarModelo cicloEscolarModelo;
     private String claveCentroTrabajo;
     private EscuelaBaseModelo escuelaBaseModelo;
+    private Long totalGrupo;
 
     @PostConstruct
     public void buscaCiclosEscolares() {
@@ -41,9 +42,10 @@ public class CiclosEscolaresControlador implements Serializable {
     }
 
     public void inserta() {
+        cicloEscolarModelo.setIdEscuela(escuelaBaseModelo.getClaveCentroTrabajo());
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
-        cicloEscolarModelo = new CicloEscolarModelo();
+        renuevaModelo();
     }
 
     public void activa() {
@@ -59,7 +61,12 @@ public class CiclosEscolaresControlador implements Serializable {
 
     public void elimina() {
         cicloEscolarSessionBean.elimina(cicloEscolarModelo);
-        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+        cicloEscolarModeloLista.remove(cicloEscolarModelo);
+        renuevaModelo();
+    }
+
+    public void buscaTotalGrupo() {
+        totalGrupo = cicloEscolarSessionBean.totalGrupo(cicloEscolarModelo);
     }
 
     public void renuevaModelo() {
@@ -88,5 +95,13 @@ public class CiclosEscolaresControlador implements Serializable {
 
     public void setClaveCentroTrabajo(String claveCentroTrabajo) {
         this.claveCentroTrabajo = claveCentroTrabajo;
+    }
+
+    public Long getTotalGrupo() {
+        return totalGrupo;
+    }
+
+    public void setTotalGrupo(Long totalGrupo) {
+        this.totalGrupo = totalGrupo;
     }
 }

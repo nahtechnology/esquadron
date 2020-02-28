@@ -128,7 +128,8 @@
                                                 <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-eliminar">
                                                     <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
                                                     <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-
+                                                    <f:setPropertyActionListener value="#{cicloEscolar}" target="#{ciclosEscolaresControlador.cicloEscolarModelo}"/>
+                                                    <f:ajax listener="#{ciclosEscolaresControlador.buscaTotalGrupo}" render="formulario-eliminar" onevent="abreModal('modalEliminar')"/>
                                                 </h:commandLink>
                                             </li>
                                         </ul>
@@ -140,6 +141,7 @@
                 </div>
             </div>
         </div>
+        <!--  Modal nuevo, actualizar ciclo escolar  -->
         <h:panelGroup layout="block" id="modal-escuela" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-modal-ciclo-escolar" styleClass="uk-form-stacked">
@@ -217,6 +219,7 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <!--  Modal activar, desactvivar ciclo escolar  -->
         <h:panelGroup id="modal-activar" layout="block" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-activar" styleClass="uk-form-stacked">
@@ -234,6 +237,35 @@
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{ciclosEscolaresControlador.cicloEscolarModelo.activo ? 'desactivar' : 'activar'}">
                             <f:ajax listener="#{ciclosEscolaresControlador.activa}" render="formualrio-ciclo-escolar" onevent="function funcion(data) { cierraModal(data, 'modalActivar') }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+        <!--  Modal confirmacion de elimina ciclo escolar  -->
+        <h:panelGroup id="modal-eliminar" layout="block" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-eliminar">
+                    <div class="uk-modal-header fondo-peligro">
+                        <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize letra-titulo">
+                            eliminar ciclo escolar
+                        </p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <h:outputFormat rendered="#{ciclosEscolaresControlador.totalGrupo eq 0}" value="Esta seguro que desea eliminar el grupo: {0}">
+                            <f:param value="#{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}"/>
+                        </h:outputFormat>
+                        <h:outputFormat rendered="#{ciclosEscolaresControlador.totalGrupo ne 0}" value="No se puede eliminar es ciclo escolar: {0} por que aun tiene {1} grupos asignados">
+                            <f:param value="#{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}"/>
+                            <f:param value="#{ciclosEscolaresControlador.totalGrupo}"/>
+                        </h:outputFormat>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                            <f:ajax listener="#{ciclosEscolaresControlador.renuevaModelo}"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
+                            <f:ajax listener="#{ciclosEscolaresControlador.elimina}" render="formualrio-ciclo-escolar"/>
                         </h:commandButton>
                     </div>
                 </h:form>

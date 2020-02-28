@@ -67,6 +67,7 @@ import javax.inject.Inject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -157,6 +158,20 @@ public class CicloEscolarSessionBeanTest {
             assertNotNull(cicloEscolarModelo.getInicio());
             assertNotNull(cicloEscolarModelo.getIdEscuela());
         });
+    }
+
+    @Test
+    public void totalgrupo() {
+        CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(2020, 0, 1);
+        cicloEscolarModelo.setInicio(calendar.getTime());
+        calendar.set(2020, 5,30);
+        cicloEscolarModelo.setFin(calendar.getTime());
+        cicloEscolarModelo.setIdEscuela("NO21JKBB5E");
+        Long totalGrupo = cicloEscolarSessionBean.totalGrupo(cicloEscolarModelo);
+        assertNotNull(totalGrupo);
+        assertTrue(totalGrupo > -1);
     }
 
     @Test

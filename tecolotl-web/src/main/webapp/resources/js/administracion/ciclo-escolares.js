@@ -1,11 +1,13 @@
 let modalCicloEscolar;
 let modalActivar;
+let modalEliminar;
 
 document.addEventListener('DOMContentLoaded', inicio);
 
 function inicio(evento) {
     modalCicloEscolar = document.getElementById('modal-escuela');
     modalActivar = document.getElementById('modal-activar');
+    modalEliminar = document.getElementById('modal-eliminar');
 }
 
 function cierraModal(data, modal) {
@@ -34,6 +36,9 @@ function abreModal(modal) {
             break;
         case 'modalCicloEscolar':
             modalCicloEscolar.querySelector('.uk-modal-header').click();
+            break;
+        case 'modalEliminar':
+            modalEliminar.querySelector('.uk-modal-header').click();
             break;
         default:
             console.log('Opcion aun no programada' + modal);

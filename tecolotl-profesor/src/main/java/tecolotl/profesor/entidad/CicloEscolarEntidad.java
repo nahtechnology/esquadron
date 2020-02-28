@@ -21,7 +21,12 @@ import java.util.StringJoiner;
                 "AND g.profesorEntidad.id = :idProfesor"),
     @NamedQuery(
         name = "CicloEscolarEntidad.buscaEscuela",
-        query = "SELECT ce FROM CicloEscolarEntidad ce WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
+        query = "SELECT ce FROM CicloEscolarEntidad ce WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
+    @NamedQuery(
+            name = "CicloEscolarEntidad.cuentaGrupo",
+            query = "SELECT COUNT (g) FROM CicloEscolarEntidad ce JOIN ce.grupoEntidadLista g WHERE ce.cicloEscolarPK.fin = :fin AND " +
+                    "ce.cicloEscolarPK.inicio = :inicio AND ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
+    )
 })
 public class CicloEscolarEntidad {
 

@@ -114,6 +114,19 @@ public class CicloEscolarSessionBean {
     }
 
     /**
+     * Cuenta el total de grupos que tiene un ciclo escolar.
+     * @param cicloEscolarModelo Objeto con los datos del ciclo escolar
+     * @return Total de grupos
+     */
+    public Long totalGrupo(@NotNull CicloEscolarModelo cicloEscolarModelo) {
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.cuentaGrupo", Long.class);
+        typedQuery.setParameter("fin", cicloEscolarModelo.getFin())
+                .setParameter("inicio", cicloEscolarModelo.getInicio())
+                .setParameter("claveCentroTrabajo", cicloEscolarModelo.getIdEscuela());
+        return typedQuery.getSingleResult();
+    }
+
+    /**
      * Crea una llave primaria de un ciclo escolar
      * @param cicloEscolarModelo Datos del ciclo escolar
      * @return Llave primaria de un ciclo escolar
