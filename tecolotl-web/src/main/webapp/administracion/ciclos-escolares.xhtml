@@ -103,11 +103,14 @@
                                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                         <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                             <li>
-                                                <h:link styleClass="uk-text-primary">
+                                                <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-escuela">
                                                     <h:outputText pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right uk-icon"/>
-                                                    <span class="uk-text-middle"><h:outputText value="#{boton['detail']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-
-                                                </h:link>
+                                                    <span class="uk-text-middle">
+                                                        <h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/>
+                                                    </span>
+                                                    <f:setPropertyActionListener value="#{cicloEscolar}" target="#{ciclosEscolaresControlador.cicloEscolarModelo}"/>
+                                                    <f:ajax render="formulario-modal-ciclo-escolar" onevent="function funcion(data){ if (data.status === 'success') abreModal('modalCicloEscolar'); }"/>
+                                                </h:commandLink>
                                             </li>
                                             <li>
                                                 <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-activar">
@@ -142,7 +145,7 @@
                 <h:form id="formulario-modal-ciclo-escolar" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
-                            <span class="letra-titulo">nuevo ciclo escolar</span>
+                            <h:outputText styleClass="letra-titulo" value="#{empty ciclosEscolaresControlador.cicloEscolarModelo.inicio ? 'nuevo' : 'actualiza'} ciclo escolar"/>
                         </p>
                     </div>
                     <div class="uk-modal-body">
@@ -152,6 +155,7 @@
                                 <div class="uk-form-controls">
                                     <h:inputText value="#{ciclosEscolaresControlador.cicloEscolarModelo.inicio}"
                                                  id="fecha-inicio"
+                                                 disabled="#{not empty ciclosEscolaresControlador.cicloEscolarModelo.inicio}"
                                                  pt:oninput="entradaFecha(event)"
                                                  pt:placeholder="dd/MM/yyyy"
                                                  styleClass="uk-input"
@@ -168,6 +172,7 @@
                                     <h:inputText id="fecha-fin"
                                                  pt:oninput="entradaFecha(event)"
                                                  styleClass="uk-input"
+                                                 disabled="#{not empty ciclosEscolaresControlador.cicloEscolarModelo.fin}"
                                                  pt:placeholder="dd/MM/yyyy"
                                                  autocomplete="off"
                                                  value="#{ciclosEscolaresControlador.cicloEscolarModelo.fin}">
@@ -193,10 +198,18 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">cancelar</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}">
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                            <f:ajax listener="#{ciclosEscolaresControlador.renuevaModelo}" render="@form"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty ciclosEscolaresControlador.cicloEscolarModelo.inicio}">
                             <f:ajax execute="@form"
                                     listener="#{ciclosEscolaresControlador.inserta}"
+                                    render="@form formualrio-ciclo-escolar"
+                                    onevent="function funcion(data) { cierraModal(data, 'modalCicloEscolar') }"/>
+                        </h:commandButton>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty ciclosEscolaresControlador.cicloEscolarModelo.inicio}">
+                            <f:ajax execute="@form"
+                                    listener="#{ciclosEscolaresControlador.actualiza}"
                                     render="@form formualrio-ciclo-escolar"
                                     onevent="function funcion(data) { cierraModal(data, 'modalCicloEscolar') }"/>
                         </h:commandButton>
@@ -216,7 +229,9 @@
                         Esta seguro que desea #{ciclosEscolaresControlador.cicloEscolarModelo.activo ? 'desactivar' : 'activar'} el ciclo escolar: #{ciclosEscolaresControlador.cicloEscolarModelo.descripcion}
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">cancelar</button>
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                            <f:ajax listener="#{ciclosEscolaresControlador.renuevaModelo}" render="@form"/>
+                        </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary" value="#{ciclosEscolaresControlador.cicloEscolarModelo.activo ? 'desactivar' : 'activar'}">
                             <f:ajax listener="#{ciclosEscolaresControlador.activa}" render="formualrio-ciclo-escolar" onevent="function funcion(data) { cierraModal(data, 'modalActivar') }"/>
                         </h:commandButton>

@@ -43,6 +43,7 @@ public class CiclosEscolaresControlador implements Serializable {
     public void inserta() {
         cicloEscolarSessionBean.inserta(cicloEscolarModelo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+        cicloEscolarModelo = new CicloEscolarModelo();
     }
 
     public void activa() {
@@ -52,12 +53,17 @@ public class CiclosEscolaresControlador implements Serializable {
 
     public void actualiza() {
         cicloEscolarSessionBean.actualiza(cicloEscolarModelo);
-         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+        renuevaModelo();
     }
 
     public void elimina() {
         cicloEscolarSessionBean.elimina(cicloEscolarModelo);
         cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+    }
+
+    public void renuevaModelo() {
+        cicloEscolarModelo = new CicloEscolarModelo();
     }
 
     public List<CicloEscolarModelo> getCicloEscolarModeloLista() {

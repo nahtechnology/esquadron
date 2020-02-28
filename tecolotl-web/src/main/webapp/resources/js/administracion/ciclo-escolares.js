@@ -32,6 +32,9 @@ function abreModal(modal) {
         case 'modalActivar':
             modalActivar.querySelector('.uk-modal-header').click();
             break;
+        case 'modalCicloEscolar':
+            modalCicloEscolar.querySelector('.uk-modal-header').click();
+            break;
         default:
             console.log('Opcion aun no programada' + modal);
     }
