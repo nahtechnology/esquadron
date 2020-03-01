@@ -12,7 +12,7 @@ import java.util.Objects;
 public class ContactoModelo {
 
     @NotNull(groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
-    @Size(min = 10, max = 14, groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
+    @Size(min = 2, max = 14, groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
     private String claveCentroTrabajo;
 
     @NotNull(groups = {ContactoNuevoValidacion.class, ContactoLlavePrimariaValidacion.class})
