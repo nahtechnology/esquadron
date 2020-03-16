@@ -120,7 +120,7 @@
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
-
+<!--
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>seguridad-administracion</web-resource-name>
@@ -142,7 +142,7 @@
 			<transport-guarantee>NONE</transport-guarantee>
 		</user-data-constraint>
 	</security-constraint>
-
+-->
 	<!--  autentificacion por formulario  -->
 	<login-config>
 		<auth-method>FORM</auth-method>

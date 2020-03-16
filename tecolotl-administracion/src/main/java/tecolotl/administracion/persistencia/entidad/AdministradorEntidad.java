@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "admnistrador", schema = "administracion")
+@Table(name = "administrador", schema = "administracion")
 @NamedQueries(value = {
         @NamedQuery(
                 name = "AdministradorEntidad.buscaApodo",
@@ -25,4 +25,5 @@ public class AdministradorEntidad extends PersonaEntidad {
     public void setIdentificador(Integer identificador) {
         this.identificador = identificador;
     }
+
 }
