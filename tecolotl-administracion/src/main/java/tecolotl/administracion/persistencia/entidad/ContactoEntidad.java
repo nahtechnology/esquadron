@@ -52,7 +52,7 @@ public class ContactoEntidad implements Serializable {
 	@Basic
 	@Column(name = "nombre")
 	@NotNull
-	@Size(min = 11, max = 110)
+	@Size(min = 2, max = 110)
 	public String getNombre() {
 		return nombre;
 	}
