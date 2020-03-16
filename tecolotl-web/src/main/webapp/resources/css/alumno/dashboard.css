@@ -73,9 +73,9 @@ ul{
 }
 
 .prueba{
-    background: url("https://i.ytimg.com/vi/70tcgH90Nx0/mqdefault.jpg")  center/100% 100%;
+    background: transparent;
     width: 100%;
-    height: 100%;
+    height: 88%;
     position: absolute;
     z-index: 100;
     top: 0;

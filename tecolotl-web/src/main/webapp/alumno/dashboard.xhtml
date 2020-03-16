@@ -123,10 +123,12 @@
                      </div>
                      <div class="uk-width-2-3@m">
                          <div class="uk-section uk-border-rounded border-section uk-padding-remove color-card-dashboard-alumno" style="position:relative;padding-top:52.25%;">
-                             <div style="position:relative;padding-top:52.25%;" class="uk-margin-auto video-alumno" >
+                             <div style="position:relative;padding-top:52.25%;" class="uk-margin-auto video-alumno">
 <!--                                 <iframe  src="https://www.youtube.com/embed/70tcgH90Nx0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>-->
-                                 <div class="prueba"></div>
-                                 <video controls=""  style="position:absolute;top:0;left:0;width:100%;height:100%;"/>
+                                 <div id="anti-video"></div>
+                                 <div class="video-alum" style="position:absolute;top:0;left:0;width:100%;height:100%;" data-video="2PDXH4XBP44">
+
+                                 </div>
                              </div>
                          </div>
                      </div>
@@ -276,8 +278,55 @@
         </div>
 
         <script type="application/javascript">
-            var tiempo;
             document.addEventListener("DOMContentLoaded", radio);
+            var tiempo;
+            var tag = document.createElement('script');
+            var videoPlayer = document.querySelector('.video-alum');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+            var player;
+
+
+            function onYouTubeIframeAPIReady() {
+                player = new YT.Player( videoPlayer, {
+                    height: '100%',
+                    width: '100%',
+                    videoId: videoPlayer.dataset.video,
+                    events: {
+                        'onReady': onPlayerReady,
+                        'onStateChange': onPlayerStateChange
+                    }
+                });
+            }
+
+            function onPlayerReady(event) {
+                console.log(event, 'Evento Listo!!');
+            }
+
+            var done = false;
+            function onPlayerStateChange(event) {
+                // console.log(event.target.a.id);
+
+                switch (event.data) {
+                    case 0: {
+                            document.querySelector("#anti-video").classList.add('prueba');
+                        break;
+                    }
+                    case 1: {
+                        // console.log("reproduciendo");
+
+                        break;
+                    }
+                    case 2: {
+                        document.querySelector("#anti-video").classList.add('prueba');
+                        // console.log("pausado");
+                        break;
+                    }
+
+                }
+
+            }
             function radio() {
                 var contenedorVideo = document.querySelector('#video-actividad');
                 var imagen = document.createElement('img');
@@ -322,7 +371,7 @@
             }
 
         </script>
-        <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"/>
+<!--        <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"/>-->
         <h:outputScript library="js" name="alumno/calificacion.js"/>
     </ui:define>
 

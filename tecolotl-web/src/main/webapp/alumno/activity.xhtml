@@ -277,6 +277,9 @@
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
             document.querySelector('.transcrip > div:nth-child(2) > div:first-child > span').addEventListener('click',reproducir);
             document.querySelector('.answer .video-activity  span').addEventListener('click',reproducir);
+            document.querySelectorAll("#filtro-seleccion ul:first-child > li").forEach(links => {
+                links.addEventListener('click',pausa);
+            });
 
             var contenedorTranscripVideo = document.querySelector("[uk-filter-control='.answer']");
             contenedorTranscripVideo.addEventListener('click',botonPlay);
@@ -392,6 +395,10 @@
                 var video = boton.querySelector('#video-drag');
 
                 console.log(video.src);
+            }
+            function pausa() {
+                player[0].pauseVideo();
+                player[1].pauseVideo();
             }
         </script>
         <script type="text/javascript">

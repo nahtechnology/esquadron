@@ -1,5 +1,52 @@
 var contenedor = document.querySelectorAll('#inicio > div  >  div:first-of-type > div');
 var boton2,caja2;
+var tag = document.createElement('script');
+var videoPlayer = document.querySelector('.video-alum');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player;
+
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player( videoPlayer, {
+        height: '100%',
+        width: '100%',
+        videoId: videoPlayer.dataset.video,
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    console.log(event, 'Evento Listo!!');
+}
+
+var done = false;
+function onPlayerStateChange(event) {
+    // console.log(event.target.a.id);
+
+    switch (event.data) {
+        case 0: {
+            document.querySelector("#anti-video").classList.add('prueba');
+            break;
+        }
+        case 1: {
+            // console.log("reproduciendo");
+
+            break;
+        }
+        case 2: {
+            document.querySelector("#anti-video").classList.add('prueba');
+            // console.log("pausado");
+            break;
+        }
+
+    }
+
+}
 document.addEventListener("DOMContentLoaded", function (evt) {
 setInterval(slider,5000);
     var spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
