@@ -12,18 +12,17 @@ import javax.persistence.*;
                 name = "AdministradorEntidad.buscaApodo",
                 query = "SELECT a FROM AdministradorEntidad a WHERE a.apodo = :apodo")
 })
-@AttributeOverride(name = "apodo", column = @Column(name = "apodo"))
 public class AdministradorEntidad extends PersonaEntidad {
 
-    @Id
-    private Integer identificador;
+    private String id;
 
-    public Integer getIdentificador() {
-        return identificador;
+    @Id
+    public String getId() {
+        return id;
     }
 
-    public void setIdentificador(Integer identificador) {
-        this.identificador = identificador;
+    public void setId(String id) {
+        this.id = id;
     }
 
 }

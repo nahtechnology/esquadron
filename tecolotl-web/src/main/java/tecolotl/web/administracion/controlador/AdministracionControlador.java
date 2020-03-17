@@ -24,7 +24,7 @@ public class AdministracionControlador implements Serializable {
     @PostConstruct
     public void inicio() {
         Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
-        administradorModelo = new AdministradorModelo();
+        administradorModelo = administradorSesionBean.busca(principal.getName(), true);
     }
 
     public String cerrarSesion() {

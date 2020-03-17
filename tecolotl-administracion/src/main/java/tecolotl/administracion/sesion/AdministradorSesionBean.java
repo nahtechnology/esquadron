@@ -16,9 +16,9 @@ public class AdministradorSesionBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public AdministradorModelo busca(@NotNull String apodo) {
+    public AdministradorModelo busca(@NotNull String apodo, boolean galaxia) {
         TypedQuery<AdministradorEntidad> typedQuery = entityManager.createNamedQuery("AdministradorEntidad.buscaApodo", AdministradorEntidad.class);
-        typedQuery.setParameter("apodo", apodo);
+        typedQuery.setParameter("apodo", galaxia ? apodo.split(",")[0] : apodo );
         return new AdministradorModelo(typedQuery.getSingleResult());
     }
 }
