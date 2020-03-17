@@ -305,11 +305,10 @@
 
             var done = false;
             function onPlayerStateChange(event) {
-                // console.log(event.target.a.id);
 
                 switch (event.data) {
                     case 0:{
-                        if(event.target.a.id === "video1"){
+                        if(event.target.f.id === "video1"){
                             var contenedorVideo =  document.querySelector('.scrollFinal');
                             var logo = document.querySelector('.transcrip > div:nth-child(2) > div:first-child > span');
                             var barra = document.querySelector('.barra-publicidad');
@@ -318,7 +317,7 @@
                            contenedorVideo.parentElement.classList.add('finalVideo');
                            logo.classList.toggle('visibilidad');
                            barra.classList.toggle('visibilidad');
-                        }else if(event.target.a.id === "video2"){
+                        }else if(event.target.f.id === "video2"){
                             var contenedorVideo2 =  document.querySelector('#video2');
                             var logo2 = document.querySelector('.answer .video-activity > span');
                             var barra2 = document.querySelector('.answer .barra-publicidad');

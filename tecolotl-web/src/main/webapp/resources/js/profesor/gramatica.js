@@ -9,6 +9,25 @@ var calificacion = [];
 var datos = [];
 document.addEventListener('DOMContentLoaded',function (ev) {
     calificarOracion(oracion,respuesta);
+    var botonRespuesta = document.querySelector('form .boton-escuadron-base');
+    var respuestas = document.querySelectorAll('form > div  input[type=text]');
+    var conta = 0;
+    respuestas.forEach(respuesta => {
+        if(respuesta.value === ""){
+            conta++;
+        }
+    });
+
+    let porcentaje = Math.round((conta * 100)/respuestas.length);
+    console.log(porcentaje);
+    if(porcentaje >= 20){
+        console.log(porcentaje,"desabilitado");
+        botonRespuesta.disabled = true;
+        botonRespuesta.classList.toggle('boton-disabilitado');
+    }else{
+        botonRespuesta.classList.toggle('boton-disabilitado');
+        botonRespuesta.disabled = false;
+    }
     document.querySelector('#formulario-califica input[type=submit]').addEventListener('click', validaRespuesta);
 });
 
