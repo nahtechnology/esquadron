@@ -125,10 +125,13 @@
                          <div class="uk-section uk-border-rounded border-section uk-padding-remove color-card-dashboard-alumno" style="position:relative;padding-top:52.25%;">
                              <div style="position:relative;padding-top:52.25%;" class="uk-margin-auto video-alumno">
 <!--                                 <iframe  src="https://www.youtube.com/embed/70tcgH90Nx0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>-->
-                                 <div id="anti-video"></div>
+                                 <div id="anti-video">
+                                     <span id="botonply" uk-icon="icon: youtube; ratio: 4" class="visibilidad"/>
+                                 </div>
                                  <div class="video-alum" style="position:absolute;top:0;left:0;width:100%;height:100%;" data-video="2PDXH4XBP44">
 
                                  </div>
+
                              </div>
                          </div>
                      </div>
@@ -285,7 +288,14 @@
             tag.src = "https://www.youtube.com/iframe_api";
             var firstScriptTag = document.getElementsByTagName('script')[0];
             firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-            var player;
+            var player,btnPlayer;
+            btnPlayer = document.querySelector('#botonply');
+            btnPlayer.addEventListener('click',() => {
+                document.querySelector("#anti-video").classList.remove('finalVideo');
+                document.querySelector("#botonply").classList.add('visibilidad');
+                player.playVideo();
+
+            });
 
 
             function onYouTubeIframeAPIReady() {
@@ -310,12 +320,13 @@
 
                 switch (event.data) {
                     case 0: {
-                            document.querySelector("#anti-video").classList.add('prueba');
+                        document.querySelector("#anti-video").classList.remove('prueba');
+                            document.querySelector("#anti-video").classList.add('finalVideo');
+                            document.querySelector("#botonply").classList.remove('visibilidad');
                         break;
                     }
                     case 1: {
                         // console.log("reproduciendo");
-
                         break;
                     }
                     case 2: {
