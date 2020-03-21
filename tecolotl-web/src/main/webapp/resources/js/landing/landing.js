@@ -7,12 +7,13 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
 
+var btnPlay = document.querySelector('#botonply');
+btnPlay.addEventListener('click',reproducir);
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player( videoPlayer, {
         height: '100%',
         width: '100%',
-        videoId: videoPlayer.dataset.video,
         events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -30,7 +31,9 @@ function onPlayerStateChange(event) {
 
     switch (event.data) {
         case 0: {
-            document.querySelector("#anti-video").classList.add('prueba');
+            document.querySelector("#anti-video").classList.remove('prueba');
+            document.querySelector("#anti-video").classList.add('finalVideo');
+            document.querySelector("#botonply").classList.remove('visibilidad');
             break;
         }
         case 1: {
@@ -49,18 +52,18 @@ function onPlayerStateChange(event) {
 }
 document.addEventListener("DOMContentLoaded", function (evt) {
 setInterval(slider,5000);
-    var spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
-    var parametro = {
-        Bucket: "tecolotl-multimedia",
-        Key: "Video/Welcome_to_E-squadron.mp4"
-    };
-    var video = document.querySelector('video');
-    var s3 = new AWS.S3({
-        endpoint: spacesEndpoint,
-        accessKeyId: 'GEXURWPHJX37JPR2VGWY',
-        secretAccessKey: 'EOvb5YkVHMViTG12aEvSfsRz5clDgpXGJdlq2UrpHHs'
-
-    });
+    // var spacesEndpoint = new AWS.Endpoint('nyc3.digitaloceanspaces.com');
+    // var parametro = {
+    //     Bucket: "tecolotl-multimedia",
+    //     Key: "Video/Welcome_to_E-squadron.mp4"
+    // };
+    // var video = document.querySelector('video');
+    // var s3 = new AWS.S3({
+    //     endpoint: spacesEndpoint,
+    //     accessKeyId: 'GEXURWPHJX37JPR2VGWY',
+    //     secretAccessKey: 'EOvb5YkVHMViTG12aEvSfsRz5clDgpXGJdlq2UrpHHs'
+    //
+    // });
 
     // boton2 = document.querySelector('aside > ul > li:nth-child(2)').addEventListener('click',function (evt) {
     //      caja2 = document.querySelectorAll('#seccion2 > div');
@@ -72,17 +75,17 @@ setInterval(slider,5000);
         menuMovil.classList.toggle('aparece-menu');
     });
 
-    s3.getObject(parametro, function(err, data) {
-        if (err) {
-            console.log(err, err.stack);
-
-        } else {
-            console.log(data);
-            video.src = URL.createObjectURL(new Blob([data.Body], {type: data.ContentType}));
-            document.querySelector('.video-escuadron > div').classList.add('aparece');
-        }
-
-    });
+    // s3.getObject(parametro, function(err, data) {
+    //     if (err) {
+    //         console.log(err, err.stack);
+    //
+    //     } else {
+    //         console.log(data);
+    //         video.src = URL.createObjectURL(new Blob([data.Body], {type: data.ContentType}));
+    //         document.querySelector('.video-escuadron > div').classList.add('aparece');
+    //     }
+    //
+    // });
 
 });
 
@@ -121,4 +124,10 @@ function escalada() {
     setTimeout(function () {
         caja2[1].classList.remove('animacion-scalada');
     }, 1800);
+}
+
+function reproducir() {
+    document.querySelector("#anti-video").classList.remove('finalVideo');
+    document.querySelector("#botonply").classList.add('visibilidad');
+    player.playVideo();
 }

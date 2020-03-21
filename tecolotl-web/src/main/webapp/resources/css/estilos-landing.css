@@ -695,9 +695,28 @@ aside ul > li > a > img {
     top: 0;
     left: 0;
 }
+.visibilidad{
+    display: none;
+}
+.finalVideo{
+    background: url("#{resource['img/esquadron.svg']}") no-repeat top left/90px,url("#{resource['img/esquadron.svg']}") no-repeat bottom right/90px;
+    background-color: #00002D!important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .inputError{
     border: 2px solid #E31A1A !important;
+}
+#botonply:hover{
+    cursor: pointer;
 }
 
 @media screen and (max-width: 1281px){
