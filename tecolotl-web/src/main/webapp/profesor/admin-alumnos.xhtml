@@ -39,9 +39,13 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="tablas.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>-->
         <h:outputStylesheet library="css" name="nah.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/nah.css"/>-->
         <h:outputStylesheet library="css" name="profesor/admin-alumnos.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/admin-alumnos.css"/>-->
         <h:outputStylesheet library="css" name="/profesor/scroll-profesor.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>-->
         <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['student.administration.title']}</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -49,7 +53,8 @@
                     <div class="uk-card-header barder-card">
                         <div class="uk-grid-small uk-flex-middle" uk-grid="">
                             <div class="uk-width-auto">
-                                <h:graphicImage styleClass="uk-border-circle" library="img" name="/avatar/maestro.svg" width="50" height="50"/>
+<!--                                <h:graphicImage styleClass="uk-border-circle" library="img" name="/avatar/maestro.svg" width="50" height="50"/>-->
+                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" style="border-radius: 150px" alt="maestro" width="50" height="50"/>
                             </div>
                             <div class="uk-width-expand">
                                 <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
@@ -299,11 +304,15 @@
             }
         </script>
         <h:outputScript library="js" name="nah.js"/>
+<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>-->
         <h:outputScript library="js" name="profesor/admin-alumnos.js"/>
+<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/admin-alumnos.js"></script>-->
     </ui:define>
     <ui:define name="file-js">
         <h:outputScript library="js" name="/profesor/contrasena.js" />
+<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/contrasena.js"></script>-->
         <h:outputScript library="js" name="/html2pdf.bundle.min.js"/>
+        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
         <script type="application/javascript">
             document.querySelector('#boton').addEventListener('click',generatePDF);
             var contenedorNombre = document.querySelector('.uk-grid');
