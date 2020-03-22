@@ -14,9 +14,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 @ViewScoped
 @Named(value = "administracionProfesorControlador")
@@ -76,6 +74,10 @@ public class ProfesorControlador implements Serializable {
 
     public void elimina(){
        profesorSesionBean.elimina(profesorModelo.getId());
+        profesorModelo = new ProfesorModelo();
+    }
+
+    public void limpiaModelo() {
         profesorModelo = new ProfesorModelo();
     }
 

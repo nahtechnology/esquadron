@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', ejecucionInicio);
 function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
     modalEliminar = document.getElementById('modal-eliminar');
-    modalProfresor.querySelector('.uk-modal-footer button').addEventListener("click", cierra);
     var imagenesContra = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
     imagenesContra.forEach(img => {
        img.addEventListener('click',() => {
@@ -66,6 +65,9 @@ function abrirModal() {
     });
     UIkit.util.on('#modal-eliminar', 'show', function () {
         modalEliminar.querySelector('.uk-modal-header').click();
+    });
+    UIkit.util.on('#modal-profesor', 'hidden', function () {
+        modalProfresor.querySelectorAll('input').forEach(entrada => entrada.value = '');
     });
 }
 
