@@ -33,6 +33,7 @@
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/profesor/csv-alumnos.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/csv-alumnos.css"/>-->
         <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['agregarcsv.title']}</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -40,7 +41,8 @@
                     <div class="uk-card-header barder-card">
                         <div class="uk-grid-small uk-flex-middle" uk-grid="">
                             <div class="uk-width-auto">
-                                <h:graphicImage styleClass="uk-border-circle" library="img" name="/avatar/maestro.svg" width="50" height="50"/>
+<!--                                <h:graphicImage styleClass="uk-border-circle" library="img" name="/avatar/maestro.svg" width="50" height="50"/>-->
+                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" alt="maestro" style="border-radius: 150px" width="50" height="50"/>
                             </div>
                             <div class="uk-width-expand">
                                 <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
@@ -104,7 +106,8 @@
                     <tbody>
                     <tr>
                         <td colspan="8">
-                            <h:graphicImage library="img" name="vacio.svg" width="280px" height="280px"/>
+<!--                            <h:graphicImage library="img" name="vacio.svg" width="280px" height="280px"/>-->
+                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" alt="vacio" width="280px" height="280px"/>
                         </td>
                     </tr>
                     </tbody>
@@ -133,7 +136,8 @@
                     <tbody>
                         <tr>
                             <td colspan="8">
-                                <h:graphicImage library="img" name="vacio.svg" width="280px" height="280px"/>
+<!--                                <h:graphicImage library="img" name="vacio.svg" width="280px" height="280px"/>-->
+                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" alt="vacio" width="280px" height="280px"/>
                             </td>
                         </tr>
                     </tbody>
@@ -296,6 +300,7 @@
                                 <div id="imagenes" class="uk-width-1-1@s">
                                     <c:forEach begin="1" end="28" var="indice">
                                         <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" onclick="cambioImagen(event)"/>
+<!--                                        <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/iconos-login/${indice}.svg" onclick="cambioImagen(event)"/>-->
                                     </c:forEach>
                                     <h:inputHidden id="input-secret-password"
                                                    value="#{agregarCsvControlador.alumnoModelo.contrasenia}">
@@ -323,8 +328,11 @@
     </ui:define>
     <ui:define name="file-js">
         <h:outputScript library="js" name="nah.js"/>
+<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>-->
         <h:outputScript library="js" name="profesor/agregar-alumnos-csv.js"/>
+<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/agregar-alumnos-csv.js"></script>-->
         <h:outputScript library="js" name="profesor/agregar-alumno-modal.js"/>
+<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/agregar-alumno-modal.js"></script>-->
     </ui:define>
 </ui:composition>
 </html>
