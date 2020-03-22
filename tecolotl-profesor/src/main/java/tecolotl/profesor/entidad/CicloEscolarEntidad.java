@@ -16,9 +16,9 @@ import java.util.StringJoiner;
     @NamedQuery(name = "CicloEscolarEntidad.busca", query = "SELECT ce FROM CicloEscolarEntidad ce"),
     @NamedQuery(
         name = "CicloEscolarEntidad.buscaIdEscuela",
-        query = "SELECT DISTINCT ce FROM CicloEscolarEntidad ce JOIN ce.grupoEntidadLista g " +
+        query = "SELECT DISTINCT ce FROM CicloEscolarEntidad ce JOIN ProfesorEntidad p ON ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = p.escuelaEntidad.claveCentroTrabajo " +
                 "WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND ce.activo = :activo " +
-                "AND g.profesorEntidad.id = :idProfesor"),
+                "AND p.id = :idProfesor"),
     @NamedQuery(
         name = "CicloEscolarEntidad.buscaEscuela",
         query = "SELECT ce FROM CicloEscolarEntidad ce WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
