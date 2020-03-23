@@ -9,14 +9,14 @@
     <title>#{profesor['no.grupo.title']}</title>
 </h:head>
 <h:body>
-    <h:outputStylesheet library="css" name="/profesor/no-grupo.css"/>
-    <h:outputStylesheet library="css" name="letra.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/no-grupo.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
     <p class="lescuadron">#{profesor['no.grupo.message']}</p>
-    <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
+    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/fondo/no-existe.svg" alt=""/>
     <div class="centrado">
         <button class="btn-atras" onclick="goBack()">#{profesor['back']}</button>
     </div>
 
 </h:body>
-<h:outputScript library="js" name="/profesor/no-grupo.js"/>
+<script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/no-grupo.js"></script>
 </html>
