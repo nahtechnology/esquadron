@@ -37,9 +37,9 @@
 
         </ui:define>
         <ui:define name="contenido">
-            <h:outputStylesheet library="css" name="/profesor/biblioteca-profesor.css"/>
-            <h:outputStylesheet library="css" name="/profesor/scroll-profesor.css"/>
-            <h:outputStylesheet library="css" name="/profesor/asignar-actividad.css"/>
+            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
+            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
+            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>
             <div class="uk-position-relative uk-margin-small-top" id="temario">
                 <div class="uk-position-absolute uk-animation-slide-top-medium">
                     <div class="uk-flex uk-flex-right">
@@ -90,7 +90,6 @@
                                     <div class="uk-card-header border-card">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                             <div class="uk-width-expand">
-<!--                                                <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />-->
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                                 <span class="cat-txt ">#{actividadModelo.nivelLenguaje}</span>
                                                 <span class="uk-text-center">#{actividadModelo.tema}</span>
@@ -115,7 +114,7 @@
                                             <div class="uk-inline uk-text-center">
                                                 <span data-uk-tooltip="title: #{profesor['activity.grammar']}">
                                                     <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
-                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/descarga.svg" alt="" class="uk-svg"/>
+<!--                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/decarga.svg" class="uk-svg" alt=""/>-->
                                                 </span>
                                                 <div uk-dropdown="">
                                                     <span>Grammar</span>
@@ -144,18 +143,31 @@
                                             <ui:remove>
                                                 <div class="uk-width-expand ">
                                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-child-width-1-5" pt:uk-grid="">
-                                                        <div><h:graphicImage pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image " library="img" name="icono/listen.svg" /></div>
+                                                        <div>
+<!--                                                            <h:graphicImage pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image " library="img" name="icono/listen.svg" />-->
+                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/listen.svg" alt="" class="uk-icon-image" uk-tooltip="title: Listening"/>
+                                                        </div>
                                                         <div>
                                                             <h:form>
                                                                 <h:commandLink pt:uk-toggle="#modal-transcript" >
-                                                                    <h:graphicImage pt:data-uk-tooltip="title: Trasncript" styleClass="uk-icon-image " library="img" name="icono/transcript1.svg" />
+<!--                                                                    <h:graphicImage pt:data-uk-tooltip="title: Trasncript" styleClass="uk-icon-image " library="img" name="icono/transcript1.svg" />-->
+                                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/transcript1.svg" alt="" class="uk-icon-image" uk-tooltip="title: Trasncript"/>
                                                                     <f:ajax listener="#{actividadControlador.buscaTranscripcion(actividadModelo)}" render="transcripcion" />
                                                                 </h:commandLink>
                                                             </h:form>
                                                         </div>
-                                                        <div><h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image " library="img" name="icono/reading.svg" /></div>
-                                                        <div><h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image  " library="img" name="icono/gramatica.svg" /></div>
-                                                        <div><h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image  " library="img" name="icono/quizcalifica.svg" /></div>
+                                                        <div>
+<!--                                                            <h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image " library="img" name="icono/reading.svg" />-->
+                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/reading.svg" alt="" class="uk-icon-image" uk-tooltip="title: Reading"/>
+                                                        </div>
+                                                        <div>
+<!--                                                            <h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image  " library="img" name="icono/gramatica.svg" />-->
+                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="" class="uk-icon-image" uk-tooltip="title: Grammar"/>
+                                                        </div>
+                                                        <div>
+                                                            <h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image" library="img" name="icono/quizcalifica.svg" />
+                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/quizcalifica.svg" class="uk-icon-image" alt="" uk-tooltip="title: Quiz"/>
+                                                        </div>
                                                     </h:panelGroup>
                                                 </div>
                                             </ui:remove>
@@ -187,9 +199,9 @@
             </h:panelGroup>
         </ui:define>
         <ui:define name="file-js">
-            <script src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
-            <h:outputScript library="js" name="profesor/asignar-actividad.js"/>
-            <h:outputScript library="js" name="/alumno/filtro.js"/>
+            <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
+            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>
+            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
         </ui:define>
     </ui:composition>
 </html>
