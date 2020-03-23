@@ -90,7 +90,8 @@
                                     <div class="uk-card-header border-card">
                                         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                             <div class="uk-width-expand">
-                                                <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />
+<!--                                                <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />-->
+                                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                                 <span class="cat-txt ">#{actividadModelo.nivelLenguaje}</span>
                                                 <span class="uk-text-center">#{actividadModelo.tema}</span>
                                             </div>
@@ -112,7 +113,10 @@
                                     <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}" data-mapas="#{actividadModelo.mapamental}">
                                         <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['activity.grammar']}"><h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/></span>
+                                                <span data-uk-tooltip="title: #{profesor['activity.grammar']}">
+                                                    <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
+                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/descarga.svg" alt="" class="uk-svg"/>
+                                                </span>
                                                 <div uk-dropdown="">
                                                     <span>Grammar</span>
                                                 </div>
