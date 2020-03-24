@@ -90,7 +90,7 @@ a{
     scroll-behavior: smooth;
 }
 body{
-    background: url("#{resource['img/landing/landin-gral1.svg']}") fixed no-repeat center/cover;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/landin-gral1.svg") fixed no-repeat center/cover;
 }
 
 *,*::after,*::before{
