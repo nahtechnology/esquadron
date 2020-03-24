@@ -40,9 +40,9 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="tablas.css"/>
-        <h:outputStylesheet library="css" name="graficas.css"/>
-        <h:outputStylesheet library="css" name="/profesor/tarea-alumno.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
@@ -60,7 +60,7 @@
                             <div class="uk-card-header border-card">
                                 <div class="uk-grid-small uk-flex-middle uk-grid" uk-grid="">
                                     <div class="uk-width-auto">
-                                        <h:graphicImage styleClass="uk-visible@s nino" library="img" name="/avatar/astronauta-nino.svg" />
+                                        <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg" class="uk-visible@s nino" alt=""/>
                                     </div>
                                     <div class="uk-width-expand">
                                         <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
@@ -132,7 +132,7 @@
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.homework']}</span></f:facet>
-                                            <img class="img-previa" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg"/>
+                                            <img class="img-previa" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt=""/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.assigned']}</span></f:facet>
@@ -148,7 +148,7 @@
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
-                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="38"/>
+                                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/evaluar.svg" width="38" alt=""/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica ne 0}">
@@ -159,7 +159,7 @@
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
                                             <h:link outcome="mapamental" rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental eq 0}">
-                                                <h:graphicImage library="img" name="icono/evaluar.svg" width="38"/>
+                                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/evaluar.svg" width="38" alt=""/>
                                                 <f:param name="idTarea" value="#{tareaAlumno.id}"/>
                                             </h:link>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental ne 0}">
@@ -264,8 +264,8 @@
                 </div>
             </div>
         </section>
-        <h:outputScript library="js" name="Chart.js"/>
-        <h:outputScript library="js" name="/profesor/tarea-alumno.js"/>
+        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/Chart.js"></script>
+        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno.js"></script>
     </ui:define>
 </ui:composition>
 
