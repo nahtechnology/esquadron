@@ -35,7 +35,7 @@ function cargarImagen() {
         s3.getObject(parametros[index], function(err, data) {
             if (err) {
                 console.log(err, err.stack);
-                imagenDocumento[index].src = "../../resources/img/vacio.svg";
+                imagenDocumento[index].src = "https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg";
                 imagenDocumento[index].classList.remove("cargando");
                 imagenDocumento[index].classList.add("glosario-img");
             }

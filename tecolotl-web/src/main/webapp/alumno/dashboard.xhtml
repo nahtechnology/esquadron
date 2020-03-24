@@ -14,7 +14,7 @@
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
                 <div class="">
                     <a class="logo uk-logo" href="#">
-                        <h:graphicImage  library="img" name="esquadron.svg"  alt="logo" title="logo" width="30px" height="30px" />
+                        <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg"  alt="logo" title="logo" width="30px" height="30px" />
                         <span class="lescuadron letra-logo uk-visible@m">squadron</span>
                     </a>
                 </div>
@@ -25,9 +25,9 @@
                     <div class="uk-offcanvas-bar">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical  uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="activities"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="activities"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="40" alt="" /></h:link></li>
 
                         </ul>
                         <div class="uk-text-center uk-display-block uk-margin-large-top">
@@ -46,8 +46,8 @@
     </ui:define>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
-            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
             <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo}</h6>
             <div class="uk-position-relative uk-text-center uk-display-block">
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
@@ -63,22 +63,22 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active"><h:link outcome="dashboard" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right">
-                    <h:link outcome="activities" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="70" alt="" /></h:link>
-                    <h:graphicImage rendered="#{empty alumnoControlador.tareaActvidadModeloLista}" library="img" name="alumno/planetas/planeta1.svg" width="70" alt="" />
+                    <h:link outcome="activities" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="70" alt="" /></h:link>
+                    <h:graphicImage rendered="#{empty alumnoControlador.tareaActvidadModeloLista}" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="70" alt="" />
                 </li>
-                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="70" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="70" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" >
-                    <h:link outcome="activities" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt=""/></h:link>
-                    <h:graphicImage rendered="#{empty alumnoControlador.tareaActvidadModeloLista}" library="img" name="alumno/planetas/planeta1.svg" width="60"/>
+                    <h:link outcome="activities" rendered="#{not empty alumnoControlador.tareaActvidadModeloLista}"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="60" alt=""/></h:link>
+                    <h:graphicImage rendered="#{empty alumnoControlador.tareaActvidadModeloLista}" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="60"/>
                 </li>
-                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="60" alt=""/></h:link></li>
             </ul>
         </div>
 
@@ -95,7 +95,7 @@
                              <div class="uk-card-header">
                                  <h:panelGroup styleClass="uk-grid-small uk-flex-middle" pt:uk-grid="">
                                      <div class="uk-width-auto">
-                                         <h:graphicImage styleClass="uk-border-circle" width="50" height="50" library="img" name="mounstro/morado.svg"/>
+                                         <h:graphicImage styleClass="uk-border-circle" width="50" height="50" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/morado.svg"/>
                                      </div>
                                      <div class="uk-width-expand">
                                          <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold"> #{alumnoControlador.alumnoModelo.nombre} #{alumnoControlador.alumnoModelo.apellidoPaterno} #{alumnoControlador.alumnoModelo.apellidoMaterno}</h3>
@@ -152,7 +152,7 @@
 <!--                                    <div class="" >-->
                                         <div class="uk-margin-remove">
                                             <h:panelGroup layout="block" styleClass="uk-inline" pt:uk-lightbox="">
-                                                <h:graphicImage styleClass="img-alumno-dashboard uk-display-block uk-animation-shake" library="img" name="mounstro/who.svg" alt="moustrou naranja" pt:uk-tooltip="title: #{alumno['more.activity.title.matching.words']}; pos: right"/>
+                                                <h:graphicImage styleClass="img-alumno-dashboard uk-display-block uk-animation-shake" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" alt="moustrou naranja" pt:uk-tooltip="title: #{alumno['more.activity.title.matching.words']}; pos: right"/>
                                             </h:panelGroup>
                                         </div>
 <!--                                    </div>-->
@@ -173,7 +173,7 @@
 <!--                                    <div class="">-->
                                         <div class="uk-margin-remove">
                                             <h:panelGroup layout="block" styleClass="uk-inline" pt:uk-lightbox="">
-                                                <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.comple.all.sentences']}; pos: right "/>
+                                                <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.comple.all.sentences']}; pos: right "/>
                                             </h:panelGroup>
                                         </div>
 
@@ -194,7 +194,7 @@
 <!--                                    <div class="" >-->
                                         <div class="uk-margin-remove">
                                             <h:panelGroup>
-                                                <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake " library="img" name="mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.words']}; pos: right "/>
+                                                <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake " url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whose.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.words']}; pos: right "/>
                                             </h:panelGroup>
                                         </div>
 
@@ -217,7 +217,7 @@
                                     <div class="imagen-flexible uk-inline-clip uk-transition-toggle" tabindex="0">
                                             <div class="uk-margin-remove">
                                                 <h:panelGroup>
-                                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  library="img" name="mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"/>
+                                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake"  url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"/>
                                                 </h:panelGroup>
                                             </div>
                                             <h:panelGroup layout="block" styleClass="uk-transition-fade  uk-overlay-default  califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[3].total ne 0}">
@@ -237,7 +237,7 @@
                                     <div class="imagen-flexible uk-inline-clip uk-transition-toggle" tabindex="0">
                                             <div class="uk-margin-remove">
                                                 <h:panelGroup>
-                                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.sentences']}; pos: right "/>
+                                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/verde.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.title.order.sentences']}; pos: right "/>
                                                 </h:panelGroup>
                                             </div>
                                             <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[4].total ne 0}">
@@ -257,7 +257,7 @@
                                     <div class="imagen-flexible uk-inline-clip uk-transition-toggle" tabindex="0">
                                             <div class="uk-margin-remove">
                                                 <h:panelGroup>
-                                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" library="img" name="mounstro/naranja.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.bar.icon.match']}; pos: right"/>
+                                                    <h:graphicImage styleClass="img-alumno-dashboard uk-animation-shake" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/naranja.svg" alt="moustrou naranja"  pt:uk-tooltip="title: #{alumno['activities.bar.icon.match']}; pos: right"/>
                                                 </h:panelGroup>
                                             </div>
                                             <h:panelGroup layout="block" styleClass="uk-transition-fade uk-overlay-default califica" rendered="#{tareasProgresoControlador.tareaResuetasModeloLista[5].total ne 0}">

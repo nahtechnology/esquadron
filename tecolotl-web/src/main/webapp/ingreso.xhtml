@@ -9,9 +9,9 @@
 <h:head>
     <title>#{etiqueta['logging.registry']}</title>
     <link  rel="shortcut icon"  href="#{resource['img/favicon.ico']}"/>
-    <h:outputStylesheet library="css" name="uikit.css"/>
-    <h:outputStylesheet library="css" name="ingreso.css"/>
-    <h:outputStylesheet library="css" name="alumno/inicio-sesion.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/uikit.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/ingreso.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/inicio-sesion.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </h:head>
 <h:body>
@@ -20,7 +20,7 @@
             <form action="j_security_check" method="post">
                 <div class="contenedor uk-flex uk-flex-center uk-margin-medium-bottom">
                     <c:forEach begin="1" end="28" var="indice">
-                        <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
+                        <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/iconos-login/${indice}.svg" alt=""/>
                     </c:forEach>
                 </div>
                 <div class=" uk-flex uk-flex-center">
@@ -46,8 +46,8 @@
     <script type="application/javascript">
         var mensaje = "#{alumno['login.valid.password']}";
     </script>
-    <h:outputScript library="js" name="uikit.js"/>
-    <h:outputScript library="js" name="uikit-icons.js"/>
-    <h:outputScript library="js" name="alumno/inicio-sesion.js"/>
+    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit.js"/>
+    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit-icons.js"/>
+    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/inicio-sesion.js"/>
 </h:body>
 </html>

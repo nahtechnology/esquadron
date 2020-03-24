@@ -149,7 +149,7 @@ uk-subnav-alumno2 li.uk-active:nth-child(6) a {
     margin: auto;
 }
 .uk-modal-dialog.pop-art-modal{
-    background: url("#{resource['img/alumno/pop-art/mensaje-mapa-7.svg']}") no-repeat transparent center center/cover;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje-mapa-7.svg") no-repeat transparent center center/cover;
     width: 300px;
     height: 250px;
     display: flex;

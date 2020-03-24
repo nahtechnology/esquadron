@@ -28,7 +28,7 @@
 }
 
 .fondo-mapa-orden{
-    background-image: url("#{resource['img/alumno/mapa-mental/puntos-purpura.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/puntos-purpura.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -36,7 +36,7 @@
 .dialogo{
     width: 600px;
     height: 320px;
-    background: url("#{resource['img/alumno/pop-art/pop-art.svg']}") no-repeat center center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/pop-art.svg") no-repeat center center/100% 100%;
     position: absolute;
     left: 0;
     top: 0;
@@ -115,7 +115,7 @@
         height: auto;
         position: absolute;
         left: 55%;
-        top: 0%;
+        top: 0;
         z-index: 2;
     }
     .dialogo{
@@ -140,7 +140,7 @@
         height: auto;
         position: absolute;
         left: 55%;
-        top: 0%;
+        top: 0;
         z-index: 2;
     }
 }
@@ -151,7 +151,7 @@
         height: auto;
         position: absolute;
         left: 55%;
-        top: 0%;
+        top: 0;
         z-index: 2;
     }
     .dialogo{
@@ -176,7 +176,7 @@
         height: auto;
         position: absolute;
         left: 55%;
-        top: 0%;
+        top: 0;
         z-index: 2;
     }
     .titulo-mapa-3{

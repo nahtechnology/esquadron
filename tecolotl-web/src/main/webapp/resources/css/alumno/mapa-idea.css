@@ -1,5 +1,5 @@
 .fondo-idea{
-    background-image: url("#{resource['img/alumno/mapa-mental/lineas-amarillas.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/lineas-amarillas.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;

@@ -1,5 +1,5 @@
 body{
-    background-image: url("#{resource['img/alumno/fondo-general.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-general.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
@@ -298,7 +298,7 @@ iframe {
     background-color: rgba(255,255,255,0.5);
 }
 .fondo-comic{
-    background-image: url("#{resource['img/alumno/lineas-rojas.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/lineas-rojas.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -306,13 +306,13 @@ iframe {
 }
 
 .fondo-comic4{
-    background-image: url("#{resource['img/alumno/fondo-popart2.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-popart2.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 .fondo-comic5{
-    background-image: url("#{resource['img/alumno/fondo-popart1.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-popart1.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -323,7 +323,7 @@ iframe {
 }
 
 .fondo-comic6 {
-    background-image: url("#{resource['img/alumno/pop-estrella.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-estrella.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -508,7 +508,7 @@ iframe {
 .realizado{
     width: 250px;
     height: 200px;
-    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg") no-repeat center/100% 100%;
     position: absolute;
     /*top: calc(50% - 125px);*/
     /*left: calc(50% - 125px);*/
@@ -608,7 +608,7 @@ iframe {
 .mensaje1{
     width: 150px;
     height: 100px;
-    background: url("#{resource['img/alumno/pop-art/mensaje10.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje10.svg") no-repeat center/100% 100%;
     background-clip: padding-box;
     padding: 20px 100px 0 110px;
     font-size: 15px;
@@ -858,7 +858,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 @media screen and (max-width: 1030px ){
     body{
-        background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
+        background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-ipad.svg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -930,7 +930,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 @media screen and (max-width: 768px){
     body{
-        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
+        background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resourcesimg/alumno/fondo-gral-movil.svg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-attachment: fixed;

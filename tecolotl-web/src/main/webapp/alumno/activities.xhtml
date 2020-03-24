@@ -11,7 +11,7 @@
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
                 <div class="">
                     <a class="logo uk-logo" href="#">
-                        <h:graphicImage  library="img" name="esquadron.svg"  alt="logo" title="logo" width="30px" height="30px" />
+                        <h:graphicImage  url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg"  alt="logo" title="logo" width="30px" height="30px" />
                         <span class="lescuadron letra-logo uk-visible@m">squadron</span>
                     </a>
                 </div>
@@ -23,8 +23,8 @@
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical  uk-margin-large-top">
                             <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-active uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
-                            <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="40" alt="" /></li>
-                            <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="40" alt="" /></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="40" alt="" /></h:link></li>
                         </ul>
                         <div class="uk-text-center uk-display-block uk-margin-large-top">
                             <a href="#" class="uk-text-small uk-display-block uk-text-center uk-text-capitalize" style="color: black;"  data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
@@ -43,8 +43,8 @@
     </ui:define>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
-            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
             <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo}</h6>
 
             <div class="uk-position-relative uk-text-center uk-display-block">
@@ -61,16 +61,16 @@
 
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active" ><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="70" alt="" /></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="70" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="70" alt="" /></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="70" alt="" /></h:link></li>
             </ul>
         </div>
         <div class="left-nav-wrap  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-small-top">
-                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" ><h:link outcome="dashboard" ><h:graphicImage library="img" name="alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active"><h:graphicImage library="img" name="alumno/planetas/planeta1.svg" width="60" alt=""/></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage library="img" name="alumno/planetas/planeta5.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" ><h:link outcome="dashboard" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="60" alt=""/></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="60" alt=""/></h:link></li>
             </ul>
         </div>
     </ui:define>
@@ -88,7 +88,7 @@
                                 <div class="uk-card-header border-card">
                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                         <div class="uk-width-expand">
-                                            <h:graphicImage styleClass="uk-border-circle" library="img" name="mounstro/3ojos.svg" width="30" height="30" />
+                                            <h:graphicImage styleClass="uk-border-circle" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" width="30" height="30" />
                                             <span class="cat-txt">
                                                 <h:outputText value="#{tareaActvidadModelo.asignacion}">
                                                     <f:convertDateTime locale="en_UK" timeStyle="short" type="date" dateStyle="full"/>
@@ -106,7 +106,7 @@
                                         </div>
                                         <div class="uk-transition-fade uk-position-cover uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
                                             <h:panelGroup layout="block" styleClass="uk-inline" pt:uk-lightbox="">
-                                                <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg"/>
+                                                <img src="https://i.ytimg.com/vi/#{tareaActvidadModelo.idActividad}/mqdefault.jpg" alt=""/>
                                                <ui:remove> <h:link styleClass="uk-position-center uk-icon" pt:uk-icon="icon: youtube; ratio: 3" pt:href="https://www.youtube.com/watch?v=#{tareaActvidadModelo.idActividad}"/></ui:remove>
                                             </h:panelGroup>
                                         </div>

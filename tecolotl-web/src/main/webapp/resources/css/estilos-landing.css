@@ -47,30 +47,35 @@
 }
 @font-face {
     font-family: 'oswaldbold';
-    src: url("#{resource['fuentes/oswald-bold-webfont.woff2']}") format('woff2'),
-    url("#{resource['fuentes/oswald-bold-webfont.woff']}") format('woff');
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-bold-webfont.woff2") format('woff2'),
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-bold-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
+
+
 }
 
 @font-face {
     font-family: 'oswaldmedium';
-    src: url("#{resource['fuentes/oswald-medium-webfont.woff2']}") format('woff2'),
-    url("#{resource['fuentes/oswald-medium-webfont.woff']}") format('woff');
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-medium-webfont.woff2") format('woff2'),
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-medium-webfont.woff") format('woff');
     font-weight: normal;
     font-style: normal;
+
 }
 
 @font-face {
     font-family: 'oswald_regularregular';
-    src: url("#{resource['fuentes/oswald-regular-webfont.woff2']}") format('woff2'),
-    url("#{resource['fuentes/oswald-regular-webfont.woff']}");
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-regular-webfont.woff2") format('woff2'),
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-regular-webfont.woff");
     font-weight: normal;
     font-style: normal;
+
+
 }
 @font-face {
     font-family: 'e-squadron';
-    src: url("#{resource['css/byt.ttf']}");
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/byt.ttf");
 }
 
 a{
@@ -236,12 +241,13 @@ header{
 header nav{
     width: 100%;
     height: 48px;
-    background: url("#{resource['img/landing/squadron.svg']}") no-repeat 10px center/40px 40px var(--morado-primario);
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg") no-repeat 10px center/40px 40px var(--morado-primario);
     border-radius: 8px;
     padding: 5px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 header nav > div{
@@ -273,7 +279,7 @@ header ul > li::after{
     display: block;
     width: 140px;
     height: 14px;
-    background: url("#{resource['img/landing/ruedita-izquierda.png']}") no-repeat center/100% 18px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/ruedita-izquierda.png") no-repeat center/100% 18px;
     /*margin-top: 2px;*/
     /*background-color: darkgray;*/
     transform: scale(0,1);
@@ -362,7 +368,7 @@ aside ul > li > a > img {
     height: 30px;
     width: 100%;
     padding-left: 23px;
-    background: url("#{resource['img/landing/icono-rueditas-izq.svg']}") no-repeat left/30px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/icono-rueditas-izq.svg") no-repeat left/30px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -595,7 +601,7 @@ aside ul > li > a > img {
 #seccion4 > div:first-child > div{
     width: 35%;
     height: 35%;
-    background: url("#{resource['img/landing/semicirculo.svg']}") no-repeat center center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/semicirculo.svg") no-repeat center center/100% 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -623,20 +629,20 @@ aside ul > li > a > img {
 #seccion4 > div:nth-child(2) > div:first-child{
     display: flex;
     justify-content: center;
-    background: url("#{resource['img/landing/triangulo.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/triangulo.svg") no-repeat center/100% 100%;
     overflow: hidden;
 }
 
 #seccion4 > div:nth-child(2) > div:nth-child(2){
     display: flex;
     justify-content: center;
-    background: url("#{resource['img/landing/mancha1.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/mancha1.svg") no-repeat center/100% 100%;
 }
 
 #seccion4 > div:nth-child(2) > div:last-child{
     display: flex;
     justify-content: center;
-    background: url("#{resource['img/landing/mancha.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/mancha.svg") no-repeat center/100% 100%;
 }
 #seccion4 > div:nth-child(2) > div:first-child > img{
     width: 75%;
@@ -699,7 +705,7 @@ aside ul > li > a > img {
     display: none;
 }
 .finalVideo{
-    background: url("#{resource['img/esquadron.svg']}") no-repeat top left/90px,url("#{resource['img/esquadron.svg']}") no-repeat bottom right/90px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg") no-repeat top left/90px,url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg") no-repeat bottom right/90px;
     background-color: #00002D!important;
     position: absolute;
     top: 0;

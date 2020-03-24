@@ -17,7 +17,7 @@
 .contenedor-oraciones{
     height: auto;
     width: 100%;
-    background: url("#{resource['img/mounstro/naranja.svg']}") no-repeat  center center/ 90% 90%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/naranja.svg") no-repeat  center center/ 90% 90%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -58,7 +58,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: url("#{resource['img/mounstro/morado.svg']}") no-repeat center center/90% 90%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/morado.svg") no-repeat center center/90% 90%;
 }
 .palabras .palabra-imagen{
     margin-top: 10px;
@@ -279,7 +279,7 @@
 .imagen-oracion{
     width: 70px;
     height: 70px;
-    background: url("#{resource['img/mounstro/who.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg") no-repeat center/100% 100%;
     margin-right: 15px;
     border: 5px solid #D35400;
     border-radius: 50%;
@@ -303,7 +303,7 @@
 .icono-relacion-img{
     width: 50px;
     height: 50px;
-    background: url("#{resource['img/mounstro/whom.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg") no-repeat center/100% 100%;
     margin-right: 9px;
     border: 5px solid #D35400;
     border-radius: 50%;
@@ -352,7 +352,7 @@
 }
 
 .complete-sentences div>span{
-    background: url("#{resource['img/mounstro/whom.svg']}" ) no-repeat left center/32px 32px white;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg" ) no-repeat left center/32px 32px white;
     padding: 5px 0 5px 35px;
     min-width: 120px;
     display: inline-block;
@@ -397,7 +397,7 @@
 .terminado{
     width: 250px;
     height: 200px;
-    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg") no-repeat center/100% 100%;
     position: absolute;
     z-index: 6;
 }
@@ -409,7 +409,7 @@
 }
 
 .mosca{
-    background-image: url("#{resource['img/alumno/fondo-mosca.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-mosca.svg");
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;

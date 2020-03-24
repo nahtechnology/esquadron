@@ -1,6 +1,6 @@
 .fondo-mapa-5{
-    background: url("#{resource['img/mounstro/whose.svg']}") no-repeat right top/20% , url("#{resource['img/alumno/pop-art/bomba.svg']}") no-repeat left top/32%,
-    url("#{resource['img/alumno/mapa-mental/lineas-azules.svg']}") no-repeat center center/cover;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whose.svg") no-repeat right top/20% , url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/bomba.svg") no-repeat left top/32%,
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/lineas-azules.svg") no-repeat center center/cover;
 }
 .titulo-mapa-5{
     position: absolute;
@@ -13,7 +13,7 @@
     margin-top:400px;
 }
 .imagen-nube-5{
-    background: url("#{resource['img/alumno/pop-art/nube.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg") no-repeat center/100% 100%;
     background-origin: content-box;
     width: calc(100% / 3);
     height: 200px;
@@ -23,7 +23,7 @@
     flex-wrap: nowrap;
 }
 .nube-5{
-    background: url("#{resource['img/alumno/pop-art/nube.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg") no-repeat center/100% 100%;
     background-origin: content-box;
     height: 200px;
     display: flex;
@@ -39,17 +39,17 @@
     box-sizing: border-box;
 }
 .nave-5{
-    background: url("#{resource['img/alumno/pop-art/Nave-1.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/Nave-1.svg") no-repeat center/100% 100%;
     background-origin: content-box;
     height: 200px;
 }
 .nave-5-2{
-    background: url("#{resource['img/alumno/pop-art/Nave-2.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/Nave-2.svg") no-repeat center/100% 100%;
     background-origin: content-box;
     height: 200px;
 }
 .nave-5-1{
-    background: url("#{resource['img/alumno/pop-art/Nave-principal.svg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/Nave-principal.svg") no-repeat center/100% 100%;
     background-origin: content-box;
     height: 200px;
 }

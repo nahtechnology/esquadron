@@ -14,7 +14,7 @@ input[type="text"]{
 }
 .cuadro-hijo1{
     border: 5px solid black;
-    background: url("#{resource['img/alumno/mapa-mental/puntos-naranjas2.svg']}") no-repeat center center/150%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/puntos-naranjas2.svg") no-repeat center center/150%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -22,7 +22,7 @@ input[type="text"]{
 }
 .cuadro-hijo2{
     border: 5px solid black;
-    background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/puntos-naranjas.svg");
     background-position: center center;
     background-size: 150%;
     display: flex;
@@ -40,14 +40,14 @@ input[type="text"]{
 }
 .cuadro-hijo4{
     border: 5px solid black;
-    background-image: url("#{resource['img/alumno/mapa-mental/puntos-amarillos.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/puntos-amarillos.svg");
     background-position: center center;
     background-size: 150%;
     position: relative;
     overflow: hidden;
 }
 .img-hijo1{
-    background-image: url("#{resource['img/alumno/pop-art/nube.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg");
     width: 60%;
     height: 60%;
     background-size: 100% 100%;
@@ -59,7 +59,7 @@ input[type="text"]{
     flex-wrap: nowrap;
 }
 .img-hijo2{
-    background-image: url("#{resource['img/alumno/pop-art/nube.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg");
     width: 60%;
     height: 60%;
     background-size: 100% 100%;

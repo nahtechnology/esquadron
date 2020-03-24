@@ -1,6 +1,6 @@
 @font-face {
   font-family:escuadron;
-  src: url('#{resource["css/byt.ttf"]}');
+  src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/byt.ttf");
 }
 
 .lescuadron{

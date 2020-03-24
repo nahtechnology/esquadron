@@ -1,5 +1,5 @@
 .picture{
-    background-image: url("#{resource['img/alumno/lineas-rosas.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/lineas-rosas.svg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -61,14 +61,14 @@
 }
 
 .planet-1{
-    background-image: url("#{resource['img/alumno/planetas/planeta1.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg");
     background-size: cover;
     background-repeat: no-repeat;
     left: 45%;
 }
 
 .planet-2{
-    background-image: url("#{resource['img/alumno/planetas/planeta2.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 200px;
@@ -78,7 +78,7 @@
 }
 
 .planet-3{
-    background-image: url("#{resource['img/alumno/planetas/planeta3.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 130px;
@@ -88,7 +88,7 @@
 }
 
 .planet-4{
-    background-image: url("#{resource['img/alumno/planetas/planeta4.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 300px;
@@ -99,7 +99,7 @@
 
 
 .planet-5{
-    background-image: url("#{resource['img/alumno/planetas/planeta.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta.svg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 250px;
@@ -109,7 +109,7 @@
 }
 
 .planet-6{
-    background-image: url("#{resource['img/alumno/planetas/planeta6.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta6.svg");
     background-size: cover;
     background-repeat: no-repeat;
     width: 300px;

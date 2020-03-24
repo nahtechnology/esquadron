@@ -1,5 +1,5 @@
 .fondo-capas{
-    background-image: url("#{resource['img/alumno/mapa-mental/puntos-naranjas3.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/puntos-naranjas3.svg");
     background-size: cover;
     background-position: center center;
 }
@@ -16,7 +16,7 @@
     width: 90%;
     height: auto;
     margin: auto;
-    background: url("#{resource['img/alumno/hamburguesa.svg']}") no-repeat #0f7ae5 center center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/hamburguesa.svg") no-repeat #0f7ae5 center center/100% 100%;
     opacity: 1;
 }
 

@@ -14,7 +14,7 @@
     margin: 35% 0 10px 0;
     border: solid 8px black;
     box-sizing: border-box;
-    background: url("#{resource['img/icono/flecha-abajo.svg']}") no-repeat  calc(100% - ((100%/3)/2 - 15px)) 220px/35px 30px,url("#{resource['img/icono/flecha-abajo.svg']}") no-repeat calc(((100%/3)/2) - 15px) calc(((100%/3) * 2) - 17px)/35px 30px,#842484 ;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/flecha-abajo.svg") no-repeat  calc(100% - ((100%/3)/2 - 15px)) 220px/35px 30px,url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/flecha-abajo.svg") no-repeat calc(((100%/3)/2) - 15px) calc(((100%/3) * 2) - 17px)/35px 30px,#842484 ;
     /*background-color: #842484;*/
 }
 
@@ -38,7 +38,7 @@
     z-index: 2;
 }
 .imagen-globo{
-    background-image: url("#{resource['img/alumno/pop-art/mensaje9.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje9.svg");
     background-repeat: no-repeat;
     background-size: 100%;
     width: 38%;
@@ -51,7 +51,7 @@
     justify-content: center;
 }
 .area-texto{
-    background: url("#{resource['img/icono/flecha.svg']}") no-repeat left center/35px 30px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/flecha.svg") no-repeat left center/35px 30px;
 
 }
 .area-texto:first-child,.area-texto:nth-child(4),.area-texto:nth-child(5),.area-texto:nth-child(6),.area-texto:nth-child(7){
@@ -59,7 +59,7 @@
 }
 
 .area-texto:nth-child(5),.area-texto:nth-child(6){
-    background: url("#{resource['img/icono/fleca-izquierda.svg']}") no-repeat left center/35px 30px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/fleca-izquierda.svg") no-repeat left center/35px 30px;
 }
 
 

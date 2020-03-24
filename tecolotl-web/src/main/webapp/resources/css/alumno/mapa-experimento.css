@@ -2,7 +2,7 @@ body{
     box-sizing: border-box;
 }
 .fondo-mapa3{
-    background-image: url("#{resource['img/alumno/mapa-mental/fondo-mapa7.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/fondo-mapa7.svg");
     /*background-repeat: repeat-x;*/
     background-size: cover;
     /*background-position:5% 5%;*/
@@ -60,7 +60,7 @@ body{
     z-index: 3;
 }
 .imagen-popart{
-    background-image: url("#{resource['img/alumno/pop-art/mensaje-mapa-7.svg']}");
+    background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje-mapa-7.svg");
     background-size: 100%;
     background-repeat: no-repeat;
     width: 40%;

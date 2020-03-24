@@ -20,7 +20,7 @@
 
 
 .palabra{
-    background: url("#{resource['img/mounstro/who.svg']}") white no-repeat left/50px 37px ;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg") white no-repeat left/50px 37px ;
     /*background-color: white;*/
     padding-bottom: 5px;
     padding-top: 5px;
@@ -52,7 +52,7 @@
 #calificacion-respuesta{
     width: 220px;
     height: 170px;
-    background: url("#{resource['img/alumno/pop-art/mensaje6.svg']}") no-repeat center center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje6.svg") no-repeat center center/100% 100%;
     display: flex;
     justify-content: center;
     align-items: center;

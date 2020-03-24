@@ -75,12 +75,12 @@
     color: red;
 }
 .pop-art-nube-medio{
-    background: url("#{resource['img/alumno/pop-art/nube.svg']}") no-repeat center center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg") no-repeat center center/100% 100%;
     background-origin: content-box;
     height: 254px
 }
 .pop-art-nube-grande{
-    background: url("#{resource['img/alumno/pop-art/mensaje4.svg']}") no-repeat center center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje4.svg") no-repeat center center/100% 100%;
     background-origin: content-box;
     height: 254px
 }
