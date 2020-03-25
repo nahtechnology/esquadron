@@ -79,7 +79,7 @@
                  </div>
                  <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
 
-                 <h:outputText styleClass="sin-tarea1" value="no hay tarea" rendered="#{empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}"/>
+                 <h:outputText styleClass="sin-tarea1" value="No homework" rendered="#{empty gramaticaBibliotecaLibreControlador.gramaticaModeloLista}"/>
 
                  <div class="imagen-ordenar">
                      <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg"/>
@@ -112,7 +112,9 @@
                  </div>
              </div>
         </div>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/order-free-library.js" type="application/json"></script>
+
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/order-free-library.js" ></script>
+        <h:outputScript library="js" name="/alumno/order-free-library.js"/>
     </ui:define>
 </ui:composition>
 </html>

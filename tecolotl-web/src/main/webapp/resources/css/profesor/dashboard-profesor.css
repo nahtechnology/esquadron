@@ -84,3 +84,10 @@ ul > li > span {
 .scroll-profesor::-webkit-scrollbar-thumb:hover {
     background: rgba(52, 73, 94, 0.5);
 }
+
+.uk-notification-message {
+    border: 3px solid var(--color-nav-primary);
+    border-radius: 8px;
+    color: black;
+    font-weight: 900;
+}

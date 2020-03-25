@@ -82,7 +82,7 @@
                 </div>
                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
                 <h:panelGroup rendered="#{empty relacionarBiblitecaLibreControler.relacionarModeloLista[0].palabra}">
-                    <h:outputText styleClass="sin-tarea" value="no hay tarea"/>
+                    <h:outputText styleClass="sin-tarea" value="No homework"/>
                     <h:graphicImage  url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/monstruo.svg" styleClass="rosa"/>
                 </h:panelGroup>
                 <h:form rendered="#{not empty relacionarBiblitecaLibreControler.relacionarModeloLista[0].palabra}">

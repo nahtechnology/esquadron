@@ -6684,8 +6684,6 @@ ul.uk-nav-sub {
   font-size: 1.25rem;
   line-height: 1.4;
   cursor: pointer;
-  color: white;
-  background-color: #0f7ae5;
 }
 
 * + .uk-notification-message {

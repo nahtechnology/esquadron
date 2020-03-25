@@ -9,10 +9,12 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     contenedorOraciones = document.querySelector('.menu-ordenar + ul');
     botonScores = document.querySelectorAll('.scroll-drag button.boton-enviar');
     sentences(contenedorOraciones);
-    btnNext.disabled = true;
+
+    btnNext.disabled = !document.querySelector('.sin-tarea1');
+
     botonScores.forEach(function (boton,index) {
         boton.addEventListener('click',calificar);
-    })
+    });
 });
 function sentences(contenedor) {
     oraciones = contenedor.querySelectorAll('li .estilo-contenedor span');
