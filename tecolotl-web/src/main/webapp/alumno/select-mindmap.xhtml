@@ -88,16 +88,13 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="/alumno/select-mindmap.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/select-mindmap.css"/>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
-
                 <h:panelGroup layout="block" styleClass="contiene" rendered="#{empty seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}">
                     <h:outputText styleClass="letras" value="No hay mapas mentales asignadas" rendered="#{empty seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}"/>
                 </h:panelGroup>
-
                 <div  uk-grid="">
-
                     <ui:repeat value="#{seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}" var="mapaMental" >
                         <div class="uk-width-1-3@m uk-position-relative card-mapa mapa-#{mapaMental.cardinalidad}">
                             <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">

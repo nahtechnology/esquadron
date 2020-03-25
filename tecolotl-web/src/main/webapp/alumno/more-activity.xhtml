@@ -84,10 +84,10 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
-        <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
-        <h:outputStylesheet library="css" name="letra.css"/>
-        <h:outputStylesheet library="css" name="/alumno/glosario.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/order-sentences.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/glosario.css"/>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
                 <div uk-filter="target: .js-filter" >
@@ -295,13 +295,13 @@
                 }
             }
         </script>
-        <h:outputScript library="js" name="alumno/more-actibity.js"/>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/more-actibity.js"></script>
     </ui:define>
     <ui:define name="enlaces-js">
-        <h:outputScript library="js" name="/alumno/match-img.js"/>
-        <h:outputScript library="js" name="/alumno/complete-sentences.js"/>
         <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.587.0.min.js"></script>
-        <h:outputScript library="js" name="/alumno/storage-relacionar-img.js"/>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/match-img.js"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/complete-sentences.js"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/storage-relacionar-img.js"></script>
     </ui:define>
 </ui:composition>
 </html>

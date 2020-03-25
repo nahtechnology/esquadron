@@ -85,12 +85,12 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="alumno/transcript/transcript.css"/>
-        <h:outputStylesheet library="css" name="/alumno/transcript/variables-alumno.css"/>
-        <h:outputStylesheet library="css" name="/alumno/transcript/lista-ordenar.css"/>
-        <h:outputStylesheet library="css" name="/alumno/transcript/ordenar-palabra.css"/>
-        <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
-        <h:outputStylesheet library="css" name="letra.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/variables-alumno.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/lista-ordenar.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/ordenar-palabra.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
 <!--        <script src="https://www.youtube.com/iframe_api"></script>-->
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
@@ -489,12 +489,13 @@
         </script>
 
 
-        <h:outputScript library="js" name="alumno/transcripcion.js"/>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/transcripcion.js"></script>
 <!--        <h:outputScript library="js" name="alumno/activity.js"/>-->
     </ui:define>
     <ui:define name="enlaces-js">
         <h:outputScript library="js" name="/alumno/drag-prueba.js"/>
-        <h:outputScript library="js" name="/alumno/match-activity.js"/>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-prueba.js"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/match-activity.js"></script>
 
     </ui:define>
 </ui:composition>
