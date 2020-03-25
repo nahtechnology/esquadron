@@ -90,4 +90,5 @@ ul > li > span {
     border-radius: 8px;
     color: black;
     font-weight: 900;
+    background: white !important;
 }
