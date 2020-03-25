@@ -33,7 +33,7 @@
 }
 
 .letra-mapas{
-    background: url("#{resource['img/alumno/pop-art/boton-finished.svg']}") no-repeat center;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg") no-repeat center;
     width: 140px;
     height: 70px;
     top: 118px;
@@ -41,63 +41,63 @@
 }
 
 .mapa-1{
-    background: url("#{resource['img/alumno/mapa-mental/preview/1.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/1.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-2{
-    background: url("#{resource['img/alumno/mapa-mental/preview/2.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/2.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-3{
-    background: url("#{resource['img/alumno/mapa-mental/preview/3.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/3.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-4{
-    background: url("#{resource['img/alumno/mapa-mental/preview/4.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/4.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-5{
-    background: url("#{resource['img/alumno/mapa-mental/preview/5.jpg']}") no-repeat center/100% 100% ;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/5.jpg") no-repeat center/100% 100% ;
     background-origin: content-box;
 }
 .mapa-6{
-    background: url("#{resource['img/alumno/mapa-mental/preview/6.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/6.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-7{
-    background: url("#{resource['img/alumno/mapa-mental/preview/7.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/7.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-8{
-    background: url("#{resource['img/alumno/mapa-mental/preview/8.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/8.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-9{
-    background: url("#{resource['img/alumno/mapa-mental/preview/9.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/9.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-10{
-    background: url("#{resource['img/alumno/mapa-mental/preview/10.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/10.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-11{
-    background: url("#{resource['img/alumno/mapa-mental/preview/11.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/11.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-12{
-    background: url("#{resource['img/alumno/mapa-mental/preview/12.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/12.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-13{
-    background: url("#{resource['img/alumno/mapa-mental/preview/13.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/13.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-14{
-    background: url("#{resource['img/alumno/mapa-mental/preview/14.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/14.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 .mapa-15{
-    background: url("#{resource['img/alumno/mapa-mental/preview/15.jpg']}") no-repeat center/100% 100%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/mapa-mental/preview/15.jpg") no-repeat center/100% 100%;
     background-origin: content-box;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .contiene{
-    background: url("#{resource['img/alumno/pop-art/mensaje2.svg']}");
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje2.svg");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-position: center center;
@@ -131,7 +131,7 @@
     height: 80vh;
     margin-left: auto;
     margin-right: auto;
-    background:url("#{resource['img/alumno/pop-art/mensaje2.svg']}") no-repeat center center/50%, url("#{resource['img/mounstro/whom.svg']}") no-repeat center center/100% 100%;
+    background:url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje2.svg") no-repeat center center/50%, url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg") no-repeat center center/100% 100%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -159,7 +159,7 @@
 
 @media screen and (max-width: 1030px ){
     body{
-        background-image: url("#{resource['img/alumno/fondo-gral-ipad.svg']}");
+        background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-ipad.svg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -169,7 +169,7 @@
 
 @media screen and (max-width: 768px){
     body{
-        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
+        background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-movil.svg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -181,7 +181,7 @@
         left: 18%;
     }
     .sin-mapa{
-        background:url("#{resource['img/alumno/pop-art/mensaje2.svg']}") no-repeat center center/80%, url("#{resource['img/mounstro/whom.svg']}") no-repeat center center/100% 100%;
+        background:url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje2.svg") no-repeat center center/80%, url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg") no-repeat center center/100% 100%;
     }
     .sin-mapa span{
         font-size: 15px;
@@ -191,7 +191,7 @@
 
 @media screen and (max-width: 500px) {
     body{
-        background-image: url("#{resource['img/alumno/fondo-gral-movil.svg']}");
+        background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-movil.svg");
         background-size: 100% 100%;
         background-repeat: no-repeat;
         background-attachment: fixed;
@@ -209,7 +209,7 @@
         font-size: 10px;
     }
     .sin-mapa{
-        background:url("#{resource['img/alumno/pop-art/mensaje2.svg']}") no-repeat center center/85%, url("#{resource['img/mounstro/whom.svg']}") no-repeat center center/100% 100%;
+        background:url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje2.svg") no-repeat center center/85%, url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg") no-repeat center center/100% 100%;
     }
     .sin-mapa span{
         font-size: 11px;
