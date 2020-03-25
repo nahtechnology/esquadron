@@ -22,7 +22,7 @@
                     <div class="uk-offcanvas-bar  ">
                         <button class="uk-offcanvas-close" type="button" uk-close=""/>
                         <ul class="uk-thumbnav uk-thumbnav-vertical  uk-margin-large-top">
-                            <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/alumno/img/planetas/tierra.svg" width="40" alt=""/></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class="uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
                             <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right" class="uk-active"><h:link outcome="free-library" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg"  width="40" alt="" /></h:link></li>
                         </ul>
                         <div class="uk-text-center uk-display-block uk-margin-large-top">
@@ -41,7 +41,7 @@
     </ui:define>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
             <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
             <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo} </h6>
             <div class="uk-position-relative uk-text-center uk-display-block">
@@ -71,7 +71,8 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/variables-alumno.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>-->
+            <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
 <!--        <script src="https://www.youtube.com/iframe_api"></script>-->
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
@@ -181,10 +182,12 @@
 
             }
         </script>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/activity-free-library.js" type="application/json"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/activity-free-library.js" ></script>
+        <ui:remove><h:outputScript library="js" name="/alumno/activity-free-library.js"/></ui:remove>
     </ui:define>
     <ui:define name="enlaces-js">
-        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-prueba.js"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-prueba.js"></script>
+        <ui:remove><h:outputScript library="js" name="/alumno/drag-prueba.js"/></ui:remove>
     </ui:define>
 </ui:composition>
 </html>

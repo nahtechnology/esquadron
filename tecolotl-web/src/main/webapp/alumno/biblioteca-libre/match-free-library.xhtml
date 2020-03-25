@@ -41,8 +41,8 @@
     </ui:define>
     <ui:define name="menu">
         <div class="left-content-box  content-box-dark">
-            <h:graphicImage library="img" name="avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
-            <h:graphicImage library="img" name="avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg" alt="niño" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'm'}"/>
+            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nina.svg" alt="niña" class="profile-img" rendered="#{alumnoControlador.alumnoModelo.sexo eq 'f'}"/>
             <h6 class="uk-text-center uk-margin-remove-vertical text-light nombre-usuario">#{alumnoControlador.alumnoModelo.apodo} </h6>
             <div class="uk-position-relative uk-text-center uk-display-block">
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
@@ -57,7 +57,7 @@
         </div>
         <div class="left-nav-wrap  uk-visible@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
-                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class=" uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources//img/alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right" class=" uk-text-capitalize"><h:link outcome="dashboard" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right" class="uk-active"><h:link outcome="free-library" ><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg"  width="70" alt="" /></h:link></li>
             </ul>
         </div>
@@ -70,9 +70,9 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/order-sentences.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/order-sentences.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/alumno/glosario.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/glosario.css"/>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
 
@@ -143,10 +143,10 @@
             </div>
         </div>
 <!--        javascript-->
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-drop.js" type="application/json"></script>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/match-free-library.js" type="application/json"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-drop.js" ></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/match-free-library.js" ></script>
         <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.587.0.min.js"></script>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/relacionar-imagen-free.js" type="application/json"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/relacionar-imagen-free.js" ></script>
     </ui:define>
 </ui:composition>
 </html>
