@@ -174,14 +174,14 @@
                                             <h:link outcome="alumnos" styleClass="uk-text-primary" >
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                 <f:param name="grupo" value="#{grupo.id}"/>
-                                                <span class="uk-text-middle"><h:outputText value="Detalle"/></span>
+                                                <span class="uk-text-middle"><h:outputText value="#{etiqueta['detail']}"/></span>
                                             </h:link>
                                         </li>
                                         <ui:fragment rendered="${grupo.totalAlumno > 0}">
                                             <li>
                                                 <h:link outcome="asignar-tarea" styleClass="uk-text-primary">
                                                     <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
-                                                    <span class="uk-text-middle"><h:outputText value="Asignar Tarea"/></span>
+                                                    <span class="uk-text-middle"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
                                                     <f:param name="grupo" value="#{grupo.id}"/>
                                                 </h:link>
                                             </li>
