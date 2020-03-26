@@ -16,7 +16,6 @@ import java.util.UUID;
                 @FieldResult(name = "nombre", column = "nombre"),
                 @FieldResult(name = "apellido_paterno", column = "apellidoPaterno"),
                 @FieldResult(name = "apellido_materno", column = "apellidoMaterno"),
-                @FieldResult(name = "id_tarea", column = "idTarea"),
                 @FieldResult(name = "total_tareas_resueltas", column = "totalTareasResueltas"),
                 @FieldResult(name = "nivel_lenguaje", column = "nivelLenguaje"),
             }
@@ -32,21 +31,19 @@ public class AlumnoTareasNivelEntidad implements Serializable {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
-    private UUID idTarea;
     private Integer totalTareas;
     private String nivelLenguaje;
 
     public AlumnoTareasNivelEntidad() {
     }
 
-    public AlumnoTareasNivelEntidad(UUID idGrupo, UUID idAlumno, Short nivelLenguajeAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, UUID idTarea, Integer totalTareas, String nivelLenguaje) {
+    public AlumnoTareasNivelEntidad(UUID idGrupo, UUID idAlumno, Short nivelLenguajeAlumno, String nombre, String apellidoPaterno, String apellidoMaterno, Integer totalTareas, String nivelLenguaje) {
         this.idGrupo = idGrupo;
         this.idAlumno = idAlumno;
         this.nivelLenguajeAlumno = nivelLenguajeAlumno;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
-        this.idTarea = idTarea;
         this.totalTareas = totalTareas;
         this.nivelLenguaje = nivelLenguaje;
     }
@@ -99,16 +96,6 @@ public class AlumnoTareasNivelEntidad implements Serializable {
 
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
-    }
-
-    @Basic
-    @Column(name = "id_tarea")
-    public UUID getIdTarea() {
-        return idTarea;
-    }
-
-    public void setIdTarea(UUID idTarea) {
-        this.idTarea = idTarea;
     }
 
     @Id
@@ -171,7 +158,6 @@ public class AlumnoTareasNivelEntidad implements Serializable {
                 .add("nombre='" + nombre + "'")
                 .add("apellidoPaterno='" + apellidoPaterno + "'")
                 .add("apellidoMaterno='" + apellidoMaterno + "'")
-                .add("idTarea=" + idTarea)
                 .add("totalTareas=" + totalTareas)
                 .add("nivelLenguaje='" + nivelLenguaje + "'")
                 .toString();
