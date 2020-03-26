@@ -42,6 +42,7 @@ function generarReporte(evento) {
     var grupo = urlParams.get('grupo');
     var hiddenElement = document.createElement('a');
     console.log(grupo);
+    UIkit.notification("The document is being downloaded, please wait");
     hiddenElement.href = "http://reportes.e-squadron.com.mx/reporte-alumnos?grupo=".concat(grupo);
     hiddenElement.click();
 }

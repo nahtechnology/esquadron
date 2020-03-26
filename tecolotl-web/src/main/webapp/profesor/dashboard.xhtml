@@ -209,12 +209,9 @@
                let cadenaIdGrupos = idGrupos.join(",");
                console.log(cadenaIdGrupos);
                 btnReport.addEventListener('click',()=>{
+                    UIkit.notification("The document is being downloaded, please wait");
                     var hiddenElemento = document.querySelector('#reporte');
                     hiddenElemento.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
-                    // hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
-                    // hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
-                    hiddenElemento.target = '_blank';
-                    hiddenElemento.download = 'reporte'  + '.pdf';
                     hiddenElemento.click();
                 });
             });

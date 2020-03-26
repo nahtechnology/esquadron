@@ -279,6 +279,7 @@
                     var alumno = urlParams.get('idAlumno');
                     var hiddenElement = document.createElement('a');
                     console.log(alumno);
+                    UIkit.notification("The document is being downloaded, please wait",{timeout: 15000});
                     hiddenElement.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-calificaciones?grupo=".concat(idProfesor,"&amp;alumno=",alumno);
                     console.log("http://www.reportesdesarrollo.e-squadron.com.mx/reporte-calificaciones?grupo=".concat(idProfesor,"&amp;alumno=",alumno));
                     hiddenElement.click();
