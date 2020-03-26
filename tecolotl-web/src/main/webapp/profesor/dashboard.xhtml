@@ -210,9 +210,11 @@
                console.log(cadenaIdGrupos);
                 btnReport.addEventListener('click',()=>{
                     var hiddenElemento = document.querySelector('#reporte');
-                    hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
-                    // hiddenElemento.target = '_blank';
-                    // hiddenElemento.download = 'reporte'  + '.pdf';
+                    hiddenElemento.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
+                    // hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
+                    // hiddenElemento.href = "http://reportes.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
+                    hiddenElemento.target = '_blank';
+                    hiddenElemento.download = 'reporte'  + '.pdf';
                     hiddenElemento.click();
                 });
             });
