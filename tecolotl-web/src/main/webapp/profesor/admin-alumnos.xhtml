@@ -329,6 +329,23 @@
 
             }
         </script>
+        <script type="application/javascript" >
+            document.addEventListener('DOMContentLoaded',()=>{
+                var botonResporte = document.querySelector('.uk-container button.reporte');
+                botonResporte.addEventListener('click', generarReporte);
+            });
+
+            function generarReporte(evento) {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                var grupo = urlParams.get('grupo');
+                var hiddenElement = document.createElement('a');
+                console.log(grupo);
+                UIkit.notification("The document is being downloaded, please wait");
+                hiddenElement.href = "http://reportes.e-squadron.com.mx/reporte-alumnos?grupo=".concat(grupo);
+                hiddenElement.click();
+            }
+        </script>
     </ui:define>
 </ui:composition>
 
