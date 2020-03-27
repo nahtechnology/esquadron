@@ -5,6 +5,7 @@ var mapas;
 
 document.addEventListener('DOMContentLoaded', function (evento) {
     var btnClose = document.querySelector('#temario > div > div > span');
+    var nivelesFiltro = document.querySelector('ul.nav-default-profesor');
     ejercicios = document.querySelector('.js-filter');
     niveles = document.querySelectorAll('.uk-subnav-alumno li:not(:first-child)');
     agregaListener(ejercicios.querySelectorAll('li .uk-card-footer'));
@@ -18,9 +19,11 @@ document.addEventListener('DOMContentLoaded', function (evento) {
         var temas = document.querySelector('#temario > div');
         temas.classList.toggle('temario-open');
     });
+    ordenarNiveles(nivelesFiltro);
 
 
 });
+
 
 
 function buscaActividadSeleccionada(evento) {
@@ -127,4 +130,26 @@ function temariosActividad() {
         lista.appendChild(texto);
         contenedorTemas.appendChild(lista);
     });*/
+}
+
+function ordenarNiveles(nodo) {
+    let levels = nodo.querySelectorAll('li');
+    let prueba = [];
+    console.log(levels);
+    let n = levels.length-1;
+      for (let i = 0 ; i< levels.length;i++){
+          if(i === 0){
+              prueba[i]=levels[i];
+          }else{
+              prueba[i] = levels[n];
+              n--;
+          }
+      }
+    console.log(prueba);
+      while(nodo.hasChildNodes()){
+         nodo.removeChild(nodo.firstChild);
+      }
+      for (let i = 0; i < levels.length; i++){
+          nodo.appendChild(prueba[i]);
+      }
 }
