@@ -6,7 +6,6 @@ import tecolotl.administracion.persistencia.entidad.CoordinadorEntidadPK;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
 import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
-import tecolotl.nucleo.herramienta.CorreoSessionBean;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
@@ -18,11 +17,7 @@ import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.util.List;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -42,10 +37,6 @@ public class CoordinadorSesionBean {
 
     @Inject
     private ValidadorSessionBean validadorSessionBean;
-    //classloader
-    @Inject
-    private CorreoSessionBean correoSessionBean;
-
 
     /**
      * Busca todos los coordinadores de una escuela, sin el motivo de bloqueo de dicho coordinador.
@@ -152,10 +143,4 @@ public class CoordinadorSesionBean {
         return coordinadorEntidadPK;
     }
 
-    /**
-     * Metodo que envia el correo y lee un archivo con BufferedReader y FileReader
-     * lo cual no lo hace apto más que para ver eñ contenido del archivo y así procesarlo.
-     */
-    public void enviaCorreo() {
-    }
 }
