@@ -23,10 +23,11 @@ document.addEventListener('DOMContentLoaded',function (ev) {
     if(porcentaje >= 20){
         console.log(porcentaje,"desabilitado");
         botonRespuesta.disabled = true;
-        botonRespuesta.classList.toggle('boton-disabilitado');
+        botonRespuesta.classList.add('boton-disabilitado');
         UIkit.notification("the student hasn't completed his homework");
     }else{
-        botonRespuesta.classList.toggle('boton-disabilitado');
+        console.log('se puede');
+        botonRespuesta.classList.remove('boton-disabilitado');
         botonRespuesta.disabled = false;
     }
     document.querySelector('#formulario-califica input[type=submit]').addEventListener('click', validaRespuesta);
