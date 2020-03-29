@@ -370,6 +370,7 @@
                                                  label="#{administracion['dashboard.modal.street.num.ext']}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="1" maximum="15"/>
+                                        <f:validateLongRange minimum="1" maximum="9999999999"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-numero-exterior" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>

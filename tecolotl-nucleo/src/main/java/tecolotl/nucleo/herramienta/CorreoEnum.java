@@ -6,8 +6,10 @@ public enum CorreoEnum {
     REMITENTE("Jesus Reyes"),
     MENSAJE_BIENVENIDA("Bienvenido a Squadreon vaquero espacial"),
     MENSAJE("Del equipo de sQuadron te damos la bienvenida a la plataforma");
+
     private final String bienvenido;
-    private CorreoEnum(String bienvenida){
+
+    CorreoEnum(String bienvenida){
         this.bienvenido = bienvenida;
     }
 

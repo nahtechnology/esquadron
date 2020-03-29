@@ -104,4 +104,12 @@ public class CiclosEscolaresControlador implements Serializable {
     public void setTotalGrupo(Long totalGrupo) {
         this.totalGrupo = totalGrupo;
     }
+
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
+    }
+
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
+    }
 }

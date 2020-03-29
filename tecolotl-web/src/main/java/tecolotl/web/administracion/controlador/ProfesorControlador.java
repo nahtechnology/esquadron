@@ -120,4 +120,12 @@ public class ProfesorControlador implements Serializable {
     public void setTotalGrupos(Long totalGrupos) {
         this.totalGrupos = totalGrupos;
     }
+
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
+    }
+
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
+    }
 }

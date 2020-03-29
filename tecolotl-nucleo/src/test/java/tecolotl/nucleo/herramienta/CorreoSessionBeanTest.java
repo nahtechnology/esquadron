@@ -33,15 +33,4 @@ public class CorreoSessionBeanTest {
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml").addAsResource("META-INF/persistence.xml");
     }
 
-    @Inject
-    private CorreoSessionBean correoSessionBean;
-
-    @Test
-    public void enviar() {
-        CorreoConfirmacionModelo correoConfirmacionModelo = new CorreoConfirmacionModelo();
-        correoConfirmacionModelo.setCorreo("solucionest67@gmail.com");
-        correoConfirmacionModelo.setNombre("Antonio Francisco Alonso Valerdi");
-        correoConfirmacionModelo.setContrasenia("1234");
-        correoSessionBean.enviar(correoConfirmacionModelo, TipoCorreo.COORDINADOR_CONFIRMACION);
-    }
 }

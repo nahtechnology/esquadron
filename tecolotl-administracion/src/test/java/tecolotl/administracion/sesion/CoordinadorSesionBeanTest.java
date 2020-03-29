@@ -49,8 +49,7 @@ public class CoordinadorSesionBeanTest {
                 .addClasses(CatalagoEntidad.class, CatalogoModelo.class, PersonaEntidad.class,DireccionSesionBean.class,
                         LoggerProducer.class, ColoniaNuevaValidacion.class, CoordinadorSesionBean.class, CoordinadorModelo.class,
                         PersonaModelo.class, ValidadorSessionBean.class, PersonaMotivoBloqueoModelo.class, PersonaNuevaValidacion.class,
-                    PersonaMotivoBloqueoEntidad.class,
-                        CorreoSessionBean.class)
+                    PersonaMotivoBloqueoEntidad.class)
             //nucleo
             .addPackage(ValidadorSessionBean.class.getPackage())
             .addPackage(CatalogoModelo.class.getPackage())
@@ -156,10 +155,6 @@ public class CoordinadorSesionBeanTest {
         coordinadorSesionBean.elimina(coordinadorModelo);
     }
 
-    @Test
-    public void correo(){
-        coordinadorSesionBean.enviaCorreo();
-    }
 
     @Test
     public void cuenta() {
