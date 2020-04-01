@@ -107,7 +107,7 @@
                                      styleClass="rango"
                                      disabled="#{not empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"
                                      value="#{calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"/>
-                        <p><span /><span style="color: red; font-weight: bold"/></p>
+                        <p><span /><span style="color: red; font-weight: bold" class="uk-text-capitalize"/></p>
                     </div>
                 </h:panelGroup>
                 <div class="uk-width-1-4@m">
@@ -129,19 +129,19 @@
             rubrica.forEach(function (value,index) {
                 switch (slider[index].value) {
                     case "25":
-                        rubrica[index].innerHTML = "Deficit";
+                        rubrica[index].innerHTML = "#{profesor['deficit']}";
                         score[index].innerHTML = "25";
                         break;
                     case "50":
-                        rubrica[index].innerHTML = "Regular";
+                        rubrica[index].innerHTML = "#{profesor['regular']}";
                         score[index].innerHTML = "50";
                         break;
                     case "75":
-                        rubrica[index].innerHTML = "Good";
+                        rubrica[index].innerHTML =  "#{profesor['good']}";
                         score[index].innerHTML = "75";
                         break;
                     case "100":
-                        rubrica[index].innerHTML = "Excellent";
+                        rubrica[index].innerHTML = "#{profesor['excellent']}";
                         score[index].innerHTML = "100";
                         break;
                     default:
@@ -154,19 +154,19 @@
 
                     switch (this.value) {
                         case "25":
-                            rubrica[index].innerHTML = "Deficit";
+                            rubrica[index].innerHTML = "#{profesor['deficit']}";
                             score[index].innerHTML = "25";
                             break;
                         case "50":
-                            rubrica[index].innerHTML = "Regular";
+                            rubrica[index].innerHTML = "#{profesor['regular']}";
                             score[index].innerHTML = "50";
                             break;
                         case "75":
-                            rubrica[index].innerHTML = "Good";
+                            rubrica[index].innerHTML = "#{profesor['good']}";
                             score[index].innerHTML = "75";
                             break;
                         case "100":
-                            rubrica[index].innerHTML = "Excellent";
+                            rubrica[index].innerHTML = "#{profesor['excellent']}";
                             score[index].innerHTML = "100";
                             break;
                     }

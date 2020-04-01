@@ -96,7 +96,7 @@
                                     Cardinalidad: #{tareaMapaMental.cardinalidad}<br/>
                                     <span>Respondido: #{tareaMapaMental.totalRespuestas}</span>
                                 </ui:remove>
-                                <h:link value="#{empty tareaMapaMental.puntaje ? 'calificar' : 'ver detalles de calificacion'}"
+                                <h:link value="#{empty tareaMapaMental.puntaje ? boton['qualify'] : boton['see.rating.details']}"
                                         outcome="califica"
                                         styleClass="boton-escuadron-base"
                                         rendered="#{tareaMapaMental.totalRespuestas gt 0}">
