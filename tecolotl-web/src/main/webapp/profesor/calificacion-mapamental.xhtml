@@ -184,7 +184,7 @@
 
             function validaComentario() {
                 if (document.getElementById('formulario:comentario').value === '') {
-                    UIkit.modal.alert('Es necesario escribir un comentario antes de enviar la calificacion');
+                    UIkit.modal.alert("#{profesor['you.need.to.write.a.comment.before.submitting.the.rating']}");
                     return false;
                 }
                 return true;
