@@ -84,7 +84,7 @@
                 <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
                     <ui:repeat value="#{alumnoControlador.tareaActvidadModeloLista}" var="tareaActvidadModelo" varStatus="conta">
                         <h:panelGroup layout="block" styleClass="uk-width-1-3@m " pt:data-tags="a beautiful landscape - nature outdoor">
-                            <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border ">
+                            <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border"><!-- clase desactivado-->
                                 <div class="uk-card-header border-card">
                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                         <div class="uk-width-expand">
@@ -101,7 +101,7 @@
                                 <div class="uk-card-media-top uk-text-center" data-video="#{tareaActvidadModelo.idActividad}">
                                     <h:panelGroup layout="block" pt:uk-spinner=""/>
                                     <div  class="uk-inline-clip uk-transition-toggle" tabindex="0">
-                                        <div class="uk-margin-remove posicion">
+                                        <div class="uk-margin-remove posicion ">
                                            <h:outputText  value="#{tareaActvidadModelo.preguntaDetonadora}"/>
                                         </div>
                                         <div class="uk-transition-fade uk-position-cover uk-overlay-default uk-flex uk-flex-center uk-flex-middle">
@@ -124,6 +124,7 @@
             </div>
         </div>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/activities.js"></script>
+        <h:outputScript library="js" name="/alumno/activities.js"/>
     </ui:define>
 </ui:composition>
 </html>

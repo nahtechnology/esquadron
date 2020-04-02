@@ -92,40 +92,43 @@
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                          pt:maxlength="65">
                             <f:validateRequired/>
+                            <h:message for="texto-respuesta-1" styleClass="mensaje-mapa caja1" style="margin-top: 100px"/>
                         </h:inputTextarea>
-                        <h:message for="texto-respuesta-1" styleClass=""/>
+
                         <h:inputTextarea id="texto-respuesta-2"
                                          styleClass="caja2"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
                                          pt:maxlength="65">
                             <f:validateRequired/>
+                            <h:message for="texto-respuesta-2" styleClass="mensaje-mapa caja2" style="margin-top: 100px"/>
                         </h:inputTextarea>
-                        <h:message for="texto-respuesta-2" styleClass=""/>
+
                         <h:inputTextarea id="texto-respuesta-3"
                                          styleClass="caja3"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                          pt:maxlength="65">
                             <f:validateRequired/>
+                            <h:message for="texto-respuesta-3" styleClass="mensaje-mapa caja3" style="margin-top: 100px"/>
                         </h:inputTextarea>
-                        <h:message for="texto-respuesta-3" styleClass=""/>
+
                         <h:inputTextarea id="texto-respuesta-4"
                                          styleClass="caja4"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                          pt:maxlength="65">
                             <f:validateRequired/>
+                            <h:message for="texto-respuesta-4" styleClass="mensaje-mapa caja4" style="bottom: 3%"/>
                         </h:inputTextarea>
-                        <h:message for="texto-respuesta-4" styleClass=""/>
                         <h:inputTextarea id="texto-respuesta-5"
                                          styleClass="caja5"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
                                          value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
                                          pt:maxlength="65">
                             <f:validateRequired/>
+                            <h:message for="texto-respuesta-5" styleClass="mensaje-mapa caja5" style="bottom: 5%"/>
                         </h:inputTextarea>
-                        <h:message for="texto-respuesta-5" styleClass=""/>
 
                         <h:commandButton id="boton-enviar-mapa-mental-escritorio"
                                          value="#{boton['submit']}"
@@ -185,5 +188,11 @@
         </div>
 
     </ui:define>
+    <ui:define name="enlaces-js">
+        <script type="application/javascript">
+
+        </script>
+    </ui:define>
 </ui:composition>
+
 </html>

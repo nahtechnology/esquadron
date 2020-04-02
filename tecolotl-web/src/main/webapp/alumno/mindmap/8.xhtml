@@ -87,7 +87,7 @@
                     </div>
                         <div class="uk-position-absolute texto-posicion">
                             <h3 class="uk-text-center">#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}</h3>
-                            <h:message for="introduction" styleClass=""/>
+
                             <h:inputTextarea styleClass="uk-textarea uk-margin-large-bottom"
                                          id="introduction"
                                          disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
@@ -95,37 +95,41 @@
                                          pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"
                                          pt:maxlength="31">
                                 <f:validateRequired/>
+                                <h:message for="introduction" styleClass="mensaje-mapa" style="margin-top: 56px"/>
                             </h:inputTextarea>
+
                             <h3 class="uk-text-center margen-small uk-text-capitalize">#{alumno['mindmap.map8.title.supporting']}:</h3>
-                            <h:message for="deails1" styleClass=""/>
                             <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
                                              id="deails1"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"
                                              pt:maxlength="31">
+                                <h:message for="deails1" styleClass="mensaje-mapa" style="margin-top: 56px"/>
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="deails2" styleClass=""/>
+
                             <h:inputTextarea styleClass="uk-textarea uk-margin-medium-bottom"
                                              id="deails2"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].pregunta}"
                                              pt:maxlength="31">
+                                <h:message for="deails2" styleClass="mensaje-mapa" style="margin-top: 56px"/>
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="deails3" styleClass=""/>
+
                             <h:inputTextarea styleClass="uk-textarea"
                                              id="deails3"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
                                              pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].pregunta}"
                                              pt:maxlength="31">
+                                <h:message for="deails3" styleClass="mensaje-mapa" style="margin-top: 56px"/>
                                 <f:validateRequired/>
                             </h:inputTextarea>
+
                             <h3 class="uk-text-center uk-margin-remove-top">#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}:</h3>
-                            <h:message for="Conclusion" styleClass=""/>
                             <h:inputTextarea styleClass="uk-textarea"
                                              id="Conclusion"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
@@ -134,7 +138,7 @@
                                              pt:maxlength="31">
                                 <f:validateRequired/>
                             </h:inputTextarea>
-                            <h:message for="Conclusion" styleClass=""/>
+                            <h:message for="Conclusion" styleClass="mensaje-mapa" />
 
 
                         </div>

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
         var temas = document.querySelector('#temario > div');
         temas.classList.toggle('temario-open');
     });
-    ordenarNiveles(nivelesFiltro);
+     ordenarNiveles(nivelesFiltro);
 
 
 });
@@ -133,19 +133,22 @@ function temariosActividad() {
 }
 
 function ordenarNiveles(nodo) {
+    let lenguageLevels = ['A1','A2','B1','B2','C1','C2'];
     let levels = nodo.querySelectorAll('li');
-    let prueba = [];
+    let prueba = [],pibote = true,numero = 0;
     console.log(levels);
-    let n = levels.length-1;
-      for (let i = 0 ; i< levels.length;i++){
-          if(i === 0){
-              prueba[i]=levels[i];
-          }else{
-              prueba[i] = levels[n];
-              n--;
+    prueba.push(levels[0]);
+    while (pibote){
+       levels.forEach(nivel => {
+          if(nivel.className === lenguageLevels[numero]){
+              prueba.push(nivel);
           }
-      }
-    console.log(prueba);
+       });
+       numero++;
+       if(numero > 5){
+           pibote = false;
+       }
+    }
       while(nodo.hasChildNodes()){
          nodo.removeChild(nodo.firstChild);
       }

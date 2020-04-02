@@ -854,7 +854,11 @@ textarea::-webkit-scrollbar-thumb:hover {
     z-index: 6;
 }
 
-
+.mensaje-mapa{
+    position: absolute;
+    color: red;
+    z-index: 10;
+}
 
 @media screen and (max-width: 1030px ){
     body{

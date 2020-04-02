@@ -323,6 +323,12 @@ div>ul>li{
     justify-content: center;
     align-items: center;
 }
+.desactivado .posicion {
+    background: linear-gradient(to right, #b2b2b2, #595959);
+}
+.desactivado .boton{
+    background-color: #595959;
+}
 
 
 @media screen and (max-width: 1024px){
