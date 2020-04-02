@@ -110,6 +110,22 @@
 
 }
 
+.uno{
+    color: red;
+}
+
+.dos{
+    color: red;
+}
+
+.tres{
+    color: red;
+}
+
+.cuatro{
+    color: red;
+}
+
 @media screen and (max-width: 1024px) {
     .titulo-14 h3{
         font-size: 19px;
