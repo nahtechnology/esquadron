@@ -30,14 +30,14 @@ function buscaActividadSeleccionada(evento) {
     salida = [];
     seleccionados = ejercicios.querySelectorAll('input[type=radio]:checked');
     if (seleccionados === null || seleccionados.length === 0) {
-        UIkit.modal.alert('Es necesario seleccionar una actvidad');
+        UIkit.modal.alert(letrero);
     } else {
         evento.preventDefault();
         seleccionados.forEach(function (seleccionado) {
             salida.push(seleccionado.value);
         });
         if (salida.length !== niveles.length) {
-            UIkit.modal.confirm('Al parecer hay alumnos sin asginar actvidad, desea asignar la(s) actvidad(es) seleccionada(s)').then(function () {
+            UIkit.modal.confirm(confirmacion).then(function () {
                 document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
                 document.getElementById('formulario-asignar-tarea:boton-enviar').click();
             }, function () {

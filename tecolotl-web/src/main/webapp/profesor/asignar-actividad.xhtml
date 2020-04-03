@@ -197,8 +197,13 @@
                     </div>
                 </div>
             </h:panelGroup>
+            <script type="text/javascript">
+                let letrero = "#{profesor['you.need.to.select.an.activity']}";
+                let confirmacion = "#{profesor['modal.confirma']}";
+            </script>
         </ui:define>
         <ui:define name="file-js">
+
             <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
 <!--            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>-->
             <h:outputScript library="js" name="/profesor/asignar-actividad.js"/>
