@@ -58,19 +58,19 @@ function calificarOracion(oracion,respuesta) {
 
         switch (slider[index].value) {
             case "1":
-                rubrica[index].innerHTML = "Deficiente";
+                rubrica[index].innerHTML = "to improve";
                 score[index].innerHTML = "25";
                 break;
             case "2":
-                rubrica[index].innerHTML = "Regular";
+                rubrica[index].innerHTML = "Satisfactory";
                 score[index].innerHTML = "50";
                 break;
             case "3":
-                rubrica[index].innerHTML = "Bueno";
+                rubrica[index].innerHTML = "Good";
                 score[index].innerHTML = "75";
                 break;
             case "4":
-                rubrica[index].innerHTML = "Excelente";
+                rubrica[index].innerHTML = "Outstanding";
                 score[index].innerHTML = "100";
                 break;
             default:
@@ -85,19 +85,19 @@ function calificarOracion(oracion,respuesta) {
 
             switch (this.value) {
                 case "1":
-                    rubrica[index].innerHTML = "Deficiente";
+                    rubrica[index].innerHTML = "to improve";
                     score[index].innerHTML = "25";
                     break;
                 case "2":
-                    rubrica[index].innerHTML = "Regular";
+                    rubrica[index].innerHTML = "Satisfactory";
                     score[index].innerHTML = "50";
                     break;
                 case "3":
-                    rubrica[index].innerHTML = "Bueno";
+                    rubrica[index].innerHTML = "Good";
                     score[index].innerHTML = "75";
                     break;
                 case "4":
-                    rubrica[index].innerHTML = "Excelente";
+                    rubrica[index].innerHTML = "Outstanding";
                     score[index].innerHTML = "100";
                     break;
             }
@@ -114,23 +114,23 @@ function calificarOracion(oracion,respuesta) {
             slider[index].value = "1";
             // score[index].innerHTML = Math.round(calculo);
             score[index].innerHTML = 25;
-            rubrica[index].innerHTML = "Deficiente";
+            rubrica[index].innerHTML = "to improve";
         }
         if(calculo > 25 && calculo <= 50 ){
             slider[index].value = "2";
             score[index].innerHTML = Math.round(calculo);
-            rubrica[index].innerHTML = "Regular";
+            rubrica[index].innerHTML = "Satisfactory";
         }
 
         if(calculo > 50 && calculo <= 75 ){
             slider[index].value = "3";
             score[index].innerHTML = Math.round(calculo);
-            rubrica[index].innerHTML = "Bueno";
+            rubrica[index].innerHTML = "Good";
         }
         if (calculo > 75 ){
             slider[index].value = "4";
             score[index].innerHTML = Math.round(calculo);
-            rubrica[index].innerHTML = "Excelente";
+            rubrica[index].innerHTML = "Outstanding";
         }
 
     });
