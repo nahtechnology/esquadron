@@ -104,7 +104,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaApodo()){
         let inputApodo = document.createElement('input');
         inputApodo.setAttribute('type','text');
-        inputApodo.setAttribute('uk-tooltip','El apodo debe tener minimo 4 caracteres o ya existe');
+        inputApodo.setAttribute('uk-tooltip',apodoAlum);
         celdaApodo.appendChild(inputApodo).value = this.apodo.trim();
         conteo += 1;
     }else {
@@ -140,7 +140,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaFecha()){
         let inputFecha = document.createElement('input');
         inputFecha.setAttribute('type','text');
-        inputFecha.setAttribute('uk-tooltip','El formato dede ser dd/mm/yyyy');
+        inputFecha.setAttribute('uk-tooltip',dateAlum);
         celdaFechaNacimento.appendChild(inputFecha).value = this.fechanacimento.trim();
         conteo += 1;
     }else{
@@ -149,7 +149,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaNivellenguaje()){
         let inputLenguaje = document.createElement('input');
         inputLenguaje.setAttribute('type','text');
-        inputLenguaje.setAttribute('uk-tooltip','A1,A2,B1,B2,C1,C2 valores permitidos');
+        inputLenguaje.setAttribute('uk-tooltip',levelAlum);
         celdaNivelLenguaje.appendChild(inputLenguaje).value = this.nivellenguaje.trim();
         conteo += 1;
     }else{
@@ -158,7 +158,7 @@ Alumno.prototype.insertaDatos = function (tabla) {
     if(!this.validaGenero()){
         let inputGenero = document.createElement('input');
         inputGenero.setAttribute('type','text');
-        inputGenero.setAttribute('uk-tooltip','deber ser M o F');
+        inputGenero.setAttribute('uk-tooltip',genderAlum);
         celdaGenero.appendChild(inputGenero).value = this.genero.trim();
         conteo += 1;
     }else {
