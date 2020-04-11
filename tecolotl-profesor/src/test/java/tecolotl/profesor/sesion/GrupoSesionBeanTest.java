@@ -177,7 +177,7 @@ public class GrupoSesionBeanTest {
     public void inserta() throws ParseException {
         GrupoModelo grupoModelo = new GrupoModelo();
         grupoModelo.setGrado((short)1);
-        grupoModelo.setGrupo('B');
+        grupoModelo.setGrupo("B");
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
@@ -192,7 +192,7 @@ public class GrupoSesionBeanTest {
     public void inserta2() throws ParseException {
         GrupoModelo grupoModelo = new GrupoModelo();
         grupoModelo.setGrado((short)2);
-        grupoModelo.setGrupo('C');
+        grupoModelo.setGrupo("C");
         CicloEscolarModelo cicloEscolarModelo = new CicloEscolarModelo();
         cicloEscolarModelo.setInicio(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2020"));
         cicloEscolarModelo.setFin(new SimpleDateFormat("dd/MM/yyyy").parse("01/01/2021"));
@@ -208,7 +208,7 @@ public class GrupoSesionBeanTest {
     public void actualiza() {
         GrupoModelo grupoModelo = new GrupoModelo(UUID.fromString("f673954a-8429-4f33-9bab-161a94975c50"));
         grupoModelo.setGrado((short)3);
-        grupoModelo.setGrupo('A');
+        grupoModelo.setGrupo("A");
         grupoSesionBean.actualiza(grupoModelo);
     }
 
