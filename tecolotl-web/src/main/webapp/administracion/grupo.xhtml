@@ -150,7 +150,7 @@
                                                  binding="#{grupoControlador.htmlInputText}"
                                                  class="uk-input">
                                         <f:validateRequired/>
-                                        <f:validateLength maximum="1"/>
+                                        <f:validateLongRange maximum="999"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="grado" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
@@ -163,7 +163,7 @@
                                                  value="#{grupoControlador.grupoModelo.grupo}"
                                                  class="uk-input">
                                         <f:validateRequired/>
-                                        <f:validateLength maximum="1"/>
+                                        <f:validateLength maximum="30"/>
                                     </h:inputText>
                                 </div>
                                 <h:message for="grupo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>

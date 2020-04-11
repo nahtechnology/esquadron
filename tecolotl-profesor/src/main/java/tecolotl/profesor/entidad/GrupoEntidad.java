@@ -1,7 +1,9 @@
 package tecolotl.profesor.entidad;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.UUID;
 
@@ -48,7 +50,7 @@ public class GrupoEntidad {
 
     private UUID id;
     private Short grado;
-    private Character grupo;
+    private String grupo;
     private ProfesorEntidad profesorEntidad;
     private int totalAlumno;
     private CicloEscolarEntidad cicloEscolarEntidad;
@@ -61,7 +63,7 @@ public class GrupoEntidad {
         this.id = id;
     }
 
-    public GrupoEntidad(UUID id, Short grado, Character grupo, Long totalAlumno) {
+    public GrupoEntidad(UUID id, Short grado, String grupo, Long totalAlumno) {
         this.id = id;
         this.grado = grado;
         this.grupo = grupo;
@@ -80,6 +82,7 @@ public class GrupoEntidad {
     @Basic
     @NotNull
     @Column(name = "grado")
+    @Max(value = 999)
     public Short getGrado() {
         return grado;
     }
@@ -91,11 +94,12 @@ public class GrupoEntidad {
     @NotNull
     @Basic
     @Column(name = "grupo")
-    public Character getGrupo() {
+    @Size(max = 30)
+    public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(Character grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 

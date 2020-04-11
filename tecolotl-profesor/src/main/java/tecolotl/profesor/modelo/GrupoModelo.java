@@ -5,14 +5,16 @@ import tecolotl.profesor.validacion.GrupoLlavePrimariaValidacion;
 import tecolotl.profesor.validacion.GrupoNuevoValidacion;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.*;
 
 public class GrupoModelo implements Cloneable{
 
     private UUID id;
     private Short grado;
-    private Character grupo;
+    private String grupo;
     private UUID idProfesor;
     private CicloEscolarModelo cicloEscolarModelo;
     private int totalAlumno;
@@ -31,6 +33,7 @@ public class GrupoModelo implements Cloneable{
     }
 
     @NotNull(groups = {GrupoNuevoValidacion.class, GrupoLlavePrimariaValidacion.class})
+    @Max(value = 999)
     public Short getGrado() {
         return grado;
     }
@@ -40,11 +43,12 @@ public class GrupoModelo implements Cloneable{
     }
 
     @NotNull(groups = {GrupoNuevoValidacion.class})
-    public Character getGrupo() {
+    @Size(max = 30)
+    public String getGrupo() {
         return grupo;
     }
 
-    public void setGrupo(Character grupo) {
+    public void setGrupo(String grupo) {
         this.grupo = grupo;
     }
 
@@ -111,7 +115,7 @@ public class GrupoModelo implements Cloneable{
     public Object clone() throws CloneNotSupportedException {
         GrupoModelo grupoModelo = new GrupoModelo();
         grupoModelo.setId(this.getId());
-        grupoModelo.setGrupo(new Character(this.grupo));
+        grupoModelo.setGrupo(new String(this.grupo));
         grupoModelo.setGrado(new Short(this.grado));
         return grupoModelo;
     }
