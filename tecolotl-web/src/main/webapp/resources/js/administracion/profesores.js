@@ -59,9 +59,21 @@ function cerrarModal(data , modal) {
 
 
 function abrirModal() {
+
     UIkit.util.on('#modal-profesor', 'shown', function () {
+        var modal = document.querySelector('#modal-profesor');
+        let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
+        let imagenes = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
+        if(contrasena !== ""){
+            let password = contrasena.split(',');
+            imagenes[parseInt(password[0])].classList.add("seleccionado");
+            imagenes[parseInt(password[1])].classList.add("seleccionado");
+        }
+
         modalProfresor.querySelector('.uk-modal-header').click();
         modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
+        seleccionContrasena(imagenes);
+
     });
     UIkit.util.on('#modal-eliminar', 'show', function () {
         modalEliminar.querySelector('.uk-modal-header').click();
@@ -72,6 +84,7 @@ function abrirModal() {
 }
 
 function cargaContrasenia() {
+    console.log('entre');
     var imagenes = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
     var seleccionados = [];
     for (i = 0; i < imagenes.length; i++) {
@@ -80,4 +93,19 @@ function cargaContrasenia() {
         }
     }
     document.getElementById('formulario-modal-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');
+}
+
+function seleccionContrasena(img) {
+    let contador = 0;
+    img.forEach(image => {
+        image.addEventListener('click',() => {
+            contador++;
+            if (contador === 1){
+                img.forEach(im => {
+                    im.classList.remove('seleccionado');
+                })
+            }
+          image.classList.toggle('seleccionado');
+        })
+    });
 }
