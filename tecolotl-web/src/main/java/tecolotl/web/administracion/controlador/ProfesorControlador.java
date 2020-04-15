@@ -65,6 +65,7 @@ public class ProfesorControlador implements Serializable {
 
     public void actualiza() {
         profesorSesionBean.actualiza(profesorModelo);
+        logger.info(profesorModelo.toString());
         profesorModelo = new ProfesorModelo();
     }
 

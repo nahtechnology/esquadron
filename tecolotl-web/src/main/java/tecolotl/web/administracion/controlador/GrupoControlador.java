@@ -12,12 +12,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -93,8 +95,7 @@ public class GrupoControlador implements Serializable {
         }
     }
 
-    public void actualiza() {
-        logger.info("actualizando:"+grupoModelo.toString());
+    public void actualiza(AjaxBehaviorEvent ajaxBehaviorEvent) {
         if (grupoModeloLista.stream().anyMatch(grupoModeloPredicate())) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             facesContext.validationFailed();
@@ -103,6 +104,8 @@ public class GrupoControlador implements Serializable {
                     new FacesMessage(FacesMessage.SEVERITY_ERROR, "El grupo: " + grupoModelo.getGrado().toString() + " " + grupoModelo.getGrupo().toString() + " ya existe", null));
         } else {
             grupoSesionBean.actualiza(grupoModelo);
+            Optional<GrupoModelo> optionalGrupoModelo = grupoModeloLista.stream().filter(grupo -> grupo.getId().equals(grupoModelo.getId())).findFirst();
+            optionalGrupoModelo.ifPresent(grupo -> {grupo.setGrado(grupoModelo.getGrado()); grupo.setGrupo(grupoModelo.getGrupo());});
             grupoModelo = new GrupoModelo();
         }
     }

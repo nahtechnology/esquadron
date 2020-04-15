@@ -109,7 +109,7 @@
                                                 </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
+                                                    <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
@@ -134,7 +134,7 @@
                         <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">
                             <h:outputText rendered="#{empty grupoControlador.grupoModelo.id}" value="nuevo grupo"/>
                             <h:outputText rendered="#{not empty grupoControlador.grupoModelo.id}" value="actualiza grupo"/>
-                            <h:inputHidden id="id" value="#{grupoControlador.grupoModelo.id}"/>
+                            <h:inputHidden id="input-id-grupo" value="#{grupoControlador.grupoModelo.id}"/>
                         </p>
                     </div>
                     <div class="uk-modal-body">
@@ -143,9 +143,9 @@
                                 <h:outputText id="ciclo-escolar" value="Agregar grupo en el cilo escolar: #{grupoControlador.cicloEscolarModelo.descripcion}"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-2@m">
-                                <h:outputLabel value="Grado" for="grado"/>
+                                <h:outputLabel value="Grado" for="input-grado"/>
                                 <div class="uk-form-controls">
-                                    <h:inputText id="grado"
+                                    <h:inputText id="input-grado"
                                                  value="#{grupoControlador.grupoModelo.grado}"
                                                  binding="#{grupoControlador.htmlInputText}"
                                                  class="uk-input">
@@ -153,20 +153,19 @@
                                         <f:validateLongRange maximum="999"/>
                                     </h:inputText>
                                 </div>
-                                <h:message for="grado" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                <h:message for="input-grado" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
                             <div class="uk-width-1-1@s uk-width-1-2@m">
-                                <h:outputLabel value="Grupo" for="grupo"/>
+                                <h:outputLabel value="Grupo" for="input-grupo"/>
                                 <div class="uk-form-controls">
-                                    <h:inputText id="grupo"
-                                                 pt:oninput="mayuscula(event)"
+                                    <h:inputText id="input-grupo"
                                                  value="#{grupoControlador.grupoModelo.grupo}"
                                                  class="uk-input">
                                         <f:validateRequired/>
                                         <f:validateLength maximum="30"/>
                                     </h:inputText>
                                 </div>
-                                <h:message for="grupo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                <h:message for="input-grupo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
                         </div>
                     </div>
@@ -176,7 +175,7 @@
                                          value="#{boton['add']}"
                                          rendered="#{empty grupoControlador.grupoModelo.id}"
                                          styleClass="uk-button uk-button-primary">
-                            <f:ajax execute="grado grupo"
+                            <f:ajax execute="input-grado input-grupo"
                                     listener="#{grupoControlador.agrega}"
                                     render="@form formulario-grupo"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalGrupo') }"/>
@@ -185,10 +184,10 @@
                                          value="#{boton['update']}"
                                          rendered="#{not empty grupoControlador.grupoModelo.id}"
                                          styleClass="uk-button uk-button-primary">
-                            <f:ajax execute="id grado grupo"
-                                    listener="#{grupoControlador.actualiza}"
-                                    render="@form formulario-grupo"
-                                    onevent="function funcion(data) { cerrarModal(data, 'modalGrupo') }"/>
+                            <f:ajax execute="input-grado input-grupo" 
+                            		listener="#{grupoControlador.actualiza}"
+                            		render="@form formulario-grupo"
+                            		onevent="function funcion(data){ cerrarModal(data, 'modalGrupo') }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -212,12 +211,14 @@
                 </div>
                 <div class="uk-modal-footer uk-flex uk-flex-right">
                     <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{boton['cancel']}</button>
-                    <h:commandButton id="boton-borrar-grupo"
-                                     disabled="#{grupoControlador.grupoModelo.totalAlumno ne 0}"
-                                     value="#{boton['remove']}"
-                                     styleClass="uk-button uk-button-danger uk-modal-close">
-                        <f:ajax listener="#{grupoControlador.borrar}" render="formulario-grupo"/>
-                    </h:commandButton>
+                    <h:form id="formulario-borrar">
+	                    <h:commandButton id="boton-borrar-grupo"
+	                                     disabled="#{grupoControlador.grupoModelo.totalAlumno ne 0}"
+	                                     value="#{boton['remove']}"
+	                                     styleClass="uk-button uk-button-danger uk-modal-close">
+	                        <f:ajax listener="#{grupoControlador.borrar}" render="formulario-grupo"/>
+	                    </h:commandButton>
+                    </h:form>
                 </div>
             </div>
         </h:panelGroup>
