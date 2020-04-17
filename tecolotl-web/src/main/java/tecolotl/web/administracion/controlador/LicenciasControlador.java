@@ -6,6 +6,7 @@ import tecolotl.web.controlador.TablaControlador;
 
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.model.CollectionDataModel;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -43,7 +44,7 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
         actualizaDataModel();
     }
 
-    public void actualiza() {
+    public void actualiza(AjaxBehaviorEvent ajaxBehaviorEvent) {
         licenciaModelo.setClaveCentroTrabajo(claveCentroTrabajo);
         licenciaSesionBean.actualiza(licenciaModelo);
         actualizaDataModel();
