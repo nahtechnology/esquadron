@@ -5,13 +5,17 @@ import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.application.FacesMessage.Severity;
 import javax.faces.component.html.HtmlDataTable;
+import javax.faces.component.html.HtmlInputText;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -29,6 +33,7 @@ public class CiclosEscolaresControlador implements Serializable {
     private String claveCentroTrabajo;
     private EscuelaBaseModelo escuelaBaseModelo;
     private Long totalGrupo;
+    private HtmlInputText htmlInputText;
 
     @PostConstruct
     public void buscaCiclosEscolares() {
@@ -42,10 +47,18 @@ public class CiclosEscolaresControlador implements Serializable {
     }
 
     public void inserta() {
-        cicloEscolarModelo.setIdEscuela(escuelaBaseModelo.getClaveCentroTrabajo());
-        cicloEscolarSessionBean.inserta(cicloEscolarModelo);
-        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
-        renuevaModelo();
+    	Optional<CicloEscolarModelo> cicloEscolarModeloOpttional = 
+    			cicloEscolarModeloLista.stream().filter(cicloEscolar -> cicloEscolar.equals(cicloEscolarModelo)).findFirst();
+    	if (cicloEscolarModeloOpttional.isPresent()) {
+			FacesContext facesContext = FacesContext.getCurrentInstance();
+    		FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este ciclo escolar ya existe", "Este ciclo escolar ya existe");
+    		facesContext.addMessage(htmlInputText.getClientId(facesContext), facesMessage);
+		} else {
+	        cicloEscolarModelo.setIdEscuela(escuelaBaseModelo.getClaveCentroTrabajo());
+	        cicloEscolarSessionBean.inserta(cicloEscolarModelo);
+	        cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+	        renuevaModelo();
+		}
     }
 
     public void activa() {
@@ -112,4 +125,12 @@ public class CiclosEscolaresControlador implements Serializable {
     public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
         this.escuelaBaseModelo = escuelaBaseModelo;
     }
+
+	public HtmlInputText getHtmlInputText() {
+		return htmlInputText;
+	}
+
+	public void setHtmlInputText(HtmlInputText htmlInputText) {
+		this.htmlInputText = htmlInputText;
+	}
 }
