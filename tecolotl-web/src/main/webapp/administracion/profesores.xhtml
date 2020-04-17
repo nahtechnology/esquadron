@@ -112,8 +112,8 @@
                                                 <li>
                                                     <h:link outcome="grupo">
                                                         <h:outputText pt:uk-icon="icon: users" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><span class="primera-mayuscula uk-display-inline-block">grupos</span></span>
-                                                        <f:param name="escuela" value="#{administracionProfesorControlador.claveCentroTrabajo}"/>
+                                                        <span class="uk-text-middle primera-mayuscula uk-display-inline-block">grupos</span>
+                                                        <f:param name="escuela" value="#{administracionProfesorControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                                                         <f:param name="profesor" value="#{profesorModelo.id}"/>
                                                     </h:link>
                                                 </li>
@@ -226,21 +226,6 @@
                                 </div>
                                 <h:message for="sexo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
-                            <ui:remove>
-                            <div class="uk-width-1-1@s uk-width-1-3@m">
-                                <h:outputLabel value="contrasenia" for="contrasenia"/>
-                                <div class="uk-form-controls">
-                                    <h:inputSecret id="contrasenia"
-                                                 type="password"
-                                                 styleClass="uk-input"
-                                                 value="#{administracionProfesorControlador.profesorModelo.contrasenia}">
-                                            <f:validateRequired/>
-                                            <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
-                                    </h:inputSecret>
-                                </div>
-                                <h:message for="contrasenia" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
-                            </div>
-                            </ui:remove>
                             <div class="uk-width-1-1@s uk-width-1-3@m">
                                 <h:outputLabel value="correo eletronico" for="correoEletronico"/>
                                 <div class="uk-form-controls">
