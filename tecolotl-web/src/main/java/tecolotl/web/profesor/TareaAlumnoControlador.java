@@ -2,19 +2,24 @@ package tecolotl.web.profesor;
 
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
+import tecolotl.alumno.sesion.TareaSesionBean;
 import tecolotl.profesor.modelo.TareaAlumnoModelo;
 import tecolotl.profesor.sesion.CalificaTareaMapaMentalSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class TareaAlumnoControlador {
+public class TareaAlumnoControlador implements Serializable {
 
     @Inject
     private CalificaTareaMapaMentalSesionBean calificaTareaMapaMentalSesionBean;
@@ -22,12 +27,24 @@ public class TareaAlumnoControlador {
     @Inject
     private ProfesorGrupoControlador profesorGrupoControlador;
 
+    @Inject
+    private TareaSesionBean tareaSesionBean;
+
+    @Inject
+    private Logger logger;
+
     private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
     private String idAlumno;
+    private String idTarea;
 
     public void detalle() {
         tareaAlumnoModeloLista = calificaTareaMapaMentalSesionBean.busca(UUID.fromString(idAlumno));
         profesorGrupoControlador.detalleAlumno(UUID.fromString(idAlumno));
+    }
+
+    public void borrar() {
+        tareaAlumnoModeloLista.removeIf(tareaAlumnoModelo -> tareaAlumnoModelo.getId().compareTo(UUID.fromString(idTarea)) == 0);
+        tareaSesionBean.elimina(UUID.fromString(idTarea));
     }
 
     public List<TareaAlumnoModelo> getTareaAlumnoModeloLista() {
@@ -44,5 +61,13 @@ public class TareaAlumnoControlador {
 
     public void setIdAlumno(String idAlumno) {
         this.idAlumno = idAlumno;
+    }
+
+    public String getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(String idTarea) {
+        this.idTarea = idTarea;
     }
 }

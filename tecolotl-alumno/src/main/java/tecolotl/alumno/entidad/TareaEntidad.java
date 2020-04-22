@@ -5,6 +5,7 @@ import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.StringJoiner;
@@ -29,6 +30,12 @@ import java.util.UUID;
     @NamedQuery(
         name = "TareaEntidad.estatusRespondiendo",
         query = "UPDATE TareaEntidad t SET t.resolviendoTranscript = :estatus WHERE t.id = :idTarea"),
+    @NamedQuery(
+        name = "TareaEntidad.eliminaGrupo",
+        query = "DELETE FROM TareaEntidad t WHERE t.id IN (SELECT t.id FROM TareaEntidad t join t.tareaGlosarioActividadEntidadLista tga " +
+                "WHERE tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id = :idActividad) AND " +
+                "t.idGrupo = :idGrupo"
+    )
 })
 public class TareaEntidad {
 
@@ -39,6 +46,7 @@ public class TareaEntidad {
     private Date horaRespuesta;
     private boolean resolviendoTranscript;
     private AlumnoEntidad alumnoEntidad;
+    private UUID idGrupo;
     private Short calificacion;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
@@ -120,6 +128,17 @@ public class TareaEntidad {
 
     public void setAlumnoEntidad(AlumnoEntidad alumnoEntidad) {
         this.alumnoEntidad = alumnoEntidad;
+    }
+
+    @Basic
+    @NotNull
+    @Column(name = "id_grupo")
+    public UUID getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(UUID idGrupo) {
+        this.idGrupo = idGrupo;
     }
 
     @Basic

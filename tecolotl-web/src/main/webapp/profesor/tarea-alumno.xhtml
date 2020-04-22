@@ -136,7 +136,13 @@
                                             <img class="img-previa" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt=""/>
                                                 <h:panelGroup layout="block" pt:uk-dropdown="mode: click; boundary: .tabla-profesor-dropdown" styleClass="uk-dropdown">
                                                     <ul class="uk-nav uk-dropdown-nav">
-                                                        <li ><h:outputLink value="#eliminar-tarea" pt:uk-toggle=""><h:outputText styleClass="uk-icon uk-margin-small-right" pt:uk-icon="icon: trash"/>delete</h:outputLink></li>
+                                                        <li>
+                                                            <h:commandLink pt:uk-toggle="target: #modal-eliminar-tarea" >
+                                                                <h:outputText styleClass="uk-icon uk-margin-small-right" pt:uk-icon="icon: trash"/>${boton['remove']}
+                                                                <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
+                                                                <f:ajax render="formulario-eliminar:input-tarea"/>
+                                                            </h:commandLink>
+                                                        </li>
                                                     </ul>
                                                 </h:panelGroup>
                                             </div>
@@ -201,92 +207,29 @@
                         </div>
                     </div>
                     <!-- /card -->
-                    <!-- card -->
-                    <div class="nivel-card uk-container">
-                        <ui:remove>
-                        <div class="">
-                            <div class="titulo-section padding-0">
-                                <div class="uk-grid">
-                                    <div class="uk-text-bold"><h4 class=" uk-text-capitalize uk-text-bold uk-margin-remove-bottom titulo-section">nivel actual</h4></div>
-                                        <div class="uk-width-expand uk-flex uk-flex-right">
-
-                                            <div class="uk-width-auto">
-                                                <h:graphicImage library="img" name="letra-a.svg" width="50" height="50" styleClass="uk-border-circle"/>
-                                            </div>
-                                            <span class="uk-text-primary">%60</span>
-                                            <progress class="uk-progress-full" value="78" max="100"></progress>
-                                            <div class="uk-width-auto uk-margin-auto-right uk-margin-auto-left">
-                                                <h:graphicImage library="img" name="letra-b.svg" width="50" height="50" styleClass="uk-border-circle"/>
-                                            </div>
-
-                                        </div>
-
-                                </div>
-                            </div>
-                            <div class="padding-0">
-                                <div class="uk-overflow-auto">
-                                <h:form id="formulario-tabla-nivel">
-                                    <h:dataTable id="tabla-nivel"
-                                                 value="#{asignacionNivelControlador.collectionDataModel}"
-                                                 binding="#{asignacionNivelControlador.htmlDataTable}"
-                                                 var="dato"
-                                                 first="0"
-                                                 rows="10"
-                                                 styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-text-center tabla-profesor-dropdown"
-                                                 headerClass="borde-top-amarillo uk-text-center"
-                                                 columnClasses="uk-width-small,uk-width-small,uk-width-small"
-                                                 rowClasses="tdPrimario"
-                                                 footerClass="thPrimario uk-text-left">
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Alumnos</span></f:facet>
-                                            #{dato.nickname}
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Listen</span></f:facet>
-                                            <span class="uk-icon-link uk-text-capitalize uk-text-success" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: check; ratio: 1.5"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Transcript</span></f:facet>
-                                            <span class="uk-icon-link uk-text-capitalize uk-text-success" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: check; ratio: 1.5"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Read</span></f:facet>
-                                            <span class="uk-icon-link uk-text-capitalize uk-text-danger" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: close; ratio: 1.5"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Grammar</span></f:facet>
-                                            <span class="uk-icon-link uk-text-capitalize uk-text-primary" title="nuevo alumno" data-uk-tooltip="" data-uk-icon="icon: ban; ratio: 1.5"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header"><span class="letra-tabla uk-text-bold">quizzes</span></f:facet>
-                                            #{dato.quizzes}
-                                        </h:column>
-                                    </h:dataTable>
-                                </h:form>
-                                </div>
-                            </div>
-                        </div>
-                        </ui:remove>
-                    </div>
-                    <!-- /card -->
                 </div>
             </div>
         </section>
 
-        <div id="eliminar-tarea" class="uk-flex-top" uk-modal="">
+        <h:panelGroup layout="block" id="modal-eliminar-tarea" class="uk-flex-top" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header " style="background-color: var(--color-peligro)">
-                    <h2 class="uk-modal-title " style="color: white">delete homework</h2>
-                </div>
-                <div class="uk-modal-body " style="border-bottom-color: var(--color-peligro) ">
-                    <p>esta seguro que desea eliminar esta tarea, se eliminaran todos los avances previos del alumno</p>
-                </div>
-                <div class="uk-modal-footer uk-text-right">
-                    <button class="boton-escuadron-base-secundary uk-modal-close" type="button">Cancel</button>
-                    <button class="boton-escuadron-base " style="background-color: var(--color-peligro); color: white" type="button">delate</button>
-                </div>
+                <h:form id="formulario-eliminar">
+                    <div class="uk-modal-header " style="background-color: var(--color-peligro)">
+                        <h2 class="uk-modal-title " style="color: white">delete homework</h2>
+                    </div>
+                    <div class="uk-modal-body " style="border-bottom-color: var(--color-peligro) ">
+                        ${profesor['tareas.alumno.delete.message']}
+                        <h:inputHidden id="input-tarea" value="#{tareaAlumnoControlador.idTarea}"/>
+                    </div>
+                    <div class="uk-modal-footer uk-text-right">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">${boton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="${boton['remove']}">
+                            <f:ajax execute="input-tarea" listener="#{tareaAlumnoControlador.borrar}" render="formulario-tabla-actividades"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
             </div>
-        </div>
+        </h:panelGroup>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/Chart.js"></script>
         <script type="text/javascript" >
             var progreso, barra = [];
@@ -307,6 +250,10 @@
                     console.log("http://www.reportesdesarrollo.e-squadron.com.mx/reporte-calificaciones?grupo=".concat(idProfesor,"&amp;alumno=",alumno));
                     hiddenElement.click();
                 });
+
+                UIkit.util.on('#modal-eliminar-tarea', 'beforeshow', function () {
+                    document.getElementById('modal-eliminar-tarea').querySelector('.uk-modal-header').click();
+                });
             });
 
             function barrasValor() {
@@ -321,10 +268,7 @@
                     valor.innerHTML = progres.querySelector('progress').value + '%';
                     progres.insertBefore(valor,progres.querySelector('progress'));
                 });
-
-
             }
-
         </script>
     </ui:define>
 </ui:composition>

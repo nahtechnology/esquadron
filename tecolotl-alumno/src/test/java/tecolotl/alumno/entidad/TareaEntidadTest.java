@@ -18,6 +18,7 @@ import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -53,5 +54,12 @@ public class TareaEntidadTest {
         }
     }
 
+    @Test
+    public void eleminaPorgrupo() {
+        Query query = entityManager.createNamedQuery("TareaEntidad.eliminaGrupo");
+        query.setParameter("idActividad", "1CZ7mBSLH1c");
+        int eliminados = query.executeUpdate();
+        Assert.assertNotEquals(0, eliminados);
+    }
 
 }

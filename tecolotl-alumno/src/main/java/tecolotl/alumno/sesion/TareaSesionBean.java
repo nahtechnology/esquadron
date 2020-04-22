@@ -123,7 +123,7 @@ public class TareaSesionBean implements Serializable {
      * @param idTarea dato para eliminar una tarea
      * @return numero de elementos eliminados, 0 en caso de no existir
      */
-    public int elimina(@NotNull @Min(1) UUID idTarea){
+    public int elimina(@NotNull UUID idTarea){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaDelete<TareaEntidad> tareaEntidadCriteriaDelete = criteriaBuilder.createCriteriaDelete(TareaEntidad.class);
         Root<TareaEntidad> root = tareaEntidadCriteriaDelete.from(TareaEntidad.class);
