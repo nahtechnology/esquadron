@@ -170,7 +170,7 @@
                                 <button class="uk-icon-button puntero" uk-icon="more-vertical" type="button"/>
                                 <div uk-dropdown="boundary:.tabla-profesor-dropdown; mode: click" id="dropear" style="min-width: 150px">
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                                        <li>
+                                        <li style="padding-left: 10px">
                                             <h:link outcome="alumnos" styleClass="uk-text-primary" >
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                 <f:param name="grupo" value="#{grupo.id}"/>
@@ -178,14 +178,14 @@
                                             </h:link>
                                         </li>
                                         <ui:fragment rendered="${grupo.totalAlumno > 0}">
-                                            <li>
+                                            <li style="padding-left: 10px">
                                                 <h:link outcome="asignar-tarea" styleClass="uk-text-primary">
                                                     <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
                                                     <span class="uk-text-middle"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
                                                     <f:param name="grupo" value="#{grupo.id}"/>
                                                 </h:link>
                                             </li>
-                                            <li>
+                                            <li style="padding-left: 10px">
                                                 <h:link outcome="asignar-tarea" styleClass="uk-text-primary">
                                                     <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
                                                     <span class="uk-text-middle"><h:outputText value="delete hw"/></span>
