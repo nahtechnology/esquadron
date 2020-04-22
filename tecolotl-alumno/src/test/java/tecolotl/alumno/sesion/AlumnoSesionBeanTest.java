@@ -165,20 +165,6 @@ public class AlumnoSesionBeanTest {
     }
 
     @Test
-    public void detalle() {
-        DetalleAlumnoModelo detalleAlumnoModelo = alumnoSesionBean.detalle(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
-        Assert.assertNotNull(detalleAlumnoModelo);
-        Assert.assertNotNull(detalleAlumnoModelo.getTotalTareas());
-        Assert.assertNotNull(detalleAlumnoModelo.getGrado());
-        Assert.assertNotNull(detalleAlumnoModelo.getGrado());
-        Assert.assertNotNull(detalleAlumnoModelo.getInicio());
-        Assert.assertNotNull(detalleAlumnoModelo.getFin());
-        Assert.assertNotNull(detalleAlumnoModelo.getNombre());
-        Assert.assertNotNull(detalleAlumnoModelo.getApellidoPaterno());
-        Assert.assertNotNull(detalleAlumnoModelo.getApellidoMaterno());
-    }
-
-    @Test
     public void buscaApodo() {
         AlumnoModelo alumnoModelo = alumnoSesionBean.busca(UUID.fromString("antonio"));
         Assert.assertNotNull(alumnoModelo);

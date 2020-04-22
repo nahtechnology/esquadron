@@ -63,24 +63,4 @@ public class AlumnoSesionBean implements Serializable {
         return new AlumnoModelo(alumnoEntidad);
     }
 
-    /**
-     * Busca los detalles de un alumno
-     * @param idAlumno Identificador del alumno.
-     * @return DetalleAlumnoModelo con los datos.
-     */
-    public DetalleAlumnoModelo detalle(@NotNull UUID idAlumno) {
-        logger.fine(idAlumno.toString());
-        DetalleAlumnoModelo detalleAlumnoModelo  = new DetalleAlumnoModelo();
-        TypedQuery<TareaAlumnoVistaEntidad> typedQuery =
-                entityManager.createNamedQuery("TareaAlumnoVistaEntidad.buscaAlumno", TareaAlumnoVistaEntidad.class);
-        typedQuery.setParameter("idAlumno", idAlumno);
-        try {
-            TareaAlumnoVistaEntidad tareaAlumnoVistaEntidad = typedQuery.getSingleResult();
-            logger.finer(tareaAlumnoVistaEntidad.toString());
-            detalleAlumnoModelo = new DetalleAlumnoModelo(tareaAlumnoVistaEntidad);
-        } catch (NoResultException ex) {
-            logger.finest("No hay actividades asignadas");
-        }
-        return detalleAlumnoModelo;
-    }
 }

@@ -18,17 +18,6 @@ public class DetalleAlumnoModelo {
     public DetalleAlumnoModelo() {
     }
 
-    public DetalleAlumnoModelo(TareaAlumnoVistaEntidad tareaAlumnoVistaEntidad) {
-        this.totalTareas = tareaAlumnoVistaEntidad.getTotalTareas();
-        this.grupo = tareaAlumnoVistaEntidad.getGrupo();
-        this.grado = tareaAlumnoVistaEntidad.getGrado();
-        this.inicio = tareaAlumnoVistaEntidad.getInicio();
-        this.fin = tareaAlumnoVistaEntidad.getFin();
-        this.nombre = tareaAlumnoVistaEntidad.getNombre();
-        this.apellidoPaterno = tareaAlumnoVistaEntidad.getApellidoPaterno();
-        this.apellidoMaterno = tareaAlumnoVistaEntidad.getApellidoMaterno();
-    }
-
     public Integer getTotalTareas() {
         return totalTareas;
     }

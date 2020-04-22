@@ -84,7 +84,7 @@
                 <h:panelGroup layout="block" styleClass="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom" pt:uk-grid="">
                     <ui:repeat value="#{alumnoControlador.tareaActvidadModeloLista}" var="tareaActvidadModelo" varStatus="conta">
                         <h:panelGroup layout="block" styleClass="uk-width-1-3@m " pt:data-tags="a beautiful landscape - nature outdoor">
-                            <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border"><!-- clase desactivado-->
+                            <div class="uk-card uk-card-default uk-card-small uk-card-hover card-border ${tareaActvidadModelo.pendiente ? '' : 'desactivado'}"><!-- clase desactivado-->
                                 <div class="uk-card-header border-card">
                                     <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-text-small" pt:uk-grid="">
                                         <div class="uk-width-expand">

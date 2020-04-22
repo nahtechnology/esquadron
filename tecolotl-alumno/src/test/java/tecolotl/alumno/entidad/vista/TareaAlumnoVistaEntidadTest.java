@@ -14,6 +14,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import java.util.List;
+import java.util.UUID;
+
 import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
@@ -34,17 +37,17 @@ public class TareaAlumnoVistaEntidadTest {
     public void busca() {
         TypedQuery<TareaAlumnoVistaEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaAlumnoVistaEntidad.buscaAlumno", TareaAlumnoVistaEntidad.class);
-        typedQuery.setParameter("idAlumno", 1);
-        TareaAlumnoVistaEntidad tareaAlumnoVistaEntidad = typedQuery.getSingleResult();
-        assertNotNull(tareaAlumnoVistaEntidad);
-        assertNotNull(tareaAlumnoVistaEntidad.getTotalTareas());
-        assertNotNull(tareaAlumnoVistaEntidad.getGrado());
-        assertNotNull(tareaAlumnoVistaEntidad.getGrupo());
-        assertNotNull(tareaAlumnoVistaEntidad.getInicio());
-        assertNotNull(tareaAlumnoVistaEntidad.getFin());
-        assertNotNull(tareaAlumnoVistaEntidad.getNombre());
-        assertNotNull(tareaAlumnoVistaEntidad.getApellidoMaterno());
-        assertNotNull(tareaAlumnoVistaEntidad.getApellidoPaterno());
+        typedQuery.setParameter("idAlumno", UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"));
+        List<TareaAlumnoVistaEntidad> tareaAlumnoVistaEntidadLista = typedQuery.getResultList();
+        assertNotNull(tareaAlumnoVistaEntidadLista);
+        assertFalse(tareaAlumnoVistaEntidadLista.isEmpty());
+        tareaAlumnoVistaEntidadLista.forEach(tareaAlumnoVistaEntidad -> {
+            assertNotNull(tareaAlumnoVistaEntidad);
+            assertNotNull(tareaAlumnoVistaEntidad.getId());
+            assertNotNull(tareaAlumnoVistaEntidad.getAsignacion());
+            assertNotNull(tareaAlumnoVistaEntidad.getIdActividad());
+            assertNotNull(tareaAlumnoVistaEntidad.getPreguntaDetonadora());
+        });
     }
 
 }
