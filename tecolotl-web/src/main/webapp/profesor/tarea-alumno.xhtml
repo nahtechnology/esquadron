@@ -132,7 +132,14 @@
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.homework']}</span></f:facet>
+                                            <div class="uk-inline">
                                             <img class="img-previa" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt=""/>
+                                                <h:panelGroup layout="block" pt:uk-dropdown="mode: click; boundary: .tabla-profesor-dropdown" styleClass="uk-dropdown">
+                                                    <ul class="uk-nav uk-dropdown-nav">
+                                                        <li ><h:outputLink><h:outputText styleClass="uk-icon uk-margin-small-right" pt:uk-icon="icon: trash"/>delete</h:outputLink></li>
+                                                    </ul>
+                                                </h:panelGroup>
+                                            </div>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.assigned']}</span></f:facet>
@@ -186,6 +193,7 @@
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarOraciones ne null}"><progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
                                         </h:column>
+
                                     </h:dataTable>
                                 </h:form>
                                 </div>
@@ -264,6 +272,16 @@
                 </div>
             </div>
         </section>
+
+        <div id="eliminar-tarea" class="uk-flex-top" uk-modal="">
+            <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+                <button class="uk-modal-close-default" type="button" uk-close=""/>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+            </div>
+        </div>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/Chart.js"></script>
         <script type="text/javascript" >
             var progreso, barra = [];

@@ -92,3 +92,7 @@ ul > li > span {
     font-weight: 900;
     background: white !important;
 }
+.tabla-profesor-dropdown .uk-dropdown{
+    padding: 10px;
+    min-width: 100px;
+}
