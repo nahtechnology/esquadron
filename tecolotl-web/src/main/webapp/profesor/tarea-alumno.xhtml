@@ -215,15 +215,15 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-eliminar">
                     <div class="uk-modal-header " style="background-color: var(--color-peligro)">
-                        <h2 class="uk-modal-title " style="color: white">delete homework</h2>
+                        <h2 class="uk-modal-title uk-text-capitalize uk-text-center" style="color: white">delete homework</h2>
                     </div>
                     <div class="uk-modal-body " style="border-bottom-color: var(--color-peligro) ">
                         ${profesor['tareas.alumno.delete.message']}
                         <h:inputHidden id="input-tarea" value="#{tareaAlumnoControlador.idTarea}"/>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">${boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="${boton['remove']}">
+                        <button class="boton-escuadron-base uk-margin-small-right uk-modal-close" type="button" style="background-color: #AAB7B8">${boton['cancel']}</button>
+                        <h:commandButton styleClass="boton-escuadron-base  uk-modal-close" value="${boton['remove']}" style="background-color: var(--color-peligro)">
                             <f:ajax execute="input-tarea" listener="#{tareaAlumnoControlador.borrar}" render="formulario-tabla-actividades"/>
                         </h:commandButton>
                     </div>
