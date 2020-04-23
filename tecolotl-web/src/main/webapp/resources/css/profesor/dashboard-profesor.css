@@ -96,3 +96,7 @@ ul > li > span {
     padding: 10px;
     min-width: 100px;
 }
+
+.tabla-profesor-dropdown .img-previa:hover{
+    cursor: pointer;
+}

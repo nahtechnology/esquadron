@@ -304,6 +304,7 @@
   text-decoration: none;
   background-color: rgb(224,255,255);
   color: black;
+  cursor: pointer;
 }
 
 .boton-disabilitado{
@@ -414,11 +415,12 @@ input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select
 }
 
 .uk-dropdown {
-  font-family: 'Sniglet', "Arial Black";
+  font-family: 'Sniglet', "Arial Black", sans-serif;
   border: solid;
   border-width: 3px;
   border-color: var(--turquesa-primary-color);
   border-radius: 8px;
+  text-transform: capitalize;
 }
 
 .uk-dropdown ul li a{
