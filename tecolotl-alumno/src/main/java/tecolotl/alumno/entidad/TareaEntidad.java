@@ -31,11 +31,15 @@ import java.util.UUID;
         name = "TareaEntidad.estatusRespondiendo",
         query = "UPDATE TareaEntidad t SET t.resolviendoTranscript = :estatus WHERE t.id = :idTarea"),
     @NamedQuery(
+        name = "TareaEntidad.buscaPorGruṕo",
+        query = "SELECT DISTINCT t.id, a.id, a.preguntaDetonadora " +
+                "FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga join tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad ga JOIN " +
+                "ga.glosarioActividadEntidadPK.actividadEntidad a WHERE t.idGrupo = :idGrupo"),
+    @NamedQuery(
         name = "TareaEntidad.eliminaGrupo",
         query = "DELETE FROM TareaEntidad t WHERE t.id IN (SELECT t.id FROM TareaEntidad t join t.tareaGlosarioActividadEntidadLista tga " +
                 "WHERE tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id = :idActividad) AND " +
-                "t.idGrupo = :idGrupo"
-    )
+                "t.idGrupo = :idGrupo")
 })
 public class TareaEntidad {
 

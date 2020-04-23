@@ -132,6 +132,18 @@ public class TareaSesionBean implements Serializable {
     }
 
     /**
+     * Elimina todas la tareas perteneciente a un aactividad dentro de un grupo.
+     * @param idActividad Identificador de la actvidad
+     * @param idGrupo Identificadoe del grupo
+     * @return Número de elementos elminados.
+     */
+    public int elimina(@NotNull UUID idActividad, @NotNull UUID idGrupo) {
+        Query query = entityManager.createNamedQuery("TareaEntidad.eliminaGrupo");
+        query.setParameter("idActividad", idActividad).setParameter("idGrupo", idGrupo);
+        return query.executeUpdate();
+    }
+
+    /**
      * Establece las respuesta de la transcripcion.
      * @param respuesta Respuesta del usuario.
      * @param idTarea Identificador de la tarea.
@@ -166,6 +178,17 @@ public class TareaSesionBean implements Serializable {
         Query query = entityManager.createNativeQuery("SELECT * FROM alumno.tareas_alumno(?)", TareaAlumnoEntidad.class);
         query.setParameter(1, idAlumno);
         return ((List<TareaAlumnoEntidad>)query.getResultList()).stream().map(TareaAlumnoModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca todas las activiaades de asignadas de un grupo
+     * @param idGrupo Identificador del grupo a buscar
+     * @return Colección de Objectos con los datos
+     */
+    public List<Object[]> buscaPorGrupo(@NotNull UUID idGrupo) {
+        Query query = entityManager.createNamedQuery("TareaEntidad.buscaPorGruṕo");
+        query.setParameter("idGrupo", idGrupo);
+        return query.getResultList();
     }
 
 }
