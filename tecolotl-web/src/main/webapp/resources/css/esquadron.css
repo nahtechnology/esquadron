@@ -300,7 +300,25 @@
   font-size: 14px;
   text-transform: uppercase;
 }
+.boton-profesor{
+  padding: 0 25px;
+  color:white;
+  font-weight: bold;
+  border-style: solid;
+  border-width: 3px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 14px;
+  text-transform: uppercase;
+}
 .boton-escuadron-base:hover{
+  text-decoration: none;
+  background-color: rgb(224,255,255);
+  color: black;
+  cursor: pointer;
+}
+
+.boton-profesor:hover{
   text-decoration: none;
   background-color: rgb(224,255,255);
   color: black;
@@ -332,6 +350,12 @@
   text-decoration: none !important;
   background-color: rgb(255,255,224);
   color: black;
+}
+.boton-primario-profesor{
+  background-color: var(--turquesa-primary-color);
+}
+.boton-secundario-profesor{
+  background-color: var(--tsecundary-option-one);
 }
 
 /*clase para las tablas*/

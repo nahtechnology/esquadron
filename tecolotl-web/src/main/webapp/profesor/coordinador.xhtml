@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml">
+    <ui:define name="menu">
+        <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
+            <li><span>#{etiqueta['home']}</span></li>
+        </ul>
+        <div>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
+        </div>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar">
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li class="nav-sub-active"><span class="uk-text-capitalize">#{etiqueta['home']}</span></li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:outputStylesheet library="css" name="/coordinador/coordinador.css"/>
+        <div class="seccion-principal">
+            <div>
+                <div class="card">
+                    <div class="card-titulo">
+                       <div>
+                           <h:graphicImage library="img" name="/avatar/coordinador.svg"/>
+                            <div class="card-informacion">
+                                <p>nombre apellidoM apellidoP</p>
+                                <p>prueba</p>
+                            </div>
+                       </div>
+                        <p><span>Coordinador apodo: </span> apodo</p>
+                        <p><span>email:</span> email@e-squadron.com.mx</p>
+                    </div>
+                    <div class="card-cuerpo">
+                        <h3 class="uk-text-uppercase uk-text-bold ">question?</h3>
+                        <p>We've got answers! <span class="uk-text-primary">Contact Us</span></p>
+                    </div>
+                    <div class="card-pie">
+                        <h3 class="uk-text-uppercase uk-text-bold">Teacher Training</h3>
+                        <p>Learn more with our free <span class="">e-squadron courses!</span></p>
+                    </div>
+                </div>
+            </div>
+            <div>
+                    <label for="ciclo">school year :</label> <input id="ciclo" type="text" style="padding-top: 6px"/>
+                <div class="uk-margin-small-top">
+                    <div>
+                        <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">#{profesor['dashboard.start']}</div>
+                        <span >sep 14, 2019</span>
+                    </div>
+                    <div>
+                        <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">#{profesor['dashboard.end']}</div>
+                        <span>sep 14, 2019</span>
+                    </div>
+                </div>
+                <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize uk-margin-small-top" >#{profesor['dashboard.description']}</div>
+                <span>ciclo escolar normal</span>
+            </div>
+        </div>
+        <h3 class="uk-text-uppercase uk-text-center">Lista profesores</h3>
+        <div class="uk-text-right uk-margin-bottom">
+            <button type="button" class="boton-escuadron-base ">Reporte</button>
+        </div>
+        <div class="lista" >
+
+            <table class="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesores">
+                <thead>
+                <tr>
+                    <th class="thPrimario uk-text-center">Nombre</th>
+                    <th class="thPrimario uk-text-center">Apellido Paterno</th>
+                    <th class="thPrimario uk-text-center">apellido materno</th>
+                    <th class="thPrimario uk-text-center">opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>nombre</td>
+                    <td>apellido paterno</td>
+                    <td>apellido Materno</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>ver grupos</li>
+                                <li>detalles</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>nombre</td>
+                    <td>apellido paterno</td>
+                    <td>apellido Materno</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>ver grupos</li>
+                                <li>detalles</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>nombre</td>
+                    <td>apellido paterno</td>
+                    <td>apellido Materno</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>ver grupos</li>
+                                <li>detalles</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>nombre</td>
+                    <td>apellido paterno</td>
+                    <td>apellido Materno</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>ver grupos</li>
+                                <li>detalles</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>nombre</td>
+                    <td>apellido paterno</td>
+                    <td>apellido Materno</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>ver grupos</li>
+                                <li>detalles</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>nombre</td>
+                    <td>apellido paterno</td>
+                    <td>apellido Materno</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>ver grupos</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <h3 class="uk-text-uppercase uk-text-center">lista grupos profesor</h3>
+        <div class="lista" >
+
+            <table class="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center">
+                <thead>
+                <tr>
+                    <th class="thPrimario uk-text-center">Grado</th>
+                    <th class="thPrimario uk-text-center">grupo</th>
+                    <th class="thPrimario uk-text-center">numero de estudiantes</th>
+                    <th class="thPrimario uk-text-center">opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>B</td>
+                    <td>10</td>
+                    <td>
+                        <button type="button" class="uk-icon-button" uk-icon="more-vertical"/>
+                        <div uk-dropdown="boundary: .tabla-profesores; mode: click">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li>reporte</li>
+                                <li>modificar</li>
+                                <li>eliminar</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </ui:define>
+
+
+
+
+</ui:composition>
+</html>
