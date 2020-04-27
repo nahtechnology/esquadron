@@ -71,6 +71,7 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-comparar.css"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section uk-margin-small-right uk-margin-small-left">
             <h:form id="formulario-mapa-mental" class="uk-form-stacked">
             <div class="uk-container fondo-comparar uk-padding-remove ">
@@ -86,11 +87,11 @@
                     <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/popart-amarillo.svg" styleClass="uk-visible@m"/>
                     <div class="uk-position-absolute letra-posicion uk-visible@m">
                         <h3 class="uk-text-uppercase">#{alumno['mindmap.map4.title.description.compare']}</h3>
-                        <p>#{alumno['mindmap.map4.title.description.how']}</p>
+                        <p class="primera-mayuscula">#{alumno['mindmap.map4.title.description.how']}</p>
                     </div>
                     <div class="letra-posicion uk-hidden@m fondo-pop">
                         <h6 class="uk-text-uppercase uk-text-center">#{alumno['mindmap.map4.title.description.compare']}t</h6>
-                        <p class="uk-text-small uk-text-center">#{alumno['mindmap.map4.title.description.how']}</p>
+                        <p class="uk-text-small uk-text-center primera-mayuscula">#{alumno['mindmap.map4.title.description.how']}</p>
                     </div>
                 </div>
                 <div class="uk-position-relative ">

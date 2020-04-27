@@ -71,6 +71,7 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-secuencia.css"/>
+        <h:outputStylesheet library="css" name="letra.css"/>
         <div class="uk-section">
             <div class="uk-container  color-fondo contenedor-padre margen-secuencia ">
                 <h:panelGroup layout="block">
@@ -82,11 +83,11 @@
                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whose.svg"/>
                     </div>
                     <div class="imagen-globo">
-                        <h3 class="titulo-mapa-11">#{alumno['mindmap.map10.title.secuence']}</h3>
+                        <h3 class="titulo-mapa-11 primera-mayuscula">#{alumno['mindmap.map10.title.secuence']}</h3>
                     </div>
                 </div>
                 <div class="uk-hidden@s">
-                    <h3 class="titulo-mapa-11 uk-text-center uk-margin-top">#{alumno['mindmap.map10.title.secuence']}</h3>
+                    <h3 class="titulo-mapa-11 uk-text-center uk-margin-top primera-mayuscula">#{alumno['mindmap.map10.title.secuence']}</h3>
                     <div class="imagen-secuencia-small">
                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whose.svg"/>
                     </div>
