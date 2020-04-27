@@ -71,18 +71,28 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-idea.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-idea.css"/>-->
+        <h:outputStylesheet library="css" name="/alumno/mapa-idea.css"/>
         <div class="uk-section ">
             <div class="uk-container fondo-idea uk-position-relative margen-idea  ">
                 <h:panelGroup layout="block">
                     <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" styleClass="movimiento9 finalizado9" rendered="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"/>
                     <!--<span class="uk-text-capitalize">#{alumno['map2.title.answered']}</span>-->
                 </h:panelGroup>
-                <p class="uk-position-absolute titulo-mapa-idea">#{alumno['mindmap.map9.title.main']}</p>
-                <div class="uk-margin-small-top">
-                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje11.svg" styleClass="uk-display-block imagen-ard"/>
-                </div>
                 <h:form id="formulario-mapa_mental" class="uk-form-stacked">
+
+                <div class="uk-margin-small-top imagen-ard">
+                    <h:inputTextarea styleClass="uk-textarea"
+                                     id="detalleIdea"
+                                     disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                     value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
+                                     pt:placeholder="#{alumno['mindmap.map9.title.main']}"
+                                     pt:maxlength="80">
+                        <f:validateRequired/>
+                    </h:inputTextarea>
+                    <h:message for="detalleIdea" styleClass="mensaje-alerta-9"/>
+                </div>
+
                     <div class="uk-grid uk-child-width-1-4@m uk-position-relative uk-margin-large-top" uk-grid="">
                         <div class="uk-position-relative tam-contenido-mapa">
                             <div class="tam-gancho color-gancho1 posicion-gancho1">

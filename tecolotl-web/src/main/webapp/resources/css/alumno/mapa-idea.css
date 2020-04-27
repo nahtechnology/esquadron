@@ -46,8 +46,17 @@
 }
 .imagen-ard{
     width: 40%;
-    height:auto;
+    height: 280px;
     margin: auto;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/mensaje11.svg") no-repeat center/100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.imagen-ard > textarea{
+    height: 55px;
+    width: 80%;
+    box-sizing: border-box;
 }
 
 .color-gancho1 .gancho{

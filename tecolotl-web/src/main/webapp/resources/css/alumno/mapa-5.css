@@ -16,11 +16,15 @@
     background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg") no-repeat center/100% 100%;
     background-origin: content-box;
     width: calc(100% / 3);
-    height: 200px;
+    height: 210px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+.imagen-nube-5 > textarea{
+    height: 55px;
 }
 .nube-5{
     background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/nube.svg") no-repeat center/100% 100%;
