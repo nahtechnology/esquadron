@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 function datosGrupo() {
     console.log("invocada");
     var alumno = [],idalumno = [] , grupos = [],nivel2=[],clases = [],nivelAlumnoIngles=[] ;
-    var tabla = document.querySelectorAll('table[class*=tabla-profesor-dropdown] tbody tr');
+    var tabla = document.querySelectorAll('table[id*=tabla-grupo] tbody tr');
     var datosAlumnos = document.querySelector('#graficas ');
     var listaDatos = datosAlumnos.querySelectorAll('div');
     var canvasGrafica = document.querySelector('#canvas');
