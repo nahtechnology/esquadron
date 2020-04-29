@@ -37,7 +37,7 @@
 }
 
 .modal-cabecera{
-    height: 80px;
+    height: 65px;
     background-color: var(--azul-primary-color);
     font-size: 25px;
     display: flex;
@@ -52,7 +52,7 @@
 }
 .modal-cuerpo{
     min-height: 140px;
-    border-bottom: solid 1px;
+    border-bottom: solid 3px;
 }
 
 .modal-pie{

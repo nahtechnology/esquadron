@@ -90,7 +90,7 @@ public class TareaSesionBean implements Serializable {
         logger.fine(idAlumno.toString());
         TypedQuery<TareaAlumnoVistaEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaAlumnoVistaEntidad.buscaAlumno", TareaAlumnoVistaEntidad.class);
-        typedQuery.setParameter("idAlumno", UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"));
+        typedQuery.setParameter("idAlumno",idAlumno);
         return typedQuery.getResultList().stream().map(TareaActividadModelo::new).collect(Collectors.toList());
     }
 
