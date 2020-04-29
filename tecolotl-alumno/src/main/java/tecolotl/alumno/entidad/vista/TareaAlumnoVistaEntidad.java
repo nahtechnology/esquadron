@@ -4,7 +4,6 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.StringJoiner;
 import java.util.UUID;
 
 @Entity
