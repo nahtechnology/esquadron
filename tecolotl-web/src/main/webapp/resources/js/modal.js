@@ -1,41 +1,60 @@
+var botonModal = document.querySelectorAll('[nh-modal]');
+var modales = document.querySelectorAll('.modal-contenedor');
+var nombresModales = [];
+var nahModal = {};
+
 document.addEventListener("DOMContentLoaded",() => {
-    var botonModal = document.querySelectorAll('[nh-modal]');
-    var modales = document.querySelectorAll('.modal-contenedor');
-    botonModal.forEach(boton => {
-        boton.addEventListener('click',() => {
-            let incideModal;
-          for (let index = 0; index < modales.length; index++) {
-              if(modales[index].id === boton.getAttribute('nh-modal') ){
-                  modales[index].style.display = "flex";
-                  setTimeout(animacionAbrir,500,modales[index]);
-                  incideModal = index;
-                  index = modales.length;
-              }
-          }
-          
-          
-        let botonBorrar = modales[incideModal].querySelector('.cerrar-modal');
-        botonBorrar.addEventListener('click',() =>{
-            modales[incideModal].classList.remove('modal-abrir'); 
-            setTimeout(animacionCerrar,500,modales[incideModal]);    
-        }); 
-          
-        });   
-    });
+    if (modales.length > 0) {
+        modales.forEach(nombre =>{
+            let nombreModal = nombre.id;
+            nahModal[nombreModal] = new Modal(nombre.id);
 
-     function animacionAbrir(modal){
-         modal.classList.add('modal-abrir');
-     }
-    
-     function animacionCerrar(modal){
-        modal.style.display="none";
-        
-     }
+        });
+
+        botonModal.forEach(boton =>{
+            boton.addEventListener('click',() =>{
+                let identificadorModal = boton.getAttribute('nh-modal');
+                let btncerrar = document.querySelector(`#${identificadorModal} .cerrar-modal`);
+                nahModal[identificadorModal].abrirModal();
 
 
-    
-    
+                btncerrar.addEventListener('click',()=>{
+                    nahModal[identificadorModal].cerrarModal();
+                });
+
+            });
+        });
+
+    }
+
 
 });
-    
 
+
+
+
+function Modal(nombreModal){
+    this.nombreModal = nombreModal;
+}
+
+Modal.prototype.abrirModal = function () {
+    let modal = document.querySelector(`#${this.nombreModal}`);
+    modal.style.display = "flex";
+    setTimeout(animacionAbrir,500,modal);
+};
+
+Modal.prototype.cerrarModal = function (){
+    let modal = document.querySelector(`#${this.nombreModal}`);
+    modal.classList.remove('modal-abrir');
+    setTimeout(animacionCerrar,500,modal);
+
+};
+
+function animacionAbrir(modal){
+    modal.classList.add('modal-abrir');
+}
+
+function animacionCerrar(modal){
+    modal.style.display="none";
+
+}

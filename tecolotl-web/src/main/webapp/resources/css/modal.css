@@ -32,15 +32,23 @@
     
 }
 
+.modal-largo{
+    width: 800px;
+}
+
 .modal-cabecera{
     height: 80px;
-    background-color: var(--cabecera-modal);
+    background-color: var(--azul-primary-color);
     font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: var(--titulo-modal);
     text-transform: capitalize;
+}
+.modal-cabecera > h3{
+    margin: 0;
+    padding: 0;
+    color: var(--titulo-modal);
 }
 .modal-cuerpo{
     min-height: 140px;
