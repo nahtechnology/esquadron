@@ -2,11 +2,13 @@ package tecolotl.alumno.sesion;
 
 import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.entidad.vista.TareaAlumnoVistaEntidad;
+import tecolotl.alumno.entidad.vista.TareasGrupoVistaEntidad;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.TareaAlumnoModelo;
 import tecolotl.alumno.modelo.TareaModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
+import tecolotl.alumno.modelo.vista.TareasGrupoVistaModelo;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 
 import javax.ejb.Stateless;
@@ -185,10 +187,19 @@ public class TareaSesionBean implements Serializable {
      * @param idGrupo Identificador del grupo a buscar
      * @return Colección de Objectos con los datos
      */
-    public List<Object[]> buscaPorGrupo(@NotNull UUID idGrupo) {
-        Query query = entityManager.createNamedQuery("TareaEntidad.buscaPorGruṕo");
+    public List<TareasGrupoVistaModelo> buscaPorGrupo(@NotNull UUID idGrupo) {
+        List<TareasGrupoVistaModelo> tareasGrupoVistaModeloLista = new ArrayList<>();
+        Query query = entityManager.createNamedQuery("TareasGrupoVistaEntidad.busca");
         query.setParameter("idGrupo", idGrupo);
-        return query.getResultList();
+        List<Object[]> lista = query.getResultList();
+        lista.forEach(objects -> {
+            TareasGrupoVistaModelo tareasGrupoVistaModelo = new TareasGrupoVistaModelo();
+            tareasGrupoVistaModelo.setIdVideo((String)objects[0]);
+            tareasGrupoVistaModelo.setPreguntaDetonadora((String)objects[1]);
+            tareasGrupoVistaModelo.setTotalTareas(((Long)objects[2]).intValue());
+            tareasGrupoVistaModeloLista.add(tareasGrupoVistaModelo);
+        });
+        return tareasGrupoVistaModeloLista;
     }
 
 }

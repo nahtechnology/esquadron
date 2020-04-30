@@ -187,11 +187,14 @@
                                                 </h:link>
                                             </li>
                                             <li style="padding-left: 10px">
-                                                <h:outputLink value="#" pt:nh-modal="modal-actividades" styleClass="uk-text-primary uk-text-capitalize">
+                                                <h:commandLink pt:nh-modal="modal-actividades"
+                                                               action="#{eliminarTareaControlador.carga}"
+                                                               styleClass="uk-text-primary uk-text-capitalize">
                                                     <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                    <span class="uk-text-middle"><h:outputText value="delete hw"/></span>
-                                                    <f:param name="grupo" value="#{grupo.id}"/>
-                                                </h:outputLink>
+                                                    <span class="uk-text-middle">Delete HW</span>
+                                                    <f:setPropertyActionListener value="#{grupo.id}" target="#{eliminarTareaControlador.idGrupo}"/>
+                                                    <f:ajax render="formulario-borrar-tarea"/>
+                                                </h:commandLink>
                                             </li>
                                         </ui:fragment>
                                     </ul>
@@ -210,26 +213,36 @@
                     <h3>Eliminar Actividad</h3>
                 </div>
                 <div class="modal-cuerpo">
-                    <h:dataTable
-                            id="tabla-actividades"
-                            styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown"
-                            headerClass="thPrimario uk-text-center"
-                            columnClasses=",,,uk-width-small"
-                            rowClasses="tdPrimario"
-                            footerClass="thPrimario uk-text-left">
-                        <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">Actividad</span></f:facet>
-                            <h:graphicImage url="https://i.ytimg.com/vi/kWQD1bjj4G8/mqdefault.jpg" />
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">pregunta</span></f:facet>
-                            pregunta detonadora
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header"><span class="letra-tabla uk-text-bold">opcion</span></f:facet>
-                            <h:outputText styleClass="uk-icon " pt:uk-icon="icon: trash"/>
-                        </h:column>
-                    </h:dataTable>
+                    <h:form id="formulario-borrar-tarea">
+                        <h:dataTable
+                                id="tabla-actividades"
+                                value="#{eliminarTareaControlador.tareasGrupoVistaModeloLista}"
+                                var="tareaGrupoVistaModelo"
+                                styleClass="uk-table uk-table-justify uk-table-small uk-table-middle tablaPrimaria uk-table-hover uk-text-center tabla-profesor-dropdown"
+                                headerClass="thPrimario uk-text-center"
+                                columnClasses=",,,uk-width-small"
+                                rowClasses="tdPrimario"
+                                footerClass="thPrimario uk-text-left">
+                            <h:column>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Actividad</span></f:facet>
+                                <h:graphicImage url="https://i.ytimg.com/vi/${tareaGrupoVistaModelo.idVideo}/mqdefault.jpg" />
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">pregunta</span></f:facet>
+                                ${tareaGrupoVistaModelo.preguntaDetonadora}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">tareas</span></f:facet>
+                                ${tareaGrupoVistaModelo.totalTareas}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">opcion</span></f:facet>
+                                <h:commandLink pt:uk-icon="icon: trash">
+                                    <f:ajax listener="#{eliminarTareaControlador.elimina(tareaGrupoVistaModelo.idVideo)}" render="@form"/>
+                                </h:commandLink>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
                 </div>
                 <div class="modal-pie">
                     <button class="cerrar-modal boton-escuadron-base uk-margin-medium-right">Cerrar</button>
