@@ -139,7 +139,7 @@ public class TareaSesionBean implements Serializable {
      * @param idGrupo Identificadoe del grupo
      * @return Número de elementos elminados.
      */
-    public int elimina(@NotNull UUID idActividad, @NotNull UUID idGrupo) {
+    public int elimina(@NotNull String idActividad, @NotNull UUID idGrupo) {
         Query query = entityManager.createNamedQuery("TareaEntidad.eliminaGrupo");
         query.setParameter("idActividad", idActividad).setParameter("idGrupo", idGrupo);
         return query.executeUpdate();

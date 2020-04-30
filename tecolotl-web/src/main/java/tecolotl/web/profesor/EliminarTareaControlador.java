@@ -31,7 +31,7 @@ public class EliminarTareaControlador implements Serializable {
     }
 
     public void elimina(String idVideo) {
-        tareaSesionBean.elimina(UUID.fromString(idVideo), UUID.fromString(idGrupo));
+        tareaSesionBean.elimina(idVideo, UUID.fromString(idGrupo));
         tareasGrupoVistaModeloLista.removeIf(tareasGrupoVistaModelo -> tareasGrupoVistaModelo.getIdVideo().equals(idVideo));
     }
 
