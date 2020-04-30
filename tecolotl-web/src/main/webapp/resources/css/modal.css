@@ -39,7 +39,6 @@
 .modal-cabecera{
     height: 65px;
     background-color: var(--azul-primary-color);
-    font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,10 +48,13 @@
     margin: 0;
     padding: 0;
     color: var(--titulo-modal);
+    font-weight: 700;
 }
 .modal-cuerpo{
     min-height: 140px;
+    max-height: calc(100vh - 175px);
     border-bottom: solid 3px;
+    overflow: auto;
 }
 
 .modal-pie{

@@ -38,13 +38,17 @@ function Modal(nombreModal){
 Modal.prototype.abrirModal = function () {
     let modal = document.querySelector(`#${this.nombreModal}`);
     modal.style.display = "flex";
+    modal.click();
+    document.body.style.overflow = 'hidden';
     setTimeout(animacionAbrir,500,modal);
+
 };
 
 Modal.prototype.cerrarModal = function (){
     let modal = document.querySelector(`#${this.nombreModal}`);
     modal.classList.remove('modal-abrir');
     setTimeout(animacionCerrar,500,modal);
+    document.body.style.overflow = 'auto';
 
 };
 

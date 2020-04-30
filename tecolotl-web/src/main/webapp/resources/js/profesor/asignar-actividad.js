@@ -40,6 +40,7 @@ function buscaActividadSeleccionada(evento) {
             UIkit.modal.confirm(confirmacion).then(function () {
                 document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
                 document.getElementById('formulario-asignar-tarea:boton-enviar').click();
+
             }, function () {
                 console.log('Cancelacion de envio');
             });
@@ -47,7 +48,14 @@ function buscaActividadSeleccionada(evento) {
             document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
             document.getElementById('formulario-asignar-tarea:boton-enviar').click();
         }
+
     }
+    let botones = document.querySelectorAll('.uk-modal-footer > button');
+    console.log(botones);
+    botones.forEach(boton => {
+        boton.classList.remove('uk-button','uk-button-default','uk-button-primary');
+        boton.classList.add('boton-escuadron-base');
+    });
 }
 
 var s3 = new AWS.S3({

@@ -82,7 +82,6 @@
                     </h:form>
                     <h:button value="#{boton['back']}" styleClass="uk-button uk-margin-small-right boton-escuadron-base" outcome="dashboard"/>
                     <button class="uk-button boton-escuadron-base" onclick="buscaActividadSeleccionada(event)">#{profesor['activity.assign']}</button>
-                    <button class="uk-button boton-escuadron-base" nh-modal="modal-reporte">Report</button>
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
                     <ui:repeat value="#{asignarActividadControlador.actividadModeloLista}" var="actividadModelo">
@@ -182,20 +181,7 @@
                 </ul>
 
             </div>
-            <div class="modal-contenedor" id="modal-reporte">
-                <div class="modal">
-                    <div class="modal-cabecera">
-                        <h3>Titulo</h3>
-                    </div>
-                    <div class="modal-cuerpo">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque magni hic dolores corporis nesciunt harum quae eum reprehenderit. In, accusantium.
-                    </div>
-                    <div class="modal-pie">
-                        <button type="button" class="uk-button boton-profesor boton-secundario-profesor cerrar-modal" style="margin-right: 15px;">close</button>
-                        <button type="button" class="uk-button boton-profesor boton-primario-profesor">save</button>
-                    </div>
-                </div>
-            </div>
+
             <script type="text/javascript">
                 let letrero = "#{profesor['you.need.to.select.an.activity']}";
                 let confirmacion = "#{profesor['modal.confirma']}";
@@ -204,7 +190,8 @@
         <ui:define name="file-js">
 
             <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
-            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>
+<!--            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>-->
+            <h:outputScript library="js" name="/profesor/asignar-actividad.js"/>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
             <h:outputScript library="js" name="modal.js"/>
         </ui:define>

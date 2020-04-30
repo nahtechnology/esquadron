@@ -28,7 +28,7 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/dashboard-profesor.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/dashboard-profesor.css"/>-->
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/grafica.css"/>
         <h:outputStylesheet library="css" name="modal.css"/>
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-uppercase lescuadron ">#{profesor['dashboard.title']}!</h1></div>
@@ -225,7 +225,7 @@
                                 footerClass="thPrimario uk-text-left">
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">Actividad</span></f:facet>
-                                <h:graphicImage url="https://i.ytimg.com/vi/${tareaGrupoVistaModelo.idVideo}/mqdefault.jpg" />
+                                <h:graphicImage url="https://i.ytimg.com/vi/${tareaGrupoVistaModelo.idVideo}/mqdefault.jpg" style="width: 100px"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">pregunta</span></f:facet>
@@ -246,7 +246,6 @@
                 </div>
                 <div class="modal-pie">
                     <button class="cerrar-modal boton-escuadron-base uk-margin-medium-right">Cerrar</button>
-                    <button class="boton-escuadron-base " onclick="nahModal['modal-actividades'].cerrarModal();">Aceptar</button>
                 </div>
             </div>
         </div>
