@@ -9,7 +9,8 @@
 
     <ui:composition template="/template/profesor/dashboard-profesor.xhtml">
         <f:metadata>
-            <f:viewParam name="grupo" value="#{asignarActividadControlador.grupo}" required="true"/>
+            <f:viewParam name="grupo" value="#{asignarActividadControlador.grupo}"/>
+            <f:viewParam name="alumno" value="#{asignarActividadControlador.alumno}"/>
             <f:viewAction action="#{asignarActividadControlador.inicio}"/>
         </f:metadata>
         <ui:define name="menu">

@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
@@ -22,6 +23,14 @@ public class TareasAlumnoSesionBean {
         Query query = entityManager.createNativeQuery("SELECT * FROM profesor.busca_tareas(?)", ActividadEntidad.class);
         query.setParameter(1, idGrupo);
         return ((List<ActividadEntidad>)query.getResultList()).stream().map(ActividadModelo::new).collect(Collectors.toList());
+    }
+
+    public List<ActividadModelo> buscaAlumno(@NotNull UUID idAlumno, Short nivelLenguaje) {
+        TypedQuery<tecolotl.alumno.entidad.ActividadEntidad> typedQuery =
+                entityManager.createNamedQuery("ActividadEntidad.buscaNoAsigandasAlumno", tecolotl.alumno.entidad.ActividadEntidad.class);
+        typedQuery.setParameter("idAlumno", idAlumno);
+        typedQuery.setParameter("nivelLenguaje", nivelLenguaje);
+        return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
     }
 
 }

@@ -50,6 +50,10 @@
             <from-outcome>agregar-csv</from-outcome>
             <to-view-id>/profesor/agregar-csv.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>asignar-tarea</from-outcome>
+            <to-view-id>/profesor/asignar-actividad.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>

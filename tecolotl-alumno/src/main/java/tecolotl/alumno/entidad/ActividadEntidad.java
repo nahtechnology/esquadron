@@ -1,5 +1,7 @@
 package tecolotl.alumno.entidad;
 
+import tecolotl.alumno.entidad.glosario.GlosarioActividadEntidad;
+
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -13,26 +15,27 @@ import java.util.StringJoiner;
 @NamedQueries({
         @NamedQuery(
                 name = "ActividadEntidad.busca",
-                query = "SELECT DISTINCT (a) FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad JOIN FETCH a.temaEntidad"
-        ),
+                query = "SELECT DISTINCT (a) FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.nivelLenguajeEntidad JOIN FETCH a.temaEntidad"),
         @NamedQuery(
                 name = "ActividadEntidad.buscaNivelLenguaje",
                 query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.tipoEstudianteEntidad JOIN FETCH a.temaEntidad t " +
-                        "JOIN FETCH a.nivelLenguajeEntidad nl WHERE nl.valor = :nivelLenguaje"
-        ),
+                        "JOIN FETCH a.nivelLenguajeEntidad nl WHERE nl.valor = :nivelLenguaje"),
         @NamedQuery(
                 name = "ActividadEntidad.transcripcion" ,
-                query = "SELECT a.trasncripcion FROM ActividadEntidad a WHERE a.id = :idActividad"
-        ),
+                query = "SELECT a.trasncripcion FROM ActividadEntidad a WHERE a.id = :idActividad"),
         @NamedQuery(
                 name = "ActividadEntidad.elimina",
-                query = "DELETE FROM ActividadEntidad a WHERE a.id = :idAvtividad"
-        ),
+                query = "DELETE FROM ActividadEntidad a WHERE a.id = :idAvtividad"),
         @NamedQuery(
                 name = "ActividadEntidad.buscaBibliotecaLibre",
                 query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.nivelLenguajeEntidad nl JOIN FETCH a.temaEntidad t WHERE a.id NOT IN " +
                         "(SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM " +
-                        "TareaGlosarioActividadEntidad tga JOIN tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"
+                        "TareaGlosarioActividadEntidad tga JOIN tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"),
+        @NamedQuery(
+                name = "ActividadEntidad.buscaNoAsigandasAlumno",
+                query = "SELECT NEW ActividadEntidad(a.id, a.preguntaDetonadora) FROM ActividadEntidad a JOIN a.nivelLenguajeEntidad nl WHERE nl.clave = :nivelLenguaje AND a.id NOT IN " +
+                        "(SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM TareaGlosarioActividadEntidad tga JOIN " +
+                        "tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"
         )
 })
 public class ActividadEntidad {
@@ -46,13 +49,18 @@ public class ActividadEntidad {
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private TemaEntidad temaEntidad;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
-
+    private List<GlosarioActividadEntidad> glosarioActividadEntidadLista;
 
     public ActividadEntidad() {
     }
 
     public ActividadEntidad(String id) {
         this.id = id;
+    }
+
+    public ActividadEntidad(String id, String preguntaDetonadora) {
+        this.id = id;
+        this.preguntaDetonadora = preguntaDetonadora;
     }
 
     public ActividadEntidad(String id, String preguntaDetonadora, List<NivelLenguajeEntidad> nivelLenguajeEntidad) {
@@ -162,6 +170,15 @@ public class ActividadEntidad {
 
     public void setTemaEntidad(TemaEntidad temaEntidad) {
         this.temaEntidad = temaEntidad;
+    }
+
+    @OneToMany(mappedBy = "glosarioActividadEntidadPK.actividadEntidad")
+    public List<GlosarioActividadEntidad> getGlosarioActividadEntidadLista() {
+        return glosarioActividadEntidadLista;
+    }
+
+    public void setGlosarioActividadEntidadLista(List<GlosarioActividadEntidad> glosarioActividadEntidadLista) {
+        this.glosarioActividadEntidadLista = glosarioActividadEntidadLista;
     }
 
     @Override
