@@ -10,8 +10,8 @@ import javax.persistence.TypedQuery;
 @Stateless
 public class NivelLenguajeSesionBean extends CatalogoSesionBean<NivelLenguajeModelo, NivelLenguajeEntidad> {
 
-    public Integer busca(String valor) {
-        TypedQuery<Integer> typedQuery = entityManager.createNamedQuery("NivelLenguajeEntidad.buscaLlave", Integer.class);
+    public Short busca(String valor) {
+        TypedQuery<Short> typedQuery = entityManager.createNamedQuery("NivelLenguajeEntidad.buscaLlave", Short.class);
         typedQuery.setParameter("valor", valor);
         return typedQuery.getSingleResult();
     }

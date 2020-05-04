@@ -61,12 +61,9 @@ public class AsignarActividadControlador implements Serializable {
             }
             return "dashboard";
         } else {
-            logger.info(grupo);
-            logger.info(alumno);
+            Short clave = nivelLenguajeSesionBean.busca(actividadModeloLista.get(0).getNivelLenguaje());
+            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, clave);
             return "admin-alumnos";
-/*            Integer clave = nivelLenguajeSesionBean.busca(actividadModeloLista.get(0).getNivelLenguaje());
-            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, clave.shortValue());
-            return "admin-alumnos";*/
         }
     }
 
