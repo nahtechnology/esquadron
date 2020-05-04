@@ -236,9 +236,21 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">opcion</span></f:facet>
-                                <h:commandLink pt:uk-icon="icon: trash">
-                                    <f:ajax listener="#{eliminarTareaControlador.elimina(tareaGrupoVistaModelo.idVideo)}" render="@form"/>
-                                </h:commandLink>
+                               <ui:remove>
+                                    <h:commandLink pt:uk-icon="icon: trash">
+                                        <f:ajax listener="#{eliminarTareaControlador.elimina(tareaGrupoVistaModelo.idVideo)}" render="@form"/>
+                                    </h:commandLink>
+                               </ui:remove>
+                                <button type="button" onclick="mensajeConfirmacion(this)"  uk-icon="icon: trash" />
+                                <div class="mensaje-confirmacion visibilidad">
+                                    <span>está seguro que desea eliminar esta actividad?</span>
+                                    <div>
+                                        <button type="button" class="boton-escuadron-base">cerrar</button>
+                                        <h:commandLink styleClass="boton-escuadron-base" style="background-color: var(--color-peligro)" value="aceptar">
+                                            <f:ajax listener="#{eliminarTareaControlador.elimina(tareaGrupoVistaModelo.idVideo)}" render="@form"/>
+                                        </h:commandLink>
+                                    </div>
+                                </div>
                             </h:column>
                         </h:dataTable>
                     </h:form>
@@ -271,10 +283,24 @@
                     hiddenElemento.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
                     hiddenElemento.click();
                 });
+
+
+
             });
+
 
         </script>
         <h:outputScript library="js" name="modal.js"/>
+        <script type="application/javascript">
+            function mensajeConfirmacion(element) {
+                let mensajeConfirmacion = element.nextElementSibling;
+                mensajeConfirmacion.classList.remove('visibilidad');
+                mensajeConfirmacion.querySelector('button').addEventListener('click',()=>{
+                    mensajeConfirmacion.classList.add('visibilidad');
+                });
+
+            }
+        </script>
     </ui:define>
 
 </ui:composition>
