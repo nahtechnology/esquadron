@@ -1,5 +1,7 @@
 package tecolotl.web.profesor;
 
+import tecolotl.alumno.sesion.AlumnoSesionBean;
+import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
 import tecolotl.profesor.modelo.ActividadModelo;
 import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.TareasAlumnoSesionBean;
@@ -23,7 +25,7 @@ import java.util.stream.Collectors;
 public class AsignarActividadControlador implements Serializable {
 
     @Inject
-    private ProfesorGrupoControlador profesorGrupoControlador;
+    private AlumnoSesionBean alumnoSesionBean;
 
     @Inject
     private TareasAlumnoSesionBean tareasAlumnoSesionBean;
@@ -32,22 +34,37 @@ public class AsignarActividadControlador implements Serializable {
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     @Inject
+    private NivelLenguajeSesionBean nivelLenguajeSesionBean;
+
+    @Inject
     private Logger logger;
 
     private List<ActividadModelo> actividadModeloLista;
     private String grupo;
+    private String alumno;
     private String actividad;
 
     public void inicio() {
-        actividadModeloLista = tareasAlumnoSesionBean.busca(UUID.fromString(grupo));
-        logger.info(actividadModeloLista.toString());
+        actividadModeloLista = alumno == null ? tareasAlumnoSesionBean.busca(UUID.fromString(grupo)) : tareasAlumnoSesionBean.buscaAlumno(UUID.fromString(alumno), (short)1);
+        if (alumno != null) {
+            String valor = alumnoSesionBean.busca(UUID.fromString(alumno)).getNivelLenguajeModelo().getValor();
+            actividadModeloLista.forEach(actividadModelo -> {
+                actividadModelo.setNivelLenguaje(valor);
+            });
+        }
     }
 
     public String asiganarTarea() {
-        for (String string : actividad.split(",")) {
-            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), string);
+        if (alumno == null) {
+            for (String string : actividad.split(",")) {
+                grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), string);
+            }
+            return "dashboard";
+        } else {
+            Short clave = nivelLenguajeSesionBean.busca(actividadModeloLista.get(0).getNivelLenguaje());
+            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, clave);
+            return "admin-alumnos";
         }
-        return "dashboard";
     }
 
     public List<String> buscaNiveles() {
@@ -76,5 +93,13 @@ public class AsignarActividadControlador implements Serializable {
 
     public void setActividad(String actividad) {
         this.actividad = actividad;
+    }
+
+    public String getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(String alumno) {
+        this.alumno = alumno;
     }
 }

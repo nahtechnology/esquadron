@@ -23,6 +23,11 @@ public class ActividadModelo {
         this.mapamental = actividadEntidad.getMapamental();
     }
 
+    public ActividadModelo(tecolotl.alumno.entidad.ActividadEntidad actividadEntidad) {
+        this.idActividad = actividadEntidad.getId();
+        this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
+    }
+
     public String getIdActividad() {
         return idActividad;
     }

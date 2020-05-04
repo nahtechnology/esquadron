@@ -50,6 +50,10 @@
             <from-outcome>agregar-csv</from-outcome>
             <to-view-id>/profesor/agregar-csv.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>asignar-tarea</from-outcome>
+            <to-view-id>/profesor/asignar-actividad.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -195,6 +199,16 @@
         <navigation-case>
             <from-outcome>dashboard</from-outcome>
             <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>admin-alumnos</from-outcome>
+            <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>grupo</name>
+                    <value>#{asignarActividadControlador.grupo}</value>
+                </redirect-param>
+            </redirect>
         </navigation-case>
     </navigation-rule>
 
