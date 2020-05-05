@@ -44,7 +44,7 @@
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
 
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
         <!--CARDS WRAPPER-->
         <section class="uk-section uk-section-default uk-section-default uk-padding-remove-top " data-uk-filter="target: .js-filter">
@@ -132,8 +132,13 @@
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.homework']}</span></f:facet>
-                                            <div class="uk-inline">
-                                            <img class="img-previa" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt=""/>
+                                                <img class="img-previa uk-margin-small-right" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt=""/>
+                                                <h:commandLink pt:uk-toggle="target: #modal-eliminar-tarea" >
+                                                    <h:outputText styleClass="uk-icon" pt:uk-icon="icon: trash" style="color: black; margin-top: 7px;"/>
+                                                    <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
+                                                    <f:ajax render="formulario-eliminar:input-tarea"/>
+                                                </h:commandLink>
+                                                <ui:remove>
                                                 <h:panelGroup layout="block" pt:uk-dropdown="mode: click; boundary: .tabla-profesor-dropdown" styleClass="uk-dropdown">
                                                     <ul class="uk-nav uk-dropdown-nav">
                                                         <li>
@@ -145,7 +150,7 @@
                                                         </li>
                                                     </ul>
                                                 </h:panelGroup>
-                                            </div>
+                                                </ui:remove>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.assigned']}</span></f:facet>
