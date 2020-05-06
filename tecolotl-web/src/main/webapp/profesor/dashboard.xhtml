@@ -30,7 +30,7 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/grafica.css"/>
         <h:outputStylesheet library="css" name="modal.css"/>
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-uppercase lescuadron ">#{profesor['dashboard.title']}!</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron ">#{profesor['dashboard.title']}!</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
                 <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
@@ -181,7 +181,7 @@
                                         <ui:fragment rendered="${grupo.totalAlumno > 0}">
                                             <li style="padding-left: 10px">
                                                 <h:link outcome="asignar-tarea" styleClass="uk-text-primary uk-text-capitalize">
-                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
+                                                    <img class="uk-margin-small-right" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
                                                     <span class="uk-text-middle"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
                                                     <f:param name="grupo" value="#{grupo.id}"/>
                                                 </h:link>
@@ -237,15 +237,22 @@
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">opcion</span></f:facet>
-                                <h:commandLink pt:uk-icon="icon: trash">
-                                    <f:ajax listener="#{eliminarTareaControlador.elimina(tareaGrupoVistaModelo.idVideo)}" render="@form"/>
-                                </h:commandLink>
+                                <button type="button" onclick="mensajeConfirmacion(this)"  uk-icon="icon: trash" />
+                                <div class="mensaje-confirmacion visibilidad">
+                                    <span>#{profesor['dashboard.delete.activity']}</span>
+                                    <div>
+                                        <button type="button" class="boton-escuadron-base">#{boton['cancel']}</button>
+                                        <h:commandLink styleClass="boton-escuadron-base" style="background-color: var(--color-peligro)" value="#{boton['remove']}">
+                                            <f:ajax listener="#{eliminarTareaControlador.elimina(tareaGrupoVistaModelo.idVideo)}" render="@form"/>
+                                        </h:commandLink>
+                                    </div>
+                                </div>
                             </h:column>
                         </h:dataTable>
                     </h:form>
                 </div>
                 <div class="modal-pie">
-                    <button class="cerrar-modal boton-escuadron-base uk-margin-medium-right">Cerrar</button>
+                    <button class="cerrar-modal boton-escuadron-base uk-margin-medium-right">#{boton['close']}</button>
                 </div>
             </div>
         </div>
@@ -272,10 +279,24 @@
                     hiddenElemento.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
                     hiddenElemento.click();
                 });
+
+
+
             });
+
 
         </script>
         <h:outputScript library="js" name="modal.js"/>
+        <script type="application/javascript">
+            function mensajeConfirmacion(element) {
+                let mensajeConfirmacion = element.nextElementSibling;
+                mensajeConfirmacion.classList.remove('visibilidad');
+                mensajeConfirmacion.querySelector('button').addEventListener('click',()=>{
+                    mensajeConfirmacion.classList.add('visibilidad');
+                });
+
+            }
+        </script>
     </ui:define>
 
 </ui:composition>

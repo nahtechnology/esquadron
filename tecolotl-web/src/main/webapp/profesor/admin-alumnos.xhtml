@@ -42,7 +42,7 @@
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/nah.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/admin-alumnos.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['student.administration.title']}</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['student.administration.title']}</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
                 <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
@@ -75,7 +75,6 @@
                 <h:button styleClass="boton-maestro-base" value="#{boton['back']}" outcome="tablero"/>
                 <h:button styleClass="boton-escuadron-base" value="#{boton['add']}" outcome="agregar-csv"/>
                 <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-password">#{boton['passwords']}</button>
-                <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-eliminar-actividad">delete activity</button>
                 <button class="boton-escuadron-base reporte"
                         disabled="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista ? 'disabled' : ''}"
                         data-grupo="#{profesorGrupoControlador.grupoModelo.grupo}"
@@ -155,7 +154,7 @@
                                         <li>
                                             <h:link outcome="asignar-tarea">
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
-                                                <span class="uk-text-middle"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
+                                                <span class="uk-text-middle uk-text-primary"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
                                                 <f:param name="alumno" value="#{tareaAlumnoGrupoModelo.id}"/>
                                                 <f:param name="grupo" value="#{grupoAlumnoControlador.idGrupo}"/>
                                             </h:link>

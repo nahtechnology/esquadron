@@ -77,3 +77,30 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+.mensaje-confirmacion{
+    position: absolute;
+    display: flex;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid var(--color-peligro);
+    width: 80%;
+    height: 80px;
+    left: 12%;
+    overflow: hidden;
+    margin-top: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    z-index: 1;
+}
+
+.mensaje-confirmacion .boton-escuadron-base{
+    font-size: 12px;
+    padding: 6px 15px;
+}
+.mensaje-confirmacion span::first-letter{
+    display: inline-block;
+    text-transform: capitalize;
+    font-size: 18px;
+}
