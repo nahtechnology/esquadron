@@ -108,7 +108,7 @@
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/></span>
-                                <h:outputText value="/ ${tareaAlumnoGrupoModelo.totalAsignadaMapaMental} / ${tareaAlumnoGrupoModelo.calificadoMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/>
+                                <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaMapaMental} / ${tareaAlumnoGrupoModelo.calificadoMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>

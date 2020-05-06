@@ -13,6 +13,7 @@ public class AlumnoTareasNivelModelo {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    private Float promedio;
     private Integer totalTareas;
     private String  nivelLenguaje;
 
@@ -92,6 +93,14 @@ public class AlumnoTareasNivelModelo {
 
     public void setNivelLenguajeAlumno(Short nivelLenguajeAlumno) {
         this.nivelLenguajeAlumno = nivelLenguajeAlumno;
+    }
+
+    public Float getPromedio() {
+        return promedio;
+    }
+
+    public void setPromedio(Float promedio) {
+        this.promedio = promedio;
     }
 
     @Override

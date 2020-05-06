@@ -96,8 +96,9 @@ public class GrupoAlumnoSesionBean {
             alumnoTareasNivelModelo.setNombre((String)objects[3]);
             alumnoTareasNivelModelo.setApellidoPaterno((String)objects[4]);
             alumnoTareasNivelModelo.setApellidoMaterno((String)objects[5]);
-            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[6]);
-            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[7]);
+            alumnoTareasNivelModelo.setPromedio(objects[6] == null ? null : ((Double)objects[6]).floatValue());
+            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[7]);
+            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[8]);
             alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);
         }
         return alumnoTareasNivelModeloLista;
