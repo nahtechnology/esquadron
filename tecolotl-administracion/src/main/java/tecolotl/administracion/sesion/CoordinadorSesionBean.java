@@ -7,6 +7,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
 import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 
@@ -14,6 +15,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -65,6 +67,18 @@ public class CoordinadorSesionBean {
     }
 
     /**
+     * Busca si existe algun coordinado con un apodo
+     * @param apodo Apodo del coordinador
+     * @return True en caso de existir, false en cualquier otro caso
+     */
+    public boolean exite(@NotNull String apodo, @NotNull String claveCentroTrabajo) {
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("CoordinadorEntidad.buscaApodo", Long.class);
+        typedQuery.setParameter("apodo", apodo);
+        typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+        return typedQuery.getSingleResult() != 0;
+    }
+
+    /**
      * Cambia es estatus de una coordinador.
      * @param coordinadorModelo Datos del coordinador a cambiar el estatus.
      * @param motivoBloqueo Estatus del coordinador.
@@ -92,8 +106,9 @@ public class CoordinadorSesionBean {
         coordinadorEntidad.setApellidoPaterno(coordinadorModelo.getApellidoPaterno());
         coordinadorEntidad.setApellidoMaterno(coordinadorModelo.getApellidoMaterno());
         coordinadorEntidad.setContrasenia(coordinadorModelo.getContrasenia());
-        //TODO insertar función de envio de correo envío de correo.
+        coordinadorEntidad.setSexo(coordinadorModelo.getSexo());
         entityManager.persist(coordinadorEntidad);
+        coordinadorModelo.setPersonaMotivoBloqueoModelo(new PersonaMotivoBloqueoModelo(coordinadorEntidad.getPersonaMotivoBloqueoEntidad()));
     }
 
     /**
@@ -109,6 +124,7 @@ public class CoordinadorSesionBean {
         coordinadorEntidad.setApellidoPaterno(coordinadorModelo.getApellidoPaterno());
         coordinadorEntidad.setApellidoMaterno(coordinadorModelo.getApellidoMaterno());
         coordinadorEntidad.setContrasenia(coordinadorModelo.getContrasenia());
+        coordinadorEntidad.setSexo(coordinadorModelo.getSexo());
     }
 
     /**

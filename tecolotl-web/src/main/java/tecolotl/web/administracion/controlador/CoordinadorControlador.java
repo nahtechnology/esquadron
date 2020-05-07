@@ -1,12 +1,16 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
+import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.sesion.CoordinadorSesionBean;
 import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.sesion.PersonaMoitvoBloqueoSesionBean;
+import tecolotl.profesor.sesion.GrupoSesionBean;
 import tecolotl.web.controlador.TablaControlador;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.model.CollectionDataModel;
 import javax.faces.view.ViewScoped;
@@ -24,7 +28,7 @@ public class CoordinadorControlador implements Serializable {
     private CoordinadorSesionBean coordinadorSesionBean;
 
     @Inject
-    private PersonaMoitvoBloqueoSesionBean personaMoitvoBloqueoSesionBean;
+    private GrupoSesionBean grupoSesionBean;
 
     @Inject
     private Logger logger;
@@ -33,14 +37,43 @@ public class CoordinadorControlador implements Serializable {
     private List<CoordinadorModelo> coordinadorModeloLista;
     private CoordinadorModelo coordinadorModelo;
     private PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo;
+    private EscuelaBaseModelo escuelaBaseModelo;
     private String claveCentroTrabajo;
+    private UIInput uiInput;
 
     public void inicio() {
+        escuelaBaseModelo = new EscuelaBaseModelo(claveCentroTrabajo);
         coordinadorModeloLista = coordinadorSesionBean.busca(claveCentroTrabajo);
+        limpiaCoordinador();
     }
 
     public void agregar() {
-        logger.info(coordinadorModelo.toString());
+        if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), coordinadorModelo.getApodo()) ||
+                coordinadorSesionBean.exite(coordinadorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "El apodo: " + coordinadorModelo.getApodo() + " ya está registrado", null);
+            facesContext.addMessage(uiInput.getClientId(facesContext), facesMessage);
+        } else {
+            coordinadorModelo.setClaveCentroTrabajo(escuelaBaseModelo.getClaveCentroTrabajo());
+            coordinadorSesionBean.agreaga(coordinadorModelo);
+            coordinadorModeloLista.add(coordinadorModelo);
+            limpiaCoordinador();
+        }
+    }
+
+    public void elimina() {
+        coordinadorModelo.setClaveCentroTrabajo(escuelaBaseModelo.getClaveCentroTrabajo());
+        coordinadorSesionBean.elimina(coordinadorModelo);
+        coordinadorModeloLista.remove(coordinadorModelo);
+        limpiaCoordinador();
+    }
+
+    public void actualiza() {
+        coordinadorModelo.setClaveCentroTrabajo(escuelaBaseModelo.getClaveCentroTrabajo());
+        coordinadorSesionBean.actualiza(coordinadorModelo);
+        coordinadorModeloLista.remove(coordinadorModelo);
+        coordinadorModeloLista.add(coordinadorModelo);
+        limpiaCoordinador();
     }
 
     public void limpiaCoordinador() {
@@ -85,5 +118,13 @@ public class CoordinadorControlador implements Serializable {
 
     public void setCoordinadorModeloLista(List<CoordinadorModelo> coordinadorModeloLista) {
         this.coordinadorModeloLista = coordinadorModeloLista;
+    }
+
+    public UIInput getUiInput() {
+        return uiInput;
+    }
+
+    public void setUiInput(UIInput uiInput) {
+        this.uiInput = uiInput;
     }
 }

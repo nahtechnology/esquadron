@@ -9,9 +9,7 @@ import javax.validation.constraints.Size;
 import java.util.StringJoiner;
 
 @Entity
-@Table(name = "coordinador", schema = "administracion", uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"apodo"})
-})
+@Table(name = "coordinador", schema = "administracion")
 @NamedQueries({
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaDetalle",
@@ -20,6 +18,11 @@ import java.util.StringJoiner;
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaEscuela",
                 query = "SELECT c FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo ORDER BY c.apellidoPaterno"
+        ),
+        @NamedQuery(
+                name = "CoordinadorEntidad.buscaApodo",
+                query = "SELECT count(c) FROM CoordinadorEntidad c WHERE c.apodo = :apodo AND " +
+                        "c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
         ),
         @NamedQuery(
                 name = "CoordinadorEntidad.cuentaPorEscuela",
