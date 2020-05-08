@@ -178,4 +178,15 @@ public class AlumnoSesionBeanTest {
         Assert.assertNotNull(alumnoModelo.getApodo());
     }
 
+    @Test
+    public void incrementaNivel() {
+        int modificados = alumnoSesionBean.cambioNivel(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short) 1);
+        Assert.assertNotEquals(modificados, 0);
+    }
+
+    @Test
+    public void bajaNivel() {
+        int modificados = alumnoSesionBean.cambioNivel(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short) -1);
+        Assert.assertNotEquals(modificados, 0);
+    }
 }

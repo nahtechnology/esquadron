@@ -151,6 +151,8 @@ function crearGrafica(datosGrupo,claseGrupo) {
         var numeroActividades = [];
         var botonSubirNivel = document.createElement('button');
         var botonBajarNivel = document.createElement('button');
+        botonSubirNivel.addEventListener('click', incrementaNivel);
+        botonBajarNivel.addEventListener('click', decrementaNivel);
         botonSubirNivel.innerText = "upgrade";
         botonBajarNivel.innerText = "degrade";
         botonSubirNivel.dataset.idAlumno = sujeto[0].personaId;
@@ -400,4 +402,18 @@ function paginacionGraficas(dato) {
         botonSiguiente.classList.remove('boton-disabilitado');
     }
  // console.log(numGraficas);
+}
+
+function incrementaNivel(evento) {
+    let formulario = document.getElementById('formulario-cambio-nivel');
+    document.getElementById('formulario-cambio-nivel:entrada-alumno').value = evento.target.dataset.idAlumno;
+    document.getElementById('formulario-cambio-nivel:entrada-nivel').value = 1;
+    formulario.querySelector('input[type=submit]').click();
+}
+
+function decrementaNivel(evento) {
+    let formulario = document.getElementById('formulario-cambio-nivel');
+    document.getElementById('formulario-cambio-nivel:entrada-alumno').value = evento.target.dataset.idAlumno;
+    document.getElementById('formulario-cambio-nivel:entrada-nivel').value = -1;
+    formulario.querySelector('input[type=submit]').click();
 }

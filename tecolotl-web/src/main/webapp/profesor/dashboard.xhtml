@@ -208,6 +208,14 @@
             <a id="reporte" style="display: none">boton</a>
         </div>
 
+        <h:form id="formulario-cambio-nivel">
+            <h:inputHidden id="entrada-alumno" value="#{cambioNivelAlumnoControlador.idAlumno}"/>
+            <h:inputHidden id="entrada-nivel" value="#{cambioNivelAlumnoControlador.nivel}"/>
+            <h:commandButton style="display: none">
+                <f:ajax execute="@form" listener="#{cambioNivelAlumnoControlador.cambiaNivel}"/>
+            </h:commandButton>
+        </h:form>
+
         <div class="modal-contenedor" id="modal-actividades">
             <div class="modal modal-largo">
                 <div class="modal-cabecera">

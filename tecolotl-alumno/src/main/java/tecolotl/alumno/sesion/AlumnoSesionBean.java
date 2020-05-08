@@ -63,4 +63,17 @@ public class AlumnoSesionBean implements Serializable {
         return new AlumnoModelo(alumnoEntidad);
     }
 
+    /**
+     * Incremente o disminuye de nivel de lenguaje de un alumno.
+     * @param idAlumno Identificador del alumno a ser actualizado.
+     * @param nivel Nivel de lenguaje a ser cambiado.
+     * @return Número de elementos modificados.
+     */
+    public int cambioNivel(@NotNull UUID idAlumno, short nivel) {
+        Query query = entityManager.createNamedQuery("AlumnoEntidad.subeNivel");
+        query.setParameter("idAlumno", idAlumno);
+        query.setParameter("nivel", nivel);
+        return query.executeUpdate();
+    }
+
 }

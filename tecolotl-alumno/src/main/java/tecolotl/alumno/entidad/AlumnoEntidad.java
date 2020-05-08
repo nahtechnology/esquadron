@@ -14,8 +14,8 @@ import java.util.*;
         name = "AlumnoEntidad.busca",
         query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle"),
     @NamedQuery(
-        name = "AlumnoEntidad.actualizaNivel",
-        query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.valor =:valor WHERE a.id = :id"),
+        name = "AlumnoEntidad.subeNivel",
+        query = "UPDATE AlumnoEntidad a SET a.nivelLenguajeEntidad.clave = a.nivelLenguajeEntidad.clave + :nivel WHERE a.id = :idAlumno"),
     @NamedQuery(
         name = "AlumnoEntidad.buscaId",
         query = "SELECT a FROM AlumnoEntidad a LEFT JOIN FETCH a.nivelLenguajeEntidad nle WHERE a.id = :idAlumno"),
