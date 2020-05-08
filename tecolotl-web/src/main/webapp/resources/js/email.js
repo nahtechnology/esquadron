@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded",function () {
             Host : "in-v3.mailjet.com",
             Username : "f8fb25bef858388aea9dedeb6042676d",
             Password : "64705e76a3d268cd48ba0784fdb235b4",
-            To : 'sczelene@gmail.com',
+            To : 'cu.es.guillermo@gmail.com',
             From : "maugg76@gmail.com",
             Subject : "Contacto Escuela",
             Body : mensaje
