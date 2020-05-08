@@ -150,7 +150,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
         var numeroActividades = [];
         var botonSubirNivel = document.createElement('button');
         botonSubirNivel.innerText = "upgrade";
-        botonSubirNivel.id = sujeto[0].personaId;
+        botonSubirNivel.dataset.idAlumno = sujeto[0].personaId;
         botonSubirNivel.style.marginLeft = "auto";
         botonSubirNivel.classList.add('boton-subir-nivel');
         nombreAlumno.style.display = "flex";
