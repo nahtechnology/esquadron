@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 @ViewScoped
 @Named
-public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> implements Serializable {
+public class CoordinadorControlador implements Serializable {
 
     @Inject
     private CoordinadorSesionBean coordinadorSesionBean;
@@ -30,58 +30,21 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
     private Logger logger;
 
     private List<PersonaMotivoBloqueoModelo> personaMotivoBloqueoModeloLista;
+    private List<CoordinadorModelo> coordinadorModeloLista;
     private CoordinadorModelo coordinadorModelo;
     private PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo;
     private String claveCentroTrabajo;
 
-    @PostConstruct
-    public void init() {
-        claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
-        personaMotivoBloqueoModeloLista = personaMoitvoBloqueoSesionBean.busca("Sin Bloqueo");
-        personaMotivoBloqueoModelo = new PersonaMotivoBloqueoModelo();
-        actualizaDataModel();
+    public void inicio() {
+        coordinadorModeloLista = coordinadorSesionBean.busca(claveCentroTrabajo);
+    }
+
+    public void agregar() {
+        logger.info(coordinadorModelo.toString());
     }
 
     public void limpiaCoordinador() {
         coordinadorModelo = new CoordinadorModelo();
-    }
-
-    public void agrega() {
-        coordinadorModelo.setClaveCentroTrabajo(claveCentroTrabajo);
-        coordinadorSesionBean.agreaga(coordinadorModelo);
-        limpiaCoordinador();
-        actualizaDataModel();
-    }
-
-    public void elimina() {
-        coordinadorSesionBean.elimina(coordinadorModelo);
-        limpiaCoordinador();
-        actualizaDataModel();
-    }
-
-    public void actualiza() {
-        coordinadorSesionBean.actualiza(coordinadorModelo);
-        limpiaCoordinador();
-        actualizaDataModel();
-    }
-
-    public void bloqueo() {
-        coordinadorModelo.setClaveCentroTrabajo(claveCentroTrabajo);
-        coordinadorSesionBean.estatus(coordinadorModelo, personaMotivoBloqueoModelo.getClave());
-        limpiaCoordinador();
-        actualizaDataModel();
-    }
-
-    public void desbloquea() {
-        System.out.println(coordinadorModelo);
-        coordinadorSesionBean.estatus(coordinadorModelo, (short)1);
-        limpiaCoordinador();
-        actualizaDataModel();
-    }
-
-    @Override
-    public void actualizaDataModel() {
-        setCollectionDataModel(new CollectionDataModel<>(coordinadorSesionBean.busca(claveCentroTrabajo)));
     }
 
     public CoordinadorModelo getCoordinadorModelo() {
@@ -106,5 +69,21 @@ public class CoordinadorControlador extends TablaControlador<CoordinadorModelo> 
 
     public void setPersonaMotivoBloqueoModelo(PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo) {
         this.personaMotivoBloqueoModelo = personaMotivoBloqueoModelo;
+    }
+
+    public String getClaveCentroTrabajo() {
+        return claveCentroTrabajo;
+    }
+
+    public void setClaveCentroTrabajo(String claveCentroTrabajo) {
+        this.claveCentroTrabajo = claveCentroTrabajo;
+    }
+
+    public List<CoordinadorModelo> getCoordinadorModeloLista() {
+        return coordinadorModeloLista;
+    }
+
+    public void setCoordinadorModeloLista(List<CoordinadorModelo> coordinadorModeloLista) {
+        this.coordinadorModeloLista = coordinadorModeloLista;
     }
 }

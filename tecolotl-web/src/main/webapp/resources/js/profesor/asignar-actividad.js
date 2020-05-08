@@ -2,7 +2,6 @@ var ejercicios;
 var niveles,temarioBtn,cuerpo;
 var misTemas = new Set();
 var mapas;
-
 document.addEventListener('DOMContentLoaded', function (evento) {
     var btnClose = document.querySelector('#temario > div > div > span');
     var nivelesFiltro = document.querySelector('ul.nav-default-profesor');
@@ -21,10 +20,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     });
      ordenarNiveles(nivelesFiltro);
 
-
 });
-
-
 
 function buscaActividadSeleccionada(evento) {
     salida = [];
@@ -40,7 +36,6 @@ function buscaActividadSeleccionada(evento) {
             UIkit.modal.confirm(confirmacion).then(function () {
                 document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
                 document.getElementById('formulario-asignar-tarea:boton-enviar').click();
-
             }, function () {
                 console.log('Cancelacion de envio');
             });

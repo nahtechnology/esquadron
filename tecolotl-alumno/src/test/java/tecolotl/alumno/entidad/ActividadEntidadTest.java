@@ -10,6 +10,12 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.alumno.entidad.glosario.*;
+import tecolotl.alumno.entidad.mapamental.*;
+import tecolotl.alumno.entidad.relacionar.RelacionarActividadEntidad;
+import tecolotl.alumno.entidad.relacionar.RelacionarActividadEntidadPK;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 
@@ -18,6 +24,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.*;
 
@@ -28,7 +35,13 @@ public class ActividadEntidadTest {
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addClasses(NivelLenguajeEntidad.class, CatalagoEntidad.class, ActividadEntidad.class,
-                        TipoEstudianteEntidad.class, PersonaEntidad.class)
+                        TipoEstudianteEntidad.class, PersonaEntidad.class, TemaEntidad.class, GlosarioActividadEntidad.class,
+                        GlosarioActividadEntidadPK.class, TareaGlosarioActividadEntidad.class, TareaGlosarioActividadEntidadPK.class,
+                        TareaEntidad.class, AlumnoEntidad.class, PersonaEntidad.class, TareaMapaMentalActividadEntidad.class,
+                        TareaMapaMentalActividadEntidadPK.class, TareaRelacionarActividadEntidad.class, TareaRelacionarActividadEntidadPK.class,
+                        MapaMentalActividadEntidad.class, MapaMentalActividadEntidadPK.class, MapaMentalEntidad.class, MapaMentalEntidadPK.class,
+                        RelacionarActividadEntidad.class, RelacionarActividadEntidadPK.class, GlosarioEntidad.class, GlosarioEntidadPK.class,
+                        ClaseGlosarioEntidad.class)
                 .addAsResource("META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
@@ -55,6 +68,21 @@ public class ActividadEntidadTest {
                 Assert.assertNotNull(nivelLenguajeEntidad.getValor());
             }
         }
+    }
+
+    @Test
+    public void buscaTareaNoAsignadas() {
+        TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaNoAsigandasAlumno", ActividadEntidad.class);
+        typedQuery.setParameter("idAlumno", UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"));
+        typedQuery.setParameter("nivelLenguaje", (short)1);
+        List<ActividadEntidad> actividadEntidadLista = typedQuery.getResultList();
+        assertNotNull(actividadEntidadLista);
+        assertFalse(actividadEntidadLista.isEmpty());
+        actividadEntidadLista.forEach(actividadEntidad -> {
+            assertNotNull(actividadEntidad);
+            assertNotNull(actividadEntidad.getId());
+            assertNotNull(actividadEntidad.getPreguntaDetonadora());
+        });
     }
 
 }

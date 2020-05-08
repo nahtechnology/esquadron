@@ -9,6 +9,10 @@
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
 
 <ui:composition template="/template/administracion/dashboard.xhtml">
+    <f:metadata>
+        <f:viewParam name="escuela" value="#{coordinadorControlador.claveCentroTrabajo}"/>
+        <f:viewAction action="#{coordinadorControlador.inicio}"/>
+    </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{etiqueta['menu']}</li>
@@ -40,9 +44,6 @@
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <h:outputStylesheet library="css" name="administracion/coordinador.css"/>
         <div uk-grid="">
-            <div class="nombre-escuela">
-                <span class="uk-text-bold">#{escuelaControlador.busca(param['escuela'])}</span>
-            </div>
 <!--        TODO estilios para la escuela actual    -->
             <div class="uk-width-1-1@s ">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover uk-margin-medium-bottom">
@@ -61,7 +62,7 @@
                     </div>
                     <div class="uk-card-body">
                         <h:form id="formulario-coordinador">
-                            <ui:fragment rendered="#{empty coordinadorControlador.collectionDataModel.wrappedData}">
+                            <ui:fragment rendered="#{empty coordinadorControlador.coordinadorModeloLista}">
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
                                         <tr>
@@ -81,25 +82,11 @@
                                             </td>
                                         </tr>
                                     </tbody>
-                                    <tfoot class="uk-background-primary">
-                                        <tr>
-                                            <td colspan="6">
-                                                <span class="letra-titulo">
-                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
-                                                        <f:param value="#{coordinadorControlador.htmlDataTable.rowCount}"/>
-                                                        <f:param value="#{coordinadorControlador.htmlDataTable.rowCount}"/>
-                                                        <f:param value="#{coordinadorControlador.htmlDataTable.rowCount}"/>
-                                                    </h:outputFormat>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
                                 </table>
                             </ui:fragment>
                             <h:dataTable
-                                    value="#{coordinadorControlador.collectionDataModel}"
-                                    binding="#{coordinadorControlador.htmlDataTable}"
-                                    rendered="#{not empty coordinadorControlador.collectionDataModel.wrappedData}"
+                                    value="#{coordinadorControlador.coordinadorModeloLista}"
+                                    rendered="#{not empty coordinadorControlador.coordinadorModeloLista}"
                                     var="coordinador"
                                     id="tabla-coordinador"
                                     first="0"
@@ -166,23 +153,8 @@
                                         </h:panelGroup>
                                     </div>
                                 </h:column>
-                                <f:facet name="footer">
-                                    <pa:pie-tabla htmlDataTable="#{coordinadorControlador.htmlDataTable}"/>
-                                </f:facet>
                             </h:dataTable>
                         </h:form>
-                    </div>
-                    <div class="uk-card-footer">
-                        <f:ajax render="formulario-coordinador:tabla-coordinador formulario-paginacion-coord"
-                                onevent="limpiaSelect">
-                            <h:form id="formulario-paginacion-coord">
-                                <div  styleClass="" pt:uk-grid="">
-                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
-                                        <pa:boton-minimizado htmlDataTable="#{coordinadorControlador.htmlDataTable}"/>
-                                    </div>
-                                </div>
-                            </h:form>
-                        </f:ajax>
                     </div>
                 </div>
             </div>

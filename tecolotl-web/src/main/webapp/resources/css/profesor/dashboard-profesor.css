@@ -100,3 +100,7 @@ ul > li > span {
 .tabla-profesor-dropdown .img-previa:hover{
     cursor: pointer;
 }
+
+.visibilidad{
+    display: none!important;
+}

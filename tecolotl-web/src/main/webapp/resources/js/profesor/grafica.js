@@ -49,7 +49,7 @@ function datosGrupo() {
 
     listaDatos.forEach(function (datos) {
        var algo = datos.querySelectorAll("span");
-       var letras = new GraficaAlumno(algo[0].innerText,algo[1].innerText,algo[2].innerText,algo[3].innerText,algo[4].innerText,algo[5].innerText);
+       var letras = new GraficaAlumno(algo[0].innerText,algo[1].innerText,algo[2].innerText,algo[3].innerText,algo[4].innerText,algo[5].innerText,algo[6].innerText);
        alumno.push(letras);
     });
 
@@ -77,11 +77,11 @@ function datosGrupo() {
    grupos.forEach(function (value, index) {
        var graficas = [];
        alumno.filter(person => person.idGrupo.localeCompare(grupos[index]) === 0).forEach(function (grafica) {
-                var persona = new DatosGrafica(grafica.idAlumo,grafica.nombreCompleto,grafica.totalTareas,grafica.nivelLenjuaje,grafica.idGrupo,grafica.nivelLenguajeAlumno);
+                var persona = new DatosGrafica(grafica.idAlumo,grafica.nombreCompleto,grafica.totalTareas,grafica.nivelLenjuaje,grafica.idGrupo,grafica.nivelLenguajeAlumno,grafica.puntajeActividad);
                 graficas.push(persona);
        });
        crearGrafica(graficas,clases);
-   }) ;
+   });
 
 
    // console.log(clases);
@@ -139,50 +139,96 @@ function crearGrafica(datosGrupo,claseGrupo) {
     for (var indice = 0 ; indice < idPersona.length ; indice++) {
         var porcentajeTotal = 0;
         var porcentajeNivel  = 0;
+        var promedioSubirNivel;
         var alumnoGrupo = document.createElement('div');
         var nombreAlumno = document.createElement('p');
         var porcentajeAlumno = document.createElement('span');
         var estiloNombreAlumno = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
         // var nivelAlumno = (sujeto[0].personaNivel !== "" ? sujeto[0].personaNivel : 'N/A');
-        var nivelAlumno ;
+        var nivelAlumno;
+        var numeroActividades = [];
+        var botonSubirNivel = document.createElement('button');
+        botonSubirNivel.innerText = "upgrade";
+        botonSubirNivel.id = sujeto[0].personaId;
+        botonSubirNivel.style.marginLeft = "auto";
+        botonSubirNivel.classList.add('boton-subir-nivel');
+        nombreAlumno.style.display = "flex";
 
         switch(parseInt(sujeto[0].personaNivelIngles)) {
             case 1 :{
                 nivelAlumno = 'A1';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+                numeroActividades[0] = promedioSubirNivel[0].tareasNivel;
+                numeroActividades[1] = 0;
+                numeroActividades[2] = 0;
+                numeroActividades[3] = 0;
+                numeroActividades[4] = 0;
+                numeroActividades[5] = 0;
+                porcentajeNivel = Math.round((numeroActividades[0]*100)/18);
             }
             break;
             case 2 :{
                 nivelAlumno = 'A2';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+                numeroActividades[0] = 18;
+                numeroActividades[1] = promedioSubirNivel[0].tareasNivel;
+                numeroActividades[2] = 0;
+                numeroActividades[3] = 0;
+                numeroActividades[4] = 0;
+                numeroActividades[5] = 0;
+                porcentajeNivel = Math.round((numeroActividades[1]*100)/18);
             }
                 break;
             case 3 :{
                 nivelAlumno = 'B1';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+                numeroActividades[0] = 18;
+                numeroActividades[1] = 18;
+                numeroActividades[2] = promedioSubirNivel[0].tareasNivel;
+                numeroActividades[3] = 0;
+                numeroActividades[4] = 0;
+                numeroActividades[5] = 0;
+                porcentajeNivel = Math.round((numeroActividades[2]*100)/18);
             }
                 break;
             case 4 :{
                 nivelAlumno = 'B2';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+                numeroActividades[0] = 18;
+                numeroActividades[1] = 18;
+                numeroActividades[2] = 18;
+                numeroActividades[3] = promedioSubirNivel[0].tareasNivel;
+                numeroActividades[4] = 0;
+                numeroActividades[5] = 0;
+                porcentajeNivel = Math.round((numeroActividades[3]*100)/18);
             }
                 break;
             case 5 :{
                 nivelAlumno = 'C1';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+                numeroActividades[0] = 18;
+                numeroActividades[1] = 18;
+                numeroActividades[2] = 18;
+                numeroActividades[3] = 18;
+                numeroActividades[4] = promedioSubirNivel[0].tareasNivel;
+                numeroActividades[5] = 0;
+                porcentajeNivel = Math.round((numeroActividades[4]*100)/18);
             }
                 break;
             case 6 :{
                 nivelAlumno = 'C2';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+                numeroActividades[0] = 18;
+                numeroActividades[1] = 18;
+                numeroActividades[2] = 18;
+                numeroActividades[3] = 18;
+                numeroActividades[4] = 18;
+                numeroActividades[5] = promedioSubirNivel[0].tareasNivel;
+                porcentajeNivel = Math.round((numeroActividades[5]*100)/18);
             }
                 break;
         }
-
-        // var nivelesAlumno = [];
-
-        // sujeto.forEach(function (alguien,index) {
-        //     if(!nivel[index].includes(alguien.personaNivel)){
-        //         nivelesAlumno.push(alguien.personaNivel);
-        //     }
-        //    nivelesAlumno.push(alguien.personaNivel);
-        // });
-
 
         // console.log(sujeto);
         // console.log(nivelesAlumno);
@@ -190,66 +236,49 @@ function crearGrafica(datosGrupo,claseGrupo) {
         nombreAlumno.appendChild(estiloNombreAlumno);
         alumnoGrupo.appendChild(nombreAlumno);
 
-
-        nivel.forEach(function (lenguajeNivel) {
+        nivel.forEach(function (lenguajeNivel,index) {
             var barraNivel = document.createElement('progress');
             // console.log(sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0));
-            var cantidadTarea = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0);
-            var nivelPersona = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0);
+            // var cantidadTarea = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0).reduce(function (acumulador,valorActual) { return acumulador + valorActual.tareasNivel},0);
+            // var nivelPersona = sujeto.filter(level => level.personaNivel.localeCompare(lenguajeNivel) === 0);
 
             barraNivel.setAttribute('max','18');
-            barraNivel.setAttribute('value',cantidadTarea);
+            barraNivel.setAttribute('value',numeroActividades[index]);
             alumnoGrupo.appendChild(barraNivel);
-            if (cantidadTarea > 18){
-                cantidadTarea = 18;
+            if (numeroActividades[index] > 18){
+                numeroActividades[index] = 18;
             }
-            porcentajeTotal += cantidadTarea;
-
+            porcentajeTotal += numeroActividades[index];
         });
-        if (porcentajeTotal <= 18){
-            levelGrafic = nivel[0];
-            porcentajeNivel = Math.round((porcentajeTotal * 100)/18);
-        }else if(porcentajeTotal > 18 && porcentajeTotal <= 36){
-            levelGrafic = nivel[1];
-            porcentajeNivel = Math.round(((porcentajeTotal - 18)*100)/18);
-        }else if(porcentajeTotal > 36 && porcentajeTotal <= 54){
-            levelGrafic = nivel[2];
-            porcentajeNivel = Math.round(((porcentajeTotal-36) * 100)/18);
-        }else if(porcentajeTotal > 54 && porcentajeTotal <= 72){
-            porcentajeNivel = Math.round(((porcentajeTotal-54) * 100)/18);
-            levelGrafic = nivel[3];
-        }else if(porcentajeTotal > 72 && porcentajeTotal <= 90){
-            porcentajeNivel = Math.round(((porcentajeTotal-72) * 100)/18);
-            levelGrafic = nivel[4];
-        }else if(porcentajeTotal >= 90 ){
-            porcentajeNivel = Math.round(((porcentajeTotal-90) * 100)/18);
-            levelGrafic = nivel[5];
-        }
+
         porcentajeTotal =  Math.round((porcentajeTotal * 100)/(18*6));
         porcentajeAlumno.innerText = nivelAlumno + ":"+ " \u00A0 \u00A0"  + porcentajeNivel + '%' + " \u00A0 \u00A0" + "Total:" + "\u00A0 \u00A0" + porcentajeTotal + '%';
         nombreAlumno.appendChild(porcentajeAlumno);
+        nombreAlumno.appendChild(botonSubirNivel);
         grupo.appendChild(alumnoGrupo);
         canvasGrafica.appendChild(grupo);
     }
 }
 
 
-function GraficaAlumno(idGrupo,idAlumno,nombreCompleto,totalTareas,nivelLenguaje,nivelLenguajeAlumno) {
+function GraficaAlumno(idGrupo,idAlumno,nombreCompleto,totalTareas,nivelLenguaje,nivelLenguajeAlumno,puntajeActividad) {
     this.idGrupo = idGrupo;
     this.idAlumo = idAlumno;
     this.nombreCompleto = nombreCompleto;
     this.totalTareas = totalTareas;
     this.nivelLenjuaje = nivelLenguaje;
-    this.nivelLenguajeAlumno = nivelLenguajeAlumno
+    this.nivelLenguajeAlumno = nivelLenguajeAlumno;
+    this.puntajeActividad = puntajeActividad;
 }
 
-function DatosGrafica(personaId,personaNombre,tareasNivel,personaNivel,personaGrupo,personaNivelIngles) {
+function DatosGrafica(personaId,personaNombre,tareasNivel,personaNivel,personaGrupo,personaNivelIngles,personaPuntaje) {
     this.personaId = personaId;
     this.personaNombre = personaNombre;
     this.tareasNivel = parseInt(tareasNivel);
     this.personaNivel = personaNivel;
     this.personaGrupo = personaGrupo;
     this.personaNivelIngles = personaNivelIngles;
+    this.personaPuntaje = parseInt(personaPuntaje);
 }
 
 function DatosGrupo(grado,grupo,idGrup){
