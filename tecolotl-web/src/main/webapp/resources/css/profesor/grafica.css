@@ -346,8 +346,23 @@
     overflow: auto;
 }
 
-
-
+.boton-subir-nivel {
+    background-color: var(--azul-primary-color);
+    padding: 2px 10px;
+    color: white;
+    font-weight: bold;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+.boton-subir-nivel:hover{
+    color: black;
+    cursor: pointer;
+}
 /*colores de graficas*/
 
 /*

@@ -25,8 +25,10 @@ document.addEventListener("DOMContentLoaded",function () {
     function sendEmail() {
         var contactos = document.querySelectorAll('#seccion3 div > input');
         Email.send({
-            SecureToken : "40279f77-14b1-442f-8359-4225418ebff9",
-            To : 'nahtechnology@gmail.com',
+            Host : "in-v3.mailjet.com",
+            Username : "f8fb25bef858388aea9dedeb6042676d",
+            Password : "64705e76a3d268cd48ba0784fdb235b4",
+            To : 'sczelene@gmail.com',
             From : "maugg76@gmail.com",
             Subject : "Contacto Escuela",
             Body : mensaje
