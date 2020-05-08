@@ -144,16 +144,23 @@ function crearGrafica(datosGrupo,claseGrupo) {
         var nombreAlumno = document.createElement('p');
         var porcentajeAlumno = document.createElement('span');
         var estiloNombreAlumno = document.createElement('span');
+        var contenedorBotones = document.createElement('span');
         var sujeto = datosGrupo.filter(escolar => escolar.personaId.localeCompare(idPersona[indice]) === 0);
         // var nivelAlumno = (sujeto[0].personaNivel !== "" ? sujeto[0].personaNivel : 'N/A');
         var nivelAlumno;
         var numeroActividades = [];
         var botonSubirNivel = document.createElement('button');
+        var botonBajarNivel = document.createElement('button');
         botonSubirNivel.innerText = "upgrade";
+        botonBajarNivel.innerText = "downgrade";
         botonSubirNivel.dataset.idAlumno = sujeto[0].personaId;
-        botonSubirNivel.style.marginLeft = "auto";
+        botonBajarNivel.dataset.idAlumno = sujeto[0].personaId;
         botonSubirNivel.classList.add('boton-subir-nivel');
+        botonBajarNivel.classList.add('boton-subir-nivel');
+        contenedorBotones.appendChild(botonBajarNivel);
+        contenedorBotones.appendChild(botonSubirNivel);
         nombreAlumno.style.display = "flex";
+        contenedorBotones.style.marginLeft="auto";
 
         switch(parseInt(sujeto[0].personaNivelIngles)) {
             case 1 :{
@@ -254,7 +261,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
         porcentajeTotal =  Math.round((porcentajeTotal * 100)/(18*6));
         porcentajeAlumno.innerText = nivelAlumno + ":"+ " \u00A0 \u00A0"  + porcentajeNivel + '%' + " \u00A0 \u00A0" + "Total:" + "\u00A0 \u00A0" + porcentajeTotal + '%';
         nombreAlumno.appendChild(porcentajeAlumno);
-        nombreAlumno.appendChild(botonSubirNivel);
+        nombreAlumno.appendChild(contenedorBotones);
         grupo.appendChild(alumnoGrupo);
         canvasGrafica.appendChild(grupo);
     }
