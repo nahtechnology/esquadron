@@ -21,8 +21,6 @@ document.addEventListener("DOMContentLoaded",function () {
                 mensaje = "";
                 }
     });
-
-
     
     function sendEmail() {
         var contactos = document.querySelectorAll('#seccion3 div > input');
