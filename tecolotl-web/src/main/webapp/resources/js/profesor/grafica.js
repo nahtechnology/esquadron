@@ -152,11 +152,11 @@ function crearGrafica(datosGrupo,claseGrupo) {
         var botonSubirNivel = document.createElement('button');
         var botonBajarNivel = document.createElement('button');
         botonSubirNivel.innerText = "upgrade";
-        botonBajarNivel.innerText = "downgrade";
+        botonBajarNivel.innerText = "degrade";
         botonSubirNivel.dataset.idAlumno = sujeto[0].personaId;
         botonBajarNivel.dataset.idAlumno = sujeto[0].personaId;
-        botonSubirNivel.classList.add('boton-subir-nivel');
-        botonBajarNivel.classList.add('boton-subir-nivel');
+        botonSubirNivel.classList.add('boton-base-nivel','boton-subir-nivel');
+        botonBajarNivel.classList.add('boton-base-nivel','boton-bajar-nivel');
         contenedorBotones.appendChild(botonBajarNivel);
         contenedorBotones.appendChild(botonSubirNivel);
         nombreAlumno.style.display = "flex";
