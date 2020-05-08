@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function () {
+    
     var labels = ['Nombre:','Colegio:','Cuidad:','Correo:','Telefono:'];
     var botonEmail = document.querySelector('#seccion3 > div > div > div:last-child > div');
      mensaje="";
