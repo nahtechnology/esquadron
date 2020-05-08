@@ -12,6 +12,7 @@ public class ActividadEntidad {
     private String preguntaDetonadora;
     private String tema;
     private String nivelLenguaje;
+    private Integer totalTareas;
     private int codigoNivelLenguaje;
     private String mapamental;
 
@@ -68,5 +69,14 @@ public class ActividadEntidad {
 
     public void setMapamental(String mapamental) {
         this.mapamental = mapamental;
+    }
+
+    @Column(name = "total_tareas")
+    public Integer getTotalTareas() {
+        return totalTareas;
+    }
+
+    public void setTotalTareas(Integer totalTareas) {
+        this.totalTareas = totalTareas;
     }
 }

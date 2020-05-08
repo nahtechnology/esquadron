@@ -8,6 +8,7 @@ public class ActividadModelo {
     private String preguntaDetonadora;
     private String tema;
     private String nivelLenguaje;
+    private Integer totalTareas;
     private int codigoNivelLenguaje;
     private String mapamental;
 
@@ -19,6 +20,7 @@ public class ActividadModelo {
         this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
         this.tema = actividadEntidad.getTema();
         this.nivelLenguaje = actividadEntidad.getNivelLenguaje();
+        totalTareas = actividadEntidad.getTotalTareas();
         this.codigoNivelLenguaje = actividadEntidad.getCodigoNivelLenguaje();
         this.mapamental = actividadEntidad.getMapamental();
     }
@@ -74,5 +76,13 @@ public class ActividadModelo {
 
     public void setMapamental(String mapamental) {
         this.mapamental = mapamental;
+    }
+
+    public Integer getTotalTareas() {
+        return totalTareas;
+    }
+
+    public void setTotalTareas(Integer totalTareas) {
+        this.totalTareas = totalTareas;
     }
 }
