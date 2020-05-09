@@ -219,7 +219,7 @@
         <div class="modal-contenedor" id="modal-actividades">
             <div class="modal modal-largo">
                 <div class="modal-cabecera">
-                    <h3>Eliminar Actividad</h3>
+                    <h3>Delete Activity</h3>
                 </div>
                 <div class="modal-cuerpo">
                     <h:form id="formulario-borrar-tarea">
@@ -233,19 +233,19 @@
                                 rowClasses="tdPrimario"
                                 footerClass="thPrimario uk-text-left">
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Actividad</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">HW</span></f:facet>
                                 <h:graphicImage url="https://i.ytimg.com/vi/${tareaGrupoVistaModelo.idVideo}/mqdefault.jpg" style="width: 100px"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">pregunta</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Question HW</span></f:facet>
                                 ${tareaGrupoVistaModelo.preguntaDetonadora}
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">tareas</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Assigned HW</span></f:facet>
                                 ${tareaGrupoVistaModelo.totalTareas}
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">opcion</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">option</span></f:facet>
                                 <button type="button" onclick="mensajeConfirmacion(this)"  uk-icon="icon: trash" />
                                 <div class="mensaje-confirmacion visibilidad">
                                     <span>#{profesor['dashboard.delete.activity']}</span>
@@ -266,9 +266,39 @@
             </div>
         </div>
 
+        <div class="modal-contenedor" id="modal-nivel-bajar">
+            <div class="modal ">
+                <div class="modal-cabecera" style="background-color: var(--color-peligro)">
+                    <h3>degrade level</h3>
+                </div>
+                <div class="modal-cuerpo" style="display: flex; align-items: center; justify-content: center;" >
+                   <span style="font-size: 20px; font-weight: 900;" >Are you sure you want to lower the student's level?</span>
+                </div>
+                <div class="modal-pie">
+                    <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--color-peligro)" >#{boton['remove']}</button>
+                    <button class="boton-escuadron-base ">#{boton['cancel']}</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-contenedor" id="modal-nivel-subir">
+            <div class="modal ">
+                <div class="modal-cabecera" >
+                    <h3>upgrade level</h3>
+                </div>
+                <div class="modal-cuerpo" style="display: flex; align-items: center; justify-content: center;" >
+                    <span style="font-size: 20px; font-weight: 900;" >The student has not yet completed all 18 tasks. Are you sure you want to raise your level?</span>
+                </div>
+                <div class="modal-pie">
+                    <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--azul-primary-color)" >upgrade</button>
+                    <button class="boton-escuadron-base">#{boton['cancel']}</button>
+                </div>
+            </div>
+        </div>
+
     </ui:define>
 
     <ui:define name="file-js">
+        <h:outputScript library="js" name="modal.js"/>
 <!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>-->
         <h:outputScript library="js" name="/profesor/grafica.js"/>
         <script type="application/javascript">
@@ -288,14 +318,8 @@
                     hiddenElemento.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-nivel?grupos=".concat(cadenaIdGrupos);
                     hiddenElemento.click();
                 });
-
-
-
             });
-
-
         </script>
-        <h:outputScript library="js" name="modal.js"/>
         <script type="application/javascript">
             function mensajeConfirmacion(element) {
                 let mensajeConfirmacion = element.nextElementSibling;

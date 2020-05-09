@@ -346,36 +346,31 @@
     overflow: auto;
 }
 
-.boton-base-nivel{
-    font-weight: bold;
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 20px;
-    display: inline-block;
-    padding: 2px 10px;
-}
 
+.boton-nivel-base{
+    width: 17px;
+    height: 17px;
+    border-style: none;
+    border-radius: 3px;
+}
 .boton-subir-nivel {
-    background-color: var(--azul-primary-color);
-    color: white;
-    text-align: center;
-    font-size: 10px;
-    text-transform: uppercase;
+    background: url("#{resource['img/icono/subir.png']}") no-repeat center/100%;
 }
 
 .boton-bajar-nivel{
-    background-color: var(--color-peligro);
-    color: white;
-    text-align: center;
-    font-size: 10px;
-    text-transform: uppercase;
+    background: url("#{resource['img/icono/bajar.png']}") no-repeat center/100%;
+}
+
+.desactivado-nivel{
+    background-color: #95A5A6 !important;
+    cursor: initial !important;
 }
 .boton-subir-nivel:hover{
-    color: black;
+    background-color: var(--azul-primary-color);
     cursor: pointer;
 }
 .boton-bajar-nivel:hover{
-    color: black;
+    background-color: var(--color-peligro);
     cursor: pointer;
 }
 /*colores de graficas*/
