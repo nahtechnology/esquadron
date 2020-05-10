@@ -212,7 +212,18 @@
             <h:inputHidden id="entrada-alumno" value="#{cambioNivelAlumnoControlador.idAlumno}"/>
             <h:inputHidden id="entrada-nivel" value="#{cambioNivelAlumnoControlador.nivel}"/>
             <h:commandButton style="display: none">
-                <f:ajax execute="@form" listener="#{cambioNivelAlumnoControlador.cambiaNivel}"/>
+                <f:ajax
+                        execute="@form"
+                        listener="#{cambioNivelAlumnoControlador.cambiaNivel}"
+                        onevent="function grafica(data) {
+                                            console.log(data.status);
+                                            if (data.status === 'success')
+                                               {
+                                               datosGrupo();
+                                               visualizar();
+                                               }
+                                        }"
+                        render="graficas"/>
             </h:commandButton>
         </h:form>
 
@@ -233,19 +244,19 @@
                                 rowClasses="tdPrimario"
                                 footerClass="thPrimario uk-text-left">
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">HW</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesro['dashboard.modal.delete.activity.task']}</span></f:facet>
                                 <h:graphicImage url="https://i.ytimg.com/vi/${tareaGrupoVistaModelo.idVideo}/mqdefault.jpg" style="width: 100px"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Question HW</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.modal.delete.activity.question']}</span></f:facet>
                                 ${tareaGrupoVistaModelo.preguntaDetonadora}
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">Assigned HW</span></f:facet>
+                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['dashboard.modal.delete.activity.assignment']}</span></f:facet>
                                 ${tareaGrupoVistaModelo.totalTareas}
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">option</span></f:facet>
+                                <f:facet name="header"> </f:facet>
                                 <button type="button" onclick="mensajeConfirmacion(this)"  uk-icon="icon: trash" />
                                 <div class="mensaje-confirmacion visibilidad">
                                     <span>#{profesor['dashboard.delete.activity']}</span>
@@ -269,13 +280,13 @@
         <div class="modal-contenedor" id="modal-nivel-bajar">
             <div class="modal ">
                 <div class="modal-cabecera" style="background-color: var(--color-peligro)">
-                    <h3>degrade level</h3>
+                    <h3>level down</h3>
                 </div>
                 <div class="modal-cuerpo" style="display: flex; align-items: center; justify-content: center;" >
-                   <span style="font-size: 20px; font-weight: 900;" >Are you sure you want to lower the student's level?</span>
+                   <span style="font-size: 20px; font-weight: 900;" >Are you sure to move this student down?</span>
                 </div>
                 <div class="modal-pie">
-                    <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--color-peligro)" >#{boton['remove']}</button>
+                    <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--color-peligro)" >level down</button>
                     <button class="boton-escuadron-base ">#{boton['cancel']}</button>
                 </div>
             </div>
@@ -283,13 +294,13 @@
         <div class="modal-contenedor" id="modal-nivel-subir">
             <div class="modal ">
                 <div class="modal-cabecera" >
-                    <h3>upgrade level</h3>
+                    <h3>level up</h3>
                 </div>
                 <div class="modal-cuerpo" style="display: flex; align-items: center; justify-content: center;" >
-                    <span style="font-size: 20px; font-weight: 900;" >The student has not yet completed all 18 tasks. Are you sure you want to raise your level?</span>
+                    <span style="font-size: 20px; font-weight: 900;" >Are you sure you want to move this student up? Not all level activities have been accomplished.</span>
                 </div>
                 <div class="modal-pie">
-                    <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--azul-primary-color)" >upgrade</button>
+                    <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--azul-primary-color)" >level up</button>
                     <button class="boton-escuadron-base">#{boton['cancel']}</button>
                 </div>
             </div>
