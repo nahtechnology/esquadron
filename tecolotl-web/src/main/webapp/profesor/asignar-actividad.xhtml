@@ -95,6 +95,7 @@
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                                 <span class="cat-txt ">#{actividadModelo.nivelLenguaje}</span>
                                                 <span class="uk-text-center">#{actividadModelo.tema}</span>
+                                                <span >#{actividadModelo.totalTareas}</span>
                                             </div>
                                             <div class="uk-width-auto uk-text-right uk-text-muted">
                                                 <input type="radio" name="#{actividadModelo.nivelLenguaje}" class="uk-radio" value="#{actividadModelo.idActividad}"/>
@@ -110,8 +111,9 @@
                                     </div>
                                     <div class="uk-card-body tecolotl-card">
                                         <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
+
                                     </div>
-                                    #{actividadModelo.totalTareas}
+
                                     <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}" data-mapas="#{actividadModelo.mapamental}">
                                         <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                             <div class="uk-inline uk-text-center">
