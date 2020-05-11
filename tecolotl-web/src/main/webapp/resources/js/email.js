@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function () {
+    
     var labels = ['Nombre:','Colegio:','Cuidad:','Correo:','Telefono:'];
     var botonEmail = document.querySelector('#seccion3 > div > div > div:last-child > div');
      mensaje="";
@@ -21,7 +22,7 @@ document.addEventListener("DOMContentLoaded",function () {
                 mensaje = "";
                 }
     });
-
+    
     function sendEmail() {
         var contactos = document.querySelectorAll('#seccion3 div > input');
         Email.send({
