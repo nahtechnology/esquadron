@@ -255,73 +255,73 @@ li .uk-card .uk-card-body{
     color: white;
 }
 
-.uk-subnav-alumno li.uk-active:nth-child(2) a {
+.uk-subnav-alumno li.A1.uk-active a {
     background-color:var(--psecundary-option-three);
     color: white;
 }
 
-.uk-subnav-alumno li:nth-child(2) a:hover {
+.uk-subnav-alumno .A1 a:hover {
     background-color:var(--psecundary-option-three);
     /*opacity: 0.3;*/
     color: white;
 }
 
-.uk-subnav-alumno li.uk-active:nth-child(3) a {
+.uk-subnav-alumno li .A1A2.uk-active a {
     background-image:linear-gradient(to right, var(--psecundary-option-three), #D35400);
     color: white;
 }
 
-.uk-subnav-alumno li:nth-child(3) a:hover {
+.uk-subnav-alumno .A1A2 a:hover {
     background-image:linear-gradient(to right, var(--psecundary-option-three), #D35400);
     /*opacity: 0.3;*/
     color: white;
 }
 
-.uk-subnav-alumno li.uk-active:nth-child(4) a {
+.uk-subnav-alumno li.A2.uk-active a {
     background-color:#D35400;
     color: white;
 }
 
-.uk-subnav-alumno li:nth-child(4) a:hover {
+.uk-subnav-alumno .A2 a:hover {
     background-color:#D35400;
     /*opacity: 0.3;*/
     color: white;
 }
 
-.uk-subnav-alumno li.uk-active:nth-child(5) a {
+.uk-subnav-alumno li.B1.uk-active a {
     background-color:var(--tsecundary-option-one);
     color: white;
 }
-.uk-subnav-alumno li:nth-child(5) a:hover {
+.uk-subnav-alumno .B1 a:hover {
     background-color:var(--tsecundary-option-one);
     /*opacity: 0.3;*/
     color: white;
 }
 
-.uk-subnav-alumno li.uk-active:nth-child(6) a {
+.uk-subnav-alumno li.B2.uk-active a {
     background-color:var(--asecundary-option-one);
     color: white;
 }
-.uk-subnav-alumno li:nth-child(6) a:hover {
+.uk-subnav-alumno .B2 a:hover {
     background-color:var(--asecundary-option-one);
     /*opacity: 0.3;*/
     color: white;
 }
 
-.uk-subnav-alumno li.uk-active:nth-child(7) a {
+.uk-subnav-alumno li.C1.uk-active a {
     background-color:var(--color-nav-primary);
     color: white;
 }
-.uk-subnav-alumno li:nth-child(7) a:hover {
+.uk-subnav-alumno .C1 a:hover {
     background-color:var(--color-nav-primary);
     /*opacity:0.3;*/
     color: white;
 }
-.uk-subnav-alumno li.uk-active:nth-child(8) a {
+.uk-subnav-alumno li.C2.uk-active a {
     background-color:var(--color-peligro);
     color: white;
 }
-.uk-subnav-alumno li:nth-child(8) a:hover {
+.uk-subnav-alumno .C2 a:hover {
     background-color:var(--color-peligro);
     /*opacity: 0.3;*/
     color: white;

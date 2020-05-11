@@ -42,13 +42,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    text-transform: capitalize;
 }
 .modal-cabecera > h3{
     margin: 0;
     padding: 0;
     color: var(--titulo-modal);
     font-weight: 700;
+    text-transform: capitalize;
 }
 .modal-cuerpo{
     min-height: 140px;

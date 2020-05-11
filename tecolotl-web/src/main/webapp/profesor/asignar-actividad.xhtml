@@ -38,7 +38,8 @@
 
         </ui:define>
         <ui:define name="contenido">
-            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
+<!--            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>-->
+            <h:outputStylesheet library="css" name="/profesor/biblioteca-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>
             <h:outputStylesheet library="css" name="modal.css"/>
@@ -95,6 +96,7 @@
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                                 <span class="cat-txt ">#{actividadModelo.nivelLenguaje}</span>
                                                 <span class="uk-text-center">#{actividadModelo.tema}</span>
+
                                             </div>
                                             <div class="uk-width-auto uk-text-right uk-text-muted">
                                                 <input type="radio" name="#{actividadModelo.nivelLenguaje}" class="uk-radio" value="#{actividadModelo.idActividad}"/>
