@@ -138,19 +138,6 @@
                                                     <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
                                                     <f:ajax render="formulario-eliminar:input-tarea"/>
                                                 </h:commandLink>
-                                                <ui:remove>
-                                                <h:panelGroup layout="block" pt:uk-dropdown="mode: click; boundary: .tabla-profesor-dropdown" styleClass="uk-dropdown">
-                                                    <ul class="uk-nav uk-dropdown-nav">
-                                                        <li>
-                                                            <h:commandLink pt:uk-toggle="target: #modal-eliminar-tarea" >
-                                                                <h:outputText styleClass="uk-icon uk-margin-small-right" pt:uk-icon="icon: trash"/>${boton['remove']}
-                                                                <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
-                                                                <f:ajax render="formulario-eliminar:input-tarea"/>
-                                                            </h:commandLink>
-                                                        </li>
-                                                    </ul>
-                                                </h:panelGroup>
-                                                </ui:remove>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.assigned']}</span></f:facet>

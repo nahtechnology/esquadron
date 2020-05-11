@@ -45,7 +45,7 @@ public class AsignarActividadControlador implements Serializable {
     private String actividad;
 
     public void inicio() {
-        actividadModeloLista = alumno == null ? tareasAlumnoSesionBean.busca(UUID.fromString(grupo)) : tareasAlumnoSesionBean.buscaAlumno(UUID.fromString(alumno), (short)1);
+        actividadModeloLista = alumno == null ? tareasAlumnoSesionBean.busca(UUID.fromString(grupo)) : tareasAlumnoSesionBean.buscaAlumno(UUID.fromString(alumno), alumnoSesionBean.busca(UUID.fromString(alumno)).getNivelLenguajeModelo().getClave());
         if (alumno != null) {
             String valor = alumnoSesionBean.busca(UUID.fromString(alumno)).getNivelLenguajeModelo().getValor();
             actividadModeloLista.forEach(actividadModelo -> {
