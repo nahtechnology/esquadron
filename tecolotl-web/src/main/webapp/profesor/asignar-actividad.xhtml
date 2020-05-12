@@ -38,7 +38,8 @@
 
         </ui:define>
         <ui:define name="contenido">
-            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
+<!--            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>-->
+            <h:outputStylesheet library="css" name="/profesor/biblioteca-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>
             <h:outputStylesheet library="css" name="modal.css"/>
@@ -95,7 +96,7 @@
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                                 <span class="cat-txt ">#{actividadModelo.nivelLenguaje}</span>
                                                 <span class="uk-text-center">#{actividadModelo.tema}</span>
-                                                <span >#{actividadModelo.totalTareas}</span>
+                                                <h:outputText pt:uk-icon="icon : users" pt:uk-tooltip="Assignment #{actividadModelo.totalTareas}"/>
                                             </div>
                                             <div class="uk-width-auto uk-text-right uk-text-muted">
                                                 <input type="radio" name="#{actividadModelo.nivelLenguaje}" class="uk-radio" value="#{actividadModelo.idActividad}"/>
@@ -116,7 +117,7 @@
                                     <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}" data-mapas="#{actividadModelo.mapamental}">
                                         <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['activity.grammar']}">
+                                                <span >
                                                     <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
 <!--                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/decarga.svg" class="uk-svg" alt=""/>-->
                                                 </span>
@@ -125,13 +126,13 @@
                                                 </div>
                                             </div>
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['didactic.guide']}" uk-icon="icon: file-text"/>
+                                                <span  uk-icon="icon: file-text"/>
                                                 <div uk-dropdown="">
                                                     <span class="uk-text-capitalize">#{profesor['didactic.guide']}</span>
                                                 </div>
                                             </div>
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['activity.cards']}" uk-icon="icon: commenting"/>
+                                                <span  uk-icon="icon: commenting"/>
                                                 <div uk-dropdown="">
                                                     <span class="uk-text-capitalize">#{profesor['activity.cards']}</span>
                                                 </div>
