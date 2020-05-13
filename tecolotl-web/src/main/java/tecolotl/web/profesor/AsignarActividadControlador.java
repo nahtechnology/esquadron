@@ -30,12 +30,6 @@ public class AsignarActividadControlador implements Serializable {
     @Inject
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
-    @Inject
-    private NivelLenguajeSesionBean nivelLenguajeSesionBean;
-
-    @Inject
-    private Logger logger;
-
     private List<ActividadModelo> actividadModeloLista;
     private String grupo;
     private String alumno;
@@ -45,7 +39,6 @@ public class AsignarActividadControlador implements Serializable {
         actividadModeloLista = alumno == null ?
                 tareasAlumnoSesionBean.busca(UUID.fromString(grupo)) :
                 tareasAlumnoSesionBean.buscaAlumno(UUID.fromString(alumno));
-        logger.info(Arrays.toString(actividadModeloLista.toArray()));
     }
 
     public String asiganarTarea() {

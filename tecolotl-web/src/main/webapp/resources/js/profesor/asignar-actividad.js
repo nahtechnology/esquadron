@@ -113,7 +113,7 @@ function descargaDocumento(nombreArchivo, llave) {
 }
 
 function temariosActividad() {
-    var temas =document.querySelectorAll('.uk-card .uk-card-header > div > div:first-child > :last-child');
+    var temas =document.querySelectorAll('.uk-card .uk-card-header > div > div:first-child > :nth-child(3)');
     var contenedorTemas = document.querySelector('#temario > div > div + div');
     temas.forEach(function (textoTemas) {
         misTemas.add(textoTemas.innerText);

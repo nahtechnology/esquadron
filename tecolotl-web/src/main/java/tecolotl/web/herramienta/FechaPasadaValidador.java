@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 public class FechaPasadaValidador implements Validator {
 
     @Inject
-    @TipoMensaje(value = MensajeBundle.ADMINISTRACION)
+    @TipoMensaje(value = MensajeBundle.ETIQUETA)
     private ResourceBundle resourceBundle;
 
     @Override
@@ -24,7 +24,7 @@ public class FechaPasadaValidador implements Validator {
         if (fechaValidar != null && fechaValidar.before(hoy)) {
             FacesMessage facesMessage = new FacesMessage();
             facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-            facesMessage.setSummary(resourceBundle.getString("validation.future.date"));
+            facesMessage.setSummary("past date");
             throw new ValidatorException(facesMessage);
         }
     }

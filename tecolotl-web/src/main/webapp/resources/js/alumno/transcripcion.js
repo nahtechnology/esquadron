@@ -94,7 +94,7 @@ function eventoClickTransciptcion() {
 
 function puntaje() {
     var cajarespuesta;
-    var puntos;
+    var puntos,valor;
     var totalCadena,respuestaConta = 0;
     cajarespuesta = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript .respuesta-drag');
     totalCadena = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript').length;
@@ -105,7 +105,9 @@ function puntaje() {
             respuestaConta += 1;
         }
     });
-    puntos = Math.round((respuestaConta * 100)/totalCadena);
+
+    puntos = Math.round((respuestaConta * 100)/totalCadena) >= 25 ? Math.round((respuestaConta * 100)/totalCadena) : 25;
     // console.log(puntos);
+
     return puntos;
 }
