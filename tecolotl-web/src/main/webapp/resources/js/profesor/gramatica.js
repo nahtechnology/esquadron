@@ -140,15 +140,3 @@ function  Textos(oracionActividad,oracionAlumno) {
     this.oracionActividad = oracionActividad;
     this.oracionAlumno = oracionAlumno;
 }
-
-function validaRespuesta(evento) {
-    var entradas = document.getElementById('formulario-califica').parentNode.querySelectorAll('input[type=text]');
-    entradas = Array.from(entradas);
-    if (entradas.filter(entrada => entrada.value).length < entradas.length) {
-        UIkit.modal.alert('No se puede calificar hasta que el alumno haya terminado de responder todos los ejercicios.').then(function () {
-            console.log('Alert closed.')
-        });
-        return false;
-    }
-    return true;
-}
