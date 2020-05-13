@@ -329,6 +329,7 @@
   text-decoration: none;
   background-color: rgb(224,255,255) !important;
   color: #95A5A6 !important;
+  cursor: default !important;
 }
 
 .boton-escuadron-base-secundary{

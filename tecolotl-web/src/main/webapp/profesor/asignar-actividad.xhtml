@@ -82,7 +82,7 @@
                                          style="display: none">
                         </h:commandButton>
                     </h:form>
-                    <h:button value="#{boton['back']}" styleClass="uk-button uk-margin-small-right boton-escuadron-base" outcome="dashboard"/>
+                    <h:button value="#{boton['back']}" styleClass="uk-button uk-margin-small-right boton-escuadron-base" style="background-color: var(--color-nav-primary)" outcome="dashboard"/>
                     <button class="uk-button boton-escuadron-base" onclick="buscaActividadSeleccionada(event)">#{profesor['activity.assign']}</button>
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
@@ -96,7 +96,7 @@
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                                 <span class="cat-txt ">#{actividadModelo.nivelLenguaje}</span>
                                                 <span class="uk-text-center">#{actividadModelo.tema}</span>
-
+                                                <h:outputText pt:uk-icon="icon : users" pt:uk-tooltip="Assignment #{actividadModelo.totalTareas}"/>
                                             </div>
                                             <div class="uk-width-auto uk-text-right uk-text-muted">
                                                 <input type="radio" name="#{actividadModelo.nivelLenguaje}" class="uk-radio" value="#{actividadModelo.idActividad}"/>
@@ -113,10 +113,11 @@
                                     <div class="uk-card-body tecolotl-card">
                                         <h6 class="uk-margin-small-bottom uk-margin-remove-adjacent uk-text-bold uk-text-small">#{actividadModelo.preguntaDetonadora}</h6>
                                     </div>
+
                                     <div class="uk-card-footer" data-actividad="#{actividadModelo.idActividad}" data-mapas="#{actividadModelo.mapamental}">
                                         <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['activity.grammar']}">
+                                                <span >
                                                     <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
 <!--                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/decarga.svg" class="uk-svg" alt=""/>-->
                                                 </span>
@@ -125,13 +126,13 @@
                                                 </div>
                                             </div>
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['didactic.guide']}" uk-icon="icon: file-text"/>
+                                                <span  uk-icon="icon: file-text"/>
                                                 <div uk-dropdown="">
                                                     <span class="uk-text-capitalize">#{profesor['didactic.guide']}</span>
                                                 </div>
                                             </div>
                                             <div class="uk-inline uk-text-center">
-                                                <span data-uk-tooltip="title: #{profesor['activity.cards']}" uk-icon="icon: commenting"/>
+                                                <span  uk-icon="icon: commenting"/>
                                                 <div uk-dropdown="">
                                                     <span class="uk-text-capitalize">#{profesor['activity.cards']}</span>
                                                 </div>
@@ -144,37 +145,6 @@
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <ui:remove>
-                                                <div class="uk-width-expand ">
-                                                    <h:panelGroup layout="block" styleClass="uk-grid uk-grid-small uk-child-width-1-5" pt:uk-grid="">
-                                                        <div>
-<!--                                                            <h:graphicImage pt:data-uk-tooltip="title: Listening" styleClass="uk-icon-image " library="img" name="icono/listen.svg" />-->
-                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/listen.svg" alt="" class="uk-icon-image" uk-tooltip="title: Listening"/>
-                                                        </div>
-                                                        <div>
-                                                            <h:form>
-                                                                <h:commandLink pt:uk-toggle="#modal-transcript" >
-<!--                                                                    <h:graphicImage pt:data-uk-tooltip="title: Trasncript" styleClass="uk-icon-image " library="img" name="icono/transcript1.svg" />-->
-                                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/transcript1.svg" alt="" class="uk-icon-image" uk-tooltip="title: Trasncript"/>
-                                                                    <f:ajax listener="#{actividadControlador.buscaTranscripcion(actividadModelo)}" render="transcripcion" />
-                                                                </h:commandLink>
-                                                            </h:form>
-                                                        </div>
-                                                        <div>
-<!--                                                            <h:graphicImage pt:data-uk-tooltip="title: Reading" styleClass="uk-icon-image " library="img" name="icono/reading.svg" />-->
-                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/reading.svg" alt="" class="uk-icon-image" uk-tooltip="title: Reading"/>
-                                                        </div>
-                                                        <div>
-<!--                                                            <h:graphicImage pt:data-uk-tooltip="title: Grammar" styleClass="uk-icon-image  " library="img" name="icono/gramatica.svg" />-->
-                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="" class="uk-icon-image" uk-tooltip="title: Grammar"/>
-                                                        </div>
-                                                        <div>
-                                                            <h:graphicImage pt:data-uk-tooltip="title: Quiz" styleClass="uk-icon-image" library="img" name="icono/quizcalifica.svg" />
-                                                            <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/quizcalifica.svg" class="uk-icon-image" alt="" uk-tooltip="title: Quiz"/>
-                                                        </div>
-                                                    </h:panelGroup>
-                                                </div>
-                                            </ui:remove>
                                         </h:panelGroup>
                                     </div>
                                 </div>
