@@ -112,7 +112,7 @@
                 </h:panelGroup>
                 <div class="uk-width-1-4@m">
                     <div class="bmap-#{calificaMapaMentalControlador.tareaMapaMentalModeloLista[0].cardinalidad}"></div>
-                    <p>Score: <span style="color: red; font-weight: bold"/></p>
+                    <p>Score: <span id="puntaje" style="color: red; font-weight: bold"/></p>
                 </div>
                 <h:commandButton value="#{boton['evaluate']}"
                                  styleClass="boton-escuadron-base"
@@ -179,7 +179,13 @@
 
             document.addEventListener('DOMContentLoaded', function (evento) {
                 rango = document.getElementById('formulario:rango');
-                rango.value = "75";
+                if (rango.value == null){
+                    rango.value = "25";
+                }else{
+                   let puntaje =  document.getElementById('puntaje');
+                   puntaje.innerHTML = rango.value;
+                }
+
             });
 
             function validaComentario() {
