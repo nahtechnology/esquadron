@@ -305,6 +305,8 @@
 <!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>-->
         <h:outputScript library="js" name="/profesor/grafica.js"/>
         <script type="application/javascript">
+
+            const msj_nivel = "#{profesor['msj.nivel']}";
             document.addEventListener('DOMContentLoaded',() =>{
                 let btnReport = document.querySelector('#boton-reporte');
                 let tablaGrupos = document.querySelectorAll('#formulario-tabla table tbody > tr > td:last-child  ul > li:first-child > a');

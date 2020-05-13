@@ -449,7 +449,7 @@ function incrementaNivel(evento) {
     document.getElementById('formulario-cambio-nivel:entrada-alumno').value = evento.dataset.idAlumno;
     document.getElementById('formulario-cambio-nivel:entrada-nivel').value = 1;
     formulario.querySelector('input[type=submit]').click();
-    UIkit.notification("se incremento el nivel correctamente");
+    UIkit.notification(msj_nivel);
     modificarGrafica(evento.parentElement.parentElement,pibote);
 }
 
@@ -459,7 +459,7 @@ function decrementaNivel(evento) {
     document.getElementById('formulario-cambio-nivel:entrada-alumno').value = evento.dataset.idAlumno;
     document.getElementById('formulario-cambio-nivel:entrada-nivel').value = -1;
     formulario.querySelector('input[type=submit]').click();
-    UIkit.notification("se decremento el nivel correctamente");
+    UIkit.notification(msj_nivel);
     modificarGrafica(evento.parentElement.parentElement,pibote);
 }
 
