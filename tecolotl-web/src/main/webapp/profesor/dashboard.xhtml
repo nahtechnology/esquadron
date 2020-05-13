@@ -215,15 +215,7 @@
                 <f:ajax
                         execute="@form"
                         listener="#{cambioNivelAlumnoControlador.cambiaNivel}"
-                        onevent="function grafica(data) {
-                                            console.log(data.status);
-                                            if (data.status === 'success')
-                                               {
-                                               datosGrupo();
-                                               visualizar();
-                                               }
-                                        }"
-                        render="graficas"/>
+                        />
             </h:commandButton>
         </h:form>
 

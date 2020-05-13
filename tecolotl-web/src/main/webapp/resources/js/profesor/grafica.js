@@ -165,11 +165,12 @@ function crearGrafica(datosGrupo,claseGrupo) {
         contenedorBotones.appendChild(botonSubirNivel);
         nombreAlumno.style.display = "flex";
         contenedorBotones.style.marginLeft="auto";
-        promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
+
         botonBajarNivel.addEventListener("click",abrirBajarNivel );
         switch(parseInt(sujeto[0].personaNivelIngles)) {
             case 1 :{
                 nivelAlumno = 'A1';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[0] >= 18){
                     botonSubirNivel.addEventListener('click',incrementaNivel);
@@ -188,6 +189,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
             break;
             case 2 :{
                 nivelAlumno = 'A2';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = 18;
                 numeroActividades[1] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[1] >= 18){
@@ -204,6 +206,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 break;
             case 3 :{
                 nivelAlumno = 'B1';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = 18;
                 numeroActividades[1] = 18;
                 numeroActividades[2] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
@@ -220,6 +223,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 break;
             case 4 :{
                 nivelAlumno = 'B2';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = 18;
                 numeroActividades[1] = 18;
                 numeroActividades[2] = 18;
@@ -236,11 +240,13 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 break;
             case 5 :{
                 nivelAlumno = 'C1';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = 18;
                 numeroActividades[1] = 18;
                 numeroActividades[2] = 18;
                 numeroActividades[3] = 18;
                 numeroActividades[4] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
+                console.log("C1:"+numeroActividades[4]+promedioSubirNivel[0]);
                 if (numeroActividades[4] >= 18){
                     botonSubirNivel.addEventListener('click',incrementaNivel);
                 }else {
@@ -252,6 +258,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 break;
             case 6 :{
                 nivelAlumno = 'C2';
+                promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = 18;
                 numeroActividades[1] = 18;
                 numeroActividades[2] = 18;
@@ -293,7 +300,7 @@ function crearGrafica(datosGrupo,claseGrupo) {
         });
 
         porcentajeTotal =  Math.round((porcentajeTotal * 100)/(18*6));
-        porcentajeAlumno.innerText = nivelAlumno + ":"+ " \u00A0 \u00A0"  + porcentajeNivel + '%' + " \u00A0 \u00A0" + "Total:" + "\u00A0 \u00A0" + porcentajeTotal + '%';
+        porcentajeAlumno.innerText = nivelAlumno + ":"+ "\u00A0\u00A0\u00A0"  + porcentajeNivel + '%' + "\u00A0\u00A0\u00A0" + "Total:" + "\u00A0\u00A0\u00A0" + porcentajeTotal + '%';
         nombreAlumno.appendChild(porcentajeAlumno);
         nombreAlumno.appendChild(contenedorBotones);
         grupo.appendChild(alumnoGrupo);
@@ -437,21 +444,23 @@ function paginacionGraficas(dato) {
 }
 
 function incrementaNivel(evento) {
-    console.log(evento);
+    let pibote = 1;
     let formulario = document.getElementById('formulario-cambio-nivel');
     document.getElementById('formulario-cambio-nivel:entrada-alumno').value = evento.dataset.idAlumno;
     document.getElementById('formulario-cambio-nivel:entrada-nivel').value = 1;
     formulario.querySelector('input[type=submit]').click();
     UIkit.notification("se incremento el nivel correctamente");
+    modificarGrafica(evento.parentElement.parentElement,pibote);
 }
 
 function decrementaNivel(evento) {
-    console.log(evento);
+    let pibote = 0;
     let formulario = document.getElementById('formulario-cambio-nivel');
     document.getElementById('formulario-cambio-nivel:entrada-alumno').value = evento.dataset.idAlumno;
     document.getElementById('formulario-cambio-nivel:entrada-nivel').value = -1;
     formulario.querySelector('input[type=submit]').click();
     UIkit.notification("se decremento el nivel correctamente");
+    modificarGrafica(evento.parentElement.parentElement,pibote);
 }
 
 function abrirBajarNivel(evento) {
@@ -496,4 +505,57 @@ nahModal["modal-nivel-subir"].abrirModal();
         botonNivelSubir.removeEventListener('click',funcionSubir);
         botonCerrar.removeEventListener('click',cerrarModales);
     }
+}
+
+function modificarGrafica(elementoPadre,opcion) {
+    let datosPorcentaje = elementoPadre.querySelector('span:nth-child(2)').textContent.split(/\u00A0+/);
+    let barras = elementoPadre.parentElement.querySelectorAll('progress');
+    let letrero = elementoPadre.querySelector('span:nth-child(2)');
+    let nivelActual = datosPorcentaje[0].split(':');
+    let boton1 = elementoPadre.querySelector('span:last-child > button');
+    let boton2 = elementoPadre.querySelector('span:last-child > button:last-child');
+
+    switch (opcion) {
+        case 0:
+            for (let i = nivel.length-1; i > 0 ; i--) {
+                barras[i].value = 0;
+                if(nivelActual[0] === nivel[i]){
+                    datosPorcentaje[0] = nivel[i-1];
+                    barras[i-1].value = 0;
+                    datosPorcentaje[3] = Math.round(((18 * (i - 1))*100)/(18*6));
+                    i = 0;
+                }
+            }
+
+            break;
+
+        case 1:
+            for (let i = 0; i < nivel.length-1 ; i++) {
+                barras[i].value = 18;
+                if(nivelActual[0] === nivel[i]){
+                    datosPorcentaje[0] = nivel[i+1];
+                    datosPorcentaje[3] = Math.round(((18 * (i + 1))*100)/(18*6));
+                    i = nivel.length;
+                }
+            }
+           break;
+    }
+
+    if (datosPorcentaje[0] === nivel[0]){
+
+        boton1.classList.add('desactivado-nivel');
+        boton1.disabled = true;
+    }else if (datosPorcentaje[0] === nivel[5]){
+
+        boton2.classList.add('desactivado-nivel');
+        boton2.disabled = true;
+    }else {
+        boton1.classList.remove('desactivado-nivel');
+        boton1.disabled = false;
+        boton2.classList.remove('desactivado-nivel');
+        boton2.disabled = false;
+    }
+    letrero.innerText = datosPorcentaje[0] + ":"+ "\u00A0\u00A0\u00A0"  + datosPorcentaje[1] + "\u00A0\u00A0\u00A0" + datosPorcentaje[2] + "\u00A0\u00A0\u00A0" + datosPorcentaje[3] + '%';
+
+
 }
