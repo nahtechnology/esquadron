@@ -69,7 +69,7 @@ function agregaListener(ejercicios) {
 
         cadenaMapas.forEach(function (numeroMapa) {
            let linkMapa = document.createElement('li');
-           linkMapa.innerHTML ="Mindmap_".concat(numeroMapa) ;
+           linkMapa.innerHTML =descargableMapa.concat("_",numeroMapa) ;
            contenedorListaMapa.appendChild(linkMapa);
         });
         iconos = ejercicio.querySelectorAll('.uk-inline > div > span');
@@ -84,7 +84,7 @@ function agregaListener(ejercicios) {
         });
         contenedorListaMapa.querySelectorAll('li').forEach(function (linkMap,index) {
           linkMap.addEventListener('click',function (evento) {
-              descargaDocumento('Mindmap_'.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
+              descargaDocumento(descargableMapa.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
           })
         })
 
