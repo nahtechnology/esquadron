@@ -1,5 +1,6 @@
 package tecolotl.profesor.modelo;
 
+import tecolotl.alumno.entidad.vista.BuscaActividadesVistaEntidad;
 import tecolotl.profesor.entidad.ActividadEntidad;
 
 public class ActividadModelo {
@@ -25,9 +26,13 @@ public class ActividadModelo {
         this.mapamental = actividadEntidad.getMapamental();
     }
 
-    public ActividadModelo(tecolotl.alumno.entidad.ActividadEntidad actividadEntidad) {
-        this.idActividad = actividadEntidad.getId();
-        this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
+    public ActividadModelo(BuscaActividadesVistaEntidad buscaActividadesVistaEntidad) {
+        idActividad = buscaActividadesVistaEntidad.getIdActvidad();
+        preguntaDetonadora = buscaActividadesVistaEntidad.getPreguntaDetonadora();
+        tema = buscaActividadesVistaEntidad.getTema();
+        nivelLenguaje = buscaActividadesVistaEntidad.getNivelLenguaje();
+        codigoNivelLenguaje = buscaActividadesVistaEntidad.getIdNivelLenguaje();
+        mapamental = buscaActividadesVistaEntidad.getMapaMental();
     }
 
     public String getIdActividad() {
@@ -84,5 +89,18 @@ public class ActividadModelo {
 
     public void setTotalTareas(Integer totalTareas) {
         this.totalTareas = totalTareas;
+    }
+
+    @Override
+    public String toString() {
+        return "ActividadModelo{" +
+                "idActividad='" + idActividad + '\'' +
+                ", preguntaDetonadora='" + preguntaDetonadora + '\'' +
+                ", tema='" + tema + '\'' +
+                ", nivelLenguaje='" + nivelLenguaje + '\'' +
+                ", totalTareas=" + totalTareas +
+                ", codigoNivelLenguaje=" + codigoNivelLenguaje +
+                ", mapamental='" + mapamental + '\'' +
+                '}';
     }
 }
