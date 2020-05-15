@@ -862,9 +862,25 @@ textarea::-webkit-scrollbar-thumb:hover {
 
 .incorrecto{
     background-color: #E74C3C!important;
+    color: white!important;
 }
 .correcto{
     background-color: #2ECC71!important;
+    color: white!important;
+}
+
+.score{
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg") no-repeat center/100%;
+    width: 250px;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.score > span{
+    font-weight: 900;
+    font-size: 30px;
+    color: white
 }
 
 @media screen and (max-width: 1030px ){

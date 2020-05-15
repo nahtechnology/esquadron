@@ -145,7 +145,7 @@
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
                             <h:form>
                                 <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
-                                    <div class="contenedor-imagen scroll-drag">
+                                    <h:panelGroup layout="block" styleClass="contenedor-imagen scroll-drag" pt:data-activo="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta  ? 'true':'false'}" >
                                         <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                             <div class="imagen-relacionar uk-margin-auto ">
                                                 <img data-llave="#{relacionarControlador.carpeta.concat('/').concat(relacionarModelo.palabra).concat('_').concat(relacionarModelo.claseGlosarioModelo.valor)}" alt="imagen" class="cargando"  src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/esquadron-animado.svg"/>
@@ -154,16 +154,18 @@
                                                 <div class="icono-relacion-img uk-width-auto"></div>
                                                 <h:inputHidden value="#{relacionarModelo.palabra}"/>
                                                 <h:panelGroup id="su#{conta.index}" layout="block" styleClass="oraciones-relacion-img uk-width-expand"  pt:uk-sortable="group: respuesta" pt:data-indice="#{conta.index}" rendered="#{empty relacionarModelo.respuesta}"/>
-                                                <h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
+                                                <h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen"  rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
                                                 <h:inputHidden value="#{relacionarModelo.respuesta}" rendered="#{empty relacionarModelo.respuesta}"/>
                                             </div>
                                         </ui:repeat>
-                                    </div>
-                                    <h:panelGroup layout="block" styleClass="contenedor-imagen">
+                                    </h:panelGroup>
+                                    <h:panelGroup layout="block" styleClass="contenedor-imagen" >
                                         <h:panelGroup styleClass="respuesta-imagen palabras"
                                                       rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                       layout="block">
-                                            <div class="ubicado terminado"></div>
+                                            <div class="score">
+                                                <span/>
+                                            </div>
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
@@ -185,8 +187,9 @@
                                 <h:commandButton value="#{boton['submit']}" styleClass="boton-enviar boton-trasladar uk-margin" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form" onevent="function imagen(data) {
                                             console.log(data.status);
-                                            if (data.status === 'success')
-                                               {cargarImagen();}
+                                            if (data.status === 'success') {
+                                            cargarImagen();
+                                            calificaRelacionarImagen();}
                                         }"/>
                                 </h:commandButton>
                             </h:form>
@@ -295,7 +298,8 @@
                 }
             }
         </script>
-        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/more-actibity.js"></script>
+<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/more-actibity.js"></script>-->
+        <h:outputScript library="js" name="/alumno/more-actibity.js"/>
     </ui:define>
     <ui:define name="enlaces-js">
         <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.587.0.min.js"></script>

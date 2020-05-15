@@ -245,8 +245,10 @@
                                     <ui:remove>
                                         <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     </ui:remove>
-                                    <h:panelGroup styleClass="score " layout="block" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}">
-                                        <span style="font-weight: 900; font-size: 30px; color: white"/>
+                                    <h:panelGroup style="display: flex; justify-content: center; align-items: center"  layout="block" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                        <h:panelGroup layout="block" styleClass="score">
+                                            <span style="font-weight: 900; font-size: 30px; color: white"/>
+                                        </h:panelGroup>
                                     </h:panelGroup>
 
                                 </h:panelGroup>

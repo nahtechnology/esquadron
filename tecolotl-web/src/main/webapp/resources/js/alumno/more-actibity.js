@@ -17,6 +17,9 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         }
     }
     completarOracionRemueve();
+    if (relacionarImagen.querySelector('.contenedor-imagen').dataset.activo === "true"){
+        calificaRelacionarImagen();
+    }
 });
 
 function completarOracionRemueve() {
@@ -152,4 +155,27 @@ function revolverNodos() {
     nodosBuenos.forEach(function (nodoBueno) {
         cotenidoRespuesta.appendChild(nodoBueno);
     });
+}
+
+function calificaRelacionarImagen() {
+    let calificacion = 0;
+    let contenedores = relacionarImagen.querySelectorAll('.contenedor-imagen:first-child .respuesta-imagen-contenedor');
+contenedores.forEach(palabras => {
+    let respuestasCorrectas, respuestasAlumno;
+    respuestasCorrectas = palabras.querySelector('input[type=hidden]').value.trim().toLocaleLowerCase();
+    respuestasAlumno = palabras.querySelector('.oraciones-relacion-img').innerText.trim().toLocaleLowerCase();
+    if(respuestasCorrectas === respuestasAlumno){
+        palabras.querySelector('.oraciones-relacion-img').classList.add('correcto');
+        calificacion++;
+    }else {
+        palabras.querySelector('.oraciones-relacion-img').classList.add('incorrecto');
+    }
+
+});
+    console.log(contenedores.length);
+    console.log(calificacion);
+    calificacion = Math.round(calificacion * 100/contenedores.length) >= 25 ? Math.round(calificacion * 100/contenedores.length) : 25;
+    relacionarImagen.querySelector('.respuesta-imagen .score > span').innerText = "Score: "+calificacion + "%";
+
+
 }

@@ -82,7 +82,7 @@ function calificarTranscript(){
         }
         respuestaTranscript.classList.add(clase);
     });
-    calificacion = Math.round(calificacion * 100/respuestas.length);
+    calificacion = Math.round(calificacion * 100/respuestas.length) >= 25 ? Math.round(calificacion * 100/respuestas.length) : 25 ;
     document.querySelector('.score span').innerText = "Score: "+ calificacion + "%";
 
 
