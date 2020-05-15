@@ -85,7 +85,9 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>-->
+        <h:outputStylesheet library="css" name="/alumno/transcript/transcript.css"/>
+
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/variables-alumno.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/lista-ordenar.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/ordenar-palabra.css"/>
@@ -153,7 +155,9 @@
                                         <div class="titulo-respuesta-ordenar">#{alumno['activities.title.match.sentence.answer']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
                                             <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista " pt:uk-sortable="group: match-activity" pt:data-indice="#{cont.index}">
-                                                <h:panelGroup layout="block" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta}" styleClass="respuesta">
+                                                <h:panelGroup layout="block"
+                                                              rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta}"
+                                                              styleClass="respuesta #{relacionarOracion.relacionarOracionModelo.id eq relacionarOracion.respuesta ? 'correcto' : 'incorrecto'}">
                                                     #{relacionarOracionControlador.respuestaVal(relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta)}
                                                 </h:panelGroup>
                                             </h:panelGroup>
@@ -199,8 +203,12 @@
                             </ul>
                             <ul class="uk-switcher uk-margin scroll-drag" id="contenedor-words">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica">
-                                    <li>
-                                        <h:graphicImage styleClass="movimiento2 finalizado" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta}"/>
+                                    <li data-activado = "#{not empty gramatica.calificacion and not empty gramatica.respuesta ? 'true': 'false'}">
+                                        <h:graphicImage styleClass="movimiento2 finalizado" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta and empty gramatica.calificacion}"/>
+                                        <h:panelGroup layout="block" styleClass="score uk-margin-auto"  rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}">
+                                            <span><h:outputText  value="#{gramatica.calificacion}"/></span>
+                                        </h:panelGroup>
+                                        <h:outputText styleClass="visibilidad"  value="#{gramatica.palabra}" rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}"/>
                                         <h:form>
                                             <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
                                                 <h:inputHidden value="#{empty gramatica.respuesta ? gramatica.palabra : gramatica.respuesta}" pt:data-respuesta="#{empty gramatica.respuesta}"/>
@@ -238,7 +246,15 @@
                                         <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                         <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     </div>
-                                    <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    <ui:remove>
+                                        <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    </ui:remove>
+                                    <h:panelGroup style="display: flex; justify-content: center; align-items: center"  layout="block" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                        <h:panelGroup layout="block" styleClass="score">
+                                            <span style="font-weight: 900; font-size: 30px; color: white"/>
+                                        </h:panelGroup>
+                                    </h:panelGroup>
+
                                 </h:panelGroup>
                                 <h:inputHidden id="respuesta" value="#{transcripcionControlador.transcripcion}"/>
                                 <h:inputHidden id="calificacion" value="#{transcripcionControlador.calificacion}"/>
@@ -489,13 +505,15 @@
         </script>
 
 
-        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/transcripcion.js"></script>
+<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/transcripcion.js"></script>-->
+        <h:outputScript library="js" name="/alumno/transcripcion.js"/>
 <!--        <h:outputScript library="js" name="alumno/activity.js"/>-->
     </ui:define>
     <ui:define name="enlaces-js">
 <!--        <h:outputScript library="js" name="/alumno/drag-prueba.js"/>-->
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-prueba.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/match-activity.js"></script>
+        <h:outputScript library="js" name="/alumno/calificaciones-actividad.js"/>
 
     </ui:define>
 </ui:composition>

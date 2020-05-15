@@ -100,7 +100,9 @@
                             <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">
                                 <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
                             </h:link>
-                            <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos > 0}"/>
+                            <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos gt 0 and empty mapaMental.calificacion}"/>
+                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}"/>
+                            <h:outputText rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}" value="#{mapaMental.calificacion}"/>
                         </div>
                     </ui:repeat>
                 </div>
