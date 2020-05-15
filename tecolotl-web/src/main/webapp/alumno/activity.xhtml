@@ -203,10 +203,12 @@
                             </ul>
                             <ul class="uk-switcher uk-margin scroll-drag" id="contenedor-words">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica">
-                                    <li>
+                                    <li data-activado = "#{not empty gramatica.calificacion and not empty gramatica.respuesta ? 'true': 'false'}">
                                         <h:graphicImage styleClass="movimiento2 finalizado" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta and empty gramatica.calificacion}"/>
-                                        <h:graphicImage styleClass="" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}"/>
-                                        <h:outputText rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}" value="#{gramatica.calificacion}"/>
+                                        <h:panelGroup layout="block" styleClass="score uk-margin-auto"  rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}">
+                                            <span><h:outputText  value="#{gramatica.calificacion}"/></span>
+                                        </h:panelGroup>
+                                        <h:outputText styleClass="visibilidad"  value="#{gramatica.palabra}" rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}"/>
                                         <h:form>
                                             <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
                                                 <h:inputHidden value="#{empty gramatica.respuesta ? gramatica.palabra : gramatica.respuesta}" pt:data-respuesta="#{empty gramatica.respuesta}"/>
@@ -511,6 +513,7 @@
 <!--        <h:outputScript library="js" name="/alumno/drag-prueba.js"/>-->
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-prueba.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/match-activity.js"></script>
+        <h:outputScript library="js" name="/alumno/calificaciones-actividad.js"/>
 
     </ui:define>
 </ui:composition>

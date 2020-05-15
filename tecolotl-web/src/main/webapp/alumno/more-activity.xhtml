@@ -143,7 +143,7 @@
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
                             <h:form>
-                                <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
+                                <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
                                     <h:panelGroup layout="block" styleClass="contenedor-imagen scroll-drag" pt:data-activo="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta  ? 'true':'false'}" >
                                         <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                             <div class="imagen-relacionar uk-margin-auto ">

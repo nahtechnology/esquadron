@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     }
     completarOracionRemueve();
     if (relacionarImagen.querySelector('.contenedor-imagen').dataset.activo === "true"){
+        relacionarImagen.querySelector('.contenedor-imagen:last-child .palabras').style.background = "none";
         calificaRelacionarImagen();
     }
 });
