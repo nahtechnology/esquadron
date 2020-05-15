@@ -123,6 +123,13 @@ ul{
     position: absolute;
 }
 
+.score{
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg") no-repeat center/50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .barra-publicidad{
     height: 90px;
     width: 100%;

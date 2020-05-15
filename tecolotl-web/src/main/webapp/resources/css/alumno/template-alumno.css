@@ -860,6 +860,13 @@ textarea::-webkit-scrollbar-thumb:hover {
     z-index: 10;
 }
 
+.incorrecto{
+    background-color: #E74C3C!important;
+}
+.correcto{
+    background-color: #2ECC71!important;
+}
+
 @media screen and (max-width: 1030px ){
     body{
         background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-ipad.svg");

@@ -85,7 +85,9 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>-->
+        <h:outputStylesheet library="css" name="/alumno/transcript/transcript.css"/>
+
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/variables-alumno.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/lista-ordenar.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/ordenar-palabra.css"/>
@@ -240,7 +242,13 @@
                                         <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                         <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
                                     </div>
-                                    <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    <ui:remove>
+                                        <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    </ui:remove>
+                                    <h:panelGroup styleClass="score " layout="block" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                        <span style="font-weight: 900; font-size: 30px; color: white"/>
+                                    </h:panelGroup>
+
                                 </h:panelGroup>
                                 <h:inputHidden id="respuesta" value="#{transcripcionControlador.transcripcion}"/>
                                 <h:inputHidden id="calificacion" value="#{transcripcionControlador.calificacion}"/>
@@ -491,7 +499,8 @@
         </script>
 
 
-        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/transcripcion.js"></script>
+<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/transcripcion.js"></script>-->
+        <h:outputScript library="js" name="/alumno/transcripcion.js"/>
 <!--        <h:outputScript library="js" name="alumno/activity.js"/>-->
     </ui:define>
     <ui:define name="enlaces-js">

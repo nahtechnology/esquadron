@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         menuPrincipal.querySelector('li:nth-child(4)').click();
         menuPrincipal.querySelector('li:first-child').removeAttribute('uk-filter-control');
     }
+    if(answer.querySelector('.remplazar').dataset.respuesta === "false"){
+        calificarTranscript();
+    }
+
 });
 
 function agregaRespuestas(elemento) {
@@ -60,7 +64,28 @@ function revolver(arreglo) {
 function transcripcionEnvidad(data) {
     if (data.status === 'success') {
         UIkit.notification(mensajeEnviado, {pos: 'top-right'});
+        setTimeout(calificarTranscript,500);
     }
+}
+function calificarTranscript(){
+    let calificacion = 0;
+    let respuestas = document.querySelectorAll('.trancript-contenedor span.respuesta-drag');
+    let respuestasCorrectas = [];
+    document.querySelectorAll('.transcrip .transcrip-contenedor span.remover').forEach(palabra => {
+        respuestasCorrectas.push(palabra.innerText.trim());
+    });
+    respuestas.forEach((respuestaTranscript,index) => {
+
+        let clase = respuestaTranscript.innerText.trim() === respuestasCorrectas[index] ? "correcto" : "incorrecto";
+        if (clase === "correcto"){
+            calificacion++;
+        }
+        respuestaTranscript.classList.add(clase);
+    });
+    calificacion = Math.round(calificacion * 100/respuestas.length);
+    document.querySelector('.score span').innerText = "Score: "+ calificacion + "%";
+
+
 }
 
 function validaContenido() {
