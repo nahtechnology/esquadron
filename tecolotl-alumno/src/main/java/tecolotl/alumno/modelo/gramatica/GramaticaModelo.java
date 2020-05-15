@@ -2,6 +2,7 @@ package tecolotl.alumno.modelo.gramatica;
 
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
+import tecolotl.alumno.entidad.vista.CalificacionTareaGramaticaVistaEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 
 import java.util.Date;
@@ -31,6 +32,15 @@ public class GramaticaModelo {
         this.respuesta = tareaGramaticaEntidad.getRespuesta();
         this.horaRespuesta = tareaGramaticaEntidad.getHoraRespuesta();
         this.vuelta = tareaGramaticaEntidad.getTareaGramaticaEntidadPK().getVuelta();
+    }
+
+    public GramaticaModelo(CalificacionTareaGramaticaVistaEntidad calificacionTareaGramaticaVistaEntidad) {
+        actividadModelo = new ActividadModelo(calificacionTareaGramaticaVistaEntidad.getIdActividad());
+        codigo = calificacionTareaGramaticaVistaEntidad.getCodigo();
+        palabra = calificacionTareaGramaticaVistaEntidad.getPalabra();
+        respuesta = calificacionTareaGramaticaVistaEntidad.getRespuesta();
+        vuelta = calificacionTareaGramaticaVistaEntidad.getVuelta();
+        calificacion = calificacionTareaGramaticaVistaEntidad.getPuntaje();
     }
 
     public Short getCalificacion() {

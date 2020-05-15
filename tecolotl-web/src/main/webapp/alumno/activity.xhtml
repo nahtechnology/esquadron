@@ -204,7 +204,9 @@
                             <ul class="uk-switcher uk-margin scroll-drag" id="contenedor-words">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica">
                                     <li>
-                                        <h:graphicImage styleClass="movimiento2 finalizado" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta}"/>
+                                        <h:graphicImage styleClass="movimiento2 finalizado" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty gramatica.respuesta and empty gramatica.calificacion}"/>
+                                        <h:graphicImage styleClass="" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}"/>
+                                        <h:outputText rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}" value="#{gramatica.calificacion}"/>
                                         <h:form>
                                             <h:panelGroup layout="block" styleClass="uk-container padding-contenedor estilo-contenedor">
                                                 <h:inputHidden value="#{empty gramatica.respuesta ? gramatica.palabra : gramatica.respuesta}" pt:data-respuesta="#{empty gramatica.respuesta}"/>
