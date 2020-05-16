@@ -351,7 +351,7 @@
     align-items: center;
 }
 
-.complete-sentences div>span{
+.complete-sentences .contedor-oraciones>span{
     background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg" ) no-repeat left center/32px 32px white;
     padding: 5px 0 5px 35px;
     min-width: 120px;

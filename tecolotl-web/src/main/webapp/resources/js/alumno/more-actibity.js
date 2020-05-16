@@ -8,7 +8,22 @@ var answer;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     revuelve(relacionarImagen.querySelectorAll('.palabras div'));
-    revuelve(ordenarOracion.querySelectorAll('.contenedor-oraciones > div'));
+    if (ordenarOracion.querySelector('.contenedor-oraciones').dataset.activado === "false"){
+        revuelve(ordenarOracion.querySelectorAll('.contenedor-oraciones > div'));
+    }else{
+        let respuestas = ordenarOracion.querySelectorAll('.imagen-oracion');
+        let puntaje = 0;
+        respuestas.forEach(respuesta =>{
+            if(respuesta.classList.contains('correcto')){
+                puntaje++;
+            }
+        });
+        console.log(puntaje);
+        puntaje = Math.round(puntaje * 100/respuestas.length) >= 25 ? Math.round(puntaje * 100/respuestas.length) : 25;
+        ordenarOracion.querySelector('.score > span').innerText ="Score: " + puntaje + "%";
+
+    }
+
     var listaMenu = menu.querySelectorAll('li');
     for (indice = 0; indice < listaMenu.length; indice++) {
         if (listaMenu[indice].style.display != 'none') {
@@ -18,9 +33,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     }
     completarOracionRemueve();
     if (relacionarImagen.querySelector('.contenedor-imagen').dataset.activo === "true"){
-        relacionarImagen.querySelector('.contenedor-imagen:last-child .palabras').style.background = "none";
         calificaRelacionarImagen();
     }
+
+   verRespuestasCompletarOracion();
 });
 
 function completarOracionRemueve() {
@@ -29,9 +45,9 @@ function completarOracionRemueve() {
     while (palabras.hasChildNodes()) {
         palabras.removeChild(palabras.firstChild);
     }
-    var texto = revolver(wordsPalabras);
+    // var texto = revolver(wordsPalabras);
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
-        otro = parrafo.querySelector('span');
+        otro = parrafo.querySelector('span[id*=oraciones]');
         if (otro.dataset.resuelto === 'true') {
             //otro.querySelector('span').textContent = otro.dataset.respuesta;
         } else {
@@ -87,7 +103,7 @@ function respuestaEnvidad(data) {
 
 function agregaRespuestas(elemento) {
     respuestas = [];
-    answer.querySelectorAll('.remover').forEach(function (palabra,index) {
+    answer.querySelectorAll('span[id*=oraciones] .remover').forEach(function (palabra,index) {
         respuestas.push(palabra.textContent);
         palabra.setAttribute('class','respuesta-ordenar-oracion');
         // palabra.setAttribute("ondrop","drop(event, this)");
@@ -110,11 +126,28 @@ function agregaRespuestas(elemento) {
 }
 
 function agregaRespuesta() {
-    completarOracion.querySelectorAll('div ul:nth-child(2) > li > span').forEach(function (elemento) {
+    completarOracion.querySelectorAll('div ul:nth-child(2) > li > span[id*=oraciones] ').forEach(function (elemento) {
         if (elemento.dataset.resuelto === 'true') {
             elemento.querySelector('span').textContent = elemento.dataset.respuesta;
         }
     });
+}
+
+function verRespuestasCompletarOracion() {
+    completarOracion.querySelectorAll('[id*=respuesta-correcta]').forEach(palabra =>{
+        calificarCompletarOracion(palabra);
+    });
+    let totalRespondidas = completarOracion.querySelectorAll('.menu-ordenar > li.boton-listo').length;
+    let totalPreguntas = completarOracion.querySelectorAll('.menu-ordenar > li').length;
+    if(totalPreguntas === totalRespondidas){
+        let puntaje = completarOracion.querySelectorAll('span.color-correcto').length;
+        puntaje = Math.round(puntaje*100/totalPreguntas) >= 25 ? Math.round(puntaje*100/totalPreguntas) : 25;
+        completarOracion.querySelectorAll('.terminado').forEach(score=>{
+            score.classList.remove('terminado');
+            score.classList.add('score','uk-position-absolute');
+            score.querySelector('span').innerText = "Score "+puntaje+"%";
+        });
+    }
 }
 
 function validaRespuestaCompletarOracion(evento) {
@@ -173,10 +206,16 @@ contenedores.forEach(palabras => {
     }
 
 });
-    console.log(contenedores.length);
-    console.log(calificacion);
+
     calificacion = Math.round(calificacion * 100/contenedores.length) >= 25 ? Math.round(calificacion * 100/contenedores.length) : 25;
     relacionarImagen.querySelector('.respuesta-imagen .score > span').innerText = "Score: "+calificacion + "%";
+    relacionarImagen.querySelector('.contenedor-imagen:last-child .palabras').style.background = "none";
+    
+}
 
-
+function calificarCompletarOracion(palabra) {
+let respuestaCorrecta = palabra.querySelector('.remover').innerText;
+let respuestaAlumno = palabra.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion').innerText;
+let clase =  respuestaAlumno.trim().toLowerCase() === respuestaCorrecta.trim().toLowerCase() ? 'color-correcto':'color-incorrecto';
+    palabra.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion').classList.add(clase);
 }

@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         calificarTranscript();
     }
 
+    if (document.querySelector('.match .caja-preguntas-ordenar').dataset.activo === 'true'){
+        calificarMatch();
+    }
+
 });
 
 function agregaRespuestas(elemento) {
@@ -83,7 +87,7 @@ function calificarTranscript(){
         respuestaTranscript.classList.add(clase);
     });
     calificacion = Math.round(calificacion * 100/respuestas.length) >= 25 ? Math.round(calificacion * 100/respuestas.length) : 25 ;
-    document.querySelector('.score span').innerText = "Score: "+ calificacion + "%";
+    document.querySelector('.answer .score span').innerText = "Score: "+ calificacion + "%";
 
 
 }
@@ -135,4 +139,13 @@ function puntaje() {
     // console.log(puntos);
 
     return puntos;
+}
+
+function calificarMatch() {
+let contenedorRespuestas = document.querySelector('.match .caja-preguntas-ordenar > div:last-child');
+let respuestas = contenedorRespuestas.querySelectorAll('.correcto').length;
+let preguntas = contenedorRespuestas.querySelectorAll('.respuesta').length;
+let puntaje = Math.round(respuestas * 100 / preguntas) >= 25 ? Math.round(respuestas * 100 / preguntas) : 25;
+    document.querySelector('.match .score').style.setProperty('top','6%');
+document.querySelector('.match .score > span').innerText = "Score: " + puntaje + "%";
 }
