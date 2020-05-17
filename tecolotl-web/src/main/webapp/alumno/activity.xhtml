@@ -185,7 +185,7 @@
                                 </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
                                 <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" onclick="return recuperaDatos(event)" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" onevent="function f(data) {if (data === 'succes'){ }}" execute="@form" render="@form"/>
+                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}"  execute="@form"  render="@form" onevent="function f(data) {if (data.status === 'success'){ setTimeout(calificarMatch,500);  }}"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
