@@ -11,16 +11,8 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     if (ordenarOracion.querySelector('.contenedor-oraciones').dataset.activado === "false"){
         revuelve(ordenarOracion.querySelectorAll('.contenedor-oraciones > div'));
     }else{
-        let respuestas = ordenarOracion.querySelectorAll('.imagen-oracion');
-        let puntaje = 0;
-        respuestas.forEach(respuesta =>{
-            if(respuesta.classList.contains('correcto')){
-                puntaje++;
-            }
-        });
-        console.log(puntaje);
-        puntaje = Math.round(puntaje * 100/respuestas.length) >= 25 ? Math.round(puntaje * 100/respuestas.length) : 25;
-        ordenarOracion.querySelector('.score > span').innerText ="Score: " + puntaje + "%";
+        calificacionOracinesOrdenar();
+
 
     }
 
@@ -98,6 +90,7 @@ function respuestaEnvidad(data) {
         var respondido = document.createElement('span');
         respondido.classList.add('fin-ordenar', 'fin-movimiento');
         ordenarOracion.querySelector('form').appendChild(respondido);
+        calificacionOracinesOrdenar();
     }
 }
 
@@ -218,4 +211,17 @@ let respuestaCorrecta = palabra.querySelector('.remover').innerText;
 let respuestaAlumno = palabra.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion').innerText;
 let clase =  respuestaAlumno.trim().toLowerCase() === respuestaCorrecta.trim().toLowerCase() ? 'color-correcto':'color-incorrecto';
     palabra.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion').classList.add(clase);
+}
+
+function calificacionOracinesOrdenar() {
+    let respuestas = ordenarOracion.querySelectorAll('.imagen-oracion');
+    let puntaje = 0;
+    respuestas.forEach(respuesta =>{
+        if(respuesta.classList.contains('correcto')){
+            puntaje++;
+        }
+    });
+    console.log(puntaje);
+    puntaje = Math.round(puntaje * 100/respuestas.length) >= 25 ? Math.round(puntaje * 100/respuestas.length) : 25;
+    ordenarOracion.querySelector('.score > span').innerText ="Score: " + puntaje + "%";
 }
