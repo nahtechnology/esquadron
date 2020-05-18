@@ -101,8 +101,9 @@
                                 <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
                             </h:link>
                             <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos gt 0 and empty mapaMental.calificacion}"/>
-                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}"/>
-                            <h:outputText rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}" value="#{mapaMental.calificacion}"/>
+                            <h:panelGroup layout="block" styleClass="score uk-position-absolute " style="width: 200px; height: 200px; left: 55%; top: 50%; transform: translate(-50%, -50%);" rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}">
+                                <span style="font-size: 22px"><h:outputText rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}" value="Score: #{mapaMental.calificacion}%"/></span>
+                            </h:panelGroup>
                         </div>
                     </ui:repeat>
                 </div>

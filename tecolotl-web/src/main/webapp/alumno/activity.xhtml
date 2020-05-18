@@ -141,7 +141,7 @@
                                 <div uk-dropdown="mode: click">#{alumno['activity.help.message.match']}</div>
                             </div>
                             <h:form id="formulario-relacionar">
-                                <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="">
+                                <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="" pt:data-activo="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta ? 'false':'true'}">
                                     <div class="uk-width-1-2@m uk-position-relative">
                                         <div class="titulo-respuesta-ordenar" >#{alumno['activities.title.match.sentence.question']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
@@ -151,7 +151,7 @@
                                         </ui:repeat>
                                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" styleClass="img-titulo-1"/>
                                     </div>
-                                    <div class="uk-width-1-2@m uk-position-relative">
+                                    <div class="uk-width-1-2@m uk-position-relative" >
                                         <div class="titulo-respuesta-ordenar">#{alumno['activities.title.match.sentence.answer']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
                                             <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista " pt:uk-sortable="group: match-activity" pt:data-indice="#{cont.index}">
@@ -180,10 +180,12 @@
                                         </h:panelGroup>
                                     </ui:repeat>
                                 </h:panelGroup>
-                                <h:graphicImage  styleClass="fin1 mov1" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}"/>
+                                <h:panelGroup layout="block"  styleClass="score uk-position-absolute mov1"  rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
+                                    <span/>
+                                </h:panelGroup>
                                 <h:inputHidden id="respuestaOraciones" value="#{relacionarOracionControlador.idRespuesta}"/>
                                 <h:commandButton id="buttonEnviar" styleClass="boton-enviar boton-trasladar" onclick="return recuperaDatos(event)" value="Send" rendered="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}">
-                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}" execute="@form" render="@form"/>
+                                    <f:ajax listener="#{relacionarOracionControlador.llenarTareaModelo()}"  execute="@form"  render="@form" onevent="function f(data) {if (data.status === 'success'){ setTimeout(calificarMatch,500);  }}"/>
                                 </h:commandButton>
                             </h:form>
                         </li>

@@ -83,7 +83,8 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/order-sentences.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/order-sentences.css"/>-->
+        <h:outputStylesheet library="css" name="/alumno/order-sentences.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/glosario.css"/>
         <div class="uk-section">
@@ -111,7 +112,7 @@
                             </div>
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.order.sentences']}</h1>
-                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" pt:data-activado="false" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
                                         <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
                                                <div class="uk-width-1-1@m uk-grid" uk-grid="" >
                                                     <div class="imagen-oracion uk-width-auto"/>
@@ -119,20 +120,22 @@
                                                </div>
                                         </ui:repeat>
                                 </h:panelGroup>
-                                <h:panelGroup layout="block" styleClass="contenedor-oraciones" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
-                                    <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones" pt:data-activado="true" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                    <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion" varStatus="indiceOracion">
                                         <div class="uk-width-1-1@m uk-grid" uk-grid="" >
-                                            <div class="imagen-oracion uk-width-auto"/>
-                                            #{oracion.respuesta}
+                                            <h:panelGroup layout="block" styleClass="imagen-oracion uk-width-auto #{(indiceOracion.index + 1) eq  oracion.respuesta ? 'correcto':'incorrecto'}"   style="background: none"><h:outputText styleClass="uk-flex letra-score" style="margin-left: -17px;margin-top: 10px;" value="#{oracion.respuesta}"/>  </h:panelGroup>
+
                                             <div class="oraciones uk-width-expand">#{tareaOracionesControlador.buscaOracion(oracion.respuesta)}</div>
                                         </div>
                                     </ui:repeat>
                                 </h:panelGroup>
-                                <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" styleClass="fin-ordenar fin-movimiento" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>
+                                <h:panelGroup  styleClass="score fin-movimiento" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                    <span/>
+                                </h:panelGroup>
                                 <!--<h:outputText value="Respondido" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>-->
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
                                 <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar boton-trasladar uk-margin" value="Send" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
-                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data) }" render="@form"/>
+                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data);  }" render="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
@@ -248,10 +251,16 @@
                                     <ul class="uk-switcher uk-margin remplazar" id="contenedor-oraciones">
                                         <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
-                                                <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
+                                                <h:panelGroup id="respuesta-correcta"  layout="block" style="display: none;"  rendered="#{not empty tareaCompletarModelo.respuesta}">
+                                                    <h:outputText value="#{tareaCompletarModelo.oracion}" escape="false"/>
+                                                </h:panelGroup>
+                                                <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}">
+                                                    <span/>
+                                                </h:panelGroup>
                                                 <h:outputText pt:data-resuelto="#{not empty tareaCompletarModelo.respuesta}"
                                                               pt:data-respuesta="#{completarOracionesControlador.buscaPalabra(tareaCompletarModelo.respuesta)}"
                                                               value="#{tareaCompletarModelo.oracion}"
+                                                              id="oraciones"
                                                               escape="false"/>
                                                 <h:inputHidden value="#{tareaCompletarModelo.respuesta}"/>
                                                 <h:commandButton styleClass="boton-enviar boton-trasladar"
@@ -260,7 +269,7 @@
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form"
                                                             onevent="function funcion(data) {
-                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); siguienteEjercicio()}
+                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); verRespuestasCompletarOracion(); siguienteEjercicio()}
                                                             }"
                                                             listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}"
                                                             render="@form"/>
