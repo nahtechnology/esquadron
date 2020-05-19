@@ -35,6 +35,7 @@ public class TareaModelo {
         this.horaRespuesta = tareaEntidad.getHoraRespuesta();
         this.resolviendoTranscript = tareaEntidad.isResolviendoTranscript();
         this.calificacion = tareaEntidad.getCalificacion();
+        verRespuesta = tareaEntidad.isVerRespuesta();
     }
 
     @NotNull

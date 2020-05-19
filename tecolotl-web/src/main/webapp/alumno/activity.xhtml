@@ -151,7 +151,8 @@
                                         </ui:repeat>
                                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" styleClass="img-titulo-1"/>
                                     </div>
-                                    <div class="uk-width-1-2@m uk-position-relative" >
+                                    <div class="uk-width-1-2@m uk-position-relative">
+                                        #{alumnoControlador.tareaActividadModelo.verRespuesta}
                                         <div class="titulo-respuesta-ordenar">#{alumno['activities.title.match.sentence.answer']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
                                             <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista " pt:uk-sortable="group: match-activity" pt:data-indice="#{cont.index}">
@@ -197,6 +198,7 @@
                             <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
                             <div class="imagen-ordenar">
                                 <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg"/>
+                                #{alumnoControlador.tareaActividadModelo.verRespuesta}
                             </div>
                             <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar scroll-drag" uk-switcher="">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica" varStatus="estatus">
