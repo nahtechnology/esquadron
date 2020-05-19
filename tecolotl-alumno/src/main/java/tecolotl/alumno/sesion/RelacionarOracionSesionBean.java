@@ -36,12 +36,7 @@ public class RelacionarOracionSesionBean {
         TypedQuery<TareaRelacionarOracionesEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaRelacionarOracionesEntidad.buscaidTarea", TareaRelacionarOracionesEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
-        List<TareaRelacionarOracionesEntidad> tareaRelacionarOracionesEntidadLista = typedQuery.getResultList();
-        logger.finer("Elemento encontrados:".concat(String.valueOf(tareaRelacionarOracionesEntidadLista.size())));
-        if (logger.isLoggable(Level.FINEST)) {
-            tareaRelacionarOracionesEntidadLista.forEach(tareaRelacionarOracionesEntidad -> logger.finest(tareaRelacionarOracionesEntidad.toString()));
-        }
-        return tareaRelacionarOracionesEntidadLista.stream().map(TareaRelacionarOracionModelo::new).collect(Collectors.toList());
+        return typedQuery.getResultList().stream().map(TareaRelacionarOracionModelo::new).collect(Collectors.toList());
     }
 
     private TareaRelacionarOracionesEntidadPK llavePrimaria(TareaRelacionarOracionModelo tareaRelacionarOracionModelo) {

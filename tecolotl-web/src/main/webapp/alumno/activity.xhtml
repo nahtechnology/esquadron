@@ -145,7 +145,7 @@
                                     <div class="uk-width-1-2@m uk-position-relative">
                                         <div class="titulo-respuesta-ordenar" >#{alumno['activities.title.match.sentence.question']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
-                                            <div class="pregunta-ordenar">
+                                            <div class="pregunta-ordenar" data-respuesta="#{relacionarOracion.relacionarOracionModelo.respuesta}">
                                                 #{relacionarOracion.relacionarOracionModelo.pregunta}
                                             </div>
                                         </ui:repeat>
