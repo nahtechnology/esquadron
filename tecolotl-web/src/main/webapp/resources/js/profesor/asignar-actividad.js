@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function (evento) {
 function buscaActividadSeleccionada(evento) {
     salida = [];
     seleccionados = ejercicios.querySelectorAll('input[type=radio]:checked');
+    verRespuestas = Array.prototype.map.call(seleccionados, function (selec) {
+        return selec.parentElement.nextElementSibling.querySelector('input[type=checkbox]').checked;
+    });
     if (seleccionados === null || seleccionados.length === 0) {
         UIkit.modal.alert(letrero);
     } else {
@@ -41,6 +44,7 @@ function buscaActividadSeleccionada(evento) {
             });
         } else {
             document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
+            document.getElementById('formulario-asignar-tarea:input-tarea').value = verRespuestas.join(',');
             document.getElementById('formulario-asignar-tarea:boton-enviar').click();
         }
 
