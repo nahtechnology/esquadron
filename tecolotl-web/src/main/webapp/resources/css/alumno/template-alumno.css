@@ -864,6 +864,10 @@ textarea::-webkit-scrollbar-thumb:hover {
     background-color: #E74C3C!important;
     color: white!important;
 }
+.incorrecto:hover{
+    cursor: pointer;
+}
+
 .correcto{
     background-color: #2ECC71!important;
     color: white!important;
@@ -874,7 +878,18 @@ textarea::-webkit-scrollbar-thumb:hover {
 .color-incorrecto{
     color: #E74C3C!important;
 }
+.respuestas-correctas{
+    background-color: white;
+    border-color: var(--turquesa-primary-color) !important;
+    font-size: 18px;
+}
 
+.contenedor-respuesta-correcta{
+    background-color: white;
+    border: solid 2px var(--turquesa-primary-color);
+    border-radius: 8px;
+    padding: 12px 5px;
+}
 
 .score{
     background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg") no-repeat center/100%;

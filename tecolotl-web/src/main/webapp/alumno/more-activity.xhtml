@@ -249,9 +249,9 @@
                                         </ui:repeat>
                                     </ul>
                                     <ul class="uk-switcher uk-margin remplazar" id="contenedor-oraciones">
-                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo" varStatus="tareaCompletar">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
-                                                <h:panelGroup id="respuesta-correcta"  layout="block" style="display: none;"  rendered="#{not empty tareaCompletarModelo.respuesta}">
+                                                <h:panelGroup id="respuesta-correcta"  layout="block" style="display: none;"  >
                                                     <h:outputText value="#{tareaCompletarModelo.oracion}" escape="false"/>
                                                 </h:panelGroup>
                                                 <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}">
@@ -260,6 +260,7 @@
                                                 <h:outputText pt:data-resuelto="#{not empty tareaCompletarModelo.respuesta}"
                                                               pt:data-respuesta="#{completarOracionesControlador.buscaPalabra(tareaCompletarModelo.respuesta)}"
                                                               value="#{tareaCompletarModelo.oracion}"
+                                                              pt:data-usado="#{tareaCompletar.index}"
                                                               id="oraciones"
                                                               escape="false"/>
                                                 <h:inputHidden value="#{tareaCompletarModelo.respuesta}"/>

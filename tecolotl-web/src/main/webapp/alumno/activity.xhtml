@@ -147,6 +147,9 @@
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
                                             <div class="pregunta-ordenar" data-respuesta="#{relacionarOracion.relacionarOracionModelo.respuesta}">
                                                 #{relacionarOracion.relacionarOracionModelo.pregunta}
+                                                <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}" >
+                                                    #{relacionarOracion.relacionarOracionModelo.respuesta}
+                                                </h:panelGroup>
                                             </div>
                                         </ui:repeat>
                                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" styleClass="img-titulo-1"/>
@@ -225,7 +228,12 @@
                                                         execute="@form" onevent="function funcion(data) { remueveOrdenador(data); siguienteEjercicio() }"/>
                                             </h:commandButton>
                                         </h:form>
+                                        <h:panelGroup layout="block" styleClass="contenedor-respuesta-correcta uk-margin-small-top visibilidad" rendered="#{not empty gramatica.respuesta and not empty gramatica.calificacion}">
+                                            <h3 class="color-correcto" style="font-family: 'Sniglet', 'Arial Black', sans-serif">Correct Answer</h3>
+                                            <span style="font-size: 20px; color: black; ">#{gramatica.palabra}</span>
+                                        </h:panelGroup>
                                     </li>
+
                                 </ui:repeat>
                             </ul>
                         </li>
