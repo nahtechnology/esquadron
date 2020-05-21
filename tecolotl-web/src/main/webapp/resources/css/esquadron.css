@@ -475,14 +475,14 @@ input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,select
     max-width: 300px;
     padding: 4px 7px;
     /* 4 */
-    background: var(--turquesa-primary-color) !important;
+    background: var(--turquesa-primary-color) ;
     border:solid 2px;
     border-color: black;
     border-radius: 3px;
-    color: #fff !important;
+    color: #fff ;
     font-size: 16px;
     font-weight: bold;
-    font-family: 'Sniglet', "Arial Black";
+  font-family: 'Sniglet', "Arial Black", sans-serif ;
     text-transform: capitalize;
 }
 

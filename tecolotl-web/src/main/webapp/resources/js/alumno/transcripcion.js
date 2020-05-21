@@ -83,6 +83,17 @@ function calificarTranscript(){
         let clase = respuestaTranscript.innerText.trim() === respuestasCorrectas[index] ? "correcto" : "incorrecto";
         if (clase === "correcto"){
             calificacion++;
+        }else {
+            respuestaTranscript.setAttribute('uk-tooltip',respuestasCorrectas[index]);
+            respuestaTranscript.addEventListener('mouseover',() =>{
+                console.log('entro');
+                setTimeout(pintar,50);
+                function pintar() {
+                    console.log('pinto');
+                    document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
+                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
+                }
+            })
         }
         respuestaTranscript.classList.add(clase);
     });
