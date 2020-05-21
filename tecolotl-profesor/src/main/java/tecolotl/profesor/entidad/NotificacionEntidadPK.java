@@ -2,9 +2,7 @@ package tecolotl.profesor.entidad;
 
 import tecolotl.alumno.entidad.AlumnoEntidad;
 
-import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -14,7 +12,7 @@ public class NotificacionEntidadPK implements Serializable {
     private AlumnoEntidad alumnoEntidad;
     private ProfesorEntidad profesorEntidad;
 
-    @OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_alumno")
     public AlumnoEntidad getAlumnoEntidad() {
         return alumnoEntidad;
@@ -24,7 +22,7 @@ public class NotificacionEntidadPK implements Serializable {
         this.alumnoEntidad = alumnoEntidad;
     }
 
-    @OneToMany
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_profesor")
     public ProfesorEntidad getProfesorEntidad() {
         return profesorEntidad;

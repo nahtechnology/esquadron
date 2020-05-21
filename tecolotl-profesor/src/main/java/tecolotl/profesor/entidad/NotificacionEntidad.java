@@ -6,6 +6,15 @@ import java.util.Objects;
 
 @Entity
 @Table(schema = "profesor", name = "notificacion")
+@NamedQueries(value = {
+        @NamedQuery(
+                name = "NotificacionEntidad.buscaProfesor",
+                query = "SELECT n FROM NotificacionEntidad n WHERE n.notificacionEntidadPK.profesorEntidad = :idProfesor"),
+        @NamedQuery(
+                name = "NotificacionEntidad.leidos",
+                query = "UPDATE NotificacionEntidad AS n SET n.leido = TRUE WHERE n.notificacionEntidadPK = :notificacionPK"
+        )
+})
 public class NotificacionEntidad {
 
     private NotificacionEntidadPK notificacionEntidadPK;
