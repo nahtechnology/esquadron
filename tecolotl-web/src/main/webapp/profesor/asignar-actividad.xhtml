@@ -38,10 +38,9 @@
 
         </ui:define>
         <ui:define name="contenido">
-            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
-            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>
-            <h:outputStylesheet library="css" name="modal.css"/>
+            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
+            <link rel="stylesheet" href="#{resource['css/profesor/asignar-actividad.css']}"/>
             <div class="uk-position-relative uk-margin-small-top" id="temario">
                 <div class="uk-position-absolute uk-animation-slide-top-medium">
                     <div class="uk-flex uk-flex-right">
@@ -172,7 +171,6 @@
             <h:outputScript library="js" name="/profesor/asignar-actividad.js"/>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
             <h:outputScript library="js" name="/alumno/filtro.js"/>
-            <h:outputScript library="js" name="modal.js"/>
         </ui:define>
     </ui:composition>
 </html>

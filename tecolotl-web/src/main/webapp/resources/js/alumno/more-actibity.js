@@ -159,17 +159,18 @@ function verRespuestasCompletarOracion() {
         });
         completarOracion.querySelectorAll('[id*=respuesta-correcta]').forEach(nodo =>{
 
-            let palabraCorrecta = nodo.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion');
-            palabraCorrecta.setAttribute('uk-tooltip',`title: ${nodo.querySelector('.remover').innerText};pos: bottom`);
-            palabraCorrecta.addEventListener('mouseover',()=>{
-                setTimeout(pintar,50);
-                function pintar() {
-                    console.log('pinto');
-                    document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
-                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
-                }
-            });
-
+            if (boleanoRespuestas === 'true' && nodo.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion').classList.contains('color-incorrecto') === true){
+                let palabraCorrecta = nodo.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion');
+                palabraCorrecta.setAttribute('uk-tooltip',`title: ${nodo.querySelector('.remover').innerText};pos: bottom`);
+                palabraCorrecta.addEventListener('mouseover',()=>{
+                    setTimeout(pintar,50);
+                    function pintar() {
+                        console.log('pinto');
+                        document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
+                        document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
+                    }
+                });
+            }
         });
     }
 }
@@ -227,18 +228,18 @@ contenedores.forEach(palabras => {
         calificacion++;
     }else {
         palabras.querySelector('.oraciones-relacion-img').classList.add('incorrecto');
-        palabras.querySelector('.oraciones-relacion-img').setAttribute('uk-tooltip',respuestasCorrectas);
-        palabras.addEventListener('mouseover',() =>{
-            setTimeout(pintar,50);
-            function pintar() {
-                console.log('pinto');
-                document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
-                document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
-                document.querySelector('.uk-tooltip .uk-tooltip-inner').style.fontsize="30px";
-            }
-        })
-
-
+        if (boleanoRespuestas === "true"){
+            palabras.querySelector('.oraciones-relacion-img').setAttribute('uk-tooltip',respuestasCorrectas);
+            palabras.addEventListener('mouseover',() =>{
+                setTimeout(pintar,50);
+                function pintar() {
+                    console.log('pinto');
+                    document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
+                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
+                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.fontsize="30px";
+                }
+            });
+        }
     }
 
 });

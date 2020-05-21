@@ -21,15 +21,21 @@ function calificarOrdenarOracion(nodo) {
     switch (parseInt(nodo.querySelector('.score span').innerText)) {
         case 1 :
             nodo.querySelector('.score span').innerText = "Score: 25%";
-            contenedorRespuestas.classList.remove('visibilidad');
+            if (boleanoRespuestas === "true" ){
+                contenedorRespuestas.classList.remove('visibilidad');
+            }
             break;
         case 2:
             nodo.querySelector('.score span').innerText = "Score: 50%";
-            contenedorRespuestas.classList.remove('visibilidad');
+            if (boleanoRespuestas === "true" ){
+                contenedorRespuestas.classList.remove('visibilidad');
+            }
             break;
         case 3:
             nodo.querySelector('.score span').innerText = "Score: 75%";
-            contenedorRespuestas.classList.remove('visibilidad');
+            if (boleanoRespuestas === "true" ){
+                contenedorRespuestas.classList.remove('visibilidad');
+            }
             break;
         case 4:
             nodo.querySelector('.score span').innerText = "Score: 100%";

@@ -83,7 +83,7 @@ function calificarTranscript(){
         let clase = respuestaTranscript.innerText.trim() === respuestasCorrectas[index] ? "correcto" : "incorrecto";
         if (clase === "correcto"){
             calificacion++;
-        }else {
+        }else if(boleanoRespuestas === 'true') {
             respuestaTranscript.setAttribute('uk-tooltip',respuestasCorrectas[index]);
             respuestaTranscript.addEventListener('mouseover',() =>{
                 console.log('entro');

@@ -118,7 +118,7 @@
                         </h:form>
                     </ul>
 
-                    <ul class="js-filter  uk-text-center" >
+                    <ul class="js-filter  uk-text-center" data-visibilidad-respuestas="#{alumnoControlador.tareaActividadModelo.verRespuesta}" >
                         <li class="transcrip">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" library="img" name="/icono/information.svg" pt:uk-svg=""/></a>
@@ -147,7 +147,7 @@
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
                                             <div class="pregunta-ordenar" data-respuesta="#{relacionarOracion.relacionarOracionModelo.respuesta}">
                                                 #{relacionarOracion.relacionarOracionModelo.pregunta}
-                                                <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta}" >
+                                                <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta and alumnoControlador.tareaActividadModelo.verRespuesta eq true}" >
                                                     #{relacionarOracion.relacionarOracionModelo.respuesta}
                                                 </h:panelGroup>
                                             </div>
@@ -155,7 +155,6 @@
                                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" styleClass="img-titulo-1"/>
                                     </div>
                                     <div class="uk-width-1-2@m uk-position-relative">
-                                        #{alumnoControlador.tareaActividadModelo.verRespuesta}
                                         <div class="titulo-respuesta-ordenar">#{alumno['activities.title.match.sentence.answer']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
                                             <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista " pt:uk-sortable="group: match-activity" pt:data-indice="#{cont.index}">
@@ -201,7 +200,6 @@
                             <h1 class="uk-text-center lescuadron" style="color: white"> #{alumno['activities.word.order.instruction.title']}</h1>
                             <div class="imagen-ordenar">
                                 <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg"/>
-                                #{alumnoControlador.tareaActividadModelo.verRespuesta}
                             </div>
                             <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center menu-ordenar scroll-drag" uk-switcher="">
                                 <ui:repeat value="#{gramaticaControlador.gramaticaModeloLista}" var="gramatica" varStatus="estatus">
@@ -292,6 +290,7 @@
             var player = [];
             var timer_is_on = 0;
             var time;
+            var boleanoRespuestas = document.querySelector('ul.js-filter').dataset.visibilidadRespuestas;
             var totalRespuestasTranscripcion = 0;
             var ordenarPalabras = document.querySelector('.order-words');
             var mensajeEnviado = "#{alumno['send.message']}";
