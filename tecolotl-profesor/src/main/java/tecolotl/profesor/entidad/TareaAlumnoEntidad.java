@@ -14,6 +14,7 @@ public class TareaAlumnoEntidad {
     private UUID id;
     private Date fechaAsignacion;
     private String idActividad;
+    private String nivelLenguaje;
     private Short calificacionTrascirpcion;
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
@@ -110,5 +111,14 @@ public class TareaAlumnoEntidad {
 
     public void setCalificacionTrascirpcion(Short calificacionTrascirpcion) {
         this.calificacionTrascirpcion = calificacionTrascirpcion;
+    }
+
+    @Column(name = "nivel_lenguaje")
+    public String getNivelLenguaje() {
+        return nivelLenguaje;
+    }
+
+    public void setNivelLenguaje(String nivelLenguaje) {
+        this.nivelLenguaje = nivelLenguaje;
     }
 }

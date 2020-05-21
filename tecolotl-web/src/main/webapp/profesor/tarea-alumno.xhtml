@@ -132,7 +132,7 @@
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.homework']}</span></f:facet>
-                                                <img class="img-previa uk-margin-small-right" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt=""/>
+                                                <img class="img-previa uk-margin-small-right" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt="" data-nivel="#{tareaAlumno.nivelLenguaje}"/>
                                                 <h:commandLink pt:uk-toggle="target: #modal-eliminar-tarea" >
                                                     <h:outputText styleClass="uk-icon" pt:uk-icon="icon: trash" style="color: black; margin-top: 7px;"/>
                                                     <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
