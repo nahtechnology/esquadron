@@ -32,30 +32,46 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 });
 
 function completarOracionRemueve() {
-    var wordsPalabras = [];
-    palabras = completarOracion.querySelector('.contedor-oraciones');
+    let nodosPalabras = [];
+    let respuestasPalabras = [];
+    let palabrasOraciones = [];
+
+     palabras = completarOracion.querySelector('.contedor-oraciones');
     while (palabras.hasChildNodes()) {
         palabras.removeChild(palabras.firstChild);
     }
     // var texto = revolver(wordsPalabras);
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
-        otro = parrafo.querySelector('span[id*=oraciones]');
-        if (otro.dataset.resuelto === 'true') {
-            //otro.querySelector('span').textContent = otro.dataset.respuesta;
-        } else {
-            var palabra = document.createElement('span');
-            palabra.textContent = otro.querySelector('span').textContent;
-            palabra.dataset.cardinalidad = otro.parentNode.dataset.cardinalidad;
-            // palabra.draggable = true;
-            palabra.id="identificador"+indice;
-            palabra.dataset.index = indice;
-            // palabra.setAttribute('ondragstart','drag(event)');
-            // palabra.setAttribute('ondrop','return true');
-            // palabra.setAttribute('ondragover','return false');
-            // palabra.setAttribute('uk-sortable','group: completar');
-            palabras.appendChild(palabra);
+      let otro = parrafo.querySelector('span[id*=oraciones]');
+       nodosPalabras.push(otro);
+       palabrasOraciones.push(otro.querySelector('span.remover').innerText);
+     if (otro.dataset.resuelto === 'true'){
+         respuestasPalabras.push(otro.dataset.respuesta)
+     }
+    });
+    console.log(respuestasPalabras);
+    respuestasPalabras.forEach(word => {
+        let busqueda = palabrasOraciones.indexOf(word);
+        if (busqueda > -1){
+            palabrasOraciones.splice(busqueda,1);
         }
     });
+    console.log(palabrasOraciones);
+    palabrasOraciones.forEach(word =>{
+
+        for (let i = 0; i < nodosPalabras.length ; i++) {
+            if (nodosPalabras[i].querySelector('span.remover').innerText === word){
+                var palabra = document.createElement('span');
+                palabra.innerText = nodosPalabras[i].querySelector('span.remover').innerText;
+                palabra.dataset.cardinalidad = nodosPalabras[i].parentNode.dataset.cardinalidad;
+                palabra.id="identificador"+i;
+                palabra.dataset.index = i;
+                palabras.appendChild(palabra);
+                i = nodosPalabras.length;
+            }
+        }
+    });
+
     answer = document.querySelector('.complete-sentences');
     agregaRespuestas(answer.querySelector('.remplazar'));
     agregaRespuesta();
@@ -95,9 +111,9 @@ function respuestaEnvidad(data) {
 }
 
 function agregaRespuestas(elemento) {
-    respuestas = [];
+    //let respuestas = [];
     answer.querySelectorAll('span[id*=oraciones] .remover').forEach(function (palabra,index) {
-        respuestas.push(palabra.textContent);
+        // respuestas.push(palabra.textContent);
         palabra.setAttribute('class','respuesta-ordenar-oracion');
         // palabra.setAttribute("ondrop","drop(event, this)");
         // palabra.setAttribute("ondragover","allowDrop(event)");
@@ -105,23 +121,23 @@ function agregaRespuestas(elemento) {
         palabra.innerHTML=" ";
         palabra.dataset.indice = index;
     });
-    totalRespuestasTranscripcion = respuestas.length;
+   // let totalRespuestasTranscripcion = respuestas.length;
     // while (elemento.hasChildNodes()) {
     //     elemento.removeChild(elemento.firstChild);
     // }
-    respuestas.forEach(function (resp) {
-        respuesta = document.createElement('span');
-        respuesta.classList.add('respuesta-drag');
-        respuesta.textContent = resp;
-        elemento.appendChild(respuesta);
-    });
+    // respuestas.forEach(function (resp) {
+    //     let respuesta = document.createElement('span');
+    //     respuesta.classList.add('respuesta-drag');
+    //     respuesta.textContent = resp;
+    //     elemento.appendChild(respuesta);
+    // });
 
 }
 
 function agregaRespuesta() {
     completarOracion.querySelectorAll('div ul:nth-child(2) > li > span[id*=oraciones] ').forEach(function (elemento) {
         if (elemento.dataset.resuelto === 'true') {
-            elemento.querySelector('span').textContent = elemento.dataset.respuesta;
+            elemento.querySelector('span').innerText = elemento.dataset.respuesta;
         }
     });
 }
@@ -129,6 +145,7 @@ function agregaRespuesta() {
 function verRespuestasCompletarOracion() {
     completarOracion.querySelectorAll('[id*=respuesta-correcta]').forEach(palabra =>{
         calificarCompletarOracion(palabra);
+
     });
     let totalRespondidas = completarOracion.querySelectorAll('.menu-ordenar > li.boton-listo').length;
     let totalPreguntas = completarOracion.querySelectorAll('.menu-ordenar > li').length;
@@ -139,6 +156,21 @@ function verRespuestasCompletarOracion() {
             score.classList.remove('terminado');
             score.classList.add('score','uk-position-absolute');
             score.querySelector('span').innerText = "Score "+puntaje+"%";
+        });
+        completarOracion.querySelectorAll('[id*=respuesta-correcta]').forEach(nodo =>{
+
+            if (boleanoRespuestas === 'true' && nodo.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion').classList.contains('color-incorrecto') === true){
+                let palabraCorrecta = nodo.parentElement.querySelector('span[id*=oraciones] span.respuesta-ordenar-oracion');
+                palabraCorrecta.setAttribute('uk-tooltip',`title: ${nodo.querySelector('.remover').innerText};pos: bottom`);
+                palabraCorrecta.addEventListener('mouseover',()=>{
+                    setTimeout(pintar,50);
+                    function pintar() {
+                        console.log('pinto');
+                        document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
+                        document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
+                    }
+                });
+            }
         });
     }
 }
@@ -196,6 +228,18 @@ contenedores.forEach(palabras => {
         calificacion++;
     }else {
         palabras.querySelector('.oraciones-relacion-img').classList.add('incorrecto');
+        if (boleanoRespuestas === "true"){
+            palabras.querySelector('.oraciones-relacion-img').setAttribute('uk-tooltip',respuestasCorrectas);
+            palabras.addEventListener('mouseover',() =>{
+                setTimeout(pintar,50);
+                function pintar() {
+                    console.log('pinto');
+                    document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
+                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
+                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.fontsize="30px";
+                }
+            });
+        }
     }
 
 });

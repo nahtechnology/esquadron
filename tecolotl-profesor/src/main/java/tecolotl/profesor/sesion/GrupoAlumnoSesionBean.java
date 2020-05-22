@@ -157,9 +157,9 @@ public class GrupoAlumnoSesionBean {
      * @param idActividad
      * @return
      */
-    public Integer tarea(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?)");
-        query.setParameter(1, idGrupo).setParameter(2, idActividad);
+    public Integer tarea(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad, Boolean verRespuesta) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?, ?)");
+        query.setParameter(1, idGrupo).setParameter(2, idActividad).setParameter(3, verRespuesta);
         return (Integer)query.getSingleResult();
     }
 
@@ -167,13 +167,15 @@ public class GrupoAlumnoSesionBean {
                          @NotNull @Size(min = 11, max = 11) String idActividad,
                          @NotNull UUID idAlumno,
                          int vuelta,
-                         @NotNull Short idNivelLenguaje) {
-        Query query = entityManager.createNativeQuery("CALL profesor.creartarea(?,?,?,?,?)");
+                         @NotNull Short idNivelLenguaje,
+                         @NotNull Boolean verRespuesta) {
+        Query query = entityManager.createNativeQuery("CALL profesor.creartarea(?,?,?,?,?,?)");
         query.setParameter(1, idGrupo);
         query.setParameter(2, idAlumno);
         query.setParameter(3, idActividad);
         query.setParameter(4, vuelta);
         query.setParameter(5, idNivelLenguaje);
+        query.setParameter(6, verRespuesta);
         return query.executeUpdate();
     }
 

@@ -18,6 +18,7 @@ public class CalificacionTareaMapamentalEntidadVista {
     private UUID idTarea;
     private Integer count;
     private Short puntaje;
+    private String comentario;
 
     @Id
     public Short getCardinalidad() {
@@ -51,5 +52,13 @@ public class CalificacionTareaMapamentalEntidadVista {
 
     public void setPuntaje(Short puntaje) {
         this.puntaje = puntaje;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 }

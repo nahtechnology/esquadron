@@ -30,10 +30,14 @@ public class AsignarActividadControlador implements Serializable {
     @Inject
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
+    @Inject
+    private Logger logger;
+
     private List<ActividadModelo> actividadModeloLista;
     private String grupo;
     private String alumno;
     private String actividad;
+    private String verTarea;
 
     public void inicio() {
         actividadModeloLista = alumno == null ?
@@ -43,12 +47,14 @@ public class AsignarActividadControlador implements Serializable {
 
     public String asiganarTarea() {
         if (alumno == null) {
-            for (String string : actividad.split(",")) {
-                grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), string);
+            String tarea[] = actividad.split(",");
+            String ver[] = actividad.split(",");
+            for (int indice = 0; indice < tarea.length; indice++) {
+                grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), tarea[indice], Boolean.parseBoolean(ver[indice]));
             }
             return "dashboard";
         } else {
-            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, (short)actividadModeloLista.get(0).getCodigoNivelLenguaje());
+            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, (short)actividadModeloLista.get(0).getCodigoNivelLenguaje(), Boolean.parseBoolean(verTarea));
             return "admin-alumnos";
         }
     }
@@ -87,5 +93,13 @@ public class AsignarActividadControlador implements Serializable {
 
     public void setAlumno(String alumno) {
         this.alumno = alumno;
+    }
+
+    public String getVerTarea() {
+        return verTarea;
+    }
+
+    public void setVerTarea(String verTarea) {
+        this.verTarea = verTarea;
     }
 }

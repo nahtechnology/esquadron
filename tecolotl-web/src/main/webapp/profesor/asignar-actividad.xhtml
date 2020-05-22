@@ -77,6 +77,7 @@
                 <div class="uk-margin-medium-top uk-flex uk-flex-right regresa-asigna">
                     <h:form id="formulario-asignar-tarea">
                         <h:inputHidden id="input-actividad" value="#{asignarActividadControlador.actividad}"/>
+                        <h:inputHidden id="input-tarea" value="#{asignarActividadControlador.verTarea}"/>
                         <h:commandButton id="boton-enviar"
                                          action="#{asignarActividadControlador.asiganarTarea()}"
                                          value="#{profesor['activity.assign']}" styleClass="uk-button  uk-button-primary"
@@ -173,7 +174,6 @@
             <h:outputScript library="js" name="/profesor/asignar-actividad.js"/>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
             <h:outputScript library="js" name="/alumno/filtro.js"/>
-            <h:outputScript library="js" name="modal.js"/>
         </ui:define>
     </ui:composition>
 </html>

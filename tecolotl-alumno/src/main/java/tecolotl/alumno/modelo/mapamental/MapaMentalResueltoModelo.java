@@ -7,6 +7,7 @@ public class MapaMentalResueltoModelo {
     private short cardinalidad;
     private Integer totalResueltos;
     private Short calificacion;
+    private String comentario;
 
     public MapaMentalResueltoModelo() {
     }
@@ -20,6 +21,7 @@ public class MapaMentalResueltoModelo {
         cardinalidad = calificacionTareaMapamentalEntidadVista.getCardinalidad();
         totalResueltos = calificacionTareaMapamentalEntidadVista.getCount();
         calificacion = calificacionTareaMapamentalEntidadVista.getPuntaje();
+        comentario = calificacionTareaMapamentalEntidadVista.getComentario();
     }
 
     public short getCardinalidad() {
@@ -44,5 +46,13 @@ public class MapaMentalResueltoModelo {
 
     public void setCalificacion(Short calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
 }

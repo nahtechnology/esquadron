@@ -104,7 +104,7 @@
                             <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/morado.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
                     </ul>
-                    <ul class="js-filter" style="list-style: none; padding-left: 0;">
+                    <ul class="js-filter" data-visibilidad-respuestas="#{alumnoControlador.tareaActividadModelo.verRespuesta}" style="list-style: none; padding-left: 0;">
                         <li class="ordenar">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/information.svg" pt:uk-svg=""/></a>
@@ -249,9 +249,9 @@
                                         </ui:repeat>
                                     </ul>
                                     <ul class="uk-switcher uk-margin remplazar" id="contenedor-oraciones">
-                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo" varStatus="tareaCompletar">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
-                                                <h:panelGroup id="respuesta-correcta"  layout="block" style="display: none;"  rendered="#{not empty tareaCompletarModelo.respuesta}">
+                                                <h:panelGroup id="respuesta-correcta"  layout="block" style="display: none;"  >
                                                     <h:outputText value="#{tareaCompletarModelo.oracion}" escape="false"/>
                                                 </h:panelGroup>
                                                 <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}">
@@ -260,6 +260,7 @@
                                                 <h:outputText pt:data-resuelto="#{not empty tareaCompletarModelo.respuesta}"
                                                               pt:data-respuesta="#{completarOracionesControlador.buscaPalabra(tareaCompletarModelo.respuesta)}"
                                                               value="#{tareaCompletarModelo.oracion}"
+                                                              pt:data-usado="#{tareaCompletar.index}"
                                                               id="oraciones"
                                                               escape="false"/>
                                                 <h:inputHidden value="#{tareaCompletarModelo.respuesta}"/>
@@ -287,6 +288,7 @@
         <script type="application/javascript">
             var mensajeNoEnvio = "#{alumno['send.message.not.send']}";
             var mensajeEnviado = "#{alumno['send.message']}";
+            var boleanoRespuestas = document.querySelector('ul.js-filter').dataset.visibilidadRespuestas;
 
             function getRespuestas() {
                 var oracionesDesordenadas = document.querySelectorAll('.oraciones');
