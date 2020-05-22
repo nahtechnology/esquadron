@@ -18,16 +18,14 @@ document.addEventListener('DOMContentLoaded', function (evento) {
         var temas = document.querySelector('#temario > div');
         temas.classList.toggle('temario-open');
     });
-     ordenarNiveles(nivelesFiltro);
-
+    ordenarNiveles(nivelesFiltro);
+    ejercicios.querySelectorAll('input[type=radio]').forEach(radio => radio.addEventListener('change', activaChechbox));
 });
 
 function buscaActividadSeleccionada(evento) {
     salida = [];
     seleccionados = ejercicios.querySelectorAll('input[type=radio]:checked');
-    verRespuestas = Array.prototype.map.call(seleccionados, function (selec) {
-        return selec.parentElement.nextElementSibling.querySelector('input[type=checkbox]').checked;
-    });
+    verRespuestas = Array.from(seleccionados).map(selec => selec.nextElementSibling.checked);
     if (seleccionados === null || seleccionados.length === 0) {
         UIkit.modal.alert(letrero);
     } else {
@@ -38,6 +36,7 @@ function buscaActividadSeleccionada(evento) {
         if (salida.length !== niveles.length) {
             UIkit.modal.confirm(confirmacion).then(function () {
                 document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
+                document.getElementById('formulario-asignar-tarea:input-tarea').value = verRespuestas.join(',');
                 document.getElementById('formulario-asignar-tarea:boton-enviar').click();
             }, function () {
                 console.log('Cancelacion de envio');
@@ -201,12 +200,8 @@ personitas.forEach(function (persona) {
     });
 });
 
-// function activa(){
-//     let circulo = document.querySelector('.uk-radio').checked;
-//     if(circulo == true){
-//         let cuadro = document.querySelector('.uk-checkbox').checked;
-//         console.log(cuadro);//false
-//         cuadro = true;
-//         console.log(cuadro);//true
-//     }
-// }
+function activaChechbox(event){
+    let radio = event.target;
+    document.querySelectorAll('input[type=radio][name=' + radio.name + ']').forEach(chec => chec.nextElementSibling.checked = false);
+    radio.nextElementSibling.checked = true;
+}
