@@ -145,7 +145,8 @@
                                 <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                         <li>
-                                            <h:link outcome="detalle-alumno">
+                                            <h:link outcome="detalle-alumno" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaMapaMental + tareaAlumnoGrupoModelo.totalAsignadaGramatica +
+                                                tareaAlumnoGrupoModelo.totalAsignadoRelacionar + tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion + tareaAlumnoGrupoModelo.totalAsignadaCompletar ne 0}">
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary"/>
                                                 <span class="uk-text-middle uk-text-primary"><h:outputText value="#{etiqueta['detail']}"/></span>
                                                 <f:param name="idAlumno" value="#{tareaAlumnoGrupoModelo.id}"/>
@@ -154,7 +155,7 @@
                                         <li>
                                             <h:link outcome="asignar-tarea">
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
-                                                <span class="uk-text-middle uk-text-primary"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
+                                                <span class="uk-text-middle uk-text-primary uk-margin-small-left"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
                                                 <f:param name="alumno" value="#{tareaAlumnoGrupoModelo.id}"/>
                                                 <f:param name="grupo" value="#{grupoAlumnoControlador.idGrupo}"/>
                                             </h:link>
@@ -306,7 +307,8 @@
             }
         </script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>
-        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/admin-alumnos.js"></script>
+<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/admin-alumnos.js"></script>-->
+        <h:outputScript library="js" name="/profesor/admin-alumnos.js"/>
     </ui:define>
     <ui:define name="file-js">
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/contrasena.js"></script>

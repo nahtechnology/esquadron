@@ -21,7 +21,7 @@ public class FechaFuturaValidacion implements Validator {
     private Logger logger;
 
     @Inject
-    @TipoMensaje(value = MensajeBundle.ADMINISTRACION)
+    @TipoMensaje(value = MensajeBundle.ETIQUETA)
     private ResourceBundle resourceBundle;
 
     @Override
@@ -31,7 +31,7 @@ public class FechaFuturaValidacion implements Validator {
         if (fechaValidar != null && fechaValidar.after(hoy)) {
             FacesMessage facesMessage = new FacesMessage();
             facesMessage.setSeverity(FacesMessage.SEVERITY_ERROR);
-            facesMessage.setSummary(resourceBundle.getString("validacion.past.date"));
+            facesMessage.setSummary("future date");
             throw new ValidatorException(facesMessage);
         }
     }

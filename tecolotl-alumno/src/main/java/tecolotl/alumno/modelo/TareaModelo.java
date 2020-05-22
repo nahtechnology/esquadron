@@ -18,6 +18,7 @@ public class TareaModelo {
     private Date horaRespuesta;
     private boolean resolviendoTranscript;
     private Short calificacion;
+    private boolean verRespuesta;
 
     public TareaModelo() {
     }
@@ -34,6 +35,7 @@ public class TareaModelo {
         this.horaRespuesta = tareaEntidad.getHoraRespuesta();
         this.resolviendoTranscript = tareaEntidad.isResolviendoTranscript();
         this.calificacion = tareaEntidad.getCalificacion();
+        verRespuesta = tareaEntidad.isVerRespuesta();
     }
 
     @NotNull
@@ -94,6 +96,14 @@ public class TareaModelo {
 
     public void setCalificacion(Short calificacion) {
         this.calificacion = calificacion;
+    }
+
+    public boolean isVerRespuesta() {
+        return verRespuesta;
+    }
+
+    public void setVerRespuesta(boolean verRespuesta) {
+        this.verRespuesta = verRespuesta;
     }
 
     @Override

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',function (ev) {
         console.log(porcentaje,"desabilitado");
         botonRespuesta.disabled = true;
         botonRespuesta.classList.add('boton-disabilitado');
-        UIkit.notification("the student hasn't completed his homework");
+        UIkit.notification(termina);
     }else{
         console.log('se puede');
         botonRespuesta.classList.remove('boton-disabilitado');

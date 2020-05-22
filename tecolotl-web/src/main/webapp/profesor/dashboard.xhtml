@@ -28,9 +28,8 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/grafica.css"/>-->
-        <h:outputStylesheet library="css" name="/profesor/grafica.css"/>
-        <h:outputStylesheet library="css" name="modal.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/grafica.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/modal.css"/>
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron ">#{profesor['dashboard.title']}!</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -289,7 +288,7 @@
                     <h3>level up</h3>
                 </div>
                 <div class="modal-cuerpo" style="display: flex; align-items: center; justify-content: center;" >
-                    <span style="font-size: 20px; font-weight: 900;" >Are you sure you want to move this student up? Not all level activities have been accomplished.</span>
+                    <span style="font-size: 20px; font-weight: 900;" >#{profesor['sube.nivel']}</span>
                 </div>
                 <div class="modal-pie">
                     <button class="boton-escuadron-base uk-margin-small-right" style="background-color: var(--azul-primary-color)" >level up</button>
@@ -302,8 +301,7 @@
 
     <ui:define name="file-js">
         <h:outputScript library="js" name="modal.js"/>
-<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>-->
-        <h:outputScript library="js" name="/profesor/grafica.js"/>
+        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>
         <script type="application/javascript">
 
             const msj_nivel = "#{profesor['msj.nivel']}";

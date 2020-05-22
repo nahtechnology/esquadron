@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     tabla = document.querySelector('.uk-container table');
     //formularioNuevoAlumno.querySelector('.uk-modal-body div:nth-child(5) input').addEventListener('input', entradaFecha);
     if(document.querySelector('#tabla-vacia') === null){
-        desabilitar();
+        // desabilitar();
         botonResporte.disabled = false;
         botonResporte.classList.remove('boton-disabilitado');
 

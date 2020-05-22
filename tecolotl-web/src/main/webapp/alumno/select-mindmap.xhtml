@@ -100,7 +100,11 @@
                             <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">
                                 <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
                             </h:link>
-                            <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos > 0}"/>
+                            <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos gt 0 and empty mapaMental.calificacion}"/>
+                            <h:panelGroup layout="block" styleClass="score uk-position-absolute " style="width: 200px; height: 200px; left: 55%; top: 50%; transform: translate(-50%, -50%);" rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}">
+                                <span style="font-size: 22px"><h:outputText rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}" value="Score: #{mapaMental.calificacion}%"/></span>
+                            </h:panelGroup>
+                            #{mapaMental.comentario}
                         </div>
                     </ui:repeat>
                 </div>

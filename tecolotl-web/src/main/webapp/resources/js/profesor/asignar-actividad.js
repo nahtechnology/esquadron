@@ -18,13 +18,14 @@ document.addEventListener('DOMContentLoaded', function (evento) {
         var temas = document.querySelector('#temario > div');
         temas.classList.toggle('temario-open');
     });
-     ordenarNiveles(nivelesFiltro);
-
+    ordenarNiveles(nivelesFiltro);
+    ejercicios.querySelectorAll('input[type=radio]').forEach(radio => radio.addEventListener('change', activaChechbox));
 });
 
 function buscaActividadSeleccionada(evento) {
     salida = [];
     seleccionados = ejercicios.querySelectorAll('input[type=radio]:checked');
+    verRespuestas = Array.from(seleccionados).map(selec => selec.nextElementSibling.checked);
     if (seleccionados === null || seleccionados.length === 0) {
         UIkit.modal.alert(letrero);
     } else {
@@ -35,12 +36,14 @@ function buscaActividadSeleccionada(evento) {
         if (salida.length !== niveles.length) {
             UIkit.modal.confirm(confirmacion).then(function () {
                 document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
+                document.getElementById('formulario-asignar-tarea:input-tarea').value = verRespuestas.join(',');
                 document.getElementById('formulario-asignar-tarea:boton-enviar').click();
             }, function () {
                 console.log('Cancelacion de envio');
             });
         } else {
             document.getElementById('formulario-asignar-tarea:input-actividad').value = salida.join(',');
+            document.getElementById('formulario-asignar-tarea:input-tarea').value = verRespuestas.join(',');
             document.getElementById('formulario-asignar-tarea:boton-enviar').click();
         }
 
@@ -69,7 +72,7 @@ function agregaListener(ejercicios) {
 
         cadenaMapas.forEach(function (numeroMapa) {
            let linkMapa = document.createElement('li');
-           linkMapa.innerHTML ="Mindmap_".concat(numeroMapa) ;
+           linkMapa.innerHTML =descargableMapa.concat("_",numeroMapa) ;
            contenedorListaMapa.appendChild(linkMapa);
         });
         iconos = ejercicio.querySelectorAll('.uk-inline > div > span');
@@ -84,7 +87,7 @@ function agregaListener(ejercicios) {
         });
         contenedorListaMapa.querySelectorAll('li').forEach(function (linkMap,index) {
           linkMap.addEventListener('click',function (evento) {
-              descargaDocumento('Mindmap_'.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
+              descargaDocumento(descargableMapa.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
           })
         })
 
@@ -158,4 +161,47 @@ function ordenarNiveles(nodo) {
       for (let i = 0; i < levels.length; i++){
           nodo.appendChild(prueba[i]);
       }
+}
+
+let personitas = document.querySelectorAll(".uk-card-header [uk-icon *= users]");
+
+personitas.forEach(function (persona) {
+    persona.addEventListener("mouseover", function (evt) {
+        let padre = evt.target.parentElement.parentElement;
+        let nivel = padre.querySelector(".cat-txt").innerText.trim();
+        let color ;
+        switch (nivel) {
+            case "A1":
+                color = "#E80CA2";
+                break;
+            case "A2":
+                color = "#D35400";
+                break;
+            case "B1":
+                color = "#E89E0C";
+                break;
+            case "B2":
+                color = "#650CE8";
+                break;
+            case "C1":
+                color = "#00a8ec";
+                break;
+            case "C2":
+                color = "#f0506e";
+                break;
+        }
+        setTimeout(pintarTooltip,60);
+        function pintarTooltip(){
+            let msjTooltip = document.querySelector(".uk-tooltip");
+            if(msjTooltip != null){
+                msjTooltip.style.background = color;
+            }
+        }
+    });
+});
+
+function activaChechbox(event){
+    let radio = event.target;
+    document.querySelectorAll('input[type=radio][name=' + radio.name + ']').forEach(chec => chec.nextElementSibling.checked = false);
+    radio.nextElementSibling.checked = true;
 }

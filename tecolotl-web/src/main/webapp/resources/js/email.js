@@ -26,9 +26,7 @@ document.addEventListener("DOMContentLoaded",function () {
     function sendEmail() {
         var contactos = document.querySelectorAll('#seccion3 div > input');
         Email.send({
-            Host : "in-v3.mailjet.com",
-            Username : "f8fb25bef858388aea9dedeb6042676d",
-            Password : "64705e76a3d268cd48ba0784fdb235b4",
+            SecureToken :'96c7e030-d64a-44b2-b925-85eb7b23d35c',
             To : 'cu.es.guillermo@gmail.com',
             From : "maugg76@gmail.com",
             Subject : "Contacto Escuela",
