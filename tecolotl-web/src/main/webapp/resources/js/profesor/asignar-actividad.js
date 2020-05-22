@@ -159,3 +159,50 @@ function ordenarNiveles(nodo) {
           nodo.appendChild(prueba[i]);
       }
 }
+
+let personitas = document.querySelectorAll(".uk-card-header [uk-icon *= users]");
+
+personitas.forEach(function (persona) {
+    persona.addEventListener("mouseover", function (evt) {
+        let padre = evt.target.parentElement.parentElement;
+        let nivel = padre.querySelector(".cat-txt").innerText.trim();
+        let color ;
+        switch (nivel) {
+            case "A1":
+                color = "#E80CA2";
+                break;
+            case "A2":
+                color = "#D35400";
+                break;
+            case "B1":
+                color = "#E89E0C";
+                break;
+            case "B2":
+                color = "#650CE8";
+                break;
+            case "C1":
+                color = "#00a8ec";
+                break;
+            case "C2":
+                color = "#f0506e";
+                break;
+        }
+        setTimeout(pintarTooltip,60);
+        function pintarTooltip(){
+            let msjTooltip = document.querySelector(".uk-tooltip");
+            if(msjTooltip != null){
+                msjTooltip.style.background = color;
+            }
+        }
+    });
+});
+
+// function activa(){
+//     let circulo = document.querySelector('.uk-radio').checked;
+//     if(circulo == true){
+//         let cuadro = document.querySelector('.uk-checkbox').checked;
+//         console.log(cuadro);//false
+//         cuadro = true;
+//         console.log(cuadro);//true
+//     }
+// }

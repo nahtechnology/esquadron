@@ -1,25 +1,82 @@
 .A1 .uk-card-footer a{
     color: var(--psecundary-option-three);
 }
+.A1 .uk-card-header > div > div + div > input {
+    border: 1px solid var(--psecundary-option-three);
+}
+.A1 .uk-card-header .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--psecundary-option-three) !important;
+}
+.A1 .uk-card-header .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--psecundary-option-three) !important;
+}
+.A1 .uk-card-header .uk-tooltip{
+    background: var(--psecundary-option-three) !important;
+}
 
 .A2 .uk-card-footer a{
     color: #D35400;
+}
+.A2 .uk-card-header > div > div + div > input {
+    border: 1px solid #D35400;
+}
+.A2 .uk-card-header .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: #D35400 !important;
+}
+.A2 .uk-card-header .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: #D35400 !important;
 }
 
 .B1 .uk-card-footer a{
     color: var(--tsecundary-option-one);
 }
+.B1 .uk-card-header > div > div + div > input {
+    border: 1px solid var(--tsecundary-option-one);
+}
+.B1 .uk-card-header .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--tsecundary-option-one) !important;
+}
+.B1 .uk-card-header .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--tsecundary-option-one) !important;
+}
 
 .B2 .uk-card-footer a{
     color: var(--asecundary-option-one);
+}
+.B2 .uk-card-header > div > div + div > input {
+    border: 1px solid var(--asecundary-option-one);
+}
+.B2 .uk-card-header .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--asecundary-option-one) !important;
+}
+.B2 .uk-card-header .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--asecundary-option-one) !important;
 }
 
 .C1 .uk-card-footer a{
     color: var(--color-nav-primary);
 }
+.C1 .uk-card-header > div > div + div > input {
+    border: 1px solid var(--color-nav-primary);
+}
+.C1 .uk-card-header .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--color-nav-primary) !important;
+}
+.C1 .uk-card-header .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--color-nav-primary) !important;
+}
 
 .C2 .uk-card-footer a{
     color: var(--color-peligro);
+}
+.C2 .uk-card-header > div > div + div > input {
+    border: 1px solid var(--color-peligro);
+}
+.C2 .uk-card-header .uk-radio:checked, .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--color-peligro) !important;
+}
+.C2 .uk-card-header .uk-checkbox:checked, .uk-checkbox:indeterminate {
+    background-color: var(--color-peligro) !important;
 }
 
 #temario
@@ -104,4 +161,16 @@ padding-left: 0;
 .uk-card-footer  .uk-dropdown > span:hover{
     color: var(--turquesa-primary-color);
     cursor: pointer;
+}
+
+.alinear{
+    display: flex;
+    flex-direction: column;
+}
+.uk-radio{
+    margin-bottom: 10px;
+}
+
+.personitas > * {
+    padding-left: 10px;
 }
