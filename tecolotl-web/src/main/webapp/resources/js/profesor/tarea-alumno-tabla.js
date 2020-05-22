@@ -1,8 +1,30 @@
 document.addEventListener('DOMContentLoaded',()=>{
+
     let seleccionFiltro = document.querySelector('#filtro-nivel');
     let nivelesTabla = document.querySelectorAll('.tabla-alumnos td > img');
+    let nivelesSet = new Set();
+    let indiceOpcion;
+    let nivelActual = document.querySelector('.elimina .uk-card-header > div > div:last-child > p:last-child').innerText.split(':')[1].trim();
+    switch (nivelActual) {
+        case "A1":
+            indiceOpcion = "1";
+            break;
+        case "A2":
+            indiceOpcion = "2";
+            break;
+        case "B1":
+            indiceOpcion = "3";
+            break;
+        case "B2":
+            indiceOpcion = "4";
+            break;
+        case "C1":
+            indiceOpcion = "5";
+            break;
+    }
     nivelesTabla.forEach(nivel => {
         let nivelActividad = nivel.dataset.nivel;
+        nivelesSet.add(nivelActividad);
         switch (nivelActividad) {
             case "A1":
                 nivel.parentElement.parentElement.classList.add('hover-A1');
@@ -25,6 +47,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         }
     });
 
+    nivelesSet.forEach(opcion =>{
+       let etiqueta = document.createElement('option');
+       etiqueta.value=opcion;
+       etiqueta.innerText = `level ${opcion}`;
+       seleccionFiltro.appendChild(etiqueta);
+    });
+
     seleccionFiltro.addEventListener('change',(evt)=>{
         let cuerpoTabla = document.querySelector('.tabla-alumnos');
         let filas = document.querySelectorAll('.tabla-alumnos tbody > tr');
@@ -36,6 +65,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         cuerpoTabla.classList.add('visibilidad-fila');
         setTimeout(animacionFilas,500,filas,nivel,cuerpoTabla);
     });
+
+    seleccionFiltro.selectedIndex = indiceOpcion;
 
 });
 
