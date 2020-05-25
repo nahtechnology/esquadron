@@ -9,10 +9,15 @@ import java.util.Objects;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "NotificacionEntidad.buscaProfesor",
-                query = "SELECT n FROM NotificacionEntidad n WHERE n.notificacionEntidadPK.profesorEntidad = :idProfesor"),
+                query = "SELECT n FROM NotificacionEntidad n JOIN FETCH n.notificacionEntidadPK.alumnoEntidad a JOIN FETCH a.nivelLenguajeEntidad " +
+                        "WHERE n.notificacionEntidadPK.profesorEntidad.id = :idProfesor"),
         @NamedQuery(
                 name = "NotificacionEntidad.leidos",
                 query = "UPDATE NotificacionEntidad AS n SET n.leido = TRUE WHERE n.notificacionEntidadPK = :notificacionPK"
+        ),
+        @NamedQuery(
+                name = "NotificacionEntidad.elimina",
+                query = "DELETE FROM NotificacionEntidad n WHERE n.notificacionEntidadPK = :notificacionPK"
         )
 })
 public class NotificacionEntidad {

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="menu">
+        Menu
+    </ui:define>
+    <ui:define name="contenido">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{buzonControlador.inicio}"/>
+        </f:metadata>
+        <ul>
+            <h:form>
+            <ui:repeat value="#{buzonControlador.notificacionModeloLista}" var="notificacionModelo">
+                <li>
+                    <h:outputFormat value="#{profesor['buzon.mesage.info']}">
+                        <f:param value="${notificacionModelo.nombre.concat(' ').concat(notificacionModelo.apellidoPaterno).concat(' ').concat(notificacionModelo.apellidoMaterno)}"/>
+                        <f:param value="A2"/>
+                        <f:param value="Reglas"/>
+                    </h:outputFormat>
+                    <h:outputText value="${notificacionModelo.momento}">
+                        <f:convertDateTime pattern="dd-MM-yyyy"/>
+                    </h:outputText>
+                    <h:selectBooleanCheckbox value="#{notificacionModelo.leido}"/>
+                    <h:commandButton value="Liedo" action="buzonControlador.leido(notificacionModelo.idAlumno)">
+                    </h:commandButton>
+                </li>
+            </ui:repeat>
+            </h:form>
+        </ul>
+    </ui:define>
+
+</ui:composition>
