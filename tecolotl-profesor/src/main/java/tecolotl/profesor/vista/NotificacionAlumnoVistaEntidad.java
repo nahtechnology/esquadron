@@ -21,6 +21,7 @@ public class NotificacionAlumnoVistaEntidad {
     private UUID idProfesor;
     private Date momento;
     private boolean leido;
+    private String nivelLenguaje;
 
     public NotificacionAlumnoVistaEntidad() {
     }
@@ -83,5 +84,14 @@ public class NotificacionAlumnoVistaEntidad {
 
     public void setLeido(boolean leido) {
         this.leido = leido;
+    }
+
+    @Column(name = "nivel_lenguaje")
+    public String getNivelLenguaje() {
+        return nivelLenguaje;
+    }
+
+    public void setNivelLenguaje(String nivelLenguaje) {
+        this.nivelLenguaje = nivelLenguaje;
     }
 }

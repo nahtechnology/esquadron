@@ -14,8 +14,7 @@
                 <li>
                     <h:outputFormat value="#{profesor['buzon.mesage.info']}">
                         <f:param value="${notificacionModelo.nombre.concat(' ').concat(notificacionModelo.apellidoPaterno).concat(' ').concat(notificacionModelo.apellidoMaterno)}"/>
-                        <f:param value="A2"/>
-                        <f:param value="Reglas"/>
+                        <f:param value="${notificacionModelo.nivelLenguaje}"/>
                     </h:outputFormat>
                     <h:outputText value="${notificacionModelo.momento}">
                         <f:convertDateTime pattern="dd-MM-yyyy"/>

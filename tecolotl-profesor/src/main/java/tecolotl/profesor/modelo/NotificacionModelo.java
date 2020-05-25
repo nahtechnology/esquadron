@@ -14,6 +14,7 @@ public class NotificacionModelo {
     private String apellidoMaterno;
     private Date momento;
     private boolean leido;
+    private String nivelLenguaje;
 
     public NotificacionModelo() {
     }
@@ -34,6 +35,7 @@ public class NotificacionModelo {
         apellidoMaterno = entidad.getApellidoMaterno();
         momento = entidad.getMomento();
         leido = entidad.isLeido();
+        nivelLenguaje = entidad.getNivelLenguaje();
     }
 
     public UUID getIdAlumno() {
@@ -82,5 +84,13 @@ public class NotificacionModelo {
 
     public void setLeido(boolean leido) {
         this.leido = leido;
+    }
+
+    public String getNivelLenguaje() {
+        return nivelLenguaje;
+    }
+
+    public void setNivelLenguaje(String nivelLenguaje) {
+        this.nivelLenguaje = nivelLenguaje;
     }
 }
