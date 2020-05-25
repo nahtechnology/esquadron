@@ -8,9 +8,6 @@
         Menu
     </ui:define>
     <ui:define name="contenido">
-        <f:metadata>
-            <f:event type="preRenderView" listener="#{buzonControlador.inicio}"/>
-        </f:metadata>
         <ul>
             <h:form>
             <ui:repeat value="#{buzonControlador.notificacionModeloLista}" var="notificacionModelo">
@@ -23,8 +20,12 @@
                     <h:outputText value="${notificacionModelo.momento}">
                         <f:convertDateTime pattern="dd-MM-yyyy"/>
                     </h:outputText>
-                    <h:selectBooleanCheckbox value="#{notificacionModelo.leido}"/>
-                    <h:commandButton value="Liedo" action="buzonControlador.leido(notificacionModelo.idAlumno)">
+                    <h:selectBooleanCheckbox value="#{notificacionModelo.leido}" disabled="#{notificacionModelo.leido}"/>
+                    <h:commandButton value="Liedo" rendered="#{not notificacionModelo.leido}">
+                        <f:ajax render="@form" listener="#{buzonControlador.leido(notificacionModelo.idAlumno)}"/>
+                    </h:commandButton>
+                    <h:commandButton value="Borrar" rendered="#{notificacionModelo.leido}">
+                        <f:ajax render="@form" listener="#{buzonControlador.elimina(notificacionModelo.idAlumno)}"/>
                     </h:commandButton>
                 </li>
             </ui:repeat>
