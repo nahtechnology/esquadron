@@ -185,6 +185,17 @@ public class EscuelaSesionBean implements Serializable {
 		return new EscuelaDetalleModelo(escuelaEntidad);
 	}
 
+	public EscuelaBaseModelo busca(@NotNull Integer galaxia) {
+		TypedQuery<EscuelaEntidad> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.buscaPorGalaxia", EscuelaEntidad.class);
+		typedQuery.setParameter("galaxia", galaxia);
+		return new EscuelaBaseModelo(typedQuery.getSingleResult());
+	}
+
+	/**
+	 * Existe una escuela
+	 * @param claveCentroTrabajo
+	 * @return
+	 */
 	public String valida(@NotNull String claveCentroTrabajo) {
 		logger.fine(claveCentroTrabajo);
 		try {

@@ -7,6 +7,7 @@ import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.modelo.ProfesorGrupoAlumnoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
 
@@ -20,7 +21,9 @@ import javax.persistence.criteria.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -160,6 +163,30 @@ public class ProfesorSesionBean implements Serializable {
         TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaIdEscuela", ProfesorEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
         return typedQuery.getResultList().stream().map(ProfesorModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca los totaoles de grupos y total de alumno que tiene cada grupo de una escuela
+     * @param claveCentroTrabajo Identificador de la escuela
+     * @return Coleccion de datos con los totales
+     */
+    public List<ProfesorGrupoAlumnoModelo> buscaTotalGrupoAlumno(@NotNull String claveCentroTrabajo) {
+        Query query = entityManager.createNativeQuery(
+                "SELECT CAST(p.id AS VARCHAR), p.nombre, p.apellido_paterno, p.apellido_materno, count(grupo.id) AS total_grupo, sum(grupo.total_alumno) AS total_alumno " +
+                        "FROM profesor.profesor p JOIN (SELECT g.id, g.id_profesor, count(ga.id_alumno) AS total_alumno FROM profesor.grupo g LEFT JOIN " +
+                        "profesor.grupo_alumno ga ON g.id = ga.id_grupo GROUP BY g.id) AS grupo ON p.id = grupo.id_profesor WHERE p.id_escuela = ? GROUP BY p.id");
+        query.setParameter(1, claveCentroTrabajo);
+        List<Object[]> lista = (List<Object[]>) query.getResultList();
+        return lista.stream().map(objects -> {
+            ProfesorGrupoAlumnoModelo profesorGrupoAlumnoModelo = new ProfesorGrupoAlumnoModelo();
+            profesorGrupoAlumnoModelo.setId(UUID.fromString((String)objects[0]));
+            profesorGrupoAlumnoModelo.setNombre((String)objects[1]);
+            profesorGrupoAlumnoModelo.setApellidoPaterno((String)objects[2]);
+            profesorGrupoAlumnoModelo.setApellidoMaterno((String)objects[3]);
+            profesorGrupoAlumnoModelo.setTotalGrupo(((BigInteger)objects[4]).intValue());
+            profesorGrupoAlumnoModelo.setTotalAlumno(((BigDecimal)objects[5]).intValue());
+            return profesorGrupoAlumnoModelo;
+        }).collect(Collectors.toList());
     }
 
 }

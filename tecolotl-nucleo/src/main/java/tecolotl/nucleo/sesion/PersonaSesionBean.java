@@ -2,10 +2,7 @@ package tecolotl.nucleo.sesion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -30,7 +27,12 @@ public class PersonaSesionBean {
                 "SELECT 'alumno' AS rol FROM alumno.alumno a WHERE a.apodo = ? UNION SELECT 'profesor' AS rol FROM profesor.profesor p WHERE p.apodo = ?");
         query.setParameter(1, apodo.split(",")[0]);
         query.setParameter(2, apodo.split(",")[0]);
-        return (String) query.getSingleResult();
+        try {
+            return (String) query.getSingleResult();
+        } catch (NoResultException exception) {
+            return null;
+        }
+
     }
 
     /**

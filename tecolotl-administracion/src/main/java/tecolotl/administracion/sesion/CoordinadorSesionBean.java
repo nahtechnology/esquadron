@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -50,6 +51,12 @@ public class CoordinadorSesionBean {
                 .map(CoordinadorModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Busca los detalles de un coordinador
+     * @param claveCentroTrabajo clave centro de trabajo al que pretenece el coordinador
+     * @param contador Contador del coordinador
+     * @return Datos del coordinador
+     */
     public CoordinadorModelo busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
                                    @NotNull Short contador) {
         logger.fine("Buscando por id:".concat(contador.toString()).concat(" clave centro trabajo:").concat(claveCentroTrabajo));
@@ -62,6 +69,19 @@ public class CoordinadorSesionBean {
         coordinadorModelo.getPersonaMotivoBloqueoModelo().setValor(
                 coordinadorEntidad.getPersonaMotivoBloqueoEntidad().getValor());
         return coordinadorModelo;
+    }
+
+    /**
+     * Busca un coordinador por su apodo
+     * @param galaxia galaxia a la escuela que pertenece
+     * @param apodo Apodo del coordinador
+     * @return Objeto con los datos del coordinador
+     */
+    public CoordinadorModelo busca(@NotNull Integer galaxia,
+                                   @NotNull String apodo) {
+        TypedQuery<CoordinadorEntidad> typedQuery = entityManager.createNamedQuery("CoordinadorEntidad.buscaApodo", CoordinadorEntidad.class);
+        typedQuery.setParameter("galaxia", galaxia).setParameter("apodo", apodo);
+        return new CoordinadorModelo(typedQuery.getSingleResult());
     }
 
     /**
