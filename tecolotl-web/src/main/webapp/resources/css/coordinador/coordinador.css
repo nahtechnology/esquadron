@@ -1,96 +1,102 @@
 
-
-svg g {
-    stroke: white;
+:root{
+    --color-primario : #1e87f0;
+    --color-secundario : #222A30;
 }
-.seccion-principal{
-    margin-top: 50px;
+
+.contenido{
+    min-height: calc(100vh - 120px);
+    grid-area: contenido;
     display: grid;
+    grid-template-areas: "informacion-profesor informacion-escuela" "tabla tabla";
+    grid-template-rows: 300px 1fr;
     grid-template-columns: 3fr 7fr;
-    grid-template-rows: 450px;
-    grid-gap: 0 10px;
+    row-gap: 20px;
+    column-gap: 40px;
 }
-
-.card{
-    width: 100%;
-    min-height: 200px;
-    border-radius: 8px;
-    border: 2px solid var(--azul-primary-color);
-    box-sizing: border-box;
-}
-.card p{
-    margin: 0;
-}
-.card-titulo, .card-cuerpo, .card-pie{
-    padding: 20px 20px;
-    box-sizing: border-box
-}
-.card-titulo,.card-cuerpo{
-    border-bottom: 1px solid #95A5A6;
-}
-
-.card-titulo > div  > img{
-    width: 50px;
-    height: 50px;
-    border-radius: 30px;
-    display: inline-block;
-    margin-right: 30px;
-}
-.card-titulo > div:first-child{
+.navegacion{
+    width: 80px;
+    height: calc(100vh - 110px);
+    border: 2px solid white;
+    color: white;
+    position: fixed;
     display: flex;
-    margin-bottom: 10px;
+    justify-content: center;
+    align-items: center;
+
 }
-.card-titulo > div:first-child > .card-informacion{
-    flex-grow: 1;
+.informacion-profesor{
+    grid-area: informacion-profesor;
+
+}
+.informacion-escuela{
+    grid-area: informacion-escuela;
+    display: grid;
+    grid-template-areas: "inicio final" "escuela escuela";
+    gap: 1em;
+    grid-template-columns: 5fr 5fr;
+    grid-template-rows: 5fr 5fr;
+
+}
+.informacion-escuela > div:first-child{
+    grid-area: inicio;
+    align-self: center;
+}
+.informacion-escuela > div:nth-child(2){
+    grid-area: final;
+    align-self: center;
+}
+.informacion-escuela > div:last-child{
+    grid-area: escuela;
+    align-self: center;
 }
 
-.card-titulo > p > span{
-    font-weight: 900;
-    color: #757575;
+.tabla{
+    grid-area: tabla;
+    align-self: center;
 }
 
-.card-informacion > p:first-child{
+.informacion-profesor .uk-card{
+    border: 2px solid var(--color-secundario);
+}
+
+.encabezado{
+    padding: 10px 6px;
+    background-color: var(--color-primario);
+    color: white;
+    text-transform: uppercase;
     font-weight: 900;
-    color: black;
+    text-align: center;
 }
-.seccion-principal > div:last-child{
-    padding-left: 40px;
-    padding-top: 10px;
+.encabezado + div{
+    margin-top: 10px;
+    border: 2px solid var(--color-secundario) ;
+    padding: 10px 5px;
+    text-align: center;
+    font-weight: 900;
 }
-.seccion-principal > div:last-child  *{
+.tabla > table{
+    text-align: center;
+    box-shadow: 3px 3px 6px gray;
+}
+.tabla > table > thead  th{
+    text-align: inherit;
+    color: white;
+}
+ .informacion-profesor .uk-card-body {
+    padding: 10px;
     box-sizing: border-box;
+     display: flex;
+    flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+.informacion-profesor .uk-card{
+    height: 100%;
+    box-shadow: 3px 3px 6px gray;
+
 }
 
-.seccion-principal > div:last-child > label{
-width: 20%;
+.informacion-profesor .uk-card-body p{
+    font-size: 17px;
 }
-.seccion-principal > div:last-child > input{
-    width: 80%;
-}
-.seccion-principal > div:last-child > div{
-    display: flex;
-    flex-wrap: wrap;
-}
-.seccion-principal > div:last-child > div > div{
-    flex-basis: 0;
-    flex-grow: 1;
-    padding: 0 3px;
-}
-.seccion-principal > div:last-child  span{
-    display: inline-block;
-    width: 100%;
-    border-radius: 5px;
-    border: 2px solid var(--color-nav-primary);
-    padding: 5px 2px;
-    margin-top: 20px;
-}
-
-.lista{
-    height: 400px;
-    overflow: auto;
-}
-
-
-
-
-
