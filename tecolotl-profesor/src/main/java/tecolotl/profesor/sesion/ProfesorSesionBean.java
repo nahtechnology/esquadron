@@ -7,6 +7,7 @@ import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.ProfesorEntidad;
+import tecolotl.profesor.modelo.CalificacionPendientesModelo;
 import tecolotl.profesor.modelo.ProfesorGrupoAlumnoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
@@ -186,6 +187,28 @@ public class ProfesorSesionBean implements Serializable {
             profesorGrupoAlumnoModelo.setTotalGrupo(((BigInteger)objects[4]).intValue());
             profesorGrupoAlumnoModelo.setTotalAlumno(((BigDecimal)objects[5]).intValue());
             return profesorGrupoAlumnoModelo;
+        }).collect(Collectors.toList());
+    }
+
+    public List<CalificacionPendientesModelo> buscaTotalCalificado(@NotNull UUID idProfesor) {
+        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR), CAST(g.id_profesor AS VARCHAR), g.grado, g.grupo, count(t.id) AS tarea_asignadas, count(ctm.id_tarea) - count(ctm.puntaje) AS pendientes_mapamental," +
+                "count(califica_tarea_gramatica.id_tarea) - sum(califica_tarea_gramatica.calificado) AS pendientes_gramatica " +
+                "FROM profesor.grupo g JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno JOIN " +
+                "profesor.califica_tarea_mapamental ctm ON t.id = ctm.id_tarea JOIN ( SELECT id_tarea, count(*) AS total, count(puntaje) AS calificado " +
+                "FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS califica_tarea_gramatica ON califica_tarea_gramatica.id_tarea = t.id WHERE id_profesor = ? " +
+                "GROUP BY g.id, g.grado, g.grupo");
+        query.setParameter(1, idProfesor);
+        List<Object[]> lista = (List<Object[]>) query.getResultList();
+        return lista.stream().map(objects -> {
+            CalificacionPendientesModelo calificacionPendientesModelo = new CalificacionPendientesModelo();
+            calificacionPendientesModelo.setIdGrupo(UUID.fromString((String)objects[0]));
+            calificacionPendientesModelo.setIdProfesor(UUID.fromString((String)objects[1]));
+            calificacionPendientesModelo.setGrado((Short) objects[2]);
+            calificacionPendientesModelo.setGrupo((String)objects[3]);
+            calificacionPendientesModelo.setTareasAsignadas(((BigInteger)objects[4]).intValue());
+            calificacionPendientesModelo.setTareasAsignadas(((BigInteger)objects[5]).intValue());
+            calificacionPendientesModelo.setTareasAsignadas(((BigDecimal)objects[6]).intValue());
+            return calificacionPendientesModelo;
         }).collect(Collectors.toList());
     }
 

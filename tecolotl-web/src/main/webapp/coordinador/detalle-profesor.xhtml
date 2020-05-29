@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/template/administracion/dashboard.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+    <ui:define name="menu">
+        <f:metadata>
+            <f:viewParam name="profesor" value="${detalleProfesorControlador.idProfesor}"/>
+            <f:viewAction action="#{detalleProfesorControlador.inicio}"/>
+        </f:metadata>
+    </ui:define>
+    <ui:define name="contenido">
+        <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
+                     var="calificacionPendientesModelo">
+            <h:column>
+                <f:facet name="header">grado</f:facet>
+                ${calificacionPendientesModelo.grado}
+            </h:column>
+            <h:column>
+                <f:facet name="header">grupo</f:facet>
+                ${calificacionPendientesModelo.grupo}
+            </h:column>
+            <h:column>
+                <f:facet name="header">tareas asignadas</f:facet>
+                ${calificacionPendientesModelo.tareasAsignadas}
+            </h:column>
+            <h:column>
+                <f:facet name="header">pendientes por calificar mapa mental</f:facet>
+                ${calificacionPendientesModelo.pendientesMapaMental}
+            </h:column>
+            <h:column>
+                <f:facet name="header">pendientes por calificar word game</f:facet>
+                ${calificacionPendientesModelo.pendientesGramatica}
+            </h:column>
+        </h:dataTable>
+    </ui:define>
+</ui:composition>

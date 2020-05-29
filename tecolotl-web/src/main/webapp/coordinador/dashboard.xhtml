@@ -55,7 +55,12 @@
                     <button class="uk-icon-button" uk-icon="more-vertical"/>
                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
-                            <li><a href="#">detalles</a></li>
+                            <li>
+                                <h:link outcome="detalles">
+                                    <span>#{etiqueta['detail']}</span>
+                                    <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
+                                </h:link>
+                            </li>
                             <li><a href="#">bloquear</a></li>
                         </ul>
                     </h:panelGroup>
