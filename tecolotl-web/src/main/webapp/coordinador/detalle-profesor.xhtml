@@ -13,28 +13,69 @@
         </f:metadata>
     </ui:define>
     <ui:define name="contenido">
-        <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
-                     var="calificacionPendientesModelo">
-            <h:column>
-                <f:facet name="header">grado</f:facet>
-                ${calificacionPendientesModelo.grado}
-            </h:column>
-            <h:column>
-                <f:facet name="header">grupo</f:facet>
-                ${calificacionPendientesModelo.grupo}
-            </h:column>
-            <h:column>
-                <f:facet name="header">tareas asignadas</f:facet>
-                ${calificacionPendientesModelo.tareasAsignadas}
-            </h:column>
-            <h:column>
-                <f:facet name="header">pendientes por calificar mapa mental</f:facet>
-                ${calificacionPendientesModelo.pendientesMapaMental}
-            </h:column>
-            <h:column>
-                <f:facet name="header">pendientes por calificar word game</f:facet>
-                ${calificacionPendientesModelo.pendientesGramatica}
-            </h:column>
-        </h:dataTable>
+        <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
+        <h:outputStylesheet library="css" name="/coordinador/detalle-profesor.css"/>
+        <ui:remove>
+            <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
+                         var="calificacionPendientesModelo">
+                <h:column>
+                    <f:facet name="header">grado</f:facet>
+                    ${calificacionPendientesModelo.grado}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">grupo</f:facet>
+                    ${calificacionPendientesModelo.grupo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">tareas asignadas</f:facet>
+                    ${calificacionPendientesModelo.tareasAsignadas}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">pendientes por calificar mapa mental</f:facet>
+                    ${calificacionPendientesModelo.pendientesMapaMental}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">pendientes por calificar word game</f:facet>
+                    ${calificacionPendientesModelo.pendientesGramatica}
+                </h:column>
+            </h:dataTable>
+        </ui:remove>
+
+        <h1>detalles profesor</h1>
+        <div class="datos">
+            <div class="informacion-usuario">
+                <h:graphicImage library="img" name="/avatar/maestro.svg" />
+                <div>
+                    <p>Juan Maestro apellido</p>
+                    <p>MrJuan</p>
+                </div>
+            </div>
+
+            <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
+                         var="calificacionPendientesModelo"
+                          styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small"  >
+                <h:column>
+                    <f:facet name="header">grado</f:facet>
+                    ${calificacionPendientesModelo.grado}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">grupo</f:facet>
+                    ${calificacionPendientesModelo.grupo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">tareas asignadas</f:facet>
+                    ${calificacionPendientesModelo.tareasAsignadas}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">pendientes por calificar mapa mental</f:facet>
+                    ${calificacionPendientesModelo.pendientesMapaMental}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">pendientes por calificar word game</f:facet>
+                    ${calificacionPendientesModelo.pendientesGramatica}
+                </h:column>
+            </h:dataTable>
+
+        </div>
     </ui:define>
 </ui:composition>
