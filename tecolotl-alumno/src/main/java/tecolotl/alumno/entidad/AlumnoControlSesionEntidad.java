@@ -1,5 +1,7 @@
 package tecolotl.alumno.entidad;
 
+import tecolotl.nucleo.persistencia.entidad.ControlSesionEntidad;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,10 +11,11 @@ import java.util.UUID;
 @Table(name = "control_sesion", schema = "alumno")
 @NamedQueries(value = {
         @NamedQuery(
-                name = "ControlSesionEntidad.buscaAlumno",
-                query = "SELECT cs FROM ControlSesionEntidad cs WHERE cs.alumnoEntidad.id = :idAlumno")
+                name = "AlumnoControlSesionEntidad.buscaAlumno",
+                query = "SELECT acs FROM AlumnoControlSesionEntidad acs WHERE acs.alumnoEntidad.id = :idAlumno AND " +
+                        "acs.tiempo BETWEEN :fechaInicio AND :fechaFin")
 })
-public class ControlSesionEntidad extends tecolotl.nucleo.persistencia.entidad.ControlSesionEntidad implements Serializable {
+public class AlumnoControlSesionEntidad extends ControlSesionEntidad implements Serializable {
 
     private AlumnoEntidad alumnoEntidad;
 
@@ -25,11 +28,6 @@ public class ControlSesionEntidad extends tecolotl.nucleo.persistencia.entidad.C
 
     public void setAlumnoEntidad(AlumnoEntidad alumnoEntidad) {
         this.alumnoEntidad = alumnoEntidad;
-    }
-
-    @PrePersist
-    public void momento() {
-        setTiempo(new Date());
     }
 
 }

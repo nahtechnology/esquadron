@@ -5,15 +5,20 @@ import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;
+import tecolotl.nucleo.modelo.UsuarioSesionModelo;
+import tecolotl.nucleo.sesion.SesionControlSingleton;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 
 @SessionScoped
 @Named
@@ -25,6 +30,12 @@ public class AlumnoControlador implements Serializable {
     @Inject
     private TareaSesionBean tareaSesionBean;
 
+    @Inject
+    private HttpServletRequest httpServletRequest;
+
+    @Inject
+    private SesionControlSingleton sesionControlSingleton;
+
     private AlumnoModelo alumnoModelo;
     private List<TareaActividadModelo> tareaActvidadModeloLista;
     private TareaActividadModelo tareaActividadModelo;
@@ -35,6 +46,13 @@ public class AlumnoControlador implements Serializable {
         Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
         tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId());
+        String datosUsuario[] = principal.getName().split(",");
+        sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
+                Integer.parseInt(datosUsuario[1]),
+                datosUsuario[0],
+                UsuarioSesionModelo.Tipo.ALUMNO,
+                new Date(),
+                alumnoModelo.getId());
     }
 
     public String seleccion(TareaActividadModelo tareaActividadModelo){

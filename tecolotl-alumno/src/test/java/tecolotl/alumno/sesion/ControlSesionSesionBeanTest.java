@@ -5,12 +5,11 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.alumno.entidad.AlumnoEntidad;
-import tecolotl.alumno.entidad.ControlSesionEntidad;
+import tecolotl.alumno.entidad.AlumnoControlSesionEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
@@ -20,9 +19,8 @@ import tecolotl.nucleo.persistencia.entidad.TipoRegistroEntidad;
 
 import javax.inject.Inject;
 
+import java.util.Date;
 import java.util.UUID;
-
-import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class ControlSesionSesionBeanTest {
@@ -31,7 +29,7 @@ public class ControlSesionSesionBeanTest {
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
                 .addAsResource("META-INF/persistence.xml")
-                .addClass(ControlSesionSesionBean.class).addClass(ControlSesionEntidad.class)
+                .addClass(ControlSesionSesionBean.class).addClass(AlumnoControlSesionEntidad.class)
                 .addClass(tecolotl.nucleo.persistencia.entidad.ControlSesionEntidad.class)
                 .addClass(TipoRegistroEntidad.class).addClass(CatalagoEntidad.class)
                 .addPackage(AlumnoEntidad.class.getPackage()).addPackage(PersonaEntidad.class.getPackage())
@@ -46,12 +44,12 @@ public class ControlSesionSesionBeanTest {
 
     @Test
     public void inicioSesion() {
-        controlSesionSesionBean.inserta(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short)1);
+        controlSesionSesionBean.inserta(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short)1, new Date());
     }
 
     @Test
     public void cierreSesion() {
-        controlSesionSesionBean.inserta(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short)2);
+        controlSesionSesionBean.inserta(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short)2, new Date());
     }
 
 }

@@ -6,8 +6,8 @@ import java.util.Date;
 @MappedSuperclass
 public class ControlSesionEntidad {
 
-    Date tiempo;
-    TipoRegistroEntidad tipoRegistroEntidad;
+    private Date tiempo;
+    private TipoRegistroEntidad tipoRegistroEntidad;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "tiempo")
