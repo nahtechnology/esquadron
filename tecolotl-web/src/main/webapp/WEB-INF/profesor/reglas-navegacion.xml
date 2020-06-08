@@ -11,12 +11,17 @@
             <to-view-id>/profesor/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+    
+    
     <navigation-rule>
         <from-view-id>/profesor/dashboard.xhtml</from-view-id>
         <navigation-case>
             <from-outcome>alumnos</from-outcome>
             <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>buzon</from-outcome>
+            <to-view-id>/profesor/buzon.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
             <from-outcome>biblioteca-profesor</from-outcome>
@@ -223,6 +228,14 @@
                     <value>#{profesorGrupoControlador.grupoModelo.id}</value>
                 </redirect-param>
             </redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/profesor/buzon.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
