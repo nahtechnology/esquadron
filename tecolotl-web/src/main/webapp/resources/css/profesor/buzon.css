@@ -1,3 +1,29 @@
-.uk-container>ul>form>li{
-    background-color: #00A859;
+.uk-checkbox{
+    width: 18px;
+    height: 18px;
+    border: 1px solid var(--turquesa-primary-color);
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.btn-back{
+    display: flex;
+    align-items: flex-end;
+    padding-left: 650px;
+}
+
+/*.uk-list-striped > li:nth-of-type(odd) {*/
+/*    background: #f8f8f8;*/
+/*    border-left: 15px solid limegreen;*/
+/*}*/
+
+.uk-list-striped>li{
+    border: 1.5px solid #1665B4 !important;
+    border-radius: 3px;
+    border-left: 10px solid #068D10 !important;
+    margin-bottom: 10px;
+}
+
+.centrar{
+    padding-left: 14% !important;
 }

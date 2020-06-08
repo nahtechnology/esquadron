@@ -6,33 +6,94 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 <!--    <link rel="stylesheet" href="/resources/css/profesor/buzon.css"/>-->
 <!--    <link rel="stylesheet" href="#{resource['css/profesor/buzon.css']}"/>-->
-    <h:outputStylesheet library="css" name="/profesor/buzon.css"/>
     <ui:define name="menu">
-        Menu
+        <ul class="uk-subnav nav-sub uk-visible@m" >
+            <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
+            <li><span>#{profesor['mail.box']}</span></li>
+        </ul>
+        <div>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
+        </div>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar">
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li class="nav-sub-active"><span class="uk-text-capitalize">#{etiqueta['home']}</span></li>
+                </ul>
+            </div>
+        </div>
     </ui:define>
     <ui:define name="contenido">
-        <ul>
-            <h:form>
-            <ui:repeat value="#{buzonControlador.notificacionModeloLista}" var="notificacionModelo">
-                <li>
-                    <h:outputFormat value="#{profesor['buzon.mesage.info']}">
-                        <f:param value="${notificacionModelo.nombre.concat(' ').concat(notificacionModelo.apellidoPaterno).concat(' ').concat(notificacionModelo.apellidoMaterno)}"/>
-                        <f:param value="${notificacionModelo.nivelLenguaje}"/>
-                    </h:outputFormat>
-                    <h:outputText value="${notificacionModelo.momento}">
-                        <f:convertDateTime pattern="dd-MM-yyyy"/>
-                    </h:outputText>
-                    <h:selectBooleanCheckbox value="#{notificacionModelo.leido}" disabled="#{notificacionModelo.leido}"/>
-                    <h:commandButton value="Liedo" rendered="#{not notificacionModelo.leido}">
-                        <f:ajax render="@form" listener="#{buzonControlador.leido(notificacionModelo.idAlumno)}"/>
-                    </h:commandButton>
-                    <h:commandButton value="Borrar" rendered="#{notificacionModelo.leido}">
-                        <f:ajax render="@form" listener="#{buzonControlador.elimina(notificacionModelo.idAlumno)}"/>
-                    </h:commandButton>
-                </li>
-            </ui:repeat>
-            </h:form>
-        </ul>
+        <h:outputStylesheet library="css" name="/profesor/buzon.css"/>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron uk-text-capitalize">#{profesor['mail.box']}</h1></div>
+        <div class="uk-grid" uk-grid="">
+            <div class="uk-width-1-3@m">
+                <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
+                    <div class="uk-card-header border-card">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid="">
+                            <div class="uk-width-auto">
+                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" style="border-radius: 150px" alt="maestro" width="50" height="50"/>
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small  uk-text-bold">
+                                    #{profesorControlador.profesorModelo.nombre.concat(' ').concat(profesorControlador.profesorModelo.apellidoPaterno).concat(' ').concat(profesorControlador.profesorModelo.apellidoMaterno)}
+                                </h3>
+                                <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
+                            </div>
+                            <div class="uk-width-1-1@s">
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom ">
+                                    <span class="uk-text-bold uk-text-capitalize">#{profesor['dashboard.nickname']}: </span>#{profesorControlador.profesorModelo.apodo}
+                                </p>
+                                <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom ">
+                                    <span class="uk-text-bold uk-text-capitalize">#{profesor['dashboard.email']}: </span>#{profesorControlador.profesorModelo.correoEletronico}
+                                </p>
+                                <ui:remove><p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p></ui:remove>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body padding-card-body">
+                        <h3 class="uk-text-uppercase uk-text-bold ">question?</h3>
+                        <p>We've got answers! <span class="uk-text-primary">Contact Us</span></p>
+                    </div>
+                    <div class="uk-card-footer">
+                        <h3 class="uk-text-uppercase uk-text-bold">Teacher Training</h3>
+                        <p>Learn more with our free <span class="">e-squadron courses!</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-back">
+                <h:button value="#{boton['back']}" outcome="regresar" styleClass="boton-escuadron-base"/>
+            </div>
+            <div class="uk-container uk-container-small uk-margin-medium-top uk-margin-large-bottom centrar">
+                <ul>
+                    <h:form class="uk-list uk-list-striped">
+                        <ui:repeat value="#{buzonControlador.notificacionModeloLista}" var="notificacionModelo">
+                            <li>
+                            <h:outputFormat value="#{profesor['buzon.mesage.info']}" escape="false">
+                                <f:param value="${notificacionModelo.nombre.concat(' ').concat(notificacionModelo.apellidoPaterno).concat(' ').concat(notificacionModelo.apellidoMaterno)}"/>
+                                <f:param value="${notificacionModelo.nivelLenguaje}"/>
+                            </h:outputFormat>
+                            <span>
+                                <h:outputText value="${notificacionModelo.momento}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </span>
+                            <h:selectBooleanCheckbox styleClass="uk-checkbox"  value="#{notificacionModelo.leido}" disabled="#{notificacionModelo.leido}"/>
+                            <h:commandButton class="boton-escuadron-base" value="#{profesor['buzon.read']}" rendered="#{not notificacionModelo.leido}">
+                                <f:ajax render="@form" listener="#{buzonControlador.leido(notificacionModelo.idAlumno)}"/>
+                            </h:commandButton>
+                            <h:commandButton class="boton-escuadron-base" value="#{boton['remove']}" rendered="#{notificacionModelo.leido}">
+                                <f:ajax render="@form" listener="#{buzonControlador.elimina(notificacionModelo.idAlumno)}"/>
+                            </h:commandButton>
+                            </li>
+                        </ui:repeat>
+                    </h:form>
+                </ul>
+            </div>
+        </div>
+
     </ui:define>
 
 </ui:composition>
