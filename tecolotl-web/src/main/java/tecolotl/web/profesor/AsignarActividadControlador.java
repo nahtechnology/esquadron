@@ -48,7 +48,7 @@ public class AsignarActividadControlador implements Serializable {
     public String asiganarTarea() {
         if (alumno == null) {
             String tarea[] = actividad.split(",");
-            String ver[] = actividad.split(",");
+            String ver[] = verTarea.split(",");
             for (int indice = 0; indice < tarea.length; indice++) {
                 grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), tarea[indice], Boolean.parseBoolean(ver[indice]));
             }
