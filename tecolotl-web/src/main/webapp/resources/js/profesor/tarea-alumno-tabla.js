@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let nivelesTabla = document.querySelectorAll('.tabla-alumnos td > img');
     let nivelesSet = new Set();
     let indiceOpcion;
+    let conteoOpcion = 0, piboteOpcion = 0;
     let nivelActual = document.querySelector('.elimina .uk-card-header > div > div:last-child > p:last-child').innerText.split(':')[1].trim();
     switch (nivelActual) {
         case "A1":
@@ -46,12 +47,16 @@ document.addEventListener('DOMContentLoaded',()=>{
                 break;
         }
     });
-
-    nivelesSet.forEach(opcion =>{
+    console.log(conteoOpcion);
+    nivelesSet.forEach((opcion) =>{
        let etiqueta = document.createElement('option');
        etiqueta.value=opcion;
        etiqueta.innerText = `level ${opcion}`;
        seleccionFiltro.appendChild(etiqueta);
+       if(nivelActual === opcion){
+           piboteOpcion = conteoOpcion + 1;
+       }
+       conteoOpcion++;
     });
 
     seleccionFiltro.addEventListener('change',(evt)=>{
@@ -65,8 +70,8 @@ document.addEventListener('DOMContentLoaded',()=>{
         cuerpoTabla.classList.add('visibilidad-fila');
         setTimeout(animacionFilas,500,filas,nivel,cuerpoTabla);
     });
-
-    seleccionFiltro.selectedIndex = indiceOpcion;
+    console.log(piboteOpcion);
+    seleccionFiltro.selectedIndex = `${piboteOpcion}`;
 
 });
 

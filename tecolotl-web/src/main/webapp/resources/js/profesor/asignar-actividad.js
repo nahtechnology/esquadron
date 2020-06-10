@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', function (evento) {
     });
     ordenarNiveles(nivelesFiltro);
     ejercicios.querySelectorAll('input[type=radio]').forEach(radio => radio.addEventListener('change', activaChechbox));
+    ejercicios.querySelectorAll('input[type=radio] + input[type=checkbox]').forEach(checkbox => checkbox.disabled = true);
+
 });
 
 function buscaActividadSeleccionada(evento) {
@@ -202,6 +204,10 @@ personitas.forEach(function (persona) {
 
 function activaChechbox(event){
     let radio = event.target;
-    document.querySelectorAll('input[type=radio][name=' + radio.name + ']').forEach(chec => chec.nextElementSibling.checked = false);
+    document.querySelectorAll('input[type=radio][name=' + radio.name + ']').forEach(chec => {
+        chec.nextElementSibling.checked = false;
+        chec.nextElementSibling.disabled = true;
+    });
     radio.nextElementSibling.checked = true;
+    radio.nextElementSibling.disabled = false;
 }
