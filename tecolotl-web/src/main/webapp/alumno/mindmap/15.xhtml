@@ -72,7 +72,9 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-15.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-15.css"/>-->
+<!--        <link rel="stylesheet" href="/resources/css/alumno/mapa-15.css"/>-->
+        <h:outputStylesheet library="css" name="/alumno/mapa-15.css"/>
         <div class="uk-section uk-margin-small-left uk-margin-small-right">
             <div class="uk-container picture margen-picture">
                 <h:form styleClass="uk-form-stacked">
@@ -225,7 +227,7 @@
                                      value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                      action="#{mapaMentalControlador.respondeMapaMental}"
-                                     styleClass="boton-enviar boton-gral"/>
+                                     styleClass="boton-enviar btn-mover"/>
                 </h:form>
             </div>
         </div>
