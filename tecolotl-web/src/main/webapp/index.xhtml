@@ -46,6 +46,7 @@
 		<p><h:link  outcome="/profesor/dashboard.xhtml" value="Login Teachers"/></p>
 		<p><h:link  outcome="/alumno/dashboard.xhtml" value="Login Students"/></p>
 		<p><h:link  outcome="/administracion/dashboard.xhtml" value="Login Administration"/></p>
+		<p><h:link outcome="/coordinador/dashboard.xhtml" value="Login Coordinador"/> </p>
 	</div>
 	<div id="contenido">
 		<div id="inicio">
@@ -60,6 +61,7 @@
 							<h:link  outcome="/alumno/dashboard.xhtml" value="Login Students"/>
 						</li>
 						<li><h:link  outcome="/administracion/dashboard.xhtml" value="Login Administration"/></li>
+						<li><h:link outcome="/coordinador/dashboard.xhtml" value="Login Coordinador"/></li>
 					</ul>
 					<div>
 						<span><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg"  alt=""/>squadron</span>
@@ -387,6 +389,7 @@
 	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/TweenMax.min.js"/>
 	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/landing/animacion-espacio.js"/>
     <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/smtp.js"/>
-	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/email.js"/>
+<!--	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/email.js"/>-->
+	<h:outputScript library="js" name="email.js"/>
 </h:body>
 </html>

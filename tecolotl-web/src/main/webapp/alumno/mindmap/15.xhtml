@@ -72,7 +72,9 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-15.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/mapa-15.css"/>-->
+<!--        <link rel="stylesheet" href="/resources/css/alumno/mapa-15.css"/>-->
+        <h:outputStylesheet library="css" name="/alumno/mapa-15.css"/>
         <div class="uk-section uk-margin-small-left uk-margin-small-right">
             <div class="uk-container picture margen-picture">
                 <h:form styleClass="uk-form-stacked">
@@ -84,7 +86,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                                     id="definicion">
+                                                     id="definicion"
+                                                     maxlength="26">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="definicion" style="color: white"/>
@@ -95,7 +98,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[8].respuesta}"
-                                                     id="sentencia">
+                                                     id="sentencia"
+                                                     maxlength="26">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="sentencia" style="color: white"/>
@@ -106,7 +110,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[4].respuesta}"
-                                                     id="spreech">
+                                                     id="spreech"
+                                                     maxlength="26">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="spreech" style="color: white"/>
@@ -137,7 +142,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[9].respuesta}"
-                                                     id="subfijo">
+                                                     id="subfijo"
+                                                     maxlength="17">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="subfijo" style="color: white"/>
@@ -150,7 +156,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[6].respuesta}"
-                                                     id="prefijo">
+                                                     id="prefijo"
+                                                     maxlength="26">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="prefijo" style="color: white"/>
@@ -163,7 +170,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[7].respuesta}"
-                                                     id="raiz">
+                                                     id="raiz"
+                                                     maxlength="15">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="raiz" style="color: white"/>
@@ -176,7 +184,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                                     id="contexto">
+                                                     id="contexto"
+                                                     maxlength="41">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="contexto" style="color: white"/>
@@ -189,7 +198,8 @@
                                     <div class="uk-form-controls">
                                         <h:inputText styleClass="uk-input"
                                                      value="#{mapaMentalControlador.tareaMapaMentalModeloLista[3].respuesta}"
-                                                     id="nueva-palabra">
+                                                     id="nueva-palabra"
+                                                     maxlength="34">
                                             <f:validateRequired/>
                                         </h:inputText>
                                         <h:message for="nueva-palabra" style="color: white"/>
@@ -203,7 +213,8 @@
                                         <h:inputText value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                                      id="entrada-antonimo"
                                                      disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                                     styleClass="uk-input">
+                                                     styleClass="uk-input"
+                                                     maxlength="26">
                                             <f:validateRequired/>
                                         </h:inputText>
                                     </div>
@@ -216,7 +227,7 @@
                                      value="#{boton['submit']}"
                                      rendered="#{empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                      action="#{mapaMentalControlador.respondeMapaMental}"
-                                     styleClass="boton-enviar boton-gral"/>
+                                     styleClass="boton-enviar btn-mover"/>
                 </h:form>
             </div>
         </div>

@@ -9,6 +9,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.AdministradorModelo;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
@@ -72,6 +73,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(Arquillian.class)
 public class CalificaTareaGramaticaEntidadTest {
@@ -85,7 +87,7 @@ public class CalificaTareaGramaticaEntidadTest {
                 //administracion
                 .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ColoniaModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
                 .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
-                .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+                .addPackage(ContactoLlavePrimariaValidacion.class.getPackage()).addPackage(AdministradorModelo.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage()).addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
@@ -133,5 +135,23 @@ public class CalificaTareaGramaticaEntidadTest {
             Assert.assertNotNull(calificaTareaGramaticaEntidad.getTareaGramaticaEntidad().getTareaGramaticaEntidadPK().getTareaEntidad().getId());
             Assert.assertNotNull(calificaTareaGramaticaEntidad.getTareaGramaticaEntidad().getTareaGramaticaEntidadPK().getVuelta());
         }
+    }
+
+    @Test
+    public void buscaPorTarea() {
+        TypedQuery<CalificaTareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("CalificaTareaGramaticaEntidad.buscaTarea", CalificaTareaGramaticaEntidad.class);
+        typedQuery.setParameter("idTarea", UUID.fromString("9a86337b-162a-4dec-b3d2-38145b4e9ecc"));
+        List<CalificaTareaGramaticaEntidad> calificaTareaGramaticaEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(calificaTareaGramaticaEntidadLista);
+        Assert.assertFalse(calificaTareaGramaticaEntidadLista.isEmpty());
+        calificaTareaGramaticaEntidadLista.forEach(calificaTareaGramaticaEntidad -> {
+            Assert.assertNotNull(calificaTareaGramaticaEntidad);/*
+            Assert.assertNotNull(calificaTareaGramaticaEntidad.getMomento());
+            Assert.assertNotNull(calificaTareaGramaticaEntidad.getPuntaje());
+            Assert.assertNotNull(calificaTareaGramaticaEntidad.getTareaGramaticaEntidad().getHoraRespuesta());
+            Assert.assertNotNull(calificaTareaGramaticaEntidad.getTareaGramaticaEntidad().getRespuesta());
+            Assert.assertNotNull(calificaTareaGramaticaEntidad.getTareaGramaticaEntidad().getTareaGramaticaEntidadPK());
+            Assert.assertNotNull(calificaTareaGramaticaEntidad.getTareaGramaticaEntidad().getTareaGramaticaEntidadPK().getVuelta());*/
+        });
     }
 }

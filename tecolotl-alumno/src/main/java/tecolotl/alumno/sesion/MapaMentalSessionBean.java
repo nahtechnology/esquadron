@@ -3,6 +3,7 @@ package tecolotl.alumno.sesion;
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.TareaEntidad;
 import tecolotl.alumno.entidad.mapamental.*;
+import tecolotl.alumno.entidad.vista.CalificacionTareaMapamentalEntidadVista;
 import tecolotl.alumno.modelo.mapamental.MapaMentalModelo;
 import tecolotl.alumno.modelo.mapamental.MapaMentalResueltoModelo;
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
@@ -95,10 +96,10 @@ public class MapaMentalSessionBean {
      */
     public List<MapaMentalResueltoModelo> buscaResuelto(@NotNull UUID idTarea) {
         logger.fine(idTarea.toString());
-        TypedQuery<Object[]> typedQuery = entityManager.createNamedQuery("TareaMapaMentalActividadEntidad.buscaResueltos", Object[].class);
+        TypedQuery<CalificacionTareaMapamentalEntidadVista> typedQuery =
+                entityManager.createNamedQuery("CalificacionTareaMapamentalEntidadVista.busca", CalificacionTareaMapamentalEntidadVista.class);
         typedQuery.setParameter("idTarea", idTarea);
-        return typedQuery.getResultList().stream().map(objects ->
-                new MapaMentalResueltoModelo(((Short)objects[0]), ((Long)objects[1]).intValue())).collect(Collectors.toList());
+        return typedQuery.getResultList().stream().map(MapaMentalResueltoModelo::new).collect(Collectors.toList());
     }
 
     /**

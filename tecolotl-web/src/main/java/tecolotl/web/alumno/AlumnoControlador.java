@@ -45,6 +45,10 @@ public class AlumnoControlador implements Serializable {
     public void init() {
         Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
+        buscaTareas(principal);
+    }
+
+    public void buscaTareas(Principal principal) {
         tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId());
         String datosUsuario[] = principal.getName().split(",");
         sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),

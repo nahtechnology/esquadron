@@ -347,7 +347,32 @@
 }
 
 
+.boton-nivel-base{
+    width: 17px;
+    height: 17px;
+    border-style: none;
+    border-radius: 3px;
+}
+.boton-subir-nivel {
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/subir.png") no-repeat center/100%;
+}
 
+.boton-bajar-nivel{
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/bajar.png") no-repeat center/100%;
+}
+
+.desactivado-nivel{
+    background-color: #95A5A6 !important;
+    cursor: initial !important;
+}
+.boton-subir-nivel:hover{
+    background-color: var(--azul-primary-color);
+    cursor: pointer;
+}
+.boton-bajar-nivel:hover{
+    background-color: var(--color-peligro);
+    cursor: pointer;
+}
 /*colores de graficas*/
 
 /*

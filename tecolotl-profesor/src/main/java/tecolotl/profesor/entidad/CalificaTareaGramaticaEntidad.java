@@ -20,7 +20,11 @@ import java.util.StringJoiner;
                 "AND c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.gramaticaEntidad.gramaticaEntidadPK.actividadEntidad.id = :idActividad " +
                 "AND c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.gramaticaEntidad.gramaticaEntidadPK.codigo = :codigo " +
                 "AND c.tareaGramaticaEntidad.tareaGramaticaEntidadPK.vuelta = :vuelta"
-    )
+    ),
+        @NamedQuery(
+                name = "CalificaTareaGramaticaEntidad.buscaTarea",
+                query = "SELECT ctg FROM CalificaTareaGramaticaEntidad ctg WHERE ctg.tareaGramaticaEntidad.tareaGramaticaEntidadPK.tareaEntidad.id = :idTarea"
+        )
 })
 public class CalificaTareaGramaticaEntidad implements Serializable {
 
@@ -36,7 +40,7 @@ public class CalificaTareaGramaticaEntidad implements Serializable {
     }
 
     @Id
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumns(value = {
             @JoinColumn(name = "id_tarea", referencedColumnName = "id_tarea"),
             @JoinColumn(name = "id_actividad", referencedColumnName = "id_actividad"),

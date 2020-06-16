@@ -13,10 +13,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -34,35 +31,30 @@ public class AsignarActividadControlador implements Serializable {
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     @Inject
-    private NivelLenguajeSesionBean nivelLenguajeSesionBean;
-
-    @Inject
     private Logger logger;
 
     private List<ActividadModelo> actividadModeloLista;
     private String grupo;
     private String alumno;
     private String actividad;
+    private String verTarea;
 
     public void inicio() {
-        actividadModeloLista = alumno == null ? tareasAlumnoSesionBean.busca(UUID.fromString(grupo)) : tareasAlumnoSesionBean.buscaAlumno(UUID.fromString(alumno), (short)1);
-        if (alumno != null) {
-            String valor = alumnoSesionBean.busca(UUID.fromString(alumno)).getNivelLenguajeModelo().getValor();
-            actividadModeloLista.forEach(actividadModelo -> {
-                actividadModelo.setNivelLenguaje(valor);
-            });
-        }
+        actividadModeloLista = alumno == null ?
+                tareasAlumnoSesionBean.busca(UUID.fromString(grupo)) :
+                tareasAlumnoSesionBean.buscaAlumno(UUID.fromString(alumno));
     }
 
     public String asiganarTarea() {
         if (alumno == null) {
-            for (String string : actividad.split(",")) {
-                grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), string);
+            String tarea[] = actividad.split(",");
+            String ver[] = verTarea.split(",");
+            for (int indice = 0; indice < tarea.length; indice++) {
+                grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), tarea[indice], Boolean.parseBoolean(ver[indice]));
             }
             return "dashboard";
         } else {
-            Short clave = nivelLenguajeSesionBean.busca(actividadModeloLista.get(0).getNivelLenguaje());
-            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, clave);
+            grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, (short)actividadModeloLista.get(0).getCodigoNivelLenguaje(), Boolean.parseBoolean(verTarea));
             return "admin-alumnos";
         }
     }
@@ -101,5 +93,13 @@ public class AsignarActividadControlador implements Serializable {
 
     public void setAlumno(String alumno) {
         this.alumno = alumno;
+    }
+
+    public String getVerTarea() {
+        return verTarea;
+    }
+
+    public void setVerTarea(String verTarea) {
+        this.verTarea = verTarea;
     }
 }

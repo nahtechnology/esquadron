@@ -12,13 +12,14 @@ import java.util.UUID;
 @NamedQuery(
         name = "TareaAlumnoVistaEntidad.buscaAlumno",
         query = "SELECT tav FROM TareaAlumnoVistaEntidad tav " +
-                "WHERE tav.idAlumno = :idAlumno ORDER BY tav.pendiente DESC, tav.asignacion")
+                "WHERE tav.idAlumno = :idAlumno ORDER BY tav.pendiente DESC, tav.asignacion DESC ")
 public class TareaAlumnoVistaEntidad {
 
     private UUID id;
     private Date asignacion;
     private String idActividad;
     private UUID idAlumno;
+    private boolean verRespuesta;
     private String preguntaDetonadora;
     private boolean pendiente;
 
@@ -73,5 +74,15 @@ public class TareaAlumnoVistaEntidad {
 
     public void setIdAlumno(UUID idAlumno) {
         this.idAlumno = idAlumno;
+    }
+
+    @Basic
+    @Column(name = "ver_respuesta")
+    public boolean isVerRespuesta() {
+        return verRespuesta;
+    }
+
+    public void setVerRespuesta(boolean verRespuesta) {
+        this.verRespuesta = verRespuesta;
     }
 }

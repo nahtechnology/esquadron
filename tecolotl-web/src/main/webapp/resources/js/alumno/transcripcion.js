@@ -22,6 +22,14 @@ document.addEventListener('DOMContentLoaded', function (evt) {
         menuPrincipal.querySelector('li:nth-child(4)').click();
         menuPrincipal.querySelector('li:first-child').removeAttribute('uk-filter-control');
     }
+    if(answer.querySelector('.remplazar').dataset.respuesta === "false"){
+        calificarTranscript();
+    }
+
+    if (document.querySelector('.match .caja-preguntas-ordenar').dataset.activo === 'true'){
+        calificarMatch();
+    }
+
 });
 
 function agregaRespuestas(elemento) {
@@ -60,7 +68,39 @@ function revolver(arreglo) {
 function transcripcionEnvidad(data) {
     if (data.status === 'success') {
         UIkit.notification(mensajeEnviado, {pos: 'top-right'});
+        setTimeout(calificarTranscript,500);
     }
+}
+function calificarTranscript(){
+    let calificacion = 0;
+    let respuestas = document.querySelectorAll('.trancript-contenedor span.respuesta-drag');
+    let respuestasCorrectas = [];
+    document.querySelectorAll('.transcrip .transcrip-contenedor span.remover').forEach(palabra => {
+        respuestasCorrectas.push(palabra.innerText.trim());
+    });
+    respuestas.forEach((respuestaTranscript,index) => {
+
+        let clase = respuestaTranscript.innerText.trim() === respuestasCorrectas[index] ? "correcto" : "incorrecto";
+        if (clase === "correcto"){
+            calificacion++;
+        }else if(boleanoRespuestas === 'true') {
+            respuestaTranscript.setAttribute('uk-tooltip',respuestasCorrectas[index]);
+            respuestaTranscript.addEventListener('mouseover',() =>{
+                console.log('entro');
+                setTimeout(pintar,50);
+                function pintar() {
+                    console.log('pinto');
+                    document.querySelector('.uk-tooltip').classList.add('respuestas-correctas');
+                    document.querySelector('.uk-tooltip .uk-tooltip-inner').style.color="black";
+                }
+            })
+        }
+        respuestaTranscript.classList.add(clase);
+    });
+    calificacion = Math.round(calificacion * 100/respuestas.length) >= 25 ? Math.round(calificacion * 100/respuestas.length) : 25 ;
+    document.querySelector('.answer .score span').innerText = "Score: "+ calificacion + "%";
+
+
 }
 
 function validaContenido() {
@@ -94,7 +134,7 @@ function eventoClickTransciptcion() {
 
 function puntaje() {
     var cajarespuesta;
-    var puntos;
+    var puntos,valor;
     var totalCadena,respuestaConta = 0;
     cajarespuesta = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript .respuesta-drag');
     totalCadena = document.querySelectorAll('.answer .trancript-contenedor .respuesta-transcript').length;
@@ -105,7 +145,18 @@ function puntaje() {
             respuestaConta += 1;
         }
     });
-    puntos = Math.round((respuestaConta * 100)/totalCadena);
+
+    puntos = Math.round((respuestaConta * 100)/totalCadena) >= 25 ? Math.round((respuestaConta * 100)/totalCadena) : 25;
     // console.log(puntos);
+
     return puntos;
+}
+
+function calificarMatch() {
+let contenedorRespuestas = document.querySelector('.match .caja-preguntas-ordenar > div:last-child');
+let respuestas = contenedorRespuestas.querySelectorAll('.correcto').length;
+let preguntas = contenedorRespuestas.querySelectorAll('.respuesta').length;
+let puntaje = Math.round(respuestas * 100 / preguntas) >= 25 ? Math.round(respuestas * 100 / preguntas) : 25;
+    document.querySelector('.match .score').style.setProperty('top','6%');
+document.querySelector('.match .score > span').innerText = "Score: " + puntaje + "%";
 }

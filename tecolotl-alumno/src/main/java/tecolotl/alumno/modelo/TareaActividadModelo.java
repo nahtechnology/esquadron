@@ -21,6 +21,7 @@ public class TareaActividadModelo extends TareaModelo {
         idActividad = tareaAlumnoVistaEntidad.getIdActividad();
         preguntaDetonadora = tareaAlumnoVistaEntidad.getPreguntaDetonadora();
         pendiente = tareaAlumnoVistaEntidad.isPendiente();
+        setVerRespuesta(tareaAlumnoVistaEntidad.isVerRespuesta());
     }
 
     public void agregarDatos(TareaModelo tareaModelo) {
