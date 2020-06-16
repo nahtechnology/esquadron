@@ -3,6 +3,7 @@ package tecolotl.web.herramienta;
 import tecolotl.alumno.sesion.ControlSesionSesionBean;
 import tecolotl.nucleo.modelo.UsuarioSesionModelo;
 import tecolotl.nucleo.sesion.SesionControlSingleton;
+import tecolotl.profesor.sesion.ProfesorSesionControlSessionBean;
 
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -27,6 +28,9 @@ public class ControlSesionListener implements HttpSessionListener {
     @Inject
     private ControlSesionSesionBean controlSesionSesionBean;
 
+    @Inject
+    private ProfesorSesionControlSessionBean profesorSesionControlSessionBean;
+
     @Override
     public void sessionCreated(HttpSessionEvent httpSessionEvent) {
     }
@@ -41,6 +45,14 @@ public class ControlSesionListener implements HttpSessionListener {
                         UsuarioSesionModelo.Registro.INICIO.getValue().shortValue(),
                         usuarioSesionModelo.getMomento());
                 controlSesionSesionBean.inserta(usuarioSesionModelo.getId(),
+                        UsuarioSesionModelo.Registro.CIERRE.getValue().shortValue(),
+                        new Date());
+                break;
+            case PROFESOR:
+                profesorSesionControlSessionBean.inserta(usuarioSesionModelo.getId(),
+                        UsuarioSesionModelo.Registro.INICIO.getValue().shortValue(),
+                        usuarioSesionModelo.getMomento());
+                profesorSesionControlSessionBean.inserta(usuarioSesionModelo.getId(),
                         UsuarioSesionModelo.Registro.CIERRE.getValue().shortValue(),
                         new Date());
                 break;

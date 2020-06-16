@@ -96,7 +96,7 @@ public class GrupoAlumnoSesionBean {
             alumnoTareasNivelModelo.setNombre((String)objects[3]);
             alumnoTareasNivelModelo.setApellidoPaterno((String)objects[4]);
             alumnoTareasNivelModelo.setApellidoMaterno((String)objects[5]);
-            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[6]);
+            alumnoTareasNivelModelo.setTotalTareas(((Double)objects[6]).intValue());
             alumnoTareasNivelModelo.setNivelLenguaje((String)objects[7]);
             alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);
         }
