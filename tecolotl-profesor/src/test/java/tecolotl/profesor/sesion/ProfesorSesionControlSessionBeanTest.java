@@ -8,6 +8,7 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.AdministradorModelo;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
@@ -135,6 +136,7 @@ public class ProfesorSesionControlSessionBeanTest {
                 .addPackage(TareaCompletarModelo.class.getPackage())
                 .addPackage(TareaCompletarEntidad.class.getPackage())
                 .addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
+                .addPackage(AdministradorModelo.class.getPackage())
                 //profesor
                 .addPackage(CicloEscolarEntidad.class.getPackage()).addPackage(GrupoAlumnoModelo.class.getPackage())
                 .addPackage(GrupoAlumnoSesionBean.class.getPackage()).addPackage(GrupoProfesorValidacion.class.getPackage())
@@ -156,6 +158,13 @@ public class ProfesorSesionControlSessionBeanTest {
                 calendarInicio.getTime(),
                 calendarFin.getTime()
         );
+        assertNotNull(lista);
+        assertFalse(lista.isEmpty());
+        lista.forEach(profesorSesionControlModelo -> {
+            assertNotNull(profesorSesionControlModelo);
+            assertNotNull(profesorSesionControlModelo.getMomento());
+            assertNotNull(profesorSesionControlModelo.getTipo());
+        });
     }
 
 }

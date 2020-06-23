@@ -6,7 +6,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tipo_registro", schema = "nucelo")
+@Table(name = "tipo_registro", schema = "nucleo")
 @SequenceGenerator(name = "secuencia_tipo", schema = "nucleo", sequenceName = "tipo_registro_sec")
 public class TipoRegistroEntidad extends CatalagoEntidad {
 

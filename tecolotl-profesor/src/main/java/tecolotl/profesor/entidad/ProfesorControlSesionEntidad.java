@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NamedQueries(value = {
         @NamedQuery(
                 name = "ProfesorControlSesionEntidad.buscaFecha",
-                query = "SELECT pcs FROM ProfesorControlSesionEntidad pcs WHERE pcs.profesorEntidad.id = :idProfesor AND " +
+                query = "SELECT pcs FROM ProfesorControlSesionEntidad pcs JOIN FETCH pcs.tipoRegistroEntidad tr WHERE pcs.profesorEntidad.id = :idProfesor AND " +
                         "pcs.tiempo BETWEEN :fechaInicio AND :fechaFin")
 })
 public class ProfesorControlSesionEntidad extends ControlSesionEntidad implements Serializable {

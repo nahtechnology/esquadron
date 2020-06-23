@@ -13,12 +13,14 @@ import tecolotl.alumno.entidad.AlumnoControlSesionEntidad;
 import tecolotl.alumno.entidad.glosario.TareaGlosarioActividadEntidad;
 import tecolotl.alumno.entidad.mapamental.TareaMapaMentalActividadEntidad;
 import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidad;
+import tecolotl.alumno.modelo.AlumnoControlSesionModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.persistencia.entidad.TipoRegistroEntidad;
 
 import javax.inject.Inject;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.UUID;
 
@@ -36,6 +38,7 @@ public class ControlSesionSesionBeanTest {
                 .addPackage(TareaGlosarioActividadEntidad.class.getPackage())
                 .addPackage(TareaMapaMentalActividadEntidad.class.getPackage())
                 .addPackage(TareaRelacionarActividadEntidad.class.getPackage())
+                .addPackage(AlumnoControlSesionModelo.class.getPackage())
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
@@ -50,6 +53,18 @@ public class ControlSesionSesionBeanTest {
     @Test
     public void cierreSesion() {
         controlSesionSesionBean.inserta(UUID.fromString("0cbaa96c-ba77-408d-b046-56e0fd1ffe56"), (short)2, new Date());
+    }
+
+    @Test
+    public void busca() {
+        Calendar calendarInicio = Calendar.getInstance();
+        calendarInicio.set(2020, 5,1);
+        Calendar calendarFin = Calendar.getInstance();
+        calendarFin.set(2020, 5, 30);
+        controlSesionSesionBean.busca(
+                UUID.fromString("008f49eb-67f2-4aa1-adbc-ac48762989c0"),
+                calendarInicio.getTime(),
+                calendarFin.getTime());
     }
 
 }

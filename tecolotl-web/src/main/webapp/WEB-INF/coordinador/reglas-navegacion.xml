@@ -10,6 +10,10 @@
             <from-outcome>detalles</from-outcome>
             <to-view-id>/coordinador/detalle-profesor.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/coordinador/reporte-sesion.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
 </faces-config>

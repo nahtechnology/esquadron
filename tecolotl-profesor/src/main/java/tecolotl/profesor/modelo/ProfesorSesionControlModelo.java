@@ -32,4 +32,14 @@ public class ProfesorSesionControlModelo {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ProfesorSesionControlModelo{");
+        sb.append("momento=").append(momento);
+        sb.append(", tipo='").append(tipo).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

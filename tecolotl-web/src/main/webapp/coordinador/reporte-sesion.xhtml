@@ -7,17 +7,62 @@
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
     <ui:define name="menu">
-
+        <f:metadata>
+            <f:viewParam name="profesor" value="#{reporteSesionControlador.idProfesor}"/>
+            <f:viewParam name="alumno" value="#{reporteSesionControlador.idAlumno}"/>
+            <f:viewAction action="#{reporteSesionControlador.inicio}"/>
+        </f:metadata>
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
         <h:outputStylesheet library="css" name="datepicker.css"/>
         <div id="rango-fecha">
             <h:form>
-                <h:inputText styleClass="uk-input"/>
+                <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaInicio}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
                 <span>to</span>
-                <h:inputText styleClass="uk-input"/>
+                <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaFin}">
+                    <f:convertDateTime pattern="dd/MM/yyyy"/>
+                </h:inputText>
+                <h:commandButton value="${boton['update']}">
+                    <f:ajax execute="@form"
+                            listener="#{reporteSesionControlador.actualiza}"
+                            render="tabla-alumno tabla-profesor"/>
+                </h:commandButton>
             </h:form>
+        </div>
+        <div>
+            <h:dataTable id="tabla-alumno"
+                         rendered="#{not empty reporteSesionControlador.listaAlumno}"
+                         value="#{reporteSesionControlador.listaAlumno}"
+                         var="alumnoModelo">
+                <h:column>
+                    <f:facet name="header">Fechas</f:facet>
+                    <h:outputText value="${alumnoModelo.momento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tipo</f:facet>
+                    ${alumnoModelo.tipo}
+                </h:column>
+            </h:dataTable>
+            <h:dataTable id="tabla-profesor"
+                         rendered="#{not empty reporteSesionControlador.listaProfesor}"
+                         value="#{reporteSesionControlador.listaProfesor}"
+                         var="profesorModelo">
+                <h:column>
+                    <f:facet name="header">Fechas</f:facet>
+                    <h:outputText value="${profesorModelo.momento}">
+                        <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Tipo</f:facet>
+                    ${profesorModelo.tipo}
+                </h:column>
+            </h:dataTable>
         </div>
     </ui:define>
     <ui:define name="file-js">
