@@ -18,6 +18,10 @@ public class AlumnoModelo extends PersonaModelo {
         nivelLenguajeModelo = new NivelLenguajeModelo();
     }
 
+    public AlumnoModelo(UUID id) {
+        this.id = id;
+    }
+
     public AlumnoModelo(AlumnoEntidad alumnoEntidad) {
         super(alumnoEntidad);
         this.id = alumnoEntidad.getId();

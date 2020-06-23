@@ -1,7 +1,9 @@
 package tecolotl.web.coordinador.controlador;
 
 import tecolotl.alumno.modelo.AlumnoControlSesionModelo;
+import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.sesion.ControlSesionSesionBean;
+import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.modelo.ProfesorSesionControlModelo;
 import tecolotl.profesor.sesion.ProfesorSesionControlSessionBean;
 
@@ -22,7 +24,9 @@ import java.util.logging.Logger;
 public class ReporteSesionControlador implements Serializable {
 
     private String idProfesor;
+    private ProfesorModelo profesorModelo;
     private String idAlumno;
+    private AlumnoModelo alumnoModelo;
     private Date fechaInicio;
     private Date fechaFin;
     private List<AlumnoControlSesionModelo> listaAlumno;
@@ -38,23 +42,25 @@ public class ReporteSesionControlador implements Serializable {
     private Logger logger;
 
     public void inicio() {
+        profesorModelo = idProfesor == null ? null : new ProfesorModelo(UUID.fromString(idProfesor));
+        alumnoModelo = idAlumno == null ? null : new AlumnoModelo(UUID.fromString(idAlumno));
         Calendar calendarFin = Calendar.getInstance();
         fechaFin = calendarFin.getTime();
         Calendar calendarInicio = Calendar.getInstance();
         calendarInicio.add(Calendar.MONTH, -1);
         fechaInicio = calendarInicio.getTime();
-        if (idProfesor == null) {
-            listaAlumno = controlSesionSesionBean.busca(UUID.fromString(idAlumno), fechaInicio, fechaFin);
+        if (profesorModelo == null) {
+            listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin);
         } else {
-            listaProfesor = profesorSesionControlSessionBean.busca(UUID.fromString(idProfesor), fechaInicio, fechaFin);
+            listaProfesor = profesorSesionControlSessionBean.busca(profesorModelo.getId(), fechaInicio, fechaFin);
         }
     }
 
     public void actualiza(AjaxBehaviorEvent ajaxBehaviorEvent) {
-        if (idProfesor == null) {
-            listaAlumno = controlSesionSesionBean.busca(UUID.fromString(idAlumno), fechaInicio, fechaFin);
+        if (profesorModelo == null) {
+            listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin);
         } else {
-            listaProfesor = profesorSesionControlSessionBean.busca(UUID.fromString(idProfesor), fechaInicio, fechaFin);
+            listaProfesor = profesorSesionControlSessionBean.busca(profesorModelo.getId(), fechaInicio, fechaFin);
         }
     }
 
