@@ -191,12 +191,13 @@ public class ProfesorSesionBean implements Serializable {
     }
 
     public List<CalificacionPendientesModelo> buscaTotalCalificado(@NotNull UUID idProfesor) {
-        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR), CAST(g.id_profesor AS VARCHAR), g.grado, g.grupo, count(t.id) AS tarea_asignadas, count(ctm.id_tarea) - count(ctm.puntaje) AS pendientes_mapamental," +
-                "count(califica_tarea_gramatica.id_tarea) - sum(califica_tarea_gramatica.calificado) AS pendientes_gramatica " +
+        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR),CAST(g.id_profesor AS VARCHAR), g.grado, g.grupo," +
+                "CAST(count(t.id) AS INTEGER) AS tarea_asignadas,count(ctm.id_tarea) - count(ctm.puntaje) AS pendientes_mapamental," +
+                "sum(califica_tarea_gramatica.total) - sum(califica_tarea_gramatica.calificado) AS pendientes_gramatica " +
                 "FROM profesor.grupo g JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno JOIN " +
-                "profesor.califica_tarea_mapamental ctm ON t.id = ctm.id_tarea JOIN ( SELECT id_tarea, count(*) AS total, count(puntaje) AS calificado " +
-                "FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS califica_tarea_gramatica ON califica_tarea_gramatica.id_tarea = t.id WHERE id_profesor = ? " +
-                "GROUP BY g.id, g.grado, g.grupo");
+                "profesor.califica_tarea_mapamental ctm ON t.id = ctm.id_tarea JOIN(SELECT id_tarea,CASE WHEN count(*) > 0 THEN 1 ELSE 0 END AS total," +
+                "CASE WHEN count(puntaje) > 0 THEN 1 ELSE 0 END AS calificado FROM profesor.califica_tarea_gramatica GROUP BY id_tarea " +
+                ") AS califica_tarea_gramatica ON califica_tarea_gramatica.id_tarea = t.id WHERE id_profesor = ? GROUP BY g.id, g.grado, g.grupo");
         query.setParameter(1, idProfesor);
         List<Object[]> lista = (List<Object[]>) query.getResultList();
         return lista.stream().map(objects -> {
@@ -205,9 +206,9 @@ public class ProfesorSesionBean implements Serializable {
             calificacionPendientesModelo.setIdProfesor(UUID.fromString((String)objects[1]));
             calificacionPendientesModelo.setGrado((Short) objects[2]);
             calificacionPendientesModelo.setGrupo((String)objects[3]);
-            calificacionPendientesModelo.setTareasAsignadas(((BigInteger)objects[4]).intValue());
-            calificacionPendientesModelo.setTareasAsignadas(((BigInteger)objects[5]).intValue());
-            calificacionPendientesModelo.setTareasAsignadas(((BigDecimal)objects[6]).intValue());
+            calificacionPendientesModelo.setTareasAsignadas(((Integer)objects[4]));
+            calificacionPendientesModelo.setPendientesMapaMental(((BigInteger)objects[5]).intValue());
+            calificacionPendientesModelo.setPendientesGramatica(((BigInteger)objects[6]).intValue());
             return calificacionPendientesModelo;
         }).collect(Collectors.toList());
     }

@@ -1,8 +1,10 @@
 package tecolotl.profesor.sesion;
 
 import tecolotl.alumno.entidad.vista.BuscaActividadesVistaEntidad;
+import tecolotl.alumno.entidad.vista.TareasPendientesGrupoVistaEntidad;
 import tecolotl.profesor.entidad.ActividadEntidad;
 import tecolotl.profesor.modelo.ActividadModelo;
+import tecolotl.profesor.modelo.TareasPendientesGrupoModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -37,6 +39,18 @@ public class TareasAlumnoSesionBean {
                 entityManager.createNamedQuery("BuscaActividadesVistaEntidad.buscaAlumno", BuscaActividadesVistaEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);
         return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca tareas pendientes por grupo
+     * @param igGrupo Identificador del grupo
+     * @return Coleccion de tareas perdientes
+     */
+    public TareasPendientesGrupoModelo buscaTareasPendientes(@NotNull UUID igGrupo) {
+        TypedQuery<TareasPendientesGrupoVistaEntidad> typedQuery =
+                entityManager.createNamedQuery("TareasPendientesGrupoVistaEntidad.buscaPorGrupo", TareasPendientesGrupoVistaEntidad.class);
+        typedQuery.setParameter("idGrupo", igGrupo);
+        return new TareasPendientesGrupoModelo(typedQuery.getSingleResult());
     }
 
 }

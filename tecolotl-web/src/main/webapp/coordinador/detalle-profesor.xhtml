@@ -24,7 +24,7 @@
                     <p>MrJuan</p>
                 </div>
             </div>
-
+            <h:form>
             <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
                          var="calificacionPendientesModelo"
                           styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small"  >
@@ -48,8 +48,67 @@
                     <f:facet name="header">pendientes por calificar word game</f:facet>
                     ${calificacionPendientesModelo.pendientesGramatica}
                 </h:column>
+                <h:column>
+                    <f:facet name="header">${etiqueta['detail']}</f:facet>
+                    <button class="uk-icon-button" uk-icon="more-vertical"/>
+                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .uk-table">
+                        <ul class="uk-nav uk-dropdown-nav">
+                            <li>
+                                <h:commandLink>
+                                    <span>#{etiqueta['detail']}</span>
+                                </h:commandLink>
+                            </li>
+                            <li>
+                                <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-tareas-faltante">
+                                    <span>Tareas Faltantes</span>
+                                    <f:ajax listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"
+                                            render="modal-tareas-faltante"/>
+                                </h:commandLink>
+                            </li>
+                        </ul>
+                    </h:panelGroup>
+                </h:column>
             </h:dataTable>
-
+            </h:form>
         </div>
+        <div>
+            <h:panelGroup layout="block"
+                          rendered="#{empty detalleProfesorControlador.alumnoModeloLista}">
+                <table class="uk-table uk-table-middle">
+                    <thead class="uk-background-primary">
+                        <tr>
+                            <th><span class="letra-titulo">Nombre</span></th>
+                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                                <div class="uk-flex uk-flex-center">
+                                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg"
+                                                    height="215"
+                                                    width="243"
+                                                    alt="vacio"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </h:panelGroup>
+        </div>
+        <h:panelGroup layout="block" id="modal-tareas-faltante" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <div class="uk-modal-header uk-background-secondary">
+                    <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">Tareas Faltantes</p>
+                </div>
+                <div class="uk-modal-body">
+                    Mapa mental total : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalTotal}
+                    Mapa mental pendiente : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalPendientes}
+                </div>
+                <div class="uk-modal-footer uk-flex uk-flex-right">
+                    <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">${boton['close']}</button>
+                </div>
+            </div>
+        </h:panelGroup>
     </ui:define>
 </ui:composition>

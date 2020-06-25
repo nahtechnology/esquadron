@@ -4,6 +4,7 @@ import tecolotl.nucleo.persistencia.entidad.ControlSesionEntidad;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "control_sesion", schema = "profesor")
@@ -26,5 +27,18 @@ public class ProfesorControlSesionEntidad extends ControlSesionEntidad implement
 
     public void setProfesorEntidad(ProfesorEntidad profesorEntidad) {
         this.profesorEntidad = profesorEntidad;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProfesorControlSesionEntidad that = (ProfesorControlSesionEntidad) o;
+        return Objects.equals(profesorEntidad, that.profesorEntidad);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(profesorEntidad);
     }
 }

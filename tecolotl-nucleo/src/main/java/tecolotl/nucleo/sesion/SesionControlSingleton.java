@@ -13,9 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 @Singleton
 public class SesionControlSingleton {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
     private Map<String, UsuarioSesionModelo> mapa = new ConcurrentHashMap<>();
 
     public void inicio(String IdSesion, Integer galaxia, String apodo, UsuarioSesionModelo.Tipo tipo, Date momento, UUID id) {
@@ -30,7 +27,7 @@ public class SesionControlSingleton {
 
     public UsuarioSesionModelo cierre(String idSesion) {
         UsuarioSesionModelo usuarioSesionModelo = mapa.get(idSesion);
-        mapa.remove(usuarioSesionModelo);
+        if (usuarioSesionModelo != null) mapa.remove(usuarioSesionModelo);
         return usuarioSesionModelo;
     }
 

@@ -5,6 +5,7 @@ import tecolotl.nucleo.persistencia.entidad.ControlSesionEntidad;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 @Entity
@@ -30,4 +31,16 @@ public class AlumnoControlSesionEntidad extends ControlSesionEntidad implements 
         this.alumnoEntidad = alumnoEntidad;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AlumnoControlSesionEntidad that = (AlumnoControlSesionEntidad) o;
+        return alumnoEntidad.equals(that.alumnoEntidad);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(alumnoEntidad);
+    }
 }
