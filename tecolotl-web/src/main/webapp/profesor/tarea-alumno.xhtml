@@ -13,19 +13,14 @@
         <f:viewAction action="#{tareaAlumnoControlador.detalle}"/>
     </f:metadata>
     <ui:define name="menu">
-
             <ul class="uk-subnav nav-sub uk-visible@m " uk-margin="">
-              <!-- <li ><h:link outcome="dashboard-maestro" value="#{etiqueta['home']}" styleClass="letra-color-subnav"/></li>
-               <li class="uk-text-uppercase "><h:link styleClass="letra-color-subnav" outcome="admin-alumnos" value="Group Details"/></li>-->
                 <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
                 <li><h:link outcome="tablero" value="#{profesor['student.administration.title']}"/></li>
                 <li><span>Student Homework</span></li>
             </ul>
-
         <div>
             <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
         </div>
-
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
         </div>
@@ -42,7 +37,6 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
         <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
@@ -52,8 +46,6 @@
             <div class="uk-container uk-container-expand">
                 <ul class="uk-subnav uk-margin-top nav-default-profesor2 uk-subnav-alumno2">
                     <li class="uk-active" data-uk-filter-control=".actividad-card"><a href="#">#{profesor['tareas.alumno.title.description']}</a></li>
-                    <!--<li data-uk-filter-control=".tarea-card"><a href="#">Tareas</a></li>
-                    <li data-uk-filter-control=".nivel-card "><a href="#">Asignación de nivel</a></li>-->
                 </ul>
                 <div class="uk-grid elimina" uk-grid="">
                     <div class="uk-width-1-3@m uk-first-column uk-margin-bottom">
