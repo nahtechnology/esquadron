@@ -16,52 +16,87 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
         <h:outputStylesheet library="css" name="datepicker.css"/>
-        <div id="rango-fecha">
+        <h:outputStylesheet library="css" name="/coordinador/reporte-sesion.css"/>
+            <h1 class="uk-margin-medium-bottom">reporte sesion</h1>
             <h:form id="formulario-fechas">
-                <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaInicio}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:inputText>
-                <span>to</span>
-                <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaFin}">
-                    <f:convertDateTime pattern="dd/MM/yyyy"/>
-                </h:inputText>
-                <h:commandButton value="${boton['update']}">
+                <div id="rango-fecha">
+                    <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaInicio}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                    <span>to</span>
+                    <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaFin}">
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                    </h:inputText>
+                </div>
+                <ui:remove>
+                <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" >
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
-                            render="tabla-alumno tabla-profesor"/>
+                            render="contenedor-tabla tabla-alumno tabla-profesor"
+                            onevent="function pintar(data) {
+                                if (data.status === 'success'){
+                                    console.log('entro satisfactorio');
+                                }
+                            }"
+                            />
+                </h:commandButton>
+                </ui:remove>
+                <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" onclick="return validarFecha();">
+                    <f:ajax execute="@form"
+                            listener="#{reporteSesionControlador.actualiza}"
+                            render="tabla-alumno tabla-profesor"
+                            onevent="function pintar(data) {
+                                if (data.status === 'success'){
+                                    console.log('entro satisfactorio');
+                                     let tabla = document.querySelector('#contenedor-tabla > table');
+                                        acomodarTabla(tabla);
+                                        actualiza();
+                                }
+                            }"
+                            />
                 </h:commandButton>
             </h:form>
-        </div>
-        <div>
+        <span class="uk-margin-small-bottom uk-display-inline-block">
+            <label for="conexion" class="uk-form-label uk-margin-small-right">Tiempo de conexion:</label>
+            <input id="conexion" readonly="" type="text" class="uk-input uk-margin-small-right" style="width: 200px"/>
+            <label for="totalHoras" class="uk-form-label uk-margin-small-right">Total Horas:</label>
+            <input type="text" id="totalHoras" class="uk-input" style="width: 200px" />
+        </span>
+        <div id="contenedor-tabla">
             <h:dataTable id="tabla-alumno"
                          rendered="#{not empty reporteSesionControlador.listaAlumno}"
+                         styleClass="uk-table uk-table-hover uk-table-divider"
                          value="#{reporteSesionControlador.listaAlumno}"
                          var="alumnoModelo">
                 <h:column>
-                    <f:facet name="header">Fechas</f:facet>
                     <h:outputText value="${alumnoModelo.momento}">
-                        <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:outputText>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Tipo</f:facet>
-                    ${alumnoModelo.tipo}
+                    <h:outputText value="${alumnoModelo.momento}">
+                        <f:convertDateTime pattern="hh:mm:ss"/>
+                    </h:outputText>
                 </h:column>
             </h:dataTable>
+
             <h:dataTable id="tabla-profesor"
                          rendered="#{not empty reporteSesionControlador.listaProfesor}"
+                         styleClass="uk-table uk-table-hover uk-table-divider"
                          value="#{reporteSesionControlador.listaProfesor}"
                          var="profesorModelo">
-                <h:column>
-                    <f:facet name="header">Fechas</f:facet>
-                    <h:outputText value="${profesorModelo.momento}">
-                        <f:convertDateTime pattern="dd/MM/yyyy hh:mm:ss"/>
-                    </h:outputText>
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Tipo</f:facet>
-                    ${profesorModelo.tipo}
-                </h:column>
+
+                    <h:column>
+                        <h:outputText value="${profesorModelo.momento}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="${profesorModelo.momento}">
+                            <f:convertDateTime pattern="hh:mm:ss"/>
+                        </h:outputText>
+                    </h:column>
+
             </h:dataTable>
         </div>
     </ui:define>
@@ -73,5 +108,7 @@
                 format:"dd/mm/yyyy"
             });
         </script>
+        <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
+        <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
     </ui:define>
 </ui:composition>
