@@ -163,7 +163,7 @@
 
 .mensaje-error{
 display: inline-block;
-    color: #E31A1A;
+    color: white;
     padding: 10px;
     border: 2px solid;
     border-radius: 8px;
