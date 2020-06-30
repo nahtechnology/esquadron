@@ -45,7 +45,7 @@
 	<div id="mobil-aside">
 		<p><h:link  outcome="/profesor/dashboard.xhtml" value="Teachers"/></p>
 		<p><h:link  outcome="/alumno/dashboard.xhtml" value="Students"/></p>
-		<p><h:link  outcome="/administracion/dashboard.xhtml" value="Administration"/></p>
+		<ui:remove><p><h:link  outcome="/administracion/dashboard.xhtml" value="Administration"/></p></ui:remove>
 		<p><h:link outcome="/coordinador/dashboard.xhtml" value="Coordinador"/> </p>
 	</div>
 	<div id="contenido">
@@ -60,7 +60,6 @@
 						<li>
 							<h:link  outcome="/alumno/dashboard.xhtml" value="Students"/>
 						</li>
-						<li><h:link  outcome="/administracion/dashboard.xhtml" value="Administration"/></li>
 						<li><h:link outcome="/coordinador/dashboard.xhtml" value="Coordinador"/></li>
 					</ul>
 					<div>
