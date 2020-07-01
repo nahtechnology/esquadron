@@ -30,13 +30,13 @@ document.addEventListener('DOMContentLoaded',function (ev) {
         botonRespuesta.classList.remove('boton-disabilitado');
         botonRespuesta.disabled = false;
     }
-    document.querySelector('#formulario-califica input[type=submit]').addEventListener('click', validaRespuesta);
+
 });
 
 function calificarOracion(oracion,respuesta) {
     oracion.forEach(function (texto,indice) {
-        let oracionTexto = texto.innerHTML.split(".");
-        var textos = new Textos(oracionTexto[0],respuesta[indice].value);
+         let oracionTexto = texto.innerHTML;
+        var textos = new Textos(oracionTexto,respuesta[indice].value);
         oraciones.push(textos);
     });
     oraciones.forEach(function (value) {

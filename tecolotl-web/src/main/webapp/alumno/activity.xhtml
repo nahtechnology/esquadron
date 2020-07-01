@@ -89,7 +89,8 @@
         <h:outputStylesheet library="css" name="/alumno/transcript/transcript.css"/>
 
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/variables-alumno.css"/>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/lista-ordenar.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/lista-ordenar.css"/>-->
+        <link rel="stylesheet" href="#{resource['css/alumno/transcript/lista-ordenar.css']}"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/ordenar-palabra.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
@@ -141,7 +142,8 @@
                                 <div uk-dropdown="mode: click">#{alumno['activity.help.message.match']}</div>
                             </div>
                             <h:form id="formulario-relacionar">
-                                <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar uk-grid scroll-drag" pt:uk-grid="" pt:data-activo="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta ? 'false':'true'}">
+                                <h:panelGroup layout="block" styleClass="caja-preguntas-ordenar scroll-drag " pt:data-activo="#{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta ? 'false':'true'}">
+                                    <ui:remove>
                                     <div class="uk-width-1-2@m uk-position-relative">
                                         <div class="titulo-respuesta-ordenar" >#{alumno['activities.title.match.sentence.question']}</div>
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
@@ -167,6 +169,39 @@
                                         </ui:repeat>
                                         <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg" styleClass="img-titulo-2"/>
                                     </div>
+                                    </ui:remove>
+
+                                    <div class="uk-grid uk-child-width-1-2@m" uk-grid="">
+                                        <div class="uk-position-relative">
+                                            <div class="titulo-respuesta-ordenar" >#{alumno['activities.title.match.sentence.question']}</div>
+                                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" styleClass="img-titulo-1"/>
+                                        </div>
+                                        <div class="uk-position-relative">
+                                            <div class="titulo-respuesta-ordenar">#{alumno['activities.title.match.sentence.answer']}</div>
+                                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg" styleClass="img-titulo-2"/>
+                                        </div>
+                                    </div>
+                                    <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion" varStatus="cont">
+                                        <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@m " style="margin-top: 30px;" pt:uk-grid="" >
+                                            <div class="uk-position-relative">
+                                                    <div class="pregunta-ordenar" data-respuesta="#{relacionarOracion.relacionarOracionModelo.respuesta}">
+                                                        #{relacionarOracion.relacionarOracionModelo.pregunta}
+                                                        <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta and alumnoControlador.tareaActividadModelo.verRespuesta eq true}" >
+                                                            #{relacionarOracion.relacionarOracionModelo.respuesta}
+                                                        </h:panelGroup>
+                                                    </div>
+                                            </div>
+                                            <div class="uk-position-relative">
+                                                    <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista" pt:uk-sortable="group: match-activity" pt:data-indice="#{cont.index}">
+                                                        <h:panelGroup layout="block"
+                                                                      rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta}"
+                                                                      styleClass="respuesta  #{relacionarOracion.relacionarOracionModelo.id eq relacionarOracion.respuesta ? 'correcto' : 'incorrecto'}">
+                                                            #{relacionarOracionControlador.respuestaVal(relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta)}
+                                                        </h:panelGroup>
+                                                    </h:panelGroup>
+                                            </div>
+                                        </h:panelGroup>
+                                    </ui:repeat>
                                 </h:panelGroup>
                                 <h:panelGroup id="tablaRespuestas"
                                               layout="block"
@@ -485,7 +520,7 @@
                     UIkit.modal.alert(mensajeNoEnviar);
                     return false;
                 } else {
-                    var idRelacionarmodelos = document.querySelectorAll('.match form > div:nth-child(2) > div:nth-child(2) > div:not(:first-child)');
+                    var idRelacionarmodelos = document.querySelectorAll('.match form .respuestas-ordenar-lista');
                     var getId = [];
                     idRelacionarmodelos.forEach(function (input) {
                         getId.push(input.querySelector('div').dataset.id);
