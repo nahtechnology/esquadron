@@ -110,26 +110,26 @@ function calificarOracion(oracion,respuesta) {
         calculo = (calificacion[index]*100)/totalPalabras[index];
         console.log(calculo);
 
-        if(calculo <= 25) {
+        if(calculo <= 37.5) {
             slider[index].value = "1";
             // score[index].innerHTML = Math.round(calculo);
-            score[index].innerHTML = 25;
+            score[index].innerHTML = "25";
             rubrica[index].innerHTML = "to improve";
         }
-        if(calculo > 25 && calculo <= 50 ){
+        if(calculo > 37.5 && calculo <= 62.5 ){
             slider[index].value = "2";
-            score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = "50";
             rubrica[index].innerHTML = "Satisfactory";
         }
 
-        if(calculo > 50 && calculo <= 75 ){
+        if(calculo > 62.5 && calculo <= 87.5 ){
             slider[index].value = "3";
-            score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = "75";
             rubrica[index].innerHTML = "Good";
         }
-        if (calculo > 75 ){
+        if (calculo > 87.5 ){
             slider[index].value = "4";
-            score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = "100";
             rubrica[index].innerHTML = "Outstanding";
         }
 
