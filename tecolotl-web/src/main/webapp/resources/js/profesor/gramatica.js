@@ -34,8 +34,9 @@ document.addEventListener('DOMContentLoaded',function (ev) {
 });
 
 function calificarOracion(oracion,respuesta) {
+    let expReg = new RegExp("\s|.")
     oracion.forEach(function (texto,indice) {
-         let oracionTexto = texto.innerHTML;
+         let oracionTexto = texto.innerText;
         var textos = new Textos(oracionTexto,respuesta[indice].value);
         oraciones.push(textos);
     });
@@ -45,7 +46,7 @@ function calificarOracion(oracion,respuesta) {
         var segunda = value.oracionAlumno.split(" ");
         primera.forEach(function (value1,index) {
             palabrasTotal++;
-            if (value1 === segunda[index]){
+            if (value1.split('.')[0] === segunda[index].split('.')[0]){
                 contador++;
             }
         });
