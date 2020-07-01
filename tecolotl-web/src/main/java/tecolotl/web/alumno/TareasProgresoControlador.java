@@ -19,9 +19,6 @@ import java.util.logging.Logger;
 public class TareasProgresoControlador {
 
     @Inject
-    private Logger logger;
-
-    @Inject
     private TareaSesionBean tareaSesionBean;
 
     @Inject
