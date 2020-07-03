@@ -6,12 +6,10 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
-    <meta http-equiv="Refresh" content="0; URL=${noManjableControlador.rol}/index.xhtml"/>
+    <title>Error Inesperado</title>
 </h:head>
-<f:metadata>
-    <f:event type="preRenderView" listener="#{noManjableControlador.inicio}"></f:event>
-</f:metadata>
 <h:body>
-
+    Estimado usuario, por el momento no podemos atender su petición, favor de intentar más tarde
+    <button onclick="window.history.back()">#{boton['back']}</button>
 </h:body>
 </html>

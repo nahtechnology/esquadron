@@ -215,4 +215,8 @@ public class GrupoAlumnoSesionBean {
         }
         return alumnoModeloLista;
     }
+
+    public List<?> calificacionAlumno(@NotNull UUID idGrupo) {
+        return null;
+    }
 }

@@ -42,6 +42,10 @@ public class DetalleProfesorControlador implements Serializable {
         tareasPendientesGrupoModelo = tareasAlumnoSesionBean.buscaTareasPendientes(UUID.fromString(idGrupo));
     }
 
+    public void buscaAlumno(String idGrupo) {
+        logger.info(idGrupo);
+    }
+
     public String getIdProfesor() {
         return idProfesor;
     }
