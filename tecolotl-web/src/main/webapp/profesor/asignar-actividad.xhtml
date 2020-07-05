@@ -40,10 +40,10 @@
         <ui:define name="contenido">
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
-<!--            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>-->
-<!--            <h:outputStylesheet library="css" name="/profesor/asignar-actividad.css"/>-->
-            <link rel="stylesheet" href="#{resource['css/profesor/asignar-actividad.css']}"/>
-            <h:outputStylesheet library="css" name="modal.css"/>
+            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>
+            <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/asignar-actividad.css']}"/></ui:remove>
+            <ui:remove><h:outputStylesheet library="css" name="modal.css"/></ui:remove>
+            <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/modal.css"/>
             <div class="uk-position-relative uk-margin-small-top" id="temario">
                 <div class="uk-position-absolute uk-animation-slide-top-medium">
                     <div class="uk-flex uk-flex-right">
@@ -170,10 +170,10 @@
         <ui:define name="file-js">
 
             <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
-<!--            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>-->
-            <h:outputScript library="js" name="/profesor/asignar-actividad.js"/>
+            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>
+            <ui:remove><h:outputScript library="js" name="/profesor/asignar-actividad.js"/></ui:remove>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
-            <h:outputScript library="js" name="/alumno/filtro.js"/>
+            <ui:remove><h:outputScript library="js" name="/alumno/filtro.js"/></ui:remove>
         </ui:define>
     </ui:composition>
 </html>

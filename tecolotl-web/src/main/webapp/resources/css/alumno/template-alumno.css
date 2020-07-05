@@ -882,6 +882,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     background-color: white;
     border-color: var(--turquesa-primary-color) !important;
     font-size: 18px;
+    text-transform: initial;
 }
 
 .contenedor-respuesta-correcta{
@@ -1105,7 +1106,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
     .mensaje1{
         left: -7%;
-        padding: 20px 100px 0px 100px;
+        padding: 20px 100px 0 100px;
     }
     .desplaza1{
         left: 36%;
