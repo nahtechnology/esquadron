@@ -10,6 +10,7 @@ import tecolotl.profesor.entidad.GrupoEntidad;
 import tecolotl.profesor.entidad.TareaAlumnoGrupoEntidad;
 import tecolotl.profesor.modelo.AlumnoTareasNivelModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
+import tecolotl.profesor.modelo.PromedioAlumnoModelo;
 import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
 
 import javax.ejb.Stateless;
@@ -23,6 +24,7 @@ import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -216,7 +218,37 @@ public class GrupoAlumnoSesionBean {
         return alumnoModeloLista;
     }
 
-    public List<?> calificacionAlumno(@NotNull UUID idGrupo) {
-        return null;
+    public List<PromedioAlumnoModelo> promedioAlumno(@NotNull UUID idGrupo) {
+        Query query = entityManager.createNativeQuery("SELECT CAST(a.id AS VARCHAR),a.nombre,a.apellido_paterno,a.apellido_materno,CAST(count(c.id) AS INTEGER) AS total_tareas," +
+                "max(c.nivel_lenguaje) AS nivel_actual,round(avg(c.calificacion_trancipcion)) AS promedio_transcripcion,round(avg(c.calificacion_mapamental)) AS promedio_mapamental," +
+                "round(avg(c.calificacion_relaciona_imagen)) AS promedio_relacionar_imagen,round(avg(c.calificacion_gramatica)) AS promedio_gramatica," +
+                "round(avg(c.calificacion_oraciones)) AS promedio_completa,round(avg(c.calificacion_relacionar_oraciones)) AS promdio_relacionar_oraciones," +
+                "round(avg(c.calificacion_completar)) AS promedio_completar FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id JOIN " +
+                "alumno.calificacion c ON c.id_alumno = a.id WHERE ga.id_grupo = ? AND (calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_completar ISNULL OR calificacion_completar <> 0) AND " +
+                "(calificacion_mapamental ISNULL OR calificacion_mapamental <> 0) AND (calificacion_relaciona_imagen ISNULL OR calificacion_relaciona_imagen <> 0) AND " +
+                "(calificacion_relaciona_imagen ISNULL OR calificacion_relaciona_imagen <> 0) AND (calificacion_gramatica ISNULL OR calificacion_gramatica <> 0) AND " +
+                "(calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_relacionar_oraciones ISNULL OR calificacion_relacionar_oraciones <> 0) " +
+                "GROUP BY a.id, c.nivel_lenguaje HAVING c.nivel_lenguaje = max(c.nivel_lenguaje)");
+        query.setParameter(1, idGrupo);
+        List<PromedioAlumnoModelo> promedioAlumnoModeloLista = new ArrayList<>();
+        for (Object[] objectos : (List<Object[]>)query.getResultList()) {
+            PromedioAlumnoModelo promedioAlumnoModelo = new PromedioAlumnoModelo();
+            promedioAlumnoModelo.setId(UUID.fromString((String) objectos[0]));
+            promedioAlumnoModelo.setNombre((String)objectos[1]);
+            promedioAlumnoModelo.setApellidoPaterno((String)objectos[2]);
+            promedioAlumnoModelo.setApellidoMaterno((String)objectos[3]);
+            promedioAlumnoModelo.setTotalTareas((Integer)objectos[4]);
+            promedioAlumnoModelo.setNivelActual((String)objectos[5]);
+            promedioAlumnoModelo.setPromedioTranscipcion(((BigDecimal)objectos[6]).intValue());
+            promedioAlumnoModelo.setPromedioPromedioMapamental(((BigDecimal)objectos[7]).intValue());
+            promedioAlumnoModelo.setPromedioRelacionarImagen(((BigDecimal)objectos[8]).intValue());
+            promedioAlumnoModelo.setPromedioGramatica(((BigDecimal)objectos[9]).intValue());
+            promedioAlumnoModelo.setPromedioOraciones(((BigDecimal)objectos[10]).intValue());
+            promedioAlumnoModelo.setPromedioRelacionarOracion(((BigDecimal)objectos[11]).intValue());
+            promedioAlumnoModelo.setPromedioCompletar(((BigDecimal)objectos[12]).intValue());
+            promedioAlumnoModeloLista.add(promedioAlumnoModelo);
+        }
+        return promedioAlumnoModeloLista;
     }
+
 }

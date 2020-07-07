@@ -2,7 +2,9 @@ package tecolotl.web.coordinador.controlador;
 
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.modelo.CalificacionPendientesModelo;
+import tecolotl.profesor.modelo.PromedioAlumnoModelo;
 import tecolotl.profesor.modelo.TareasPendientesGrupoModelo;
+import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 import tecolotl.profesor.sesion.TareasAlumnoSesionBean;
 
@@ -12,6 +14,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -27,11 +30,14 @@ public class DetalleProfesorControlador implements Serializable {
     private TareasAlumnoSesionBean tareasAlumnoSesionBean;
 
     @Inject
+    private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
+
+    @Inject
     private Logger logger;
 
     private String idProfesor;
     private List<CalificacionPendientesModelo> calificacionPendientesModeloLista;
-    private List<AlumnoModelo> alumnoModeloLista;
+    private List<PromedioAlumnoModelo> promedioAlumnoModeloLista;
     private TareasPendientesGrupoModelo tareasPendientesGrupoModelo;
 
     public void inicio() {
@@ -43,7 +49,7 @@ public class DetalleProfesorControlador implements Serializable {
     }
 
     public void buscaAlumno(String idGrupo) {
-        logger.info(idGrupo);
+        promedioAlumnoModeloLista = grupoAlumnoSesionBean.promedioAlumno(UUID.fromString(idGrupo));
     }
 
     public String getIdProfesor() {
@@ -62,19 +68,19 @@ public class DetalleProfesorControlador implements Serializable {
         this.calificacionPendientesModeloLista = calificacionPendientesModeloLista;
     }
 
-    public List<AlumnoModelo> getAlumnoModeloLista() {
-        return alumnoModeloLista;
-    }
-
-    public void setAlumnoModeloLista(List<AlumnoModelo> alumnoModeloLista) {
-        this.alumnoModeloLista = alumnoModeloLista;
-    }
-
     public TareasPendientesGrupoModelo getTareasPendientesGrupoModelo() {
         return tareasPendientesGrupoModelo;
     }
 
     public void setTareasPendientesGrupoModelo(TareasPendientesGrupoModelo tareasPendientesGrupoModelo) {
         this.tareasPendientesGrupoModelo = tareasPendientesGrupoModelo;
+    }
+
+    public List<PromedioAlumnoModelo> getPromedioAlumnoModeloLista() {
+        return promedioAlumnoModeloLista;
+    }
+
+    public void setPromedioAlumnoModeloLista(List<PromedioAlumnoModelo> promedioAlumnoModeloLista) {
+        this.promedioAlumnoModeloLista = promedioAlumnoModeloLista;
     }
 }

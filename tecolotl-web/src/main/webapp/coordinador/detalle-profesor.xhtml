@@ -24,10 +24,10 @@
                     <p>MrJuan</p>
                 </div>
             </div>
-            <h:form>
+            <h:form id="formulario-detalle-grupo">
             <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
                          var="calificacionPendientesModelo"
-                          styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small"  >
+                         styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small"  >
                 <h:column>
                     <f:facet name="header">grado</f:facet>
                     ${calificacionPendientesModelo.grado}
@@ -56,14 +56,14 @@
                             <li>
                                 <h:commandLink>
                                     <span>#{etiqueta['detail']}</span>
-                                    <f:ajax listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"/>
+                                    <f:ajax render="formulario-alumno"
+                                            listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"/>
                                 </h:commandLink>
                             </li>
                             <li>
                                 <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-tareas-faltante">
                                     <span>Tareas Faltantes</span>
-                                    <f:ajax listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"
-                                            render="modal-tareas-faltante"/>
+                                    <f:ajax listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
                                 </h:commandLink>
                             </li>
                         </ul>
@@ -73,8 +73,9 @@
             </h:form>
         </div>
         <div>
+            <h:form id="formulario-alumno">
             <h:panelGroup layout="block"
-                          rendered="#{empty detalleProfesorControlador.alumnoModeloLista}">
+                          rendered="#{empty detalleProfesorControlador.promedioAlumnoModeloLista}">
                 <table class="uk-table uk-table-middle">
                     <thead class="uk-background-primary">
                         <tr>
@@ -96,6 +97,34 @@
                     </tbody>
                 </table>
             </h:panelGroup>
+            <h:dataTable value="#{detalleProfesorControlador.promedioAlumnoModeloLista}"
+                         rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}"
+                         id="tabla-alumno"
+                         var="promedioAlumnoModelo">
+                <h:column>
+                    <f:facet name="header">Nombre Alumno</f:facet>
+                    ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Total tareas</f:facet>
+                    ${promedioAlumnoModelo.totalTareas}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Nivel languaje</f:facet>
+                    ${promedioAlumnoModelo.nivelActual}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Transcripcion</f:facet>
+                    ${promedioAlumnoModelo.promedioTranscipcion}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">#{etiqueta['detail']}</f:facet>
+                    <h:button value="#{etiqueta['detail']}" outcome="login">
+                        <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
+                    </h:button>
+                </h:column>
+            </h:dataTable>
+            </h:form>
         </div>
         <h:panelGroup layout="block" id="modal-tareas-faltante" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
