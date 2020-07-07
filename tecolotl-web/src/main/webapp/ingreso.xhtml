@@ -11,7 +11,8 @@
     <link  rel="shortcut icon"  href="#{resource['img/favicon.ico']}"/>
     <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/uikit.css"/>
     <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/ingreso.css"/>
-    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/inicio-sesion.css"/>
+<!--    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/inicio-sesion.css"/>-->
+    <h:outputStylesheet library="css" name="/alumno/inicio-sesion.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </h:head>
 <h:body>
@@ -30,7 +31,7 @@
                     <input autocomplete="off" class="uk-input"/>
                     <input type="hidden" name="j_password"/>
                     <input type="hidden" name="j_username"/>
-                    <p></p>
+
                 </div>
                 <div class="uk-flex uk-flex-wrap uk-flex-center uk-margin-medium-top">
                     <input type="submit" value="#{boton['submit']}" onclick="return cargaContrasenia()" class="uk-button boton-login"/>
@@ -39,7 +40,9 @@
                 <h:outputText value="Usuario o contraseña incorrectos, por favor intenta de nuevo"
                               styleClass="uk-margin-small-top mensaje-error"
                               rendered="#{not empty param['error']}"/>
+                    <p class="mns-input uk-margin-small-top"> </p>
                 </div>
+
             </form>
         </div>
     </div>
@@ -48,6 +51,7 @@
     </script>
     <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit.js"/>
     <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit-icons.js"/>
-    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/inicio-sesion.js"/>
+<!--    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/inicio-sesion.js"/>-->
+    <h:outputScript library="js" name="/alumno/inicio-sesion.js"/>
 </h:body>
 </html>

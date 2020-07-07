@@ -88,8 +88,8 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/select-mindmap.css"/>-->
-        <link rel="stylesheet" href="#{resource['css/alumno/select-mindmap.css']}"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/select-mindmap.css"/>
+        <ui:remove><link rel="stylesheet" href="#{resource['css/alumno/select-mindmap.css']}"/></ui:remove>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" styleClass="contiene" rendered="#{empty seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}">

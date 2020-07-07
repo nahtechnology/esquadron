@@ -153,9 +153,8 @@ function puntaje() {
 }
 
 function calificarMatch() {
-let contenedorRespuestas = document.querySelector('.match .caja-preguntas-ordenar > div:last-child');
-let respuestas = contenedorRespuestas.querySelectorAll('.correcto').length;
-let preguntas = contenedorRespuestas.querySelectorAll('.respuesta').length;
+let respuestas = document.querySelectorAll('.match .respuestas-ordenar-lista > div.correcto').length;
+let preguntas = document.querySelectorAll('.match .respuestas-ordenar-lista > div').length;
 let puntaje = Math.round(respuestas * 100 / preguntas) >= 25 ? Math.round(respuestas * 100 / preguntas) : 25;
     document.querySelector('.match .score').style.setProperty('top','6%');
 document.querySelector('.match .score > span').innerText = "Score: " + puntaje + "%";

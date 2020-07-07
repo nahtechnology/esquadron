@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
 
     var listaMenu = menu.querySelectorAll('li');
     for (indice = 0; indice < listaMenu.length; indice++) {
-        if (listaMenu[indice].style.display != 'none') {
+        if (listaMenu[indice].style.display !== 'none') {
             listaMenu[indice].click();
             break;
         }
@@ -177,6 +177,7 @@ function verRespuestasCompletarOracion() {
 
 function validaRespuestaCompletarOracion(evento) {
     var formulario = evento.target.parentNode;
+    console.log(formulario);
     var respuesta = formulario.querySelector('.respuesta-ordenar-oracion span');
     if (respuesta) {
         formulario.querySelector('input[type=hidden]').value = respuesta.dataset.cardinalidad;
