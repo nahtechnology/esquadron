@@ -1,0 +1,15 @@
+#rango-fecha > input[type="text"]{
+    width: 45%;
+}
+#rango-fecha span{
+    display: inline-block;
+    width: 9%;
+    text-align: center;
+}
+table{
+    transition: opacity 0.3s linear;
+}
+
+.animacion-tabla{
+    opacity: 0;
+}
