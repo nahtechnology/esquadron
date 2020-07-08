@@ -39,23 +39,25 @@ public class ControlSesionListener implements HttpSessionListener {
     public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
         HttpSession httpSession = httpSessionEvent.getSession();
         UsuarioSesionModelo usuarioSesionModelo = sesionControlSingleton.cierre(httpSession.getId());
-        switch (usuarioSesionModelo.getTipo()) {
-            case ALUMNO:
-                controlSesionSesionBean.inserta(usuarioSesionModelo.getId(),
-                        UsuarioSesionModelo.Registro.INICIO.getValue().shortValue(),
-                        usuarioSesionModelo.getMomento());
-                controlSesionSesionBean.inserta(usuarioSesionModelo.getId(),
-                        UsuarioSesionModelo.Registro.CIERRE.getValue().shortValue(),
-                        new Date());
-                break;
-            case PROFESOR:
-                profesorSesionControlSessionBean.inserta(usuarioSesionModelo.getId(),
-                        UsuarioSesionModelo.Registro.INICIO.getValue().shortValue(),
-                        usuarioSesionModelo.getMomento());
-                profesorSesionControlSessionBean.inserta(usuarioSesionModelo.getId(),
-                        UsuarioSesionModelo.Registro.CIERRE.getValue().shortValue(),
-                        new Date());
-                break;
+        if (usuarioSesionModelo != null) {
+            switch (usuarioSesionModelo.getTipo()) {
+                case ALUMNO:
+                    controlSesionSesionBean.inserta(usuarioSesionModelo.getId(),
+                            UsuarioSesionModelo.Registro.INICIO.getValue().shortValue(),
+                            usuarioSesionModelo.getMomento());
+                    controlSesionSesionBean.inserta(usuarioSesionModelo.getId(),
+                            UsuarioSesionModelo.Registro.CIERRE.getValue().shortValue(),
+                            new Date());
+                    break;
+                case PROFESOR:
+                    profesorSesionControlSessionBean.inserta(usuarioSesionModelo.getId(),
+                            UsuarioSesionModelo.Registro.INICIO.getValue().shortValue(),
+                            usuarioSesionModelo.getMomento());
+                    profesorSesionControlSessionBean.inserta(usuarioSesionModelo.getId(),
+                            UsuarioSesionModelo.Registro.CIERRE.getValue().shortValue(),
+                            new Date());
+                    break;
+            }
         }
     }
 

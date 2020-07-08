@@ -191,13 +191,19 @@ public class ProfesorSesionBean implements Serializable {
     }
 
     public List<CalificacionPendientesModelo> buscaTotalCalificado(@NotNull UUID idProfesor) {
-        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR),CAST(g.id_profesor AS VARCHAR), g.grado, g.grupo," +
-                "CAST(count(t.id) AS INTEGER) AS tarea_asignadas,count(ctm.id_tarea) - count(ctm.puntaje) AS pendientes_mapamental," +
-                "sum(califica_tarea_gramatica.total) - sum(califica_tarea_gramatica.calificado) AS pendientes_gramatica " +
-                "FROM profesor.grupo g JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno JOIN " +
-                "profesor.califica_tarea_mapamental ctm ON t.id = ctm.id_tarea JOIN(SELECT id_tarea,CASE WHEN count(*) > 0 THEN 1 ELSE 0 END AS total," +
-                "CASE WHEN count(puntaje) > 0 THEN 1 ELSE 0 END AS calificado FROM profesor.califica_tarea_gramatica GROUP BY id_tarea " +
-                ") AS califica_tarea_gramatica ON califica_tarea_gramatica.id_tarea = t.id WHERE id_profesor = ? GROUP BY g.id, g.grado, g.grupo");
+        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR) AS id_grupo,CAST(g.id_profesor AS VARCHAR),g.grado,g.grupo," +
+                "CAST(count(t.id) AS INTEGER) AS tarea_asignadas,count(ctm.id_tarea) - sum(ctm.calificada) AS pendientes_mapamental,count(ctg.id_tarea) - sum(ctg.calificada) AS pendientes_gramatica, " +
+                "round(avg(promedio.promedio_general)) AS promedio_grupo FROM profesor.grupo g JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN " +
+                "alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno LEFT JOIN(SELECT id_tarea, CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada " +
+                "FROM profesor.califica_tarea_mapamental GROUP BY id_tarea) AS ctm On t.id = ctm.id_tarea LEFT JOIN(SELECT id_tarea,CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada " +
+                "FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS ctg ON ctg.id_tarea = t.id JOIN(SELECT promedio.id_alumno, avg(promedio.promedio_general) AS promedio_general FROM (SELECT " +
+                "id_alumno,unnest(Array [avg(calificacion_trancipcion),avg(calificacion_mapamental),avg(calificacion_relaciona_imagen),avg(calificacion_gramatica),avg(calificacion_oraciones)," +
+                "avg(calificacion_relacionar_oraciones),avg(calificacion_completar)]) AS promedio_general FROM alumno.calificacion WHERE " +
+                "(calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_completar ISNULL OR calificacion_completar <> 0) AND " +
+                "(calificacion_mapamental ISNULL OR calificacion_mapamental <> 0) AND (calificacion_relaciona_imagen ISNULL OR calificacion_relaciona_imagen <> 0) AND " +
+                "(calificacion_relaciona_imagen ISNULL OR calificacion_relaciona_imagen <> 0) AND (calificacion_gramatica ISNULL OR calificacion_gramatica <> 0) AND " +
+                "(calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_relacionar_oraciones ISNULL OR calificacion_relacionar_oraciones <> 0) " +
+                "GROUP BY id_alumno) AS promedio GROUP BY promedio.id_alumno) AS promedio ON promedio.id_alumno = ga.id_alumno WHERE id_profesor = ? GROUP BY g.id, g.grado, g.grupo");
         query.setParameter(1, idProfesor);
         List<Object[]> lista = (List<Object[]>) query.getResultList();
         return lista.stream().map(objects -> {
@@ -209,6 +215,7 @@ public class ProfesorSesionBean implements Serializable {
             calificacionPendientesModelo.setTareasAsignadas(((Integer)objects[4]));
             calificacionPendientesModelo.setPendientesMapaMental(((BigInteger)objects[5]).intValue());
             calificacionPendientesModelo.setPendientesGramatica(((BigInteger)objects[6]).intValue());
+            calificacionPendientesModelo.setPromedio(((BigDecimal)objects[7]).intValue());
             return calificacionPendientesModelo;
         }).collect(Collectors.toList());
     }
