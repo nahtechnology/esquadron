@@ -22,5 +22,20 @@
             <from-outcome>login</from-outcome>
             <to-view-id>/coordinador/reporte-sesion.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/coordinador/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/coordinador/reporte-sesion.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/coordinador/dashboard.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>detalles</from-outcome>
+            <to-view-id>/coordinador/detalle-profesor.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>
