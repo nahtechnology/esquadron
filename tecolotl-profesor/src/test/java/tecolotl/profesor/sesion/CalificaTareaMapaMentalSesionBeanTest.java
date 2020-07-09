@@ -11,11 +11,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
-import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
-import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
@@ -63,11 +59,9 @@ import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.profesor.entidad.CicloEscolarEntidad;
-import tecolotl.profesor.entidad.CicloEscolarEntidadPK;
 import tecolotl.profesor.modelo.CalificaTareaMapaMentalModelo;
-import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
-import tecolotl.profesor.validacion.*;
+import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -83,8 +77,8 @@ public class CalificaTareaMapaMentalSesionBeanTest {
                 .addPackage(CorreoEnum.class.getPackage()).addPackage(CatalogoModelo.class.getPackage()).addPackage(CatalagoEntidad.class.getPackage())
                 .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
                 //administracion
-                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ColoniaModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
-                .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addPackage(ColoniaNuevaValidacion.class.getPackage())
+                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
+                .addPackage(ContactoSesionBean.class.getPackage()).addPackage(ColoniaNuevaValidacion.class.getPackage())
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())

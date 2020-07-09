@@ -1,6 +1,5 @@
 package tecolotl.profesor.sesion;
 
-import org.hibernate.validator.constraints.br.TituloEleitoral;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -10,13 +9,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
-import tecolotl.administracion.modelo.escuela.*;
-import tecolotl.administracion.persistencia.entidad.*;
+import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
-import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
 import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
@@ -62,8 +58,10 @@ import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
-import tecolotl.profesor.entidad.*;
-import tecolotl.profesor.modelo.*;
+import tecolotl.profesor.entidad.CicloEscolarEntidad;
+import tecolotl.profesor.modelo.AlumnoTareasNivelModelo;
+import tecolotl.profesor.modelo.GrupoAlumnoModelo;
+import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
 import tecolotl.profesor.scope.AlumnoGrupoScope;
 import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 
@@ -85,8 +83,8 @@ public class GrupoAlumnoSesionBeanTest {
                 .addPackage(CorreoEnum.class.getPackage()).addPackage(CatalogoModelo.class.getPackage()).addPackage(CatalagoEntidad.class.getPackage())
                 .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
                 //administracion
-                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ColoniaModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
-                .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addPackage(ColoniaNuevaValidacion.class.getPackage())
+                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
+                .addPackage(ContactoSesionBean.class.getPackage()).addPackage(ColoniaNuevaValidacion.class.getPackage())
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())

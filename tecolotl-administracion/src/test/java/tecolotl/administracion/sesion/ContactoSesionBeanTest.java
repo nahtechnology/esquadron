@@ -9,14 +9,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.TipoContactoModelo;
-import tecolotl.administracion.persistencia.entidad.ContactoEntidad;
 import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
-import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoNuevoValidacion;
@@ -41,7 +38,6 @@ public class ContactoSesionBeanTest {
                         ContactoNuevoValidacion.class, ColoniaNuevaValidacion.class)
                 .addPackage(EscuelaSesionBean.class.getPackage())
                 .addPackage(EscuelaEntidad.class.getPackage())
-                .addPackage(ColoniaModelo.class.getPackage())
                 .addPackage(EscuelaBaseModelo.class.getPackage())
                 .addPackage(CatalogoModelo.class.getPackage())
                 .addPackage(MotivoBloqueoSesionBean.class.getPackage())

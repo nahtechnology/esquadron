@@ -10,6 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public class CoordinadorModelo extends PersonaModelo {
@@ -87,4 +88,18 @@ public class CoordinadorModelo extends PersonaModelo {
                 .toString();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CoordinadorModelo that = (CoordinadorModelo) o;
+        return claveCentroTrabajo.equals(that.claveCentroTrabajo) &&
+                contador.equals(that.contador);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), claveCentroTrabajo, contador);
+    }
 }

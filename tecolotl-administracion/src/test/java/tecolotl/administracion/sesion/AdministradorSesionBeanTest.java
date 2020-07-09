@@ -5,15 +5,12 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.AdministradorModelo;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
-import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
@@ -23,8 +20,6 @@ import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
-
-import static org.junit.Assert.*;
 
 @RunWith(Arquillian.class)
 public class AdministradorSesionBeanTest {
@@ -40,9 +35,7 @@ public class AdministradorSesionBeanTest {
                 .addPackage(CatalogoNuevoValidacion.class.getPackage())
                 //administracion
                 .addPackage(CoordinadorModelo.class.getPackage())
-                .addPackage(ColoniaModelo.class.getPackage())
                 .addPackage(ContactoModelo.class.getPackage())
-                .addPackage(ColoniaEntidad.class.getPackage())
                 .addPackage(ContactoSesionBean.class.getPackage())
                 .addClass(AdministradorModelo.class)
                 .addClass(ColoniaNuevaValidacion.class)

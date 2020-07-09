@@ -11,31 +11,15 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
-import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
-import tecolotl.alumno.entidad.*;
 import tecolotl.alumno.entidad.ActividadEntidad;
-import tecolotl.alumno.entidad.completar.CompletarEntidad;
-import tecolotl.alumno.entidad.completar.TareaCompletarEntidad;
-import tecolotl.alumno.entidad.completar.TareaCompletarEntidadPK;
-import tecolotl.alumno.entidad.glosario.*;
-import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
-import tecolotl.alumno.entidad.gramatica.GramaticaEntidadPK;
-import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
+import tecolotl.alumno.entidad.glosario.ClaseGlosarioEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidadPK;
-import tecolotl.alumno.entidad.hablar.HablarEntidad;
-import tecolotl.alumno.entidad.hablar.TareaHablarEntidad;
-import tecolotl.alumno.entidad.hablar.TareaHablarEntidadPK;
-import tecolotl.alumno.entidad.mapamental.*;
-import tecolotl.alumno.entidad.oraciones.OracionesEntidad;
-import tecolotl.alumno.entidad.oraciones.OracionesEntidadPK;
-import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidad;
-import tecolotl.alumno.entidad.oraciones.TareaOracionesEntidadPK;
-import tecolotl.alumno.entidad.relacionar.*;
+import tecolotl.alumno.entidad.mapamental.MapaMentalActividadEntidad;
+import tecolotl.alumno.entidad.relacionar.TareaRelacionarActividadEntidadPK;
 import tecolotl.alumno.entidad.relacionar_oraciones.TareaRelacionarOracionesEntidadPK;
 import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
@@ -62,7 +46,6 @@ import tecolotl.nucleo.herramienta.CorreoEnum;
 import tecolotl.nucleo.herramienta.LoggerProducer;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
-import tecolotl.nucleo.persistencia.entidad.PersonaEntidad;
 import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 import tecolotl.profesor.modelo.GrupoAlumnoModelo;
@@ -84,8 +67,8 @@ public class CalificaTareaMapaMentalTest {
                 .addPackage(CorreoEnum.class.getPackage()).addPackage(CatalogoModelo.class.getPackage()).addPackage(CatalagoEntidad.class.getPackage())
                 .addPackage(CatalogoSesionBean.class.getPackage()).addPackage(CatalogoNuevoValidacion.class.getPackage())
                 //administracion
-                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ColoniaModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
-                .addPackage(ColoniaEntidad.class.getPackage()).addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
+                .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
+                .addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
