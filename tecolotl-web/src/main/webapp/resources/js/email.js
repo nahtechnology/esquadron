@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded",function () {
+    
     var labels = ['Nombre:','Colegio:','Cuidad:','Correo:','Telefono:'];
     var botonEmail = document.querySelector('#seccion3 > div > div > div:last-child > div');
      mensaje="";
@@ -21,12 +22,12 @@ document.addEventListener("DOMContentLoaded",function () {
                 mensaje = "";
                 }
     });
-
+    
     function sendEmail() {
         var contactos = document.querySelectorAll('#seccion3 div > input');
         Email.send({
-            SecureToken : "40279f77-14b1-442f-8359-4225418ebff9",
-            To : 'nahtechnology@gmail.com',
+            SecureToken :'96c7e030-d64a-44b2-b925-85eb7b23d35c',
+            To : 'cu.es.guillermo@gmail.com',
             From : "maugg76@gmail.com",
             Subject : "Contacto Escuela",
             Body : mensaje

@@ -860,6 +860,57 @@ textarea::-webkit-scrollbar-thumb:hover {
     z-index: 10;
 }
 
+.incorrecto{
+    background-color: #E74C3C!important;
+    color: white!important;
+}
+.incorrecto:hover{
+    cursor: pointer;
+}
+
+.correcto{
+    background-color: #2ECC71!important;
+    color: white!important;
+}
+.color-correcto{
+    color: #2ECC71!important;
+}
+.color-incorrecto{
+    color: #E74C3C!important;
+}
+.respuestas-correctas{
+    background-color: white;
+    border-color: var(--turquesa-primary-color) !important;
+    font-size: 18px;
+    text-transform: initial;
+}
+
+.contenedor-respuesta-correcta{
+    background-color: white;
+    border: solid 2px var(--turquesa-primary-color);
+    border-radius: 8px;
+    padding: 12px 5px;
+}
+
+.score{
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg") no-repeat center/100%;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.score > span{
+    font-weight: 900;
+    font-size: 27px;
+    color: white
+}
+.letra-score{
+    font-weight: 900;
+    font-size: 27px;
+    color: white;
+}
+
 @media screen and (max-width: 1030px ){
     body{
         background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-ipad.svg");
@@ -1055,7 +1106,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     }
     .mensaje1{
         left: -7%;
-        padding: 20px 100px 0px 100px;
+        padding: 20px 100px 0 100px;
     }
     .desplaza1{
         left: 36%;

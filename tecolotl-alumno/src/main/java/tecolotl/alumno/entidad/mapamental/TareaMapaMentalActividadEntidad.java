@@ -62,7 +62,7 @@ public class TareaMapaMentalActividadEntidad implements Serializable {
 
     @Basic
     @NotNull
-    @Size(max = 300)
+    @Size(max = 331)
     @Column(name = "texto_respuesta")
     public String getTextoRespuesta() {
         return textoRespuesta;

@@ -96,8 +96,9 @@ public class GrupoAlumnoSesionBean {
             alumnoTareasNivelModelo.setNombre((String)objects[3]);
             alumnoTareasNivelModelo.setApellidoPaterno((String)objects[4]);
             alumnoTareasNivelModelo.setApellidoMaterno((String)objects[5]);
-            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[6]);
-            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[7]);
+            alumnoTareasNivelModelo.setPromedio(objects[6] == null ? null : ((Double)objects[6]).floatValue());
+            alumnoTareasNivelModelo.setTotalTareas((Integer)objects[7]);
+            alumnoTareasNivelModelo.setNivelLenguaje((String)objects[8]);
             alumnoTareasNivelModeloLista.add(alumnoTareasNivelModelo);
         }
         return alumnoTareasNivelModeloLista;
@@ -156,9 +157,9 @@ public class GrupoAlumnoSesionBean {
      * @param idActividad
      * @return
      */
-    public Integer tarea(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad) {
-        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?)");
-        query.setParameter(1, idGrupo).setParameter(2, idActividad);
+    public Integer tarea(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad, Boolean verRespuesta) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_grupo(?, ?, ?)");
+        query.setParameter(1, idGrupo).setParameter(2, idActividad).setParameter(3, verRespuesta);
         return (Integer)query.getSingleResult();
     }
 
@@ -166,13 +167,15 @@ public class GrupoAlumnoSesionBean {
                          @NotNull @Size(min = 11, max = 11) String idActividad,
                          @NotNull UUID idAlumno,
                          int vuelta,
-                         @NotNull Short idNivelLenguaje) {
-        Query query = entityManager.createNativeQuery("CALL profesor.creartarea(?,?,?,?,?)");
+                         @NotNull Short idNivelLenguaje,
+                         @NotNull Boolean verRespuesta) {
+        Query query = entityManager.createNativeQuery("CALL profesor.creartarea(?,?,?,?,?,?)");
         query.setParameter(1, idGrupo);
         query.setParameter(2, idAlumno);
         query.setParameter(3, idActividad);
         query.setParameter(4, vuelta);
         query.setParameter(5, idNivelLenguaje);
+        query.setParameter(6, verRespuesta);
         return query.executeUpdate();
     }
 

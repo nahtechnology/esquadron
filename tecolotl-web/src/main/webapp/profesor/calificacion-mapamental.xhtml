@@ -56,7 +56,7 @@
                                     <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" class="uk-border-circle" width="50" height="50" alt=""/>
                                 </div>
                                 <div class="uk-width-expand">
-                                    <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
+                                    <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-bold">
                                         #{profesorControlador.profesorModelo.nombre.concat(' ').concat(profesorControlador.profesorModelo.apellidoPaterno).concat(' ').concat(profesorControlador.profesorModelo.apellidoMaterno)}
                                     </h3>
                                     <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
@@ -64,7 +64,6 @@
                                 <div class="uk-width-1-1@s">
                                     <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.nickname']} : </span>#{profesorControlador.profesorModelo.apodo}</p>
                                     <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom "><span class="uk-text-bold">#{profesor['evaluate.developandshare.mail']}: </span>#{profesorControlador.profesorModelo.correoEletronico}</p>
-<!--                                    <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-primary">Edit Profile: </span></p>-->
                                 </div>
                             </div>
                         </div>
@@ -112,12 +111,16 @@
                 </h:panelGroup>
                 <div class="uk-width-1-4@m">
                     <div class="bmap-#{calificaMapaMentalControlador.tareaMapaMentalModeloLista[0].cardinalidad}"></div>
-                    <p>Score: <span style="color: red; font-weight: bold"/></p>
+                    <p>Score: <span id="puntaje" style="color: red; font-weight: bold"/></p>
                 </div>
                 <h:commandButton value="#{boton['evaluate']}"
                                  styleClass="boton-escuadron-base"
                                  rendered="#{empty calificaMapaMentalControlador.calificaTareaMapaMentalModelo.puntaje}"
-                                 action="#{calificaMapaMentalControlador.califica}" onclick="return validaComentario()"/>
+                                 action="#{calificaMapaMentalControlador.califica}" onclick="return validaComentario()">
+                    <f:param name="idTarea" value="${param['idTarea']}"/>
+                    <f:param name="cardinalidad" value="${param['cardinalidad']}"/>
+                    <f:param name="intento" value="${param['intento']}"/>
+                </h:commandButton>
             </h:form>
         </h:panelGroup>
         <script type="application/javascript">
@@ -179,7 +182,13 @@
 
             document.addEventListener('DOMContentLoaded', function (evento) {
                 rango = document.getElementById('formulario:rango');
-                rango.value = "75";
+                if (rango.value == null){
+                    rango.value = "25";
+                }else{
+                   let puntaje =  document.getElementById('puntaje');
+                   puntaje.innerHTML = rango.value;
+                }
+
             });
 
             function validaComentario() {

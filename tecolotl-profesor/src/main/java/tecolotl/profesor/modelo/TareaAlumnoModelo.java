@@ -10,6 +10,7 @@ public class TareaAlumnoModelo {
     private UUID id;
     private Date fechaAsignacion;
     private String idActividad;
+    private String nivelLenguaje;
     private Short calificacionTrascirpcion;
     private Short calificacionMapamental;
     private Short calificacionRelacionarImagen;
@@ -36,6 +37,7 @@ public class TareaAlumnoModelo {
         this.calificacionOraciones = tareaAlumnoEntidad.getCalificacionOraciones();
         this.calificacionRelacionarOraciones = tareaAlumnoEntidad.getCalificacionRelacionarOraciones();
         this.calificacionCompletar = tareaAlumnoEntidad.getCalificacionCompletar();
+        this.nivelLenguaje = tareaAlumnoEntidad.getNivelLenguaje();
     }
 
     public UUID getId() {
@@ -116,5 +118,13 @@ public class TareaAlumnoModelo {
 
     public void setCalificacionTrascirpcion(Short calificacionTrascirpcion) {
         this.calificacionTrascirpcion = calificacionTrascirpcion;
+    }
+
+    public String getNivelLenguaje() {
+        return nivelLenguaje;
+    }
+
+    public void setNivelLenguaje(String nivelLenguaje) {
+        this.nivelLenguaje = nivelLenguaje;
     }
 }

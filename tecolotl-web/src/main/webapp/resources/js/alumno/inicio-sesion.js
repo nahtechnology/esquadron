@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     formulario = document.querySelector('form');
     usuario = formulario.querySelector('input[type=text]');
     galaxia = usuario.nextElementSibling.nextElementSibling;
-    validacion = formulario.querySelector('p');
+    validacion = formulario.querySelector('.mns-input');
     loginImagen(formulario.querySelectorAll('img'));
 });
 
@@ -33,12 +33,16 @@ function cargaContrasenia() {
         return false;
     }
     if (usuario.value.length === 0) {
+        validacion.classList.add('mensaje-error');
         validacion.textContent = 'Es necesario introducir un apodo';
         return false;
-    }
+    }else {  validacion.classList.remove('mensaje-error');}
     if (galaxia.value.length === 0) {
+        validacion.classList.add('mensaje-error');
         validacion.textContent = 'Es necesario introducir una galaxia';
         return false;
+    }else {
+        validacion.classList.remove('mensaje-error');
     }
     formulario.querySelector('input[name=j_password').value = seleccionados.join(',');
     formulario.querySelector('input[name=j_username').value = usuario.value.concat(',').concat(galaxia.value);

@@ -17,9 +17,16 @@ public class MesajeProductor {
 
     @Produces
     @TipoMensaje(value = MensajeBundle.COORDINADOR)
-    ResourceBundle generaMensajeCoordinador() {
+    public ResourceBundle generaMensajeCoordinador() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         return facesContext.getApplication().getResourceBundle(facesContext, "coordinador");
+    }
+
+    @Produces
+    @TipoMensaje(value = MensajeBundle.ETIQUETA)
+    public ResourceBundle genreraMensajeEtiqueta() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        return facesContext.getApplication().getResourceBundle(facesContext, "etiqueta");
     }
 
 }

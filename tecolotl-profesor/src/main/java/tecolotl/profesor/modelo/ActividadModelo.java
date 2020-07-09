@@ -1,5 +1,6 @@
 package tecolotl.profesor.modelo;
 
+import tecolotl.alumno.entidad.vista.BuscaActividadesVistaEntidad;
 import tecolotl.profesor.entidad.ActividadEntidad;
 
 public class ActividadModelo {
@@ -8,6 +9,7 @@ public class ActividadModelo {
     private String preguntaDetonadora;
     private String tema;
     private String nivelLenguaje;
+    private Integer totalTareas;
     private int codigoNivelLenguaje;
     private String mapamental;
 
@@ -19,13 +21,18 @@ public class ActividadModelo {
         this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
         this.tema = actividadEntidad.getTema();
         this.nivelLenguaje = actividadEntidad.getNivelLenguaje();
+        totalTareas = actividadEntidad.getTotalTareas();
         this.codigoNivelLenguaje = actividadEntidad.getCodigoNivelLenguaje();
         this.mapamental = actividadEntidad.getMapamental();
     }
 
-    public ActividadModelo(tecolotl.alumno.entidad.ActividadEntidad actividadEntidad) {
-        this.idActividad = actividadEntidad.getId();
-        this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
+    public ActividadModelo(BuscaActividadesVistaEntidad buscaActividadesVistaEntidad) {
+        idActividad = buscaActividadesVistaEntidad.getIdActvidad();
+        preguntaDetonadora = buscaActividadesVistaEntidad.getPreguntaDetonadora();
+        tema = buscaActividadesVistaEntidad.getTema();
+        nivelLenguaje = buscaActividadesVistaEntidad.getNivelLenguaje();
+        codigoNivelLenguaje = buscaActividadesVistaEntidad.getIdNivelLenguaje();
+        mapamental = buscaActividadesVistaEntidad.getMapaMental();
     }
 
     public String getIdActividad() {
@@ -74,5 +81,27 @@ public class ActividadModelo {
 
     public void setMapamental(String mapamental) {
         this.mapamental = mapamental;
+    }
+
+    public Integer getTotalTareas() {
+        return totalTareas;
+    }
+
+    public void setTotalTareas(Integer totalTareas) {
+        this.totalTareas = totalTareas;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ActividadModelo{");
+        sb.append("idActividad='").append(idActividad).append('\'');
+        sb.append(", preguntaDetonadora='").append(preguntaDetonadora).append('\'');
+        sb.append(", tema='").append(tema).append('\'');
+        sb.append(", nivelLenguaje='").append(nivelLenguaje).append('\'');
+        sb.append(", totalTareas=").append(totalTareas);
+        sb.append(", codigoNivelLenguaje=").append(codigoNivelLenguaje);
+        sb.append(", mapamental='").append(mapamental).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }

@@ -93,7 +93,7 @@
     text-align: center;
     box-shadow: 1.5px 1.5px 8px white;
     min-width: 20%;
-    max-width: 60%;
+    max-width: 85%;
     margin: 10px auto;
     /*-webkit-transition: all  0.3s  linear; !* Safari *!*/
     /*transition: all  0.3s  linear;*/
@@ -176,6 +176,7 @@
     padding: 3px 40px 3px 3px;
     margin-bottom: 20px;
     box-sizing: border-box;
+    
 }
 
 .respuestas-ordenar-lista.uk-sortable-empty{
@@ -199,7 +200,7 @@
     top: -40px;
 }
 .img-titulo-1{
-    left: 8px;
+    left: 16px;
 }
 .img-titulo-2{
     right:0;

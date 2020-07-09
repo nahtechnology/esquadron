@@ -7,6 +7,7 @@ import tecolotl.alumno.entidad.gramatica.GramaticaEntidad;
 import tecolotl.alumno.entidad.gramatica.GramaticaEntidadPK;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidad;
 import tecolotl.alumno.entidad.gramatica.TareaGramaticaEntidadPK;
+import tecolotl.alumno.entidad.vista.CalificacionTareaGramaticaVistaEntidad;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.glosario.GlosarioModelo;
 import tecolotl.alumno.modelo.gramatica.GramaticaModelo;
@@ -66,10 +67,10 @@ public class GramaticaSesionBean implements Serializable {
      * @return una colección de {@link GramaticaModelo}
      */
     public List<GramaticaModelo> busca(@NotNull UUID idTarea){
-        TypedQuery<TareaGramaticaEntidad> typedQuery = entityManager.createNamedQuery("TareaGramaticaEntidad.buscaTarea", TareaGramaticaEntidad.class);
+        TypedQuery<CalificacionTareaGramaticaVistaEntidad> typedQuery =
+                entityManager.createNamedQuery("CalificacionTareaGramaticaVistaEntidad.busca", CalificacionTareaGramaticaVistaEntidad.class);
         typedQuery.setParameter("idTarea", idTarea);
-        List<TareaGramaticaEntidad> tareaGramaticaEntidadLista = typedQuery.getResultList();
-        return tareaGramaticaEntidadLista.stream().map(GramaticaModelo::new).collect(Collectors.toList());
+        return typedQuery.getResultList().stream().map(GramaticaModelo::new).collect(Collectors.toList());
     }
 
     /**

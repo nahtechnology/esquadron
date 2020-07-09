@@ -47,6 +47,7 @@ public class TareaEntidad {
     private AlumnoEntidad alumnoEntidad;
     private UUID idGrupo;
     private Short calificacion;
+    private boolean verRespuesta;
     private List<TareaGlosarioActividadEntidad> tareaGlosarioActividadEntidadLista;
     private List<TareaMapaMentalActividadEntidad> tareaMapaMentalActividadEntidadLista;
     private List<TareaRelacionarActividadEntidad> tareaRelacionarActividadEntidadLista;
@@ -144,6 +145,16 @@ public class TareaEntidad {
     @Column(name = "calificacion", insertable = false)
     public Short getCalificacion() {
         return calificacion;
+    }
+
+    @Basic
+    @Column(name = "ver_respuesta")
+    public boolean isVerRespuesta() {
+        return verRespuesta;
+    }
+
+    public void setVerRespuesta(boolean verRespuesta) {
+        this.verRespuesta = verRespuesta;
     }
 
     public void setCalificacion(Short calificacion) {

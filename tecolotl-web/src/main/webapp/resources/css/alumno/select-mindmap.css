@@ -157,6 +157,19 @@
     font-weight: bold;
 }
 
+.comentario-mapa{
+    display: inline-block;
+    padding: 10px 5px;
+    border: 2px solid var(--turquesa-primary-color);
+    border-radius: 8px;
+    width: 100%;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    margin-top: 10px;
+    background-color: white;
+    color: black;
+}
+
 @media screen and (max-width: 1030px ){
     body{
         background-image: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/fondo-gral-ipad.svg");

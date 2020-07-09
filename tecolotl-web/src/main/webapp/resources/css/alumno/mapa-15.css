@@ -163,6 +163,11 @@ form label{
     position: relative;
 }
 
+.btn-mover{
+    margin-left: 40%;
+    position: absolute;
+}
+
 @media screen and (max-width: 500px ){
 
     .parrafo-mapa-15{

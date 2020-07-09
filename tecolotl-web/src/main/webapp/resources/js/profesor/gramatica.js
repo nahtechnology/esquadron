@@ -24,19 +24,20 @@ document.addEventListener('DOMContentLoaded',function (ev) {
         console.log(porcentaje,"desabilitado");
         botonRespuesta.disabled = true;
         botonRespuesta.classList.add('boton-disabilitado');
-        UIkit.notification("the student hasn't completed his homework");
+        UIkit.notification(termina);
     }else{
         console.log('se puede');
         botonRespuesta.classList.remove('boton-disabilitado');
         botonRespuesta.disabled = false;
     }
-    document.querySelector('#formulario-califica input[type=submit]').addEventListener('click', validaRespuesta);
+
 });
 
 function calificarOracion(oracion,respuesta) {
+    let expReg = new RegExp("\s|.")
     oracion.forEach(function (texto,indice) {
-        let oracionTexto = texto.innerHTML.split(".");
-        var textos = new Textos(oracionTexto[0],respuesta[indice].value);
+         let oracionTexto = texto.innerText;
+        var textos = new Textos(oracionTexto,respuesta[indice].value);
         oraciones.push(textos);
     });
     oraciones.forEach(function (value) {
@@ -45,7 +46,7 @@ function calificarOracion(oracion,respuesta) {
         var segunda = value.oracionAlumno.split(" ");
         primera.forEach(function (value1,index) {
             palabrasTotal++;
-            if (value1 === segunda[index]){
+            if (value1.split('.')[0] === segunda[index].split('.')[0]){
                 contador++;
             }
         });
@@ -110,26 +111,26 @@ function calificarOracion(oracion,respuesta) {
         calculo = (calificacion[index]*100)/totalPalabras[index];
         console.log(calculo);
 
-        if(calculo <= 25) {
+        if(calculo <= 37.5) {
             slider[index].value = "1";
             // score[index].innerHTML = Math.round(calculo);
-            score[index].innerHTML = 25;
+            score[index].innerHTML = "25";
             rubrica[index].innerHTML = "to improve";
         }
-        if(calculo > 25 && calculo <= 50 ){
+        if(calculo > 37.5 && calculo <= 62.5 ){
             slider[index].value = "2";
-            score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = "50";
             rubrica[index].innerHTML = "Satisfactory";
         }
 
-        if(calculo > 50 && calculo <= 75 ){
+        if(calculo > 62.5 && calculo <= 87.5 ){
             slider[index].value = "3";
-            score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = "75";
             rubrica[index].innerHTML = "Good";
         }
-        if (calculo > 75 ){
+        if (calculo > 87.5 ){
             slider[index].value = "4";
-            score[index].innerHTML = Math.round(calculo);
+            score[index].innerHTML = "100";
             rubrica[index].innerHTML = "Outstanding";
         }
 
@@ -139,16 +140,4 @@ function calificarOracion(oracion,respuesta) {
 function  Textos(oracionActividad,oracionAlumno) {
     this.oracionActividad = oracionActividad;
     this.oracionAlumno = oracionAlumno;
-}
-
-function validaRespuesta(evento) {
-    var entradas = document.getElementById('formulario-califica').parentNode.querySelectorAll('input[type=text]');
-    entradas = Array.from(entradas);
-    if (entradas.filter(entrada => entrada.value).length < entradas.length) {
-        UIkit.modal.alert('No se puede calificar hasta que el alumno haya terminado de responder todos los ejercicios.').then(function () {
-            console.log('Alert closed.')
-        });
-        return false;
-    }
-    return true;
 }

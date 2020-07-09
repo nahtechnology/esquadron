@@ -4,14 +4,16 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class ActividadEntidad {
+public class ActividadEntidad implements Serializable {
 
     private String idActividad;
     private String preguntaDetonadora;
     private String tema;
     private String nivelLenguaje;
+    private Integer totalTareas;
     private int codigoNivelLenguaje;
     private String mapamental;
 
@@ -43,6 +45,7 @@ public class ActividadEntidad {
         this.tema = tema;
     }
 
+    @Id
     @Column(name = "nivel_lenguaje")
     public String getNivelLenguaje() {
         return nivelLenguaje;
@@ -68,5 +71,14 @@ public class ActividadEntidad {
 
     public void setMapamental(String mapamental) {
         this.mapamental = mapamental;
+    }
+
+    @Column(name = "total_tareas")
+    public Integer getTotalTareas() {
+        return totalTareas;
+    }
+
+    public void setTotalTareas(Integer totalTareas) {
+        this.totalTareas = totalTareas;
     }
 }

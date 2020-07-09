@@ -54,11 +54,9 @@
             <div class="uk-position-relative uk-text-center uk-display-block">
                 <a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center uk-text-capitalize" data-uk-icon="icon: triangle-down; ratio: 0.7">#{etiqueta['menu']}</a>
                 <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
-
-                            <h:form>
-                                <h:commandLink styleClass="uk-text-capitalize" action="#{alumnoControlador.cerrarSesion()}" value="#{etiqueta['close.sesion']}"/>
-                            </h:form>
-
+                    <h:form>
+                        <h:commandLink styleClass="uk-text-capitalize" action="#{alumnoControlador.cerrarSesion()}" value="#{etiqueta['close.sesion']}"/>
+                    </h:form>
                 </div>
             </div>
         </div>
@@ -74,18 +72,19 @@
         </div>
         <div class="left-nav-wrap  uk-hidden@xl ">
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-flex uk-flex-center uk-flex-middle">
-                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="actividades"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right" class="uk-active"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="60" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="60" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="actividades"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right" class="uk-active"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="50" alt=""/></h:link></li>
             </ul>
         </div>
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/order-sentences.css"/>
+        <ui:remove><h:outputStylesheet library="css" name="/alumno/order-sentences.css"/></ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/glosario.css"/>
         <div class="uk-section">
@@ -105,7 +104,7 @@
                             <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/morado.svg" width="70" height="70" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
                     </ul>
-                    <ul class="js-filter" style="list-style: none; padding-left: 0;">
+                    <ul class="js-filter" data-visibilidad-respuestas="#{alumnoControlador.tareaActividadModelo.verRespuesta}" style="list-style: none; padding-left: 0;">
                         <li class="ordenar">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/information.svg" pt:uk-svg=""/></a>
@@ -113,7 +112,7 @@
                             </div>
                             <h:form id="tareaOraciones">
                                 <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['activities.title.order.sentences']}</h1>
-                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones uk-sortable" pt:uk-sortable="" pt:data-activado="false" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
                                         <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
                                                <div class="uk-width-1-1@m uk-grid" uk-grid="" >
                                                     <div class="imagen-oracion uk-width-auto"/>
@@ -121,19 +120,22 @@
                                                </div>
                                         </ui:repeat>
                                 </h:panelGroup>
-                                <h:panelGroup layout="block" styleClass="contenedor-oraciones" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
-                                    <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion">
+                                <h:panelGroup layout="block" styleClass="contenedor-oraciones" pt:data-activado="true" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                    <ui:repeat value="#{tareaOracionesControlador.tareaOracionesModeloLista}" var="oracion" varStatus="indiceOracion">
                                         <div class="uk-width-1-1@m uk-grid" uk-grid="" >
-                                            <div class="imagen-oracion uk-width-auto"/>
+                                            <h:panelGroup layout="block" styleClass="imagen-oracion uk-width-auto #{(indiceOracion.index + 1) eq  oracion.respuesta ? 'correcto':'incorrecto'}"   style="background: none"><h:outputText styleClass="uk-flex letra-score" style="margin-left: -17px;margin-top: 10px;" value="#{oracion.respuesta}"/>  </h:panelGroup>
+
                                             <div class="oraciones uk-width-expand">#{tareaOracionesControlador.buscaOracion(oracion.respuesta)}</div>
                                         </div>
                                     </ui:repeat>
                                 </h:panelGroup>
-                                <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/pop-art/boton-finished.svg" styleClass="fin-ordenar fin-movimiento" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>
+                                <h:panelGroup  styleClass="score fin-movimiento" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
+                                    <span/>
+                                </h:panelGroup>
                                 <!--<h:outputText value="Respondido" rendered="#{not empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}"/>-->
                                 <h:inputHidden id="tareaOracionesInput" value="#{tareaOracionesControlador.respuestaOraciones}"/>
                                 <h:commandButton style="" onclick="getRespuestas()" styleClass="boton-enviar boton-trasladar uk-margin" value="Send" rendered="#{empty tareaOracionesControlador.tareaOracionesModeloLista[0].respuesta}">
-                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data) }" render="@form"/>
+                                    <f:ajax listener="#{tareaOracionesControlador.llenaDatos()}" execute="@form" onevent="function funcion(data) { respuestaEnvidad(data);  }" render="@form"/>
                                 </h:commandButton>
                             </h:form>
                         </li>
@@ -144,8 +146,8 @@
                             </div>
                             <h1 class="lescuadron uk-text-center letra-titulo">#{alumno['more.activity.title.matching.words']}</h1>
                             <h:form>
-                                <h:panelGroup  styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
-                                    <div class="contenedor-imagen scroll-drag">
+                                <h:panelGroup layout="block" styleClass="uk-grid uk-child-width-1-2@m" pt:uk-grid="">
+                                    <h:panelGroup layout="block" styleClass="contenedor-imagen scroll-drag" pt:data-activo="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta  ? 'true':'false'}" >
                                         <ui:repeat value="#{relacionarControlador.relacionarModeloLista}" var="relacionarModelo" varStatus="conta">
                                             <div class="imagen-relacionar uk-margin-auto ">
                                                 <img data-llave="#{relacionarControlador.carpeta.concat('/').concat(relacionarModelo.palabra).concat('_').concat(relacionarModelo.claseGlosarioModelo.valor)}" alt="imagen" class="cargando"  src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/esquadron-animado.svg"/>
@@ -154,16 +156,18 @@
                                                 <div class="icono-relacion-img uk-width-auto"></div>
                                                 <h:inputHidden value="#{relacionarModelo.palabra}"/>
                                                 <h:panelGroup id="su#{conta.index}" layout="block" styleClass="oraciones-relacion-img uk-width-expand"  pt:uk-sortable="group: respuesta" pt:data-indice="#{conta.index}" rendered="#{empty relacionarModelo.respuesta}"/>
-                                                <h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen" rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
+                                                <h:panelGroup  layout="block" styleClass="oraciones-relacion-img uk-width-expand palabra-imagen"  rendered="#{not empty relacionarModelo.respuesta}">#{relacionarModelo.respuesta}</h:panelGroup>
                                                 <h:inputHidden value="#{relacionarModelo.respuesta}" rendered="#{empty relacionarModelo.respuesta}"/>
                                             </div>
                                         </ui:repeat>
-                                    </div>
-                                    <h:panelGroup layout="block" styleClass="contenedor-imagen">
+                                    </h:panelGroup>
+                                    <h:panelGroup layout="block" styleClass="contenedor-imagen" >
                                         <h:panelGroup styleClass="respuesta-imagen palabras"
                                                       rendered="#{not empty relacionarControlador.relacionarModeloLista[0].respuesta}"
                                                       layout="block">
-                                            <div class="ubicado terminado"></div>
+                                            <div class="score">
+                                                <span/>
+                                            </div>
                                         </h:panelGroup>
                                         <h:panelGroup layout="block"
                                                       styleClass="respuesta-imagen  uk-sortable palabras"
@@ -185,8 +189,9 @@
                                 <h:commandButton value="#{boton['submit']}" styleClass="boton-enviar boton-trasladar uk-margin" onclick="return validaRespuestaImagen(event)" rendered="#{empty relacionarControlador.relacionarModeloLista[0].respuesta}">
                                     <f:ajax execute="@form" listener="#{relacionarControlador.enviaRespuesta}" render="@form" onevent="function imagen(data) {
                                             console.log(data.status);
-                                            if (data.status === 'success')
-                                               {cargarImagen();}
+                                            if (data.status === 'success') {
+                                            cargarImagen();
+                                            calificaRelacionarImagen();}
                                         }"/>
                                 </h:commandButton>
                             </h:form>
@@ -244,12 +249,19 @@
                                         </ui:repeat>
                                     </ul>
                                     <ul class="uk-switcher uk-margin remplazar" id="contenedor-oraciones">
-                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo">
+                                        <ui:repeat value="#{completarOracionesControlador.tareaCompletarModeloLista}"  var="tareaCompletarModelo" varStatus="tareaCompletar">
                                             <li data-cardinalidad="#{tareaCompletarModelo.cardinalidad}">
-                                                <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}"/>
+                                                <h:panelGroup id="respuesta-correcta"  layout="block" style="display: none;"  >
+                                                    <h:outputText value="#{tareaCompletarModelo.oracion}" escape="false"/>
+                                                </h:panelGroup>
+                                                <h:panelGroup layout="block" styleClass="terminado mov1" rendered="#{not empty tareaCompletarModelo.respuesta}">
+                                                    <span/>
+                                                </h:panelGroup>
                                                 <h:outputText pt:data-resuelto="#{not empty tareaCompletarModelo.respuesta}"
                                                               pt:data-respuesta="#{completarOracionesControlador.buscaPalabra(tareaCompletarModelo.respuesta)}"
                                                               value="#{tareaCompletarModelo.oracion}"
+                                                              pt:data-usado="#{tareaCompletar.index}"
+                                                              id="oraciones"
                                                               escape="false"/>
                                                 <h:inputHidden value="#{tareaCompletarModelo.respuesta}"/>
                                                 <h:commandButton styleClass="boton-enviar boton-trasladar"
@@ -258,7 +270,7 @@
                                                                  rendered="#{empty tareaCompletarModelo.respuesta}">
                                                     <f:ajax execute="@form"
                                                             onevent="function funcion(data) {
-                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); siguienteEjercicio()}
+                                                                if (data.status === 'success') { completarOracionRemueve(); evitarPreguntas(); verRespuestasCompletarOracion(); siguienteEjercicio()}
                                                             }"
                                                             listener="#{completarOracionesControlador.enviarRespuesta(tareaCompletarModelo.id)}"
                                                             render="@form"/>
@@ -276,6 +288,7 @@
         <script type="application/javascript">
             var mensajeNoEnvio = "#{alumno['send.message.not.send']}";
             var mensajeEnviado = "#{alumno['send.message']}";
+            var boleanoRespuestas = document.querySelector('ul.js-filter').dataset.visibilidadRespuestas;
 
             function getRespuestas() {
                 var oracionesDesordenadas = document.querySelectorAll('.oraciones');
@@ -296,6 +309,7 @@
             }
         </script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/more-actibity.js"></script>
+        <ui:remove><h:outputScript library="js" name="/alumno/more-actibity.js"/></ui:remove>
     </ui:define>
     <ui:define name="enlaces-js">
         <script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.587.0.min.js"></script>

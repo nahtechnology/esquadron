@@ -42,7 +42,7 @@
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/nah.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/admin-alumnos.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
-        <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron">#{profesor['student.administration.title']}</h1></div>
+        <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['student.administration.title']}</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
                 <div class="uk-card uk-card-default uk-card-small color-card-six margen-one">
@@ -52,7 +52,7 @@
                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" style="border-radius: 150px" alt="maestro" width="50" height="50"/>
                             </div>
                             <div class="uk-width-expand">
-                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-uppercase uk-text-bold">
+                                <h3 class="uk-card-title uk-margin-remove-bottom uk-text-small uk-text-bold">
                                     #{profesorControlador.profesorModelo.nombre.concat(' ').concat(profesorControlador.profesorModelo.apellidoPaterno).concat(' ').concat(profesorControlador.profesorModelo.apellidoMaterno)}
                                 </h3>
                                 <p class="uk-text-meta uk-margin-remove-top uk-text-small"><span>#{profesorControlador.profesorModelo.apodo}</span></p>
@@ -75,7 +75,6 @@
                 <h:button styleClass="boton-maestro-base" value="#{boton['back']}" outcome="tablero"/>
                 <h:button styleClass="boton-escuadron-base" value="#{boton['add']}" outcome="agregar-csv"/>
                 <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-password">#{boton['passwords']}</button>
-                <button class="boton-escuadron-base uk-text-uppercase" uk-toggle="target: #modal-eliminar-actividad">delete activity</button>
                 <button class="boton-escuadron-base reporte"
                         disabled="#{empty grupoAlumnoControlador.tareaAlumnoGrupoModeloLista ? 'disabled' : ''}"
                         data-grupo="#{profesorGrupoControlador.grupoModelo.grupo}"
@@ -108,7 +107,7 @@
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/></span>
-                                <h:outputText value="/ ${tareaAlumnoGrupoModelo.totalAsignadaMapaMental} / ${tareaAlumnoGrupoModelo.calificadoMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/>
+                                <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaMapaMental} / ${tareaAlumnoGrupoModelo.calificadoMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/>
                             </h:column>
                             <h:column>
                                 <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
@@ -146,7 +145,8 @@
                                 <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-alumnos; mode: click" id="dropear" >
                                     <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                         <li>
-                                            <h:link outcome="detalle-alumno">
+                                            <h:link outcome="detalle-alumno" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaMapaMental + tareaAlumnoGrupoModelo.totalAsignadaGramatica +
+                                                tareaAlumnoGrupoModelo.totalAsignadoRelacionar + tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion + tareaAlumnoGrupoModelo.totalAsignadaCompletar ne 0}">
                                                 <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon uk-text-primary"/>
                                                 <span class="uk-text-middle uk-text-primary"><h:outputText value="#{etiqueta['detail']}"/></span>
                                                 <f:param name="idAlumno" value="#{tareaAlumnoGrupoModelo.id}"/>
@@ -155,7 +155,7 @@
                                         <li>
                                             <h:link outcome="asignar-tarea">
                                                 <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/gramatica.svg" alt="gramatica" width="20"/>
-                                                <span class="uk-text-middle"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
+                                                <span class="uk-text-middle uk-text-primary uk-margin-small-left"><h:outputText value="#{profesor['assign.activity.title']}"/></span>
                                                 <f:param name="alumno" value="#{tareaAlumnoGrupoModelo.id}"/>
                                                 <f:param name="grupo" value="#{grupoAlumnoControlador.idGrupo}"/>
                                             </h:link>
@@ -308,6 +308,7 @@
         </script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/admin-alumnos.js"></script>
+        <ui:remove><h:outputScript library="js" name="/profesor/admin-alumnos.js"/></ui:remove>
     </ui:define>
     <ui:define name="file-js">
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/contrasena.js"></script>
