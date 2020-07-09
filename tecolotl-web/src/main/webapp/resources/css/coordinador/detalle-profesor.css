@@ -17,17 +17,21 @@
     color: black;
 
 }
-.informacion-usuario > div >  p:first-of-type::after,.informacion-usuario > div >  p:last-of-type::after{
-    content: " ";
-    display: block;
-    width: 70%;
-    height: 3px;
-    background-color: var(--color-primario);
-    box-shadow: 2px 2px 7px gray;
-}
+
 .datos{
     min-height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
+}
+[id$="tabla-alumno"] span{
+ font-weight: 700;
+}
+.puntero:hover{
+    cursor: pointer;
+}
+[id$='tabla-alumno']  .uk-dropdown-nav > li {
+    color: black;
+    margin-bottom: 5px;
+    text-align: left;
 }

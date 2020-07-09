@@ -11,6 +11,17 @@
             <f:viewParam name="profesor" value="${detalleProfesorControlador.idProfesor}"/>
             <f:viewAction action="#{detalleProfesorControlador.inicio}"/>
         </f:metadata>
+
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-parent uk-open">
+                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <ul class="uk-nav-sub">
+                    <li class="uk-active uk-margin-small-bottom"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                    <li class="uk-active"><a><h:outputText pt:uk-icon="file-edit" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">detalles</span></a></li>
+                </ul>
+            </li>
+        </ul>
     </ui:define>
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
@@ -20,8 +31,8 @@
             <div class="informacion-usuario">
                 <h:graphicImage library="img" name="/avatar/maestro.svg" />
                 <div>
-                    <p>Juan Maestro apellido</p>
-                    <p>MrJuan</p>
+                    <p class="uk-text-bold">Juan Maestro apellido</p>
+                    <p class="uk-text-muted uk-text-small uk-text-bold">MrJuan</p>
                 </div>
             </div>
             <h:form id="formulario-detalle-grupo">
@@ -50,7 +61,7 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">promedio general grupo</f:facet>
-                    ${calificacionPendientesModelo.promedio}
+                    ${calificacionPendientesModelo.promedio}%
                 </h:column>
                 <h:column>
                     <f:facet name="header">${etiqueta['detail']}</f:facet>
@@ -58,14 +69,14 @@
                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
                             <li>
-                                <h:commandLink>
+                                <h:commandLink onclick="evt(this);">
                                     <span>#{etiqueta['detail']}</span>
                                     <f:ajax render="formulario-alumno"
                                             listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"/>
                                 </h:commandLink>
                             </li>
                             <li>
-                                <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-tareas-faltante">
+                                <h:commandLink onclick="evt(this);" styleClass="uk-text-primary" pt:uk-toggle="target: #modal-tareas-faltante">
                                     <span>Tareas Faltantes</span>
                                     <f:ajax listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
                                 </h:commandLink>
@@ -75,61 +86,77 @@
                 </h:column>
             </h:dataTable>
             </h:form>
+            <div>
+                <h:form id="formulario-alumno">
+                    <h:panelGroup layout="block"
+                                  rendered="#{empty detalleProfesorControlador.promedioAlumnoModeloLista}">
+                        <table class="uk-table uk-table-middle">
+                            <thead class="uk-background-primary">
+                            <tr>
+                                <th><span class="letra-titulo">Nombre</span></th>
+                                <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td colspan="6">
+                                    <div class="uk-flex uk-flex-center">
+                                        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg"
+                                                        height="215"
+                                                        width="243"
+                                                        alt="vacio"/>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </h:panelGroup>
+                    <h:dataTable value="#{detalleProfesorControlador.promedioAlumnoModeloLista}"
+                                 rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}"
+                                 id="tabla-alumno"
+                                 var="promedioAlumnoModelo"
+                                 styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small" >
+                        <h:column>
+                            <f:facet name="header">Nombre Alumno</f:facet>
+                            ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Total tareas</f:facet>
+                            ${promedioAlumnoModelo.totalTareas}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nivel languaje</f:facet>
+                            ${promedioAlumnoModelo.nivelActual}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Promedios</f:facet>
+                            <div class="uk-inline">
+                            <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                            <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
+                                <ul class="uk-nav uk-dropdown-nav" >
+                                    <li>Comprehension Match: ${promedioAlumnoModelo.promedioRelacionarOracion}%</li>
+                                    <li>Word Game: ${promedioAlumnoModelo.promedioGramatica}%</li>
+                                    <li>Transcript: ${promedioAlumnoModelo.promedioTranscipcion}%</li>
+                                    <li>What Happened?: ${promedioAlumnoModelo.promedioOraciones}%</li>
+                                    <li>Mix&amp;Match: ${promedioAlumnoModelo.promedioRelacionarImagen}%</li>
+                                    <li>Gap Filling: ${promedioAlumnoModelo.promedioCompletar}%</li>
+                                    <li>Think-Develop and Share: ${promedioAlumnoModelo.promedioPromedioMapamental}%</li>
+                                </ul>
+                            </h:panelGroup>
+                            </div>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">#{etiqueta['detail']}</f:facet>
+                            <h:button value="go" outcome="login" styleClass="uk-button uk-button-primary uk-button-small" >
+                                <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
+
+                            </h:button>
+                        </h:column>
+                    </h:dataTable>
+                </h:form>
+            </div>
         </div>
-        <div>
-            <h:form id="formulario-alumno">
-            <h:panelGroup layout="block"
-                          rendered="#{empty detalleProfesorControlador.promedioAlumnoModeloLista}">
-                <table class="uk-table uk-table-middle">
-                    <thead class="uk-background-primary">
-                        <tr>
-                            <th><span class="letra-titulo">Nombre</span></th>
-                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">
-                                <div class="uk-flex uk-flex-center">
-                                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg"
-                                                    height="215"
-                                                    width="243"
-                                                    alt="vacio"/>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </h:panelGroup>
-            <h:dataTable value="#{detalleProfesorControlador.promedioAlumnoModeloLista}"
-                         rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}"
-                         id="tabla-alumno"
-                         var="promedioAlumnoModelo">
-                <h:column>
-                    <f:facet name="header">Nombre Alumno</f:facet>
-                    ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Total tareas</f:facet>
-                    ${promedioAlumnoModelo.totalTareas}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Nivel languaje</f:facet>
-                    ${promedioAlumnoModelo.nivelActual}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">Transcripcion</f:facet>
-                    ${promedioAlumnoModelo.promedioTranscipcion}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">#{etiqueta['detail']}</f:facet>
-                    <h:button value="#{etiqueta['detail']}" outcome="login">
-                        <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
-                    </h:button>
-                </h:column>
-            </h:dataTable>
-            </h:form>
-        </div>
+
         <h:panelGroup layout="block" id="modal-tareas-faltante" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header uk-background-secondary">
@@ -144,5 +171,18 @@
                 </div>
             </div>
         </h:panelGroup>
+    </ui:define>
+    <ui:define name="file-js">
+        <script type="application/javascript">
+            document.addEventListener('DOMContentLoaded',()=>{
+                let dropdown = document.querySelector('hidden');
+                console.log(dropdown);
+
+            })
+            function evt(elemento) {
+                let padre = elemento.parentElement.parentElement.parentElement;
+                UIkit.dropdown(padre).hide(false);
+            }
+        </script>
     </ui:define>
 </ui:composition>

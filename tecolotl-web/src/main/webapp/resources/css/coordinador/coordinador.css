@@ -8,7 +8,7 @@
     min-height: calc(100vh - 120px);
     grid-area: contenido;
     display: grid;
-    grid-template-areas: "informacion-profesor informacion-escuela" "tabla tabla";
+    grid-template-areas: "informacion-escuela informacion-escuela" "tabla tabla";
     grid-template-rows: 300px 1fr;
     grid-template-columns: 3fr 7fr;
     row-gap: 20px;
@@ -36,6 +36,7 @@
     gap: 1em;
     grid-template-columns: 5fr 5fr;
     grid-template-rows: 5fr 5fr;
+    padding: 0 200px;
 
 }
 .informacion-escuela > div:first-child{
