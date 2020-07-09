@@ -4,9 +4,10 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 @Entity
-public class ActividadEntidad {
+public class ActividadEntidad implements Serializable {
 
     private String idActividad;
     private String preguntaDetonadora;
@@ -44,6 +45,7 @@ public class ActividadEntidad {
         this.tema = tema;
     }
 
+    @Id
     @Column(name = "nivel_lenguaje")
     public String getNivelLenguaje() {
         return nivelLenguaje;

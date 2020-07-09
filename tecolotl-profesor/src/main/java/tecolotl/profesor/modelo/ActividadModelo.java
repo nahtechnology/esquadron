@@ -93,14 +93,15 @@ public class ActividadModelo {
 
     @Override
     public String toString() {
-        return "ActividadModelo{" +
-                "idActividad='" + idActividad + '\'' +
-                ", preguntaDetonadora='" + preguntaDetonadora + '\'' +
-                ", tema='" + tema + '\'' +
-                ", nivelLenguaje='" + nivelLenguaje + '\'' +
-                ", totalTareas=" + totalTareas +
-                ", codigoNivelLenguaje=" + codigoNivelLenguaje +
-                ", mapamental='" + mapamental + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("ActividadModelo{");
+        sb.append("idActividad='").append(idActividad).append('\'');
+        sb.append(", preguntaDetonadora='").append(preguntaDetonadora).append('\'');
+        sb.append(", tema='").append(tema).append('\'');
+        sb.append(", nivelLenguaje='").append(nivelLenguaje).append('\'');
+        sb.append(", totalTareas=").append(totalTareas);
+        sb.append(", codigoNivelLenguaje=").append(codigoNivelLenguaje);
+        sb.append(", mapamental='").append(mapamental).append('\'');
+        sb.append('}');
+        return sb.toString();
     }
 }
