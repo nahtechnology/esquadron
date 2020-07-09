@@ -19,11 +19,6 @@ import java.util.StringJoiner;
                 name = "CoordinadorEntidad.buscaEscuela",
                 query = "SELECT c FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo ORDER BY c.apellidoPaterno"
         ),
-/*        @NamedQuery(
-                name = "CoordinadorEntidad.buscaApodo",
-                query = "SELECT count(c) FROM CoordinadorEntidad c WHERE c.apodo = :apodo AND " +
-                        "c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
-        ),*/
         @NamedQuery(
                 name = "CoordinadorEntidad.cuentaPorEscuela",
                 query = "SELECT COUNT (c) FROM CoordinadorEntidad c WHERE c.coordinadorEntidadPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"

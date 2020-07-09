@@ -240,12 +240,12 @@ public class GrupoAlumnoSesionBean {
             promedioAlumnoModelo.setTotalTareas((Integer)objectos[4]);
             promedioAlumnoModelo.setNivelActual((String)objectos[5]);
             promedioAlumnoModelo.setPromedioTranscipcion(((BigDecimal)objectos[6]).intValue());
-            promedioAlumnoModelo.setPromedioPromedioMapamental(((BigDecimal)objectos[7]).intValue());
-            promedioAlumnoModelo.setPromedioRelacionarImagen(((BigDecimal)objectos[8]).intValue());
-            promedioAlumnoModelo.setPromedioGramatica(((BigDecimal)objectos[9]).intValue());
-            promedioAlumnoModelo.setPromedioOraciones(((BigDecimal)objectos[10]).intValue());
-            promedioAlumnoModelo.setPromedioRelacionarOracion(((BigDecimal)objectos[11]).intValue());
-            promedioAlumnoModelo.setPromedioCompletar(((BigDecimal)objectos[12]).intValue());
+            promedioAlumnoModelo.setPromedioPromedioMapamental(objectos[7] == null ? null : ((BigDecimal)objectos[7]).intValue());
+            promedioAlumnoModelo.setPromedioRelacionarImagen(objectos[8] == null ? null : ((BigDecimal)objectos[8]).intValue());
+            promedioAlumnoModelo.setPromedioGramatica(objectos[9] == null ? null : ((BigDecimal)objectos[9]).intValue());
+            promedioAlumnoModelo.setPromedioOraciones(objectos[10] == null ? null : ((BigDecimal)objectos[10]).intValue());
+            promedioAlumnoModelo.setPromedioRelacionarOracion(objectos[11] == null ? null : ((BigDecimal)objectos[11]).intValue());
+            promedioAlumnoModelo.setPromedioCompletar(objectos[12] == null ? null : ((BigDecimal)objectos[12]).intValue());
             promedioAlumnoModeloLista.add(promedioAlumnoModelo);
         }
         return promedioAlumnoModeloLista;
