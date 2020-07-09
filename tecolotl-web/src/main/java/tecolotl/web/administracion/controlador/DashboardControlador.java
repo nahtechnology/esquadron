@@ -1,11 +1,9 @@
 package tecolotl.web.administracion.controlador;
 
-import tecolotl.administracion.modelo.direccion.DireccionModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDashboardModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaDetalleModelo;
 import tecolotl.administracion.modelo.escuela.MotivoBloqueoModelo;
-import tecolotl.administracion.sesion.DireccionSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.sesion.MotivoBloqueoSesionBean;
 import tecolotl.web.controlador.TablaControlador;
@@ -13,9 +11,7 @@ import tecolotl.web.herramienta.MensajeBundle;
 import tecolotl.web.herramienta.TipoMensaje;
 
 import javax.annotation.PostConstruct;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
-import javax.faces.context.FacesContext;
 import javax.faces.model.CollectionDataModel;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -33,9 +29,6 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     private EscuelaSesionBean escuelaSesionBean;
 
     @Inject
-    private DireccionSesionBean direccionSesionBean;
-
-    @Inject
     private MotivoBloqueoSesionBean motivoBloqueoSesionBean;
 
     @Inject
@@ -45,7 +38,6 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     private List<MotivoBloqueoModelo> motivoBloqueoModeloLista;
     private EscuelaDetalleModelo escuelaDetalleModelo;
     private EscuelaBaseModelo escuelaBaseModelo;
-    private DireccionModelo direccionModelo;
     private MotivoBloqueoModelo motivoBloqueoModelo;
     private String codigoPostal;
     private String busqueda;
@@ -57,7 +49,6 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
         escuelaDetalleModelo = new EscuelaDetalleModelo();
         escuelaBaseModelo = new EscuelaBaseModelo();
         motivoBloqueoModelo = new MotivoBloqueoModelo();
-        direccionModelo = new DireccionModelo();
         motivoBloqueoModeloLista = motivoBloqueoSesionBean.busca("Sin bloqueo");
     }
 
@@ -71,33 +62,6 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
                             escuelaDashboardModelo.getClaveCentroTrabajo().toLowerCase().contains(busqueda.toLowerCase())
             ).collect(Collectors.toList()));
         }
-    }
-
-    public void buscaColonias() {
-        direccionModelo = direccionSesionBean.busca(codigoPostal);
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        FacesMessage facesMessage;
-        if (direccionModelo == null || direccionModelo.getColoniaModeloLista() == null || direccionModelo.getColoniaModeloLista().isEmpty()) {
-            facesMessage = new FacesMessage(resourceBundle.getString("dashboard.validation.zipcode"));
-            facesMessage.setSeverity(FacesMessage.SEVERITY_WARN);
-            facesContext.addMessage(uiInputCodigoPostal.getClientId(facesContext), facesMessage);
-        } else {
-            DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
-            direccionModelo.setEstado(direccionModelo1.getEstado());
-            direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
-            facesMessage = new FacesMessage(resourceBundle.getString("dashboard.success.zipcode"));
-            facesMessage.setSeverity(FacesMessage.SEVERITY_INFO);
-            facesContext.addMessage(uiInputCodigoPostal.getClientId(facesContext), facesMessage);
-        }
-    }
-
-    public void actualizaDetalleModelo() {
-        escuelaDetalleModelo = escuelaSesionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
-        codigoPostal = escuelaDetalleModelo.getColoniaModelo().getCodigoPostal();
-        direccionModelo = direccionSesionBean.busca(codigoPostal);
-        DireccionModelo direccionModelo1 = direccionSesionBean.busca(direccionModelo.getColoniaModeloLista().get(0).getId());
-        direccionModelo.setEstado(direccionModelo1.getEstado());
-        direccionModelo.setMunicipio(direccionModelo1.getMunicipio());
     }
 
     public void limpiaDetalleModelo() {
@@ -139,14 +103,6 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
 
     public void setEscuelaDetalleModelo(EscuelaDetalleModelo escuelaDetalleModelo) {
         this.escuelaDetalleModelo = escuelaDetalleModelo;
-    }
-
-    public DireccionModelo getDireccionModelo() {
-        return direccionModelo;
-    }
-
-    public void setDireccionModelo(DireccionModelo direccionModelo) {
-        this.direccionModelo = direccionModelo;
     }
 
     public String getCodigoPostal() {

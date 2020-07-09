@@ -266,7 +266,6 @@
                     </div>
                     <div class="uk-modal-body">
                         <div uk-grid="">
-
                             <div class="uk-width-1-1@s uk-width-1-6@m">
                                 <h:outputLabel styleClass="uk-form-label uk-text-uppercase" for="input-escuela-cct" value="#{administracion['dashboard.modal.cct']}"/>
                                 <div class="uk-form-controls">
@@ -297,119 +296,6 @@
                                     </h:inputText>
                                 </div>
                                 <h:message for="input-escuela-nombre" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-1-6@m">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="input-escuela-codigo-postal" value="#{administracion['dashboard.modal.zipcode']}"/>
-                                <div class="uk-form-controls">
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-escuela-codigo-postal"
-                                                 autocomplete="off"
-                                                 binding="#{escuelaDashboardControlador.uiInputCodigoPostal}"
-                                                 pt:placeholder="#{administracion['dashboard.modal.zipcode']}"
-                                                 value="#{escuelaDashboardControlador.codigoPostal}">
-                                        <f:validateRequired/>
-                                        <f:validateLength minimum="4" maximum="5"/>
-                                    </h:inputText>
-                                </div>
-                                <h:message for="input-escuela-codigo-postal"
-                                           infoClass="uk-text-primary uk-display-block primera-mayuscula"
-                                           errorClass="uk-text-danger uk-display-block primera-mayuscula"
-                                           id="error-input-escuela-codigo-postal"
-                                           warnClass="uk-text-warning uk-display-block primera-mayuscula"/>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-1-6@m uk-flex uk-flex-bottom">
-                                <h:commandButton  id="boton-busca-codigo" styleClass="uk-button uk-button-secondary" value="#{boton['search']}">
-                                    <f:ajax execute="formulario-escuela:input-escuela-codigo-postal"
-                                            render="formulario-escuela:error-input-escuela-codigo-postal formulario-escuela:seleccion-colonia formulario-escuela:input-escuela-estado formulario-escuela:input-escuela-municipio"
-                                            onevent="function funcion(data) { limpiaSelect(data) }"
-                                            listener="#{escuelaDashboardControlador.buscaColonias}"/>
-                                </h:commandButton>
-                            </div>
-                            <div class="uk-inline uk-width-1-1@s uk-width-1-2@m">
-                                <div class="uk-margin">
-                                    <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.colony']}" for="seleccion-colonia"/>
-                                    <div class="uk-form-controls">
-                                        <h:selectOneMenu styleClass="uk-select"
-                                                         value="#{escuelaDashboardControlador.escuelaDetalleModelo.coloniaModelo.id}"
-                                                         id="seleccion-colonia"
-                                                         label="#{administracion['dashboard.modal.colony']}">
-                                            <f:selectItem itemLabel="#{etiqueta['select']}" itemValue="#{null}" noSelectionOption="true"/>
-                                            <f:selectItems value="#{escuelaDashboardControlador.direccionModelo.coloniaModeloLista}"
-                                                           var="colonia"
-                                                           itemValue="#{colonia.id}"
-                                                           itemLabel="#{colonia.nombre}"/>
-                                            <f:validateRequired/>
-                                        </h:selectOneMenu>
-                                    </div>
-                                    <h:message for="seleccion-colonia" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
-                                </div>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-1-2@m">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.street']}" for="input-escuela-calle"/>
-                                <div class="uk-form-controls">
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-escuela-calle"
-                                                 autocomplete="off"
-                                                 pt:placeholder="#{administracion['dashboard.modal.street']}"
-                                                 label="#{administracion['dashboard.modal.street']}"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.domicilio}">
-                                        <f:validateRequired/>
-                                        <f:validateLength minimum="2" maximum="60"/>
-                                    </h:inputText>
-                                </div>
-                                <h:message for="input-escuela-calle" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-1-6@m">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.street.num.ext']}" for="input-escuela-numero-exterior"/>
-                                <div class="uk-form-controls">
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-escuela-numero-exterior"
-                                                 autocomplete="off"
-                                                 pt:placeholder="#{administracion['dashboard.modal.street.num.ext']}"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.numeroExterior}"
-                                                 label="#{administracion['dashboard.modal.street.num.ext']}">
-                                        <f:validateRequired/>
-                                        <f:validateLength minimum="1" maximum="15"/>
-                                        <f:validateLongRange minimum="1" maximum="9999999999"/>
-                                    </h:inputText>
-                                </div>
-                                <h:message for="input-escuela-numero-exterior" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-1-6@m">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.street.num.int']}" for="input-escuela-numero-interior"/>
-                                <div class="uk-form-controls">
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-escuela-numero-interior"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.numeroInterior}"
-                                                 pt:placeholder="#{administracion['dashboard.modal.street.num.int']}"
-                                                 label="#{administracion['dashboard.modal.street.num.int']}">
-                                        <f:validateLength minimum="1" maximum="15"/>
-                                    </h:inputText>
-                                </div>
-                                <h:message for="input-escuela-numero-interior" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-2-5@m">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.city']}" for="input-escuela-municipio"/>
-                                <div class="uk-form-controls">
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-escuela-municipio"
-                                                 value="#{escuelaDashboardControlador.direccionModelo.municipio}"
-                                                 pt:placeholder="#{administracion['dashboard.modal.city']}"
-                                                 label="#{administracion['dashboard.modal.city']}"
-                                                 disabled="true"/>
-                                </div>
-                            </div>
-                            <div class="uk-width-1-1@s uk-width-1-4@m">
-                                <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="#{administracion['dashboard.modal.town']}" for="input-escuela-estado"/>
-                                <div class="uk-form-controls">
-                                    <h:inputText styleClass="uk-input"
-                                                 id="input-escuela-estado"
-                                                 value="#{escuelaDashboardControlador.direccionModelo.estado}"
-                                                 pt:placeholder="#{administracion['dashboard.modal.town']}"
-                                                 label="#{administracion['dashboard.modal.town']}"
-                                                 disabled="true"/>
-                                </div>
-
                             </div>
                         </div>
                     </div>

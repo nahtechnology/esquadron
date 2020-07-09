@@ -46,9 +46,6 @@ public class EscuelaEntidadTest {
  		EscuelaEntidad escuelaEntidad = new EscuelaEntidad();
  		escuelaEntidad.setClaveCentroTrabajo("0000000000");
  		escuelaEntidad.setNombre("ACADEMIA ESTATAL DE LAS FUERZAS DE SEGURIDAD PUBLICA DEL ESTADO DE P");
- 		escuelaEntidad.setColoniaEntidad(new ColoniaEntidad(2));
- 		escuelaEntidad.setDomicilio("Calle siempre viva 13485");
- 		escuelaEntidad.setNumeroExterior("12345");
 		EntityTransaction entityTransaction = null;
  		try {
  			userTransaction.begin();
@@ -66,11 +63,8 @@ public class EscuelaEntidadTest {
 		Assert.assertNotNull(escuelaEntidadLista);
 		for (EscuelaEntidad escuelaEntidad : escuelaEntidadLista) {
 			Assert.assertNotNull(escuelaEntidad.getClaveCentroTrabajo());
-			Assert.assertNotNull(escuelaEntidad.getDomicilio());
 			Assert.assertNotNull(escuelaEntidad.getNombre());
 			Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad().getClave());
-			Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getId());
-			Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
 		}
 	}
 
@@ -81,11 +75,8 @@ public class EscuelaEntidadTest {
 		EscuelaEntidad escuelaEntidad = typedQuery.getSingleResult();
 		Assert.assertNotNull(escuelaEntidad);
 		Assert.assertNotNull(escuelaEntidad.getClaveCentroTrabajo());
-		Assert.assertNotNull(escuelaEntidad.getNumeroExterior());
 		Assert.assertNotNull(escuelaEntidad.getNombre());
 		Assert.assertNotNull(escuelaEntidad.getMotivoBloqueoEntidad().getValor());
-		Assert.assertNotNull(escuelaEntidad.getColoniaEntidad().getNombre());
-		Assert.assertNotNull(escuelaEntidad.getDomicilio());
 
 	}
 

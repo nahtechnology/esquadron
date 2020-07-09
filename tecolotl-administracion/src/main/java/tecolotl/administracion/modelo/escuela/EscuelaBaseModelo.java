@@ -18,17 +18,6 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     @Size(min = 4, max = 70)
     private String nombre;
 
-    @NotNull
-    @Size(min = 2, max = 60)
-    private String domicilio;
-
-    @Size(max = 15, min = 1)
-    private String numeroInterior;
-
-    @NotNull
-    @Size(max = 15, min = 1)
-    private String numeroExterior;
-
     private Integer galaxia;
 
     public EscuelaBaseModelo() {
@@ -41,9 +30,6 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     public EscuelaBaseModelo(EscuelaEntidad escuelaEntidad) {
         claveCentroTrabajo = escuelaEntidad.getClaveCentroTrabajo();
         nombre = escuelaEntidad.getNombre();
-        domicilio = escuelaEntidad.getDomicilio();
-        numeroExterior = escuelaEntidad.getNumeroExterior();
-        numeroInterior = escuelaEntidad.getNumeroInterior();
         galaxia = escuelaEntidad.getGalaxia();
     }
 
@@ -66,30 +52,6 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public String getNumeroInterior() {
-        return numeroInterior;
-    }
-
-    public void setNumeroInterior(String numeroInterior) {
-        this.numeroInterior = numeroInterior;
-    }
-
-    public String getNumeroExterior() {
-        return numeroExterior;
-    }
-
-    public void setNumeroExterior(String numeroExterior) {
-        this.numeroExterior = numeroExterior;
     }
 
     public Integer getGalaxia() {
@@ -118,9 +80,6 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
         return new StringJoiner(", ", EscuelaBaseModelo.class.getSimpleName() + "[", "]")
                 .add("claveCentroTrabajo='" + claveCentroTrabajo + "'")
                 .add("nombre='" + nombre + "'")
-                .add("domicilio='" + domicilio + "'")
-                .add("numeroInterior='" + numeroInterior + "'")
-                .add("numeroExterior='" + numeroExterior + "'")
                 .toString();
     }
 }

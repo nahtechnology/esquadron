@@ -15,7 +15,7 @@ import java.util.StringJoiner;
 		query = "SELECT e from EscuelaEntidad e ORDER BY e.nombre"),
 	@NamedQuery(
 		name = "EscuelaEntidad.detalle",
-		query = "SELECT e FROM EscuelaEntidad e LEFT JOIN FETCH e.coloniaEntidad " +
+		query = "SELECT e FROM EscuelaEntidad e " +
 				"LEFT JOIN FETCH e.motivoBloqueoEntidad WHERE e.claveCentroTrabajo=:claveCentroTrabajo"),
 	@NamedQuery(
 		name = "EscuelaEntidad.existe",
@@ -34,11 +34,7 @@ public class EscuelaEntidad {
 
     private String claveCentroTrabajo;
     private String nombre;
-	private String domicilio;
-	private String numeroInterior;
-	private String numeroExterior;
 	private Integer galaxia;
-	private ColoniaEntidad coloniaEntidad;
 	private MotivoBloqueoEntidad motivoBloqueoEntidad;
 	private List<ContactoEntidad> contactoEntidadLista;
 
@@ -70,17 +66,6 @@ public class EscuelaEntidad {
 		this.claveCentroTrabajo = claveCentroTrabajo;
 	}
 
-	@NotNull
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_colonia", referencedColumnName = "id")
-	public ColoniaEntidad getColoniaEntidad() {
-		return coloniaEntidad;
-	}
-
-	public void setColoniaEntidad(ColoniaEntidad coloniaEntidad) {
-		this.coloniaEntidad = coloniaEntidad;
-	}
-
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="id_motivo_bloqueo", referencedColumnName = "clave")
 	public MotivoBloqueoEntidad getMotivoBloqueoEntidad() {
@@ -101,41 +86,6 @@ public class EscuelaEntidad {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	@Basic
-	@Column(name = "domicilio")
-	@NotNull
-	@Size(min = 2, max = 60)
-	public String getDomicilio() {
-		return domicilio;
-	}
-
-	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
-	}
-
-	@Basic
-	@Column(name = "numero_interior")
-	@Size(max = 15, min = 1)
-	public String getNumeroInterior() {
-		return numeroInterior;
-	}
-
-	public void setNumeroInterior(String numeroInterior) {
-		this.numeroInterior = numeroInterior;
-	}
-
-	@Basic
-	@Column(name = "numero_exterior")
-	@NotNull
-	@Size(max = 15, min = 1)
-	public String getNumeroExterior() {
-		return numeroExterior;
-	}
-
-	public void setNumeroExterior(String numeroExterior) {
-		this.numeroExterior = numeroExterior;
 	}
 
 	@Basic
@@ -181,12 +131,8 @@ public class EscuelaEntidad {
 	public String toString() {
 		return new StringJoiner(", ", EscuelaEntidad.class.getSimpleName() + "[", "]")
 				.add("claveCentroTrabajo='" + claveCentroTrabajo + "'")
-				.add("coloniaEntidad=" + coloniaEntidad)
 				.add("motivoBloqueoEntidad=" + motivoBloqueoEntidad)
 				.add("nombre='" + nombre + "'")
-				.add("domicilio='" + domicilio + "'")
-				.add("numeroInterior='" + numeroInterior + "'")
-				.add("numeroExterior='" + numeroExterior + "'")
 				.add("contactoEntidadLista=" + contactoEntidadLista)
 				.toString();
 	}

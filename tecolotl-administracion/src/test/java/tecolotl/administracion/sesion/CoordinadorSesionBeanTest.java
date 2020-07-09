@@ -10,10 +10,8 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
-import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
@@ -41,12 +39,10 @@ public class CoordinadorSesionBeanTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-                .addPackage(ColoniaEntidad.class.getPackage())
                 .addPackage(EscuelaBaseModelo.class.getPackage())
-                .addPackage(ColoniaModelo.class.getPackage())
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
                 .addPackage(ColoniaNuevaValidacion.class.getPackage())
-                .addClasses(CatalagoEntidad.class, CatalogoModelo.class, PersonaEntidad.class,DireccionSesionBean.class,
+                .addClasses(CatalagoEntidad.class, CatalogoModelo.class, PersonaEntidad.class,
                         LoggerProducer.class, ColoniaNuevaValidacion.class, CoordinadorSesionBean.class, CoordinadorModelo.class,
                         PersonaModelo.class, ValidadorSessionBean.class, PersonaMotivoBloqueoModelo.class, PersonaNuevaValidacion.class,
                     PersonaMotivoBloqueoEntidad.class)
@@ -58,9 +54,7 @@ public class CoordinadorSesionBeanTest {
             .addPackage(CatalogoNuevoValidacion.class.getPackage())
             //administracion
             .addPackage(CoordinadorModelo.class.getPackage())
-            .addPackage(ColoniaModelo.class.getPackage())
             .addPackage(ContactoModelo.class.getPackage())
-            .addPackage(ColoniaEntidad.class.getPackage())
             .addPackage(ContactoSesionBean.class.getPackage())
             .addClass(ColoniaNuevaValidacion.class)
             .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())

@@ -5,24 +5,15 @@ import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import tecolotl.administracion.modelo.direccion.ColoniaModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
-import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.modelo.escuela.LicenciaModelo;
-import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
-import tecolotl.administracion.persistencia.entidad.CoordinadorEntidad;
-import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
-import tecolotl.administracion.validacion.escuela.ContactoNuevoValidacion;
-import tecolotl.administracion.validacion.escuela.LicenciaActualizaValidacion;
 import tecolotl.nucleo.herramienta.LoggerProducer;
-import tecolotl.nucleo.herramienta.ValidadorSessionBean;
 import tecolotl.nucleo.modelo.CatalogoModelo;
 import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
@@ -32,8 +23,6 @@ import tecolotl.nucleo.sesion.CatalogoSesionBean;
 import tecolotl.nucleo.validacion.CatalogoNuevoValidacion;
 
 import javax.inject.Inject;
-import java.time.LocalDate;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -45,9 +34,7 @@ public class LicenciaSesionBeanTest {
     @Deployment
     public static Archive<?> createDeployment() {
         return ShrinkWrap.create(WebArchive.class, "test.war")
-            .addPackage(ColoniaModelo.class.getPackage())
             .addPackage(ContactoModelo.class.getPackage())
-            .addPackage(ColoniaEntidad.class.getPackage())
             .addPackage(ColoniaNuevaValidacion.class.getPackage())
             .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
             .addPackage(LoggerProducer.class.getPackage())

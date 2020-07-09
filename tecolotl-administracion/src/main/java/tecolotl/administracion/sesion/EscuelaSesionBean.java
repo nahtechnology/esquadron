@@ -1,7 +1,6 @@
 package tecolotl.administracion.sesion;
 
 import tecolotl.administracion.modelo.escuela.*;
-import tecolotl.administracion.persistencia.entidad.ColoniaEntidad;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.persistencia.entidad.MotivoBloqueoEntidad;
 
@@ -115,11 +114,6 @@ public class EscuelaSesionBean implements Serializable {
 		logger.fine("Escuela a persistir:".concat(escuelaDetalleModelo.toString()));
 		EscuelaEntidad escuelaEntidad = new EscuelaEntidad(escuelaDetalleModelo.getClaveCentroTrabajo());
 		escuelaEntidad.setNombre(escuelaDetalleModelo.getNombre());
-		escuelaEntidad.setDomicilio(escuelaDetalleModelo.getDomicilio());
-		escuelaEntidad.setNumeroExterior(escuelaDetalleModelo.getNumeroExterior());
-		escuelaEntidad.setNumeroInterior(escuelaDetalleModelo.getNumeroInterior());
-		ColoniaEntidad coloniaEntidad = new ColoniaEntidad(escuelaDetalleModelo.getColoniaModelo().getId());
-		escuelaEntidad.setColoniaEntidad(coloniaEntidad);
 		logger.finer(escuelaEntidad.toString());
 		entityManager.persist(escuelaEntidad);
 	}
@@ -137,11 +131,6 @@ public class EscuelaSesionBean implements Serializable {
 		Root<EscuelaEntidad> root = criteriaUpdate.from(EscuelaEntidad.class);
 		Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), escuelaDetalleModelo.getClaveCentroTrabajo());
 		criteriaUpdate.set(root.get("nombre"), escuelaDetalleModelo.getNombre());
-		criteriaUpdate.set(root.get("domicilio"), escuelaDetalleModelo.getDomicilio());
-		criteriaUpdate.set(root.get("numeroInterior"), escuelaDetalleModelo.getNumeroInterior());
-		criteriaUpdate.set(root.get("numeroExterior"), escuelaDetalleModelo.getNumeroExterior());
-		ColoniaEntidad coloniaEntidad = new ColoniaEntidad(escuelaDetalleModelo.getColoniaModelo().getId());
-		criteriaUpdate.set(root.get("coloniaEntidad"), coloniaEntidad);
 		criteriaUpdate.where(predicate);
 		cambios = entityManager.createQuery(criteriaUpdate).executeUpdate();
 		return cambios;
