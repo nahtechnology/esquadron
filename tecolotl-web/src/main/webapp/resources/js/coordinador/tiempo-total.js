@@ -2,7 +2,12 @@
 var rangos = [];
 var pibote = 0;
 document.addEventListener("DOMContentLoaded",()=>{
-    actualiza();
+    let pibote = document.querySelector("#contenedor-tabla");
+    if(pibote.querySelector('table').dataset.vacio === "false"){
+        actualiza();
+    }else {
+
+    }
 });
 
 

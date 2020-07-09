@@ -16,9 +16,19 @@
             <li class="uk-nav-header">#{etiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
-                <ul class="uk-nav-sub">
-                    <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
-                </ul>
+                <h:panelGroup layout="block" rendered="#{reporteSesionControlador.idProfesor eq null}">
+                    <ul class="uk-nav-sub">
+                        <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                        <li class="uk-active"><a onclick="atras()"><h:outputText pt:uk-icon="file-edit" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">Detalles</span></a></li>
+                        <li class="uk-active"><a><h:outputText pt:uk-icon="file-text" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">Reporte sesion</span></a></li>
+                    </ul>
+                </h:panelGroup>
+                <h:panelGroup layout="block" rendered="#{reporteSesionControlador.idProfesor ne null}">
+                    <ul class="uk-nav-sub">
+                        <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                        <li class="uk-active"><a><h:outputText pt:uk-icon="file-text" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">Reporte sesion</span></a></li>
+                    </ul>
+                </h:panelGroup>
             </li>
         </ul>
     </ui:define>
@@ -41,7 +51,7 @@
                 <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" >
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
-                            render="contenedor-tabla tabla-alumno tabla-profesor"
+                            render="contenedor-tabla tabla-alumno tabla-profesor tabla-vacia"
                             onevent="function pintar(data) {
                                 if (data.status === 'success'){
                                     console.log('entro satisfactorio');
@@ -53,13 +63,15 @@
                 <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" onclick="return validarFecha();">
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
-                            render="tabla-alumno tabla-profesor"
+                            render="contenedor-tabla tabla-alumno tabla-profesor"
                             onevent="function pintar(data) {
                                 if (data.status === 'success'){
                                     console.log('entro satisfactorio');
-                                     let tabla = document.querySelector('#contenedor-tabla > table');
-                                        acomodarTabla(tabla);
-                                        actualiza();
+                                     let tabla = document.querySelector('#contenedor-tabla  table');
+                                        if (tabla.dataset.vacio === 'false'){
+                                            acomodarTabla(tabla);
+                                             actualiza();
+                                        }
                                 }
                             }"
                             />
@@ -71,12 +83,13 @@
             <label for="totalHoras" class="uk-form-label uk-margin-small-right">Total Horas:</label>
             <input type="text" id="totalHoras" class="uk-input" style="width: 200px" />
         </span>
-        <div id="contenedor-tabla">
+        <h:panelGroup layout="block" id="contenedor-tabla">
             <h:dataTable id="tabla-alumno"
                          rendered="#{not empty reporteSesionControlador.listaAlumno}"
                          styleClass="uk-table uk-table-hover uk-table-divider"
                          value="#{reporteSesionControlador.listaAlumno}"
-                         var="alumnoModelo">
+                         var="alumnoModelo"
+                         pt:data-vacio="false">
                 <h:column>
                     <h:outputText value="${alumnoModelo.momento}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
@@ -93,7 +106,8 @@
                          rendered="#{not empty reporteSesionControlador.listaProfesor}"
                          styleClass="uk-table uk-table-hover uk-table-divider"
                          value="#{reporteSesionControlador.listaProfesor}"
-                         var="profesorModelo">
+                         var="profesorModelo"
+                         pt:data-vacio="false">
 
                     <h:column>
                         <h:outputText value="${profesorModelo.momento}">
@@ -107,7 +121,28 @@
                     </h:column>
 
             </h:dataTable>
-        </div>
+
+            <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty reporteSesionControlador.listaAlumno and empty reporteSesionControlador.listaProfesor}" >
+                <table class="uk-table uk-table-hover uk-table-divider" data-vacio="true">
+                    <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Inicio</th>
+                        <th>fecha</th>
+                        <th>fin</th>
+                        <th>Tiempo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="5" >
+                            <h:graphicImage library="img" name="vacio.svg"/>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </h:panelGroup>
+        </h:panelGroup>
     </ui:define>
     <ui:define name="file-js">
         <h:outputScript library="js" name="datepicker-full.js"/>
@@ -116,6 +151,9 @@
             let rango = new DateRangePicker(datePicker,{
                 format:"dd/mm/yyyy"
             });
+            function atras() {
+                window.history.back();
+            }
         </script>
         <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
         <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>

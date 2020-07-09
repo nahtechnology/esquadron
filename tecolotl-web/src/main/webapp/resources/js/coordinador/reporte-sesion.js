@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded",()=>{
-    var tabla = document.querySelector('#contenedor-tabla > table');
-    acomodarTabla(tabla);
+    var tabla = document.querySelector('#contenedor-tabla  table');
+
+    if (tabla.dataset.vacio === "false"){
+        acomodarTabla(tabla);
+    }
+
 });
 
 function acomodarTabla(tabla) {
