@@ -134,13 +134,13 @@
                             <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
                             <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                 <ul class="uk-nav uk-dropdown-nav" >
-                                    <li>Comprehension Match: <h:outputText value="${promedioAlumnoModelo.promedioRelacionarOracion eq null ? 'sin actividad': promedioAlumnoModelo.promedioRelacionarOracion}%"/> </li>
-                                    <li>Word Game: ${promedioAlumnoModelo.promedioGramatica eq null ? 'sin actividad' : promedioAlumnoModelo.promedioGramatica}%</li>
-                                    <li>Transcript: ${promedioAlumnoModelo.promedioTranscipcion eq null ? 'sin actividad' : promedioAlumnoModelo.promedioTranscipcion}%</li>
-                                    <li>What Happened?: ${promedioAlumnoModelo.promedioOraciones eq null ? 'sin actividad' : promedioAlumnoModelo.promedioOraciones}%</li>
-                                    <li>Mix&amp;Match: ${promedioAlumnoModelo.promedioRelacionarImagen eq null ? 'sin actividad' : promedioAlumnoModelo.promedioRelacionarImagen}%</li>
-                                    <li>Gap Filling: ${promedioAlumnoModelo.promedioCompletar eq null ? 'sin actividad' : promedioAlumnoModelo.promedioCompletar}%</li>
-                                    <li>Think-Develop and Share: ${promedioAlumnoModelo.promedioPromedioMapamental eq null ? 'sin actividad' : promedioAlumnoModelo.promedioPromedioMapamental}%</li>
+                                    <li>Comprehension Match: <h:outputText value="${promedioAlumnoModelo.promedioRelacionarOracion eq null ? 'sin actividad': promedioAlumnoModelo.promedioRelacionarOracion+'%'}"/> </li>
+                                    <li>Word Game: ${promedioAlumnoModelo.promedioGramatica eq null ? 'sin actividad' : promedioAlumnoModelo.promedioGramatica+'%'}</li>
+                                    <li>Transcript: ${promedioAlumnoModelo.promedioTranscipcion eq null ? 'sin actividad' : promedioAlumnoModelo.promedioTranscipcion+'%'}</li>
+                                    <li>What Happened?: ${promedioAlumnoModelo.promedioOraciones eq null ? 'sin actividad' : promedioAlumnoModelo.promedioOraciones+'%'}</li>
+                                    <li>Mix&amp;Match: ${promedioAlumnoModelo.promedioRelacionarImagen eq null ? 'sin actividad' : promedioAlumnoModelo.promedioRelacionarImagen+'%'}</li>
+                                    <li>Gap Filling: ${promedioAlumnoModelo.promedioCompletar eq null ? 'sin actividad' : promedioAlumnoModelo.promedioCompletar+'%'}</li>
+                                    <li>Think-Develop and Share: ${promedioAlumnoModelo.promedioPromedioMapamental eq null ? 'sin actividad' : promedioAlumnoModelo.promedioPromedioMapamental+'%'}</li>
                                 </ul>
                             </h:panelGroup>
                             </div>

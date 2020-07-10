@@ -13,24 +13,24 @@
     <span class="titulo-blanco uk-text-capitalize">squadron</span>
 </div>
 <div class="left-content-box  content-box-dark">
-    <h:graphicImage rendered="#{request.isUserInRole('administracion')}" library="img" name="avatar/administrador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
-    <h:graphicImage rendered="#{request.isUserInRole('administracion') eq false}" library="img" name="avatar/coordinador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
+    <h:graphicImage rendered="#{request.isUserInRole('administrador')}" library="img" name="avatar/administrador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
+    <h:graphicImage rendered="#{not request.isUserInRole('administrador') }" library="img" name="avatar/coordinador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
     <h4 class="uk-text-center uk-margin-remove-vertical text-light">
         <h:outputText value="#{administracionControlador.administradorModelo.nombre.concat(' ').concat(administracionControlador.administradorModelo.apellidoPaterno).concat(' ').concat(administracionControlador.administradorModelo.apellidoMaterno)}"
-                      rendered="#{request.isUserInRole('administracion')}"/>
+                      rendered="#{request.isUserInRole('administrador')}"/>
         <h:outputText value="#{coordinadorControlador.coordinadorModelo.nombre.concat(' ').concat(coordinadorControlador.coordinadorModelo.apellidoPaterno)}"
-                      rendered="#{request.isUserInRole('administracion') eq false}"/>
+                      rendered="#{not request.isUserInRole('administrador')}"/>
     </h4>
     <div class="uk-position-relative uk-text-center uk-display-block">
         <!--<a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Administrador</a> -->
-        <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{request.isUserInRole('administracion')}" value="#">Administrador</h:outputLink>
-        <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{request.isUserInRole('administracion') eq false }" value="#">Coordinador</h:outputLink>
+        <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{request.isUserInRole('administrador')}" value="#">Administrador</h:outputLink>
+        <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{not request.isUserInRole('administrador')}" value="#">Coordinador</h:outputLink>
         <!-- user dropdown -->
         <h:panelGroup  layout="block" styleClass="uk-dropdown user-drop" pt:data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                 <li>
                     <h:form>
-                    <h:commandLink value="#{etiqueta['close.sesion']}" action="#{administracionControlador.cerrarSesion}" rendered="#{request.isUserInRole('administracion')}"/>
+                    <h:commandLink value="#{etiqueta['close.sesion']}" action="#{administracionControlador.cerrarSesion}" rendered="#{not request.isUserInRole('administrador')}"/>
                     </h:form>
                 </li>
             </ul>
