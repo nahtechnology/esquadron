@@ -30,7 +30,8 @@
             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                 <li>
                     <h:form>
-                    <h:commandLink value="#{etiqueta['close.sesion']}" action="#{administracionControlador.cerrarSesion}" rendered="#{not request.isUserInRole('administrador')}"/>
+                        <h:commandLink value="#{etiqueta['close.sesion']}" styleClass="uk-text-primary" action="#{administracionControlador.cerrarSesion}" rendered="#{request.isUserInRole('administrador')}"/>
+                        <h:commandLink value="#{etiqueta['close.sesion']}" styleClass="uk-text-secondary" action="#{coordinadorControladorLocal.cerrarSesion}" rendered="#{request.isUserInRole('coordinador')}"/>
                     </h:form>
                 </li>
             </ul>

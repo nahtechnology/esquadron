@@ -34,6 +34,11 @@ public class CoordinadorControlador implements Serializable {
         escuelaBaseModelo = escuelaSesionBean.busca(Integer.parseInt(busqueda[1]));
     }
 
+    public String cerrarSesion() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "/index.xhtml?faces-redirect=true";
+    }
+
     public CoordinadorModelo getCoordinadorModelo() {
         return coordinadorModelo;
     }
