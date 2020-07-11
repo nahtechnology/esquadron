@@ -78,7 +78,9 @@
                             <li>
                                 <h:commandLink onclick="evt(this);" styleClass="uk-text-primary" pt:uk-toggle="target: #modal-tareas-faltante">
                                     <span>Tareas Faltantes</span>
-                                    <f:ajax listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
+                                    <f:ajax render="mapamental-total mapamental-pendiente relacionar-total relacionar-pendiente gramatica-pendiente gramatica-total completar-pendiete completar-total
+                                                    relacionar-oracion-pendiete oraciones-pendiete oraciones-total"
+                                            listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
                                 </h:commandLink>
                             </li>
                         </ul>
@@ -163,8 +165,18 @@
                     <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">Tareas Faltantes</p>
                 </div>
                 <div class="uk-modal-body">
-                    Mapa mental total : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalTotal}
-                    Mapa mental pendiente : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalPendientes}
+                    <h:outputText id="mapamental-total" value="Mapa mental total : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalTotal}"/>
+                    <h:outputText id="mapamental-pendiente" value="Mapa mental pendiente : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalPendientes}"/>
+                    <h:outputText id="relacionar-total" value="Relacionar total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarTotal}"/>
+                    <h:outputText id="relacionar-pendiente" value="Relacionar pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarPendiente}"/>
+                    <h:outputText id="gramatica-pendiente" value="gramatica pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaTotal}"/>
+                    <h:outputText id="gramatica-total" value="gramatica total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaPendiente}"/>
+                    <h:outputText id="oraciones-total" value="oraciones total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesTotal}"/>
+                    <h:outputText id="oraciones-pendiete" value="oraciones total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesPendiete}"/>
+                    <h:outputText id="relacionar-oracion-total" value="relacionar-oracion total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionTotal}"/>
+                    <h:outputText id="relacionar-oracion-pendiete" value="relacionar-oracion pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionPendiete}"/>
+                    <h:outputText id="completar-total" value="completar pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.completarTotal}"/>
+                    <h:outputText id="completar-pendiete" value="completar pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.completarPendiente}"/>
                 </div>
                 <div class="uk-modal-footer uk-flex uk-flex-right">
                     <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">${boton['close']}</button>
