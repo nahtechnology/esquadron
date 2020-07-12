@@ -1,30 +1,6 @@
-
-var rangos = [];
-var pibote = 0;
-document.addEventListener("DOMContentLoaded",()=>{
-    let pibote = document.querySelector("#contenedor-tabla");
-    if(pibote.querySelector('table').dataset.vacio === "false"){
-        actualiza();
-    }else {
-
-    }
-});
-
-
-class RangoFecha{
-    constructor(fechaInicio,fechaFin){
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-    };
-
-    tiempoConectado(){
-        return this.fechaFin - this.fechaInicio;
-    }
-
-}
-
+var pibotes = [];
 class PaginacionTabla {
-    constructor(tabla,elementos){
+    constructor(tabla,elementos,indice){
         this.tabla = tabla;
         this.elementos = parseInt(elementos);
         this.cuerpo = tabla.querySelector('tbody');
@@ -33,11 +9,13 @@ class PaginacionTabla {
         this.btnSiguiente = document.createElement('button');
         this.seleccionPagina = document.createElement('select');
         this.seleccionElementos = document.createElement('select');
+        this.indice = indice;
     }
 
 
     inicio(){
-        let filas = this.cuerpo.querySelectorAll("tr");
+        this.cuerpo.classList.add('cuerpo-principal');
+        let filas = this.tabla.querySelectorAll(".cuerpo-principal > tr");
         for (let i = 0; i < filas.length; i++) {
             filas[i].classList.add('visibilidad');
         }
@@ -53,9 +31,9 @@ class PaginacionTabla {
         this.seleccionElementos.disabled = this.paginacion() <= 0;
     }
     paginacion(){
-        let cuerpotabla = this.tabla;
-        let filas = cuerpotabla.querySelectorAll('tbody > tr');
+        let filas = this.tabla.querySelectorAll(".cuerpo-principal > tr");
         return Math.ceil(filas.length/this.elementos) - 1;
+
     }
     nuevaPaginacion(){
         while (this.seleccionPagina.hasChildNodes()){
@@ -97,7 +75,7 @@ class PaginacionTabla {
     }
 
     siguiente(numPagina){
-        let filas = this.cuerpo.querySelectorAll("tr");
+        let filas = this.tabla.querySelectorAll(".cuerpo-principal > tr");
         if (numPagina <= this.paginacion()) {
             this.btnAtras.disabled = false;
             let inicio = this.elementos * numPagina;
@@ -121,7 +99,7 @@ class PaginacionTabla {
     }
 
     atras(numPagina){
-        let filas = this.cuerpo.querySelectorAll("tr");
+        let filas = this.tabla.querySelectorAll(".cuerpo-principal > tr");
         if (numPagina >= 0) {
             this.btnSiguiente.disabled = false;
             let inicio = this.elementos * numPagina;
@@ -148,7 +126,7 @@ class PaginacionTabla {
         this.tabla.classList.remove('animacion-tabla');
     }
     mostrar(numPagina){
-        let filas = this.cuerpo.querySelectorAll("tr");
+        let filas = this.tabla.querySelectorAll(".cuerpo-principal > tr");
         let inicio = this.elementos * numPagina;
         let fin = inicio + this.elementos;
         for (let i = 0; i < filas.length; i++) {
@@ -172,62 +150,20 @@ class PaginacionTabla {
             this.btnAtras.disabled = false;
             this.btnSiguiente.disabled = false;
         }
-        pibote = numPagina;
-    }
-}
-
-
-function crearFechas(tabla){
-    let expresion = new RegExp("/|:");
-    let sesion = tabla.querySelectorAll('tbody > tr ');
-    let datos = [];
-    sesion.forEach((fila,index) => {
-        let dato = [];
-        fila.querySelectorAll('td').forEach(celda => {
-            dato = dato.concat(separar(celda.innerText)); 
-        });
-         datos.push(new Date(dato[2],dato[1]-1,dato[0],dato[3],dato[4],dato[5]));
-        datos.push(new Date(dato[8],dato[7]-1,dato[6],dato[9],dato[10],dato[11]));
-        rangos.push(new RangoFecha(datos[0],datos[1]));
-         datos = [];
-    });
-
-    function separar(cadena){
-        return cadena.split(expresion);
+        pibotes[this.indice] = numPagina;
     }
 
+
 }
-
-function timeConversion(millisec) {
-
-    var seconds = (millisec / 1000).toFixed(1);
-
-    var minutes = (millisec / (1000 * 60)).toFixed(1);
-
-    var hours = (millisec / (1000 * 60 * 60)).toFixed(2);
-
-    var days = (millisec / (1000 * 60 * 60 * 24)).toFixed(1);
-
-    if (seconds < 60) {
-        return seconds + " Sec";
-    } else if (minutes < 60) {
-        return minutes + " Min";
-    } else if (hours < 24) {
-        return hours + " Hrs";
-    } else {
-        return days + " Days"
-    }
-}
-
 // funciones para animar tabla
 function animacionSiguiente(obj) {
     obj.animacion();
-    obj.siguiente(++pibote);
+    obj.siguiente(++pibotes[obj.indice]);
 }
 
 function animacionAtras(obj) {
     obj.animacion();
-    obj.atras(--pibote);
+    obj.atras(--pibotes[obj.indice]);
 }
 function animacionpaginas(obj,evento) {
     obj.animacion();
@@ -239,52 +175,15 @@ function animacionSelectElementos(obj,evento) {
     console.log(evento.target.value);
     obj.inicio();
     obj.nuevaPaginacion();
-    pibote = 0;
-}
-//funcion jsf
-function actualiza() {
-    rangos = [];
-    pibote = 0;
-    let tabla = document.querySelector('table');
-    let filas = tabla.querySelectorAll('tbody > tr');
-    let cabeceraTabla = document.createElement("th");
-    cabeceraTabla.innerText = "Tiempo";
-    tabla.querySelector('thead').appendChild(cabeceraTabla);
-    let tiempoAcumulado = 0;
-    objDate = crearFechas(tabla);
-
-    rangos.forEach((rango,index) => {
-        let celda = filas[index].insertCell(-1);
-        celda.innerText = timeConversion(rango.tiempoConectado());
-        tiempoAcumulado += rango.tiempoConectado();
-    });
-    document.querySelector('#conexion').value = timeConversion(tiempoAcumulado);
-    document.querySelector('#totalHoras').value = (tiempoAcumulado / (1000 * 60 * 60)).toFixed(2);
-    let objeto = muestraDatosTabla(5,tabla);
-    objeto.btnSiguiente.addEventListener('click',()=>{
-        objeto.tabla.classList.add('animacion-tabla');
-        setTimeout(animacionSiguiente,500,objeto);
-    });
-    objeto.btnAtras.addEventListener('click',()=>{
-        objeto.tabla.classList.add('animacion-tabla');
-        setTimeout(animacionAtras,500,objeto);
-    });
-    objeto.seleccionPagina.addEventListener('change',(evt)=>{
-        objeto.tabla.classList.add('animacion-tabla');
-        setTimeout(animacionpaginas,500,objeto,evt);
-    });
-    objeto.seleccionElementos.addEventListener('change',(evt)=>{
-        objeto.tabla.classList.add('animacion-tabla');
-        setTimeout(animacionSelectElementos,500,objeto,evt);
-
-    })
+    pibotes[obj.indice] = 0;
 }
 
-function muestraDatosTabla(element,tabla) {
-    let objeto = new PaginacionTabla(tabla,element);
+/*Funcion para crear paginacion de una tabla*/
+function crearPaginacionTabla(element,tabla,indice) {
+    let objeto = new PaginacionTabla(tabla,element,indice);
+    pibotes[indice] = 0;
     objeto.inicio();
     objeto.opcionesPaginas();
     return objeto;
 
 }
-

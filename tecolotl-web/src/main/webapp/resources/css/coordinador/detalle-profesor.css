@@ -30,8 +30,19 @@
 .puntero:hover{
     cursor: pointer;
 }
-[id$='tabla-alumno']  .uk-dropdown-nav > li {
+
+
+.tabla-detalles-tareas,.tabla-detalles-tareas-alumno{
     color: black;
-    margin-bottom: 5px;
-    text-align: left;
+    font-size: 13px;
+    box-shadow: none;
+    border-collapse: collapse;
+}
+.tabla-detalles-tareas tbody td,.tabla-detalles-tareas-alumno tbody td{
+    padding: 2px;
+}
+.tabla-detalles-tareas thead th,.tabla-detalles-tareas-alumno thead th{
+    padding: 3px;
+    font-size: 13px;
+    background-color: #1e87f0!important;
 }

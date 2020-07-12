@@ -65,21 +65,21 @@
                 <h:column>
                     <f:facet name="header">Opciones</f:facet>
                     <button class="uk-icon-button" uk-icon="more-vertical"/>
-                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .uk-table">
+                    <h:panelGroup layout="block" styleClass="uk-dropdown"  pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
                             <li>
-                                <h:link outcome="detalles">
+                                <h:link outcome="detalles"  >
                                     <span>#{etiqueta['detail']}</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
                             <li>
-                                <h:link outcome="login">
+                                <h:link outcome="login" >
                                     <span>login</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
-                            <li><a href="#">bloquear</a></li>
+                            <li><a href="#" >bloquear</a></li>
                         </ul>
                     </h:panelGroup>
                 </h:column>

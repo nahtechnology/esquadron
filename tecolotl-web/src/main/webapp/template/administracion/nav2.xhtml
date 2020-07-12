@@ -27,11 +27,11 @@
         <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{not request.isUserInRole('administrador')}" value="#">Coordinador</h:outputLink>
         <!-- user dropdown -->
         <h:panelGroup  layout="block" styleClass="uk-dropdown user-drop" pt:data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
-            <ul class="uk-nav uk-dropdown-nav uk-text-left">
+            <ul class="uk-nav uk-dropdown-nav uk-text-center">
                 <li>
                     <h:form>
                         <h:commandLink value="#{etiqueta['close.sesion']}" styleClass="uk-text-primary" action="#{administracionControlador.cerrarSesion}" rendered="#{request.isUserInRole('administrador')}"/>
-                        <h:commandLink value="#{etiqueta['close.sesion']}" styleClass="uk-text-secondary" action="#{coordinadorControladorLocal.cerrarSesion}" rendered="#{request.isUserInRole('coordinador')}"/>
+                        <h:commandLink value="#{etiqueta['close.sesion']}"  action="#{coordinadorControladorLocal.cerrarSesion}" rendered="#{request.isUserInRole('coordinador')}"/>
                     </h:form>
                 </li>
             </ul>

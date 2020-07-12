@@ -26,6 +26,7 @@
     <ui:define name="contenido">
         <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
         <h:outputStylesheet library="css" name="/coordinador/detalle-profesor.css"/>
+        <h:outputStylesheet library="css" name="animacion-paginacion.css"/>
         <h1>detalles profesor</h1>
         <div class="datos">
             <div class="informacion-usuario">
@@ -37,8 +38,9 @@
             </div>
             <h:form id="formulario-detalle-grupo">
             <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
+                         id="tabla-grupo"
                          var="calificacionPendientesModelo"
-                         styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small"  >
+                         styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small tabla-tareas"  >
                 <h:column>
                     <f:facet name="header">grado</f:facet>
                     ${calificacionPendientesModelo.grado}
@@ -60,21 +62,83 @@
                     ${calificacionPendientesModelo.pendientesGramatica}
                 </h:column>
                 <h:column>
+                    <f:facet name="header">Tareas</f:facet>
+                    <div class="uk-inline">
+                        <h:commandLink  >
+                            <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                            <f:ajax render="mapamental-total2 mapamental-pendiente2 relacionar-total2 relacionar-pendiente2 gramatica-pendiente2 gramatica-total2 completar-pendiete2 completar-total2
+                                                    relacionar-oracion-pendiete2 oraciones-pendiete2 oraciones-total2"
+                                    listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
+                        </h:commandLink>
+                        <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-tareas">
+
+                            <table class="tabla-detalles-tareas">
+                                <thead class="uk-background-primary">
+                                <tr>
+                                    <th>Hw</th>
+                                    <th>pendientes</th>
+                                    <th>totales</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Think-Develop and Share</td>
+                                    <td><h:outputText id="mapamental-pendiente2" value=" ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalPendientes}"/></td>
+                                    <td> <h:outputText id="mapamental-total2"  value="${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalTotal}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Comprehension Match</td>
+                                    <td> <h:outputText id="relacionar-oracion-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionPendiete}"/></td>
+                                    <td><h:outputText id="relacionar-oracion-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionTotal}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Transcript</td>
+                                    <td><h:outputText id="oraciones-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesPendiete}"/></td>
+                                    <td> <h:outputText id="oraciones-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesTotal}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>What Happened?</td>
+                                    <td><h:outputText id="gramatica-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaPendiente}"/></td>
+                                    <td><h:outputText id="gramatica-pendiente2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaTotal}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Mix&amp;Match</td>
+                                    <td><h:outputText id="relacionar-pendiente2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarPendiente}"/></td>
+                                    <td><h:outputText id="relacionar-total2" value=" ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarTotal}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Gap Filling</td>
+                                    <td><h:outputText id="completar-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.completarPendiente}"/></td>
+                                    <td><h:outputText id="completar-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.completarTotal}"/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </h:panelGroup>
+                    </div>
+                </h:column>
+                <h:column>
                     <f:facet name="header">promedio general grupo</f:facet>
                     ${calificacionPendientesModelo.promedio}%
                 </h:column>
+
                 <h:column>
                     <f:facet name="header">${etiqueta['detail']}</f:facet>
                     <button class="uk-icon-button" uk-icon="more-vertical"/>
-                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .uk-table">
+                    <h:panelGroup layout="block" styleClass="uk-dropdown uk-text-primary" pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
                             <li>
                                 <h:commandLink onclick="evt(this);">
                                     <span>#{etiqueta['detail']}</span>
                                     <f:ajax render="formulario-alumno"
-                                            listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"/>
+                                            listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"
+                                            onevent="function f(data) {
+                                                if (data.status === 'success'){
+                                                    setTimeout(crearPagina,500);
+                                                }
+                                            }"/>
                                 </h:commandLink>
                             </li>
+                            <ui:remove>
                             <li>
                                 <h:commandLink onclick="evt(this);" styleClass="uk-text-primary" pt:uk-toggle="target: #modal-tareas-faltante">
                                     <span>Tareas Faltantes</span>
@@ -83,12 +147,14 @@
                                             listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
                                 </h:commandLink>
                             </li>
+                            </ui:remove>
                         </ul>
                     </h:panelGroup>
                 </h:column>
             </h:dataTable>
             </h:form>
             <div>
+                <h4 class="titulo-grupo">Grupo: <span>sin grupo</span></h4>
                 <h:form id="formulario-alumno">
                     <h:panelGroup layout="block"
                                   rendered="#{empty detalleProfesorControlador.promedioAlumnoModeloLista}">
@@ -117,7 +183,8 @@
                                  rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}"
                                  id="tabla-alumno"
                                  var="promedioAlumnoModelo"
-                                 styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small" >
+                                 styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small"
+                                    >
                         <h:column>
                             <f:facet name="header">Nombre Alumno</f:facet>
                             ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
@@ -135,15 +202,45 @@
                             <div class="uk-inline">
                             <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
                             <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
-                                <ul class="uk-nav uk-dropdown-nav" >
-                                    <li>Comprehension Match: <h:outputText value="${promedioAlumnoModelo.promedioRelacionarOracion eq null ? 'sin actividad': promedioAlumnoModelo.promedioRelacionarOracion+'%'}"/> </li>
-                                    <li>Word Game: ${promedioAlumnoModelo.promedioGramatica eq null ? 'sin actividad' : promedioAlumnoModelo.promedioGramatica+'%'}</li>
-                                    <li>Transcript: ${promedioAlumnoModelo.promedioTranscipcion eq null ? 'sin actividad' : promedioAlumnoModelo.promedioTranscipcion+'%'}</li>
-                                    <li>What Happened?: ${promedioAlumnoModelo.promedioOraciones eq null ? 'sin actividad' : promedioAlumnoModelo.promedioOraciones+'%'}</li>
-                                    <li>Mix&amp;Match: ${promedioAlumnoModelo.promedioRelacionarImagen eq null ? 'sin actividad' : promedioAlumnoModelo.promedioRelacionarImagen+'%'}</li>
-                                    <li>Gap Filling: ${promedioAlumnoModelo.promedioCompletar eq null ? 'sin actividad' : promedioAlumnoModelo.promedioCompletar+'%'}</li>
-                                    <li>Think-Develop and Share: ${promedioAlumnoModelo.promedioPromedioMapamental eq null ? 'sin actividad' : promedioAlumnoModelo.promedioPromedioMapamental+'%'}</li>
-                                </ul>
+                                <table class="tabla-detalles-tareas-alumno">
+                                    <thead>
+                                    <tr>
+                                        <th>Hw</th>
+                                        <th>Promedio</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Comprehension Match</td>
+                                        <td>#{promedioAlumnoModelo.promedioRelacionarOracion eq null ? 'sin actividad': promedioAlumnoModelo.promedioRelacionarOracion}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Word Game</td>
+                                        <td>${promedioAlumnoModelo.promedioGramatica eq null ? 'sin actividad' :  promedioAlumnoModelo.promedioGramatica}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transcript</td>
+                                        <td>${promedioAlumnoModelo.promedioTranscipcion eq null ? 'sin actividad' : promedioAlumnoModelo.promedioTranscipcion}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>What Happened?</td>
+                                        <td>${promedioAlumnoModelo.promedioOraciones eq null ? 'sin actividad' : promedioAlumnoModelo.promedioOraciones}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mix&amp;Match</td>
+                                        <td>${promedioAlumnoModelo.promedioRelacionarImagen eq null ? 'sin actividad' : promedioAlumnoModelo.promedioRelacionarImagen}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gap Filling</td>
+                                        <td>${promedioAlumnoModelo.promedioCompletar eq null ? 'sin actividad' : promedioAlumnoModelo.promedioCompletar}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Think-Develop and Share</td>
+                                        <td>${promedioAlumnoModelo.promedioPromedioMapamental eq null ? 'sin actividad' : promedioAlumnoModelo.promedioPromedioMapamental}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+
                             </h:panelGroup>
                             </div>
                         </h:column>
@@ -159,41 +256,43 @@
             </div>
         </div>
 
-        <h:panelGroup layout="block" id="modal-tareas-faltante" pt:uk-modal="">
-            <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header uk-background-secondary">
-                    <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">Tareas Faltantes</p>
-                </div>
-                <div class="uk-modal-body">
-                    <h:outputText id="mapamental-total" value="Mapa mental total : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalTotal}"/>
-                    <h:outputText id="mapamental-pendiente" value="Mapa mental pendiente : ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalPendientes}"/>
-                    <h:outputText id="relacionar-total" value="Relacionar total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarTotal}"/>
-                    <h:outputText id="relacionar-pendiente" value="Relacionar pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarPendiente}"/>
-                    <h:outputText id="gramatica-pendiente" value="gramatica pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaTotal}"/>
-                    <h:outputText id="gramatica-total" value="gramatica total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaPendiente}"/>
-                    <h:outputText id="oraciones-total" value="oraciones total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesTotal}"/>
-                    <h:outputText id="oraciones-pendiete" value="oraciones total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesPendiete}"/>
-                    <h:outputText id="relacionar-oracion-total" value="relacionar-oracion total: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionTotal}"/>
-                    <h:outputText id="relacionar-oracion-pendiete" value="relacionar-oracion pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionPendiete}"/>
-                    <h:outputText id="completar-total" value="completar pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.completarTotal}"/>
-                    <h:outputText id="completar-pendiete" value="completar pendiente: ${detalleProfesorControlador.tareasPendientesGrupoModelo.completarPendiente}"/>
-                </div>
-                <div class="uk-modal-footer uk-flex uk-flex-right">
-                    <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">${boton['close']}</button>
-                </div>
-            </div>
-        </h:panelGroup>
     </ui:define>
     <ui:define name="file-js">
         <script type="application/javascript">
-            document.addEventListener('DOMContentLoaded',()=>{
-                let dropdown = document.querySelector('hidden');
-                console.log(dropdown);
-
-            })
             function evt(elemento) {
                 let padre = elemento.parentElement.parentElement.parentElement;
+                let abuelo = padre.parentElement.parentElement;
+                let grado = abuelo.querySelectorAll("td")[0].innerText;
+                let grupo = abuelo.querySelectorAll("td")[1].innerText;
+                let tituloTabla = document.querySelector('.titulo-grupo > span').innerText = grado + " " + grupo;
                 UIkit.dropdown(padre).hide(false);
+            }
+        </script>
+        <h:outputScript library="js" name="paginacion-tablas.js"/>
+        <script type="application/javascript">
+            crearPagina();
+            function crearPagina(){
+                let tablaAlumno = document.querySelector("table[id$='tabla-alumno']");
+                if(tablaAlumno !== null ){
+                    let objetoPagina = crearPaginacionTabla(4,tablaAlumno,0);
+                    objetoPagina.btnSiguiente.addEventListener('click',()=>{
+                        objetoPagina.tabla.classList.add('animacion-tabla');
+                        setTimeout(animacionSiguiente,500,objetoPagina);
+                    });
+                    objetoPagina.btnAtras.addEventListener('click',()=>{
+                        objetoPagina.tabla.classList.add('animacion-tabla');
+                        setTimeout(animacionAtras,500,objetoPagina);
+                    });
+                    objetoPagina.seleccionPagina.addEventListener('change',(evt)=>{
+                        objetoPagina.tabla.classList.add('animacion-tabla');
+                        setTimeout(animacionpaginas,500,objetoPagina,evt);
+                    });
+                    objetoPagina.seleccionElementos.addEventListener('change',(evt)=>{
+                        objetoPagina.tabla.classList.add('animacion-tabla');
+                        setTimeout(animacionSelectElementos,500,objetoPagina,evt);
+
+                    });
+                }
             }
         </script>
     </ui:define>
