@@ -237,7 +237,24 @@
                                     </tr>
                                     </tbody>
                                 </table>
-
+                              <span class="promedio-tabla">Promedio:
+                                  <h:outputText value="#{((promedioAlumnoModelo.promedioPromedioMapamental eq null ? 0 : promedioAlumnoModelo.promedioPromedioMapamental)
+                                    + (promedioAlumnoModelo.promedioCompletar eq null ? 0: promedioAlumnoModelo.promedioCompletar)
+                                    + (promedioAlumnoModelo.promedioRelacionarImagen eq null ? 0 : promedioAlumnoModelo.promedioRelacionarImagen)
+                                    + (promedioAlumnoModelo.promedioOraciones eq null ? 0 : promedioAlumnoModelo.promedioOraciones)
+                                    + (promedioAlumnoModelo.promedioTranscipcion eq null ? 0 : promedioAlumnoModelo.promedioTranscipcion)
+                                    + (promedioAlumnoModelo.promedioGramatica eq null ? 0 : promedioAlumnoModelo.promedioGramatica)
+                                    + (promedioAlumnoModelo.promedioRelacionarOracion eq null ? 0 : promedioAlumnoModelo.promedioRelacionarOracion)) /
+                                    ((promedioAlumnoModelo.promedioPromedioMapamental eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioCompletar eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioRelacionarImagen eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioOraciones eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioTranscipcion eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioGramatica eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioRelacionarOracion eq null ? 0 : 1))}">
+                                      <f:convertNumber pattern="#0.00"/>
+                                  </h:outputText>
+                              </span>
                             </h:panelGroup>
                             </div>
                         </h:column>

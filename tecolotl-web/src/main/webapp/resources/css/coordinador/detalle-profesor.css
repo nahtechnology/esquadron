@@ -38,6 +38,11 @@
     box-shadow: none;
     border-collapse: collapse;
 }
+.promedio-tabla{
+    color: black;
+    font-size: 14px;
+    display: inline-block;
+}
 .tabla-detalles-tareas tbody td,.tabla-detalles-tareas-alumno tbody td{
     padding: 2px;
 }
