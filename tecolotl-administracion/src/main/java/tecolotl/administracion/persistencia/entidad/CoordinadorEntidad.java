@@ -25,6 +25,11 @@ import java.util.StringJoiner;
         ),
         @NamedQuery(
                 name = "CoordinadorEntidad.buscaApodo",
+                query = "SELECT count (c) FROM CoordinadorEntidad c JOIN c.coordinadorEntidadPK.escuelaEntidad e " +
+                        "WHERE e.claveCentroTrabajo = :claveCentroTrabajo AND c.apodo = :apodo"
+        ),
+        @NamedQuery(
+                name = "CoordinadorEntidad.detalleApodo",
                 query = "SELECT c FROM CoordinadorEntidad c JOIN c.coordinadorEntidadPK.escuelaEntidad e " +
                         "WHERE e.galaxia = :galaxia AND c.apodo = :apodo"
         )

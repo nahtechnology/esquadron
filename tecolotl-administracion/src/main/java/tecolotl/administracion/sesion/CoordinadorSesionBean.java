@@ -92,7 +92,7 @@ public class CoordinadorSesionBean {
      */
     public CoordinadorModelo busca(@NotNull Integer galaxia,
                                    @NotNull String apodo) {
-        TypedQuery<CoordinadorEntidad> typedQuery = entityManager.createNamedQuery("CoordinadorEntidad.buscaApodo", CoordinadorEntidad.class);
+        TypedQuery<CoordinadorEntidad> typedQuery = entityManager.createNamedQuery("CoordinadorEntidad.detalleApodo", CoordinadorEntidad.class);
         typedQuery.setParameter("galaxia", galaxia).setParameter("apodo", apodo);
         return new CoordinadorModelo(typedQuery.getSingleResult());
     }

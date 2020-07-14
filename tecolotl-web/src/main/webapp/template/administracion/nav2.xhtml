@@ -18,7 +18,7 @@
     <h4 class="uk-text-center uk-margin-remove-vertical text-light">
         <h:outputText value="#{administracionControlador.administradorModelo.nombre.concat(' ').concat(administracionControlador.administradorModelo.apellidoPaterno).concat(' ').concat(administracionControlador.administradorModelo.apellidoMaterno)}"
                       rendered="#{request.isUserInRole('administrador')}"/>
-        <h:outputText value="#{coordinadorControlador.coordinadorModelo.nombre.concat(' ').concat(coordinadorControlador.coordinadorModelo.apellidoPaterno)}"
+        <h:outputText value="#{coordinadorControladorLocal.coordinadorModelo.nombre.concat(' ').concat(coordinadorControladorLocal.coordinadorModelo.apellidoPaterno).concat(' ').concat(coordinadorControladorLocal.coordinadorModelo.apellidoMaterno)}"
                       rendered="#{not request.isUserInRole('administrador')}"/>
     </h4>
     <div class="uk-position-relative uk-text-center uk-display-block">
