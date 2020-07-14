@@ -10,6 +10,7 @@
 </h:head>
 <h:body>
     Estimado usuario, por el momento no podemos atender su petición, favor de intentar más tarde
-    <button onclick="window.history.back()">#{boton['back']}</button>
+    <ui:remove><button onclick="window.history.back()">#{boton['back']}</button></ui:remove>
+    <h:button value="#{boton['back']}" outcome="regresar"/>
 </h:body>
 </html>

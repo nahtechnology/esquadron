@@ -44,4 +44,18 @@
 
 	</application>
 
+	<navigation-rule>
+		<from-view-id>/error/no-manejable.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>regresar</from-outcome>
+			<if>#{empty noManjableControlador.rol}</if>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>regresar</from-outcome>
+			<if>#{not empty noManjableControlador.rol}</if>
+			<to-view-id>/#{noManjableControlador.rol}/dashboard.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>
