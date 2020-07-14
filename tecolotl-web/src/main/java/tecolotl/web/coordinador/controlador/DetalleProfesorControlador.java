@@ -2,6 +2,7 @@ package tecolotl.web.coordinador.controlador;
 
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.modelo.CalificacionPendientesModelo;
+import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.modelo.PromedioAlumnoModelo;
 import tecolotl.profesor.modelo.TareasPendientesGrupoModelo;
 import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
@@ -36,11 +37,13 @@ public class DetalleProfesorControlador implements Serializable {
     private Logger logger;
 
     private String idProfesor;
+    private ProfesorModelo profesorModelo;
     private List<CalificacionPendientesModelo> calificacionPendientesModeloLista;
     private List<PromedioAlumnoModelo> promedioAlumnoModeloLista;
     private TareasPendientesGrupoModelo tareasPendientesGrupoModelo;
 
     public void inicio() {
+        profesorModelo = profesorSesionBean.busca(UUID.fromString(idProfesor));
         calificacionPendientesModeloLista = profesorSesionBean.buscaTotalCalificado(UUID.fromString(idProfesor));
     }
 
@@ -82,5 +85,13 @@ public class DetalleProfesorControlador implements Serializable {
 
     public void setPromedioAlumnoModeloLista(List<PromedioAlumnoModelo> promedioAlumnoModeloLista) {
         this.promedioAlumnoModeloLista = promedioAlumnoModeloLista;
+    }
+
+    public ProfesorModelo getProfesorModelo() {
+        return profesorModelo;
+    }
+
+    public void setProfesorModelo(ProfesorModelo profesorModelo) {
+        this.profesorModelo = profesorModelo;
     }
 }

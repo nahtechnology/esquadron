@@ -32,8 +32,9 @@
             <div class="informacion-usuario">
                 <h:graphicImage library="img" name="/avatar/maestro.svg" />
                 <div>
-                    <p class="uk-text-bold">Juan Maestro apellido</p>
-                    <p class="uk-text-muted uk-text-small uk-text-bold">MrJuan</p>
+                    <p class="uk-text-bold">${detalleProfesorControlador.profesorModelo.nombre} ${detalleProfesorControlador.profesorModelo.apellidoPaterno} ${detalleProfesorControlador.profesorModelo.apellidoMaterno}</p>
+                    <p class="uk-text-muted uk-text-small uk-text-bold">${detalleProfesorControlador.profesorModelo.apodo}</p>
+                    <p class="uk-text-bold">${detalleProfesorControlador.profesorModelo.correoEletronico}</p>
                 </div>
             </div>
             <h:form id="formulario-detalle-grupo">
