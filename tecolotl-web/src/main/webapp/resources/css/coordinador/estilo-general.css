@@ -1,5 +1,9 @@
 .uk-dropdown-nav > li > a {
     color: #1e87f0;
+    text-transform: capitalize;
+}
+h1 {
+    text-transform: capitalize;
 }
 
 

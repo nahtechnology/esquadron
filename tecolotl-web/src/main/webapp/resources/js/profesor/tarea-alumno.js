@@ -29,6 +29,4 @@ function barrasValor() {
        valor.innerHTML = progres.querySelector('progress').value + '%';
        progres.insertBefore(valor,progres.querySelector('progress'));
     });
-
-
 }

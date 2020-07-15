@@ -15,7 +15,7 @@
 <div class="left-content-box  content-box-dark">
     <h:graphicImage rendered="#{request.isUserInRole('administrador')}" library="img" name="avatar/administrador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
     <h:graphicImage rendered="#{not request.isUserInRole('administrador') }" library="img" name="avatar/coordinador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
-    <h4 class="uk-text-center uk-margin-remove-vertical text-light">
+    <h4 class="uk-text-center uk-margin-remove-vertical text-light" style="color: white">
         <h:outputText value="#{administracionControlador.administradorModelo.nombre.concat(' ').concat(administracionControlador.administradorModelo.apellidoPaterno).concat(' ').concat(administracionControlador.administradorModelo.apellidoMaterno)}"
                       rendered="#{request.isUserInRole('administrador')}"/>
         <h:outputText value="#{coordinadorControladorLocal.coordinadorModelo.nombre.concat(' ').concat(coordinadorControladorLocal.coordinadorModelo.apellidoPaterno).concat(' ').concat(coordinadorControladorLocal.coordinadorModelo.apellidoMaterno)}"

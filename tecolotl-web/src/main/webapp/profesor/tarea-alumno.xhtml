@@ -118,6 +118,9 @@
                                 <select name="" id="filtro-nivel">
                                     <option value="todos">All</option>
                                 </select>
+                                <span id="tareas-asignadas" class="uk-margin-medium-right">tareas asignadas: <span>0</span></span>
+                                <span id="tareas-promediadas" class="uk-margin-medium-right">tareas promediadas: <span>0</span></span>
+                                <span id="promedio-general" class="uk-margin-medium-right">promedio general: <span>0</span></span>
                                 <div class="uk-overflow-auto">
                                 <h:form id="formulario-tabla-actividades">
                                     <h:dataTable id="tabla-actividades"
@@ -143,11 +146,11 @@
                                                 <f:convertDateTime pattern="dd-MM-yyyy"/>
                                             </h:outputText>
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-transcrip="#{tareaAlumno.calificacionTrascirpcion}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.transcript']}</span></f:facet>
                                             <progress value="#{tareaAlumno.calificacionTrascirpcion}" min="0" max="100"/>
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-gramatica="#{tareaAlumno.calificacionGramatica eq null ? -2:tareaAlumno.calificacionGramatica}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionGramatica eq null}" />
                                             <h:link outcome="gramatica" rendered="#{tareaAlumno.calificacionGramatica ne null and tareaAlumno.calificacionGramatica eq 0}">
@@ -158,7 +161,7 @@
                                                 <progress value="#{tareaAlumno.calificacionGramatica}" min="0" max="100"/>
                                             </ui:fragment>
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-mapa-mental="#{tareaAlumno.calificacionMapamental eq null ? -2 : tareaAlumno.calificacionMapamental}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionMapamental eq null}" />
                                             <h:link outcome="mapamental" rendered="#{tareaAlumno.calificacionMapamental ne null and tareaAlumno.calificacionMapamental eq 0}">
@@ -169,22 +172,22 @@
                                                 <progress value="#{tareaAlumno.calificacionMapamental}" min="0" max="100"/>
                                             </ui:fragment>
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-relacionar-imagen="#{tareaAlumno.calificacionRelacionarImagen eq null ? -2: tareaAlumno.calificacionRelacionarImagen}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarImagen ne null}"><progress value="#{tareaAlumno.calificacionRelacionarImagen}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarImagen eq null}" />
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-completar-oracion="#{tareaAlumno.calificacionCompletar eq null ? -2 : tareaAlumno.calificacionCompletar}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.comple.all.sentences']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionCompletar ne null}"><progress value="#{tareaAlumno.calificacionCompletar}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionCompletar eq null}" />
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-ordenar-oraciones="#{tareaAlumno.calificacionOraciones eq null ? -2 : tareaAlumno.calificacionOraciones}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.order.sentences']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionOraciones ne null}"><progress value="#{tareaAlumno.calificacionOraciones}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionOraciones eq null}" />
                                         </h:column>
-                                        <h:column>
+                                        <h:column pt:data-relacionar-oraciones="#{tareaAlumno.calificacionRelacionarOraciones eq null ? -2 : tareaAlumno.calificacionRelacionarOraciones}">
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.match']}</span></f:facet>
                                             <ui:fragment rendered="#{tareaAlumno.calificacionRelacionarOraciones ne null}"><progress value="#{tareaAlumno.calificacionRelacionarOraciones}" min="0" max="100"/></ui:fragment>
                                             <h:outputText pt:uk-icon="icon:ban; ratio:1.8" class="uk-text-danger" rendered="#{tareaAlumno.calificacionRelacionarOraciones eq null}" />
@@ -263,8 +266,9 @@
 
     </ui:define>
     <ui:define name="file-js">
-        <ui:remove><h:outputScript library="js" name="/profesor/tarea-alumno-tabla.js"/></ui:remove>
-        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno-tabla.js"></script>
+        <h:outputScript library="js" name="/profesor/tarea-alumno-tabla.js"/>
+<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno-tabla.js"></script>-->
+
     </ui:define>
 </ui:composition>
 

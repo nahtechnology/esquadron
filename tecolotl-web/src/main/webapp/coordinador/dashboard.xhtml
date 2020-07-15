@@ -18,8 +18,10 @@
     </ul>
 </ui:define>
 <ui:define name="contenido">
+    <h1>dashboard</h1>
     <section class="contenido">
         <h:outputStylesheet library="css" name="/coordinador/coordinador.css"/>
+
         <ui:remove>
         <div class="informacion-profesor">
             <div class="uk-card uk-card-default uk-card-body ">
@@ -28,7 +30,7 @@
                 <p class="uk-text-meta uk-margin-medium-top">#{coordinadorControladorLocal.coordinadorModelo.apodo}</p>
             </div>
         </div>
-        </ui:remove>
+
         <div class="informacion-escuela">
             <div>
                 <div class="encabezado">Star</div>
@@ -44,6 +46,7 @@
             </div>
 
         </div>
+        </ui:remove>
         <div class="tabla">
             <h3>Profesores</h3>
             <h:dataTable value="#{coordinadorDashboardControlador.profesorGrupoAlumnoModeloLista}"
@@ -67,19 +70,20 @@
                     <button class="uk-icon-button" uk-icon="more-vertical"/>
                     <h:panelGroup layout="block" styleClass="uk-dropdown"  pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
-                            <li>
+                            <li class="uk-text-left">
                                 <h:link outcome="detalles"  >
+                                    <h:outputText  styleClass="uk-icon uk-margin-small-right " pt:uk-icon="file-edit"/>
                                     <span>#{etiqueta['detail']}</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
-                            <li>
+                            <li class="uk-text-left">
                                 <h:link outcome="login" >
+                                    <h:panelGroup pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right"/>
                                     <span>login</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
-                            <li><a href="#" >bloquear</a></li>
                         </ul>
                     </h:panelGroup>
                 </h:column>

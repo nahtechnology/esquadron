@@ -5,11 +5,11 @@
 }
 
 .contenido{
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 153px);
     grid-area: contenido;
     display: grid;
-    grid-template-areas: "informacion-escuela informacion-escuela" "tabla tabla";
-    grid-template-rows: 300px 1fr;
+    grid-template-areas:  "tabla tabla";
+    grid-template-rows: 1fr;
     grid-template-columns: 3fr 7fr;
     row-gap: 20px;
     column-gap: 40px;
