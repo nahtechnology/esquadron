@@ -37,8 +37,8 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
-        <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/></ui:remove>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
+        <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
@@ -115,7 +115,7 @@
                             </div>
                             <div class="padding-0">
                                 <label for="filtro-nivel">Level:</label>
-                                <select name="" id="filtro-nivel">
+                                <select name="" id="filtro-nivel" class="uk-margin-medium-right">
                                     <option value="todos">All</option>
                                 </select>
                                 <span id="tareas-asignadas" class="uk-margin-medium-right">tareas asignadas: <span>0</span></span>
@@ -137,7 +137,7 @@
                                                 <h:commandLink pt:uk-toggle="target: #modal-eliminar-tarea" >
                                                     <h:outputText styleClass="uk-icon" pt:uk-icon="icon: trash" style="color: black; margin-top: 7px;"/>
                                                     <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
-                                                    <f:ajax render="formulario-eliminar:input-tarea"/>
+                                                    <f:ajax render="formulario-eliminar:input-tarea" />
                                                 </h:commandLink>
                                         </h:column>
                                         <h:column>
@@ -217,7 +217,9 @@
                     <div class="uk-modal-footer uk-text-right">
                         <button class="boton-escuadron-base uk-margin-small-right uk-modal-close" type="button" style="background-color: #AAB7B8">${boton['cancel']}</button>
                         <h:commandButton styleClass="boton-escuadron-base  uk-modal-close" value="${boton['remove']}" style="background-color: var(--color-peligro)">
-                            <f:ajax execute="input-tarea" listener="#{tareaAlumnoControlador.borrar}" render="formulario-tabla-actividades"/>
+                            <f:ajax execute="input-tarea" listener="#{tareaAlumnoControlador.borrar}" onevent="function f(data) {
+                               renderizarBorrado(data);
+                            }" render="formulario-tabla-actividades"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -225,11 +227,7 @@
         </h:panelGroup>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/Chart.js"></script>
         <script type="text/javascript" >
-            var progreso, barra = [];
-
             document.addEventListener('DOMContentLoaded',function (ev) {
-                progreso = document.getElementById("formulario-tabla-actividades:tabla-actividades");
-                barrasValor();
                 var botonReporte = document.querySelector('#reporte');
                 var idProfesor = document.querySelector('#idProfesor').innerText;
                 botonReporte.addEventListener('click',()=>{
@@ -249,19 +247,8 @@
                 });
             });
 
-            function barrasValor() {
-                let filas = progreso.querySelectorAll('tbody tr > td');
-                filas.forEach(function (fila) {
-                    if(fila.querySelector('progress')){
-                        barra.push(fila);
-                    }
-                });
-                barra.forEach(function (progres) {
-                    let valor = document.createElement('span');
-                    valor.innerHTML = progres.querySelector('progress').value + '%';
-                    progres.insertBefore(valor,progres.querySelector('progress'));
-                });
-            }
+
+
         </script>
 
     </ui:define>

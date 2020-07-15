@@ -76,3 +76,12 @@ label[for="filtro-nivel"]{
 #filtro-nivel:focus{
     outline: none;
 }
+#tareas-asignadas,#tareas-promediadas,#promedio-general{
+    display: inline-block;
+    font-size: 0.875rem;
+    color: black;
+    font-weight: 900;
+}
+#tareas-asignadas:first-letter,#tareas-promediadas:first-letter,#promedio-general:first-letter{
+    text-transform: capitalize;
+}
