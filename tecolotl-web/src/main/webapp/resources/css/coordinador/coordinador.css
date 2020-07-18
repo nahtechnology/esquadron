@@ -54,7 +54,6 @@
 
 .tabla{
     grid-area: tabla;
-    align-self: center;
 }
 
 .informacion-profesor .uk-card{

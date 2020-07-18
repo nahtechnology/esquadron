@@ -34,7 +34,7 @@
 
 .tabla-detalles-tareas,.tabla-detalles-tareas-alumno{
     color: black;
-    font-size: 13px;
+    font-size: 14px;
     box-shadow: none;
     border-collapse: collapse;
 }
@@ -42,12 +42,13 @@
     color: black;
     font-size: 14px;
     display: inline-block;
+    margin-top: 5px;
 }
 .tabla-detalles-tareas tbody td,.tabla-detalles-tareas-alumno tbody td{
     padding: 2px;
 }
 .tabla-detalles-tareas thead th,.tabla-detalles-tareas-alumno thead th{
     padding: 3px;
-    font-size: 13px;
+    font-size: 14px;
     background-color: #1e87f0!important;
 }

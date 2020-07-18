@@ -92,7 +92,7 @@ function animacionFilas(filas,nivel,tabla) {
     let nodoAsignadas = document.querySelector('#tareas-asignadas > span');
     let nodoPromediadas = document.querySelector('#tareas-promediadas > span');
     let nodoPromedioGeneral = document.querySelector('#promedio-general > span');
-    let datosVista = new PromedioGeneral(tablaAlumnosCuerpo,nodoAsignadas,nodoPromediadas,nodoPromedioGeneral,nivel);
+    let datosVista = new PromedioGeneralActividad(tablaAlumnosCuerpo,nodoAsignadas,nodoPromediadas,nodoPromedioGeneral,nivel);
     console.log(nivel);
     filas.forEach(fila => {
         if (nivel === "hover-todos"){
@@ -115,7 +115,7 @@ function animacionFilas(filas,nivel,tabla) {
         row.classList.add('fila-vacia');
     }
     tabla.classList.remove('visibilidad-fila');
-    datosVista.promedio2();
+    datosVista.promedio();
 }
 function barrasValor() {
     let progreso = document.getElementById("formulario-tabla-actividades:tabla-actividades");
@@ -174,6 +174,27 @@ class PromedioTarea {
 
 }
 
+class PromedioActividad {
+    constructor(transcrip,gramatica,mapaMental,relacionarImagen,completarOracion,ordenarOraciones,relacionarOracion) {
+        this.transcrip = parseInt(transcrip);
+        this.gramatica = parseInt(gramatica);
+        this.mapaMental = parseInt(mapaMental);
+        this.relacionarImagen = parseInt(relacionarImagen);
+        this.completarOracion = parseInt(completarOracion);
+        this.ordenarOraciones = parseInt(ordenarOraciones);
+        this.relacionarOracion = parseInt(relacionarOracion);
+    }
+    promedio(){
+        let permitido = this.sinPromedio(this.transcrip) && this.sinPromedio(this.gramatica) && this.sinPromedio(this.mapaMental) && this.sinPromedio(this.relacionarImagen) && this.sinPromedio(this.completarOracion) && this.sinPromedio(this.ordenarOraciones) && this.sinPromedio(this.relacionarOracion);
+        if (permitido){
+            return [this.transcrip, this.gramatica, this.mapaMental, this.relacionarImagen, this.completarOracion, this.ordenarOraciones, this.relacionarOracion];
+        }else{ return permitido;}
+    }
+    sinPromedio(tarea){
+        return !(tarea === -1 || tarea === 0);
+    }
+}
+
 class PromedioGeneral {
     constructor(tabla,tareasAsignadas,tareasPromediadas,promedioGeneral,nivel) {
         this.tabla = tabla;
@@ -206,6 +227,53 @@ class PromedioGeneral {
         this.tareasAsignadas.innerText = filas.length;
         this.tareasPromediadas.innerText = promedios.length;
         this.promedioGeneral.innerText = promedios.length > 0 ? Math.round(dividendo/promedios.length) : "No hay tareas completadas";
+    }
+
+}
+
+class PromedioGeneralActividad {
+    constructor(tabla,tareasAsignadas,tareasPromediadas,promedioGeneral,nivel) {
+        this.tabla = tabla;
+        this.tareasAsignadas = tareasAsignadas;
+        this.tareasPromediadas = tareasPromediadas;
+        this.promedioGeneral = promedioGeneral;
+        this.nivel = nivel;
+    }
+    promedio(){
+        let filas;
+        let actividades = [];
+        let puntajes = [0,0,0,0,0,0,0];
+        let dividendos = [0,0,0,0,0,0,0];
+        let promedios = 0;
+        if (this.nivel === "hover-todos"){
+            filas = this.tabla.querySelectorAll("tr");
+        }else { filas = this.tabla.querySelectorAll(`tr.${this.nivel}`)}
+        filas.forEach(fila =>{
+            let columnas = fila.querySelectorAll('td');
+            let promedioFila = new PromedioActividad(columnas[2].dataset.transcrip,columnas[3].dataset.gramatica,columnas[4].dataset.mapaMental,columnas[5].dataset.relacionarImagen,columnas[6].dataset.completarOracion,columnas[7].dataset.ordenarOraciones,columnas[8].dataset.relacionarOraciones);
+            console.log(promedioFila);
+            if (promedioFila.promedio() !== false){
+                actividades.push(promedioFila.promedio());
+            }
+        });
+
+        if (actividades.length > 0){
+            actividades.forEach(actividad => {
+                    for (let i = 0;i<7;i++){
+                        dividendos[i] += (actividad[i] === -2 ? 0 : 1);
+                        puntajes[i] += (actividad[i] === -2 ? 0 : actividad[i]);
+                    }
+            });
+            for (let i = 0; i < 7; i++){
+                promedios += Math.round(puntajes[i]/dividendos[i]);
+            }
+        }
+        console.log(dividendos);
+        console.log(puntajes);
+        this.tareasAsignadas.innerText = filas.length;
+        this.tareasPromediadas.innerText = actividades.length;
+        this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedios/7) : "No hay tareas completadas";
+        console.log(promedios/7);
     }
 
 }
