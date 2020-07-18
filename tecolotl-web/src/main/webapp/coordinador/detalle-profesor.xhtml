@@ -65,7 +65,7 @@
                         <h:commandLink  >
                             <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
                             <f:ajax render="mapamental-total2 mapamental-pendiente2 relacionar-total2 relacionar-pendiente2 gramatica-pendiente2 gramatica-total2 completar-pendiete2 completar-total2
-                                            relacionar-oracion-total2 relacionar-oracion-pendiete2 oraciones-pendiete2 oraciones-total2"
+                                            relacionar-oracion-total2 relacionar-oracion-pendiete2 oraciones-pendiete2 oraciones-total2 trancipcion-pendiete2 trancipcion-total2"
                                     listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
                         </h:commandLink>
                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-tareas">
@@ -109,7 +109,11 @@
                                     <td><h:outputText id="completar-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.completarPendiente}"/></td>
                                     <td><h:outputText id="completar-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.completarTotal}"/></td>
                                 </tr>
-
+                                <tr>
+                                    <td class="uk-text-left">Transcripcion</td>
+                                    <td><h:outputText id="trancipcion-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.transcripcionPendientes}"/></td>
+                                    <td><h:outputText id="trancipcion-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.transcripcionTotal}"/></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </h:panelGroup>

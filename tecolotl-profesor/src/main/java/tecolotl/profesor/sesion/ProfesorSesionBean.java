@@ -196,7 +196,7 @@ public class ProfesorSesionBean implements Serializable {
                 "round(avg(promedio.promedio_general)) AS promedio_grupo FROM profesor.grupo g JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN " +
                 "alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno LEFT JOIN(SELECT id_tarea, CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada " +
                 "FROM profesor.califica_tarea_mapamental GROUP BY id_tarea) AS ctm On t.id = ctm.id_tarea LEFT JOIN(SELECT id_tarea,CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada " +
-                "FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS ctg ON ctg.id_tarea = t.id JOIN(SELECT promedio.id_alumno, avg(promedio.promedio_general) AS promedio_general FROM (SELECT " +
+                "FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS ctg ON ctg.id_tarea = t.id LEFT JOIN(SELECT promedio.id_alumno, avg(promedio.promedio_general) AS promedio_general FROM (SELECT " +
                 "id_alumno,unnest(Array [avg(calificacion_trancipcion),avg(calificacion_mapamental),avg(calificacion_relaciona_imagen),avg(calificacion_gramatica),avg(calificacion_oraciones)," +
                 "avg(calificacion_relacionar_oraciones),avg(calificacion_completar)]) AS promedio_general FROM alumno.calificacion WHERE " +
                 "(calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_completar ISNULL OR calificacion_completar <> 0) AND " +

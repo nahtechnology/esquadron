@@ -7,6 +7,8 @@ import java.util.UUID;
 public class TareasPendientesGrupoModelo {
 
     private UUID id;
+    private int transcripcionTotal;
+    private int transcripcionPendientes;
     private int mapamentalTotal;
     private int mapamentalPendientes;
     private int relacionarTotal;
@@ -25,6 +27,7 @@ public class TareasPendientesGrupoModelo {
 
     public TareasPendientesGrupoModelo(TareasPendientesGrupoVistaEntidad entidad) {
         id = entidad.getId();
+        transcripcionTotal = entidad.getTranscripcionTotal();
         mapamentalTotal = entidad.getMapamentalTotal();
         mapamentalPendientes = entidad.getMapamentalPendientes();
         relacionarTotal = entidad.getRelacionarTotal();
@@ -141,5 +144,21 @@ public class TareasPendientesGrupoModelo {
 
     public void setCompletarPendiente(int completarPendiente) {
         this.completarPendiente = completarPendiente;
+    }
+
+    public int getTranscripcionTotal() {
+        return transcripcionTotal;
+    }
+
+    public void setTranscripcionTotal(int transcripcionTotal) {
+        this.transcripcionTotal = transcripcionTotal;
+    }
+
+    public int getTranscripcionPendientes() {
+        return transcripcionPendientes;
+    }
+
+    public void setTranscripcionPendientes(int transcripcionPendientes) {
+        this.transcripcionPendientes = transcripcionPendientes;
     }
 }

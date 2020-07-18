@@ -17,6 +17,8 @@ import java.util.UUID;
 public class TareasPendientesGrupoVistaEntidad {
 
     private UUID id;
+    private int transcripcionTotal;
+    private int transcripcionPendientes;
     private int mapamentalTotal;
     private int mapamentalPendientes;
     private int relacionarTotal;
@@ -37,6 +39,24 @@ public class TareasPendientesGrupoVistaEntidad {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @Column(name = "transcripcion_total")
+    public int getTranscripcionTotal() {
+        return transcripcionTotal;
+    }
+
+    public void setTranscripcionTotal(int transcripcionTotal) {
+        this.transcripcionTotal = transcripcionTotal;
+    }
+
+    @Column(name = "transcripcion_pendientes")
+    public int getTranscripcionPendientes() {
+        return transcripcionPendientes;
+    }
+
+    public void setTranscripcionPendientes(int transcripcionPendientes) {
+        this.transcripcionPendientes = transcripcionPendientes;
     }
 
     @Column(name = "mapamental_total")
