@@ -60,10 +60,10 @@
                     <p style="margin: 0; display: flex; justify-content: space-between;">Word Game: <span>${calificacionPendientesModelo.pendientesGramatica}</span></p>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Tareas</f:facet>
+                    <f:facet name="header">Actividades</f:facet>
                     <div class="uk-inline">
                         <h:commandLink  >
-                            <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                            <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
                             <f:ajax render="mapamental-total2 mapamental-pendiente2 relacionar-total2 relacionar-pendiente2 gramatica-pendiente2 gramatica-total2 completar-pendiete2 completar-total2
                                             relacionar-oracion-total2 relacionar-oracion-pendiete2 oraciones-pendiete2 oraciones-total2 trancipcion-pendiete2 trancipcion-total2"
                                     listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
@@ -73,8 +73,8 @@
                             <table class="tabla-detalles-tareas">
                                 <thead class="uk-background-primary">
                                 <tr>
-                                    <th>Hw</th>
-                                    <th>pendientes</th>
+                                    <th>actividades</th>
+                                    <th style="white-space: nowrap">sin responder</th>
                                     <th>totales</th>
                                 </tr>
                                 </thead>
@@ -204,12 +204,12 @@
                         <h:column>
                             <f:facet name="header">Promedios</f:facet>
                             <div class="uk-inline">
-                            <span class="puntero"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                            <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
                             <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                 <table class="tabla-detalles-tareas-alumno">
                                     <thead>
                                     <tr>
-                                        <th>Hw</th>
+                                        <th>Actividades</th>
                                         <th>Promedio</th>
                                     </tr>
                                     </thead>
@@ -280,6 +280,7 @@
     </ui:define>
     <ui:define name="file-js">
         <script type="application/javascript">
+
             function evt(elemento) {
                 let padre = elemento.parentElement.parentElement.parentElement;
                 let abuelo = padre.parentElement.parentElement;
@@ -287,7 +288,26 @@
                 let grupo = abuelo.querySelectorAll("td")[1].innerText;
                 let tituloTabla = document.querySelector('.titulo-grupo > span').innerText = grado + " " + grupo;
                 UIkit.dropdown(padre).hide(false);
+
             }
+            function fondoDropdown(nodo) {
+                let padre = nodo.parentElement.parentElement;
+                let dropdown = padre.querySelector('.uk-dropdown');
+                if (nodo.dataset.asignado === "false"){
+                    UIkit.util.on(dropdown,'show',function () {
+                        let contenedor = document.createElement('div');
+                        contenedor.classList.add('contenedor-dropdown');
+                        document.body.appendChild(contenedor);
+                    });
+                    UIkit.util.on(dropdown,'hidden',function () {
+                        let contenedor = document.querySelector('.contenedor-dropdown');
+                        contenedor.remove();
+                    });
+                    nodo.dataset.asignado = "true";
+                }
+
+            }
+
         </script>
         <h:outputScript library="js" name="paginacion-tablas.js"/>
         <script type="application/javascript">
