@@ -1,10 +1,8 @@
 package tecolotl.web.coordinador.controlador;
 
 import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.profesor.modelo.CalificacionPendientesModelo;
-import tecolotl.profesor.modelo.ProfesorModelo;
-import tecolotl.profesor.modelo.PromedioAlumnoModelo;
-import tecolotl.profesor.modelo.TareasPendientesGrupoModelo;
+import tecolotl.profesor.modelo.*;
+import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 import tecolotl.profesor.sesion.TareasAlumnoSesionBean;
@@ -34,17 +32,36 @@ public class DetalleProfesorControlador implements Serializable {
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     @Inject
+    private CicloEscolarSessionBean cicloEscolarSessionBean;
+
+    @Inject
+    private CoordinadorControlador coordinadorControlador;
+
+    @Inject
     private Logger logger;
 
     private String idProfesor;
     private ProfesorModelo profesorModelo;
+    private int cicloEscolarModeloHascode;
     private List<CalificacionPendientesModelo> calificacionPendientesModeloLista;
     private List<PromedioAlumnoModelo> promedioAlumnoModeloLista;
+    private List<CicloEscolarModelo> cicloEscolarModeloLists;
     private TareasPendientesGrupoModelo tareasPendientesGrupoModelo;
 
     public void inicio() {
         profesorModelo = profesorSesionBean.busca(UUID.fromString(idProfesor));
-        calificacionPendientesModeloLista = profesorSesionBean.buscaTotalCalificado(UUID.fromString(idProfesor));
+        if (profesorModelo != null) {
+            cicloEscolarModeloLists = cicloEscolarSessionBean.busca(
+                    coordinadorControlador.getEscuelaBaseModelo().getClaveCentroTrabajo(),
+                    true,
+                    UUID.fromString(idProfesor));
+            if (!cicloEscolarModeloLists.isEmpty()) {
+                calificacionPendientesModeloLista = profesorSesionBean.buscaTotalCalificado(UUID.fromString(idProfesor),
+                        cicloEscolarModeloLists.get(0).getInicio(),
+                        cicloEscolarModeloLists.get(0).getFin());
+                logger.info(String.valueOf(cicloEscolarModeloLists.get(0).hashCode()));
+            }
+        }
     }
 
     public void buscaTareasPendientes(String idGrupo) {
@@ -53,6 +70,18 @@ public class DetalleProfesorControlador implements Serializable {
 
     public void buscaAlumno(String idGrupo) {
         promedioAlumnoModeloLista = grupoAlumnoSesionBean.promedioAlumno(UUID.fromString(idGrupo));
+    }
+
+    public void seleccionCicloEscolar() {
+        for (CicloEscolarModelo cicloEscolarModelo1 : cicloEscolarModeloLists) {
+            if (cicloEscolarModelo1.hashCode() == cicloEscolarModeloHascode) {
+                calificacionPendientesModeloLista = profesorSesionBean.buscaTotalCalificado(profesorModelo.getId(),
+                        cicloEscolarModelo1.getInicio(),
+                        cicloEscolarModelo1.getFin());
+                promedioAlumnoModeloLista = null;
+                break;
+            }
+        }
     }
 
     public String getIdProfesor() {
@@ -93,5 +122,21 @@ public class DetalleProfesorControlador implements Serializable {
 
     public void setProfesorModelo(ProfesorModelo profesorModelo) {
         this.profesorModelo = profesorModelo;
+    }
+
+    public List<CicloEscolarModelo> getCicloEscolarModeloLists() {
+        return cicloEscolarModeloLists;
+    }
+
+    public void setCicloEscolarModeloLists(List<CicloEscolarModelo> cicloEscolarModeloLists) {
+        this.cicloEscolarModeloLists = cicloEscolarModeloLists;
+    }
+
+    public int getCicloEscolarModeloHascode() {
+        return cicloEscolarModeloHascode;
+    }
+
+    public void setCicloEscolarModeloHascode(int cicloEscolarModeloHascode) {
+        this.cicloEscolarModeloHascode = cicloEscolarModeloHascode;
     }
 }

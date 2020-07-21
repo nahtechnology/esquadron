@@ -38,6 +38,10 @@
                 </div>
             </div>
             <h:form id="formulario-detalle-grupo">
+            <h:selectOneMenu id="seleccion-ciclo-escolar" value="#{detalleProfesorControlador.cicloEscolarModeloHascode}">
+                <f:selectItems value="#{detalleProfesorControlador.cicloEscolarModeloLists}" var="cicloEscolarModelo" itemLabel="${cicloEscolarModelo.descripcion}" itemValue="#{cicloEscolarModelo.hashCode()}"/>
+                <f:ajax execute="@this" listener="#{detalleProfesorControlador.seleccionCicloEscolar}" render="tabla-grupo"/>
+            </h:selectOneMenu>
             <h:dataTable value="#{detalleProfesorControlador.calificacionPendientesModeloLista}"
                          id="tabla-grupo"
                          var="calificacionPendientesModelo"
@@ -56,8 +60,8 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">pendientes por calificar </f:facet>
-                    <p style="margin: 0; display: flex; justify-content: space-between;">Think-Develop and Share: <span>${calificacionPendientesModelo.pendientesMapaMental}</span></p>
-                    <p style="margin: 0; display: flex; justify-content: space-between;">Word Game: <span>${calificacionPendientesModelo.pendientesGramatica}</span></p>
+                    <p style="margin: 0; display: flex; justify-content: space-between;">Think-Develop and Share: <span><h:outputText value="${empty calificacionPendientesModelo.pendientesMapaMental ? 'N/A' : calificacionPendientesModelo.pendientesMapaMental}"/></span></p>
+                    <p style="margin: 0; display: flex; justify-content: space-between;">Word Game: <span><h:outputText value="${empty calificacionPendientesModelo.pendientesGramatica ? 'N/A' : calificacionPendientesModelo.pendientesGramatica}"/></span></p>
                 </h:column>
                 <h:column>
                     <f:facet name="header">Tareas</f:facet>
