@@ -66,7 +66,7 @@
                 <h:column>
                     <f:facet name="header">Actividades</f:facet>
                     <div class="uk-inline">
-                        <h:commandLink  >
+                        <h:commandLink  rendered="#{calificacionPendientesModelo.tareasAsignadas ne 0}">
                             <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
                             <f:ajax render="mapamental-total2 mapamental-pendiente2 relacionar-total2 relacionar-pendiente2 gramatica-pendiente2 gramatica-total2 completar-pendiete2 completar-total2
                                             relacionar-oracion-total2 relacionar-oracion-pendiete2 oraciones-pendiete2 oraciones-total2 trancipcion-pendiete2 trancipcion-total2"
@@ -125,16 +125,15 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">promedio general grupo</f:facet>
-                    ${calificacionPendientesModelo.promedio}%
+                    <h:outputText value="${empty calificacionPendientesModelo.promedio ? 0 : calificacionPendientesModelo.promedio}"/> %
                 </h:column>
-
                 <h:column>
                     <f:facet name="header">${etiqueta['detail']}</f:facet>
                     <button class="uk-icon-button" uk-icon="more-vertical"/>
                     <h:panelGroup layout="block" styleClass="uk-dropdown uk-text-primary" pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
                             <li class="uk-text-left">
-                                <h:commandLink onclick="evt(this);">
+                                <h:commandLink onclick="evt(this);" disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}">
                                     <h:outputText  styleClass="uk-icon uk-margin-small-right uk-text-primary" pt:uk-icon="file-edit"/>
                                     <span>#{etiqueta['detail']}</span>
                                     <f:ajax render="formulario-alumno"
