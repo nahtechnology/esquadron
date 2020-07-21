@@ -22,7 +22,7 @@
             </ul>
 
         <div class="borde-menu2">
-            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" onclick=" limpiarSession()" value="#{etiqueta['close.sesion']}"/></h:form>
         </div>
 
         <div class="uk-navbar-left uk-hidden@m">

@@ -23,7 +23,7 @@
                 <li><h:link outcome="tareas" value="#{profesor['think-develop.and.share']}"/></li>
                 <li><span>Rate #{profesor['think-develop.and.share']}</span></li>
                 <li>
-                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
+                    <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" onclick=" limpiarSession()" value="#{etiqueta['close.sesion']}"/></h:form>
                 </li>
             </ul>
 
