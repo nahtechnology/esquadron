@@ -34,7 +34,7 @@
 
 .tabla-detalles-tareas,.tabla-detalles-tareas-alumno{
     color: black;
-    font-size: 14px;
+    font-size: 15px;
     box-shadow: none;
     border-collapse: collapse;
 }
@@ -51,4 +51,13 @@
     padding: 3px;
     font-size: 14px;
     background-color: #1e87f0!important;
+}
+.contenedor-dropdown{
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.8);
 }
