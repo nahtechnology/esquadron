@@ -189,7 +189,7 @@ public class CoordinadorSesionBean {
         query.setParameter(2, claveCentroTrabajo);
         Object[] objects = (Object[])query.getSingleResult();
         personaActivaModelo.setBloqueado((Boolean)objects[0]);
-        personaActivaModelo.setDias((Integer)objects[1]);
+        personaActivaModelo.setDias(((Double)objects[1]).intValue());
         return personaActivaModelo;
     }
 

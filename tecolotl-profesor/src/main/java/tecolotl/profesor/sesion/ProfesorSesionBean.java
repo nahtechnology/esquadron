@@ -232,7 +232,7 @@ public class ProfesorSesionBean implements Serializable {
         query.setParameter(1, idProfesor);
         Object[] objects = (Object[])query.getSingleResult();
         personaActivaModelo.setBloqueado((Boolean)objects[0]);
-        personaActivaModelo.setDias((Integer)objects[1]);
+        personaActivaModelo.setDias(((Double)objects[1]).intValue());
         return personaActivaModelo;
     }
 }
