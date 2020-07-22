@@ -18,7 +18,7 @@
     </ul>
 </ui:define>
 <ui:define name="contenido">
-    <h1>dashboard</h1>
+    <h1>#{coordinador['dashboard.title']}</h1>
     <section class="contenido">
         <h:outputStylesheet library="css" name="/coordinador/coordinador.css"/>
 
@@ -48,39 +48,39 @@
         </div>
         </ui:remove>
         <div class="tabla">
-            <h3>Profesores</h3>
+            <h3>#{coordinador['dashboard.title.teacher']}</h3>
             <h:dataTable value="#{coordinadorDashboardControlador.profesorGrupoAlumnoModeloLista}"
                          var="profesorGrupoAlumnoModelo"
                          styleClass="uk-table uk-table-hover uk-table-divider"
                          headerClass="uk-background-primary"   >
                 <h:column>
-                    <f:facet name="header">Nombre</f:facet>
+                    <f:facet name="header">#{coordinador['dashboard.table.titulo.name']}</f:facet>
                     ${profesorGrupoAlumnoModelo.nombre} ${profesorGrupoAlumnoModelo.apellidoPaterno} ${profesorGrupoAlumnoModelo.apellidoMaterno}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Total grupo</f:facet>
+                    <f:facet name="header">#{coordinador['dashboard.table.group']}</f:facet>
                     ${profesorGrupoAlumnoModelo.totalGrupo}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Total alumno</f:facet>
+                    <f:facet name="header">#{coordinador['dashboard.table.student']}</f:facet>
                     ${profesorGrupoAlumnoModelo.totalAlumno}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Opciones</f:facet>
+                    <f:facet name="header">#{coordinador['dashboard.table.options']}</f:facet>
                     <button class="uk-icon-button" uk-icon="more-vertical"/>
                     <h:panelGroup layout="block" styleClass="uk-dropdown"  pt:uk-dropdown="mode: click; boundary: .uk-table">
                         <ul class="uk-nav uk-dropdown-nav">
                             <li class="uk-text-left">
                                 <h:link outcome="detalles"  >
                                     <h:outputText  styleClass="uk-icon uk-margin-small-right " pt:uk-icon="file-edit"/>
-                                    <span>#{etiqueta['detail']}</span>
+                                    <span>#{coordinador['dashboard.table.detail']}</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
                             <li class="uk-text-left">
                                 <h:link outcome="login" >
                                     <h:panelGroup pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right"/>
-                                    <span>login</span>
+                                    <span>#{coordinador['teacher.detail.table.grup.platform.time']}</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
