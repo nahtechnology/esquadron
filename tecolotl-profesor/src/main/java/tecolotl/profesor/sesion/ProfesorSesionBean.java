@@ -5,6 +5,7 @@ import tecolotl.administracion.modelo.escuela.EscuelaPoblacionModelo;
 import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.EscuelaLlavePrimariaValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.modelo.PersonaActivaModelo;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
 import tecolotl.profesor.entidad.ProfesorEntidad;
 import tecolotl.profesor.modelo.CalificacionPendientesModelo;
@@ -222,4 +223,16 @@ public class ProfesorSesionBean implements Serializable {
         }).collect(Collectors.toList());
     }
 
+    public PersonaActivaModelo activo(@NotNull UUID idProfesor) {
+        PersonaActivaModelo personaActivaModelo = new PersonaActivaModelo();
+        Query query = entityManager.createNativeQuery("SELECT e.bloqueo_profesor AS bloqueado," +
+                "date_part('day', max(l.inicio) + interval '1 year' - current_date) AS dias FROM administracion.escuela e JOIN " +
+                "administracion.licencia l ON e.clave_centro_trabajo = l.id_escuela JOIN profesor.profesor p ON e.clave_centro_trabajo = p.id_escuela " +
+                "WHERE p.id = ? GROUP BY e.clave_centro_trabajo");
+        query.setParameter(1, idProfesor);
+        Object[] objects = (Object[])query.getSingleResult();
+        personaActivaModelo.setBloqueado((Boolean)objects[0]);
+        personaActivaModelo.setDias((Integer)objects[1]);
+        return personaActivaModelo;
+    }
 }

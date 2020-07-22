@@ -5,6 +5,7 @@ import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;
+import tecolotl.nucleo.modelo.PersonaActivaModelo;
 import tecolotl.nucleo.modelo.UsuarioSesionModelo;
 import tecolotl.nucleo.sesion.SesionControlSingleton;
 
@@ -40,11 +41,13 @@ public class AlumnoControlador implements Serializable {
     private List<TareaActividadModelo> tareaActvidadModeloLista;
     private TareaActividadModelo tareaActividadModelo;
     private ActividadModelo actividadModeloBibliotecaLibre;
+    private PersonaActivaModelo personaActivaModelo;
 
     @PostConstruct
     public void init() {
         Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
+        personaActivaModelo = alumnoSesionBean.activo(alumnoModelo.getId());
         buscaTareas(principal);
     }
 
@@ -105,5 +108,13 @@ public class AlumnoControlador implements Serializable {
 
     public void setActividadModeloBibliotecaLibre(ActividadModelo actividadModeloBibliotecaLibre) {
         this.actividadModeloBibliotecaLibre = actividadModeloBibliotecaLibre;
+    }
+
+    public PersonaActivaModelo getPersonaActivaModelo() {
+        return personaActivaModelo;
+    }
+
+    public void setPersonaActivaModelo(PersonaActivaModelo personaActivaModelo) {
+        this.personaActivaModelo = personaActivaModelo;
     }
 }

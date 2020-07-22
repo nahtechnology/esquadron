@@ -8,6 +8,10 @@
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
 <ui:composition template="/template/administracion/dashboard.xhtml">
+    <f:metadata>
+        <f:viewParam name="escuela" value="#{detalleEscuelaControlador.escuela}"/>
+        <f:viewAction action="#{detalleEscuelaControlador.iniicio}"/>
+    </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{etiqueta['menu']}</li>
@@ -56,6 +60,22 @@
                             <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="licencias" value="#{administracion['schooldetail.licensetotal']}" />
                             <div class="uk-form-controls">
                                 <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-6@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="Bloqueo alumno"/>
+                            <div class="uk-form-controls">
+                                <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoAlumno}">
+                                    <f:ajax listener="#{detalleEscuelaControlador.bloqueoAlumno}"/>
+                                </h:selectBooleanCheckbox>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-6@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="Bloqueo Otros"/>
+                            <div class="uk-form-controls">
+                                <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoProfesor}">
+                                    <f:ajax listener="#{detalleEscuelaControlador.bloqueaProfesor}"/>
+                                </h:selectBooleanCheckbox>
                             </div>
                         </div>
                         <div class="uk-width-2-5@m uk-width-1-1@s">
@@ -342,6 +362,7 @@
                 </div>
             </div>
         </h:panelGroup>
+<!--        Modal agreagr contacto          -->
         <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header uk-background-secondary">
@@ -427,6 +448,7 @@
                 </h:form>
             </div>
         </h:panelGroup>
+<!--        Modal eliminar contacto         -->
         <h:panelGroup layout="block" id="modal-eliminar-contacto" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-eliminar-contacto">
@@ -452,6 +474,7 @@
                 </h:form>
             </div>
         </h:panelGroup>
+<!--        Modal licencia                  -->
         <h:panelGroup layout="block" id="modal-licencia" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-modal-licencia" styleClass="uk-form-stacked">

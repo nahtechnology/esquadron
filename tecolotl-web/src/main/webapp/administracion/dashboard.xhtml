@@ -165,9 +165,14 @@
                                         #{escuela.nombre}
                                     </h:column>
                                     <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                        <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.active']}</span></f:facet>
-                                        <h:outputText rendered="#{escuela.activo}" pt:uk-icon="check"/>
-                                        <h:outputText rendered="#{not escuela.activo}" pt:uk-icon="ban"/>
+                                        <f:facet name="header"><span class="letra-titulo">Alumno #{administracion['catalogoadministrativo.school.table.active']}</span></f:facet>
+                                        <h:outputText rendered="#{not escuela.bloqueoAlumno}" pt:uk-icon="check"/>
+                                        <h:outputText rendered="#{escuela.bloqueoAlumno}" pt:uk-icon="ban"/>
+                                    </h:column>
+                                    <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
+                                        <f:facet name="header"><span class="letra-titulo">Otros #{administracion['catalogoadministrativo.school.table.active']}</span></f:facet>
+                                        <h:outputText rendered="#{not escuela.bloqueoProfesor}" pt:uk-icon="check"/>
+                                        <h:outputText rendered="#{escuela.bloqueoProfesor}" pt:uk-icon="ban"/>
                                     </h:column>
                                     <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
                                         <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.licenses']}</span></f:facet>
@@ -199,20 +204,6 @@
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['edit']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
                                                         <f:ajax render="formulario-escuela" onevent="function cierra(data) { abreModal('modal-escuela') }"/>
-                                                    </h:commandLink>
-                                                </li>
-                                                <li>
-                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-bloqueo" rendered="#{escuela.activo}">
-                                                        <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['block']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
-                                                        <f:ajax render="formulario-bloqueo" onevent="function funcion(data) { abreModal('modal-bloqueo') }"/>
-                                                    </h:commandLink>
-                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{not escuela.activo}" action="#{escuelaDashboardControlador.activa}">
-                                                        <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['active']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                        <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
-                                                        <f:ajax render="@form"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li class="uk-nav-divider"/>

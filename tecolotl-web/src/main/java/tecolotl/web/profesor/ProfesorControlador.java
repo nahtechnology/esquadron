@@ -2,6 +2,7 @@ package tecolotl.web.profesor;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.sesion.LicenciaSesionBean;
+import tecolotl.nucleo.modelo.PersonaActivaModelo;
 import tecolotl.nucleo.modelo.UsuarioSesionModelo;
 import tecolotl.nucleo.sesion.SesionControlSingleton;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
@@ -36,6 +37,7 @@ public class ProfesorControlador implements Serializable {
     private HttpServletRequest httpServletRequest;
 
     private ProfesorModelo profesorModelo;
+    private PersonaActivaModelo personaActivaModelo;
 
     @PostConstruct
     public void inicio() {
@@ -48,6 +50,7 @@ public class ProfesorControlador implements Serializable {
                 UsuarioSesionModelo.Tipo.PROFESOR,
                 new Date(),
                 profesorModelo.getId());
+        personaActivaModelo = profesorSesionBean.activo(profesorModelo.getId());
     }
 
     public String cerrarSesion() throws IOException {
@@ -64,4 +67,11 @@ public class ProfesorControlador implements Serializable {
         this.profesorModelo = profesorModelo;
     }
 
+    public PersonaActivaModelo getPersonaActivaModelo() {
+        return personaActivaModelo;
+    }
+
+    public void setPersonaActivaModelo(PersonaActivaModelo personaActivaModelo) {
+        this.personaActivaModelo = personaActivaModelo;
+    }
 }

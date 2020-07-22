@@ -7,18 +7,24 @@ import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.sesion.LicenciaSesionBean;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class DetalleEscuelaControlador {
+public class DetalleEscuelaControlador implements Serializable {
 
     private List<LicenciaModelo> licenciaModeloLista;
     private EscuelaDetalleModelo escuelaDetalleModelo;
+    private String escuela;
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private EscuelaSesionBean escuelaSesionBean;
@@ -26,11 +32,17 @@ public class DetalleEscuelaControlador {
     @Inject
     private LicenciaSesionBean licenciaSesionBean;
 
-    @PostConstruct
-    public void init() {
-        String claveCentroTrabajo = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("escuela");
-        escuelaDetalleModelo = escuelaSesionBean.busca(claveCentroTrabajo);
-        licenciaModeloLista = licenciaSesionBean.busca(claveCentroTrabajo);
+    public void iniicio() {
+        escuelaDetalleModelo = escuelaSesionBean.busca(escuela);
+        licenciaModeloLista = licenciaSesionBean.busca(escuela);
+    }
+
+    public void bloqueaProfesor() {
+        escuelaSesionBean.bloqueProfesor(escuelaDetalleModelo.getClaveCentroTrabajo(), escuelaDetalleModelo.isBloqueoProfesor());
+    }
+
+    public void bloqueoAlumno() {
+        escuelaSesionBean.bloqueAlumno(escuelaDetalleModelo.getClaveCentroTrabajo(), escuelaDetalleModelo.isBloqueoAlumno());
     }
 
     public EscuelaDetalleModelo getEscuelaDetalleModelo() {
@@ -49,4 +61,11 @@ public class DetalleEscuelaControlador {
         this.licenciaModeloLista = licenciaModeloLista;
     }
 
+    public String getEscuela() {
+        return escuela;
+    }
+
+    public void setEscuela(String escuela) {
+        this.escuela = escuela;
+    }
 }

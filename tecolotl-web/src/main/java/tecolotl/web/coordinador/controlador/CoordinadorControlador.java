@@ -4,6 +4,7 @@ import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.sesion.CoordinadorSesionBean;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
+import tecolotl.nucleo.modelo.PersonaActivaModelo;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -25,6 +26,7 @@ public class CoordinadorControlador implements Serializable {
 
     private CoordinadorModelo coordinadorModelo;
     private EscuelaBaseModelo escuelaBaseModelo;
+    private PersonaActivaModelo personaActivaModelo;
 
     @PostConstruct
     public void inicio() {
@@ -32,6 +34,7 @@ public class CoordinadorControlador implements Serializable {
         String busqueda[] = principal.getName().split(",");
         coordinadorModelo = coordinadorSesionBean.busca(Integer.parseInt(busqueda[1]), busqueda[0]);
         escuelaBaseModelo = escuelaSesionBean.busca(Integer.parseInt(busqueda[1]));
+        personaActivaModelo = coordinadorSesionBean.activo(coordinadorModelo.getContador(), coordinadorModelo.getClaveCentroTrabajo());
     }
 
     public String cerrarSesion() {

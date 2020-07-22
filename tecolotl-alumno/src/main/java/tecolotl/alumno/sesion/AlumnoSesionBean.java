@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.AlumnoEntidad;
 import tecolotl.alumno.entidad.vista.TareaAlumnoVistaEntidad;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.DetalleAlumnoModelo;
+import tecolotl.nucleo.modelo.PersonaActivaModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -74,6 +75,19 @@ public class AlumnoSesionBean implements Serializable {
         query.setParameter("idAlumno", idAlumno);
         query.setParameter("nivel", nivel);
         return query.executeUpdate();
+    }
+
+    public PersonaActivaModelo activo(@NotNull UUID idAlumno) {
+        PersonaActivaModelo personaActivaModelo = new PersonaActivaModelo();
+        Query query = entityManager.createNativeQuery("SELECT e.bloqueo_alumno AS bloqueado," +
+                "cast(date_part('day', max(l.inicio) + interval '1 year' - current_date) AS INTEGER) AS dias FROM administracion.escuela e JOIN " +
+                "administracion.licencia l ON e.clave_centro_trabajo = l.id_escuela JOIN profesor.grupo g ON g.id_escuela = e.clave_centro_trabajo JOIN " +
+                "profesor.grupo_alumno ga ON g.id = ga.id_grupo WHERE ga.id_alumno = ? GROUP BY e.clave_centro_trabajo");
+        query.setParameter(1, idAlumno);
+        Object[] objects = (Object[]) query.getSingleResult();
+        personaActivaModelo.setBloqueado((Boolean)objects[0]);
+        personaActivaModelo.setDias((Integer)objects[1]);
+        return personaActivaModelo;
     }
 
 }

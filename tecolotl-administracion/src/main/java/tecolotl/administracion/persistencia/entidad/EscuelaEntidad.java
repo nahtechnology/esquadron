@@ -31,14 +31,23 @@ import java.util.StringJoiner;
 		query = "SELECT new EscuelaEntidad (e.claveCentroTrabajo, e.galaxia) FROM EscuelaEntidad e"),
 	@NamedQuery(
 		name = "EscuelaEntidad.buscaPorGalaxia",
-		query = "SELECT e FROM EscuelaEntidad e WHERE e.galaxia = :galaxia"
-	)
+		query = "SELECT e FROM EscuelaEntidad e WHERE e.galaxia = :galaxia"),
+	@NamedQuery(
+		name = "EscuelaEntidad.bloqueaAlumno",
+		query = "UPDATE EscuelaEntidad e SET e.bloqueoAlumno = :bloque WHERE e.claveCentroTrabajo = :claveCentroTrabajo"
+	),
+		@NamedQuery(
+				name = "EscuelaEntidad.bloqueaProfesor",
+				query = "UPDATE EscuelaEntidad e SET e.bloqueoProfesor = :bloque WHERE e.claveCentroTrabajo = :claveCentroTrabajo"
+		)
 })
 public class EscuelaEntidad {
 
     private String claveCentroTrabajo;
     private String nombre;
 	private Integer galaxia;
+	private boolean bloqueoAlumno;
+	private boolean bloqueoProfesor;
 	private MotivoBloqueoEntidad motivoBloqueoEntidad;
 	private List<ContactoEntidad> contactoEntidadLista;
 
@@ -100,6 +109,26 @@ public class EscuelaEntidad {
 
 	public void setGalaxia(Integer galaxia) {
 		this.galaxia = galaxia;
+	}
+
+	@Basic
+	@Column(name = "bloqueo_alumno")
+	public boolean isBloqueoAlumno() {
+		return bloqueoAlumno;
+	}
+
+	public void setBloqueoAlumno(boolean bloqueoAlumno) {
+		this.bloqueoAlumno = bloqueoAlumno;
+	}
+
+	@Basic
+	@Column(name = "bloqueo_profesor")
+	public boolean isBloqueoProfesor() {
+		return bloqueoProfesor;
+	}
+
+	public void setBloqueoProfesor(boolean bloqueoProfesor) {
+		this.bloqueoProfesor = bloqueoProfesor;
 	}
 
 	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad", fetch = FetchType.LAZY)

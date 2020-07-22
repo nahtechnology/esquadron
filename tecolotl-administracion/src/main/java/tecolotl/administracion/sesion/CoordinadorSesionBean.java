@@ -7,6 +7,7 @@ import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.validacion.escuela.CoordinadorLlavePrimaria;
 import tecolotl.administracion.validacion.escuela.CoordinadorNuevoValidacion;
 import tecolotl.nucleo.herramienta.ValidadorSessionBean;
+import tecolotl.nucleo.modelo.PersonaActivaModelo;
 import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.persistencia.entidad.PersonaMotivoBloqueoEntidad;
 import tecolotl.nucleo.validacion.PersonaNuevaValidacion;
@@ -15,6 +16,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -176,6 +178,19 @@ public class CoordinadorSesionBean {
         coordinadorEntidadPK.setContador(coordinadorModelo.getContador());
         logger.fine("Llave primaria del coordinador:".concat(coordinadorEntidadPK.toString()));
         return coordinadorEntidadPK;
+    }
+
+    public PersonaActivaModelo activo(Short contador, String claveCentroTrabajo) {
+        PersonaActivaModelo personaActivaModelo = new PersonaActivaModelo();
+        Query query = entityManager.createNativeQuery("SELECT e.bloqueo_profesor AS bloqueado, date_part('day', max(l.inicio) + interval '1 year' - current_date) AS dias " +
+                "FROM administracion.escuela e JOIN administracion.licencia l ON e.clave_centro_trabajo = l.id_escuela JOIN administracion.coordinador c ON e.clave_centro_trabajo = c.id_escuela " +
+                "WHERE c.contador = ? AND c.id_escuela = ? GROUP BY e.clave_centro_trabajo");
+        query.setParameter(1, contador);
+        query.setParameter(2, claveCentroTrabajo);
+        Object[] objects = (Object[])query.getSingleResult();
+        personaActivaModelo.setBloqueado((Boolean)objects[0]);
+        personaActivaModelo.setDias((Integer)objects[1]);
+        return personaActivaModelo;
     }
 
 }

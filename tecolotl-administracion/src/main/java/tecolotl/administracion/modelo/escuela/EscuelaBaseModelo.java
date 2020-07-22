@@ -20,6 +20,10 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
 
     private Integer galaxia;
 
+    private boolean bloqueoAlumno;
+
+    private boolean bloqueoProfesor;
+
     public EscuelaBaseModelo() {
     }
 
@@ -31,11 +35,29 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
         claveCentroTrabajo = escuelaEntidad.getClaveCentroTrabajo();
         nombre = escuelaEntidad.getNombre();
         galaxia = escuelaEntidad.getGalaxia();
+        bloqueoAlumno = escuelaEntidad.isBloqueoAlumno();
+        bloqueoProfesor = escuelaEntidad.isBloqueoProfesor();
     }
 
     @Override
     public int compareTo(EscuelaBaseModelo o) {
         return claveCentroTrabajo.compareTo(o.claveCentroTrabajo);
+    }
+
+    public boolean isBloqueoAlumno() {
+        return bloqueoAlumno;
+    }
+
+    public void setBloqueoAlumno(boolean bloqueoAlumno) {
+        this.bloqueoAlumno = bloqueoAlumno;
+    }
+
+    public boolean isBloqueoProfesor() {
+        return bloqueoProfesor;
+    }
+
+    public void setBloqueoProfesor(boolean bloqueoProfesor) {
+        this.bloqueoProfesor = bloqueoProfesor;
     }
 
     public String getClaveCentroTrabajo() {

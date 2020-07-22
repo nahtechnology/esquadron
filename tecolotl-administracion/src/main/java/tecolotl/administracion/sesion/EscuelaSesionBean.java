@@ -220,13 +220,28 @@ public class EscuelaSesionBean implements Serializable {
 	}
 
 	/**
-	 * Cuenta el total de alumno que estan registrados a esta escuela
+	 * Bloque el modulo de alumno
 	 * @param claveCentroTrabajo Clave centro de trabajo de la escuela a buscar
-	 * @return Número de alumno registrados.
+	 * @param bloqueo bloque o desbloquea el modulo de alumno
 	 */
-	public Long totalAlumno(@NotNull @Size(min = 12, max = 12) String claveCentroTrabajo) {
+	public int bloqueAlumno(@NotNull @Size(min = 10, max = 12) String claveCentroTrabajo, boolean bloqueo) {
 		logger.fine(claveCentroTrabajo);
-		return  null;
-		//TODO realizar el query para la busqueda de alumnos
+		Query query = entityManager.createNamedQuery("EscuelaEntidad.bloqueaAlumno");
+		query.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		query.setParameter("bloque", bloqueo);
+		return query.executeUpdate();
+	}
+
+	/**
+	 * Bloque el modulo de profesor
+	 * @param claveCentroTrabajo Clave centro de trabajo de la escuela a buscar
+	 * @param bloqueo bloque o desbloquea el modulo de profesor y otros
+	 */
+	public int bloqueProfesor(@NotNull @Size(min = 10, max = 12) String claveCentroTrabajo, boolean bloqueo) {
+		logger.fine(claveCentroTrabajo);
+		Query query = entityManager.createNamedQuery("EscuelaEntidad.bloqueaProfesor");
+		query.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		query.setParameter("bloque", bloqueo);
+		return query.executeUpdate();
 	}
 }
