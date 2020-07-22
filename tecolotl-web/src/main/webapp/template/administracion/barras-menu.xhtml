@@ -7,13 +7,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:panelGroup layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box uk-margin-top">
         <h5 class="uk-text-uppercase">#{etiqueta['status']}</h5>
-        <h:panelGroup layout="block" >
-            <span class="uk-text-small primera-mayuscula uk-display-block">#{administracion['menu.schools']} <small>(#{estatusControlador.escuelas})</small></span>
-            <progress class="uk-progress" value="100" max="100"/>
-        </h:panelGroup>
-        <h:panelGroup layout="block">
-            <span class="uk-text-small primera-mayuscula uk-display-block">#{administracion['schooldetail.licenses']} <small>(#{estatusControlador.licencias})</small></span>
-            <progress class="uk-progress success" value="100" max="100"/>
-        </h:panelGroup>
+        <ui:repeat value="#{estatusControlador.licenciaVistaModeloLista}" var="licenciaVistaModelo">
+            <h:panelGroup layout="block" >
+                <span class="uk-text-small primera-mayuscula uk-display-block">#{licenciaVistaModelo.claveCentroTrabajo} <small>(#{licenciaVistaModelo.dias})</small></span>
+                <progress class="uk-progress #{licenciaVistaModelo.dias gt 0 ? 'advertencia' : 'peligro'}" value="#{licenciaVistaModelo.dias}" max="30"/>
+            </h:panelGroup>
+        </ui:repeat>
     </h:panelGroup>
 </html>
