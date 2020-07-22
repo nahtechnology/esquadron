@@ -58,4 +58,12 @@
 		</navigation-case>
 	</navigation-rule>
 
+	<navigation-rule>
+		<from-view-id>/sin-permiso.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>regresar</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
 </faces-config>

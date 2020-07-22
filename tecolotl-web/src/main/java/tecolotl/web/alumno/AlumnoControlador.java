@@ -11,10 +11,12 @@ import tecolotl.nucleo.sesion.SesionControlSingleton;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 import java.util.Date;
@@ -45,9 +47,17 @@ public class AlumnoControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Principal principal = externalContext.getUserPrincipal();
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
         personaActivaModelo = alumnoSesionBean.activo(alumnoModelo.getId());
+        if (personaActivaModelo.isBloqueado()) {
+            try {
+                externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml");
+            } catch (IOException ioException) {
+
+            }
+        }
         buscaTareas(principal);
     }
 

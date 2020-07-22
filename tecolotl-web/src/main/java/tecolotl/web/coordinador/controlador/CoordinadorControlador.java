@@ -8,9 +8,11 @@ import tecolotl.nucleo.modelo.PersonaActivaModelo;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
 
@@ -30,11 +32,19 @@ public class CoordinadorControlador implements Serializable {
 
     @PostConstruct
     public void inicio() {
-        Principal principal = FacesContext.getCurrentInstance().getExternalContext().getUserPrincipal();
+        ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+        Principal principal = externalContext.getUserPrincipal();
         String busqueda[] = principal.getName().split(",");
         coordinadorModelo = coordinadorSesionBean.busca(Integer.parseInt(busqueda[1]), busqueda[0]);
         escuelaBaseModelo = escuelaSesionBean.busca(Integer.parseInt(busqueda[1]));
         personaActivaModelo = coordinadorSesionBean.activo(coordinadorModelo.getContador(), coordinadorModelo.getClaveCentroTrabajo());
+        if (personaActivaModelo.isBloqueado()) {
+            try {
+                externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml");
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        }
     }
 
     public String cerrarSesion() {
