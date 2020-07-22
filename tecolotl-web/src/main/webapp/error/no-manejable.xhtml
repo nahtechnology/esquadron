@@ -7,10 +7,15 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Error Inesperado</title>
+    <h:outputStylesheet library="css" name="error.css"/>
+
 </h:head>
 <h:body>
-    Estimado usuario, por el momento no podemos atender su petición, favor de intentar más tarde
+    <div class="imagen-error">
+        <h:graphicImage library="img" name="/fondo/no-existe.svg"/>
+    </div>
+    <p>Estimado usuario, por el momento no podemos atender su petición, favor de intentar más tarde</p>
     <ui:remove><button onclick="window.history.back()">#{boton['back']}</button></ui:remove>
-    <h:button value="#{boton['back']}" outcome="regresar"/>
+    <h:button  value="#{boton['back']}" outcome="regresar"/>
 </h:body>
 </html>

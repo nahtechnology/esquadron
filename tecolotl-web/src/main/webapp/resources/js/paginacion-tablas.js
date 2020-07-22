@@ -24,7 +24,8 @@ class PaginacionTabla {
                 i= this.elementos;
             } else{filas[i].classList.remove('visibilidad');}
         }
-
+        this.btnAtras.type = "button";
+        this.btnSiguiente.type = "button";
         this.btnAtras.disabled = true;
         this.btnSiguiente.disabled = this.paginacion() <= 0;
         this.seleccionPagina.disabled = this.paginacion() <= 0;

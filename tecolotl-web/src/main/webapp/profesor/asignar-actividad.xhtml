@@ -21,7 +21,7 @@
                 </ul>
 
             <div>
-                <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
+                <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" onclick=" limpiarSession()" value="#{etiqueta['close.sesion']}"/></h:form>
             </div>
             <div class="uk-navbar-left uk-hidden@m">
                 <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>

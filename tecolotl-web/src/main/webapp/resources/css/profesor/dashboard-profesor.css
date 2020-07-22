@@ -104,3 +104,22 @@ ul > li > span {
 .visibilidad{
     display: none!important;
 }
+.mensaje-licencias{
+    width: 100%;
+    border: 3px solid crimson;
+    border-radius: 5px;
+    padding: 7px 0;
+    font-size: 14px;
+    font-weight: 900;
+    text-align: center;
+    color: crimson;
+    text-transform: uppercase;
+    position: relative;
+}
+.mensaje-licencias:hover{
+    cursor: pointer;
+}
+.cerrar-mensaje{
+    position: absolute;
+    right: 3px;
+}

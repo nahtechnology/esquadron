@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+    <h:outputStylesheet library="css" name="uikit.css"/>
+    <h:outputStylesheet library="css" name="sin-permiso.css"/>
+</h:head>
+<h:body>
+    <p class="letras-animadas"><span>O</span><span>o</span><span>p</span><span>s</span><span>!</span></p>
+    <p class="animacion-dos sin-acceso">SIN ACCESO</p>
+    <div class="imagenes-vista">
+        <h:graphicImage library="img" name="/mounstro/who.svg"/>
+        <h:graphicImage library="img" name="/mounstro/whom.svg"/>
+        <h:graphicImage library="img" name="/mounstro/whose.svg"/>
+    </div>
+    <p class="uk-margin-medium-top">Comunícate con el administrador </p>
+    <h:outputScript library="js" name="uikit.js"/>
+    <script type="application/javascript">
+        document.addEventListener('DOMContentLoaded',()=>{
+            let letras = document.querySelector('.letras-animadas');
+            let oracion = document.querySelector('.animacion-dos');
+            animacion(letras,oracion);
+            setInterval(animacion,2000,letras,oracion);
+
+        });
+        function animacion(letras, oracion) {
+            oracion.classList.remove('uk-animation-shake');
+            letras.classList.remove('animacion-uno');
+            setTimeout(()=>{
+                letras.classList.add('animacion-uno');
+            },100);
+            setTimeout(()=>{
+                oracion.classList.add('uk-animation-shake');
+
+            },1700);
+        }
+    </script>
+</h:body>
+
+</html>

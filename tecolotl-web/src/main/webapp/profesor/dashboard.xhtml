@@ -14,7 +14,7 @@
                 <li><span>#{etiqueta['home']}</span></li>
             </ul>
         <div>
-            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" value="#{etiqueta['close.sesion']}"/></h:form>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" onclick=" limpiarSession()" value="#{etiqueta['close.sesion']}"/></h:form>
         </div>
         <div class="uk-navbar-left uk-hidden@m">
             <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
@@ -325,13 +325,16 @@
             });
         </script>
         <script type="application/javascript">
+            if (sessionStorage.getItem('mensaje') === null){
+                sessionStorage.setItem('mensaje','true');
+            }
+
             function mensajeConfirmacion(element) {
                 let mensajeConfirmacion = element.nextElementSibling;
                 mensajeConfirmacion.classList.remove('visibilidad');
                 mensajeConfirmacion.querySelector('button').addEventListener('click',()=>{
                     mensajeConfirmacion.classList.add('visibilidad');
                 });
-
             }
         </script>
     </ui:define>
