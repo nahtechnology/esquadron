@@ -37,6 +37,10 @@
 			<base-name>profesor</base-name>
 			<var>profesor</var>
 		</resource-bundle>
+		<resource-bundle>
+			<base-name>coordinador</base-name>
+			<var>coordinador</var>
+		</resource-bundle>
 
 		<message-bundle>
 			validacion.Messages
