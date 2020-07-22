@@ -12,7 +12,7 @@
 </h:head>
 <h:body>
     <p class="letras-animadas"><span>O</span><span>o</span><span>p</span><span>s</span><span>!</span></p>
-    <p class="sin-acceso">SIN ACCESO</p>
+    <p class="animacion-dos sin-acceso">SIN ACCESO</p>
     <div class="imagenes-vista">
         <h:graphicImage library="img" name="/mounstro/who.svg"/>
         <h:graphicImage library="img" name="/mounstro/whom.svg"/>
@@ -22,8 +22,23 @@
     <h:outputScript library="js" name="uikit.js"/>
     <script type="application/javascript">
         document.addEventListener('DOMContentLoaded',()=>{
-           setTimeout(()=>{document.querySelector('.sin-acceso').classList.add('uk-animation-shake')},1600);
+            let letras = document.querySelector('.letras-animadas');
+            let oracion = document.querySelector('.animacion-dos');
+            animacion(letras,oracion);
+            setInterval(animacion,2000,letras,oracion);
+
         });
+        function animacion(letras, oracion) {
+            oracion.classList.remove('uk-animation-shake');
+            letras.classList.remove('animacion-uno');
+            setTimeout(()=>{
+                letras.classList.add('animacion-uno');
+            },100);
+            setTimeout(()=>{
+                oracion.classList.add('uk-animation-shake');
+
+            },1700);
+        }
     </script>
 </h:body>
 

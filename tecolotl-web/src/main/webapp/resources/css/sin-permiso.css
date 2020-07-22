@@ -81,34 +81,34 @@ p{
 p > span{
     display: inline-block;
 }
-.letras-animadas > span:first-of-type{
+.animacion-uno > span:first-of-type{
     animation-name: letras;
     animation-duration: 0.3s;
     animation-timing-function: linear;
 }
 
-.letras-animadas > span:nth-of-type(2){
+.animacion-uno > span:nth-of-type(2){
     animation-name: letras;
     animation-delay: 0.3s;
     animation-duration: 0.3s;
     animation-timing-function: linear;
 }
 
-.letras-animadas > span:nth-of-type(3){
+.animacion-uno > span:nth-of-type(3){
     animation-name: letras;
     animation-delay: 0.6s;
     animation-duration: 0.3s;
     animation-timing-function: linear;
 }
 
-.letras-animadas > span:nth-of-type(4){
+.animacion-uno > span:nth-of-type(4){
     animation-name: letras;
     animation-delay: 0.9s;
     animation-duration: 0.3s;
     animation-timing-function: linear;
 }
 
-.letras-animadas > span:nth-of-type(5){
+.animacion-uno > span:nth-of-type(5){
     animation-name: letras;
     animation-delay: 1.2s;
     animation-duration: 0.3s;
