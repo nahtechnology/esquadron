@@ -53,8 +53,8 @@ class PaginacionTabla {
         this.btnSiguiente.classList.add('uk-button','uk-button-primary','uk-margin-small-right');
         this.btnAtras.classList.add('uk-button','uk-button-primary','uk-margin-small-right');
         this.seleccionPagina.classList.add('uk-select','uk-form-width-small','uk-margin-small-right');
-        this.btnSiguiente.innerText = "next";
-        this.btnAtras.innerText = "back";
+        this.btnSiguiente.innerText = "siguiente";
+        this.btnAtras.innerText = "atras";
         for (let i = 1; i<= 5; i++){
             let opcion = document.createElement('option');
             opcion.value = `${i*5}`;

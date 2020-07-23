@@ -13,7 +13,7 @@
                     <div class="uk-navbar-item uk-hidden@m">
                         <h:graphicImage library="img" name="esquadron.svg"/>
                         <span class="titulo-blanco uk-text-capitalize">squadron</span>
-                        <h:panelGroup style="display: none" id="licencia-fecha" pt:data-licencia="15"  rendered="#{request.isUserInRole('coordinador')}"/>
+                        <h:panelGroup style="display: none" id="licencia-fecha" pt:data-licencia="#{coordinadorControladorLocal.personaActivaModelo.dias}"  rendered="#{request.isUserInRole('coordinador')}"/>
                     </div>
                     <ul class="uk-navbar-nav uk-visible@m">
                         <li>
