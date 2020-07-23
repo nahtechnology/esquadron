@@ -194,7 +194,7 @@
                                                     <h:panelGroup  id="cont#{cont.index}" layout="block" styleClass="respuestas-ordenar-lista" pt:uk-sortable="group: match-activity" pt:data-indice="#{cont.index}">
                                                         <h:panelGroup layout="block"
                                                                       rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta}"
-                                                                      styleClass="respuesta  #{relacionarOracion.relacionarOracionModelo.id eq relacionarOracion.respuesta ? 'correcto' : 'incorrecto'}">
+                                                                      styleClass="respuesta  #{relacionarOracion.relacionarOracionModelo.respuesta eq relacionarOracionControlador.respuestaVal(relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta) ? 'correcto' : 'incorrecto'}">
                                                             #{relacionarOracionControlador.respuestaVal(relacionarOracionControlador.tareaRelacionarOracionModeloLista[cont.index].respuesta)}
                                                         </h:panelGroup>
                                                     </h:panelGroup>
