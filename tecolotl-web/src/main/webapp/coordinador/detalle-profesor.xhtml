@@ -13,12 +13,12 @@
         </f:metadata>
 
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{coordinador['menu.menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
                     <li class="uk-active uk-margin-small-bottom"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
-                    <li class="uk-active"><a><h:outputText pt:uk-icon="file-edit" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">detalles</span></a></li>
+                    <li class="uk-active"><a><h:outputText pt:uk-icon="file-edit" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{coordinador['menu.detail']}</span></a></li>
                 </ul>
             </li>
         </ul>
@@ -49,24 +49,24 @@
                          styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-small uk-table-middle tabla-tareas"
                          rendered="#{not empty detalleProfesorControlador.calificacionPendientesModeloLista}"   >
                 <h:column>
-                    <f:facet name="header">grado</f:facet>
+                    <f:facet name="header">#{coordinador['teacher.detail.table.school.grade']}</f:facet>
                     ${calificacionPendientesModelo.grado}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">grupo</f:facet>
+                    <f:facet name="header">#{coordinador['teacher.detail.table.school.grup']}</f:facet>
                     ${calificacionPendientesModelo.grupo}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">tareas asignadas</f:facet>
+                    <f:facet name="header">#{coordinador['teacher.detail.table.assigned.homework']}</f:facet>
                     ${calificacionPendientesModelo.tareasAsignadas}
                 </h:column>
                 <h:column>
-                    <f:facet name="header">pendientes por calificar </f:facet>
-                    <p style="margin: 0; display: flex; justify-content: space-between;">Think-Develop and Share: <span><h:outputText value="${empty calificacionPendientesModelo.pendientesMapaMental ? 'N/A' : calificacionPendientesModelo.pendientesMapaMental}"/></span></p>
-                    <p style="margin: 0; display: flex; justify-content: space-between;">Word Game: <span><h:outputText value="${empty calificacionPendientesModelo.pendientesGramatica ? 'N/A' : calificacionPendientesModelo.pendientesGramatica}"/></span></p>
+                    <f:facet name="header">#{coordinador['teacher.detail.table.pending.by.rating']}</f:facet>
+                    <p style="margin: 0; display: flex; justify-content: space-between;">#{profesor['tareas.alumno.map.mental']}: <span><h:outputText value="${empty calificacionPendientesModelo.pendientesMapaMental ? 'N/A' : calificacionPendientesModelo.pendientesMapaMental}"/></span></p>
+                    <p style="margin: 0; display: flex; justify-content: space-between;">#{profesor['tareas.alumno.table.games']}: <span><h:outputText value="${empty calificacionPendientesModelo.pendientesGramatica ? 'N/A' : calificacionPendientesModelo.pendientesGramatica}"/></span></p>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">Actividades</f:facet>
+                    <f:facet name="header">#{coordinador['teacher.detail.table.activities.activities']}</f:facet>
                     <h:panelGroup rendered="#{calificacionPendientesModelo.tareasAsignadas ne 0}" layout="block" styleClass="uk-inline">
                         <h:commandLink   disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}">
                             <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
@@ -79,44 +79,44 @@
                             <table class="tabla-detalles-tareas ">
                                 <thead class="uk-background-primary">
                                 <tr>
-                                    <th>actividades</th>
-                                    <th style="white-space: nowrap">sin responder</th>
-                                    <th>totales</th>
+                                    <th>#{coordinador['teacher.detail.table.activities.activities']}</th>
+                                    <th style="white-space: nowrap">#{coordinador['teacher.detail.table.activities.without.answering']}</th>
+                                    <th>#{coordinador['teacher.detail.table.activities.total']}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td class="uk-text-left">Think-Develop and Share</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.map.mental']}</td>
                                     <td><h:outputText id="mapamental-pendiente2" value=" ${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalPendientes}"/></td>
                                     <td> <h:outputText id="mapamental-total2"  value="${detalleProfesorControlador.tareasPendientesGrupoModelo.mapamentalTotal}"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="uk-text-left">Comprehension Match</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.map.comprehension']}</td>
                                     <td> <h:outputText id="relacionar-oracion-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionPendiete}"/></td>
                                     <td><h:outputText id="relacionar-oracion-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarOracionTotal}"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="uk-text-left">What Happened?</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.map.happened']}</td>
                                     <td><h:outputText id="oraciones-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesPendiete}"/></td>
                                     <td> <h:outputText id="oraciones-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.oracionesTotal}"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="uk-text-left">Word game</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.table.games']}</td>
                                     <td><h:outputText id="gramatica-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaPendiente}"/></td>
                                     <td><h:outputText id="gramatica-pendiente2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.gramaticaTotal}"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="uk-text-left">Mix&amp;Match</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.map.match']}</td>
                                     <td><h:outputText id="relacionar-pendiente2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarPendiente}"/></td>
                                     <td><h:outputText id="relacionar-total2" value=" ${detalleProfesorControlador.tareasPendientesGrupoModelo.relacionarTotal}"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="uk-text-left">Gap Filling</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.map.filling']}</td>
                                     <td><h:outputText id="completar-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.completarPendiente}"/></td>
                                     <td><h:outputText id="completar-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.completarTotal}"/></td>
                                 </tr>
                                 <tr>
-                                    <td class="uk-text-left">Transcripcion</td>
+                                    <td class="uk-text-left">#{profesor['tareas.alumno.transcript']}</td>
                                     <td><h:outputText id="trancipcion-pendiete2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.transcripcionPendientes}"/></td>
                                     <td><h:outputText id="trancipcion-total2" value="${detalleProfesorControlador.tareasPendientesGrupoModelo.transcripcionTotal}"/></td>
                                 </tr>
@@ -132,7 +132,7 @@
                     <h:outputText value="%" rendered="${not empty calificacionPendientesModelo.promedio}"/>
                 </h:column>
                 <h:column>
-                    <f:facet name="header">${etiqueta['detail']}</f:facet>
+                    <f:facet name="header">${coordinador['teacher.detail.title']}</f:facet>
                     <h:commandLink styleClass="uk-button #{calificacionPendientesModelo.tareasAsignadas ne 0 ? 'uk-button-primary': 'boton-desabilitado'} uk-button-small" disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}" onclick="evt(this)">
                         Go
                         <f:ajax render="formulario-alumno"
@@ -178,13 +178,13 @@
                  <table class="uk-table uk-table-middle">
                      <thead>
                      <tr>
-                         <th>grado</th>
-                         <th>grupo</th>
-                         <th>tareas asignadas</th>
-                         <th>pendientes por calificar</th>
-                         <th>actividades</th>
-                         <th>promedio general grupo</th>
-                         <th>detalles</th>
+                         <th>#{coordinador['teacher.detail.table.school.grade']}</th>
+                         <th>#{coordinador['teacher.detail.table.school.grup']}</th>
+                         <th>#{coordinador['teacher.detail.table.assigned.homework']}</th>
+                         <th>#{coordinador['teacher.detail.table.pending.by.rating']}</th>
+                         <th>#{coordinador['teacher.detail.table.activities.activities']}</th>
+                         <th>#{coordinador['dashboard.table.general']}</th>
+                         <th>#{coordinador['dashboard.table.detail.grup']}</th>
                      </tr>
                      </thead>
                      <tbody>
@@ -205,7 +205,7 @@
             </h:form>
             <h:panelGroup layout="block" id="tablas-alumnos" styleClass="uk-margin-medium-bottom">
 
-                <h4 class="titulo-grupo">Grupo: <span>no seleccionado</span></h4>
+                <h4 class="titulo-grupo">#{coordinador['teacher.detail.table.grup']}<span>#{coordinador['teacher.detail.table.unselected.title']}</span></h4>
                 <h:form id="formulario-alumno">
                     <h:panelGroup layout="block" styleClass="cargando-tabla" rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}">
                         <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""/>
@@ -215,8 +215,8 @@
                         <table class="uk-table uk-table-middle">
                             <thead class="uk-background-primary">
                             <tr>
-                                <th><span class="letra-titulo">Nombre</span></th>
-                                <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                <th><span class="letra-titulo">#{coordinador['teacher.detail.table.unselected.name']}</span></th>
+                                <th><span class="letra-titulo ">#{coordinador['teacher.detail.table.unselected.options']}</span></th>
                             </tr>
                             </thead>
                             <tbody>
@@ -240,123 +240,121 @@
                                  styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-middle uk-table-small"
                                     >
                         <h:column>
-                            <f:facet name="header">Nombre Alumno</f:facet>
+                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.student']}</f:facet>
                             ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Total tareas</f:facet>
+                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.video']}</f:facet>
                             ${promedioAlumnoModelo.totalTareas}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Nivel languaje</f:facet>
+                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.nivel']}</f:facet>
                             ${promedioAlumnoModelo.nivelActual}
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Promedios</f:facet>
-                            <h:panelGroup layout="block" rendered="#{promedioAlumnoModelo.totalTareas gt 0}" styleClass="uk-inline">
-                                <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
-                                <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
-                                    <table class="tabla-detalles-tareas-alumno">
-                                        <thead>
-                                        <tr>
-                                            <th>Actividades</th>
-                                            <th>Promedio</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="uk-text-left">Comprehension Match</td>
-                                            <td class="uk-text-right">
-                                               <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion ne null}"  value=" #{promedioAlumnoModelo.promedioRelacionarOracion}%"/>
-                                               <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion eq null}"  styleClass="uk-icon" pt:uk-icon="ban"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="uk-text-left">Word Game</td>
-                                            <td class="uk-text-right">
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioGramatica ne null}" value="${promedioAlumnoModelo.promedioGramatica}%"/>
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioGramatica eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="uk-text-left">Transcript</td>
-                                            <td class="uk-text-right">
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioTranscipcion ne null}" value="${promedioAlumnoModelo.promedioTranscipcion}%"/>
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioTranscipcion eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="uk-text-left">What Happened?</td>
-                                            <td class="uk-text-right">
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioOraciones ne null}" value="${promedioAlumnoModelo.promedioOraciones}%"/>
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioOraciones eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="uk-text-left">Mix&amp;Match</td>
-                                            <td class="uk-text-right">
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarImagen ne null}" value="${promedioAlumnoModelo.promedioRelacionarImagen}%"/>
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarImagen eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="uk-text-left">Gap Filling</td>
-                                            <td class="uk-text-right">
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioCompletar ne null}" value="${promedioAlumnoModelo.promedioCompletar}%"/>
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioCompletar eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
+                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.average']}</f:facet>
+                            <div class="uk-inline">
+                            <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                            <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
+                                <table class="tabla-detalles-tareas-alumno">
+                                    <thead>
+                                    <tr>
+                                        <th>#{coordinador['teacher.detail.table.student.activities']}</th>
+                                        <th>#{coordinador['teacher.detail.table.grup.average']}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.map.comprehension']}</td>
+                                        <td>
+                                           <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion ne null}"  value=" #{promedioAlumnoModelo.promedioRelacionarOracion}"/>
+                                           <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion eq null}"  styleClass="uk-icon" pt:uk-icon="ban"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.table.games']}</td>
+                                        <td>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioGramatica ne null}" value="${promedioAlumnoModelo.promedioGramatica}"/>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioGramatica eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.transcript']}</td>
+                                        <td>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioTranscipcion ne null}" value="${promedioAlumnoModelo.promedioTranscipcion}"/>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioTranscipcion eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.map.happened']}</td>
+                                        <td>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioOraciones ne null}" value="${promedioAlumnoModelo.promedioOraciones}"/>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioOraciones eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.map.match']}</td>
+                                        <td>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarImagen ne null}" value="${promedioAlumnoModelo.promedioRelacionarImagen}"/>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarImagen eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.map.filling']}</td>
+                                        <td>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioCompletar ne null}" value="${promedioAlumnoModelo.promedioCompletar}"/>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioCompletar eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
 
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="uk-text-left">Think-Develop and Share</td>
-                                            <td class="uk-text-right">
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioPromedioMapamental ne null}" value="${promedioAlumnoModelo.promedioPromedioMapamental}%"/>
-                                                <h:outputText rendered="#{promedioAlumnoModelo.promedioPromedioMapamental eq null}" styleClass="uk-icon" pt:uk-icon="ban"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="uk-text-left">#{profesor['tareas.alumno.map.mental']}</td>
+                                        <td>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioPromedioMapamental ne null}" value="${promedioAlumnoModelo.promedioPromedioMapamental}"/>
+                                            <h:outputText rendered="#{promedioAlumnoModelo.promedioPromedioMapamental eq null}" styleClass="uk-icon" pt:uk-icon="icon ban"/>
 
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                  <span class="promedio-tabla">Promedio:
-                                      <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion eq null and
-                                      promedioAlumnoModelo.promedioGramatica eq null and
-                                      promedioAlumnoModelo.promedioTranscipcion eq null and
-                                      promedioAlumnoModelo.promedioOraciones eq null and
-                                      promedioAlumnoModelo.promedioCompletar eq null and
-                                      promedioAlumnoModelo.promedioRelacionarImagen eq null and
-                                      promedioAlumnoModelo.promedioPromedioMapamental eq null}" value="No tiene tareas"/>
-                                      <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion ne null or
-                                      promedioAlumnoModelo.promedioGramatica ne null or
-                                      promedioAlumnoModelo.promedioTranscipcion ne null or
-                                      promedioAlumnoModelo.promedioOraciones ne null or
-                                      promedioAlumnoModelo.promedioCompletar ne null or
-                                      promedioAlumnoModelo.promedioRelacionarImagen ne null or
-                                      promedioAlumnoModelo.promedioPromedioMapamental ne null}"
-                                       value="#{((promedioAlumnoModelo.promedioPromedioMapamental eq null ? 0 : promedioAlumnoModelo.promedioPromedioMapamental)
-                                        + (promedioAlumnoModelo.promedioCompletar eq null ? 0: promedioAlumnoModelo.promedioCompletar)
-                                        + (promedioAlumnoModelo.promedioRelacionarImagen eq null ? 0 : promedioAlumnoModelo.promedioRelacionarImagen)
-                                        + (promedioAlumnoModelo.promedioOraciones eq null ? 0 : promedioAlumnoModelo.promedioOraciones)
-                                        + (promedioAlumnoModelo.promedioTranscipcion eq null ? 0 : promedioAlumnoModelo.promedioTranscipcion)
-                                        + (promedioAlumnoModelo.promedioGramatica eq null ? 0 : promedioAlumnoModelo.promedioGramatica)
-                                        + (promedioAlumnoModelo.promedioRelacionarOracion eq null ? 0 : promedioAlumnoModelo.promedioRelacionarOracion))/
-                                        ((promedioAlumnoModelo.promedioPromedioMapamental eq null ? 0 : 1)
-                                        + (promedioAlumnoModelo.promedioCompletar eq null ? 0 : 1)
-                                        + (promedioAlumnoModelo.promedioRelacionarImagen eq null ? 0 : 1)
-                                        + (promedioAlumnoModelo.promedioOraciones eq null ? 0 : 1)
-                                        + (promedioAlumnoModelo.promedioTranscipcion eq null ? 0 : 1)
-                                        + (promedioAlumnoModelo.promedioGramatica eq null ? 0 : 1)
-                                        + (promedioAlumnoModelo.promedioRelacionarOracion eq null ? 0 : 1))}">
-                                          <f:convertNumber pattern="#0.00" />
-                                      </h:outputText>
-                                      <span>%</span>
-                                  </span>
-                                </h:panelGroup>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                              <span class="promedio-tabla">#{coordinador['teacher.detail.table.student.average']}
+                                  <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion eq null and
+                                  promedioAlumnoModelo.promedioGramatica eq null and
+                                  promedioAlumnoModelo.promedioTranscipcion eq null and
+                                  promedioAlumnoModelo.promedioOraciones eq null and
+                                  promedioAlumnoModelo.promedioCompletar eq null and
+                                  promedioAlumnoModelo.promedioRelacionarImagen eq null and
+                                  promedioAlumnoModelo.promedioPromedioMapamental eq null}" value="No tiene tareas"/>
+                                  <h:outputText rendered="#{promedioAlumnoModelo.promedioRelacionarOracion ne null or
+                                  promedioAlumnoModelo.promedioGramatica ne null or
+                                  promedioAlumnoModelo.promedioTranscipcion ne null or
+                                  promedioAlumnoModelo.promedioOraciones ne null or
+                                  promedioAlumnoModelo.promedioCompletar ne null or
+                                  promedioAlumnoModelo.promedioRelacionarImagen ne null or
+                                  promedioAlumnoModelo.promedioPromedioMapamental ne null}"
+                                   value="#{((promedioAlumnoModelo.promedioPromedioMapamental eq null ? 0 : promedioAlumnoModelo.promedioPromedioMapamental)
+                                    + (promedioAlumnoModelo.promedioCompletar eq null ? 0: promedioAlumnoModelo.promedioCompletar)
+                                    + (promedioAlumnoModelo.promedioRelacionarImagen eq null ? 0 : promedioAlumnoModelo.promedioRelacionarImagen)
+                                    + (promedioAlumnoModelo.promedioOraciones eq null ? 0 : promedioAlumnoModelo.promedioOraciones)
+                                    + (promedioAlumnoModelo.promedioTranscipcion eq null ? 0 : promedioAlumnoModelo.promedioTranscipcion)
+                                    + (promedioAlumnoModelo.promedioGramatica eq null ? 0 : promedioAlumnoModelo.promedioGramatica)
+                                    + (promedioAlumnoModelo.promedioRelacionarOracion eq null ? 0 : promedioAlumnoModelo.promedioRelacionarOracion))/
+                                    ((promedioAlumnoModelo.promedioPromedioMapamental eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioCompletar eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioRelacionarImagen eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioOraciones eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioTranscipcion eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioGramatica eq null ? 0 : 1)
+                                    + (promedioAlumnoModelo.promedioRelacionarOracion eq null ? 0 : 1))}">
+                                      <f:convertNumber pattern="#0.00"/>
+                                  </h:outputText>
+                              </span>
                             </h:panelGroup>
-                            <h:panelGroup rendered="#{promedioAlumnoModelo.totalTareas eq 0}" styleClass="uk-icon" pt:uk-icon="icon: ban; ratio : 1.5"/>
+                            </div>
                         </h:column>
                         <h:column>
-                            <f:facet name="header">#{etiqueta['detail']}</f:facet>
-                            <h:button  value="go"  outcome="login" styleClass="uk-button #{promedioAlumnoModelo.totalTareas eq 0 ? 'boton-desabilitado':'uk-button-primary'}  uk-button-small" >
+                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.platform.time']}</f:facet>
+                            <h:button value="go" outcome="login" styleClass="uk-button uk-button-primary uk-button-small" >
                                 <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
 
                             </h:button>
@@ -399,7 +397,6 @@
             crearPagina();
             function crearPagina(){
                 let tablaAlumno = document.querySelector("table[id$='tabla-alumno']");
-                let fondoCargando = document.querySelector('#tablas-alumnos .cargando-tabla');
                 if(tablaAlumno !== null ){
                     let objetoPagina = crearPaginacionTabla(5,tablaAlumno,0);
                     objetoPagina.btnSiguiente.addEventListener('click',()=>{
@@ -419,17 +416,8 @@
                         setTimeout(animacionSelectElementos,500,objetoPagina,evt);
 
                     });
-                    desactivarBotones();
-                    fondoCargando.remove();
                 }
             }
-            function desactivarBotones() {
-                let botones = document.querySelectorAll('[id$=tabla-alumno] .boton-desabilitado');
-                botones.forEach(boton => {
-                   boton.disabled = true;
-                });
-            }
-
         </script>
     </ui:define>
 </ui:composition>
