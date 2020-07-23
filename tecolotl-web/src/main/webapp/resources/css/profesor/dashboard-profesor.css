@@ -105,21 +105,28 @@ ul > li > span {
     display: none!important;
 }
 .mensaje-licencias{
-    width: 100%;
-    border: 3px solid crimson;
-    border-radius: 5px;
+    background: url("#{resource['img/informacion.svg']}") #F1C40F no-repeat center 8px/20px;
+    width: 270px;
+    height: 110px;
+    margin: 0 auto;
+    border: 3px solid black;
+    border-radius: 20px;
     padding: 7px 0;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 900;
-    text-align: center;
-    color: crimson;
-    text-transform: uppercase;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: black;
 }
+
 .mensaje-licencias:hover{
     cursor: pointer;
 }
 .cerrar-mensaje{
     position: absolute;
     right: 3px;
+    top: 2px;
 }

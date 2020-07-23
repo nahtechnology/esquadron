@@ -63,20 +63,22 @@
                             </div>
                         </div>
                         <div class="uk-width-1-6@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="Bloqueo alumno"/>
-                            <div class="uk-form-controls">
+                            <h:panelGroup styleClass="uk-form-label uk-text-capitalize">Bloqueo alumno</h:panelGroup>
+                            <h:outputLabel styleClass="switch">
                                 <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoAlumno}">
                                     <f:ajax listener="#{detalleEscuelaControlador.bloqueoAlumno}"/>
                                 </h:selectBooleanCheckbox>
-                            </div>
+                                <span class="slider round"/>
+                            </h:outputLabel>
                         </div>
                         <div class="uk-width-1-6@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" value="Bloqueo Otros"/>
-                            <div class="uk-form-controls">
-                                <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoProfesor}">
-                                    <f:ajax listener="#{detalleEscuelaControlador.bloqueaProfesor}"/>
-                                </h:selectBooleanCheckbox>
-                            </div>
+                            <h:panelGroup styleClass="uk-form-label uk-text-capitalize">Bloqueo otros</h:panelGroup>
+                            <h:outputLabel styleClass="switch">
+                                    <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoProfesor}">
+                                        <f:ajax listener="#{detalleEscuelaControlador.bloqueaProfesor}"/>
+                                    </h:selectBooleanCheckbox>
+                                <span class="slider round"/>
+                            </h:outputLabel>
                         </div>
                         <div class="uk-width-2-5@m uk-width-1-1@s">
                             <h:outputText styleClass="uk-form-label uk-text-capitalize uk-text-center" for="licencias" value="Personal"/>
@@ -86,7 +88,7 @@
                                     <h:outputText styleClass="uk-icon" pt:uk-icon="icon: users"/>
                                     <f:param name="escuela" value="#{param['escuela']}"/>
                                 </h:link>
-                                <h:link styleClass="uk-button uk-button-primary btn-estilo" outcome="profesor">
+                                <h:link styleClass="uk-button uk-button-primary uk-margin-small-right btn-estilo" outcome="profesor">
                                     <h:outputText value="Profesores" styleClass="uk-margin-small-right"/>
                                     <h:outputText styleClass="uk-icon" pt:uk-icon="icon: users"/>
                                     <f:param name="escuela" value="#{param['escuela']}"/>
