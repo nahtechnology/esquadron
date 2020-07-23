@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
     <!--HEADER-->
     <header id="top-head" class="uk-position-fixed">
         <div class="uk-container uk-container-expand uk-background-primary">
@@ -13,6 +13,7 @@
                     <div class="uk-navbar-item uk-hidden@m">
                         <h:graphicImage library="img" name="esquadron.svg"/>
                         <span class="titulo-blanco uk-text-capitalize">squadron</span>
+                        <h:panelGroup style="display: none" id="licencia-fecha" pt:data-licencia="15"  rendered="#{request.isUserInRole('coordinador')}"/>
                     </div>
                     <ul class="uk-navbar-nav uk-visible@m">
                         <li>

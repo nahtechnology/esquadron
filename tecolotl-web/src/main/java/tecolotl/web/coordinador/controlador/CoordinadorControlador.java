@@ -67,4 +67,12 @@ public class CoordinadorControlador implements Serializable {
     public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
         this.escuelaBaseModelo = escuelaBaseModelo;
     }
+
+    public PersonaActivaModelo getPersonaActivaModelo() {
+        return personaActivaModelo;
+    }
+
+    public void setPersonaActivaModelo(PersonaActivaModelo personaActivaModelo) {
+        this.personaActivaModelo = personaActivaModelo;
+    }
 }

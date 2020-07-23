@@ -105,13 +105,10 @@ ul > li > span {
     display: none!important;
 }
 .mensaje-licencias{
-    background: url("#{resource['img/informacion.svg']}") #F1C40F no-repeat center 8px/20px;
-    width: 270px;
-    height: 110px;
-    margin: 0 auto;
+    min-height: 80px;
     border: 3px solid black;
     border-radius: 20px;
-    padding: 7px 0;
+    padding: 4px 0;
     font-size: 15px;
     font-weight: 900;
     position: relative;
@@ -119,7 +116,14 @@ ul > li > span {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.--mensaje-licencia-restante{
+    background-color: #F1C40F;
     color: black;
+}
+.--mensaje-licencia-caducada{
+    background-color: #ED1C24;
+    color: white;
 }
 
 .mensaje-licencias:hover{

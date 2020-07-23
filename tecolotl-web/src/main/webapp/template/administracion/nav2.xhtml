@@ -31,7 +31,7 @@
                 <li>
                     <h:form>
                         <h:commandLink value="#{etiqueta['close.sesion']}" styleClass="uk-text-primary" action="#{administracionControlador.cerrarSesion}" rendered="#{request.isUserInRole('administrador')}"/>
-                        <h:commandLink value="#{etiqueta['close.sesion']}"  action="#{coordinadorControladorLocal.cerrarSesion}" rendered="#{request.isUserInRole('coordinador')}"/>
+                        <h:commandLink value="#{etiqueta['close.sesion']}" onclick="limpiarSession()"  action="#{coordinadorControladorLocal.cerrarSesion}" rendered="#{request.isUserInRole('coordinador')}"/>
                     </h:form>
                 </li>
             </ul>

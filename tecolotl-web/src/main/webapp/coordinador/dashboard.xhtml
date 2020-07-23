@@ -91,6 +91,10 @@
 
         </div>
     </section>
-
+    <script type="application/javascript">
+        if (sessionStorage.getItem('mensaje') === null){
+            sessionStorage.setItem('mensaje','true');
+        }
+    </script>
 </ui:define>
 </ui:composition>
