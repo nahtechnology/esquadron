@@ -54,11 +54,13 @@ public class AlumnoControlador implements Serializable {
         if (personaActivaModelo.isBloqueado()) {
             try {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml");
+                externalContext.invalidateSession();
             } catch (IOException ioException) {
 
             }
+        } else {
+            buscaTareas(principal);
         }
-        buscaTareas(principal);
     }
 
     public void buscaTareas(Principal principal) {

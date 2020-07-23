@@ -44,20 +44,23 @@ public class ProfesorControlador implements Serializable {
         ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
         Principal principal = externalContext.getUserPrincipal();
         profesorModelo = profesorSesionBean.busca(principal.getName(), true);
-        String cadena[] = principal.getName().split(",");
-        sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
-                Integer.parseInt(cadena[1]),
-                cadena[0],
-                UsuarioSesionModelo.Tipo.PROFESOR,
-                new Date(),
-                profesorModelo.getId());
         personaActivaModelo = profesorSesionBean.activo(profesorModelo.getId());
         if (personaActivaModelo.isBloqueado()) {
             try {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml");
+                externalContext.invalidateSession();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
+        }
+        else {
+            String cadena[] = principal.getName().split(",");
+            sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
+                    Integer.parseInt(cadena[1]),
+                    cadena[0],
+                    UsuarioSesionModelo.Tipo.PROFESOR,
+                    new Date(),
+                    profesorModelo.getId());
         }
     }
 
