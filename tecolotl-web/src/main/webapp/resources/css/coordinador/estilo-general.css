@@ -36,6 +36,18 @@ h1 {
     right: 3px;
     top: 2px;
 }
+.ayuda-imagen {
+    width: 25px;
+    margin-top: 10px;
+    transition:transform linear 0.3s;
+}
+.ayuda-imagen path,.ayuda-imagen circle{
+    fill: black;
+}
+.ayuda-imagen:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
 @media screen and (max-width: 1280px){
  table{
      font-size: 14px;

@@ -282,7 +282,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	background-color: #ccc;
+	background-color: #4a4a4a;
 	-webkit-transition: .4s;
 	transition: .4s;
 }
@@ -320,4 +320,9 @@ input:checked + .slider:before {
 
 .slider.round:before {
 	border-radius: 50%;
+}
+.centrado-vertical-switch{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }

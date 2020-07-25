@@ -83,7 +83,7 @@
             <label for="totalHoras" class="uk-form-label uk-margin-small-right">#{coordinador['report.sesion.total.hours']}</label>
             <input type="text" id="totalHoras" class="uk-input" style="width: 200px" />
         </span>
-        <h:panelGroup layout="block" id="contenedor-tabla">
+        <h:panelGroup layout="block" id="contenedor-tabla" styleClass="uk-margin-medium-bottom">
             <h:dataTable id="tabla-alumno"
                          rendered="#{not empty reporteSesionControlador.listaAlumno}"
                          styleClass="uk-table uk-table-hover uk-table-divider"
