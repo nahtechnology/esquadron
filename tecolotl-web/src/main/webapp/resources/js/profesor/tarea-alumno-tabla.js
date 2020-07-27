@@ -226,7 +226,7 @@ class PromedioGeneral {
         }
         this.tareasAsignadas.innerText = filas.length;
         this.tareasPromediadas.innerText = promedios.length;
-        this.promedioGeneral.innerText = promedios.length > 0 ? Math.round(dividendo/promedios.length) : "No hay tareas completadas";
+        this.promedioGeneral.innerText = promedios.length > 0 ? Math.round(dividendo/promedios.length) : "Nothing answered yet!";
     }
 
 }
