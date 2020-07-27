@@ -108,29 +108,29 @@ public class EscuelaSesionBean implements Serializable {
 
 	/**
 	 * Inserta una escuela
-	 * @param escuelaDetalleModelo Datos de la escuela a ser insertados
+	 * @param escuelaBaseModelo Datos de la escuela a ser insertados
 	 */
-	public void inserta(@NotNull EscuelaDetalleModelo escuelaDetalleModelo) {
-		logger.fine("Escuela a persistir:".concat(escuelaDetalleModelo.toString()));
-		EscuelaEntidad escuelaEntidad = new EscuelaEntidad(escuelaDetalleModelo.getClaveCentroTrabajo());
-		escuelaEntidad.setNombre(escuelaDetalleModelo.getNombre());
+	public void inserta(@NotNull EscuelaBaseModelo escuelaBaseModelo) {
+		logger.fine("Escuela a persistir:".concat(escuelaBaseModelo.toString()));
+		EscuelaEntidad escuelaEntidad = new EscuelaEntidad(escuelaBaseModelo.getClaveCentroTrabajo());
+		escuelaEntidad.setNombre(escuelaBaseModelo.getNombre());
 		logger.finer(escuelaEntidad.toString());
 		entityManager.persist(escuelaEntidad);
 	}
 
 	/**
 	 * Actualiza los datos de una escuela
-	 * @param escuelaDetalleModelo Datos que serán actualizadps
+	 * @param escuelaBaseModelo Datos que serán actualizadps
 	 * @return Número de elementos modificados, cero en caso de no haber cambios
 	 */
-	public int actualizar(@NotNull @Valid EscuelaDetalleModelo escuelaDetalleModelo) {
-		logger.fine("Escuela a actualizar:".concat(escuelaDetalleModelo.toString()));
+	public int actualizar(@NotNull @Valid EscuelaBaseModelo escuelaBaseModelo) {
+		logger.fine("Escuela a actualizar:".concat(escuelaBaseModelo.toString()));
 	    int cambios = 0;
 		CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 		CriteriaUpdate<EscuelaEntidad> criteriaUpdate = criteriaBuilder.createCriteriaUpdate(EscuelaEntidad.class);
 		Root<EscuelaEntidad> root = criteriaUpdate.from(EscuelaEntidad.class);
-		Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), escuelaDetalleModelo.getClaveCentroTrabajo());
-		criteriaUpdate.set(root.get("nombre"), escuelaDetalleModelo.getNombre());
+		Predicate predicate = criteriaBuilder.equal(root.get("claveCentroTrabajo"), escuelaBaseModelo.getClaveCentroTrabajo());
+		criteriaUpdate.set(root.get("nombre"), escuelaBaseModelo.getNombre());
 		criteriaUpdate.where(predicate);
 		cambios = entityManager.createQuery(criteriaUpdate).executeUpdate();
 		return cambios;

@@ -199,7 +199,7 @@
                                                     </h:link>
                                                 </li>
                                                 <li>
-                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-escuela" action="#{escuelaDashboardControlador.actualizaDetalleModelo}">
+                                                    <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-escuela">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['edit']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
@@ -251,8 +251,8 @@
                 <h:form id="formulario-escuela" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
-                            <h:outputText value="#{administracion['dashboard.modal.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"/>
-                            <h:outputText value="#{administracion['dashboard.modal.update.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"/>
+                            <h:outputText value="#{administracion['dashboard.modal.add.title']}" styleClass="letra-titulo" rendered="#{empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                            <h:outputText value="#{administracion['dashboard.modal.update.title']}" styleClass="letra-titulo" rendered="#{not empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                         </p>
                     </div>
                     <div class="uk-modal-body">
@@ -263,9 +263,9 @@
                                     <h:inputText styleClass="uk-input"
                                                  id="input-escuela-cct"
                                                  autocomplete="off"
-                                                 disabled="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
+                                                 disabled="#{not empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"
                                                  pt:placeholder="#{administracion['dashboard.modal.cct']}"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}"
+                                                 value="#{escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}"
                                                  validator="#{escuelaValidacion.validate}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="10" maximum="14"/>
@@ -281,7 +281,7 @@
                                                  autocomplete="off"
                                                  pt:placeholder="#{administracion['dashboard.modal.name']}"
                                                  label="#{administracion['dashboard.modal.name']}"
-                                                 value="#{escuelaDashboardControlador.escuelaDetalleModelo.nombre}">
+                                                 value="#{escuelaDashboardControlador.escuelaBaseModelo.nombre}">
                                         <f:validateRequired/>
                                         <f:validateLength minimum="4" maximum="70"/>
                                     </h:inputText>
@@ -294,13 +294,13 @@
                         <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
                             <f:ajax render="@form" onevent="function funcion(data) { limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-escuela formulario-paginacion-escuela formulario-filtrado-escuela"
                                     listener="#{escuelaDashboardControlador.inserta}"
                                     onevent="function fun(data) { cierraModal(data, 'modal-escuela'); limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty escuelaDashboardControlador.escuelaDetalleModelo.claveCentroTrabajo}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-escuela formulario-paginacion-escuela"
                                     listener="#{escuelaDashboardControlador.actualiza}"
