@@ -62,7 +62,7 @@
                                 <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
                             </div>
                         </div>
-                        <div class="uk-width-1-6@m uk-width-1-1@s">
+                        <div class="uk-width-1-6@m uk-width-1-1@s centrado-vertical-switch">
                             <h:panelGroup styleClass="uk-form-label uk-text-capitalize">Bloqueo alumno</h:panelGroup>
                             <h:outputLabel styleClass="switch">
                                 <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoAlumno}">
@@ -71,7 +71,7 @@
                                 <span class="slider round"/>
                             </h:outputLabel>
                         </div>
-                        <div class="uk-width-1-6@m uk-width-1-1@s">
+                        <div class="uk-width-1-6@m uk-width-1-1@s centrado-vertical-switch" >
                             <h:panelGroup styleClass="uk-form-label uk-text-capitalize">Bloqueo otros</h:panelGroup>
                             <h:outputLabel styleClass="switch">
                                     <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoProfesor}">
@@ -256,7 +256,7 @@
                                                       pt:uk-tooltip="title:#{administracion['schooldetail.lisense.tooltip.add']}; delay:2000; pos: top"/>
                                     </h:commandLink>
                                     </ui:remove>
-                                    <a href="#" class="uk-icon-link" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-licencia" uk-tooltip="title:#{administracion['schooldetail.lisense.tooltip.add']}; pos: left; delay: 2000"/>
+                                    <a href="#" class="uk-text-primary" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-licencia" uk-tooltip="title:#{administracion['schooldetail.lisense.tooltip.add']}; pos: left; delay: 2000"/>
                                 </h:form>
                             </div>
                         </div>

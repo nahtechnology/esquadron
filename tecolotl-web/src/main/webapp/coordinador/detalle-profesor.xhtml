@@ -206,6 +206,14 @@
             <h:panelGroup layout="block" id="tablas-alumnos" styleClass="uk-margin-medium-bottom">
 
                 <h4 class="titulo-grupo">#{coordinador['teacher.detail.table.grup']}<span>#{coordinador['teacher.detail.table.unselected.title']}</span></h4>
+                <h:panelGroup layout="block" styleClass="uk-inline" >
+                    <span>
+                        <h:graphicImage library="img" name="/icono/information.svg" styleClass="ayuda-imagen" pt:uk-svg="" />
+                    </span>
+                    <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; pos: top-left" style="min-width: 120px; white-space: nowrap; color: black; padding: 10px; border: 3px solid #0e6dcd">
+                        <p style="margin: 3px">Total de videos: Numero total de tareas asignadas al alumno durante toda su vida escolar </p>
+                    </h:panelGroup>
+                </h:panelGroup>
                 <h:form id="formulario-alumno">
                     <h:panelGroup layout="block" styleClass="cargando-tabla" rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}">
                         <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""/>
