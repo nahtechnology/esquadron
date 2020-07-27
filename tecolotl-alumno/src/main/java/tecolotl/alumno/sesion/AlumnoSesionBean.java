@@ -9,6 +9,10 @@ import tecolotl.nucleo.modelo.PersonaActivaModelo;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -45,9 +49,12 @@ public class AlumnoSesionBean implements Serializable {
      * @return
      */
     public AlumnoModelo busca(@NotNull @Size String apodo, boolean galaxia) {
-        TypedQuery<AlumnoEntidad> typedQuery = entityManager.createNamedQuery("AlumnoEntidad.buscaApodo", AlumnoEntidad.class);
-        typedQuery.setParameter("apodo", galaxia ? apodo.split(",")[0] : apodo);
-        return new AlumnoModelo(typedQuery.getSingleResult());
+        Query query = entityManager.createNativeQuery("SELECT a.*FROM administracion.escuela e JOIN profesor.grupo g ON g.id_escuela = e.clave_centro_trabajo JOIN " +
+                "profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN alumno.alumno a ON ga.id_alumno = a.id WHERE a.apodo = ? AND e.galaxia = ?;", AlumnoEntidad.class);
+        String[] datos = apodo.split(",");
+        query.setParameter(1, datos[0]);
+        query.setParameter(2, Short.parseShort(datos[1]));
+        return new AlumnoModelo((AlumnoEntidad)query.getSingleResult());
     }
 
     /**
