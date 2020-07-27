@@ -36,17 +36,13 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     private transient ResourceBundle resourceBundle;
 
     private List<MotivoBloqueoModelo> motivoBloqueoModeloLista;
-    private EscuelaDetalleModelo escuelaDetalleModelo;
     private EscuelaBaseModelo escuelaBaseModelo;
     private MotivoBloqueoModelo motivoBloqueoModelo;
-    private String codigoPostal;
     private String busqueda;
-    private UIInput uiInputCodigoPostal;
 
     @PostConstruct
     public void init() {
         setCollectionDataModel(new CollectionDataModel<>(escuelaSesionBean.busca()));
-        escuelaDetalleModelo = new EscuelaDetalleModelo();
         escuelaBaseModelo = new EscuelaBaseModelo();
         motivoBloqueoModelo = new MotivoBloqueoModelo();
         motivoBloqueoModeloLista = motivoBloqueoSesionBean.busca("Sin bloqueo");
@@ -65,26 +61,13 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     }
 
     public void limpiaDetalleModelo() {
-        escuelaDetalleModelo = new EscuelaDetalleModelo();
+        escuelaBaseModelo = new EscuelaBaseModelo();
     }
 
     public void inserta() {
-        escuelaSesionBean.inserta(escuelaDetalleModelo);
+        escuelaSesionBean.inserta(escuelaBaseModelo);
         actualizaDataModel();
-        escuelaDetalleModelo = new EscuelaDetalleModelo();
-        codigoPostal = null;
-    }
-
-    public void bloquea() {
-        escuelaSesionBean.bloqueo(escuelaBaseModelo, motivoBloqueoModelo);
-        motivoBloqueoModelo = new MotivoBloqueoModelo();
-        escuelaBaseModelo = new EscuelaBaseModelo();
-        actualizaDataModel();
-    }
-
-    public void activa() {
-        escuelaSesionBean.activa(escuelaBaseModelo.getClaveCentroTrabajo());
-        actualizaDataModel();
+        limpiaDetalleModelo();
     }
 
     public void elimina() {
@@ -93,24 +76,8 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
     }
 
     public void actualiza() {
-        escuelaSesionBean.actualizar(escuelaDetalleModelo);
+        escuelaSesionBean.actualizar(escuelaBaseModelo);
         actualizaDataModel();
-    }
-
-    public EscuelaDetalleModelo getEscuelaDetalleModelo() {
-        return escuelaDetalleModelo;
-    }
-
-    public void setEscuelaDetalleModelo(EscuelaDetalleModelo escuelaDetalleModelo) {
-        this.escuelaDetalleModelo = escuelaDetalleModelo;
-    }
-
-    public String getCodigoPostal() {
-        return codigoPostal;
-    }
-
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
     }
 
     public List<MotivoBloqueoModelo> getMotivoBloqueoModeloLista() {
@@ -145,11 +112,4 @@ public class DashboardControlador extends TablaControlador<EscuelaDashboardModel
         this.busqueda = busqueda;
     }
 
-    public UIInput getUiInputCodigoPostal() {
-        return uiInputCodigoPostal;
-    }
-
-    public void setUiInputCodigoPostal(UIInput uiInputCodigoPostal) {
-        this.uiInputCodigoPostal = uiInputCodigoPostal;
-    }
 }

@@ -89,7 +89,7 @@
                             <h:dataTable
                                     value="#{coordinadorControlador.coordinadorModeloLista}"
                                     rendered="#{not empty coordinadorControlador.coordinadorModeloLista}"
-                                    var="coordinador"
+                                    var="coordinadorModelo"
                                     id="tabla-coordinador"
                                     first="0"
                                     rows="5"
@@ -99,20 +99,15 @@
                                     columnClasses="uk-text-left,uk-text-left,uk-text-center,uk-text-center,uk-text-center">
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo uk-text-left">#{administracion['catalogocoordinador.coordinator.detail.table.header.nick']}</span></f:facet>
-                                    #{coordinador.apodo}
+                                    #{coordinadorModelo.apodo}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo uk-text-left">#{administracion['catalogocoordinador.coordinator.block.table.header.name']}</span></f:facet>
-                                    #{coordinador.apellidoPaterno.concat(' ').concat(coordinador.apellidoMaterno).concat(' ').concat(coordinador.nombre)}
+                                    #{coordinadorModelo.apellidoPaterno.concat(' ').concat(coordinadorModelo.apellidoMaterno).concat(' ').concat(coordinadorModelo.nombre)}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.email']}</span></f:facet>
-                                    #{coordinador.correoEletronico}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header"><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.status']}</span></f:facet>
-                                    <h:outputText rendered="#{coordinador.personaMotivoBloqueoModelo.clave eq 1}" pt:uk-icon="check"/>
-                                    <h:outputText rendered="#{coordinador.personaMotivoBloqueoModelo.clave ne 1}" pt:uk-icon="ban"/>
+                                    #{coordinadorModelo.correoEletronico}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
@@ -124,22 +119,8 @@
                                                     <h:commandLink   pt:uk-toggle="target: #modal-coordinador" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{etiqueta['edit']}"/></span>
-                                                        <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
+                                                        <f:setPropertyActionListener value="#{coordinadorModelo}" target="#{coordinadorControlador.coordinadorModelo}"/>
                                                         <f:ajax render="formulario-modal-coordinador"/>
-                                                    </h:commandLink>
-                                                </li>
-                                                <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-bloqueo" styleClass="uk-text-primary" rendered="#{coordinador.personaMotivoBloqueoModelo.clave eq 1}">
-                                                        <h:outputText pt:uk-icon="icon: ban" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{boton['block']}"/></span>
-                                                        <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
-                                                        <f:ajax render="formulario-motivo-bloqueo" onevent="function limpia(data) { limpiaSelect(data); }"/>
-                                                    </h:commandLink>
-                                                    <h:commandLink styleClass="uk-text-primary" rendered="#{coordinador.personaMotivoBloqueoModelo.clave ne 1}" action="#{coordinadorControlador.desbloquea}">
-                                                        <h:outputText pt:uk-icon="icon: check" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{boton['active']}"/></span>
-                                                        <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
-                                                        <f:ajax render="formulario-coordinador"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li class="uk-nav-divider"/>
@@ -147,7 +128,7 @@
                                                     <h:commandLink  pt:uk-toggle="target: #modal-eliminar-coordinador" styleClass="uk-text-danger">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="uk-text-capitalize"/></span>
-                                                        <f:setPropertyActionListener value="#{coordinador}" target="#{coordinadorControlador.coordinadorModelo}"/>
+                                                        <f:setPropertyActionListener value="#{coordinadorModelo}" target="#{coordinadorControlador.coordinadorModelo}"/>
                                                         <f:ajax render="formulario-eliminar-coordinador"/>
                                                     </h:commandLink>
                                                 </li>
@@ -328,49 +309,12 @@
                 </h:form>
             </div>
         </h:panelGroup>
-        <h:panelGroup layout="block" id="modal-bloqueo" pt:uk-modal="">
-            <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header uk-background-secondary">
-                    <p class="uk-h4 uk-text-center uk-text-bold"><span class="letra-titulo uk-text-capitalize">#{administracion['catalogocoordinador.coordinatorcatalog']}</span></p>
-                </div>
-                <h:form styleClass="uk-form-stacked" id="formulario-motivo-bloqueo">
-                    <div class="uk-modal-body">
-                        <p>Bloqueo al coordinador: <span class="uk-text-bold">#{coordinadorControlador.coordinadorModelo.apellidoPaterno} #{coordinadorControlador.coordinadorModelo.apellidoMaterno} #{coordinadorControlador.coordinadorModelo.nombre}</span></p>
-                        <h:outputLabel styleClass="uk-form-label primera-mayuscula uk-display-inline-block" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}"/>
-                        <div class="uk-form-controls">
-                            <h:selectOneMenu value="#{coordinadorControlador.personaMotivoBloqueoModelo.clave}"
-                                             id="seleccion-bloqueo"
-                                             label="bloqueo"
-                                             styleClass="uk-select">
-                                <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
-                                <f:selectItems value="#{coordinadorControlador.personaMotivoBloqueoModeloLista}"
-                                               var="motivoBloqueo"
-                                               itemValue="#{motivoBloqueo.clave}"
-                                               itemLabel="#{motivoBloqueo.valor}"/>
-                                <f:validateRequired/>
-                            </h:selectOneMenu>
-                        </div>
-                        <h:message for="seleccion-bloqueo" errorClass="uk-text-danger primera-mayuscula uk-display-inline-block"/>
-                    </div>
-                    <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['block']}">
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalBloqueo'); limpiaSelect(data); }"
-                                    render="@form formulario-coordinador"
-                                    listener="#{coordinadorControlador.bloqueo}"
-                                    execute="@form"/>
-                        </h:commandButton>
-                    </div>
-                </h:form>
-            </div>
-        </h:panelGroup>
         <h:outputScript library="js" name="/administracion/coordinador.js"/>
         <script type="text/javascript">
             var contrassenia;
             var contrasseniaeditar;
             var modalCoordinador;
             var modalEliminar;
-            var modalBloqueo;
 
         /*    var modalLicencia;
             var modalCoord;*/
@@ -378,7 +322,6 @@
                 // modalAgregar = document.querySelector('#modal-contacto');
                 modalCoordinador = document.querySelector('#modal-coordinador');
                 modalEliminar = document.querySelector('#modal-eliminar-coordinador');
-                modalBloqueo = document.querySelector('#modal-bloqueo');
                 /*    modalLicencia = document.querySelector('#modal-asignar-licencia');
                     modalCoord = document.querySelector('#modal-nuevo-coord'); */
                 UIkit.util.on('#modal-coordinador', 'show', function () {
@@ -389,16 +332,6 @@
                 UIkit.util.on('#modal-eliminar-coordinador', 'show', function () {
                     modalEliminar.querySelector('.uk-modal-body').click();
                 });
-            /*    UIkit.util.on('#modal-asignar-licencia', 'show', function () {
-                    modalModificar.querySelector('.uk-modal-body').click();
-                });*/
-                UIkit.util.on('#modal-bloqueo', 'show', function () {
-                    modalBloqueo.querySelector('.uk-modal-body').click();
-                });
-            /*    UIkit.util.on('#modal-nuevo-coord', 'show', function () {
-                    modalCoord.querySelector('.uk-modal-body').click();
-                });
-*/
             });
             contrassenia = document.getElementById('formulario-modal-nuevo-profesor:input-secret-password');
             contrasseniaeditar = document.getElementById('formulario-nuevo-coord:input-secret-editar-password');
