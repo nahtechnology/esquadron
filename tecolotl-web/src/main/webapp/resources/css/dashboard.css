@@ -326,3 +326,34 @@ input:checked + .slider:before {
 	flex-direction: column;
 	justify-content: center;
 }
+/*administracion barras licencia*/
+.licencia-por-vencer{
+	color: #F1C40F;
+}
+.licencia-vencida{
+	color: #ED1C24;
+}
+
+.licencia-por-vencer::-webkit-progress-value {
+	background-color: #F1C40F;
+}
+.licencia-por-vencer::-moz-progress-bar {
+	background-color: #F1C40F;
+}
+.licencia-por-vencer::-ms-fill {
+	background-color: #F1C40F;
+}
+.licencia-vencida::-webkit-progress-value {
+	background-color: #ED1C24;
+}
+.licencia-vencida::-moz-progress-bar {
+	background-color: #ED1C24;
+}
+.licencia-vencida::-ms-fill {
+	background-color: #ED1C24;
+}
+
+.licencia-seleccionada:hover{
+	color: #0e6dcd !important;
+	cursor: pointer;
+}

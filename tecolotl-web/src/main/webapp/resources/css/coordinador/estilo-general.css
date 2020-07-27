@@ -38,11 +38,10 @@ h1 {
 }
 .ayuda-imagen {
     width: 25px;
-    margin-top: 10px;
     transition:transform linear 0.3s;
 }
 .ayuda-imagen path,.ayuda-imagen circle{
-    fill: black;
+    fill: white;
 }
 .ayuda-imagen:hover{
     cursor: pointer;

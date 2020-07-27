@@ -448,6 +448,12 @@
                         console.error('Opcion aun no programada:'.concat(modal));
                 }
             }
+            function buscarLicenciasVencidas(nodo) {
+                let inputBusqueda = document.querySelector('[id$=filtrado]');
+                let ionoBusqueda = document.querySelector('[id$=comando-busqueda]');
+                inputBusqueda.value = nodo.innerText;
+                ionoBusqueda.click();
+            }
         </script>
     </ui:define>
 </ui:composition>
