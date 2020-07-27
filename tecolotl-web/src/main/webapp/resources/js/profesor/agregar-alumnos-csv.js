@@ -1,3 +1,4 @@
+let cuentaContrasena = 0;
 function Alumno(apodo, nombre, apellidopaterno, apellidomaterno, fechanacimiento, nivellenguaje, genero) {
 
     this.apodo = apodo;
@@ -426,5 +427,23 @@ function cargaContrasenia() {
  * @param evento evento de click
  */
 function cambioImagen(evento) {
-    evento.target.classList.toggle('seleccionado')
+    ++cuentaContrasena;
+    if(cuentaContrasena > 2 ){
+       let imagenes = evento.target.parentElement.querySelectorAll('img.seleccionado');
+       imagenes.forEach(img =>{
+          img.classList.remove('seleccionado');
+       });
+       cuentaContrasena = 1;
+    }
+    evento.target.classList.toggle('seleccionado');
+
+}
+function resetContrasena() {
+ let imagenes = document.querySelectorAll('#modal-nuevo-alumno #imagenes > img.seleccionado');
+ if (imagenes.length > 0 ){
+    imagenes.forEach(img => {
+       img.classList.remove('seleccionado');
+    });
+ }
+ cuentaContrasena = 0;
 }

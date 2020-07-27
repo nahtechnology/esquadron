@@ -276,7 +276,7 @@
                                     execute="@form"
                                     listener="#{coordinadorControlador.agregar}"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" rendered="#{not empty coordinadorControlador.coordinadorModelo.contador}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()"  value="#{boton['update']}" rendered="#{not empty coordinadorControlador.coordinadorModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
                                     render="@form formulario-coordinador"
                                     execute="@form"
