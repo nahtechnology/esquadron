@@ -163,7 +163,7 @@
                                             pt:placeholder="#{administracion['catalogocoordinador.coordinator.detail.table.header.nick']}"
                                             value="#{coordinadorControlador.coordinadorModelo.apodo}"
                                             binding="#{coordinadorControlador.uiInput}"
-                                            disabled="#{not empty coordinadorControlador.coordinadorModelo.apodo}"
+                                            disabled="#{not empty coordinadorControlador.coordinadorModelo.contador}"
                                             styleClass="uk-input" >
                                         <f:validateRequired/>
                                         <f:validateLength minimum="3" maximum="30"/>
@@ -290,7 +290,7 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-eliminar-coordinador">
                 <div class="uk-modal-header fondo-peligro"  >
-                    <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo uk-text-capitalize">elimiar contacto</span></p>
+                    <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo uk-text-capitalize">elimiar coordinador</span></p>
                 </div>
                 <div class="uk-modal-body">
                     <p class="primera-mayuscula">esta seguro que desea borrar al contacto:

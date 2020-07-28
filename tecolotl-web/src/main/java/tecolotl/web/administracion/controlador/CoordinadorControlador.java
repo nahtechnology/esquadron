@@ -56,7 +56,7 @@ public class CoordinadorControlador implements Serializable {
         } else {
             coordinadorModelo.setClaveCentroTrabajo(escuelaBaseModelo.getClaveCentroTrabajo());
             coordinadorSesionBean.agreaga(coordinadorModelo);
-            coordinadorModeloLista.add(coordinadorModelo);
+            coordinadorModeloLista = coordinadorSesionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
             limpiaCoordinador();
         }
     }

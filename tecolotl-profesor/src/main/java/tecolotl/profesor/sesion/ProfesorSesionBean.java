@@ -112,8 +112,10 @@ public class ProfesorSesionBean implements Serializable {
      */
 
     public ProfesorModelo busca(@NotNull String apodo, boolean galaxia) {
-        TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaApodo", ProfesorEntidad.class);
-        typedQuery.setParameter("apodo", galaxia ? apodo.split(",")[0] : apodo);
+        TypedQuery<ProfesorEntidad> typedQuery = entityManager.createNamedQuery("ProfesorEntidad.buscaApodoGalaxia", ProfesorEntidad.class);
+        String datos[] = apodo.split(",");
+        typedQuery.setParameter("apodo", datos[0]);
+        typedQuery.setParameter("galaxia", Short.parseShort(datos[1]));
         ProfesorEntidad profesorEntidad = typedQuery.getSingleResult();
         ProfesorModelo profesorModelo = new ProfesorModelo(profesorEntidad);
         profesorModelo.setEscuelaBaseModelo(new EscuelaBaseModelo(profesorEntidad.getEscuelaEntidad().getClaveCentroTrabajo()));

@@ -39,7 +39,10 @@ import java.util.UUID;
     @NamedQuery(
         name = "ProfesorEntidad.eliminaProfesor",
         query = "select count (g.id) from GrupoEntidad g where g.profesorEntidad.id = :idProfesor"
-    )
+    ),
+        @NamedQuery(
+                name = "ProfesorEntidad.buscaApodoGalaxia",
+                query = "SELECT p FROM ProfesorEntidad  p join p.escuelaEntidad e WHERE p.apodo = :apodo AND e.galaxia = :galaxia")
 })
 public class ProfesorEntidad extends PersonaEntidad {
 
