@@ -428,7 +428,7 @@ function cargaContrasenia() {
  */
 function cambioImagen(evento) {
     ++cuentaContrasena;
-    if(cuentaContrasena > 2 ){
+    if(cuentaContrasena > 6 ){
        let imagenes = evento.target.parentElement.querySelectorAll('img.seleccionado');
        imagenes.forEach(img =>{
           img.classList.remove('seleccionado');
