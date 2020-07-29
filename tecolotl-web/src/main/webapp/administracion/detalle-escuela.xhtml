@@ -105,143 +105,7 @@
             </div>
         </div>
         <h:panelGroup layout="block"  styleClass="uk-margin-medium-top uk-margin-medium-bottom uk-grid" pt:uk-grid="" >
-            <div class="uk-width-2-3@m uk-overflow-auto uk-width-1-1@s ">
-                <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
-                    <div class="uk-card-header">
-                        <div class="uk-grid uk-grid-small">
-                            <div class="uk-width-auto"><h4><h:outputText styleClass="uk-text-middle uk-text-capitalize" value="#{administracion['schooldetail.contacts']}"/></h4></div>
-                            <div class="uk-width-expand uk-text-right panel-icons">
-                                <h:form>
-                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-contacto">
-                                        <f:ajax></f:ajax>
-                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"
-                                                      styleClass="uk-text-primary"
-                                                      pt:uk-tooltip="title:#{administracion['schooldetail.contacts.tooltip.add']}; delay:2000; pos: top"/>
-                                    </h:commandLink>
-                                </h:form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="uk-card-body">
-                        <div class="uk-overflow-auto">
-                            <h:form id="formulario-tabla-contacto">
-                                <ui:fragment rendered="#{empty contactoControlador.collectionDataModel.wrappedData}">
-                                    <table class="uk-table uk-table-middle">
-                                        <thead class="uk-background-primary">
-                                        <tr>
-                                            <th><span class="letra-titulo uk-text-uppercase">#{administracion['schooldetail.contacts.id']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.name']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.type']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.phone']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.email']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td colspan="6">
-                                                <div class="uk-flex uk-flex-center">
-                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot class="uk-background-primary">
-                                        <tr>
-                                            <td colspan="6"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
-                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
-                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
-                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
-                                                </h:outputFormat>
-                                            </span></td>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </ui:fragment>
-                                <h:dataTable value="#{contactoControlador.collectionDataModel}"
-                                             binding="#{contactoControlador.htmlDataTable}"
-                                             var="contacto"
-                                             id="tabla-contacto"
-                                             rendered="#{not empty contactoControlador.collectionDataModel.wrappedData}"
-                                             first="0"
-                                             rows="5"
-                                             styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center tabla-escuela-contacto"
-                                             headerClass="uk-background-primary uk-text-center"
-                                             footerClass="uk-background-primary uk-text-left"
-                                             columnClasses="uk-text-left,,,">
-                                    <h:column>
-                                        <f:facet name="header">
-                                            <h:outputText styleClass="letra-titulo"
-                                                          value="#{administracion['schooldetail.contacts.id']}"/>
-                                        </f:facet>
-                                        #{contacto.contador}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.name']}" /></f:facet>
-                                        #{contacto.nombre}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.type']}" /></f:facet>
-                                        #{contacto.tipoContactoModelo.valor}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.phone']}"/></f:facet>
-                                        #{contacto.telefono}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.email']}" /></f:facet>
-                                        #{contacto.correoElectronico}
-                                    </h:column>
-                                    <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}" /></f:facet>
-                                        <div class="uk-inline ">
-                                            <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
-                                            <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
-                                                <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                                                    <li>
-                                                        <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
-                                                            <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                            <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
-                                                            <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
-                                                            <f:setPropertyActionListener value="#{contacto.tipoContactoModelo}" target="#{contactoControlador.tipoContactoModelo}"/>
-                                                            <f:ajax render="formulario-agregar-contacto" onevent="function funcion(data) { limpiaSelect(data) }"/>
-                                                        </h:commandLink>
-                                                    </li>
-                                                    <li class="uk-nav-divider"/>
-                                                    <li>
-                                                        <h:commandLink  pt:uk-toggle="target: #modal-eliminar-contacto" styleClass="uk-text-danger">
-                                                            <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                            <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
-                                                            <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
-                                                            <f:ajax render="formulario-eliminar-contacto"/>
-                                                        </h:commandLink>
-                                                    </li>
-                                                </ul>
-                                            </h:panelGroup>
-                                        </div>
-                                    </h:column>
-                                    <f:facet name="footer">
-                                        <pa:pie-tabla htmlDataTable="#{contactoControlador.htmlDataTable}"/>
-                                    </f:facet>
-                                </h:dataTable>
-                            </h:form>
-                        </div>
-                    </div>
-                    <div class="uk-card-footer">
-                        <f:ajax render="formulario-paginacion-contacto formulario-tabla-contacto">
-                            <h:form id="formulario-paginacion-contacto">
-                                <div uk-grid="">
-                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
-                                        <pa:boton-minimizado htmlDataTable="#{contactoControlador.htmlDataTable}"/>
-                                    </div>
-                                </div>
-                            </h:form>
-                        </f:ajax>
-                    </div>
-                </div>
-            </div>
-            <div class="uk-width-1-3@m uk-overflow-auto uk-width-1-1@s">
+            <div class="uk-width-1-1@m ">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover">
                     <div class="uk-card-header">
                         <div class="uk-grid uk-grid-small">
@@ -262,7 +126,7 @@
                         </div>
                     </div>
                     <div class="uk-card-body dropdown-licencia">
-                        <div class="uk-overflow-auto">
+                        <div >
                         <h:form id="formulario-licencia">
                             <ui:fragment rendered="#{empty licenciasControlador.collectionDataModel.wrappedData}">
                                 <table class="uk-table uk-table-middle">
@@ -356,6 +220,142 @@
                                 <div uk-grid="">
                                     <div class="uk-panel uk-flex uk-flex-left">
                                         <pa:boton-minimizado htmlDataTable="#{licenciasControlador.htmlDataTable}"/>
+                                    </div>
+                                </div>
+                            </h:form>
+                        </f:ajax>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-width-1-1@m ">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover" >
+                    <div class="uk-card-header">
+                        <div class="uk-grid uk-grid-small">
+                            <div class="uk-width-auto"><h4><h:outputText styleClass="uk-text-middle uk-text-capitalize" value="#{administracion['schooldetail.contacts']}"/></h4></div>
+                            <div class="uk-width-expand uk-text-right panel-icons">
+                                <h:form>
+                                    <h:commandLink styleClass="uk-icon-button  uk-icon" pt:uk-toggle="target: #modal-agregar-contacto">
+                                        <f:ajax></f:ajax>
+                                        <h:outputText pt:uk-icon="icon: plus-circle; ratio: 1.5"
+                                                      styleClass="uk-text-primary"
+                                                      pt:uk-tooltip="title:#{administracion['schooldetail.contacts.tooltip.add']}; delay:2000; pos: top"/>
+                                    </h:commandLink>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-card-body">
+                        <div >
+                            <h:form id="formulario-tabla-contacto">
+                                <ui:fragment rendered="#{empty contactoControlador.collectionDataModel.wrappedData}">
+                                    <table class="uk-table uk-table-middle">
+                                        <thead class="uk-background-primary">
+                                        <tr>
+                                            <th><span class="letra-titulo uk-text-uppercase">#{administracion['schooldetail.contacts.id']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.name']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.type']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.phone']}</span></th>
+                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.email']}</span></th>
+                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td colspan="6">
+                                                <div class="uk-flex uk-flex-center">
+                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                        <tfoot class="uk-background-primary">
+                                        <tr>
+                                            <td colspan="6"><span class="letra-titulo">
+                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
+                                                    <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
+                                                </h:outputFormat>
+                                            </span></td>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </ui:fragment>
+                                <h:dataTable value="#{contactoControlador.collectionDataModel}"
+                                             binding="#{contactoControlador.htmlDataTable}"
+                                             var="contacto"
+                                             id="tabla-contacto"
+                                             rendered="#{not empty contactoControlador.collectionDataModel.wrappedData}"
+                                             first="0"
+                                             rows="5"
+                                             styleClass="uk-table uk-table-small uk-table-divider uk-table-middle uk-table-hover uk-text-center tabla-escuela-contacto"
+                                             headerClass="uk-background-primary uk-text-center"
+                                             footerClass="uk-background-primary uk-text-left"
+                                             columnClasses=",uk-text-left,,,">
+                                    <h:column>
+                                        <f:facet name="header">
+                                            <h:outputText styleClass="letra-titulo"
+                                                          value="#{administracion['schooldetail.contacts.id']}"/>
+                                        </f:facet>
+                                        #{contacto.contador}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.name']}" /></f:facet>
+                                        #{contacto.nombre}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.type']}" /></f:facet>
+                                        #{contacto.tipoContactoModelo.valor}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.phone']}"/></f:facet>
+                                        #{contacto.telefono}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.email']}" /></f:facet>
+                                        #{contacto.correoElectronico}
+                                    </h:column>
+                                    <h:column>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}" /></f:facet>
+                                        <div class="uk-inline ">
+                                            <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
+                                            <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
+                                                <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                                                    <li>
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
+                                                            <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
+                                                            <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
+                                                            <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
+                                                            <f:setPropertyActionListener value="#{contacto.tipoContactoModelo}" target="#{contactoControlador.tipoContactoModelo}"/>
+                                                            <f:ajax render="formulario-agregar-contacto" onevent="function funcion(data) { limpiaSelect(data) }"/>
+                                                        </h:commandLink>
+                                                    </li>
+                                                    <li class="uk-nav-divider"/>
+                                                    <li>
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-eliminar-contacto" styleClass="uk-text-danger">
+                                                            <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
+                                                            <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
+                                                            <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
+                                                            <f:ajax render="formulario-eliminar-contacto"/>
+                                                        </h:commandLink>
+                                                    </li>
+                                                </ul>
+                                            </h:panelGroup>
+                                        </div>
+                                    </h:column>
+                                    <f:facet name="footer">
+                                        <pa:pie-tabla htmlDataTable="#{contactoControlador.htmlDataTable}"/>
+                                    </f:facet>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="uk-card-footer">
+                        <f:ajax render="formulario-paginacion-contacto formulario-tabla-contacto">
+                            <h:form id="formulario-paginacion-contacto">
+                                <div uk-grid="">
+                                    <div class="uk-panel uk-flex uk-flex-left uk-width-1-1@s uk-width-1-2@m">
+                                        <pa:boton-minimizado htmlDataTable="#{contactoControlador.htmlDataTable}"/>
                                     </div>
                                 </div>
                             </h:form>
