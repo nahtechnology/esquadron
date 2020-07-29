@@ -1,7 +1,7 @@
 
 function cargaContrasenia() {
     console.log('entre');
-    var imagenes = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body .login > img');
+    var imagenes = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body .login-coordinador > img');
     var seleccionados = [];
     for (i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
