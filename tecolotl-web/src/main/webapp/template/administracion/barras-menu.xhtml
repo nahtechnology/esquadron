@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h5 class="uk-text-uppercase">#{etiqueta['status']}</h5>
-    <h:panelGroup layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box uk-margin-top">
+    <h:panelGroup id="estatus-escuelas" layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box uk-margin-top">
         <ui:repeat value="#{estatusControlador.licenciaVistaModeloLista}" var="licenciaVistaModelo">
             <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" >
                 <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada" onclick="buscarLicenciasVencidas(this)">#{licenciaVistaModelo.claveCentroTrabajo}</span>  <small class="#{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}">(#{licenciaVistaModelo.dias})</small>

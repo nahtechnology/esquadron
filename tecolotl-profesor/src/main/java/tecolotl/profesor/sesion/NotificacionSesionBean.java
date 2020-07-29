@@ -29,6 +29,12 @@ public class NotificacionSesionBean {
         return typedQuery.getResultList().stream().map(NotificacionModelo::new).collect(Collectors.toList());
     }
 
+    public Long cuenta(@NotNull UUID idProfesor) {
+        TypedQuery<Long> typedQuery = entityManager.createNamedQuery("NotificacionEntidad.cuentaProfesor", Long.class);
+        typedQuery.setParameter("idProfesor", idProfesor);
+        return typedQuery.getSingleResult();
+    }
+
     public int leido(@NotNull UUID idProfesor, @NotNull UUID idAlumno) {
         Query query = entityManager.createNamedQuery("NotificacionEntidad.leidos");
         query.setParameter("notificacionPK", llavePrimaria(idProfesor, idAlumno));

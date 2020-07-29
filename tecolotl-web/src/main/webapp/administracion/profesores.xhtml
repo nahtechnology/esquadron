@@ -266,7 +266,7 @@
                         <h:commandButton value="${boton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.actualiza()}"
-                                    render="@form formulario-tabla"
+                                    render="@form formulario-tabla estatus-escuelas"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor');  }"/>
                         </h:commandButton>
                     </div>

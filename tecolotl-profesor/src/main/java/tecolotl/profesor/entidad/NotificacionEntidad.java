@@ -18,6 +18,10 @@ import java.util.Objects;
         @NamedQuery(
                 name = "NotificacionEntidad.elimina",
                 query = "DELETE FROM NotificacionEntidad n WHERE n.notificacionEntidadPK = :notificacionPK"
+        ),
+        @NamedQuery(
+                name = "NotificacionEntidad.cuentaProfesor",
+                query = "SELECT count (n) FROM NotificacionEntidad n WHERE n.notificacionEntidadPK.profesorEntidad.id = :idProfesor"
         )
 })
 public class NotificacionEntidad {
