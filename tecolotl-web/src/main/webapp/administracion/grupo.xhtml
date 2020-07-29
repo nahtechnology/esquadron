@@ -170,7 +170,9 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button type="reset" class="uk-button uk-button-default uk-margin-small-right">#{boton['cancel']}</button>
+                        <h:commandButton value="#{boton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
+                            <f:ajax listener="#{grupoControlador.limpiaGrupo}" render="@form" onevent="function funcion(data){ cerrarModal(data, 'modalGrupo')}"/>
+                        </h:commandButton>
                         <h:commandButton id="enviar-grupo"
                                          value="#{boton['add']}"
                                          rendered="#{empty grupoControlador.grupoModelo.id}"

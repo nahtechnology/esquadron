@@ -114,6 +114,10 @@ public class GrupoControlador implements Serializable {
         grupoModelo.setTotalAlumno(grupoAlumnoSesionBean.buscaTotalAlumnosGrupo(grupoModelo.getId()).intValue());
     }
 
+    public void limpiaGrupo() {
+        grupoModelo = new GrupoModelo();
+    }
+
     public void borrar() {
         grupoSesionBean.elimina(grupoModelo.getId());
         grupoModeloLista.remove(grupoModelo);
