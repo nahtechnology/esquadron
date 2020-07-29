@@ -197,7 +197,7 @@
                                         <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}" /></f:facet>
                                         <div class="uk-inline ">
                                             <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
-                                            <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
+                                            <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
                                                 <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                     <li>
                                                         <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
@@ -261,7 +261,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="uk-card-body">
+                    <div class="uk-card-body dropdown-licencia">
                         <div class="uk-overflow-auto">
                         <h:form id="formulario-licencia">
                             <ui:fragment rendered="#{empty licenciasControlador.collectionDataModel.wrappedData}">
@@ -329,7 +329,7 @@
                                     <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}"/></f:facet>
                                     <div class="uk-inline ">
                                         <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
-                                        <h:panelGroup layout="block" pt:uk-dropdown="boundary: .tabla-licencia; mode: click" id="licencia-menu">
+                                        <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary: .dropdown-licencia; mode: click" id="licencia-menu">
                                             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                 <li>
                                                     <h:commandLink  pt:uk-toggle="target: #modal-licencia" styleClass="uk-text-primary">
