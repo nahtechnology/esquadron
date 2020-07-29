@@ -1,6 +1,7 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.administracion.sesion.CoordinadorSesionBean;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
@@ -27,6 +28,9 @@ public class ProfesorControlador implements Serializable {
     private GrupoSesionBean grupoSesionBean;
 
     @Inject
+    private CoordinadorSesionBean coordinadorSesionBean;
+
+    @Inject
     private Logger logger;
 
     private String claveCentroTrabajo;
@@ -51,9 +55,10 @@ public class ProfesorControlador implements Serializable {
     }
 
     public void inserta() {
-        if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo.getApodo())) {
+        if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo.getApodo()) ||
+                coordinadorSesionBean.exite(profesorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este profesor ya existe", null);
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este apodo ya existe", null);
             facesContext.addMessage(uiInputApodo.getClientId(facesContext), facesMessage);
         } else {
             profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);

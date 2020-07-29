@@ -21,6 +21,9 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
     @Inject
     private LicenciaSesionBean licenciaSesionBean;
 
+    @Inject
+    private EstatusControlador estatusControlador;
+
     @Inject private Logger logger;
 
     private LicenciaModelo licenciaModelo;
@@ -47,6 +50,7 @@ public class LicenciasControlador extends TablaControlador<LicenciaModelo> imple
     public void actualiza(AjaxBehaviorEvent ajaxBehaviorEvent) {
         licenciaModelo.setClaveCentroTrabajo(claveCentroTrabajo);
         licenciaSesionBean.actualiza(licenciaModelo);
+        estatusControlador.init();
         actualizaDataModel();
     }
 

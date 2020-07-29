@@ -133,10 +133,8 @@ public class ProfesorSesionBean implements Serializable {
         profesorEntidad.setNombre(profesorModelo.getNombre());
         profesorEntidad.setApellidoPaterno(profesorModelo.getApellidoPaterno());
         profesorEntidad.setApellidoMaterno(profesorModelo.getApellidoMaterno());
-        //profesorEntidad.setApodo(profesorModelo.getApodo());
         profesorEntidad.setSexo(profesorModelo.getSexo());
         profesorEntidad.setCorreoEletronico(profesorModelo.getCorreoEletronico());
-
     }
 
     /**
