@@ -272,7 +272,7 @@ class PromedioGeneralActividad {
         console.log(puntajes);
         this.tareasAsignadas.innerText = filas.length;
         this.tareasPromediadas.innerText = actividades.length;
-        this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedios/7) : "No hay tareas completadas";
+        this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedios/7) : "Nothing answered yet!";
         console.log(promedios/7);
     }
 

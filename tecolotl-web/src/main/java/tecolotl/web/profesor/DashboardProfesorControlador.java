@@ -64,6 +64,7 @@ public class DashboardProfesorControlador implements Serializable {
                 this.cicloEscolarModelo = cicloEscolarModelo;
                 break;
             }
+
         }
         grupoModeloLista = grupoSesionBean.buscaTotalAlumno(
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
