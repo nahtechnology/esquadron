@@ -13,7 +13,7 @@
     text-transform: capitalize;
 }
 
-#formulario-modal-coordinador .uk-modal-body > div > div:last-child{
+#formulario-modal-coordinador .uk-modal-body .login-coordinador{
     display: grid;
     grid-template-columns: 40px 40px 40px 40px 40px 40px 40px;
     grid-template-rows: 40px 40px 40px 40px;
@@ -24,13 +24,13 @@
     margin-top: 30px;
 }
 
-#formulario-modal-coordinador .uk-modal-body > div > div:last-child > img{
+#formulario-modal-coordinador .uk-modal-body .login-coordinador > img{
     width: 40px;
     height: 40px;
     transition: all 0.5s linear;
     cursor: pointer;
 }
-#formulario-modal-coordinador .uk-modal-body > div > div:last-child > img:hover{
+#formulario-modal-coordinador .uk-modal-body .login-coordinador > img:hover{
     transform: scale(1.5,1.5);
 }
 

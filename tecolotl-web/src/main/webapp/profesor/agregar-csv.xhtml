@@ -71,7 +71,7 @@
                 <h:panelGroup layout="block" id="cupo-alumnos">
                     <div class="titulo-section uk-text-center uk-text-bold uk-text-capitalize">#{profesor['agregarscv.student']}</div>
                     <progress max="${agregarCsvControlador.totalAlumno}" value="${agregarCsvControlador.alumnosAsignado}"/>
-                    <span>${agregarCsvControlador.alumnosAsignado}/${agregarCsvControlador.totalAlumno}</span>
+                    <span><h:outputText id="numero-alumnos" value="${agregarCsvControlador.alumnosAsignado}/${agregarCsvControlador.totalAlumno}"/> </span>
                 </h:panelGroup>
                 <div class="uk-margin-medium-top">
                     <h:button styleClass="boton-maestro-base" value="#{boton['back']}" outcome="regresar"/>
@@ -316,7 +316,7 @@
                             <f:ajax listener="#{agregarCsvControlador.inserta}"
                                     onevent="function funcion(data) { cierraModal(data); }"
                                     execute="@form"
-                                    render="@form"/>
+                                    render="@form cupo-alumnos"/>
                         </h:commandButton>
                     </div>
                 </h:form>

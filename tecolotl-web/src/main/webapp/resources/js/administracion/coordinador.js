@@ -1,7 +1,7 @@
 
 function cargaContrasenia() {
     console.log('entre');
-    var imagenes = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body > div > div:last-child > img');
+    var imagenes = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body .login > img');
     var seleccionados = [];
     for (i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
@@ -15,7 +15,7 @@ function cargaContrasenia() {
 
 function efectosImagenes() {
     console.log('entro');
-    let imaginLogin = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body > div > div:last-child > img');
+    let imaginLogin = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body .login > img');
     imaginLogin.forEach(img => {
         img.addEventListener('click',()=>{
            img.classList.toggle('seleccionado')

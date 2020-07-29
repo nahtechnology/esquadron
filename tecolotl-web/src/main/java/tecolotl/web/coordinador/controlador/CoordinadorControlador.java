@@ -40,7 +40,7 @@ public class CoordinadorControlador implements Serializable {
         personaActivaModelo = coordinadorSesionBean.activo(coordinadorModelo.getContador(), coordinadorModelo.getClaveCentroTrabajo());
         if (personaActivaModelo.isBloqueado()) {
             try {
-                externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml");
+                externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=coordinador");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

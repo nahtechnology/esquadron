@@ -238,7 +238,7 @@
                                 <h:message for="modal-email" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
                             </div>
 
-                            <div class="uk-width-1-1@m">
+                            <div class="uk-width-1-1@m login-coordinador">
                                 <ui:remove>
                                 <h:outputLabel for="input-secret-editar-password" styleClass=" uk-text-capitalize uk-form-label" value="#{administracion['detalleprofesor.active.modal.header.password']}"/>
                                 <div class="uk-inline">
@@ -254,7 +254,6 @@
                                         <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                     </h:inputSecret>
                                 </div>
-                                <h:message for="input-secret-editar-password" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
                                 </ui:remove>
                                 <c:forEach begin="1" end="28" var="indice">
                                     <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
@@ -265,6 +264,9 @@
                                     <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                 </h:inputHidden>
 
+                            </div>
+                            <div class="uk-width-1-1@m uk-text-center">
+                                <h:message for="input-secret-password" errorClass="uk-text-danger uk-display-inline-block primera-mayuscula"/>
                             </div>
                         </div>
                     </div>

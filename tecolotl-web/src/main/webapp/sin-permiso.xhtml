@@ -18,8 +18,11 @@
         <h:graphicImage library="img" name="/mounstro/whom.svg"/>
         <h:graphicImage library="img" name="/mounstro/whose.svg"/>
     </div>
-    <p class="uk-margin-medium-top">Comunícate con el administrador </p>
-    <h:button outcome="regresar" value="#{boton['back']}"/>
+    <p class="uk-margin-medium-top">
+        <h:outputText rendered="#{param['tipo'] eq 'profesor' or param['tipo'] eq 'coordinador'}" value="Se vencio tu licencia comunícate con el administrador"/>
+        <h:outputText rendered="#{param['tipo'] eq 'alumno'}" value="Esto no es un error, comunicate con tu profesor"/>
+    </p>
+    <h:button outcome="regresar" styleClass="uk-button uk-button-primary" value="#{boton['back']}"/>
     <h:outputScript library="js" name="uikit.js"/>
     <script type="application/javascript">
         document.addEventListener('DOMContentLoaded',()=>{

@@ -62,7 +62,7 @@ function abrirModal() {
     UIkit.util.on('#modal-profesor', 'shown', function () {
         var modal = document.querySelector('#modal-profesor');
         let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
-        let imagenes = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
+        let imagenes = document.querySelectorAll('#formulario-modal-profesor .login > img');
         if(datoModal === 1 ){
             let password = contrasena.split(',');
             imagenes[parseInt(password[0])].classList.add("seleccionado");
@@ -83,7 +83,7 @@ function abrirModal() {
 
 function cargaContrasenia() {
     console.log('entre');
-    var imagenes = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
+    var imagenes = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img');
     var seleccionados = [];
     for (i = 0; i < imagenes.length; i++) {
         if (imagenes[i].classList.contains('seleccionado')) {
@@ -94,24 +94,15 @@ function cargaContrasenia() {
 }
 
 function seleccionContrasena() {
-    let img = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img');
-    let datoCuenta = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img.seleccionado');
-    let cuenta = datoCuenta === null ? 0 : datoCuenta.length;
+    console.log('contrasena');
+    let img = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img');
+    let datoCuenta = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img.seleccionado');
     img.forEach(img => {
         img.addEventListener('click',() => {
-            quitarClase(++cuenta);
+            // quitarClase(++cuenta);
             img.classList.toggle("seleccionado");
         });
     });
-    function quitarClase(conteo) {
-        console.log(conteo)
-        if (conteo > 2){
-            let seleccionados = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body > div > div:last-child > img.seleccionado');
-            seleccionados.forEach(elemento => {
-                elemento.classList.remove('seleccionado')
-            });
-            cuenta = 1;
-        }
-    }
+
 
 }

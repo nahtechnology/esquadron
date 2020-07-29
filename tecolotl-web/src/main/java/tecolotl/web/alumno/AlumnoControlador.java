@@ -53,7 +53,7 @@ public class AlumnoControlador implements Serializable {
         personaActivaModelo = alumnoSesionBean.activo(alumnoModelo.getId());
         if (personaActivaModelo.isBloqueado()) {
             try {
-                externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml");
+                externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=alumno");
                 externalContext.invalidateSession();
             } catch (IOException ioException) {
 

@@ -239,7 +239,7 @@
                                 </div>
                                 <h:message for="correoEletronico" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
-                            <div class="uk-width-1-1@m">
+                            <div class="uk-width-1-1@m login">
                                 <c:forEach begin="1" end="28" var="indice">
                                     <h:graphicImage library="img" name="alumno/iconos-login/${indice}.svg" />
                                 </c:forEach>
@@ -248,6 +248,9 @@
                                     <f:validateRequired/>
                                     <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                 </h:inputHidden>
+                            </div>
+                            <div class="uk-width-1-1@m uk-text-center">
+                                <h:message for="input-secret-password" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
                             </div>
                         </div>
                     </div>
