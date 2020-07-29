@@ -15,7 +15,7 @@ function cargaContrasenia() {
 
 function efectosImagenes() {
     console.log('entro');
-    let imaginLogin = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body .login > img');
+    let imaginLogin = document.querySelectorAll('#formulario-modal-coordinador .uk-modal-body .login-coordinador > img');
     imaginLogin.forEach(img => {
         img.addEventListener('click',()=>{
            img.classList.toggle('seleccionado')

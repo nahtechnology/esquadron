@@ -97,10 +97,10 @@ function seleccionContrasena() {
     console.log('contrasena');
     let img = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img');
     let datoCuenta = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img.seleccionado');
-    img.forEach(img => {
-        img.addEventListener('click',() => {
+    img.forEach(image => {
+        image.addEventListener('click',() => {
             // quitarClase(++cuenta);
-            img.classList.toggle("seleccionado");
+            image.classList.toggle("seleccionado");
         });
     });
 
