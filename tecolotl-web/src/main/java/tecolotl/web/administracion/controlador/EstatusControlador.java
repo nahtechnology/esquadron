@@ -9,8 +9,10 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 
 @SessionScoped
 @Named
@@ -23,7 +25,16 @@ public class EstatusControlador implements Serializable {
 
     @PostConstruct
     public void init() {
-        licenciaVistaModeloLista = licenciaTiempoSesionBean.busca(30);
+        licenciaVistaModeloLista = licenciaTiempoSesionBean.busca(null);
+    }
+
+    public int busca(@NotNull String claveCentroTrabajo) {
+        for (LicenciaVistaModelo licenciaVistaModelo : licenciaVistaModeloLista) {
+            if (licenciaVistaModelo.getClaveCentroTrabajo().equals(claveCentroTrabajo)) {
+                return licenciaVistaModelo.getDias();
+            }
+        }
+        return -999;
     }
 
     public List<LicenciaVistaModelo> getLicenciaVistaModeloLista() {
