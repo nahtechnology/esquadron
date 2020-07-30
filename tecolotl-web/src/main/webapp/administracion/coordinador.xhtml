@@ -110,13 +110,13 @@
                                     #{coordinadorModelo.correoEletronico}
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><span class="letra-titulo">contraseña</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['title.all.tables.column.password']}</span></f:facet>
                                     <h:outputText value="#{coordinadorModelo.contrasenia}">
                                         <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><span class="letra-titulo">#{etiqueta['options']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo">#{administracion['title.all.tables.column.options']}</span></f:facet>
                                     <div class="uk-inline  ">
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
                                         <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-coordinador-dropdown; mode: click" styleClass="uk-dropdown">
