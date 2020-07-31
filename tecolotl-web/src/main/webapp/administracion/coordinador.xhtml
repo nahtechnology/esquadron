@@ -54,7 +54,7 @@
                             <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">#{administracion['catalogocoordinador.title']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
-                                    <h:commandLink styleClass="uk-icon-button  uk-icon uk-text-primary" pt:uk-toggle="target: #modal-coordinador" >
+                                    <h:commandLink  styleClass="uk-icon-button  uk-icon uk-text-primary" pt:uk-toggle="target: #modal-coordinador" >
                                         <h:outputText  pt:uk-icon="icon: plus-circle; ratio: 1.5"/>
                                         <f:ajax listener="#{coordinadorControlador.limpiaCoordinador}" render="formulario-modal-coordinador"/>
                                     </h:commandLink>
@@ -122,7 +122,7 @@
                                         <h:panelGroup layout="block" pt:uk-dropdown="boundary:.tabla-coordinador-dropdown; mode: click" styleClass="uk-dropdown">
                                             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                 <li>
-                                                    <h:commandLink   pt:uk-toggle="target: #modal-coordinador" styleClass="uk-text-primary">
+                                                    <h:commandLink  onclick="setTimeout(setearContrasena,500);"  pt:uk-toggle="target: #modal-coordinador" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{otrosetiqueta['edit']}"/></span>
                                                         <f:setPropertyActionListener value="#{coordinadorModelo}" target="#{coordinadorControlador.coordinadorModelo}"/>
@@ -400,6 +400,20 @@
                 } else {
                     contrasseniaeditar.type = "password";
                 }
+            }
+            function setearContrasena() {
+                let password = document.querySelector('#modal-coordinador [id$=input-secret-password]');
+                let imagenes = document.querySelectorAll('#modal-coordinador .login-coordinador > img');
+                if (password.value !== ""){
+                    password = password.value.split(',');
+                    imagenes[password[0]].classList.add('seleccionado');
+                    imagenes[password[1]].classList.add('seleccionado');
+                }
+                else {
+                    console.log('nuevo coordinador');
+                }
+
+
             }
         </script>
 
