@@ -11,7 +11,7 @@
 
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -76,7 +76,7 @@
                                         </h:commandLink>
                                         <h:inputText id="filtrado" disabled="#{empty escuelaDashboardControlador.collectionDataModel.wrappedData}"
                                                      styleClass="#{empty escuelaDashboardControlador.busqueda ? 'uk-input' : 'uk-input filtrar uk-light fuente'}"
-                                                     pt:placeholder="#{etiqueta['search']}"
+                                                     pt:placeholder="#{administracion['label.search']}"
                                                      autocomplete="off"
                                                      value="#{escuelaDashboardControlador.busqueda}"
                                                      pt:uk-tooltip="title: #{empty escuelaDashboardControlador.collectionDataModel.wrappedData
@@ -129,7 +129,7 @@
                                     <tfoot class="uk-background-primary">
                                         <tr>
                                             <td colspan="6"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                <h:outputFormat value="#{otrosetiqueta['pages.total']}" styleClass="letra-titulo">
                                                     <f:param value="#{escuelaDashboardControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{escuelaDashboardControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{escuelaDashboardControlador.htmlDataTable.rowCount}"/>
@@ -183,25 +183,25 @@
                                         #{estatusControlador.busca(escuela.claveCentroTrabajo)}
                                     </h:column>
                                     <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                        <f:facet name="header"><span class="letra-titulo">galaxia</span></f:facet>
+                                        <f:facet name="header"><span class="letra-titulo">#{administracion['catalogoadministrativo.school.table.galaxy']}</span></f:facet>
                                         #{escuela.galaxia}
                                     </h:column>
                                     <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                        <f:facet name="header"><span class="letra-titulo ">#{etiqueta['options']}</span></f:facet>
+                                        <f:facet name="header"><span class="letra-titulo ">#{administracion['title.all.tables.column.options']}</span></f:facet>
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                 <li>
                                                     <h:link styleClass="uk-text-primary" outcome="detalle">
                                                         <h:outputText pt:uk-icon="icon:  file-text" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['detail']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['detail']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:param name="escuela" value="#{escuela.claveCentroTrabajo}"/>
                                                     </h:link>
                                                 </li>
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-primary" pt:uk-toggle="target: #modal-escuela">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['edit']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['edit']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
                                                         <f:ajax render="formulario-escuela" onevent="function cierra(data) { abreModal('modal-escuela') }"/>
                                                     </h:commandLink>
@@ -210,7 +210,7 @@
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-eliminar">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{escuela}" target="#{escuelaDashboardControlador.escuelaBaseModelo}"/>
                                                         <f:ajax render="formulario-eliminar" onevent="abreModal('modal-eliminar')"/>
                                                     </h:commandLink>
@@ -291,16 +291,16 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{otrosboton['cancel']}">
                             <f:ajax render="@form" onevent="function funcion(data) { limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{otrosboton['add']}" rendered="#{empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-escuela formulario-paginacion-escuela formulario-filtrado-escuela"
                                     listener="#{escuelaDashboardControlador.inserta}"
                                     onevent="function fun(data) { cierraModal(data, 'modal-escuela'); limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{otrosboton['update']}" rendered="#{not empty escuelaDashboardControlador.escuelaBaseModelo.claveCentroTrabajo}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-escuela formulario-paginacion-escuela"
                                     listener="#{escuelaDashboardControlador.actualiza}"
@@ -339,8 +339,8 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['block']}">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{otrosboton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{otrosboton['block']}">
                             <f:ajax execute="@form"
                                     render="formulario-tabla-escuela @form"
                                     listener="#{escuelaDashboardControlador.bloquea}" onevent="function fun(data) { cierraModal(data, 'modal-bloqueo') }"/>
@@ -366,8 +366,8 @@
 
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" onclick="limpiaEntrada('modal-escuela')">#{otrosboton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{otrosboton['remove']}">
                             <f:ajax execute="@form"
                                     render="formulario-tabla-escuela formulario-paginacion-escuela formulario-filtrado-escuela"
                                     onevent="function funcion(data) { limpiaSelect(data) }"

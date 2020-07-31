@@ -15,7 +15,7 @@
     </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -72,7 +72,7 @@
                                             <th><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.block.table.header.name']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.email']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.status']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                            <th><span class="letra-titulo ">#{administracion['title.all.tables.column.options']}</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -124,7 +124,7 @@
                                                 <li>
                                                     <h:commandLink   pt:uk-toggle="target: #modal-coordinador" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{etiqueta['edit']}"/></span>
+                                                        <span class="uk-text-middle"><h:outputText styleClass="uk-text-capitalize" value="#{otrosetiqueta['edit']}"/></span>
                                                         <f:setPropertyActionListener value="#{coordinadorModelo}" target="#{coordinadorControlador.coordinadorModelo}"/>
                                                         <f:ajax render="formulario-modal-coordinador"/>
                                                     </h:commandLink>
@@ -133,7 +133,7 @@
                                                 <li>
                                                     <h:commandLink  pt:uk-toggle="target: #modal-eliminar-coordinador" styleClass="uk-text-danger">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="uk-text-capitalize"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}" styleClass="uk-text-capitalize"/></span>
                                                         <f:setPropertyActionListener value="#{coordinadorModelo}" target="#{coordinadorControlador.coordinadorModelo}"/>
                                                         <f:ajax render="formulario-eliminar-coordinador"/>
                                                     </h:commandLink>
@@ -277,14 +277,14 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()" value="#{boton['accept']}" rendered="#{empty coordinadorControlador.coordinadorModelo.contador}">
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{otrosboton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()" value="#{otrosboton['accept']}" rendered="#{empty coordinadorControlador.coordinadorModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
                                     render="@form formulario-coordinador"
                                     execute="@form"
                                     listener="#{coordinadorControlador.agregar}"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()"  value="#{boton['update']}" rendered="#{not empty coordinadorControlador.coordinadorModelo.contador}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()"  value="#{otrosboton['update']}" rendered="#{not empty coordinadorControlador.coordinadorModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
                                     render="@form formulario-coordinador"
                                     execute="@form"
@@ -308,8 +308,8 @@
                     </p>
                 </div>
                 <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">#{boton['cancel']}</button>
-                    <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-margin-small-left" value="#{boton['remove']}" >
+                    <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">#{otrosboton['cancel']}</button>
+                    <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-margin-small-left" value="#{otrosboton['remove']}" >
                         <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar' ) }"
                                 render="formulario-coordinador" listener="#{coordinadorControlador.elimina}"/>
                     </h:commandButton>

@@ -28,7 +28,7 @@
                 <h:form id="formulario-" rendered="#{not empty grupoControlador.cicloEscolarModeloMapa}">
                     Ciclo escolares:
                     <h:selectOneMenu id="seleccion-ciclo-escolar" styleClass="uk-select" value="#{grupoControlador.cicloEscolar}">
-                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['select']}" noSelectionOption="true"/>
+                        <f:selectItem itemValue="#{null}" itemLabel="#{otrosetiqueta['select']}" noSelectionOption="true"/>
                         <f:selectItems value="#{grupoControlador.cicloEscolarModeloMapa.entrySet().toArray()}"
                                        var="cicloEscolarModelo"
                                        itemValue="#{cicloEscolarModelo.key}"
@@ -55,7 +55,7 @@
                                         <tr>
                                             <th class="uk-text-center"><span class="letra-titulo">grado</span></th>
                                             <th class="uk-text-center"><span class="letra-titulo">grupo</span></th>
-                                            <th class="uk-text-center"><span class="letra-titulo">#{etiqueta['options']}</span></th>
+                                            <th class="uk-text-center"><span class="letra-titulo">#{otrosetiqueta['options']}</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -93,7 +93,7 @@
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText styleClass="letra-titulo"
-                                                      value="#{etiqueta['options']}"/>
+                                                      value="#{otrosetiqueta['options']}"/>
                                     </f:facet>
                                     <div class="uk-inline">
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
@@ -102,7 +102,7 @@
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-grupo" action="#{grupoControlador.clonaGrupo}">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
                                                         <f:ajax render="formulario-modal-grupo"/>
                                                     </h:commandLink>
@@ -111,7 +111,7 @@
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
                                                         <f:ajax render="grupo-mensaje-eliminar boton-borrar-grupo"/>
                                                     </h:commandLink>
@@ -170,11 +170,11 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <h:commandButton value="#{boton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
+                        <h:commandButton value="#{otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
                             <f:ajax listener="#{grupoControlador.limpiaGrupo}" render="@form" onevent="function funcion(data){ cerrarModal(data, 'modalGrupo')}"/>
                         </h:commandButton>
                         <h:commandButton id="enviar-grupo"
-                                         value="#{boton['add']}"
+                                         value="#{otrosboton['add']}"
                                          rendered="#{empty grupoControlador.grupoModelo.id}"
                                          styleClass="uk-button uk-button-primary">
                             <f:ajax execute="input-grado input-grupo"
@@ -183,7 +183,7 @@
                                     onevent="function funcion(data) { cerrarModal(data, 'modalGrupo') }"/>
                         </h:commandButton>
                         <h:commandButton id="actualiza-grupo"
-                                         value="#{boton['update']}"
+                                         value="#{otrosboton['update']}"
                                          rendered="#{not empty grupoControlador.grupoModelo.id}"
                                          styleClass="uk-button uk-button-primary">
                             <f:ajax execute="input-grado input-grupo" 
@@ -212,11 +212,11 @@
                     </h:outputFormat>
                 </div>
                 <div class="uk-modal-footer uk-flex uk-flex-right">
-                    <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{boton['cancel']}</button>
+                    <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
                     <h:form id="formulario-borrar">
 	                    <h:commandButton id="boton-borrar-grupo"
 	                                     disabled="#{grupoControlador.grupoModelo.totalAlumno ne 0}"
-	                                     value="#{boton['remove']}"
+	                                     value="#{otrosboton['remove']}"
 	                                     styleClass="uk-button uk-button-danger uk-modal-close">
 	                        <f:ajax listener="#{grupoControlador.borrar}" render="formulario-grupo"/>
 	                    </h:commandButton>

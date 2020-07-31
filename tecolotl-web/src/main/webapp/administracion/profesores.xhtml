@@ -14,7 +14,7 @@
     </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -106,7 +106,7 @@
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-profesor" onclick="validarActualizacion(1)">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
                                                         <f:ajax render="formulario-modal-profesor" listener="#{administracionProfesorControlador.busca(profesorModelo)}"/>
                                                     </h:commandLink>
@@ -123,7 +123,7 @@
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-eliminar " styleClass="uk-text-danger primera-mayuscula" action="#{administracionProfesorControlador.buscaTotalGlumno()}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>
-                                                        <h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block" />
+                                                        <h:outputText value="#{otrosboton['remove']}" styleClass="primera-mayuscula uk-display-inline-block" />
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
                                                         <f:ajax render="form-elimina"/>
                                                     </h:commandLink>
@@ -150,7 +150,7 @@
         </div>
 
         <div class="uk-flex uk-flex-right uk-margin-top">
-            <h:button styleClass="uk-button uk-button-primary" value="#{boton['back']}" outcome="regresar"/>
+            <h:button styleClass="uk-button uk-button-primary" value="#{otrosboton['back']}" outcome="regresar"/>
         </div>
 
         <h:panelGroup layout="block" id="modal-profesor" styleClass="uk-modal-container" pt:uk-modal="">
@@ -220,7 +220,7 @@
                                     <h:selectOneMenu class="uk-select"
                                                      id="sexo"
                                                      value="#{administracionProfesorControlador.profesorModelo.sexo}">
-                                        <f:selectItem itemValue="#{null}" itemLabel="#{etiqueta['options']}" noSelectionOption="true"/>
+                                        <f:selectItem itemValue="#{null}" itemLabel="#{otrosetiqueta['options']}" noSelectionOption="true"/>
                                         <f:selectItem itemValue="m" itemLabel="masculino"/>
                                         <f:selectItem itemValue="f" itemLabel="femenino"/>
                                         <f:validateRequired/>
@@ -256,7 +256,7 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <h:commandButton value="#{boton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right uk-modal-closel">
+                        <h:commandButton value="#{otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right uk-modal-closel">
                             <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}"
                                     onevent="function funciones(data) { cerrarModal(data, 'modalProfresor') }"
                                     render="@form"/>
@@ -296,8 +296,8 @@
                         </p>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{boton['remove']}" disabled="#{0 ne administracionProfesorControlador.totalGrupos}">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">#{otrosboton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{otrosboton['remove']}" disabled="#{0 ne administracionProfesorControlador.totalGrupos}">
                             <f:ajax listener="#{administracionProfesorControlador.elimina}" render="formulario-tabla"/>
                         </h:commandButton>
                     </div>

@@ -7,9 +7,9 @@
 	<!-- traduccion de las vistas -->
 
 	<application>
-		<locale-config>
-			<default-locale>en</default-locale>
-		</locale-config>
+<!--		<locale-config>-->
+<!--			<default-locale></default-locale>-->
+<!--		</locale-config>-->
 	</application>
 
 	<application>
@@ -18,16 +18,20 @@
 			<var>etiqueta</var>
 		</resource-bundle>
 		<resource-bundle>
+			<base-name>otrosetiqueta</base-name>
+			<var>otrosetiqueta</var>
+		</resource-bundle>
+		<resource-bundle>
 			<base-name>boton</base-name>
 			<var>boton</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>administracion</base-name>
-			<var>administracion</var>
+			<base-name>otrosboton</base-name>
+			<var>otrosboton</var>
 		</resource-bundle>
 		<resource-bundle>
-			<base-name>coordinacion</base-name>
-			<var>coordinacion</var>
+			<base-name>administracion</base-name>
+			<var>administracion</var>
 		</resource-bundle>
 		<resource-bundle>
 			<base-name>alumno</base-name>
@@ -41,7 +45,6 @@
 			<base-name>coordinador</base-name>
 			<var>coordinador</var>
 		</resource-bundle>
-
 		<message-bundle>
 			validacion.Messages
 		</message-bundle>
