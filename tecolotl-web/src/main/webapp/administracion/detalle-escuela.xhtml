@@ -14,7 +14,7 @@
     </f:metadata>
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -50,12 +50,7 @@
                                 <h:inputText id="nombre-escuela" pt:placeholder="Francisco I Madero " disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.nombre}"/>
                             </div>
                         </div>
-                        <div class="uk-width-1-5@m uk-width-1-1@s">
-                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="estado-bloqueo" value="#{administracion['catalogoadministrativo.administrator.bloc.catalog']}"/>
-                            <div class="uk-form-controls">
-                                <h:inputText id="estado-bloqueo" pt:placeholder="Activo" disabled="true" styleClass="uk-input" value="#{detalleEscuelaControlador.escuelaDetalleModelo.motivoBloqueoModelo.valor}"/>
-                            </div>
-                        </div>
+
                         <div class="uk-width-1-5@m uk-width-1-1@s">
                             <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="licencias" value="#{administracion['schooldetail.licensetotal']}" />
                             <div class="uk-form-controls">
@@ -63,7 +58,7 @@
                             </div>
                         </div>
                         <div class="uk-width-1-6@m uk-width-1-1@s centrado-vertical-switch">
-                            <h:panelGroup styleClass="uk-form-label uk-text-capitalize">Bloqueo alumno</h:panelGroup>
+                            <h:panelGroup styleClass="uk-form-label uk-text-capitalize">#{administracion['schooldetail.student.lock']}</h:panelGroup>
                             <h:outputLabel styleClass="switch">
                                 <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoAlumno}">
                                     <f:ajax listener="#{detalleEscuelaControlador.bloqueoAlumno}"/>
@@ -72,7 +67,7 @@
                             </h:outputLabel>
                         </div>
                         <div class="uk-width-1-6@m uk-width-1-1@s centrado-vertical-switch" >
-                            <h:panelGroup styleClass="uk-form-label uk-text-capitalize">Bloqueo otros</h:panelGroup>
+                            <h:panelGroup styleClass="uk-form-label uk-text-capitalize">#{administracion['schooldetail.blocking.others']}</h:panelGroup>
                             <h:outputLabel styleClass="switch">
                                     <h:selectBooleanCheckbox styleClass="uk-checkbox" value="#{detalleEscuelaControlador.escuelaDetalleModelo.bloqueoProfesor}">
                                         <f:ajax listener="#{detalleEscuelaControlador.bloqueaProfesor}"/>
@@ -135,7 +130,7 @@
                                             <th><span class="letra-titulo">#{administracion['schooldetail.lisense.id']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['schooldetail.lisense.datestart']}</span></th>
                                             <th><span class="letra-titulo">#{administracion['schooldetail.lisense.dateacquisition']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                            <th><span class="letra-titulo ">#{administracion['title.all.tables.column.options']}</span></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -151,7 +146,7 @@
                                         <tr>
                                             <td colspan="6">
                                                 <span class="letra-titulo">
-                                                    <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                    <h:outputFormat value="#{otrosetiqueta['pages.total']}" styleClass="letra-titulo">
                                                         <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
                                                         <f:param value="#{licenciasControlador.htmlDataTable.rowCount}"/>
@@ -190,7 +185,7 @@
                                     </h:outputText>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}"/></f:facet>
+                                    <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['title.all.tables.column.options']}"/></f:facet>
                                     <div class="uk-inline ">
                                         <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary: .dropdown-licencia; mode: click" id="licencia-menu">
@@ -198,7 +193,7 @@
                                                 <li>
                                                     <h:commandLink  pt:uk-toggle="target: #modal-licencia" styleClass="uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="#{otrosboton['edit']}"/></span>
                                                         <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
                                                         <f:ajax render="formulario-modal-licencia"/>
                                                     </h:commandLink>
@@ -251,12 +246,12 @@
                                     <table class="uk-table uk-table-middle">
                                         <thead class="uk-background-primary">
                                         <tr>
-                                            <th><span class="letra-titulo uk-text-uppercase">#{administracion['schooldetail.contacts.id']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.name']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.type']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.phone']}</span></th>
-                                            <th><span class="letra-titulo uk-text-capitalize">#{administracion['schooldetail.contacts.email']}</span></th>
-                                            <th><span class="letra-titulo ">#{etiqueta['options']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.contacts.id']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.contacts.name']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.contacts.type']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.contacts.phone']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['schooldetail.contacts.email']}</span></th>
+                                            <th><span class="letra-titulo">#{administracion['title.all.tables.column.options']}</span></th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -271,7 +266,7 @@
                                         <tfoot class="uk-background-primary">
                                         <tr>
                                             <td colspan="6"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                <h:outputFormat value="#{otrosetiqueta['pages.total']}" styleClass="letra-titulo">
                                                     <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{contactoControlador.htmlDataTable.rowCount}"/>
@@ -316,7 +311,7 @@
                                         #{contacto.correoElectronico}
                                     </h:column>
                                     <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{etiqueta['options']}" /></f:facet>
+                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{otrosetiqueta['options']}" /></f:facet>
                                         <div class="uk-inline ">
                                             <button class="uk-icon-button puntero uk-text-primary" uk-icon="more-vertical" type="button"/>
                                             <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
@@ -324,7 +319,7 @@
                                                     <li>
                                                         <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
                                                             <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
-                                                            <span class="uk-text-middle"><h:outputText value="#{boton['edit']}"/></span>
+                                                            <span class="uk-text-middle"><h:outputText value="#{otrosboton['edit']}"/></span>
                                                             <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
                                                             <f:setPropertyActionListener value="#{contacto.tipoContactoModelo}" target="#{contactoControlador.tipoContactoModelo}"/>
                                                             <f:ajax render="formulario-agregar-contacto" onevent="function funcion(data) { limpiaSelect(data) }"/>
@@ -334,7 +329,7 @@
                                                     <li>
                                                         <h:commandLink  pt:uk-toggle="target: #modal-eliminar-contacto" styleClass="uk-text-danger">
                                                             <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                            <span class="uk-text-middle"><h:outputText value="#{boton['remove']}"/></span>
+                                                            <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}"/></span>
                                                             <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
                                                             <f:ajax render="formulario-eliminar-contacto"/>
                                                         </h:commandLink>
@@ -396,7 +391,7 @@
                                                      styleClass="uk-select"
                                                      id="seleccion-tipo-contacto"
                                                      label="Tipo contacto">
-                                        <f:selectItem itemValue = "#{null}" itemLabel = "#{etiqueta['select']}" noSelectionOption="true" />
+                                        <f:selectItem itemValue = "#{null}" itemLabel = "#{administracion['label.select']}" noSelectionOption="true" />
                                         <f:selectItems value="#{contactoControlador.tipoContactoModeloLista}" var="contacto"
                                                        itemValue="#{contacto.clave}"
                                                        itemLabel="#{contacto.valor}"/>
@@ -431,16 +426,16 @@
                         </h:panelGroup>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{boton['cancel']}">
+                        <h:commandButton styleClass="uk-button uk-button-default uk-modal-close uk-margin-small-right" value="#{otrosboton['cancel']}">
                             <f:ajax render="@form" listener="#{contactoControlador.limpiaModelo}" onevent="function funcion(data) { limpiaSelect(data) }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['add']}" rendered="#{empty contactoControlador.contactoModelo.contador}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{otrosboton['add']}" rendered="#{empty contactoControlador.contactoModelo.contador}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-contacto formulario-paginacion-contacto"
                                     listener="#{contactoControlador.agregar}"
                                     onevent="function cerrar(data) { cierraModal(data,'modalAgregar') }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{boton['update']}" rendered="#{not empty contactoControlador.contactoModelo.contador}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary" value="#{otrosboton['update']}" rendered="#{not empty contactoControlador.contactoModelo.contador}">
                             <f:ajax execute="@form"
                                     render="@form formulario-tabla-contacto formulario-paginacion-contacto"
                                     listener="#{contactoControlador.actualiza}"
@@ -465,8 +460,8 @@
                         </p>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{boton['cancel']}</button>
-                        <h:commandButton styleClass="uk-button uk-button-danger uk-margin-small-left" value="#{boton['accept']}" >
+                        <button class="uk-button uk-button-default uk-modal-close" type="button">#{otrosboton['cancel']}</button>
+                        <h:commandButton styleClass="uk-button uk-button-danger uk-margin-small-left" value="#{otrosboton['accept']}" >
                             <f:ajax execute="@form"
                                     render="formulario-tabla-contacto"
                                     listener="#{contactoControlador.eliminar}"
@@ -523,15 +518,15 @@
                         </h:panelGroup>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <h:commandButton styleClass="uk-button uk-button-default" value="#{boton['cancel']}">
+                        <h:commandButton styleClass="uk-button uk-button-default" value="#{otrosboton['cancel']}">
                             <f:ajax render="@form" listener="#{licenciasControlador.limpiaModal}" onevent="function cerrar(data) { cierraModal(undefined, 'modalLicencia') }"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['add']}" rendered="#{empty licenciasControlador.licenciaModelo.contador}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{otrosboton['add']}" rendered="#{empty licenciasControlador.licenciaModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
                                     render="formulario-licencia @form" execute="@form"
                                     listener="#{licenciasControlador.inserta}"/>
                         </h:commandButton>
-                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{boton['update']}" rendered="#{not empty licenciasControlador.licenciaModelo.contador}">
+                        <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{otrosboton['update']}" rendered="#{not empty licenciasControlador.licenciaModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
                                     render="formulario-licencia @form" execute="@form"
                                     listener="#{licenciasControlador.actualiza}"/>

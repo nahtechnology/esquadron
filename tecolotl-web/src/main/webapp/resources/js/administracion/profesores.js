@@ -42,12 +42,17 @@ function cerrarModal(data , modal) {
                 case 'modalProfresor' :
                     if (modalProfresor.querySelector('.uk-text-danger') === null) {
                         UIkit.modal(modalProfresor).hide();
+                        colocarImagenesPassword();
+                        iniciarCanvasPaginado();
                     }else {
                         seleccionContrasena();
+
                     }
                     break;
                 case 'modal-eliminar':
                     UIkit.modal(modalEliminar).hide();
+                    colocarImagenesPassword();
+                    iniciarCanvasPaginado();
                     break;
                 default :
                     console.error('Aun no se programa este modal:' + modal);

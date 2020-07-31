@@ -149,7 +149,7 @@
                                 <li class="uk-text-left">
                                     <h:commandLink onclick="evt(this);" disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}">
                                         <h:outputText  styleClass="uk-icon uk-margin-small-right uk-text-primary" pt:uk-icon="file-edit"/>
-                                        <span>#{etiqueta['detail']}</span>
+                                        <span>#{otrosetiqueta['detail']}</span>
                                         <f:ajax render="formulario-alumno"
                                                 listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"
                                                 onevent="function f(data) {

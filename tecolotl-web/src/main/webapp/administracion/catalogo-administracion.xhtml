@@ -11,7 +11,7 @@
 <ui:composition template="/template/administracion/dashboard.xhtml">
     <ui:define name="menu">
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{etiqueta['menu']}</li>
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
@@ -50,7 +50,7 @@
                                     <ul class="uk-iconnav">
                                         <li>
                                             <h:commandLink pt:uk-toggle="target: #modal-motivo-bloqueo">
-                                                <h:outputText styleClass="uk-icon-link uk-text-primary" pt:title="#{boton['add']}" pt:data-uk-tooltip="" pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
+                                                <h:outputText styleClass="uk-icon-link uk-text-primary" pt:title="#{otrosboton['add']}" pt:data-uk-tooltip="" pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
                                                 <f:ajax render="formulario-modal-editar" listener="#{catalogoMotivoBloqueControlador.limpiaModelo}"/>
                                             </h:commandLink>
                                         </li>
@@ -110,7 +110,7 @@
                                         <ul class="uk-iconnav">
                                             <li>
                                                 <h:commandLink pt:uk-toggle="target: #modal-tipo-contacto">
-                                                    <h:outputText styleClass="uk-icon-link uk-text-primary" pt:title="#{boton['add']}" pt:data-uk-tooltip="" pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
+                                                    <h:outputText styleClass="uk-icon-link uk-text-primary" pt:title="#{otrosboton['add']}" pt:data-uk-tooltip="" pt:data-uk-icon="icon: plus-circle; ratio: 1.5"/>
                                                     <f:ajax render="formulario-modal-tipo-contacto" listener="#{tipoContactoControlador.limpiaModelo}"/>
                                                 </h:commandLink>
                                             </li>
@@ -136,7 +136,7 @@
                                     #{dato.valor}
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                    <f:facet name="header"><span class="letra-titulo ">#{etiqueta['edit']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo ">#{otrosetiqueta['edit']}</span></f:facet>
                                     <h:commandLink   pt:uk-toggle="target: #modal-tipo-contacto">
                                         <h:outputText styleClass="uk-icon-button puntero uk-text-primary" pt:uk-icon="file-edit"/>
                                         <f:setPropertyActionListener value="#{dato}" target="#{tipoContactoControlador.catalogoModelo}"/>
@@ -188,7 +188,7 @@
                                     <thead class="uk-background-primary">
                                     <tr>
                                         <th><span class="letra-titulo">#{administracion['catalogoadministrativo.administrator.colony.catalog']}</span></th>
-                                        <th><span class="letra-titulo">#{etiqueta['edit']}</span></th>
+                                        <th><span class="letra-titulo">#{otrosetiqueta['edit']}</span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -203,7 +203,7 @@
                                     <tfoot class="uk-background-primary">
                                     <tr>
                                         <td colspan="5"><span class="letra-titulo">
-                                                <h:outputFormat value="#{etiqueta['pages.total']}" styleClass="letra-titulo">
+                                                <h:outputFormat value="#{otrosetiqueta['pages.total']}" styleClass="letra-titulo">
                                                     <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
                                                     <f:param value="#{catalogoColoniaControlador.htmlDataTable.rowCount}"/>
@@ -228,7 +228,7 @@
                                     #{dato.nombre}
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-width-small uk-text-center">
-                                    <f:facet name="header"><span class="letra-titulo ">#{etiqueta['edit']}</span></f:facet>
+                                    <f:facet name="header"><span class="letra-titulo ">#{otrosetiqueta['edit']}</span></f:facet>
                                     <h:commandLink   pt:uk-toggle="target: #modal-agrega-colonia">
                                         <h:outputText styleClass="uk-icon-button puntero uk-text-primary" pt:uk-icon="file-edit"/>
                                         <f:setPropertyActionListener value="#{dato}" target="#{catalogoColoniaControlador.coloniaModelo}"/>
@@ -267,7 +267,7 @@
                                             <f:validateLength minimum="4" maximum="5"/>
                                         </h:inputText>
                                         <h:commandLink styleClass="uk-button uk-button-secondary uk-margin-small-right acomoda">
-                                            #{boton['search']}
+                                            #{otrosboton['search']}
                                             <h:outputText pt:uk-icon="icon: location" styleClass="uk-icon uk-margin-small-right"/>
                                             <f:ajax execute="@form" render="@form formulario-tabla-colonia" listener="#{catalogoColoniaControlador.actualizaDataModel}"/>
                                         </h:commandLink>
@@ -291,12 +291,12 @@
                     </div>
                     <div class="uk-modal-body">
                         <div class="uk-margin uk-text-capitalize">
-                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['description']}"/>
+                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{otrosetiqueta['description']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText styleClass="uk-input"
                                              id="input-catalogo-bloqueo"
-                                             pt:placeholder="#{etiqueta['write.text']}"
-                                             label="#{etiqueta['description']}"
+                                             pt:placeholder="#{otrosetiqueta['write.text']}"
+                                             label="#{otrosetiqueta['description']}"
                                              value="#{catalogoMotivoBloqueControlador.catalogoModelo.valor}">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="3" maximum="20"/>
@@ -306,14 +306,14 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{boton['cancel']}</button>
-                        <h:commandButton value="#{boton['add']}" styleClass="uk-button uk-button-secondary" rendered="#{not empty catalogoMotivoBloqueControlador.catalogoModelo.clave}">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{otrosboton['cancel']}</button>
+                        <h:commandButton value="#{otrosboton['add']}" styleClass="uk-button uk-button-secondary" rendered="#{not empty catalogoMotivoBloqueControlador.catalogoModelo.clave}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalEditar' ) }"
                                     listener="#{catalogoMotivoBloqueControlador.actualiza}"
                                     execute="@form"
                                     render="formulario-tabla-motivo-bloqueo"/>
                         </h:commandButton>
-                        <h:commandButton value="#{boton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{empty catalogoMotivoBloqueControlador.catalogoModelo.clave}">
+                        <h:commandButton value="#{otrosboton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{empty catalogoMotivoBloqueControlador.catalogoModelo.clave}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalEditar' ) }"
                                     listener="#{catalogoMotivoBloqueControlador.inserta}"
                                     execute="@form"
@@ -334,12 +334,12 @@
                     </div>
                     <div class="uk-modal-body">
                         <div class="uk-margin uk-text-capitalize">
-                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{etiqueta['description']}"/>
+                            <h:outputLabel for="input-catalogo-bloqueo" styleClass="uk-form-label uk-text-capitalize" value="#{otrosetiqueta['description']}"/>
                             <div class="uk-form-controls">
                                 <h:inputText styleClass="uk-input"
                                              id="input-tipo-contacto"
-                                             pt:placeholder="#{etiqueta['write.text']}"
-                                             label="#{etiqueta['description']}"
+                                             pt:placeholder="#{otrosetiqueta['write.text']}"
+                                             label="#{otrosetiqueta['description']}"
                                              value="#{tipoContactoControlador.catalogoModelo.valor}">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="3" maximum="20"/>
@@ -349,14 +349,14 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{boton['cancel']}</button>
-                        <h:commandButton value="#{boton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{not empty tipoContactoControlador.catalogoModelo.clave}">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{otrosboton['cancel']}</button>
+                        <h:commandButton value="#{otrosboton['update']}" styleClass="uk-button uk-button-secondary" rendered="#{not empty tipoContactoControlador.catalogoModelo.clave}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalTipoContacto' ) }"
                                     listener="#{tipoContactoControlador.actualiza}"
                                     execute="@form"
                                     render="formulario-tabla-tipo-bloqueo"/>
                         </h:commandButton>
-                        <h:commandButton value="#{boton['add']}" styleClass="uk-button uk-button-secondary" rendered="#{empty tipoContactoControlador.catalogoModelo.clave}">
+                        <h:commandButton value="#{otrosboton['add']}" styleClass="uk-button uk-button-secondary" rendered="#{empty tipoContactoControlador.catalogoModelo.clave}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data, 'modalTipoContacto' ) }"
                                     listener="#{tipoContactoControlador.inserta}"
                                     execute="@form"
@@ -378,7 +378,7 @@
                             <div class="uk-form-controls">
                                 <h:inputText id="entrada-colonia"
                                              value="#{catalogoColoniaControlador.coloniaModelo.nombre}"
-                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             pt:placeholder="#{otrosetiqueta['write.text']}"
                                              styleClass="uk-input">
                                     <f:validateRequired/>
                                     <f:validateLength minimum="3" maximum="70"/>
@@ -388,8 +388,8 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{boton['cancel']}</button>
-                        <h:commandButton value="#{boton['update']}" styleClass="uk-button uk-button-secondary">
+                        <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right" type="button">#{otrosboton['cancel']}</button>
+                        <h:commandButton value="#{otrosboton['update']}" styleClass="uk-button uk-button-secondary">
                             <f:ajax onevent="function funcion(data) { cierraModal(data, 'modalColonia') }" listener="#{catalogoColoniaControlador.actualiza}" execute="@form" render="formulario-tabla-colonia"/>
                         </h:commandButton>
                     </div>
