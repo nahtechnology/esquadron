@@ -11,10 +11,7 @@ import tecolotl.profesor.validacion.CicloEscolarLlavePrimariaValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -152,6 +149,25 @@ public class CicloEscolarSessionBean {
         } catch (NoResultException e) {
             return 0L;
         }
+    }
+
+    /**
+     * Hereda todos los grupos de un clilo ecolar
+     * @param cicloEscolarModeloViejo ciclo escolar a ser copiado
+     * @param cicloEscolarModeloNuevo ciclo escolar a copiar
+     * @param claveCentroTrabajo Escula donde se copiaran los datos
+     * @return nuero de elementos creados
+     */
+    public Integer hereda(@NotNull CicloEscolarModelo cicloEscolarModeloViejo,
+                          @NotNull CicloEscolarModelo cicloEscolarModeloNuevo,
+                          @NotNull String claveCentroTrabajo) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM administracion.hereda_grupos(?,?,?,?,?)");
+        query.setParameter(1, claveCentroTrabajo);
+        query.setParameter(2, cicloEscolarModeloViejo.getInicio());
+        query.setParameter(3, cicloEscolarModeloViejo.getFin());
+        query.setParameter(4, cicloEscolarModeloNuevo.getInicio());
+        query.setParameter(5, cicloEscolarModeloNuevo.getFin());
+        return query.executeUpdate();
     }
 
 }

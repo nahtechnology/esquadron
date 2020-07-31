@@ -123,15 +123,6 @@
                                                     <f:ajax render="formulario-activar" onevent="abreModal('modalActivar')"/>
                                                 </h:commandLink>
                                             </li>
-                                            <li class="uk-nav-divider"/>
-                                            <li>
-                                                <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-eliminar">
-                                                    <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
-                                                    <span class="uk-text-middle"><h:outputText value="#{boton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
-                                                    <f:setPropertyActionListener value="#{cicloEscolar}" target="#{ciclosEscolaresControlador.cicloEscolarModelo}"/>
-                                                    <f:ajax listener="#{ciclosEscolaresControlador.buscaTotalGrupo}" render="formulario-eliminar" onevent="abreModal('modalEliminar')"/>
-                                                </h:commandLink>
-                                            </li>
                                         </ul>
                                     </h:panelGroup>
                                 </h:column>
@@ -140,6 +131,73 @@
                     </div>
                 </div>
             </div>
+            <h:form id="formulario-busca-licencias">
+                <div class="uk-width-2-5@s">
+                    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                        <div class="uk-card-header">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-1-2">
+                                    <h4 class="uk-text-capitalize">
+                                        <span class="uk-text-middle">ciclo escolar original</span>
+                                    </h4>
+                                </div>
+                                <div class="uk-width-expand uk-text-right panel-icons">
+                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
+                                                     pt:uk-icon="icon: search; ratio: 1.5"
+                                                     pt:uk-tooltip="title:buscar; pos: left; delay: 2000">
+                                        <f:ajax render="formulario-busca-licencias:lista-ciclos"/>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                        <h:panelGroup layout="block" class="uk-card-body">
+                            <h:selectOneRadio id="lista-ciclos-viejo" value="#{ciclosEscolaresControlador.cicloEscolarViejo}">
+                                <f:selectItems value="#{ciclosEscolaresControlador.busca(false)}"
+                                               var="ciclosEscolar"
+                                               itemLabel="#{ciclosEscolar.descripcion}"
+                                               itemValue="#{ciclosEscolar.hashCode()}"/>
+                                <f:validateRequired/>
+                            </h:selectOneRadio>
+                        </h:panelGroup>
+                        <h:message for="lista-ciclos-viejo" styleClass="uk-alert-danger"/>
+                    </div>
+                </div>
+                <div class="uk-width-2-5@s">
+                    <h:commandButton value="heredar">
+                        <f:ajax listener="#{ciclosEscolaresControlador.hereda}" execute="@form" render="@form"/>
+                    </h:commandButton>
+                </div>
+                <div class="uk-width-2-5@s">
+                    <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                        <div class="uk-card-header">
+                            <div class="uk-grid uk-grid-small">
+                                <div class="uk-width-1-2">
+                                    <h4 class="uk-text-capitalize">
+                                        <span class="uk-text-middle">ciclo escolar original</span>
+                                    </h4>
+                                </div>
+                                <div class="uk-width-expand uk-text-right panel-icons">
+                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
+                                                   pt:uk-icon="icon: search; ratio: 1.5"
+                                                   pt:uk-tooltip="title:buscar; pos: left; delay: 2000">
+                                        <f:ajax render="formulario-busca-licencias:lista-ciclos"/>
+                                    </h:commandLink>
+                                </div>
+                            </div>
+                        </div>
+                        <h:panelGroup layout="block" class="uk-card-body">
+                            <h:selectOneRadio id="lista-ciclos-nuevo" value="#{ciclosEscolaresControlador.cicloEscolarNuevo}">
+                                <f:selectItems value="#{ciclosEscolaresControlador.busca(true)}"
+                                               var="ciclosEscolar"
+                                               itemLabel="#{ciclosEscolar.descripcion}"
+                                               itemValue="#{ciclosEscolar.hashCode()}"/>
+                                <f:validateRequired/>
+                            </h:selectOneRadio>
+                        </h:panelGroup>
+                        <h:message for="lista-ciclos-nuevo" styleClass="uk-alert-danger"/>
+                    </div>
+                </div>
+            </h:form>
         </div>
         <div class="uk-flex uk-flex-right uk-margin-top">
             <h:button styleClass="uk-button uk-button-primary" value="#{boton['back']}" outcome="regresar"/>

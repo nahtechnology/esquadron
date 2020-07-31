@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @ViewScoped
 @Named
@@ -34,6 +35,8 @@ public class CiclosEscolaresControlador implements Serializable {
     private EscuelaBaseModelo escuelaBaseModelo;
     private Long totalGrupo;
     private HtmlInputText htmlInputText;
+    private int cicloEscolarViejo;
+    private int cicloEscolarNuevo;
 
     @PostConstruct
     public void buscaCiclosEscolares() {
@@ -76,6 +79,14 @@ public class CiclosEscolaresControlador implements Serializable {
         cicloEscolarSessionBean.elimina(cicloEscolarModelo);
         cicloEscolarModeloLista.remove(cicloEscolarModelo);
         renuevaModelo();
+    }
+
+    public List<CicloEscolarModelo> busca(boolean activo) {
+        return cicloEscolarModeloLista.stream().filter(ciclo -> ciclo.getActivo() == activo).collect(Collectors.toList());
+    }
+
+    public void hereda() {
+        logger.info("viejo:" + cicloEscolarViejo + " nuevo:" + cicloEscolarNuevo);
     }
 
     public void buscaTotalGrupo() {
@@ -133,4 +144,20 @@ public class CiclosEscolaresControlador implements Serializable {
 	public void setHtmlInputText(HtmlInputText htmlInputText) {
 		this.htmlInputText = htmlInputText;
 	}
+
+    public int getCicloEscolarViejo() {
+        return cicloEscolarViejo;
+    }
+
+    public void setCicloEscolarViejo(int cicloEscolarViejo) {
+        this.cicloEscolarViejo = cicloEscolarViejo;
+    }
+
+    public int getCicloEscolarNuevo() {
+        return cicloEscolarNuevo;
+    }
+
+    public void setCicloEscolarNuevo(int cicloEscolarNuevo) {
+        this.cicloEscolarNuevo = cicloEscolarNuevo;
+    }
 }
