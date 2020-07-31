@@ -28,20 +28,20 @@
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl" pt:data-uk-grid="">
             <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
+                <span ><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalProfesores}" id="total-profesor"/></h1>
             </div>
             <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
+                <span ><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.student']}</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove  uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos}" id="total-alumnos"/></h1>
-                <div class="uk-text-small">
+                <div >
                     <h:outputText styleClass="uk-text-success" value="#{escuelaPoblacionControlador.totalAlumnos eq 0 ? 0 : escuelaPoblacionControlador.totalAlumnos / escuelaPoblacionControlador.totalAlumnosLicencias}" id="porcentaje-alumno">
                         <f:convertNumber type="percent"/>
                     </h:outputText> #{administracion['dashboard.header.student.used']}.
                 </div>
             </div>
             <div class="uk-text-center">
-                <span class="uk-text-small"><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">alumnos sobre pasados</span></span>
+                <span><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">alumnos sobre pasados</span></span>
                 <h1 class="uk-heading-primary uk-margin-remove uk-text-primary"><h:outputText value="#{escuelaPoblacionControlador.totalAlumnos - escuelaPoblacionControlador.totalAlumnosLicencias le 0 ? 0 : escuelaPoblacionControlador.totalAlumnos - escuelaPoblacionControlador.totalAlumnosLicencias}" id="total-alumnos-registro"/></h1>
             </div>
         </h:panelGroup>
