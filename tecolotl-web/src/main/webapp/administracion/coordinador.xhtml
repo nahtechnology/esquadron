@@ -45,6 +45,7 @@
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <h:outputStylesheet library="css" name="administracion/coordinador.css"/>
+        <h:outputStylesheet library="css" name="/administracion/estilo-tarjeton-licencia.css"/>
         <div uk-grid="">
 <!--        TODO estilios para la escuela actual    -->
             <div class="uk-width-1-1@s ">
@@ -111,9 +112,11 @@
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['title.all.tables.column.password']}</span></f:facet>
-                                    <h:outputText value="#{coordinadorModelo.contrasenia}">
-                                        <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
-                                    </h:outputText>
+                                    <div id="login-tabla-coordinador">
+                                        <h:outputText styleClass="uk-display-inline-block uk-margin-small-left" value="#{coordinadorModelo.contrasenia}">
+                                            <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                        </h:outputText>
+                                    </div>
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['title.all.tables.column.options']}</span></f:facet>
@@ -147,6 +150,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="uk-flex uk-flex-right uk-margin-top">
+            <button type="button" class="uk-button uk-button-primary uk-margin-small-right" uk-toggle="target: #modal-password">passwors</button>
+            <button class="uk-button uk-button-primary" onclick="window.history.back();">regresar</button>
         </div>
         <h:panelGroup layout="block" id="modal-coordinador" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
@@ -279,14 +286,16 @@
                     <div class="uk-modal-footer uk-text-right">
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{otrosboton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()" value="#{otrosboton['accept']}" rendered="#{empty coordinadorControlador.coordinadorModelo.contador}">
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
-                                    render="@form formulario-coordinador"
+                            <f:ajax
+                                    render="@form formulario-coordinador modal-password"
+                                    onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
                                     execute="@form"
                                     listener="#{coordinadorControlador.agregar}"/>
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()"  value="#{otrosboton['update']}" rendered="#{not empty coordinadorControlador.coordinadorModelo.contador}">
-                            <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
-                                    render="@form formulario-coordinador"
+                            <f:ajax
+                                    render="@form formulario-coordinador modal-password"
+                                    onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
                                     execute="@form"
                                     listener="#{coordinadorControlador.actualiza}"/>
                         </h:commandButton>
@@ -310,13 +319,49 @@
                 <div class="uk-modal-footer uk-text-right">
                     <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">#{otrosboton['cancel']}</button>
                     <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-margin-small-left" value="#{otrosboton['remove']}" >
-                        <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalEliminar' ) }"
-                                render="formulario-coordinador" listener="#{coordinadorControlador.elimina}"/>
+                        <f:ajax
+                                render="formulario-coordinador modal-password"
+                                onevent="function cerrar(data) { cierraModal(data,'modalEliminar' ) }"
+                                 listener="#{coordinadorControlador.elimina}"/>
                     </h:commandButton>
                 </div>
                 </h:form>
             </div>
         </h:panelGroup>
+        <h:panelGroup layout="block" id="modal-password" styleClass="uk-modal-container" pt:uk-modal="">
+            <div class="uk-modal-header  uk-background-primary">
+                <h2 class="uk-modal-title uk-light uk-text-center uk-text-capitalize">
+                    contraseñas profesor
+                </h2>
+            </div>
+            <div class="uk-modal-body uk-overflow-auto">
+                <ui:repeat value="#{coordinadorControlador.coordinadorModeloLista}" var="coordinadorModelo">
+                    <div class="tablero-licencia">
+                        <div class="imagen">
+                            <h:graphicImage styleClass="uk-display-inline-block " library="img" name="/avatar/maestro.svg" width="60"/>
+                        </div>
+                        <div class="informacion">
+                            <h6>Informacion Profesor</h6>
+                            <p><h:outputText  value="Nombre: #{coordinadorModelo.nombre} #{coordinadorModelo.apellidoPaterno} #{coordinadorModelo.apellidoMaterno}"/></p>
+                            <p><h:outputText  value="Nickname: #{coordinadorModelo.apodo}"/></p>
+                        </div>
+                        <div class="datos">
+                            <h6>Password</h6>
+                            <div id="imagen-password-tablero">
+                                <h:outputText styleClass="uk-display-inline-block uk-margin-small-left" value="#{coordinadorModelo.contrasenia}">
+                                    <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                </h:outputText>
+                            </div>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </div>
+            <div class="uk-modal-footer uk-text-right">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">PDF</button>
+            </div>
+        </h:panelGroup>
+        <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
         <h:outputScript library="js" name="/administracion/coordinador.js"/>
         <script type="text/javascript">
             var contrassenia;
@@ -366,6 +411,7 @@
                         case "modalCoordinador":
                             if (modalCoordinador.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalCoordinador).hide();
+                                colocarImagenesPassword();
                             }
                             break;
                     /*    case "modalLicencia":
@@ -373,16 +419,11 @@
                                 UIkit.modal(modalLicencia).hide();
                             }
                             break;*/
-                        case "modalBloqueo":
-                            if (modalBloqueo.querySelector('.uk-text-danger') === null) {
-                                UIkit.modal(modalBloqueo).hide();
-                            }
+                        case "modalEliminar":
+                            UIkit.modal(modalEliminar).hide();
+                            colocarImagenesPassword();
                             break;
-                    /*    case "modalCoord":
-                            if (modalCoord.querySelector('.uk-alert-danger') === null){
-                                UIkit.modal(modalCoord).hide();
-                            }
-                            break;*/
+
                         default: console.error(modal);
                     }
                 }
@@ -415,6 +456,8 @@
 
 
             }
+            colocarImagenesPassword();
+
         </script>
 
     </ui:define>

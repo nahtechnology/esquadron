@@ -333,7 +333,9 @@ input:checked + .slider:before {
 .licencia-vencida{
 	color: #ED1C24;
 }
-
+#estatus-escuelas small{
+	font-size: 16px;
+}
 .licencia-por-vencer::-webkit-progress-value {
 	background-color: #F1C40F;
 }

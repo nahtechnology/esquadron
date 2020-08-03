@@ -83,16 +83,16 @@
                                     ${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}
                                 </h:column>
                                 <h:column>
+                                    <f:facet name="header">correo</f:facet>
+                                    ${profesorModelo.correoEletronico}
+                                </h:column>
+                                <h:column>
                                     <f:facet name="header">contraseña</f:facet>
                                     <div id="login-tabla-profesor">
                                         <h:outputText styleClass="uk-display-inline-block uk-margin-small-left" value="#{profesorModelo.contrasenia}">
                                             <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
                                         </h:outputText>
                                     </div>
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">correo</f:facet>
-                                    ${profesorModelo.correoEletronico}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header">opciones</f:facet>
