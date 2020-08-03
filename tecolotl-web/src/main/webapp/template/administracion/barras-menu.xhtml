@@ -5,13 +5,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h5 class="uk-text-uppercase uk-margin-small-left">#{etiqueta['status']}</h5>
+<h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.days.licences']}</h5>
     <h:panelGroup id="estatus-escuelas" layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box uk-margin-top">
         <ui:repeat value="#{estatusControlador.licenciaVistaModeloLista}" var="licenciaVistaModelo">
             <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{licenciaVistaModelo.dias lt 31}">
-                <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada" onclick="buscarLicenciasVencidas(this)">#{licenciaVistaModelo.claveCentroTrabajo}</span>  <small class="#{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}">(#{licenciaVistaModelo.dias})</small>
+                <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada" onclick="buscarLicenciasVencidas(this)">#{licenciaVistaModelo.claveCentroTrabajo}</span>  <small class="#{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}">#{licenciaVistaModelo.dias}</small>
                 <progress class="uk-progress #{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}" value="#{licenciaVistaModelo.dias gt 0 ? licenciaVistaModelo.dias : '30'}" max="30"/>
             </h:panelGroup>
         </ui:repeat>
+    </h:panelGroup>
+<h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.extra.alumns']}</h5>
+    <h:panelGroup layout="block" id="alumnos-extra" styleClass="left-content-box uk-margin-top">
+            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between">
+                <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada"  onclick="buscarLicenciasVencidas(this)" >21ATV0021Y</span>  <span class="#{5 gt 5 ? 'licencia-por-vencer' : 'licencia-vencida'}">10</span>
+                <progress class="uk-progress #{5 gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}" value="10" max="30"/>
+            </h:panelGroup>
     </h:panelGroup>
 </html>

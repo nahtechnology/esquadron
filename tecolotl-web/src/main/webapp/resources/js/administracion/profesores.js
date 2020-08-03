@@ -18,11 +18,8 @@ function cierra(evento) {
 function elimina() {
     modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
 }
-function validarActualizacion(dato) {
-    datoModal = dato;
-}
 
-function cerrarModal(data , modal) {
+function cerrarModal(data , modal,pibote) {
     if (data === null) {
         switch (modal) {
             case 'modalProfresor' :
@@ -40,19 +37,27 @@ function cerrarModal(data , modal) {
         if (data.status === "success") {
             switch (modal) {
                 case 'modalProfresor' :
+                    console.log('si entro')
                     if (modalProfresor.querySelector('.uk-text-danger') === null) {
                         UIkit.modal(modalProfresor).hide();
-                        colocarImagenesPassword();
-                        iniciarCanvasPaginado();
+
+
                     }else {
                         seleccionContrasena();
 
                     }
+                    if (pibote === 1){
+                        colocarImagenesPassword();
+                        iniciarCanvasPaginado();
+                    }
                     break;
                 case 'modal-eliminar':
                     UIkit.modal(modalEliminar).hide();
-                    colocarImagenesPassword();
-                    iniciarCanvasPaginado();
+                    if (pibote === 1){
+                        colocarImagenesPassword();
+                        iniciarCanvasPaginado();
+                    }
+
                     break;
                 default :
                     console.error('Aun no se programa este modal:' + modal);
@@ -68,7 +73,7 @@ function abrirModal() {
         var modal = document.querySelector('#modal-profesor');
         let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
         let imagenes = document.querySelectorAll('#formulario-modal-profesor .login > img');
-        if(datoModal === 1 ){
+        if(contrasena !== "" ){
             let password = contrasena.split(',');
             imagenes[parseInt(password[0])].classList.add("seleccionado");
             imagenes[parseInt(password[1])].classList.add("seleccionado");

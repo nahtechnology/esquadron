@@ -101,7 +101,7 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor" >
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
@@ -257,20 +257,20 @@
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <h:commandButton value="#{otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right uk-modal-closel">
                             <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}"
-                                    onevent="function funciones(data) { cerrarModal(data, 'modalProfresor') }"
+                                    onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0) }"
                                     render="@form"/>
                         </h:commandButton>
                         <h:commandButton value="${boton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta()}"
                                     render="@form formulario-tabla modal-password"
-                                    onevent="function funcion(data) { cerrarModal(data, 'modalProfresor'); }"/>
+                                    onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1); }"/>
                         </h:commandButton>
                         <h:commandButton value="${boton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.actualiza()}"
                                     render="@form formulario-tabla estatus-escuelas"
-                                    onevent="function funcion(data) { cerrarModal(data, 'modalProfresor');  }"/>
+                                    onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1);  }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -299,7 +299,7 @@
                         <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{otrosboton['remove']}" disabled="#{0 ne administracionProfesorControlador.totalGrupos}">
                             <f:ajax listener="#{administracionProfesorControlador.elimina}"
                                     render="formulario-tabla modal-password"
-                                    onevent="function funcion(data) {cerrarModal(data,'modal-eliminar');}"
+                                    onevent="function funcion(data) {cerrarModal(data,'modal-eliminar',1);}"
                                     />
                         </h:commandButton>
                     </div>
@@ -339,7 +339,8 @@
                     <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">PDF</button>
                 </div>
         </h:panelGroup>
-        <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
+
+        <ui:remove><h:outputScript library="js" name="html2pdf.bundle.min.js"/></ui:remove>
         <h:outputScript library="js" name="administracion/profesores.js"/>
         <h:outputScript library="js" name="tabla-profesor.js"/>
     </ui:define>
