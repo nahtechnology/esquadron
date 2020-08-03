@@ -1,6 +1,7 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.LicenciaVistaModelo;
+import tecolotl.administracion.modelo.escuela.AlumnoTatalesModelo;
 import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.administracion.sesion.LicenciaSesionBean;
 import tecolotl.administracion.sesion.LicenciaTiempoSesionBean;
@@ -19,6 +20,7 @@ import java.util.UUID;
 public class EstatusControlador implements Serializable {
 
     private List<LicenciaVistaModelo> licenciaVistaModeloLista;
+    private List<AlumnoTatalesModelo> alumnoTatalesModeloLista;
 
     @Inject
     private LicenciaTiempoSesionBean licenciaTiempoSesionBean;
@@ -26,6 +28,7 @@ public class EstatusControlador implements Serializable {
     @PostConstruct
     public void init() {
         licenciaVistaModeloLista = licenciaTiempoSesionBean.busca(null);
+        alumnoTatalesModeloLista = licenciaTiempoSesionBean.buscaAlumnosSobrePasados();
     }
 
     public int busca(@NotNull String claveCentroTrabajo) {
@@ -43,5 +46,13 @@ public class EstatusControlador implements Serializable {
 
     public void setLicenciaVistaModeloLista(List<LicenciaVistaModelo> licenciaVistaModeloLista) {
         this.licenciaVistaModeloLista = licenciaVistaModeloLista;
+    }
+
+    public List<AlumnoTatalesModelo> getAlumnoTatalesModeloLista() {
+        return alumnoTatalesModeloLista;
+    }
+
+    public void setAlumnoTatalesModeloLista(List<AlumnoTatalesModelo> alumnoTatalesModeloLista) {
+        this.alumnoTatalesModeloLista = alumnoTatalesModeloLista;
     }
 }

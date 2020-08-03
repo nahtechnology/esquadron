@@ -16,9 +16,12 @@
     </h:panelGroup>
 <h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.extra.alumns']}</h5>
     <h:panelGroup layout="block" id="alumnos-extra" styleClass="left-content-box uk-margin-top">
-            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between">
-                <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada"  onclick="buscarLicenciasVencidas(this)" >21ATV0021Y</span>  <span class="#{5 gt 5 ? 'licencia-por-vencer' : 'licencia-vencida'}">10</span>
+        <ui:repeat value="#{estatusControlador.alumnoTatalesModeloLista}" var="alumnoTatalesModelo">
+            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt 6}">
+                <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada"  onclick="buscarLicenciasVencidas(this)" >${alumnoTatalesModelo.clveCentroTrabajo}</span>
+                <span class="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt -1 ? 'licencia-por-vencer' : 'licencia-vencida'}">#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos}</span>
                 <progress class="uk-progress #{5 gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}" value="10" max="30"/>
             </h:panelGroup>
+        </ui:repeat>
     </h:panelGroup>
 </html>
