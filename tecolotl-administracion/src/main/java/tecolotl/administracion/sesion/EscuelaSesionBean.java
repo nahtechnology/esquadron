@@ -244,4 +244,10 @@ public class EscuelaSesionBean implements Serializable {
 		query.setParameter("bloque", bloqueo);
 		return query.executeUpdate();
 	}
+
+	public Integer galaxia(@NotNull String claveCentroTrabajo) {
+		TypedQuery<Integer> typedQuery = entityManager.createNamedQuery("EscuelaEntidad.galaxia", Integer.class);
+		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		return typedQuery.getSingleResult();
+	}
 }

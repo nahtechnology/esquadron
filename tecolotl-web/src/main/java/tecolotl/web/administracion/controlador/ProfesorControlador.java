@@ -2,6 +2,7 @@ package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.sesion.CoordinadorSesionBean;
+import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
@@ -31,6 +32,9 @@ public class ProfesorControlador implements Serializable {
     private CoordinadorSesionBean coordinadorSesionBean;
 
     @Inject
+    private EscuelaSesionBean escuelaSesionBean;
+
+    @Inject
     private Logger logger;
 
     private String claveCentroTrabajo;
@@ -48,6 +52,7 @@ public class ProfesorControlador implements Serializable {
     public void inicio() {
         profesorModeloLista = profesorSesionBean.buscaPorEscuela(claveCentroTrabajo);
         escuelaBaseModelo = new EscuelaBaseModelo(claveCentroTrabajo);
+        escuelaBaseModelo.setGalaxia(escuelaSesionBean.galaxia(claveCentroTrabajo));
     }
 
     public void inserta() {

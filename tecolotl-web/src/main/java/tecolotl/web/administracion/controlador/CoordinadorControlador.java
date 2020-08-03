@@ -3,6 +3,7 @@ package tecolotl.web.administracion.controlador;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
 import tecolotl.administracion.sesion.CoordinadorSesionBean;
+import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.nucleo.modelo.PersonaMotivoBloqueoModelo;
 import tecolotl.nucleo.sesion.PersonaMoitvoBloqueoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
@@ -31,6 +32,9 @@ public class CoordinadorControlador implements Serializable {
     private GrupoSesionBean grupoSesionBean;
 
     @Inject
+    private EscuelaSesionBean escuelaSesionBean;
+
+    @Inject
     private Logger logger;
 
     private List<PersonaMotivoBloqueoModelo> personaMotivoBloqueoModeloLista;
@@ -43,6 +47,7 @@ public class CoordinadorControlador implements Serializable {
 
     public void inicio() {
         escuelaBaseModelo = new EscuelaBaseModelo(claveCentroTrabajo);
+        escuelaBaseModelo.setGalaxia(escuelaSesionBean.galaxia(claveCentroTrabajo));
         coordinadorModeloLista = coordinadorSesionBean.busca(claveCentroTrabajo);
         limpiaCoordinador();
     }
@@ -102,6 +107,14 @@ public class CoordinadorControlador implements Serializable {
 
     public void setPersonaMotivoBloqueoModelo(PersonaMotivoBloqueoModelo personaMotivoBloqueoModelo) {
         this.personaMotivoBloqueoModelo = personaMotivoBloqueoModelo;
+    }
+
+    public EscuelaBaseModelo getEscuelaBaseModelo() {
+        return escuelaBaseModelo;
+    }
+
+    public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
+        this.escuelaBaseModelo = escuelaBaseModelo;
     }
 
     public String getClaveCentroTrabajo() {

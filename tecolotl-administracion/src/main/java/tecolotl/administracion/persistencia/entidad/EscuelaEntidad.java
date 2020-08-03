@@ -39,6 +39,10 @@ import java.util.StringJoiner;
 		@NamedQuery(
 				name = "EscuelaEntidad.bloqueaProfesor",
 				query = "UPDATE EscuelaEntidad e SET e.bloqueoProfesor = :bloque WHERE e.claveCentroTrabajo = :claveCentroTrabajo"
+		),
+		@NamedQuery(
+				name = "EscuelaEntidad.galaxia",
+				query = "SELECT e.galaxia FROM EscuelaEntidad e WHERE e.claveCentroTrabajo = :claveCentroTrabajo"
 		)
 })
 public class EscuelaEntidad {
