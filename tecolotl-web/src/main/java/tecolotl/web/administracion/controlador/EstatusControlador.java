@@ -34,7 +34,7 @@ public class EstatusControlador implements Serializable {
                 return licenciaVistaModelo.getDias();
             }
         }
-        return -999;
+        return 0;
     }
 
     public List<LicenciaVistaModelo> getLicenciaVistaModeloLista() {
