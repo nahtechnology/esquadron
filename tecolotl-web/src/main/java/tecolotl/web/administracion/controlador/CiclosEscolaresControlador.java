@@ -81,16 +81,25 @@ public class CiclosEscolaresControlador implements Serializable {
         renuevaModelo();
     }
 
-    public List<CicloEscolarModelo> busca(boolean activo) {
-        return cicloEscolarModeloLista.stream().filter(ciclo -> ciclo.getActivo() == activo).collect(Collectors.toList());
+    public List<CicloEscolarModelo> busca(boolean grupos) {
+        return cicloEscolarModeloLista.stream().filter(ciclo -> grupos == (ciclo.getTotalGrupo() != 0)).collect(Collectors.toList());
     }
 
     public void hereda() {
-        logger.info("viejo:" + cicloEscolarViejo + " nuevo:" + cicloEscolarNuevo);
+        cicloEscolarSessionBean.hereda(busca(cicloEscolarViejo), busca(cicloEscolarNuevo), escuelaBaseModelo.getClaveCentroTrabajo());
     }
 
     public void buscaTotalGrupo() {
         totalGrupo = cicloEscolarSessionBean.totalGrupo(cicloEscolarModelo);
+    }
+
+    public CicloEscolarModelo busca(int hashCode) {
+        for (CicloEscolarModelo cicloEscolarModeloLocal : cicloEscolarModeloLista) {
+            if (cicloEscolarModeloLocal.hashCode() == hashCode) {
+                return cicloEscolarModeloLocal;
+            }
+        }
+        return null;
     }
 
     public void renuevaModelo() {

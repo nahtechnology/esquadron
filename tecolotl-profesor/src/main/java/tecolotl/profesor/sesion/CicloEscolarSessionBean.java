@@ -61,7 +61,7 @@ public class CicloEscolarSessionBean {
      */
     public List<CicloEscolarModelo> busca(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo) {
         logger.fine(claveCentroTrabajo);
-        TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.buscaEscuela", CicloEscolarEntidad.class);
+        TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.cuentaEscuelaCuentaGrupo", CicloEscolarEntidad.class);
         typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
         return typedQuery.getResultList().stream().map(CicloEscolarModelo::new).collect(Collectors.toList());
     }
@@ -117,9 +117,9 @@ public class CicloEscolarSessionBean {
      */
     public Long totalGrupo(@NotNull CicloEscolarModelo cicloEscolarModelo) {
         TypedQuery<Long> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.cuentaGrupo", Long.class);
-        typedQuery.setParameter("fin", cicloEscolarModelo.getFin())
-                .setParameter("inicio", cicloEscolarModelo.getInicio())
-                .setParameter("claveCentroTrabajo", cicloEscolarModelo.getIdEscuela());
+        typedQuery.setParameter("claveCentroTrabajo", cicloEscolarModelo.getIdEscuela());
+        typedQuery.setParameter("fin", cicloEscolarModelo.getFin());
+        typedQuery.setParameter("inicio", cicloEscolarModelo.getInicio());
         return typedQuery.getSingleResult();
     }
 

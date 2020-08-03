@@ -37,16 +37,10 @@
                         <div class="uk-grid uk-grid-small">
                             <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Teachers</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
-                                <a href="#" class="" />
-                                <h:form>
-                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
-                                                   pt:uk-icon="icon: plus-circle; ratio: 1.5"
-                                                   pt:uk-toggle="target: #modal-profesor"
-                                                   pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"
-                                                   onclick="validarActualizacion(0)" >
-                                        <f:ajax render="formulario-modal-profesor"/>
-                                    </h:commandLink>
-                                </h:form>
+                                <a class="uk-icon-link uk-text-primary"
+                                   uk-icon="icon: plus-circle; ratio: 1.5"
+                                   uk-toggle="target: #modal-profesor"
+                                   uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
                             </div>
                         </div>
                     </div>
@@ -107,11 +101,11 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor" onclick="validarActualizacion(1)">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
-                                                        <f:ajax render="formulario-modal-profesor" listener="#{administracionProfesorControlador.busca(profesorModelo)}"/>
+                                                        <f:ajax render="formulario-modal-profesor"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li>

@@ -7,8 +7,10 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.AdministradorModelo;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
+import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
@@ -69,7 +71,8 @@ public class CicloEscolarEntidadTest {
                 //administracion
                 .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
                 .addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
-                .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+                .addPackage(ContactoLlavePrimariaValidacion.class.getPackage()).addPackage(AdministradorModelo.class.getPackage())
+                .addPackage(EscuelaEntidad.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage()).addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
@@ -119,4 +122,20 @@ public class CicloEscolarEntidadTest {
         }
     }
 
+    @Test
+    public void buscaGrupos() {
+        TypedQuery<CicloEscolarEntidad> typedQuery = entityManager.createNamedQuery("CicloEscolarEntidad.cuentaEscuelaCuentaGrupo", CicloEscolarEntidad.class);
+        typedQuery.setParameter("claveCentroTrabajo", "21PPR0000G");
+        List<CicloEscolarEntidad> cicloEscolarEntidadLista = typedQuery.getResultList();
+        assertNotNull(cicloEscolarEntidadLista);
+        assertFalse(cicloEscolarEntidadLista.isEmpty());
+        for (CicloEscolarEntidad cicloEscolarEntidad: cicloEscolarEntidadLista) {
+            assertNotNull(cicloEscolarEntidad);
+            assertNotNull(cicloEscolarEntidad.getDescripcion());
+            assertNotNull(cicloEscolarEntidad.getCicloEscolarPK());
+            assertNotNull(cicloEscolarEntidad.getCicloEscolarPK().getInicio());
+            assertNotNull(cicloEscolarEntidad.getCicloEscolarPK().getFin());
+            assertNotNull(cicloEscolarEntidad.getTotalGrupo());
+        }
+    }
 }

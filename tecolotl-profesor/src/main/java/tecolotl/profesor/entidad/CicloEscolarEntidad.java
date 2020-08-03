@@ -6,6 +6,7 @@ import javax.inject.Named;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -23,19 +24,31 @@ import java.util.StringJoiner;
         name = "CicloEscolarEntidad.buscaEscuela",
         query = "SELECT ce FROM CicloEscolarEntidad ce WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
     @NamedQuery(
-            name = "CicloEscolarEntidad.cuentaGrupo",
-            query = "SELECT COUNT (g) FROM CicloEscolarEntidad ce JOIN ce.grupoEntidadLista g WHERE ce.cicloEscolarPK.fin = :fin AND " +
-                    "ce.cicloEscolarPK.inicio = :inicio AND ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"
-    )
+        name = "CicloEscolarEntidad.cuentaGrupo",
+        query = "SELECT COUNT (g) FROM CicloEscolarEntidad ce JOIN ce.grupoEntidadLista g WHERE ce.cicloEscolarPK.fin = :fin AND " +
+                "ce.cicloEscolarPK.inicio = :inicio AND ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo"),
+    @NamedQuery(
+        name = "CicloEscolarEntidad.cuentaEscuelaCuentaGrupo",
+        query = "SELECT new CicloEscolarEntidad (ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo, ce.cicloEscolarPK.inicio, ce.cicloEscolarPK.fin, ce.activo, ce.descripcion, count (ge.id)) " +
+                "FROM CicloEscolarEntidad ce LEFT JOIN ce.grupoEntidadLista ge WHERE ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo " +
+                "GROUP BY ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo, ce.cicloEscolarPK.inicio, ce.cicloEscolarPK.fin, ce.activo, ce.descripcion ")
 })
 public class CicloEscolarEntidad {
 
     private CicloEscolarEntidadPK cicloEscolarPK;
     private Boolean activo;
     private String descripcion;
+    private Long totalGrupo;
     private List<GrupoEntidad> grupoEntidadLista;
 
     public CicloEscolarEntidad() {
+    }
+
+    public CicloEscolarEntidad(String claveCentroTrabajo, Date inicio, Date fin, Boolean activo, String descripcion, Long totalGrupo) {
+        this.cicloEscolarPK = new CicloEscolarEntidadPK(inicio, fin, claveCentroTrabajo);
+        this.activo = activo;
+        this.descripcion = descripcion;
+        this.totalGrupo = totalGrupo;
     }
 
     public CicloEscolarEntidad(CicloEscolarEntidadPK cicloEscolarPK) {
@@ -85,6 +98,15 @@ public class CicloEscolarEntidad {
 
     public void setGrupoEntidadLista(List<GrupoEntidad> grupoEntidadLista) {
         this.grupoEntidadLista = grupoEntidadLista;
+    }
+
+    @Transient
+    public Long getTotalGrupo() {
+        return totalGrupo;
+    }
+
+    public void setTotalGrupo(Long totalGrupo) {
+        this.totalGrupo = totalGrupo;
     }
 
     @Override

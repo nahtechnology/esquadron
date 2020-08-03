@@ -89,6 +89,10 @@
                                     </h:outputText>
                                 </h:column>
                                 <h:column headerClass="uk-background-primary uk-text-center">
+                                    <f:facet name="header"><span class="letra-titulo">total grupos</span></f:facet>
+                                    ${cicloEscolar.totalGrupo}
+                                </h:column>
+                                <h:column headerClass="uk-background-primary uk-text-center">
                                     <f:facet name="header"><span class="letra-titulo">descripcion</span></f:facet>
                                     <span class="uk-text-left">#{cicloEscolar.descripcion}</span>
                                 </h:column>
@@ -140,6 +144,7 @@
                     </div>
                 </div>
             </div>
+            <ui:remove>
             <h:form id="formulario-busca-licencias">
                 <div class="uk-width-2-5@s">
                     <div class="uk-card uk-card-default uk-card-small uk-card-hover">
@@ -150,18 +155,11 @@
                                         <span class="uk-text-middle">ciclo escolar original</span>
                                     </h4>
                                 </div>
-                                <div class="uk-width-expand uk-text-right panel-icons">
-                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
-                                                     pt:uk-icon="icon: search; ratio: 1.5"
-                                                     pt:uk-tooltip="title:buscar; pos: left; delay: 2000">
-                                        <f:ajax render="formulario-busca-licencias:lista-ciclos"/>
-                                    </h:commandLink>
-                                </div>
                             </div>
                         </div>
                         <h:panelGroup layout="block" class="uk-card-body">
                             <h:selectOneRadio id="lista-ciclos-viejo" value="#{ciclosEscolaresControlador.cicloEscolarViejo}">
-                                <f:selectItems value="#{ciclosEscolaresControlador.busca(false)}"
+                                <f:selectItems value="#{ciclosEscolaresControlador.busca(true)}"
                                                var="ciclosEscolar"
                                                itemLabel="#{ciclosEscolar.descripcion}"
                                                itemValue="#{ciclosEscolar.hashCode()}"/>
@@ -173,7 +171,7 @@
                 </div>
                 <div class="uk-width-2-5@s">
                     <h:commandButton value="heredar">
-                        <f:ajax listener="#{ciclosEscolaresControlador.hereda}" execute="@form" render="@form"/>
+                        <f:ajax listener="#{ciclosEscolaresControlador.hereda}" execute="@form" render="@form formualrio-ciclo-escolar"/>
                     </h:commandButton>
                 </div>
                 <div class="uk-width-2-5@s">
@@ -182,21 +180,14 @@
                             <div class="uk-grid uk-grid-small">
                                 <div class="uk-width-1-2">
                                     <h4 class="uk-text-capitalize">
-                                        <span class="uk-text-middle">ciclo escolar original</span>
+                                        <span class="uk-text-middle">ciclo escolar a copiar</span>
                                     </h4>
-                                </div>
-                                <div class="uk-width-expand uk-text-right panel-icons">
-                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
-                                                   pt:uk-icon="icon: search; ratio: 1.5"
-                                                   pt:uk-tooltip="title:buscar; pos: left; delay: 2000">
-                                        <f:ajax render="formulario-busca-licencias:lista-ciclos"/>
-                                    </h:commandLink>
                                 </div>
                             </div>
                         </div>
                         <h:panelGroup layout="block" class="uk-card-body">
                             <h:selectOneRadio id="lista-ciclos-nuevo" value="#{ciclosEscolaresControlador.cicloEscolarNuevo}">
-                                <f:selectItems value="#{ciclosEscolaresControlador.busca(true)}"
+                                <f:selectItems value="#{ciclosEscolaresControlador.busca(false)}"
                                                var="ciclosEscolar"
                                                itemLabel="#{ciclosEscolar.descripcion}"
                                                itemValue="#{ciclosEscolar.hashCode()}"/>
@@ -207,6 +198,7 @@
                     </div>
                 </div>
             </h:form>
+            </ui:remove>
         </div>
         <div class="uk-flex uk-flex-right uk-margin-top">
             <h:button styleClass="uk-button uk-button-primary" value="#{otrosboton['back']}" outcome="regresar"/>

@@ -17,6 +17,7 @@ public class CicloEscolarModelo {
     private String descripcion;
     private Boolean activo;
     private String idEscuela;
+    private Long totalGrupo;
 
     public CicloEscolarModelo() {
     }
@@ -33,6 +34,7 @@ public class CicloEscolarModelo {
         this.descripcion = cicloEscolarEntidad.getDescripcion();
         this.activo = cicloEscolarEntidad.getActivo();
         this.idEscuela = cicloEscolarEntidad.getCicloEscolarPK().getEscuelaEntidad().getClaveCentroTrabajo();
+        this.totalGrupo = cicloEscolarEntidad.getTotalGrupo();
     }
 
     @NotNull(groups = {CicloEscolarLlavePrimariaValidacion.class, GrupoNuevoValidacion.class})
@@ -79,6 +81,14 @@ public class CicloEscolarModelo {
 
     public Boolean getActivo() {
         return activo;
+    }
+
+    public Long getTotalGrupo() {
+        return totalGrupo;
+    }
+
+    public void setTotalGrupo(Long totalGrupo) {
+        this.totalGrupo = totalGrupo;
     }
 
     @Override

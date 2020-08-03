@@ -50,10 +50,6 @@ public class ProfesorControlador implements Serializable {
         escuelaBaseModelo = new EscuelaBaseModelo(claveCentroTrabajo);
     }
 
-    public void busca(ProfesorModelo profesorModelo) {
-        this.profesorModelo = new ProfesorModelo(profesorModelo);
-    }
-
     public void inserta() {
         if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo.getApodo()) ||
                 coordinadorSesionBean.exite(profesorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
