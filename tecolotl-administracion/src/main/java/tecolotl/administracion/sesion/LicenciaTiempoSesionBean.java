@@ -1,6 +1,8 @@
 package tecolotl.administracion.sesion;
 
 import tecolotl.administracion.modelo.LicenciaVistaModelo;
+import tecolotl.administracion.modelo.escuela.AlumnoTatalesModelo;
+import tecolotl.administracion.persistencia.vista.AlumnoTotalesVista;
 import tecolotl.administracion.persistencia.vista.LicenciaTiempoVista;
 
 import javax.ejb.Stateless;
@@ -30,5 +32,14 @@ public class LicenciaTiempoSesionBean {
             criteriaQuery.where(predicate);
         }
         return entityManager.createQuery(criteriaQuery).getResultList().stream().map(LicenciaVistaModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Busca el total de los alumnos  por licencia y total asignados
+     * @return Coleccion del totales de alumno
+     */
+    public List<AlumnoTatalesModelo> buscaAlumnosSobrePasados() {
+        TypedQuery<AlumnoTotalesVista> typedQuery = entityManager.createNamedQuery("AlumnoTotalesVista.busca", AlumnoTotalesVista.class);
+        return typedQuery.getResultList().stream().map(AlumnoTatalesModelo::new).collect(Collectors.toList());
     }
 }
