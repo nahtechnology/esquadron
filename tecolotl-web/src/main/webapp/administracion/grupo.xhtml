@@ -113,7 +113,7 @@
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
-                                                        <f:ajax render="grupo-mensaje-eliminar boton-borrar-grupo"/>
+                                                        <f:ajax render="grupo-mensaje-eliminar  formulario-borrar:boton-borrar-grupo"/>
                                                     </h:commandLink>
                                                 </li>
                                             </ul>
@@ -217,7 +217,7 @@
 	                    <h:commandButton id="boton-borrar-grupo"
 	                                     disabled="#{grupoControlador.grupoModelo.totalAlumno ne 0}"
 	                                     value="#{otrosboton['remove']}"
-	                                     styleClass="uk-button uk-button-danger uk-modal-close">
+	                                     styleClass="uk-button #{grupoControlador.grupoModelo.totalAlumno eq 0 ? 'uk-button-danger':'boton-inhabilitado' } uk-modal-close">
 	                        <f:ajax listener="#{grupoControlador.borrar}" render="formulario-grupo"/>
 	                    </h:commandButton>
                     </h:form>

@@ -359,3 +359,13 @@ input:checked + .slider:before {
 	color: #0e6dcd !important;
 	cursor: pointer;
 }
+
+/*Boton inhabilitado*/
+.boton-inhabilitado{
+	color: #95A5A6;
+	border: 1px solid;
+	background: none;
+}
+.boton-inhabilitado:hover{
+	cursor: initial;
+}
