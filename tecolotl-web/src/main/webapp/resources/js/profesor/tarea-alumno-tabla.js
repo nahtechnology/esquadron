@@ -244,7 +244,7 @@ class PromedioGeneralActividad {
         let actividades = [];
         let puntajes = [0,0,0,0,0,0,0];
         let dividendos = [0,0,0,0,0,0,0];
-        let promedios = 0;
+        let promedios = [],promedio = 0;
         if (this.nivel === "hover-todos"){
             filas = this.tabla.querySelectorAll("tr");
         }else { filas = this.tabla.querySelectorAll(`tr.${this.nivel}`)}
@@ -265,15 +265,21 @@ class PromedioGeneralActividad {
                     }
             });
             for (let i = 0; i < 7; i++){
-                promedios += Math.round(puntajes[i]/dividendos[i]);
+                if (dividendos[i] > 0){
+                    let dato = Math.round(puntajes[i]/dividendos[i]);
+                    promedios.push(dato)
+                }
             }
+            promedios.forEach(pr =>{
+                promedio += pr;
+            })
         }
         console.log(dividendos);
         console.log(puntajes);
         this.tareasAsignadas.innerText = filas.length;
         this.tareasPromediadas.innerText = actividades.length;
-        this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedios/7) : "Nothing answered yet!";
-        console.log(promedios/7);
+        this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedio/promedios.length) : "Nothing answered yet!";
+        console.log(promedios);
     }
 
 }
