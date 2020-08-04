@@ -6,7 +6,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.days.licences']}</h5>
-    <h:panelGroup id="estatus-escuelas" layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box uk-margin-top">
+    <h:panelGroup id="estatus-escuelas" style="max-height: 180px; overflow: auto;" layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box scroll-nav-left uk-margin-top">
         <ui:repeat value="#{estatusControlador.licenciaVistaModeloLista}" var="licenciaVistaModelo">
             <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{licenciaVistaModelo.dias lt 31}">
                 <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada" onclick="buscarLicenciasVencidas(this)">#{licenciaVistaModelo.claveCentroTrabajo}</span>  <small class="#{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}">#{licenciaVistaModelo.dias}</small>
@@ -15,7 +15,7 @@
         </ui:repeat>
     </h:panelGroup>
 <h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.extra.alumns']}</h5>
-    <h:panelGroup layout="block" id="alumnos-extra" styleClass="left-content-box uk-margin-top">
+    <h:panelGroup layout="block" id="alumnos-extra" style="max-height: 180px; overflow: auto;" styleClass="left-content-box scroll-nav-left uk-margin-top">
         <ui:repeat value="#{estatusControlador.alumnoTatalesModeloLista}" var="alumnoTatalesModelo">
             <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt 0}">
                 <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada"  onclick="buscarLicenciasVencidas(this)" >${alumnoTatalesModelo.clveCentroTrabajo}</span>

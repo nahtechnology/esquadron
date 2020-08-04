@@ -191,7 +191,7 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary: .dropdown-licencia; mode: click" id="licencia-menu">
                                             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                 <li>
-                                                    <h:commandLink  pt:uk-toggle="target: #modal-licencia" styleClass="uk-text-primary">
+                                                    <h:commandLink  pt:uk-toggle="target: #modal-licencia" styleClass="uk-text-capitalize uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['edit']}"/></span>
                                                         <f:setPropertyActionListener value="#{licencia}" target="#{licenciasControlador.licenciaModelo}"/>
@@ -294,11 +294,11 @@
                                         </f:facet>
                                         #{contacto.contador}
                                     </h:column>
-                                    <h:column>
-                                        <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.name']}" /></f:facet>
+                                    <h:column headerClass="uk-background-primary uk-text-left">
+                                        <f:facet name="header" ><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.name']}" /></f:facet>
                                         #{contacto.nombre}
                                     </h:column>
-                                    <h:column>
+                                    <h:column >
                                         <f:facet name="header"><h:outputText styleClass="letra-titulo" value="#{administracion['schooldetail.contacts.type']}" /></f:facet>
                                         #{contacto.tipoContactoModelo.valor}
                                     </h:column>
@@ -317,7 +317,7 @@
                                             <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="boundary:.tabla-escuela-contacto; mode: click" id="juan">
                                                 <ul class="uk-nav uk-dropdown-nav uk-text-left">
                                                     <li>
-                                                        <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-primary">
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-agregar-contacto" styleClass="uk-text-capitalize uk-text-primary">
                                                             <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                             <span class="uk-text-middle"><h:outputText value="#{otrosboton['edit']}"/></span>
                                                             <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>
@@ -327,7 +327,7 @@
                                                     </li>
                                                     <li class="uk-nav-divider"/>
                                                     <li>
-                                                        <h:commandLink  pt:uk-toggle="target: #modal-eliminar-contacto" styleClass="uk-text-danger">
+                                                        <h:commandLink  pt:uk-toggle="target: #modal-eliminar-contacto" styleClass="uk-text-capitalize uk-text-danger">
                                                             <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon" />
                                                             <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}"/></span>
                                                             <f:setPropertyActionListener value="#{contacto}" target="#{contactoControlador.contactoModelo}"/>

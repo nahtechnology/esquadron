@@ -98,17 +98,17 @@
                                     headerClass="uk-background-primary uk-text-center"
                                     footerClass="uk-background-primary uk-text-left"
                                     columnClasses="uk-text-left,uk-text-left,uk-text-center,uk-text-center,uk-text-center">
-                                <h:column>
+                                <h:column headerClass="uk-background-primary uk-text-left">
                                     <f:facet name="header"><span class="letra-titulo uk-text-left">#{administracion['catalogocoordinador.coordinator.detail.table.header.nick']}</span></f:facet>
                                     #{coordinadorModelo.apodo}
                                 </h:column>
-                                <h:column>
+                                <h:column headerClass="uk-background-primary uk-text-left">
                                     <f:facet name="header"><span class="letra-titulo uk-text-left">#{administracion['catalogocoordinador.coordinator.block.table.header.name']}</span></f:facet>
                                     #{coordinadorModelo.apellidoPaterno.concat(' ').concat(coordinadorModelo.apellidoMaterno).concat(' ').concat(coordinadorModelo.nombre)}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['catalogocoordinador.coordinator.detail.table.header.email']}</span></f:facet>
-                                    #{coordinadorModelo.correoEletronico}, ${coordinadorControlador.escuelaBaseModelo.galaxia}
+                                    #{coordinadorModelo.correoEletronico}
                                 </h:column>
                                 <h:column>
                                     <f:facet name="header"><span class="letra-titulo">#{administracion['title.all.tables.column.password']}</span></f:facet>
@@ -344,6 +344,7 @@
                             <h6>Coordinator</h6>
                             <p><h:outputText  value="Name: #{coordinadorModelo.nombre} #{coordinadorModelo.apellidoPaterno} #{coordinadorModelo.apellidoMaterno}"/></p>
                             <p><h:outputText  value="Nickname: #{coordinadorModelo.apodo}"/></p>
+                            <p><h:outputText value="Galaxy: ${coordinadorControlador.escuelaBaseModelo.galaxia}"/> </p>
                         </div>
                         <div class="datos">
                             <h6>Password</h6>
@@ -411,8 +412,8 @@
                         case "modalCoordinador":
                             if (modalCoordinador.querySelector('.uk-text-danger') === null) {
                                 UIkit.modal(modalCoordinador).hide();
-                                colocarImagenesPassword();
                             }
+                            colocarImagenesPassword();
                             break;
                     /*    case "modalLicencia":
                             if (modalLicencia.querySelector('.uk-alert-danger') === null) {

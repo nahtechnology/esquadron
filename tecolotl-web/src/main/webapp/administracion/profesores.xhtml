@@ -77,12 +77,12 @@
                                          rendered="#{not empty administracionProfesorControlador.profesorModeloLista}"
                                          styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover tabla-paginada tabla-profesor"
                                          headerClass="uk-background-primary letra-titulo uk-text-center"
-                                         columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center,uk-text-center">
-                                <h:column>
+                                         columnClasses="uk-text-left,uk-text-left,uk-text-center,uk-text-center,uk-text-center">
+                                <h:column headerClass="uk-background-primary letra-titulo uk-text-left">
                                     <f:facet name="header">apodo</f:facet>
                                     ${profesorModelo.apodo}
                                 </h:column>
-                                <h:column>
+                                <h:column headerClass="uk-background-primary letra-titulo uk-text-left">
                                     <f:facet name="header">nombre</f:facet>
                                     ${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}
                                 </h:column>
@@ -105,7 +105,7 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor" >
+                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor" styleClass="uk-text-left uk-text-primary" >
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
@@ -113,7 +113,7 @@
                                                     </h:commandLink>
                                                 </li>
                                                 <li>
-                                                    <h:link outcome="grupo">
+                                                    <h:link outcome="grupo" styleClass="uk-text-left uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: users" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle primera-mayuscula uk-display-inline-block">grupos</span>
                                                         <f:param name="escuela" value="#{administracionProfesorControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
@@ -122,7 +122,7 @@
                                                 </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-eliminar " styleClass="uk-text-danger primera-mayuscula" action="#{administracionProfesorControlador.buscaTotalGlumno()}">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-eliminar " styleClass="uk-text-danger uk-text-left primera-mayuscula" action="#{administracionProfesorControlador.buscaTotalGlumno()}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon uk-text-danger"/>
                                                         <h:outputText value="#{otrosboton['remove']}" styleClass="primera-mayuscula uk-display-inline-block" />
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
@@ -349,7 +349,7 @@
                 </div>
         </h:panelGroup>
 
-        <ui:remove><h:outputScript library="js" name="html2pdf.bundle.min.js"/></ui:remove>
+        <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
         <h:outputScript library="js" name="administracion/profesores.js"/>
         <h:outputScript library="js" name="tabla-profesor.js"/>
     </ui:define>
