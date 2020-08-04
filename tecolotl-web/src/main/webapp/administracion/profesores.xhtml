@@ -37,10 +37,14 @@
                         <div class="uk-grid uk-grid-small">
                             <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Teachers</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
-                                <a class="uk-icon-link uk-text-primary"
-                                   uk-icon="icon: plus-circle; ratio: 1.5"
-                                   uk-toggle="target: #modal-profesor"
-                                   uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
+                                <h:form>
+                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
+                                                   pt:uk-toggle="target: #modal-profesor"
+                                                   pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"
+                                                   pt:uk-icon="icon: plus-circle; ratio: 1.5">
+                                        <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}" render="formulario-modal-profesor"/>
+                                    </h:commandLink>
+                                </h:form>
                             </div>
                         </div>
                     </div>
@@ -255,11 +259,14 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <h:commandButton value="#{otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right uk-modal-closel">
+                        <ui:remove>
+                        <h:commandButton value="#{otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
                             <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}"
                                     onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0) }"
                                     render="@form"/>
                         </h:commandButton>
+                        </ui:remove>
+                        <button class="uk-button uk-button-default uk-margin-small-right uk-modal-close"/>
                         <h:commandButton value="${boton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta()}"
