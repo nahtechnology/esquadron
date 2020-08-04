@@ -7,6 +7,7 @@ import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
 import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
+import tecolotl.profesor.sesion.ProfesorSesionBean;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -40,14 +41,19 @@ public class GrupoControlador implements Serializable {
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     @Inject
+    private ProfesorSesionBean profesorSesionBean;
+
+    @Inject
     private Logger logger;
 
     private Map<Integer, CicloEscolarModelo> cicloEscolarModeloMapa;
     private List<GrupoModelo> grupoModeloLista;
+    private List<ProfesorModelo> profesorModeloLista;
     private GrupoModelo grupoModelo;
     private CicloEscolarModelo cicloEscolarModelo;
     private Integer cicloEscolar;
     private ProfesorModelo profesorModelo;
+    private String profesorIdReasignar;
     private EscuelaBaseModelo escuelaBaseModelo;
 
     private String profesor;
@@ -122,6 +128,18 @@ public class GrupoControlador implements Serializable {
         grupoSesionBean.elimina(grupoModelo.getId());
         grupoModeloLista.remove(grupoModelo);
         grupoModelo = new GrupoModelo();
+    }
+
+    public void buscaProfesor() {
+        if (profesorModeloLista != null && profesorModeloLista.isEmpty()) {
+            profesorModeloLista = profesorSesionBean.buscaPorEscuela(escuelaBaseModelo.getClaveCentroTrabajo()).stream()
+                    .filter(profesor -> profesor.getId().compareTo(profesorModelo.getId()) == 0).collect(Collectors.toList());
+        }
+    }
+
+    public void cambiaGrupo() {
+        grupoSesionBean.reasignar(grupoModelo.getId(), UUID.fromString(profesorIdReasignar));
+        grupoModeloLista.removeIf(grupo -> grupo.getId().compareTo(grupoModelo.getId()) == 0);
     }
 
     private Predicate<GrupoModelo> grupoModeloPredicate() {
@@ -204,5 +222,21 @@ public class GrupoControlador implements Serializable {
 
     public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
         this.escuelaBaseModelo = escuelaBaseModelo;
+    }
+
+    public List<ProfesorModelo> getProfesorModeloLista() {
+        return profesorModeloLista;
+    }
+
+    public void setProfesorModeloLista(List<ProfesorModelo> profesorModeloLista) {
+        this.profesorModeloLista = profesorModeloLista;
+    }
+
+    public String getProfesorIdReasignar() {
+        return profesorIdReasignar;
+    }
+
+    public void setProfesorIdReasignar(String profesorIdReasignar) {
+        this.profesorIdReasignar = profesorIdReasignar;
     }
 }
