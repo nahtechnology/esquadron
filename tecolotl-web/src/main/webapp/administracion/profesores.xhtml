@@ -301,6 +301,7 @@
                             </h:outputFormat>
                         </p>
                     </div>
+<!--                    Informacion Profesor-->
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">#{otrosboton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{otrosboton['remove']}" disabled="#{0 ne administracionProfesorControlador.totalGrupos}">
@@ -326,8 +327,8 @@
                                 <h:graphicImage styleClass="uk-display-inline-block " library="img" name="/avatar/maestro.svg" width="60"/>
                             </div>
                             <div class="informacion">
-                                <h6>Informacion Profesor</h6>
-                                <p><h:outputText  value="Nombre: #{profesorModelo.nombre} #{profesorModelo.apellidoPaterno} #{profesorModelo.apellidoMaterno}"/></p>
+                                <h6>Teacher</h6>
+                                <p><h:outputText  value="Name: #{profesorModelo.nombre} #{profesorModelo.apellidoPaterno} #{profesorModelo.apellidoMaterno}"/></p>
                                 <p><h:outputText  value="Nickname: #{profesorModelo.apodo}"/></p>
                             </div>
                             <div class="datos">

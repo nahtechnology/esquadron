@@ -13,20 +13,20 @@
             <f:viewAction action="#{reporteSesionControlador.inicio}"/>
         </f:metadata>
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
-            <li class="uk-nav-header">#{coordinador['menu.menu']}</li>
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
                 <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <h:panelGroup layout="block" rendered="#{reporteSesionControlador.idProfesor eq null}">
                     <ul class="uk-nav-sub">
                         <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                         <li class="uk-active"><a onclick="atras()"><h:outputText pt:uk-icon="file-edit" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{coordinador['menu.detail']}</span></a></li>
-                        <li class="uk-active"><a><h:outputText pt:uk-icon="file-text" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{coordinador['menu.report']}</span></a></li>
+                        <li class="uk-active"><a><h:outputText pt:uk-icon="file-text" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{otrosboton['report']}</span></a></li>
                     </ul>
                 </h:panelGroup>
                 <h:panelGroup layout="block" rendered="#{reporteSesionControlador.idProfesor ne null}">
                     <ul class="uk-nav-sub">
                         <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
-                        <li class="uk-active"><a><h:outputText pt:uk-icon="file-text" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{coordinador['menu.report']}</span></a></li>
+                        <li class="uk-active"><a><h:outputText pt:uk-icon="file-text" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{otrosboton['report']}</span></a></li>
                     </ul>
                 </h:panelGroup>
             </li>
@@ -36,7 +36,7 @@
         <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
         <h:outputStylesheet library="css" name="datepicker.css"/>
         <h:outputStylesheet library="css" name="/coordinador/reporte-sesion.css"/>
-            <h1 class="uk-margin-medium-bottom">#{coordinador['menu.report']}</h1>
+            <h1 class="uk-margin-medium-bottom">#{otrosboton['report']}</h1>
             <h:form id="formulario-fechas">
                 <div id="rango-fecha">
                     <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaInicio}">
