@@ -20,20 +20,7 @@ function elimina() {
 }
 
 function cerrarModal(data , modal,pibote) {
-    if (data === null) {
-        switch (modal) {
-            case 'modalProfresor' :
-                if (modalProfresor.querySelector('.uk-text-danger') === null) {
-                    UIkit.modal(modalProfresor).hide();
-                }
-                break;
-            case 'modal-eliminar':
-                UIkit.modal(modalEliminar).hide();
-                break;
-            default :
-                console.error('Aun no se programa este modal:' + modal);
-        }
-    } else {
+
         if (data.status === "success") {
             switch (modal) {
                 case 'modalProfresor' :
@@ -63,7 +50,6 @@ function cerrarModal(data , modal,pibote) {
                     console.error('Aun no se programa este modal:' + modal);
             }
         }
-    }
 }
 
 

@@ -17,10 +17,10 @@
 <h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.extra.alumns']}</h5>
     <h:panelGroup layout="block" id="alumnos-extra" styleClass="left-content-box uk-margin-top">
         <ui:repeat value="#{estatusControlador.alumnoTatalesModeloLista}" var="alumnoTatalesModelo">
-            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt 6}">
+            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt 0}">
                 <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada"  onclick="buscarLicenciasVencidas(this)" >${alumnoTatalesModelo.clveCentroTrabajo}</span>
-                <span class="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt -1 ? 'licencia-por-vencer' : 'licencia-vencida'}">#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos}</span>
-                <progress class="uk-progress #{5 gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}" value="10" max="30"/>
+                <h:outputText styleClass="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt (alumnoTatalesModelo.totalAlumnosLicencia * -0.10)   ? 'licencia-vencida' : 'licencia-por-vencer'}" value="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos}"/>
+                <progress class="uk-progress #{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt (alumnoTatalesModelo.totalAlumnosLicencia * -0.10)   ? 'licencia-vencida' : 'licencia-por-vencer'}" value="#{(alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos) * -1}" max="#{alumnoTatalesModelo.totalAlumnosLicencia * 0.10}"/>
             </h:panelGroup>
         </ui:repeat>
     </h:panelGroup>
