@@ -233,10 +233,10 @@
             </div>
         </h:panelGroup>
 <!--        Modal reasignar grupo       -->
-        <h:panelGroup layout="block" id="modal-reasigna-grupo" pt:uk-modal="">
-            <h:form id="formulario-reasigna-grupo">
+        <h:panelGroup layout="block" styleClass="uk-modal" id="modal-reasigna-grupo" pt:uk-modal="">
                 <div class="uk-modal-dialog uk-margin-auto-vertical">
-                    <div class="uk-modal-header">
+                  <h:form id="formulario-reasigna-grupo">
+                    <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">reasignar grupo</p>
                     </div>
                     <div class="uk-modal-body">
@@ -253,12 +253,13 @@
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
-                        <h:commandButton value="reasignar" styleClass="uk-button uk-button-primary">
+                        <h:commandButton value="reasignar" styleClass="uk-button uk-button-secondary">
                             <f:ajax execute="@form" listener="#{grupoControlador.cambiaGrupo()}" render="@from formulario-grupo"/>
                         </h:commandButton>
                     </div>
+                  </h:form>
                 </div>
-            </h:form>
+
         </h:panelGroup>
         <div class="uk-flex uk-flex-right">
             <h:button outcome="ir-atras" styleClass="uk-button uk-button-primary uk-margin-top" value="atras"/>
