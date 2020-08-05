@@ -223,10 +223,8 @@
                                     <h:selectOneMenu class="uk-select"
                                                      id="sexo"
                                                      value="#{administracionProfesorControlador.profesorModelo.sexo}">
-                                        <f:selectItem itemValue="#{null}" itemLabel="#{otrosetiqueta['options']}" noSelectionOption="true"/>
                                         <f:selectItem itemValue="m" itemLabel="masculino"/>
                                         <f:selectItem itemValue="f" itemLabel="femenino"/>
-                                        <f:validateRequired/>
                                     </h:selectOneMenu>
                                 </div>
                                 <h:message for="sexo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
@@ -259,14 +257,11 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <ui:remove>
-                        <h:commandButton value="#{otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
+                        <h:commandButton value="${otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
                             <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}"
                                     onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0) }"
                                     render="@form"/>
                         </h:commandButton>
-                        </ui:remove>
-                        <button class="uk-button uk-button-default uk-margin-small-right uk-modal-close"/>
                         <h:commandButton value="${boton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta()}"
@@ -301,7 +296,6 @@
                             </h:outputFormat>
                         </p>
                     </div>
-<!--                    Informacion Profesor-->
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button class="uk-button uk-button-default uk-modal-close uk-margin-small-right">#{otrosboton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close" value="#{otrosboton['remove']}" disabled="#{0 ne administracionProfesorControlador.totalGrupos}">

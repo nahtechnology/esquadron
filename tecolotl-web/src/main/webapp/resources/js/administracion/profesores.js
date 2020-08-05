@@ -35,6 +35,7 @@ function cerrarModal(data, modal, pibote) {
                 }
                 break;
             case 'modal-eliminar':
+                console.log("Cerrando: modal-eliminar");
                 UIkit.modal(modalEliminar).hide();
                 if (pibote === 1){
                     colocarImagenesPassword();

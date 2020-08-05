@@ -81,6 +81,7 @@ public class ProfesorControlador implements Serializable {
 
     public void elimina(){
        profesorSesionBean.elimina(profesorModelo.getId());
+       profesorModeloLista.removeIf(profe -> profe.getId().compareTo(profesorModelo.getId()) == 0);
         profesorModelo = new ProfesorModelo();
     }
 
