@@ -100,7 +100,7 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-grupo">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-grupo" action="#{grupoControlador.clonaGrupo}">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-grupo" action="#{grupoControlador.clonaGrupo}" styleClass="uk-text-left uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
@@ -108,7 +108,7 @@
                                                     </h:commandLink>
                                                 </li>
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-reasigna-grupo" action="#{grupoControlador.buscaProfesor()}">
+                                                    <h:commandLink pt:uk-toggle="target: #modal-reasigna-grupo" action="#{grupoControlador.buscaProfesor()}" styleClass="uk-text-left uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: forward" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="reasignar" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:actionListener binding="#{grupoControlador.buscaCicloEscolar()}"/>
@@ -118,7 +118,7 @@
                                                 </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
-                                                    <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
+                                                    <h:commandLink styleClass="uk-text-danger uk-text-left" pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">
                                                         <h:outputText pt:uk-icon="icon: trash" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['remove']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
@@ -185,7 +185,7 @@
                         <h:commandButton id="enviar-grupo"
                                          value="#{otrosboton['add']}"
                                          rendered="#{empty grupoControlador.grupoModelo.id}"
-                                         styleClass="uk-button uk-button-primary">
+                                         styleClass="uk-button uk-button-secondary">
                             <f:ajax execute="input-grado input-grupo"
                                     listener="#{grupoControlador.agrega}"
                                     render="@form formulario-grupo"
@@ -194,7 +194,7 @@
                         <h:commandButton id="actualiza-grupo"
                                          value="#{otrosboton['update']}"
                                          rendered="#{not empty grupoControlador.grupoModelo.id}"
-                                         styleClass="uk-button uk-button-primary">
+                                         styleClass="uk-button uk-button-secondary">
                             <f:ajax execute="input-grado input-grupo" 
                             		listener="#{grupoControlador.actualiza}"
                             		render="@form formulario-grupo"
