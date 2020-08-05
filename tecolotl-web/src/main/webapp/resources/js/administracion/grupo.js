@@ -46,9 +46,7 @@ function cerrarModal(data, modal) {
                     }
                     break;
                 case 'modalReasignarGrupo':
-                    if (modalReasignarGrupo.querySelector('.uk-text-danger')) {
-                        UIkit.modal(modalReasignarGrupo).hide();
-                    }
+                    UIkit.modal(modalReasignarGrupo).hide();
                     break;
                 default:
                     console.error('Aun no existe modal:' + modal);
