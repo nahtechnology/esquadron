@@ -49,11 +49,13 @@ public class GrupoControlador implements Serializable {
     private Map<Integer, CicloEscolarModelo> cicloEscolarModeloMapa;
     private List<GrupoModelo> grupoModeloLista;
     private List<ProfesorModelo> profesorModeloLista;
+    private List<CicloEscolarModelo> cicloEscolarModeloLista;
     private GrupoModelo grupoModelo;
     private CicloEscolarModelo cicloEscolarModelo;
     private Integer cicloEscolar;
     private ProfesorModelo profesorModelo;
     private String profesorIdReasignar;
+    private Integer cicloEscolarIdReasignar;
     private EscuelaBaseModelo escuelaBaseModelo;
 
     private String profesor;
@@ -131,14 +133,29 @@ public class GrupoControlador implements Serializable {
     }
 
     public void buscaProfesor() {
-        if (profesorModeloLista != null && profesorModeloLista.isEmpty()) {
+        if (profesorModeloLista == null || profesorModeloLista.isEmpty()) {
             profesorModeloLista = profesorSesionBean.buscaPorEscuela(escuelaBaseModelo.getClaveCentroTrabajo()).stream()
-                    .filter(profesor -> profesor.getId().compareTo(profesorModelo.getId()) == 0).collect(Collectors.toList());
+                    .filter(profesor -> profesor.getId().compareTo(profesorModelo.getId()) != 0).collect(Collectors.toList());
         }
     }
 
+    public void buscaCicloEscolar() {
+        if (cicloEscolarModeloLista == null || cicloEscolarModeloLista.isEmpty()) {
+            cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+        }
+    }
+
+    private CicloEscolarModelo busca(int hashCode) {
+        for (CicloEscolarModelo cicloEscolarModelo1 : cicloEscolarModeloLista) {
+            if (cicloEscolarModelo1.hashCode() == hashCode) {
+                return cicloEscolarModelo1;
+            }
+        }
+        return null;
+    }
+
     public void cambiaGrupo() {
-        grupoSesionBean.reasignar(grupoModelo.getId(), UUID.fromString(profesorIdReasignar));
+        grupoSesionBean.reasignar(grupoModelo.getId(), UUID.fromString(profesorIdReasignar), busca(cicloEscolarIdReasignar));
         grupoModeloLista.removeIf(grupo -> grupo.getId().compareTo(grupoModelo.getId()) == 0);
     }
 
@@ -238,5 +255,21 @@ public class GrupoControlador implements Serializable {
 
     public void setProfesorIdReasignar(String profesorIdReasignar) {
         this.profesorIdReasignar = profesorIdReasignar;
+    }
+
+    public List<CicloEscolarModelo> getCicloEscolarModeloLista() {
+        return cicloEscolarModeloLista;
+    }
+
+    public void setCicloEscolarModeloLista(List<CicloEscolarModelo> cicloEscolarModeloLista) {
+        this.cicloEscolarModeloLista = cicloEscolarModeloLista;
+    }
+
+    public Integer getCicloEscolarIdReasignar() {
+        return cicloEscolarIdReasignar;
+    }
+
+    public void setCicloEscolarIdReasignar(Integer cicloEscolarIdReasignar) {
+        this.cicloEscolarIdReasignar = cicloEscolarIdReasignar;
     }
 }

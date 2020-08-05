@@ -19,37 +19,33 @@ function elimina() {
     modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
 }
 
-function cerrarModal(data , modal,pibote) {
+function cerrarModal(data, modal, pibote) {
+    if (data.status === "success") {
+        switch (modal) {
+            case 'modalProfresor' :
+                console.log('si entro')
+                if (modalProfresor.querySelector('.uk-text-danger') === null) {
+                    UIkit.modal(modalProfresor).hide();
+                }else {
+                    seleccionContrasena();
+                }
+                if (pibote === 1){
+                    colocarImagenesPassword();
+                    iniciarCanvasPaginado();
+                }
+                break;
+            case 'modal-eliminar':
+                UIkit.modal(modalEliminar).hide();
+                if (pibote === 1){
+                    colocarImagenesPassword();
+                    iniciarCanvasPaginado();
+                }
 
-        if (data.status === "success") {
-            switch (modal) {
-                case 'modalProfresor' :
-                    console.log('si entro')
-                    if (modalProfresor.querySelector('.uk-text-danger') === null) {
-                        UIkit.modal(modalProfresor).hide();
-
-
-                    }else {
-                        seleccionContrasena();
-
-                    }
-                    if (pibote === 1){
-                        colocarImagenesPassword();
-                        iniciarCanvasPaginado();
-                    }
-                    break;
-                case 'modal-eliminar':
-                    UIkit.modal(modalEliminar).hide();
-                    if (pibote === 1){
-                        colocarImagenesPassword();
-                        iniciarCanvasPaginado();
-                    }
-
-                    break;
-                default :
-                    console.error('Aun no se programa este modal:' + modal);
-            }
+                break;
+            default :
+                console.error('Aun no se programa este modal:' + modal);
         }
+    }
 }
 
 

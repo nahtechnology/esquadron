@@ -225,10 +225,13 @@ public class GrupoSesionBean implements Serializable {
      * @param idProfesor Identificador del profesor
      * @return Número de elementos modificados
      */
-    public Integer reasignar(@NotNull UUID idGrupo, @NotNull UUID  idProfesor) {
-        TypedQuery<Integer> typedQuery = entityManager.createNamedQuery("GrupoEntidad.cambiaProfesor", Integer.class);
-        typedQuery.setParameter("idGrupo", idGrupo);
-        typedQuery.setParameter("idProfesor", idProfesor);
-        return typedQuery.executeUpdate();
+    public Integer reasignar(@NotNull UUID idGrupo, @NotNull UUID  idProfesor, @NotNull CicloEscolarModelo cicloEscolarModelo) {
+        Query query = entityManager.createNamedQuery("GrupoEntidad.cambiaProfesor");
+        query.setParameter("idGrupo", idGrupo);
+        query.setParameter("idProfesor", idProfesor);
+        query.setParameter("escuela", cicloEscolarModelo.getIdEscuela());
+        query.setParameter("inicio", cicloEscolarModelo.getInicio());
+        query.setParameter("fin", cicloEscolarModelo.getFin());
+        return query.executeUpdate();
     }
 }

@@ -46,7 +46,8 @@ import java.util.UUID;
         query = "SELECT count (g) FROM GrupoEntidad g WHERE g.profesorEntidad.id = :idProfesor"),
     @NamedQuery(
         name = "GrupoEntidad.cambiaProfesor",
-        query = "UPDATE GrupoEntidad g SET g.profesorEntidad.id = :idProfesor WHERE g.id = :idGrupo"
+        query = "UPDATE GrupoEntidad g SET g.profesorEntidad.id = :idProfesor, g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :escuela, " +
+                "g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio, g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin WHERE g.id = :idGrupo"
     )
 })
 public class GrupoEntidad {
