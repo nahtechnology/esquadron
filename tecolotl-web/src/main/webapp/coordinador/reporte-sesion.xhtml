@@ -48,7 +48,7 @@
                     </h:inputText>
                 </div>
                 <ui:remove>
-                <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" >
+                <h:commandButton value="${otrosboton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" >
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
                             render="contenedor-tabla tabla-alumno tabla-profesor tabla-vacia"
@@ -60,7 +60,7 @@
                             />
                 </h:commandButton>
                 </ui:remove>
-                <h:commandButton value="${boton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" onclick="return validarFecha();">
+                <h:commandButton value="${otrosboton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" onclick="return validarFecha();">
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
                             render="contenedor-tabla tabla-alumno tabla-profesor"

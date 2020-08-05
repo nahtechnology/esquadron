@@ -267,13 +267,13 @@
                         </h:commandButton>
                         </ui:remove>
                         <button class="uk-button uk-button-default uk-margin-small-right uk-modal-close"/>
-                        <h:commandButton value="${boton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
+                        <h:commandButton value="${otrosboton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta()}"
                                     render="@form formulario-tabla modal-password"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1); }"/>
                         </h:commandButton>
-                        <h:commandButton value="${boton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
+                        <h:commandButton value="${otrosboton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.actualiza()}"
                                     render="@form formulario-tabla modal-password estatus-escuelas"
