@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         letrero.innerText = parseInt(diasLicencias) <= 0 ?'Tu licencia a caducado': `En ${parseInt(diasLicencias)} dias se termina tu licencias`;
         nodo.classList.add(parseInt(diasLicencias) <= 0 ? '--mensaje-licencia-caducada':'--mensaje-licencia-restante','mensaje-licencias');
         icon.setAttribute('uk-icon','close');
-        icon.setAttribute('uk-tooltip','No mostrar mensaje')
+        icon.setAttribute('uk-tooltip','No mostrar mensaje');
         icon.classList.add('cerrar-mensaje');
         nodo.appendChild(icon);
        titulo.innerText ="IMPORTANTE";
