@@ -259,7 +259,7 @@
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <h:commandButton value="${otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
                             <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}"
-                                    onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0) }"
+                                    onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0); }"
                                     render="@form"/>
                         </h:commandButton>
                         <h:commandButton value="${otrosboton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
@@ -271,7 +271,7 @@
                         <h:commandButton value="${otrosboton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.actualiza()}"
-                                    render="@form formulario-tabla modal-password estatus-escuelas"
+                                    render="@form formulario-tabla modal-password"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1);  }"/>
                         </h:commandButton>
                     </div>

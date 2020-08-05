@@ -23,8 +23,9 @@ function cerrarModal(data, modal, pibote) {
     if (data.status === "success") {
         switch (modal) {
             case 'modalProfresor' :
-                console.log('si entro')
+                console.log('si entro funcion cerrar Modal')
                 if (modalProfresor.querySelector('.uk-text-danger') === null) {
+                    console.log('se cerro modal');
                     UIkit.modal(modalProfresor).hide();
                 }else {
                     seleccionContrasena();

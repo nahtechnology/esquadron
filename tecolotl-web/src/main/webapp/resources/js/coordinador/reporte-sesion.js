@@ -49,7 +49,7 @@ function acomodarTabla(tabla) {
 function validarFecha() {
     let input = document.querySelector('#rango-fecha > input:last-of-type');
     let fechaActual = new Date();
-    let diaActual = fechaActual.getDate();
+    let diaActual = fechaActual.getDate()+1;
     let mesActual = fechaActual.getMonth()+1;
     let anioActual = fechaActual.getFullYear();
     let diaSeleccion = input.value.split('/')[0];

@@ -1,4 +1,5 @@
 let cuentaContrasena = 0;
+let piboteArchivo = true;
 function Alumno(apodo, nombre, apellidopaterno, apellidomaterno, fechanacimiento, nivellenguaje, genero) {
 
     this.apodo = apodo;
@@ -67,10 +68,8 @@ Alumno.prototype.validaFecha = function(){
     if(ExpresionRegularFecha.test(this.fechanacimento)){
         var fecha = this.fechanacimento.split('/');
         fechalocal = new Date(fecha[2],fecha[1] - 1,fecha[0]); /*construir un objeto de tipo date*/
-        if (fechalocal.getDate() === parseInt(fecha[0])){
-            return true;
-        }
-        return  false;
+        return fechalocal.getDate() === parseInt(fecha[0]);
+
     }
     return false;
 };
@@ -190,21 +189,31 @@ function cargaArchivo(evento) {
 
 function lee(evento) {
     var datosAlumno = [];
-    var filas = evento.target.result.split('\n');
-    filas.forEach(function (fila) {
-        fila.split(patronCSV).forEach(function (palabra,index) {
-            if (!(palabra.trim().length === 0)) {
-                datosAlumno.push(palabra);
-                if(datosAlumno.length % 7 === 0){
-                    alumnos[pibote] = new Alumno(datosAlumno[0],datosAlumno[1],datosAlumno[2],datosAlumno[3],datosAlumno[4],datosAlumno[5],datosAlumno[6]);
-                    validarDatos(alumnos[pibote]);
-                    pibote += 1;
-                    // console.log(datosAlumno);
-                    datosAlumno = [];
+    let botonFile = document.querySelector('.botones input[type=file]');
+    let nombreArchivo =  botonFile.value.split("\\");
+    let extension = nombreArchivo[nombreArchivo.length - 1].split('.')[1];
+    if (extension === "csv"){
+        piboteArchivo = true;
+        var filas = evento.target.result.split('\n');
+        filas.forEach(function (fila) {
+            fila.split(patronCSV).forEach(function (palabra,index) {
+                if (!(palabra.trim().length === 0)) {
+                    datosAlumno.push(palabra);
+                    if(datosAlumno.length % 7 === 0){
+                        alumnos[pibote] = new Alumno(datosAlumno[0],datosAlumno[1],datosAlumno[2],datosAlumno[3],datosAlumno[4],datosAlumno[5],datosAlumno[6]);
+                        validarDatos(alumnos[pibote]);
+                        pibote += 1;
+                        // console.log(datosAlumno);
+                        datosAlumno = [];
+                    }
                 }
-            }
+            });
         });
-    });
+    }else {
+        piboteArchivo = false;
+        lecturaTerminada();
+    }
+
 }
 
 function cargaIniciada(evento) {
@@ -213,13 +222,17 @@ function cargaIniciada(evento) {
 
 function cargaFinalizada(evento) {
     console.log('archivo finalizado');
-    tablaBuena.tBodies[0].deleteRow(0);
-    tablaMala.tBodies[0].deleteRow(0);
-    filasRechazadas = document.querySelectorAll('#tabla-rechazados tbody tr');
-    botonesTabla();
-    var botonFile = document.querySelector('.botones input[type=file]');
-    var textLabel= botonFile.value.split("\\");
-    document.querySelector('.botones label').innerHTML = textLabel[textLabel.length - 1];
+    if (piboteArchivo){
+        tablaBuena.tBodies[0].deleteRow(0);
+        tablaMala.tBodies[0].deleteRow(0);
+        filasRechazadas = document.querySelectorAll('#tabla-rechazados tbody tr');
+        botonesTabla();
+        var botonFile = document.querySelector('.botones input[type=file]');
+        var textLabel= botonFile.value.split("\\");
+        console.log(textLabel)
+        document.querySelector('.botones label').innerHTML = textLabel[textLabel.length - 1];
+    }
+
 }
 function botonesTabla() {
     var botonesValidar;
@@ -237,6 +250,7 @@ function botonesTabla() {
 
 function lecturaTerminada(evento) {
     console.log('carga de archivo cancelado');
+    UIkit.notification("El archivo no tiene la extension csv");
 }
 
 function progreso(evento) {
