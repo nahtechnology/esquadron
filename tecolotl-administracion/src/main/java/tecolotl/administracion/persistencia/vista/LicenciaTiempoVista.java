@@ -13,6 +13,7 @@ import javax.persistence.*;
 public class LicenciaTiempoVista {
 
     private String claveCentroTrabajo;
+    private int totalLicencia;
     private int dias;
 
     @Id
@@ -23,6 +24,15 @@ public class LicenciaTiempoVista {
 
     public void setClaveCentroTrabajo(String claveCentroTrabajo) {
         this.claveCentroTrabajo = claveCentroTrabajo;
+    }
+
+    @Column(name = "total_licencia")
+    public int getTotalLicencia() {
+        return totalLicencia;
+    }
+
+    public void setTotalLicencia(int totalLicencia) {
+        this.totalLicencia = totalLicencia;
     }
 
     public int getDias() {

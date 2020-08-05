@@ -9,7 +9,7 @@
 <h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.days.licences']}</h5>
     <h:panelGroup id="estatus-escuelas" style="max-height: 180px; overflow: auto;" layout="block" rendered="#{request.isUserInRole('administrador')}" styleClass="left-content-box scroll-nav-left uk-margin-top">
         <ui:repeat value="#{estatusControlador.licenciaVistaModeloLista}" var="licenciaVistaModelo">
-            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{licenciaVistaModelo.dias lt 31}">
+            <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{licenciaVistaModelo.dias lt 31 and licenciaVistaModelo.totalLicencia > 0}">
                 <span class="uk-text-small primera-mayuscula uk-text-bold licencia-seleccionada" onclick="buscarLicenciasVencidas(this)">#{licenciaVistaModelo.claveCentroTrabajo}</span>  <small class="#{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}">#{licenciaVistaModelo.dias}</small>
                 <progress class="uk-progress #{licenciaVistaModelo.dias gt 0 ? 'licencia-por-vencer' : 'licencia-vencida'}" value="#{licenciaVistaModelo.dias gt 0 ? licenciaVistaModelo.dias : '30'}" max="30"/>
             </h:panelGroup>
