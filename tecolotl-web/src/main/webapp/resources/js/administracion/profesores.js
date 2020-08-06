@@ -63,7 +63,7 @@ function abrirModal() {
         }
         modalProfresor.querySelector('.uk-modal-header').click();
         modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
-        seleccionContrasena();
+        setTimeout(seleccionContrasena,200);
 
     });
     UIkit.util.on('#modal-eliminar', 'show', function () {

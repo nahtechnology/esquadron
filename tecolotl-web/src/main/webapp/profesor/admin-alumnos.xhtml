@@ -93,11 +93,11 @@
                     <span>
                         <h:graphicImage library="img" styleClass="ayuda-imagen" name="/icono/information.svg" pt:uk-svg=""/>
                     </span>
-                    <h:panelGroup layout="block" styleClass="uk-dropdown" style="min-width: 120px; padding: 10px; color: black; white-space: nowrap" pt:uk-dropdown="mode: click">
+                    <h:panelGroup layout="block" styleClass="uk-dropdown" style="min-width: 120px; padding: 10px; color: black; white-space: nowrap" pt:uk-dropdown="">
                         <p style="margin: 3px">#{profesor['student.administration.message.three.columns']}</p>
                         <p style="margin: 3px">#{profesor['student.administration.message.two.columns']}</p>
                     </h:panelGroup>
-                </h:panelGroup>
+                 </h:panelGroup>
                 <h:form id="formulario-tabla-alumno">
                     <div class="uk-overflow-auto">
                         <h:dataTable id="tabla-alumno"
@@ -113,37 +113,49 @@
                                 <span>${tareaAlumnoGrupoModelo.nombre.concat(' ').concat(tareaAlumnoGrupoModelo.apellidoPaterno).concat(' ').concat(tareaAlumnoGrupoModelo.apellidoMaterno)}</span>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['for.all.views.mind.map']}</span></f:facet>
+                                <f:facet name="header">
+                                    <h:panelGroup styleClass="letra-tabla uk-text-bold" pt:uk-tooltip="title: #{profesor['student.administration.message.three.columns']}">#{alumno['for.all.views.mind.map']}</h:panelGroup>
+                                </f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaMapaMental} / ${tareaAlumnoGrupoModelo.calificadoMapaMental}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaMapaMental ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.order']}</span></f:facet>
+                                <f:facet name="header">
+                                    <h:panelGroup styleClass="letra-tabla uk-text-bold" pt:uk-tooltip="title: #{profesor['student.administration.message.three.columns']}">#{alumno['activities.bar.icon.order']}</h:panelGroup>
+                                </f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaGramatica}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaGramatica} / ${tareaAlumnoGrupoModelo.totalCalificadasGramatica}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaGramatica ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['more.activity.title.matching.words']}</span></f:facet>
+                                <f:facet name="header">
+                                    <h:panelGroup styleClass="letra-tabla uk-text-bold" pt:uk-tooltip="title: #{profesor['student.administration.message.two.columns']}">#{alumno['more.activity.title.matching.words']}</h:panelGroup>
+                                </f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaRelacionar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadoRelacionar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadoRelacionar ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.order.sentences']}</span></f:facet>
+                                <f:facet name="header">
+                                    <h:panelGroup styleClass="letra-tabla uk-text-bold" pt:uk-tooltip="title: #{profesor['student.administration.message.two.columns']}">#{alumno['activities.title.order.sentences']}</h:panelGroup>
+                                </f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones eq 0}"/>
                                 <span><h:outputText value="#{tareaAlumnoGrupoModelo.totalRespuestaOraciones}" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones ne 0}"/></span>
                                 <h:outputText value=" / #{tareaAlumnoGrupoModelo.totalAsignadaOraciones}" rendered="#{tareaAlumnoGrupoModelo.totalAsignadaOraciones ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.bar.icon.match']}</span></f:facet>
+                                <f:facet name="header">
+                                    <h:panelGroup styleClass="letra-tabla uk-text-bold" pt:uk-tooltip="title: #{profesor['student.administration.message.two.columns']}">#{alumno['activities.bar.icon.match']}</h:panelGroup>
+                                </f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaRelacionarOracion}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaRelacionarOracion ne 0}"/>
                             </h:column>
                             <h:column>
-                                <f:facet name="header"><span class="letra-tabla uk-text-bold">#{alumno['activities.title.comple.all.sentences']}</span></f:facet>
+                                <f:facet name="header">
+                                    <h:panelGroup styleClass="letra-tabla uk-text-bold" pt:uk-tooltip="title: #{profesor['student.administration.message.two.columns']}">#{alumno['activities.title.comple.all.sentences']}</h:panelGroup>
+                                </f:facet>
                                 <h:outputText pt:uk-icon="ban" rendered="${tareaAlumnoGrupoModelo.totalAsignadaCompletar eq 0}"/>
                                 <span><h:outputText value="${tareaAlumnoGrupoModelo.totalRespuestaCompletar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaCompletar ne 0}"/></span>
                                 <h:outputText value=" / ${tareaAlumnoGrupoModelo.totalAsignadaCompletar}" rendered="${tareaAlumnoGrupoModelo.totalAsignadaCompletar ne 0}"/>
