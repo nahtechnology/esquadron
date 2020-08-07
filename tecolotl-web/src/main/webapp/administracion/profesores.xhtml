@@ -35,7 +35,7 @@
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
                     <div class="uk-card-header">
                         <div class="uk-grid uk-grid-small">
-                            <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Teachers</span></h4></div>
+                            <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{otrosetiqueta['teachers']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
                                 <h:form>
                                     <h:commandLink styleClass="uk-icon-link uk-text-primary"
@@ -54,10 +54,10 @@
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
                                     <tr>
-                                        <th class="uk-text-center"><span class="letra-titulo">Apodo</span></th>
-                                        <th class="uk-text-center"><span class="letra-titulo">Nombre</span></th>
-                                        <th class="uk-text-center"><span class="letra-titulo">Sexo</span></th>
-                                        <th class="uk-text-center"><span class="letra-titulo">Correo</span></th>
+                                        <th class="uk-text-center"><span class="letra-titulo">#{administracion['detalleprofesor.teacher.table.nickname']}</span></th>
+                                        <th class="uk-text-center"><span class="letra-titulo">#{administracion['detalleprofesor.teacher.table.name']}</span></th>
+                                        <th class="uk-text-center"><span class="letra-titulo">#{administracion['detalleprofesor.teacher.table.password']}</span></th>
+                                        <th class="uk-text-center"><span class="letra-titulo">#{administracion['detalleprofesor.teacher.table.email']}</span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -79,19 +79,19 @@
                                          headerClass="uk-background-primary letra-titulo uk-text-center"
                                          columnClasses="uk-text-left,uk-text-left,uk-text-center,uk-text-center,uk-text-center">
                                 <h:column headerClass="uk-background-primary letra-titulo uk-text-left">
-                                    <f:facet name="header">apodo</f:facet>
+                                    <f:facet name="header">#{administracion['detalleprofesor.teacher.table.nickname']}</f:facet>
                                     ${profesorModelo.apodo}
                                 </h:column>
                                 <h:column headerClass="uk-background-primary letra-titulo uk-text-left">
-                                    <f:facet name="header">nombre</f:facet>
+                                    <f:facet name="header">#{administracion['detalleprofesor.teacher.table.name']}</f:facet>
                                     ${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">correo</f:facet>
+                                    <f:facet name="header">#{administracion['detalleprofesor.teacher.table.email']}</f:facet>
                                     ${profesorModelo.correoEletronico}
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">contraseña</f:facet>
+                                    <f:facet name="header">#{administracion['detalleprofesor.teacher.table.password']}</f:facet>
                                     <div id="login-tabla-profesor">
                                         <h:outputText styleClass="uk-display-inline-block uk-margin-small-left" value="#{profesorModelo.contrasenia}">
                                             <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
@@ -99,7 +99,7 @@
                                     </div>
                                 </h:column>
                                 <h:column>
-                                    <f:facet name="header">opciones</f:facet>
+                                    <f:facet name="header">#{administracion['detalleprofesor.teacher.table.options']}</f:facet>
                                     <div class="uk-inline">
                                         <h:outputText styleClass="uk-icon-button uk-text-center" pt:uk-icon="more-vertical"/>
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
@@ -115,7 +115,7 @@
                                                 <li>
                                                     <h:link outcome="grupo" styleClass="uk-text-left uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: users" styleClass="uk-margin-small-right uk-icon"/>
-                                                        <span class="uk-text-middle primera-mayuscula uk-display-inline-block">grupos</span>
+                                                        <span class="uk-text-middle primera-mayuscula uk-display-inline-block">#{otrosetiqueta['groups']}</span>
                                                         <f:param name="escuela" value="#{administracionProfesorControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                                                         <f:param name="profesor" value="#{profesorModelo.id}"/>
                                                     </h:link>
@@ -150,7 +150,7 @@
             </div>
         </div>
         <div class="uk-flex uk-flex-right uk-margin-top">
-            <button type="button" class="uk-button uk-button-primary uk-margin-small-right" uk-toggle="target: #modal-password">passwors</button>
+            <button type="button" class="uk-button uk-button-primary uk-margin-small-right" uk-toggle="target: #modal-password">#{otrosboton['passwords']}</button>
             <h:button styleClass="uk-button uk-button-primary" value="#{otrosboton['back']}" outcome="regresar"/>
         </div>
 
@@ -287,15 +287,15 @@
                 <h:form id="form-elimina" styleClass="uk-form-stacked">
                     <div class="uk-modal-header fondo-peligro">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
-                            <span class="letra-titulo">Eliminar Profesor</span>
+                            <span class="letra-titulo">#{administracion['detalleprofesor.active.modal.remove']}</span>
                         </p>
                     </div>
                     <div class="uk-modal-body">
                         <p>
-                            <h:outputFormat value="¿Esta serguro de eliminar al profesor: {0} ?" rendered="#{0 eq administracionProfesorControlador.totalGrupos}">
+                            <h:outputFormat value="#{administracion['detalleprofesor.active.modal.remove.confirmation']}" rendered="#{0 eq administracionProfesorControlador.totalGrupos}">
                                 <f:param value="${administracionProfesorControlador.profesorModelo.nombre} ${administracionProfesorControlador.profesorModelo.apellidoPaterno} ${administracionProfesorControlador.profesorModelo.apellidoPaterno}"/>
                             </h:outputFormat>
-                            <h:outputFormat value="¡No se puede Eliminar al profesor por que tiene {0} grupos asignado!" rendered="#{0 ne administracionProfesorControlador.totalGrupos}">
+                            <h:outputFormat value="#{administracion['detalleprofesor.active.modal.cannot.remove']}" rendered="#{0 ne administracionProfesorControlador.totalGrupos}">
                                 <f:param value="${administracionProfesorControlador.totalGrupos}"/>
                             </h:outputFormat>
                         </p>
@@ -324,7 +324,7 @@
                                 <h:graphicImage styleClass="uk-display-inline-block " library="img" name="/avatar/maestro.svg" width="60"/>
                             </div>
                             <div class="informacion">
-                                <h6>Teacher</h6>
+                                <h6>#{otrosetiqueta['teachers']}</h6>
                                 <p><h:outputText  value="Name: #{profesorModelo.nombre} #{profesorModelo.apellidoPaterno} #{profesorModelo.apellidoMaterno}"/></p>
                                 <p><h:outputText  value="Nickname: #{profesorModelo.apodo}"/></p>
                                 <p><h:outputText value="Galaxy: #{administracionProfesorControlador.escuelaBaseModelo.galaxia}"/></p>
@@ -341,8 +341,8 @@
                     </ui:repeat>
                 </div>
                 <div class="uk-modal-footer uk-text-right">
-                    <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                    <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">PDF</button>
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">#{otrosboton['cancel']}</button>
+                    <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">#{otrosboton['download.PDF']}</button>
                 </div>
         </h:panelGroup>
 
