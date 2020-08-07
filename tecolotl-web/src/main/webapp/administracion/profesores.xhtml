@@ -105,11 +105,11 @@
                                         <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; boundary: .tabla-profesor">
                                             <ul class="uk-nav uk-dropdown-nav">
                                                 <li>
-                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor" styleClass="uk-text-left uk-text-primary" >
+                                                    <h:commandLink pt:uk-toggle="target: #modal-profesor-actualizar" styleClass="uk-text-left uk-text-primary" >
                                                         <h:outputText pt:uk-icon="icon: file-edit" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="#{otrosboton['update']}" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:setPropertyActionListener value="#{profesorModelo}" target="#{administracionProfesorControlador.profesorModelo}"/>
-                                                        <f:ajax render="formulario-modal-profesor"/>
+                                                        <f:ajax render="formulario-modal-profesor-actualizar"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li>
@@ -162,7 +162,7 @@
                     <div class="uk-modal-header uk-background-secondary">
                         <p class="uk-h4 uk-text-center uk-text-bold uk-text-capitalize">
                             <h:outputText value="Nuevo Profesor" styleClass="letra-titulo" rendered="#{empty administracionProfesorControlador.profesorModelo.id}"/>
-                            <h:outputText value="Actualiza Profesor" styleClass="letra-titulo" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}"/>
+
                         </p>
                     </div>
                     <div class="uk-modal-body">
@@ -262,22 +262,26 @@
                                     onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0); }"
                                     render="@form"/>
                         </h:commandButton>
-                        <h:commandButton value="${otrosboton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
+
+                        <h:commandButton value="${otrosboton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" >
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta()}"
                                     render="@form formulario-tabla modal-password"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1); }"/>
                         </h:commandButton>
+                        <ui:remove>
                         <h:commandButton value="${otrosboton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.actualiza()}"
                                     render="@form formulario-tabla modal-password"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1);  }"/>
                         </h:commandButton>
+                        </ui:remove>
                     </div>
                 </h:form>
             </div>
         </h:panelGroup>
+
         <h:panelGroup layout="block" id="modal-eliminar" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="form-elimina" styleClass="uk-form-stacked">
