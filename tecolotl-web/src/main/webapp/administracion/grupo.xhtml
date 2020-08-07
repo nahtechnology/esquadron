@@ -42,7 +42,7 @@
                     <h:form id="formulario-grupo">
                         <div class="uk-card-header">
                             <div class="uk-grid uk-grid-small">
-                                <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">Grupos</span></h4></div>
+                                <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{otrosetiqueta['groups']}</span></h4></div>
                                 <h:panelGroup rendered="#{not empty grupoControlador.cicloEscolar}" layout="block" class="uk-width-expand uk-text-right panel-icons">
                                     <a href="#" class="uk-icon-link uk-text-primary" uk-icon="icon: plus-circle; ratio: 1.5" uk-toggle="target: #modal-grupo" uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"/>
                                 </h:panelGroup>
@@ -53,8 +53,8 @@
                                 <table class="uk-table uk-table-middle">
                                     <thead class="uk-background-primary">
                                         <tr>
-                                            <th class="uk-text-center"><span class="letra-titulo">grado</span></th>
-                                            <th class="uk-text-center"><span class="letra-titulo">grupo</span></th>
+                                            <th class="uk-text-center"><span class="letra-titulo">#{otrosetiqueta['group']}</span></th>
+                                            <th class="uk-text-center"><span class="letra-titulo">#{otrosetiqueta['grade']}</span></th>
                                             <th class="uk-text-center"><span class="letra-titulo">#{otrosetiqueta['options']}</span></th>
                                         </tr>
                                     </thead>
@@ -208,7 +208,7 @@
         <h:panelGroup layout="block" id="modal-borrar-grupo" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <div class="uk-modal-header fondo-peligro">
-                    <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">borrar grupo</p>
+                    <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">#{administracion['detallegrupo.active.modal.remove']}</p>
                 </div>
                 <div class="uk-modal-body">
                     <h:outputFormat id="grupo-mensaje-eliminar"
@@ -238,7 +238,7 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-reasigna-grupo" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
-                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">reasignar grupo</p>
+                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">#{otrosetiqueta['reassign.group']}</p>
                     </div>
                     <div class="uk-modal-body">
                         <h:outputFormat value="Por favor seleccione un profesor a reasignar el grupo: {0} {1}">
@@ -280,7 +280,7 @@
             </div>
         </h:panelGroup>
         <div class="uk-flex uk-flex-right">
-            <h:button outcome="ir-atras" styleClass="uk-button uk-button-primary uk-margin-top" value="atras"/>
+            <h:button outcome="ir-atras" styleClass="uk-button uk-button-primary uk-margin-top" value="#{otrosboton['back']}"/>
         </div>
         <h:outputScript library="js" name="administracion/grupo.js"/>
     </ui:define>

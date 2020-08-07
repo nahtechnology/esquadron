@@ -152,8 +152,8 @@
             </div>
         </div>
         <div class="uk-flex uk-flex-right uk-margin-top">
-            <button type="button" class="uk-button uk-button-primary uk-margin-small-right" uk-toggle="target: #modal-password">passwors</button>
-            <button class="uk-button uk-button-primary" onclick="window.history.back();">regresar</button>
+            <button type="button" class="uk-button uk-button-primary uk-margin-small-right" uk-toggle="target: #modal-password">#{otrosboton['passwords']}</button>
+            <button class="uk-button uk-button-primary" onclick="window.history.back();">#{otrosboton['back']}</button>
         </div>
         <h:panelGroup layout="block" id="modal-coordinador" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
@@ -307,10 +307,10 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-eliminar-coordinador">
                 <div class="uk-modal-header fondo-peligro"  >
-                    <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo uk-text-capitalize">elimiar coordinador</span></p>
+                    <p class="uk-h4 uk-text-center uk-text-bold" ><span class="letra-titulo uk-text-capitalize">#{administracion['detallecoordinador.active.modal.remove']}</span></p>
                 </div>
                 <div class="uk-modal-body">
-                    <p class="primera-mayuscula">esta seguro que desea borrar al contacto:
+                    <p class="primera-mayuscula">#{administracion['detallecoordinador.active.modal.remove.confirmation']}
                         <span class="uk-text-bold">
                             #{coordinadorControlador.coordinadorModelo.apellidoPaterno} #{coordinadorControlador.coordinadorModelo.apellidoMaterno} #{coordinadorControlador.coordinadorModelo.nombre}
                         </span>
@@ -327,6 +327,7 @@
                 </div>
                 </h:form>
             </div>
+
         </h:panelGroup>
         <h:panelGroup layout="block" id="modal-password" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-header  uk-background-primary">
@@ -358,8 +359,8 @@
                 </ui:repeat>
             </div>
             <div class="uk-modal-footer uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
-                <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">PDF</button>
+                <button class="uk-button uk-button-default uk-modal-close" type="button">#{otrosboton['cancel']}</button>
+                <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">#{otrosboton['download.PDF']}</button>
             </div>
         </h:panelGroup>
         <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
