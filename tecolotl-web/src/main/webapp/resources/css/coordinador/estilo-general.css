@@ -37,7 +37,8 @@ h1 {
     top: 2px;
 }
 .ayuda-imagen {
-    width: 25px;
+    width: 20px;
+    margin-left: 5px;
     transition:transform linear 0.3s;
 }
 .ayuda-imagen path,.ayuda-imagen circle{

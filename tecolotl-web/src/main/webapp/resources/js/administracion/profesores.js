@@ -56,15 +56,8 @@ function abrirModal() {
         var modal = document.querySelector('#modal-profesor');
         let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
         let imagenes = document.querySelectorAll('#formulario-modal-profesor .login > img');
-        if(contrasena !== "" ){
-            let password = contrasena.split(',');
-            imagenes[parseInt(password[0])].classList.add("seleccionado");
-            imagenes[parseInt(password[1])].classList.add("seleccionado");
-        }
-        modalProfresor.querySelector('.uk-modal-header').click();
-        modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
-        setTimeout(seleccionContrasena,200);
 
+        setTimeout(cargarDatosModal,1000,contrasena,imagenes);
     });
     UIkit.util.on('#modal-eliminar', 'show', function () {
         modalEliminar.querySelector('.uk-modal-header').click();
@@ -72,6 +65,17 @@ function abrirModal() {
     UIkit.util.on('#modal-profesor', 'hidden', function () {
         modalProfresor.querySelectorAll('input').forEach(entrada => entrada.value = '');
     });
+}
+
+function cargarDatosModal(contrasenia,imagenes) {
+    if(contrasenia !== "" ){
+        let password = contrasenia.split(',');
+        imagenes[parseInt(password[0])].classList.add("seleccionado");
+        imagenes[parseInt(password[1])].classList.add("seleccionado");
+    }
+    modalProfresor.querySelector('.uk-modal-header').click();
+    modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
+    seleccionContrasena();
 }
 
 function cargaContrasenia() {

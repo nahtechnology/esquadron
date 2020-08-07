@@ -241,21 +241,22 @@
                                  footerClass="uk-background-primary"
                                     >
                         <h:column>
-                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.student']}</f:facet>
-                            <f:facet name="footer">
+                            <f:facet name="header">
+                                #{coordinador['teacher.detail.table.grup.student']}
+                            </f:facet>
+                            ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
                                 <h:panelGroup layout="block" styleClass="uk-inline" >
                                     <span>
-                                        <h:graphicImage library="img" name="/icono/information.svg" styleClass="ayuda-imagen" pt:uk-svg="" />
+                                        #{coordinador['teacher.detail.table.grup.video']}<h:graphicImage library="img" name="/icono/information.svg" styleClass="ayuda-imagen" pt:uk-svg="" />
                                     </span>
                                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; pos: top-left" style="min-width: 120px; white-space: nowrap; color: black; padding: 10px; border: 3px solid #0e6dcd">
                                         <p style="margin: 3px">#{coordinador['teacher.detail.table.grup.footer.message']}</p>
                                     </h:panelGroup>
                                 </h:panelGroup>
                             </f:facet>
-                            ${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">#{coordinador['teacher.detail.table.grup.video']}</f:facet>
                             ${promedioAlumnoModelo.totalTareas}
                         </h:column>
                         <h:column>
