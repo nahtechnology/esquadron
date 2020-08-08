@@ -13,7 +13,7 @@
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent">
-                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg"  styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
                     <li><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                 </ul>
@@ -35,9 +35,14 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
+        <ui:remove>
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
         <h:outputStylesheet library="css" name="/administracion/date-picker.css"/>
+        </ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/dashboard.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/date-picker.css"/>
         <div class="uk-grid uk-grid-medium" data-uk-grid="">
             <!-- catalogo Motivo Bloqueo -->
             <div class="uk-width-1-2@l">

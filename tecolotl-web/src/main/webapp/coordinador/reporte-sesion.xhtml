@@ -33,9 +33,14 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
-        <h:outputStylesheet library="css" name="datepicker.css"/>
-        <h:outputStylesheet library="css" name="/coordinador/reporte-sesion.css"/>
+        <ui:remove>
+            <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
+            <h:outputStylesheet library="css" name="datepicker.css"/>
+            <h:outputStylesheet library="css" name="/coordinador/reporte-sesion.css"/>
+        </ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/template-coordinador.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/datepicker.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/reporte-sesion.css"/>
             <h1 class="uk-margin-medium-bottom">#{otrosboton['report']}</h1>
             <h:form id="formulario-fechas">
                 <div id="rango-fecha">
@@ -136,7 +141,7 @@
                     <tbody>
                     <tr>
                         <td colspan="5" >
-                            <h:graphicImage library="img" name="vacio.svg"/>
+                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" />
                         </td>
                     </tr>
                     </tbody>
@@ -155,7 +160,11 @@
                 window.history.back();
             }
         </script>
-        <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
-        <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
+        <ui:remove>
+            <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
+            <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
+        </ui:remove>
+        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/reporte-sesion.js"></script>
+        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/tiempo-total.js"></script>
     </ui:define>
 </ui:composition>

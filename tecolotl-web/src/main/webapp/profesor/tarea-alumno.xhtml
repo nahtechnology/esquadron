@@ -37,8 +37,8 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
-        <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
+        <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/></ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 

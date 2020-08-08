@@ -24,13 +24,18 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
-        <h:outputStylesheet library="css" name="/coordinador/detalle-profesor.css"/>
-        <h:outputStylesheet library="css" name="animacion-paginacion.css"/>
+        <ui:remove>
+            <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
+            <h:outputStylesheet library="css" name="/coordinador/detalle-profesor.css"/>
+            <h:outputStylesheet library="css" name="animacion-paginacion.css"/>
+        </ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/template-coordinador.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/detalle-profesor.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/animacion-paginacion.css"/>
         <h1>detalles profesor</h1>
         <div class="datos">
             <div class="informacion-usuario">
-                <h:graphicImage library="img" name="/avatar/maestro.svg" />
+                <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg"  />
                 <div>
                     <p class="uk-text-bold">${detalleProfesorControlador.profesorModelo.nombre} ${detalleProfesorControlador.profesorModelo.apellidoPaterno} ${detalleProfesorControlador.profesorModelo.apellidoMaterno}</p>
                     <p class="uk-text-muted uk-text-small uk-text-bold">${detalleProfesorControlador.profesorModelo.apodo}</p>
@@ -406,7 +411,8 @@
             }
 
         </script>
-        <h:outputScript library="js" name="paginacion-tablas.js"/>
+        <ui:remove><h:outputScript library="js" name="paginacion-tablas.js"/></ui:remove>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/paginacion-tablas.js"/>
         <script type="application/javascript">
             crearPagina();
             function crearPagina(){

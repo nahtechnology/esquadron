@@ -1,4 +1,4 @@
-var modalProfresor,modalProfesorActualizar;
+var modalProfresor;
 var modalEliminar;
 var datoModal = 0;
 document.addEventListener('DOMContentLoaded', ejecucionInicio);
@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', ejecucionInicio);
 function ejecucionInicio(evento) {
     modalProfresor = document.getElementById('modal-profesor');
     modalEliminar = document.getElementById('modal-eliminar');
-    modalProfesorActualizar = document.getElementById('modal-profesor-actualizar');
     abrirModal();
     elimina();
 }
@@ -29,26 +28,13 @@ function cerrarModal(data, modal, pibote) {
                     console.log('se cerro modal');
                     UIkit.modal(modalProfresor).hide();
                 }else {
-                    seleccionContrasena(modalProfresor);
+                    seleccionContrasena();
                 }
                 if (pibote === 1){
                     colocarImagenesPassword();
                     iniciarCanvasPaginado();
                 }
                 break;
-            case 'modalProfresorActualizar':
-                if (modalProfresor.querySelector('.uk-text-danger') === null) {
-                    console.log('se cerro modal');
-                    UIkit.modal(modalProfesorActualizar).hide();
-                }else {
-                    seleccionContrasena(modalProfesorActualizar);
-                }
-                if (pibote === 1){
-                    colocarImagenesPassword();
-                    iniciarCanvasPaginado();
-                }
-                break;
-
             case 'modal-eliminar':
                 UIkit.modal(modalEliminar).hide();
                 if (pibote === 1){
@@ -68,36 +54,30 @@ function abrirModal() {
 
     UIkit.util.on('#modal-profesor', 'shown', function () {
         var modal = document.querySelector('#modal-profesor');
-        let imagenes = modal.querySelectorAll('.login > img');
+        let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
+        let imagenes = document.querySelectorAll('#formulario-modal-profesor .login > img');
 
-        setTimeout(cargarDatosModal,1000,imagenes,modal);
+        setTimeout(cargarDatosModal,1000,contrasena,imagenes);
     });
     UIkit.util.on('#modal-eliminar', 'show', function () {
         modalEliminar.querySelector('.uk-modal-header').click();
     });
-    UIkit.util.on('#modal-profesor-actualizar', 'show', function () {
-        modalProfesorActualizar.querySelector('.uk-modal-header').click();
-        let modal = document.querySelector('#modal-profesor-actualizar');
-        let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
-        let imagenes = modal.querySelectorAll('.login > img');
-        setTimeout(cargarDatosModal,1000,imagenes,modal);
-        if (contrasena !== ""){
-            let datosImg = contrasena.split(',');
-            imagenes[parseInt(datosImg[0])].classList.add('seleccionado');
-            imagenes[parseInt(datosImg[1])].classList.add('seleccionado');
-        }
-    });
+
     UIkit.util.on('#modal-profesor', 'hidden', function () {
         modalProfresor.querySelectorAll('input').forEach(entrada => entrada.value = '');
     });
 }
 
-function cargarDatosModal(imagenes,modal) {
-    modal.querySelector('.uk-modal-header').click();
-    modal.querySelector('.uk-form-controls select').removeAttribute("size");
-    seleccionContrasena(modal);
+function cargarDatosModal(contrasenia,imagenes) {
+    if(contrasenia !== "" ){
+        let password = contrasenia.split(',');
+        imagenes[parseInt(password[0])].classList.add("seleccionado");
+        imagenes[parseInt(password[1])].classList.add("seleccionado");
+    }
+    modalProfresor.querySelector('.uk-modal-header').click();
+    modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
+    seleccionContrasena();
 }
-
 
 function cargaContrasenia() {
     console.log('entre');
@@ -111,10 +91,10 @@ function cargaContrasenia() {
     document.getElementById('formulario-modal-profesor:input-secret-password').value = seleccionados.length === 0 ? null : seleccionados.join(',');
 }
 
-function seleccionContrasena(modal) {
+function seleccionContrasena() {
     console.log('contrasena');
-    let img = modal.querySelectorAll('.uk-modal-body .login > img');
-    let datoCuenta = modal.querySelectorAll('.uk-modal-body .login > img.seleccionado');
+    let img = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img');
+    let datoCuenta = document.querySelectorAll('#formulario-modal-profesor .uk-modal-body .login > img.seleccionado');
     img.forEach(image => {
         image.addEventListener('click',() => {
             // quitarClase(++cuenta);

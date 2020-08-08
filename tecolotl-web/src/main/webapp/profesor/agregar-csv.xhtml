@@ -32,8 +32,8 @@
 
     </ui:define>
     <ui:define name="contenido">
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/csv-alumnos.css"/>-->
-        <h:outputStylesheet library="css" name="/profesor/csv-alumnos.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/csv-alumnos.css"/>
+        <ui:remove><h:outputStylesheet library="css" name="/profesor/csv-alumnos.css"/></ui:remove>
         <div class="uk-margin-large-top"><h1 class="uk-margin-top lescuadron primera-mayuscula">#{profesor['agregarcsv.title']}</h1></div>
         <div class="uk-grid" uk-grid="">
             <div class="uk-width-1-3@m">
@@ -333,8 +333,8 @@
             var genderAlum = "#{profesor['csv.gender']}";
         </script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>
-<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/agregar-alumnos-csv.js"></script>-->
-        <h:outputScript library="js" name="/profesor/agregar-alumnos-csv.js"/>
+        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/agregar-alumnos-csv.js"></script>
+        <ui:remove><h:outputScript library="js" name="/profesor/agregar-alumnos-csv.js"/></ui:remove>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/agregar-alumno-modal.js"></script>
     </ui:define>
 </ui:composition>

@@ -13,7 +13,7 @@
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
-                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg"  styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
                     <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></a></li>
                 </ul>
@@ -22,10 +22,16 @@
     </ui:define>
 
     <ui:define name="contenido">
+        <ui:remove>
         <h:outputStylesheet library="css" name="tablas.css"/>
         <h:outputStylesheet library="css" name="letra.css"/>
         <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
         <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+        </ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tabla.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/scroll-esquadron.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/dashboard.css"/>
         <h:panelGroup layout="block" styleClass="uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2 uk-child-width-1-4@l uk-child-width-1-5@xl" pt:data-uk-grid="">
             <div class="uk-text-center">
                 <span ><h:outputText pt:uk-icon="users" styleClass="uk-text-primary uk-margin-small-right uk-text-capitalize"/><span class="uk-text-capitalize">#{administracion['dashboard.header.teacher']}</span></span>
