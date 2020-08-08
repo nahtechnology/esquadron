@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded",function () {
         var contactos = document.querySelectorAll('#seccion3 div > input');
         Email.send({
             SecureToken :'96c7e030-d64a-44b2-b925-85eb7b23d35c',
-            To : 'cu.es.guillermo@gmail.com',
+            To : 'e-squadron@e-squadron.com.mx',
             From : "maugg76@gmail.com",
             Subject : "Contacto Escuela",
             Body : mensaje
