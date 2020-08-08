@@ -68,7 +68,7 @@
                                 </div>
                             </div>
                             <div class="uk-card-body padding-card-body">
-                                <h3 class="uk-text-uppercase uk-text-bold">grupo</h3>
+                                <h3 class="uk-text-uppercase uk-text-bold">#{etiqueta['group']}</h3>
                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">#{profesor['tareas.alumno.grade']}:</span> #{profesorGrupoControlador.grupoModelo.grado}</p>
                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-margin-small-bottom"><span class="uk-text-bold">#{profesor['tareas.alumno.group']}:</span> #{profesorGrupoControlador.grupoModelo.grupo}</p>
                                 <span id="idProfesor" style="display: none">#{profesorGrupoControlador.grupoModelo.id}</span>
@@ -215,8 +215,8 @@
                         <h:inputHidden id="input-tarea" value="#{tareaAlumnoControlador.idTarea}"/>
                     </div>
                     <div class="uk-modal-footer uk-text-right">
-                        <button class="boton-escuadron-base uk-margin-small-right uk-modal-close" type="button" style="background-color: #AAB7B8">${otrosboton['cancel']}</button>
-                        <h:commandButton styleClass="boton-escuadron-base  uk-modal-close" value="${otrosboton['remove']}" style="background-color: var(--color-peligro)">
+                        <button class="boton-escuadron-base uk-margin-small-right uk-modal-close" type="button" style="background-color: #AAB7B8">${boton['cancel']}</button>
+                        <h:commandButton styleClass="boton-escuadron-base  uk-modal-close" value="${boton['remove']}" style="background-color: var(--color-peligro)">
                             <f:ajax execute="input-tarea" listener="#{tareaAlumnoControlador.borrar}" onevent="function f(data) {
                                renderizarBorrado(data);
                             }" render="formulario-tabla-actividades"/>

@@ -250,7 +250,7 @@ function botonesTabla() {
 
 function lecturaTerminada(evento) {
     console.log('carga de archivo cancelado');
-    UIkit.notification("El archivo no tiene la extension csv");
+    UIkit.notification("The file does not have the extension csv");
 }
 
 function progreso(evento) {
