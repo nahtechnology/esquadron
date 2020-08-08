@@ -34,14 +34,14 @@ function colocarImagenesPassword() {
         tablaCoordinador[i].innerHTML = "";
         contrasena1.forEach(contra1 => {
             let img = document.createElement('img');
-            img.src = `../resources/img/alumno/iconos-login/${parseInt(contra1) + 1}.svg`;
+            img.src = `https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/iconos-login/${parseInt(contra1) + 1}.svg`;
             img.style.width = "40px";
             img.style.marginRight = "5px";
             contenedorpassword[i].appendChild(img);
         });
         contrasena2.forEach(contra2 => {
             let img = document.createElement('img');
-            img.src = `../resources/img/alumno/iconos-login/${parseInt(contra2) + 1}.svg`;
+            img.src = `https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/iconos-login/${parseInt(contra2) + 1}.svg`;
             img.style.width = "40px";
             img.style.marginRight = "5px";
             tablaCoordinador[i].appendChild(img);
