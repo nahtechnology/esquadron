@@ -24,12 +24,21 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="tablas.css"/>
-        <h:outputStylesheet library="css" name="letra.css"/>
-        <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
-        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
-        <h:outputStylesheet library="css" name="administracion/profesores.css"/>
-        <h:outputStylesheet library="css" name="/administracion/estilo-tarjeton-licencia.css"/>
+        <ui:remove>
+            <h:outputStylesheet library="css" name="tablas.css"/>
+            <h:outputStylesheet library="css" name="letra.css"/>
+            <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
+            <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
+            <h:outputStylesheet library="css" name="administracion/profesores.css"/>
+            <h:outputStylesheet library="css" name="/administracion/estilo-tarjeton-licencia.css"/>
+        </ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/scroll-esquadron.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/dashboard.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/profesores.css"/>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/estilo-tarjeton-licencia.css"/>
+
         <div uk-grid="">
             <div class="uk-width-1-1">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
