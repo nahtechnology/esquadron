@@ -159,8 +159,8 @@
             </div>
         </div>
         <div class="uk-flex uk-flex-right uk-margin-top">
-            <button type="button" class="uk-button uk-button-primary uk-margin-small-right" uk-toggle="target: #modal-password">#{otrosboton['passwords']}</button>
-            <button class="uk-button uk-button-primary" onclick="window.history.back();">#{otrosboton['back']}</button>
+            <h:panelGroup   id="boton-password" class="uk-button  uk-margin-small-right #{not empty coordinadorControlador.coordinadorModeloLista ? 'uk-button-primary':'visibilidad'}"   pt:uk-toggle="target: #modal-password" >#{otrosboton['passwords']}</h:panelGroup>
+            <button  class="uk-button uk-button-primary" onclick="window.history.back();">#{otrosboton['back']}</button>
         </div>
         <h:panelGroup layout="block" id="modal-coordinador" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
@@ -294,7 +294,7 @@
                         <button class="uk-button uk-button-default uk-modal-close" type="button">#{otrosboton['cancel']}</button>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" onclick="cargaContrasenia()" value="#{otrosboton['accept']}" rendered="#{empty coordinadorControlador.coordinadorModelo.contador}">
                             <f:ajax
-                                    render="@form formulario-coordinador modal-password"
+                                    render="@form formulario-coordinador modal-password boton-password"
                                     onevent="function cerrar(data) { cierraModal(data,'modalCoordinador') }"
                                     execute="@form"
                                     listener="#{coordinadorControlador.agregar}"/>
@@ -327,7 +327,7 @@
                     <button class="uk-button uk-button-default uk-border-rounded uk-modal-close" type="button">#{otrosboton['cancel']}</button>
                     <h:commandButton styleClass="uk-button uk-button-danger uk-modal-close uk-margin-small-left" value="#{otrosboton['remove']}" >
                         <f:ajax
-                                render="formulario-coordinador modal-password"
+                                render="formulario-coordinador modal-password boton-password"
                                 onevent="function cerrar(data) { cierraModal(data,'modalEliminar' ) }"
                                  listener="#{coordinadorControlador.elimina}"/>
                     </h:commandButton>
@@ -346,7 +346,7 @@
                 <ui:repeat value="#{coordinadorControlador.coordinadorModeloLista}" var="coordinadorModelo">
                     <div class="tablero-licencia">
                         <div class="imagen">
-                            <h:graphicImage styleClass="uk-display-inline-block " url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg"  width="60"/>
+                            <h:graphicImage styleClass="uk-display-inline-block" library="img" name="/avatar/maestro.svg"   width="60"/>
                         </div>
                         <div class="informacion">
                             <h6>Coordinator</h6>
@@ -385,6 +385,7 @@
         /*    var modalLicencia;
             var modalCoord;*/
             document.addEventListener("DOMContentLoaded", function (evt) {
+
                 // modalAgregar = document.querySelector('#modal-contacto');
                 modalCoordinador = document.querySelector('#modal-coordinador');
                 modalEliminar = document.querySelector('#modal-eliminar-coordinador');
