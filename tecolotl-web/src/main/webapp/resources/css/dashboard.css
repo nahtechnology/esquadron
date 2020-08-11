@@ -398,3 +398,5 @@ input:checked + .slider:before {
 .scroll-nav-left::-webkit-scrollbar-track:active {
 	background: #d4d4d4;
 }
+
+/*boton desactivado*/
