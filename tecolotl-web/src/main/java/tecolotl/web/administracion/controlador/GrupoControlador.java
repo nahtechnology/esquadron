@@ -1,6 +1,7 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
@@ -48,14 +49,18 @@ public class GrupoControlador implements Serializable {
 
     private Map<Integer, CicloEscolarModelo> cicloEscolarModeloMapa;
     private List<GrupoModelo> grupoModeloLista;
+    private List<GrupoModelo> grupoModeloPorProfesorLista;
     private List<ProfesorModelo> profesorModeloLista;
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
+    private List<AlumnoModelo> alumnoModeloLista;
     private GrupoModelo grupoModelo;
     private CicloEscolarModelo cicloEscolarModelo;
     private Integer cicloEscolar;
     private ProfesorModelo profesorModelo;
+    private String alumnoIdReasignar;
     private String profesorIdReasignar;
     private Integer cicloEscolarIdReasignar;
+    private String grupoIdReasignar;
     private EscuelaBaseModelo escuelaBaseModelo;
 
     private String profesor;
@@ -137,6 +142,9 @@ public class GrupoControlador implements Serializable {
             profesorModeloLista = profesorSesionBean.buscaPorEscuela(escuelaBaseModelo.getClaveCentroTrabajo()).stream()
                     .filter(profesor -> profesor.getId().compareTo(profesorModelo.getId()) != 0).collect(Collectors.toList());
         }
+        if (!profesorModeloLista.isEmpty()) {
+            grupoModeloPorProfesorLista = grupoSesionBean.busca(profesorModeloLista.get(0).getId());
+        }
     }
 
     public void buscaCicloEscolar() {
@@ -159,10 +167,28 @@ public class GrupoControlador implements Serializable {
         grupoModeloLista.removeIf(grupo -> grupo.getId().compareTo(grupoModelo.getId()) == 0);
     }
 
+    public void cambiarAlumno() {
+        logger.info(alumnoIdReasignar);
+    }
+
     private Predicate<GrupoModelo> grupoModeloPredicate() {
         Predicate<GrupoModelo> predicateGrupo = p -> p.getGrupo().compareTo(grupoModelo.getGrupo()) == 0;
         Predicate<GrupoModelo> predicateGrado = p -> p.getGrado().compareTo(grupoModelo.getGrado()) == 0;
         return predicateGrupo.and(predicateGrado);
+    }
+
+    public void buscaGrupoPorProfesor() {
+        grupoModeloPorProfesorLista = grupoSesionBean.busca(UUID.fromString(profesorIdReasignar));
+    }
+
+    public void buscaAlumno() {
+        alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno(grupoModelo.getId());
+    }
+
+    public void reasignarAlumno() {
+        grupoAlumnoSesionBean.reasignar(grupoModelo.getId(),
+                UUID.fromString(grupoIdReasignar),
+                UUID.fromString(alumnoIdReasignar));
     }
 
     public void clonaGrupo() throws CloneNotSupportedException {
@@ -271,5 +297,37 @@ public class GrupoControlador implements Serializable {
 
     public void setCicloEscolarIdReasignar(Integer cicloEscolarIdReasignar) {
         this.cicloEscolarIdReasignar = cicloEscolarIdReasignar;
+    }
+
+    public List<AlumnoModelo> getAlumnoModeloLista() {
+        return alumnoModeloLista;
+    }
+
+    public void setAlumnoModeloLista(List<AlumnoModelo> alumnoModeloLista) {
+        this.alumnoModeloLista = alumnoModeloLista;
+    }
+
+    public String getAlumnoIdReasignar() {
+        return alumnoIdReasignar;
+    }
+
+    public void setAlumnoIdReasignar(String alumnoIdReasignar) {
+        this.alumnoIdReasignar = alumnoIdReasignar;
+    }
+
+    public List<GrupoModelo> getGrupoModeloPorProfesorLista() {
+        return grupoModeloPorProfesorLista;
+    }
+
+    public void setGrupoModeloPorProfesorLista(List<GrupoModelo> grupoModeloPorProfesorLista) {
+        this.grupoModeloPorProfesorLista = grupoModeloPorProfesorLista;
+    }
+
+    public String getGrupoIdReasignar() {
+        return grupoIdReasignar;
+    }
+
+    public void setGrupoIdReasignar(String grupoIdReasignar) {
+        this.grupoIdReasignar = grupoIdReasignar;
     }
 }

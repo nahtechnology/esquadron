@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="uk-card-body">
-                <h:form styleClass="uk-form-stacked" >
+                <h:form id="formulario-detalle" styleClass="uk-form-stacked" >
                     <h:panelGroup styleClass="uk-grid"  pt:uk-grid="" >
                         <div class="uk-width-1-5@m uk-width-1-1@s ">
                             <h:outputLabel styleClass="uk-form-label uk-text-uppercase" value="#{administracion['dashboard.modal.cct']}" for="cctv" />
@@ -530,7 +530,7 @@
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{otrosboton['add']}" rendered="#{empty licenciasControlador.licenciaModelo.contador}">
                             <f:ajax onevent="function cerrar(data) { cierraModal(data,'modalLicencia') }"
-                                    render="formulario-licencia @form" execute="@form"
+                                    render="formulario-licencia formulario-detalle:licencias @form" execute="@form"
                                     listener="#{licenciasControlador.inserta}"/>
                         </h:commandButton>
                         <h:commandButton styleClass="uk-button uk-button-secondary  uk-margin-small-left" value="#{otrosboton['update']}" rendered="#{not empty licenciasControlador.licenciaModelo.contador}">

@@ -110,10 +110,18 @@
                                                 <li>
                                                     <h:commandLink pt:uk-toggle="target: #modal-reasigna-grupo" action="#{grupoControlador.buscaProfesor()}" styleClass="uk-text-left uk-text-primary">
                                                         <h:outputText pt:uk-icon="icon: forward" styleClass="uk-margin-small-right uk-icon" />
-                                                        <span class="uk-text-middle"><h:outputText value="reasignar" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <span class="uk-text-middle"><h:outputText value="reasignar grupo" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:actionListener binding="#{grupoControlador.buscaCicloEscolar()}"/>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
                                                         <f:ajax render="formulario-reasigna-grupo"/>
+                                                    </h:commandLink>
+                                                </li>
+                                                <li>
+                                                    <h:commandLink pt:uk-toggle="target: #modal-alumno" styleClass="uk-text-left uk-text-primary" action="#{grupoControlador.buscaAlumno()}">
+                                                        <h:outputText pt:uk-icon="icon: forward" styleClass="uk-margin-small-right uk-icon" />
+                                                        <span class="uk-text-middle"><h:outputText value="reasignar alumno" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
+                                                        <f:ajax render="formulario-seleccion-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
                                                     </h:commandLink>
                                                 </li>
                                                 <li class="uk-nav-divider"/>
@@ -272,8 +280,101 @@
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
                         <h:commandButton value="reasignar" styleClass="uk-button uk-button-secondary">
                             <f:ajax execute="@form"
+                                    disabled="#{empty grupoControlador.profesorModeloLista}"
                                     listener="#{grupoControlador.cambiaGrupo()}"
                                     render="@from formulario-grupo" onevent="function funcion(data) { cerrarModal(data, 'modalReasignarGrupo') }"/>
+                        </h:commandButton>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+<!--        Modal Seleccion alumno      -->
+        <h:panelGroup layout="block" styleClass="uk-modal" id="modal-alumno" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-seleccion-alumno" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">Reasignar Alumno</p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <h:outputFormat value="Seleccione un alumno del grupo: {0} {1}">
+                            <f:param value="#{grupoControlador.grupoModelo.grado}"/>
+                            <f:param value="#{grupoControlador.grupoModelo.grupo}"/>
+                        </h:outputFormat>
+                        <div class="uk-width-1-1@s">
+                            <h:outputLabel value="Alumno" for="radio-alumno"/>
+                            <div class="uk-form-controls">
+                                <h:selectOneMenu id="radio-alumno" value="#{grupoControlador.alumnoIdReasignar}" styleClass="uk-select" action="#{grupoControlador.buscaProfesor()}">
+                                    <f:selectItems value="#{grupoControlador.alumnoModeloLista}"
+                                                   var="alumnoModelo"
+                                                   itemLabel="${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} ${alumnoModelo.apodo}"
+                                                   itemValue="${alumnoModelo.id}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
+                        <h:commandLink value="Siguiente" styleClass="uk-button uk-button-secondary" pt:uk-toggle="#modal-reasigna-alumno">
+                            <f:actionListener binding="#{grupoControlador.buscaCicloEscolar()}"/>
+                            <f:ajax execute="radio-alumno" listener="#{grupoControlador.buscaProfesor}" render="formulario-reasigna-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
+                        </h:commandLink>
+                    </div>
+                </h:form>
+            </div>
+        </h:panelGroup>
+<!--        Reasignar alumno        -->
+        <h:panelGroup layout="block" styleClass="uk-modal" id="modal-reasigna-alumno" pt:uk-modal="">
+            <div class="uk-modal-dialog uk-margin-auto-vertical">
+                <h:form id="formulario-reasigna-alumno" styleClass="uk-form-stacked">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">#{otrosetiqueta['reassign.group']}</p>
+                    </div>
+                    <div class="uk-modal-body">
+                        <h:outputFormat value="Seleccione un profesor a reasignar el grupo: {0} {1}">
+                            <f:param value="#{grupoControlador.grupoModelo.grado}"/>
+                            <f:param value="#{grupoControlador.grupoModelo.grupo}"/>
+                        </h:outputFormat>
+                        <div class="uk-width-1-1@s">
+                            <h:outputLabel value="Ciclo escolar"/>
+                            <div class="uk-form-controls">
+                                <h:selectOneMenu id="radio-ciclo-escolar2" value="#{grupoControlador.cicloEscolarIdReasignar}" styleClass="uk-select">
+                                    <f:selectItems value="#{grupoControlador.cicloEscolarModeloLista}"
+                                                   var="cicloEscolar"
+                                                   itemLabel="${cicloEscolar.descripcion}"
+                                                   itemValue="${cicloEscolar.hashCode()}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <div class="uk-width-1-1@s">
+                            <h:outputLabel value="Profesor" for="radio-profesor"/>
+                            <div class="uk-form-controls">
+                                <h:selectOneMenu id="radio-profesor2" value="#{grupoControlador.profesorIdReasignar}" styleClass="uk-select">
+                                    <f:selectItems value="#{grupoControlador.profesorModeloLista}"
+                                                   var="profesorModelo"
+                                                   itemLabel="${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}"
+                                                   itemValue="${profesorModelo.id}"/>
+                                    <f:ajax render="radio-alumno boton-reasignaralumno" execute="@this" listener="#{grupoControlador.buscaAlumno}"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                        <h:outputLabel value="Grupo" for="radio-grupo"/>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu id="radio-grupo" value="#{grupoControlador.grupoIdReasignar}" styleClass="uk-select">
+                                <f:selectItems value="#{grupoControlador.grupoModeloPorProfesorLista}"
+                                               var="grupoModelo"
+                                               itemLabel="${grupoModelo.grado} ${grupoModelo.grupo}"
+                                               itemValue="${grupoModelo.id}"/>
+                            </h:selectOneMenu>
+                        </div>
+                    </div>
+                    <div class="uk-modal-footer uk-flex uk-flex-right">
+                        <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
+                        <h:commandButton id="boton-reasignaralumno" value="reasignar" styleClass="uk-button uk-button-secondary">
+                            <f:ajax execute="@form"
+                                    disabled="#{empty grupoControlador.profesorModeloLista or empty grupoControlador.grupoModeloPorProfesorLista}"
+                                    listener="#{grupoControlador.reasignarAlumno()}"
+                                    render="@from formulario-grupo"
+                                    onevent="function funcion(data) { cerrarModal(data, 'modalReasignarAlumno') }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
@@ -282,8 +383,8 @@
         <div class="uk-flex uk-flex-right">
             <h:button outcome="ir-atras" styleClass="uk-button uk-button-primary uk-margin-top" value="#{otrosboton['back']}"/>
         </div>
-        <ui:remove><h:outputScript library="js" name="administracion/grupo.js"/></ui:remove>
-        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/grupo.js"></script>
+        <h:outputScript library="js" name="administracion/grupo.js"/>
+<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/grupo.js"></script>-->
     </ui:define>
 </ui:composition>
 

@@ -101,30 +101,29 @@
                                              id="uno"
                                              disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
                                              value="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].respuesta}"
-                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[0].pregunta}"
                                              pt:maxlength="70">
                                     <f:validateRequired/>
                                 </h:inputTextarea>
                                 <h:message for="uno" styleClass="mensaje-mapa-4"/>
                             </div>
-                            <div class="pop-art-nube-medio uk-position-relative ">
-<!--                                <h:graphicImage library="img" name="alumno/pop-art/nube.svg" styleClass="nube-medio"/>-->
+                            <div class="pop-art-nube-medio uk-position-relative">
                                 <h:inputTextarea styleClass="posicion-texarea-comparar-dos uk-textarea"
                                              id="dos"
-                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
-                                             pt:placeholder="#{etiqueta['write.text']}"
+                                             disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
+                                             pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].pregunta}"
                                              pt:maxlength="70">
                                     <f:validateRequired/>
                                 </h:inputTextarea>
                                 <h:message for="dos" styleClass="mensaje-mapa-4"/>
                             </div>
-                            <div class="pop-art-nube-grande uk-position-relative ">
+                            <div class="pop-art-nube-grande uk-position-relative">
                                 <h:inputTextarea styleClass="posicion-texarea-comparar uk-textarea"
                                                  id="tres"
-                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[2].respuesta}"
-                                                 pt:placeholder="#{etiqueta['write.text']}"
+                                                 disabled="#{not empty mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 value="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].respuesta}"
+                                                 pt:placeholder="#{mapaMentalControlador.tareaMapaMentalModeloLista[1].pregunta}"
                                                  pt:maxlength="70">
                                     <f:validateRequired/>
                                 </h:inputTextarea>

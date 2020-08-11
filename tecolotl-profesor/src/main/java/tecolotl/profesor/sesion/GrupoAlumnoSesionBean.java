@@ -253,4 +253,21 @@ public class GrupoAlumnoSesionBean {
         return promedioAlumnoModeloLista;
     }
 
+    /**
+     * Reasigna un alumno de grupo
+     * @param grupoViejo Identificador del grupo  a remover
+     * @param grupoNuevo Identificador del grupo  a insertar
+     * @param alumno Alumno a ser movido
+     * @return numero de modificaciones
+     */
+    public void reasignar(UUID grupoViejo, UUID grupoNuevo, UUID alumno) {
+        GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
+        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoViejo));
+        grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(alumno));
+        entityManager.remove(entityManager.find(GrupoAlumnoEntidad.class, grupoAlumnoEntidadPK));
+        grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
+        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoNuevo));
+        grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(alumno));
+        entityManager.persist(new GrupoAlumnoEntidad(grupoAlumnoEntidadPK));
+    }
 }
