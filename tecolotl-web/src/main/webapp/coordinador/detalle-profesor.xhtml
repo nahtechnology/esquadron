@@ -244,6 +244,7 @@
                                  var="promedioAlumnoModelo"
                                  styleClass="uk-table uk-table-hover uk-table-divider uk-table-striped uk-table-middle uk-table-small"
                                  footerClass="uk-background-primary"
+                                 columnClasses=",,,,botones-pagina"
                                     >
                         <h:column>
                             <f:facet name="header">
@@ -371,10 +372,11 @@
                             </h:panelGroup>
                             <h:panelGroup rendered="#{promedioAlumnoModelo.totalTareas eq 0}" styleClass="uk-icon" pt:uk-icon="icon:ban; ratio: 1.5"/>
                         </h:column>
-                        <h:column>
+                        <h:column >
                             <f:facet name="header">#{coordinador['teacher.detail.table.grup.platform.time']}</f:facet>
                             <h:button   value="go" outcome="login" styleClass=" uk-button #{promedioAlumnoModelo.totalTareas eq 0 ? 'boton-desabilitado' : 'uk-button-primary'}  uk-button-small" >
                                 <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
+                                <f:param name="zona" value="tiempo"/>
 
                             </h:button>
                         </h:column>
@@ -442,10 +444,10 @@
                         boton.disabled = true;
                     });
                     cargando.remove();
-
-
+                    cambiarEnlaceBoton();
                 }
             }
         </script>
+        <h:outputScript library="js" name="/coordinador/zona-horaria.js"/>
     </ui:define>
 </ui:composition>
