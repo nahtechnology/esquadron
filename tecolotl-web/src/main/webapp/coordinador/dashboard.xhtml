@@ -78,11 +78,12 @@
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
                                 </h:link>
                             </li>
-                            <li class="uk-text-left">
+                            <li class="uk-text-left botones-pagina">
                                 <h:link outcome="login" >
                                     <h:panelGroup pt:uk-icon="icon: file-text" styleClass="uk-margin-small-right"/>
                                     <span>#{coordinador['teacher.detail.table.grup.platform.time']}</span>
                                     <f:param value="#{profesorGrupoAlumnoModelo.id}" name="profesor"/>
+                                    <f:param value="tiempo" name="zona"/>
                                 </h:link>
                             </li>
                         </ul>
@@ -93,9 +94,19 @@
         </div>
     </section>
     <script type="application/javascript">
+        let zona = new Intl.DateTimeFormat().resolvedOptions().timeZone;
         if (sessionStorage.getItem('mensaje') === null){
             sessionStorage.setItem('mensaje','true');
         }
+        document.addEventListener('DOMContentLoaded',()=>{
+            const botones = document.querySelectorAll("table .botones-pagina > a");
+            botones.forEach(boton =>{
+                let cadenaFuncion = boton.getAttribute('href');
+                let cadenaFuncionRemplazo = cadenaFuncion.replace('tiempo',zona);
+                boton.setAttribute('href',cadenaFuncionRemplazo);
+            });
+        });
     </script>
+
 </ui:define>
 </ui:composition>
