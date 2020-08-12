@@ -314,10 +314,13 @@
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
-                        <h:commandLink value="Siguiente" styleClass="uk-button uk-button-secondary" pt:uk-toggle="#modal-reasigna-alumno">
+                        <h:commandButton value="Siguiente" styleClass="uk-button uk-button-secondary" pt:uk-toggle="#modal-reasigna-alumno">
                             <f:actionListener binding="#{grupoControlador.buscaCicloEscolar()}"/>
-                            <f:ajax execute="radio-alumno" listener="#{grupoControlador.buscaProfesor}" render="formulario-reasigna-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
-                        </h:commandLink>
+                            <f:ajax execute="radio-alumno"
+                                    disabled="#{empty grupoControlador.alumnoModeloLista}"
+                                    listener="#{grupoControlador.buscaProfesor}"
+                                    render="formulario-reasigna-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
+                        </h:commandButton>
                     </div>
                 </h:form>
             </div>

@@ -45,9 +45,15 @@ public class ReporteSesionControlador implements Serializable {
         profesorModelo = idProfesor == null ? null : new ProfesorModelo(UUID.fromString(idProfesor));
         alumnoModelo = idAlumno == null ? null : new AlumnoModelo(UUID.fromString(idAlumno));
         Calendar calendarFin = Calendar.getInstance();
+        calendarFin.set(Calendar.HOUR_OF_DAY, 23);
+        calendarFin.set(Calendar.MINUTE, 59);
+        calendarFin.set(Calendar.SECOND, 59);
         fechaFin = calendarFin.getTime();
         Calendar calendarInicio = Calendar.getInstance();
         calendarInicio.add(Calendar.MONTH, -1);
+        calendarInicio.add(Calendar.HOUR_OF_DAY,0);
+        calendarFin.set(Calendar.MINUTE, 0);
+        calendarFin.set(Calendar.SECOND, 0);
         fechaInicio = calendarInicio.getTime();
         if (profesorModelo == null) {
             listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin);

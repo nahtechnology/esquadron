@@ -45,11 +45,11 @@
             <h:form id="formulario-fechas">
                 <div id="rango-fecha">
                     <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaInicio}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Mexico_City"/>
                     </h:inputText>
                     <span>#{coordinador['report.sesion.to']}</span>
                     <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaFin}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Mexico_City"/>
                     </h:inputText>
                 </div>
                 <ui:remove>
