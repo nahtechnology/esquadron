@@ -15,7 +15,10 @@
 }
 
 .letra-titulo{
-    color:white;
+    color:white !important;
+}
+table  th.letra-titulo{
+    font-weight: bolder !important;
 }
 
 .letra-desabilitada-negra:disabled {
