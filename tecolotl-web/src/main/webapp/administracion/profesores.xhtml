@@ -353,14 +353,16 @@
                     <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">#{otrosboton['download.PDF']}</button>
                 </div>
         </h:panelGroup>
-        <ui:remove>
+
         <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
         <h:outputScript library="js" name="administracion/profesores.js"/>
         <h:outputScript library="js" name="tabla-profesor.js"/>
-        </ui:remove>
+
+        <ui:remove>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/profesores.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/tabla-profesor.js"></script>
+        </ui:remove>
     </ui:define>
 
 </ui:composition>

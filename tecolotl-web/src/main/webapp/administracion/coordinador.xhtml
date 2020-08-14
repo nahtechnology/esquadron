@@ -370,12 +370,13 @@
                 <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">#{otrosboton['download.PDF']}</button>
             </div>
         </h:panelGroup>
-        <ui:remove>
+
         <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
         <h:outputScript library="js" name="/administracion/coordinador.js"/>
-        </ui:remove>
+        <ui:remove>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/coordinador.js"></script>
+        </ui:remove>
         <script type="text/javascript">
             var contrassenia;
             var contrasseniaeditar;
@@ -461,8 +462,9 @@
                 let imagenes = document.querySelectorAll('#modal-coordinador .login-coordinador > img');
                 if (password.value !== ""){
                     password = password.value.split(',');
-                    imagenes[password[0]].classList.add('seleccionado');
-                    imagenes[password[1]].classList.add('seleccionado');
+                    for (let passwordElement of password) {
+                        imagenes[parseInt(passwordElement)].classList.add('seleccionado')
+                    }
                 }
                 else {
                     console.log('nuevo coordinador');
