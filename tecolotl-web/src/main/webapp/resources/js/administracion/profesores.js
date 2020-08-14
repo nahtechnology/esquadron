@@ -57,7 +57,7 @@ function abrirModal() {
         let contrasena = modal.querySelector('.uk-modal-body input[type=hidden]').value;
         let imagenes = document.querySelectorAll('#formulario-modal-profesor .login > img');
 
-        setTimeout(cargarDatosModal,1000,contrasena,imagenes);
+        setTimeout(cargarDatosModal,500,contrasena,imagenes);
     });
     UIkit.util.on('#modal-eliminar', 'show', function () {
         modalEliminar.querySelector('.uk-modal-header').click();
@@ -71,8 +71,9 @@ function abrirModal() {
 function cargarDatosModal(contrasenia,imagenes) {
     if(contrasenia !== "" ){
         let password = contrasenia.split(',');
-        imagenes[parseInt(password[0])].classList.add("seleccionado");
-        imagenes[parseInt(password[1])].classList.add("seleccionado");
+        for (let passwordElement of password) {
+           imagenes[parseInt(passwordElement)].classList.add("seleccionado");
+        }
     }
     modalProfresor.querySelector('.uk-modal-header').click();
     modalProfresor.querySelector('.uk-form-controls select').removeAttribute("size");
