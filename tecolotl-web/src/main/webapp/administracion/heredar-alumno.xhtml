@@ -18,7 +18,7 @@
                 <h:outputText value="Este Grupo aun no tiene relacionado un ciclo escolar" rendered="#{empty heredarAlumnoControlador.cicloEscolarModeloLista}"/>
                 <h:form id="formulario-ciclo-escoalr" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}">
                     <div class="uk-margin">
-                        <h:outputLabel value="ciclo escolar" styleClass="uk-form-label primera-mayuscula" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}"/>
+                        <h:outputLabel value="ciclo escolar" styleClass="uk-form-label primera-mayuk-text-capitalize" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}"/>
                         <div class="uk-form-controls">
                             <h:selectOneMenu id="seleccion-ciclo-escolar" styleClass="uk-select" value="#{heredarAlumnoControlador.idCicloEscolar}" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}">
                                 <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
@@ -26,13 +26,14 @@
                                                var="cicloEscolarModelo"
                                                itemLabel="${cicloEscolarModelo.descripcion}"
                                                itemValue="${cicloEscolarModelo.hashCode()}"/>
+                                <f:validateRequired/>
                             </h:selectOneMenu>
                         </div>
                         <h:message for="seleccion-ciclo-escolar" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
                     </div>
                     <h:outputText value="Esta escuela al precer no tiene profesores asignado" rendered="#{empty heredarAlumnoControlador.profesorModeloLista}"/>
                     <div class="uk-margin">
-                        <h:outputLabel value="profesor" styleClass="uk-form-label primera-mayuscula" rendered="#{not empty heredarAlumnoControlador.profesorModeloLista}"/>
+                        <h:outputLabel value="profesor" for="seleccion-profesor" styleClass="uk-form-label uk-text-capitalize" rendered="#{not empty heredarAlumnoControlador.profesorModeloLista}"/>
                         <div class="uk-form-controls">
                             <h:selectOneMenu id="seleccion-profesor" value="#{heredarAlumnoControlador.idProfeosor}" styleClass="uk-select" rendered="#{not empty heredarAlumnoControlador.profesorModeloLista}">
                                 <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
@@ -40,19 +41,41 @@
                                                var="profesorModelo"
                                                itemLabel="${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}"
                                                itemValue="${profesorModelo.id}"/>
+                                <f:validateRequired/>
                             </h:selectOneMenu>
                         </div>
                         <h:message for="seleccion-profesor" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
                     </div>
                     <div class="uk-margin uk-flex uk-flex-right">
-                        <h:commandButton value="Buscar" >
-                            <f:ajax execute="seleccion-ciclo-escolar seleccion-profesor" listener="#{heredarAlumnoControlador.buscaGrupo()}"/>
+                        <h:commandButton value="Buscar" styleClass="uk-button uk-button-primary">
+                            <f:ajax execute="seleccion-ciclo-escolar seleccion-profesor"
+                                    listener="#{heredarAlumnoControlador.buscaGrupo()}"
+                                    render="@form formulario-grupo"
+                                    onevent="function funcion(data) { if (data.status === 'success') limpiaSeleccion(); }"/>
                         </h:commandButton>
                     </div>
-                    <h:panelGroup id="grupos" layout="block" rendered="#{heredarAlumnoControlador.busca}">
-                        <h:outputText value="EL profesor y ciclo escolar seleccionador aún no tiene grupos asiganos" rendered="${empty heredarAlumnoControlador.grupoModeloLista}"/>
-                    </h:panelGroup>
                 </h:form>
+                <div class="uk-margin">
+                    <h:form id="formulario-grupo">
+                        <h:outputLabel value="grupo" for="seleccion-grupo" styleClass="uk-form-label uk-text-capitalize"/>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu id="seleccion-grupo" value="#{heredarAlumnoControlador.idGrupo}" styleClass="uk-select">
+                                <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
+                                <f:selectItems value="#{heredarAlumnoControlador.grupoModeloLista}"
+                                               var="grupoModelo"
+                                               itemLabel="${grupoModelo.grado} ${grupoModelo.grupo}"
+                                               itemValue="${grupoModelo.id}"/>
+                                <f:validateRequired/>
+                            </h:selectOneMenu>
+                        </div>
+                        <h:message for="seleccion-grupo" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                        <div class="uk-margin uk-flex uk-flex-right">
+                            <h:commandButton value="Buscar" styleClass="uk-button uk-button-primary" disabled="${empty heredarAlumnoControlador.grupoModeloLista}">
+                                <f:ajax execute="seleccion-grupo formulario-alumnos" render="@form " onevent="function funcion(data){ if (data.status === 'success') limpiaSeleccion()}"/>
+                            </h:commandButton>
+                        </div>
+                    </h:form>
+                </div>
             </div>
             <div class="uk-width-2-3">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
@@ -62,9 +85,17 @@
                             <input type="checkbox">Deselecionat todos</input>
                         </div>
                         <div class="uk-card-body">
-                            <input type="checkbox">Nombre Apellido paterno Apellido materno</input>
-                            <input type="checkbox">Nombre Apellido paterno Apellido materno</input>
-                            <input type="checkbox">Nombre Apellido paterno Apellido materno</input>
+                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" rendered="#{empty heredarAlumnoControlador.alumnoModeloLista}"/>
+                            <h:selectManyCheckbox value="#{heredarAlumnoControlador.alumnosSeleccionLista}" rendered="#{not empty heredarAlumnoControlador.alumnoModeloLista}">
+                                <f:selectItems value="#{heredarAlumnoControlador.alumnoModeloLista}"
+                                               var="alumnoModelo"
+                                               itemLabel="${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} - ${alumnoModelo.apodo}"
+                                               itemValue="${alumnoModelo.id}"/>
+                                <f:validateRequired/>
+                            </h:selectManyCheckbox>
+                        </div>
+                        <div class="uk-card-footer uk-flex uk-flex-right">
+                            <h:commandButton value="heredar" disabled="#{empty heredarAlumnoControlador.alumnoModeloLista}" action="#{heredarAlumnoControlador.hereda()}"/>
                         </div>
                     </h:form>
                 </div>

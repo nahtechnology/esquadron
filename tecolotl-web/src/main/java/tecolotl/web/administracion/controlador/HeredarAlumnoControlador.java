@@ -1,10 +1,12 @@
 package tecolotl.web.administracion.controlador;
 
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
 import tecolotl.profesor.sesion.CicloEscolarSessionBean;
+import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 
@@ -12,9 +14,11 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @ViewScoped
 @Named
@@ -29,15 +33,23 @@ public class HeredarAlumnoControlador implements Serializable {
     @Inject
     private GrupoSesionBean grupoSesionBean;
 
+    @Inject
+    private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
+
+    @Inject
+    private Logger logger;
+
     private String grupo;
     private String escuela;
     private EscuelaBaseModelo escuelaBaseModelo;
     private List<CicloEscolarModelo> cicloEscolarModeloLista;
     private List<ProfesorModelo> profesorModeloLista;
     private int idCicloEscolar;
-    private boolean busca;
     private String idProfeosor;
     private List<GrupoModelo> grupoModeloLista;
+    private String idGrupo;
+    private List<AlumnoModelo> alumnoModeloLista;
+    private List<String> alumnosSeleccionLista;
 
     public void inicio() {
         escuelaBaseModelo = new EscuelaBaseModelo(escuela);
@@ -46,11 +58,18 @@ public class HeredarAlumnoControlador implements Serializable {
     }
 
     public void buscaGrupo() {
-        busca = true;
         Optional<CicloEscolarModelo> cicloEscolarModeloOptional = cicloEscolarModeloLista.stream().filter(ce -> ce.hashCode() == idCicloEscolar).findFirst();
         cicloEscolarModeloOptional.ifPresent(ce -> {
             grupoModeloLista = grupoSesionBean.busca(ce.getInicio(), ce.getFin(), escuelaBaseModelo.getClaveCentroTrabajo(), UUID.fromString(idProfeosor));
         });
+    }
+
+    public void buscaAlumno() {
+        alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno(UUID.fromString(idGrupo));
+    }
+
+    public void hereda() {
+        logger.info(Arrays.toString(alumnosSeleccionLista.toArray()));
     }
 
     public String getGrupo() {
@@ -109,11 +128,27 @@ public class HeredarAlumnoControlador implements Serializable {
         this.grupoModeloLista = grupoModeloLista;
     }
 
-    public boolean isBusca() {
-        return busca;
+    public String getIdGrupo() {
+        return idGrupo;
     }
 
-    public void setBusca(boolean busca) {
-        this.busca = busca;
+    public void setIdGrupo(String idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public List<String> getAlumnosSeleccionLista() {
+        return alumnosSeleccionLista;
+    }
+
+    public void setAlumnosSeleccionLista(List<String> alumnosSeleccionLista) {
+        this.alumnosSeleccionLista = alumnosSeleccionLista;
+    }
+
+    public List<AlumnoModelo> getAlumnoModeloLista() {
+        return alumnoModeloLista;
+    }
+
+    public void setAlumnoModeloLista(List<AlumnoModelo> alumnoModeloLista) {
+        this.alumnoModeloLista = alumnoModeloLista;
     }
 }
