@@ -369,13 +369,13 @@
 <!--        Modal agreagr contacto          -->
         <h:panelGroup layout="block" id="modal-agregar-contacto" pt:uk-modal="" >
             <div class="uk-modal-dialog uk-margin-auto-vertical">
-                <div class="uk-modal-header uk-background-secondary">
-                    <p class="uk-h4 uk-text-center uk-text-bold">
-                        <h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['schooldetail.modal.addcontact.title']}" rendered="#{empty contactoControlador.contactoModelo.contador}"/>
-                        <h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['schooldetail.modal.updatecontact']}" rendered="#{not empty contactoControlador.contactoModelo.contador}"/>
-                    </p>
-                </div>
                 <h:form styleClass="uk-form-stacked" id="formulario-agregar-contacto">
+                    <div class="uk-modal-header uk-background-secondary">
+                        <p class="uk-h4 uk-text-center uk-text-bold">
+                            <h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['schooldetail.modal.addcontact.title']}" rendered="#{empty contactoControlador.contactoModelo.contador}"/>
+                            <h:outputText styleClass="letra-titulo uk-text-capitalize" value="#{administracion['schooldetail.modal.updatecontact']}" rendered="#{not empty contactoControlador.contactoModelo.contador}"/>
+                        </p>
+                    </div>
                     <div class="uk-modal-body">
                         <h:panelGroup layout="block" pt:uk-grid="" styleClass="uk-grid">
                             <div class="uk-width-1-1">

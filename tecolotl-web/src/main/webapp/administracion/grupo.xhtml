@@ -124,6 +124,14 @@
                                                         <f:ajax render="formulario-seleccion-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
                                                     </h:commandLink>
                                                 </li>
+                                                <li>
+                                                    <h:link outcome="heredar" styleClass="uk-text-left uk-text-primary">
+                                                        <h:outputText pt:uk-icon="icon: move" styleClass="uk-margin-small-right uk-icon"/>
+                                                        <span class="uk-text-middle"><h:outputText value="heredar alumno" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:param name="grupo" value="#{grupoModelo.id}"/>
+                                                        <f:param name="escuela" value="#{grupoControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                                                    </h:link>
+                                                </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-danger uk-text-left" pt:uk-toggle="target: #modal-borrar-grupo" action="#{grupoControlador.totalAlumnos()}">

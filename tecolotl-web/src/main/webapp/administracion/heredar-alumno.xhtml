@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/template/administracion/dashboard.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+    <ui:define name="menu"></ui:define>
+    <ui:define name="contenido">
+        <f:metadata>
+            <f:viewParam name="grupo" value="#{heredarAlumnoControlador.grupo}" required="true"/>
+            <f:viewParam name="escuela" value="#{heredarAlumnoControlador.escuela}" required="true"/>
+            <f:viewAction action="#{heredarAlumnoControlador.inicio}"/>
+        </f:metadata>
+        <div uk-grid="">
+            <div class="uk-width-1-3">
+                <h:outputText value="Este Grupo aun no tiene relacionado un ciclo escolar" rendered="#{empty heredarAlumnoControlador.cicloEscolarModeloLista}"/>
+                <h:form id="formulario-ciclo-escoalr" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}">
+                    <div class="uk-margin">
+                        <h:outputLabel value="ciclo escolar" styleClass="uk-form-label primera-mayuscula" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}"/>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu id="seleccion-ciclo-escolar" styleClass="uk-select" value="#{heredarAlumnoControlador.idCicloEscolar}" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}">
+                                <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
+                                <f:selectItems value="#{heredarAlumnoControlador.cicloEscolarModeloLista}"
+                                               var="cicloEscolarModelo"
+                                               itemLabel="${cicloEscolarModelo.descripcion}"
+                                               itemValue="${cicloEscolarModelo.hashCode()}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <h:message for="seleccion-ciclo-escolar" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                    </div>
+                    <h:outputText value="Esta escuela al precer no tiene profesores asignado" rendered="#{empty heredarAlumnoControlador.profesorModeloLista}"/>
+                    <div class="uk-margin">
+                        <h:outputLabel value="profesor" styleClass="uk-form-label primera-mayuscula" rendered="#{not empty heredarAlumnoControlador.profesorModeloLista}"/>
+                        <div class="uk-form-controls">
+                            <h:selectOneMenu id="seleccion-profesor" value="#{heredarAlumnoControlador.idProfeosor}" styleClass="uk-select" rendered="#{not empty heredarAlumnoControlador.profesorModeloLista}">
+                                <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
+                                <f:selectItems value="#{heredarAlumnoControlador.profesorModeloLista}"
+                                               var="profesorModelo"
+                                               itemLabel="${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}"
+                                               itemValue="${profesorModelo.id}"/>
+                            </h:selectOneMenu>
+                        </div>
+                        <h:message for="seleccion-profesor" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                    </div>
+                    <div class="uk-margin uk-flex uk-flex-right">
+                        <h:commandButton value="Buscar" >
+                            <f:ajax execute="seleccion-ciclo-escolar seleccion-profesor" listener="#{heredarAlumnoControlador.buscaGrupo()}"/>
+                        </h:commandButton>
+                    </div>
+                    <h:panelGroup id="grupos" layout="block" rendered="#{heredarAlumnoControlador.busca}">
+                        <h:outputText value="EL profesor y ciclo escolar seleccionador aún no tiene grupos asiganos" rendered="${empty heredarAlumnoControlador.grupoModeloLista}"/>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+            <div class="uk-width-2-3">
+                <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
+                    <h:form id="formulario-alumnos">
+                        <div class="uk-card-header">
+                            <input type="checkbox">Seleccionar todos</input>
+                            <input type="checkbox">Deselecionat todos</input>
+                        </div>
+                        <div class="uk-card-body">
+                            <input type="checkbox">Nombre Apellido paterno Apellido materno</input>
+                            <input type="checkbox">Nombre Apellido paterno Apellido materno</input>
+                            <input type="checkbox">Nombre Apellido paterno Apellido materno</input>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </ui:define>
+    <ui:define name="file-js">
+        <h:outputScript library="js" name="/administracion/heredar-alumno.js"/>
+    </ui:define>
+</ui:composition>
