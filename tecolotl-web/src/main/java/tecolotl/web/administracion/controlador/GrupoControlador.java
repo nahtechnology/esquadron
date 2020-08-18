@@ -149,7 +149,8 @@ public class GrupoControlador implements Serializable {
 
     public void buscaCicloEscolar() {
         if (cicloEscolarModeloLista == null || cicloEscolarModeloLista.isEmpty()) {
-            cicloEscolarModeloLista = cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo());
+            cicloEscolarModeloLista =
+                    cicloEscolarSessionBean.busca(escuelaBaseModelo.getClaveCentroTrabajo()).stream().filter(CicloEscolarModelo::getActivo).collect(Collectors.toList());
         }
     }
 
@@ -329,5 +330,13 @@ public class GrupoControlador implements Serializable {
 
     public void setGrupoIdReasignar(String grupoIdReasignar) {
         this.grupoIdReasignar = grupoIdReasignar;
+    }
+
+    public ProfesorModelo getProfesorModelo() {
+        return profesorModelo;
+    }
+
+    public void setProfesorModelo(ProfesorModelo profesorModelo) {
+        this.profesorModelo = profesorModelo;
     }
 }

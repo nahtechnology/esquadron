@@ -10,11 +10,11 @@ import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
 import tecolotl.profesor.sesion.GrupoSesionBean;
 import tecolotl.profesor.sesion.ProfesorSesionBean;
 
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -64,12 +64,8 @@ public class HeredarAlumnoControlador implements Serializable {
         });
     }
 
-    public void buscaAlumno() {
-        alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno(UUID.fromString(idGrupo));
-    }
-
-    public void hereda() {
-        logger.info(Arrays.toString(alumnosSeleccionLista.toArray()));
+    public void buscaAlumnosGrupo(AjaxBehaviorEvent event) {
+        logger.info("---");
     }
 
     public String getGrupo() {

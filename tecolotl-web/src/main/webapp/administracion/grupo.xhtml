@@ -19,10 +19,14 @@
     <f:metadata>
         <f:viewParam name="escuela" value="#{grupoControlador.claveCentroTrabajo}"/>
         <f:viewParam name="profesor" value="#{grupoControlador.profesor}"/>
+        <f:viewParam name="nombre" value="#{grupoControlador.profesorModelo.nombre}"/>
+        <f:viewParam name="ap" value="#{grupoControlador.profesorModelo.apellidoPaterno}"/>
+        <f:viewParam name="am" value="#{grupoControlador.profesorModelo.apellidoMaterno}"/>
         <f:viewAction action="#{grupoControlador.inicio}"/>
     </f:metadata>
     <ui:define name="contenido">
-        <div uk-grid="">
+        <strong>Seleccione el ciclo escolar para el profesor: ${param['nombre']}</strong>
+        <div uk-grid="" class="uk-margin">
             <div class="uk-width-1-3">
                 <h:outputText value="Este profesor aun no tiene relacionado un ciclo escolar" rendered="#{empty grupoControlador.cicloEscolarModeloMapa}"/>
                 <h:form id="formulario-" rendered="#{not empty grupoControlador.cicloEscolarModeloMapa}">
@@ -60,7 +64,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td colspan="3">
+                                            <td colspan="4">
                                                 <div class="uk-flex uk-flex-center">
                                                     <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
                                                 </div>
@@ -75,7 +79,7 @@
                                          var="grupoModelo"
                                          styleClass="tabla-grupo uk-table uk-table-divider uk-table-middle uk-table-hover"
                                          headerClass="uk-background-primary uk-text-center"
-                                         columnClasses="uk-text-center,uk-text-center,uk-text-center">
+                                         columnClasses="uk-text-center,uk-text-center,uk-text-center,uk-text-center">
                                 <h:column>
                                     <f:facet name="header">
                                         <h:outputText styleClass="letra-titulo"
@@ -129,6 +133,7 @@
                                                         <h:outputText pt:uk-icon="icon: move" styleClass="uk-margin-small-right uk-icon"/>
                                                         <span class="uk-text-middle"><h:outputText value="heredar alumno" styleClass="primera-mayuscula uk-display-inline-block"/></span>
                                                         <f:param name="grupo" value="#{grupoModelo.id}"/>
+                                                        <f:param name="grupo-nombre" value="${grupoModelo.grado} ${grupoModelo.grupo}"/>
                                                         <f:param name="escuela" value="#{grupoControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
                                                     </h:link>
                                                 </li>
@@ -308,10 +313,15 @@
                             <f:param value="#{grupoControlador.grupoModelo.grado}"/>
                             <f:param value="#{grupoControlador.grupoModelo.grupo}"/>
                         </h:outputFormat>
-                        <div class="uk-width-1-1@s">
-                            <h:outputLabel value="Alumno" for="radio-alumno"/>
+                        <div class="uk-margin">
+                            <h:outputText value="No hay alumnos para reasigar" rendered="#{empty grupoControlador.alumnoModeloLista}"/>
+                            <h:outputLabel value="Alumno" for="radio-alumno" rendered="#{not empty grupoControlador.alumnoModeloLista}"/>
                             <div class="uk-form-controls">
-                                <h:selectOneMenu id="radio-alumno" value="#{grupoControlador.alumnoIdReasignar}" styleClass="uk-select" action="#{grupoControlador.buscaProfesor()}">
+                                <h:selectOneMenu id="radio-alumno"
+                                                 rendered="#{not empty grupoControlador.alumnoModeloLista}"
+                                                 value="#{grupoControlador.alumnoIdReasignar}"
+                                                 styleClass="uk-select"
+                                                 action="#{grupoControlador.buscaProfesor()}">
                                     <f:selectItems value="#{grupoControlador.alumnoModeloLista}"
                                                    var="alumnoModelo"
                                                    itemLabel="${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} ${alumnoModelo.apodo}"
@@ -322,10 +332,9 @@
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
-                        <h:commandButton value="Siguiente" styleClass="uk-button uk-button-secondary" pt:uk-toggle="#modal-reasigna-alumno">
+                        <h:commandButton value="Siguiente" disabled="#{empty grupoControlador.alumnoModeloLista}" styleClass="uk-button uk-button-secondary" pt:uk-toggle="#modal-reasigna-alumno">
                             <f:actionListener binding="#{grupoControlador.buscaCicloEscolar()}"/>
                             <f:ajax execute="radio-alumno"
-                                    disabled="#{empty grupoControlador.alumnoModeloLista}"
                                     listener="#{grupoControlador.buscaProfesor}"
                                     render="formulario-reasigna-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
                         </h:commandButton>
@@ -364,7 +373,7 @@
                                                    var="profesorModelo"
                                                    itemLabel="${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}"
                                                    itemValue="${profesorModelo.id}"/>
-                                    <f:ajax render="radio-alumno boton-reasignaralumno" execute="@this" listener="#{grupoControlador.buscaAlumno}"/>
+                                    <f:ajax onevent="change" render="radio-alumno boton-reasignaralumno" execute="@this" listener="#{grupoControlador.buscaAlumno}"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
