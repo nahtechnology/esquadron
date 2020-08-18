@@ -15,7 +15,7 @@
             </h:panelGroup>
         </ui:repeat>
     </h:panelGroup>
-<h5 class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.extra.alumns']}</h5>
+<h5  class="uk-text-uppercase uk-margin-small-left">#{administracion['dashboard.extra.alumns']}</h5>
     <h:panelGroup layout="block" id="alumnos-extra" style="max-height: 180px; overflow: auto;" styleClass="left-content-box scroll-nav-left uk-margin-top">
         <ui:repeat value="#{estatusControlador.alumnoTatalesModeloLista}" var="alumnoTatalesModelo">
             <h:panelGroup layout="block" styleClass="uk-flex uk-flex-wrap uk-flex-between" rendered="#{alumnoTatalesModelo.totalAlumnosLicencia - alumnoTatalesModelo.totalAlumnos lt 0}">
