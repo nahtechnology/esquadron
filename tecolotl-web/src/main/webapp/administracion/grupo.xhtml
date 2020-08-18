@@ -24,6 +24,17 @@
         <f:viewParam name="am" value="#{grupoControlador.profesorModelo.apellidoMaterno}"/>
         <f:viewAction action="#{grupoControlador.inicio}"/>
     </f:metadata>
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
+            <li class="uk-parent uk-open">
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg"  styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <ul class="uk-nav-sub">
+                    <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
     <ui:define name="contenido">
         <strong>Seleccione el ciclo escolar para el profesor: ${param['nombre']}</strong>
         <div uk-grid="" class="uk-margin">
