@@ -158,9 +158,12 @@
                         </li>
                     </ui:repeat>
                 </ul>
-
             </div>
-
+            <h:form id="formulario-descargable">
+                <h:commandButton id="boton:incrementar" style="display: none">
+                    <f:ajax listener="#{asignarActividadControlador.incrementaDescargables}"/>
+                </h:commandButton>
+            </h:form>
             <script type="text/javascript">
                 let letrero = "#{profesor['you.need.to.select.an.activity']}";
                 let confirmacion = "#{profesor['modal.confirma']}";

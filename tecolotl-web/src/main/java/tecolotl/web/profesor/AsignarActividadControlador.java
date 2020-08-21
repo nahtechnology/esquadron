@@ -1,5 +1,6 @@
 package tecolotl.web.profesor;
 
+import tecolotl.administracion.sesion.EscuelaSesionBean;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.alumno.sesion.NivelLenguajeSesionBean;
 import tecolotl.profesor.modelo.ActividadModelo;
@@ -31,6 +32,12 @@ public class AsignarActividadControlador implements Serializable {
     private GrupoAlumnoSesionBean grupoAlumnoSesionBean;
 
     @Inject
+    private EscuelaSesionBean escuelaSesionBean;
+
+    @Inject
+    private ProfesorControlador profesorControlador;
+
+    @Inject
     private Logger logger;
 
     private List<ActividadModelo> actividadModeloLista;
@@ -57,6 +64,10 @@ public class AsignarActividadControlador implements Serializable {
             grupoAlumnoSesionBean.tarea(UUID.fromString(grupo), actividad, UUID.fromString(alumno), 1, (short)actividadModeloLista.get(0).getCodigoNivelLenguaje(), Boolean.parseBoolean(verTarea));
             return "admin-alumnos";
         }
+    }
+
+    public void incrementaDescargables() {
+        escuelaSesionBean.incrementaDescargables(profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo());
     }
 
     public List<String> buscaNiveles() {

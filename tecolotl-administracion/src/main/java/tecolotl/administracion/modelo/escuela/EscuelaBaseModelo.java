@@ -19,10 +19,9 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
     private String nombre;
 
     private Integer galaxia;
-
     private boolean bloqueoAlumno;
-
     private boolean bloqueoProfesor;
+    private Integer descargables;
 
     public EscuelaBaseModelo() {
     }
@@ -37,6 +36,7 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
         galaxia = escuelaEntidad.getGalaxia();
         bloqueoAlumno = escuelaEntidad.isBloqueoAlumno();
         bloqueoProfesor = escuelaEntidad.isBloqueoProfesor();
+        descargables = escuelaEntidad.getDescargables();
     }
 
     @Override

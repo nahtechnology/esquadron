@@ -43,6 +43,10 @@ import java.util.StringJoiner;
 		@NamedQuery(
 				name = "EscuelaEntidad.galaxia",
 				query = "SELECT e.galaxia FROM EscuelaEntidad e WHERE e.claveCentroTrabajo = :claveCentroTrabajo"
+		),
+		@NamedQuery(
+				name = "EscuelaEntidad.incrementa",
+				query = "UPDATE EscuelaEntidad e SET e.descargables = e.descargables + 1 WHERE e.claveCentroTrabajo = :claveCentroTrabajo"
 		)
 })
 public class EscuelaEntidad {
@@ -52,6 +56,7 @@ public class EscuelaEntidad {
 	private Integer galaxia;
 	private boolean bloqueoAlumno;
 	private boolean bloqueoProfesor;
+	private Integer descargables;
 	private MotivoBloqueoEntidad motivoBloqueoEntidad;
 	private List<ContactoEntidad> contactoEntidadLista;
 
@@ -133,6 +138,16 @@ public class EscuelaEntidad {
 
 	public void setBloqueoProfesor(boolean bloqueoProfesor) {
 		this.bloqueoProfesor = bloqueoProfesor;
+	}
+
+	@Basic
+	@Column(name = "descargables")
+	public Integer getDescargables() {
+		return descargables;
+	}
+
+	public void setDescargables(Integer descargables) {
+		this.descargables = descargables;
 	}
 
 	@OneToMany(mappedBy = "contactoEntidadPK.escuelaEntidad", fetch = FetchType.LAZY)

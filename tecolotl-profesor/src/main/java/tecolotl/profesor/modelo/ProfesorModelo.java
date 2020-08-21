@@ -37,6 +37,7 @@ public class ProfesorModelo extends PersonaModelo {
         super(profesorEntidad);
         this.id = profesorEntidad.getId();
         correoEletronico = profesorEntidad.getCorreoEletronico();
+        escuelaBaseModelo = new EscuelaBaseModelo(profesorEntidad.getEscuelaEntidad().getClaveCentroTrabajo());
     }
 
     public ProfesorModelo(ProfesorModelo profesorModelo) {

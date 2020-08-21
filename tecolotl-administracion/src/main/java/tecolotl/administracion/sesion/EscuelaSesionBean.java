@@ -250,4 +250,15 @@ public class EscuelaSesionBean implements Serializable {
 		typedQuery.setParameter("claveCentroTrabajo", claveCentroTrabajo);
 		return typedQuery.getSingleResult();
 	}
+
+	/**
+	 * Incrementa el contador de desacables de una escuela
+	 * @param claveCentroTrabajo Clave centro de trabajo de la escuela
+	 * @return Número de elementos modificados
+	 */
+	public int incrementaDescargables(@NotNull String claveCentroTrabajo) {
+		Query query = entityManager.createNamedQuery("EscuelaEntidad.incrementa");
+		query.setParameter("claveCentroTrabajo", claveCentroTrabajo);
+		return query.executeUpdate();
+	}
 }
