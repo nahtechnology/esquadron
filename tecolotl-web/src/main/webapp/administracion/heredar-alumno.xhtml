@@ -9,8 +9,8 @@
     <ui:define name="menu"></ui:define>
     <ui:define name="contenido">
         <f:metadata>
-            <f:viewParam name="grupo" value="#{heredarAlumnoControlador.grupo}" required="true"/>
-            <f:viewParam name="escuela" value="#{heredarAlumnoControlador.escuela}" required="true"/>
+            <f:viewParam name="grupo" value="#{heredarAlumnoControlador.grupo}"/>
+            <f:viewParam name="escuela" value="#{heredarAlumnoControlador.escuela}"/>
             <f:viewAction action="#{heredarAlumnoControlador.inicio}"/>
         </f:metadata>
         <strong>Selecciona los alumnos que desee heredar al grupo: ${param['grupo-nombre']}</strong>
@@ -71,8 +71,9 @@
                         </div>
                         <h:message id="mensaje-seleccion-grupo" for="seleccion-grupo" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
                         <div class="uk-margin uk-flex uk-flex-right">
-                            <h:commandButton value="Buscar2" styleClass="uk-button uk-button-primary">
+                            <h:commandButton value="buscar" styleClass="uk-button uk-button-primary">
                                 <f:ajax execute="seleccion-grupo"
+                                        render="@form formulario-alumnos"
                                         listener="#{heredarAlumnoControlador.buscaAlumnosGrupo}"
                                         onevent="function funcion(data){ if (data.status === 'success') limpiaSeleccion();}"/>
                             </h:commandButton>
@@ -118,6 +119,12 @@
                                                itemLabel="${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} - ${alumnoModelo.apodo}"
                                                itemValue="${alumnoModelo.id}"/>
                             </h:selectManyCheckbox>
+                        </div>
+                        <div class="uk-card-footer uk-flex uk-flex-right">
+                            <h:commandButton value="heredar"
+                                             styleClass="uk-button uk-button-primary"
+                                             disabled="${empty heredarAlumnoControlador.alumnoModeloLista}"
+                                             action="#{heredarAlumnoControlador.hereda}"/>
                         </div>
                     </h:form>
                 </div>
