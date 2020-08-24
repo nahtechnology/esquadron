@@ -2,9 +2,11 @@ var ejercicios;
 var niveles,temarioBtn,cuerpo;
 var misTemas = new Set();
 var mapas;
+let btnConteoDescagas;
 document.addEventListener('DOMContentLoaded', function (evento) {
     var btnClose = document.querySelector('#temario > div > div > span');
     var nivelesFiltro = document.querySelector('ul.nav-default-profesor');
+    btnConteoDescagas = document.getElementById('formulario-descargable:boton-incrementar');
     ejercicios = document.querySelector('.js-filter');
     niveles = document.querySelectorAll('.uk-subnav-alumno li:not(:first-child)');
     agregaListener(ejercicios.querySelectorAll('li .uk-card-footer'));
@@ -107,6 +109,7 @@ function descargaDocumento(nombreArchivo, llave) {
         else {
             console.log(data);
             let hiperVinculo = document.createElement('a');
+            btnConteoDescagas.click();
             hiperVinculo.setAttribute("href", URL.createObjectURL(new Blob([data.Body], {type: data.ContentType})));
             hiperVinculo.setAttribute("download", nombreArchivo);
             hiperVinculo.style.visibility = 'hidden';

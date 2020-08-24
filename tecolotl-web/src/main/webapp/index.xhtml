@@ -15,7 +15,8 @@
 <!--	<meta property="o"-->
 	<link  rel="shortcut icon"  href="#{resource['img/favicon.ico']}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-	<link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/estilos-landing.css"/>
+<!--	<link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/estilos-landing.css"/>-->
+	<h:outputStylesheet library="css" name="estilos-landing.css"/>
 	<!-- Facebook Pixel Code -->
 	<script>
 		!function(f,b,e,v,n,t,s)
@@ -245,31 +246,352 @@
 		<div>
 			<h:panelGroup layout="block" id="seccion3">
 				<div>
-					<div>
-						<div>
-							<input type="text" name="" placeholder="Nombre" maxlength="60"/>
-							<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" alt=""/>
-						</div>
-						<div>
-							<input type="text" name="" placeholder="Colegio" maxlength="60"/>
-							<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" alt=""/>
-						</div>
-						<div>
-							<input type="text" name="" placeholder="Cuidad" maxlength="60"/>
-							<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" alt=""/>
-						</div>
-						<div>
-							<input type="email" name="" placeholder="Correo" maxlength="60"/>
-							<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg" alt=""/>
-						</div>
-						<div>
-							<input type="tel" name="" placeholder="Telefono" maxlength="15" pattern="[0-9]{3}-[0-9]{8}"/>
-							<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" alt=""/>
-						</div>
-						<div>
-							<div>Free trial!</div>
-						</div>
-					</div>
+						<!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
+						<form action='https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit' name='form' id='form' method='POST' accept-charset='UTF-8' enctype='multipart/form-data'>
+							<input type="hidden" name="zf_referrer_name" value=""/><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
+							<input type="hidden" name="zf_redirect_url" value=""/><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
+							<input type="hidden" name="zc_gad" value=""/><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
+							<h2 style="margin-bottom: 20px; color: white;">Déjanos tus datos</h2>
+							<!--Name-->
+							<div>
+								<label>Nombre</label>
+								<div class="input-nombre">
+									<input type="text" required=""  placeholder="First" maxlength="255" name="Name_First" fieldType="7" />
+									<input type="text" required="" placeholder="last" maxlength="255" name="Name_Last" fieldType="7" />
+								</div>
+							</div>
+							<!--Phone-->
+							<div>
+								<label>Whatsapp</label>
+								<input type="text" required="" placeholder="Number" compname="PhoneNumber" name="PhoneNumber_countrycode" phoneFormat="1" isCountryCodeEnabled="false" maxlength="20" value="" fieldType="11" id="international_PhoneNumber_countrycode" />
+							</div>
+							<!--Email-->
+							<div>
+								<label>Email</label>
+								<input type="text" maxlength="255" name="Email" value="" required="" fieldType="9" />
+							</div>
+							<!--Dropdown-->
+							<div>
+								<label>Nivel en el que enseño</label>
+								<select name="Dropdown" required=""><option selected="true" value="-Select-">-Select-</option>
+									<option value="Preescolar">Preescolar</option>
+									<option value="Primaria">Primaria</option>
+									<option value="Secundaria">Secundaria</option>
+								</select>
+							</div>
+							<!--Single Line-->
+							<div>
+								<label>Colegio</label>
+								<input  type="text" name="SingleLine"  required="" value="" fieldType="1" maxlength="255" />
+							</div>
+							<!--Website-->
+							<div>
+								<label>Website del colegio</label>
+								<input type="text" maxlength="2083" name="Website" value=""/>
+							</div>
+							<!--Address-->
+							<div class="contenedor-input">
+								<label>Direccion del colegio</label>
+								<div>
+									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Street Address" name="Address_AddressLine1"/>
+									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Address Line 2" name="Address_AddressLine2"/>
+									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="City" name="Address_City"/>
+									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="State/Region/Province" name="Address_Region"/>
+									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Postal / Zip Code" name="Address_ZipCode"/>
+									<select required="" name="Address_Country"><option>-Select-</option>
+									<option>&Aring;land Islands</option>
+									<option>Afghanistan</option>
+									<option>Akrotiri</option>
+									<option>Albania</option>
+									<option>Algeria</option>
+									<option>American Samoa</option>
+									<option>Andorra</option>
+									<option>Angola</option>
+									<option>Anguilla</option>
+									<option>Antarctica</option>
+									<option>Antigua and Barbuda</option>
+									<option>Argentina</option>
+									<option>Armenia</option>
+									<option>Aruba</option>
+									<option>Ashmore and Cartier Islands</option>
+									<option>Australia</option>
+									<option>Austria</option>
+									<option>Azerbaijan</option>
+									<option>Bahrain</option>
+									<option>Bangladesh</option>
+									<option>Barbados</option>
+									<option>Bassas Da India</option>
+									<option>Belarus</option>
+									<option>Belgium</option>
+									<option>Belize</option>
+									<option>Benin</option>
+									<option>Bermuda</option>
+									<option>Bhutan</option>
+									<option>Bolivia</option>
+									<option>Bosnia and Herzegovina</option>
+									<option>Botswana</option>
+									<option>Bouvet Island</option>
+									<option>Brazil</option>
+									<option>British Indian Ocean Territory</option>
+									<option>British Virgin Islands</option>
+									<option>Brunei</option>
+									<option>Bulgaria</option>
+									<option>Burkina Faso</option>
+									<option>Burma</option>
+									<option>Burundi</option>
+									<option>Cambodia</option>
+									<option>Cameroon</option>
+									<option>Canada</option>
+									<option>Cape Verde</option>
+									<option>Caribbean Netherlands</option>
+									<option>Cayman Islands</option>
+									<option>Central African Republic</option>
+									<option>Chad</option>
+									<option>Chile</option>
+									<option>China</option>
+									<option>Christmas Island</option>
+									<option>Clipperton Island</option>
+									<option>Cocos &#x28;Keeling&#x29; Islands</option>
+									<option>Colombia</option>
+									<option>Comoros</option>
+									<option>Cook Islands</option>
+									<option>Coral Sea Islands</option>
+									<option>Costa Rica</option>
+									<option>Cote D&#x27;Ivoire</option>
+									<option>Croatia</option>
+									<option>Cuba</option>
+									<option>Cura&ccedil;ao</option>
+									<option>Cyprus</option>
+									<option>Czech Republic</option>
+									<option>Democratic Republic of the Congo</option>
+									<option>Denmark</option>
+									<option>Dhekelia</option>
+									<option>Djibouti</option>
+									<option>Dominica</option>
+									<option>Dominican Republic</option>
+									<option>Ecuador</option>
+									<option>Egypt</option>
+									<option>El Salvador</option>
+									<option>Equatorial Guinea</option>
+									<option>Eritrea</option>
+									<option>Estonia</option>
+									<option>Ethiopia</option>
+									<option>Europa Island</option>
+									<option>Falkland Islands &#x28;Islas Malvinas&#x29;</option>
+									<option>Faroe Islands</option>
+									<option>Federated States of Micronesia</option>
+									<option>Fiji</option>
+									<option>Finland</option>
+									<option>France</option>
+									<option>French Guiana</option>
+									<option>French Polynesia</option>
+									<option>French Southern and Antarctic Lands</option>
+									<option>Gabon</option>
+									<option>Gaza Strip</option>
+									<option>Georgia</option>
+									<option>Germany</option>
+									<option>Ghana</option>
+									<option>Gibraltar</option>
+									<option>Glorioso Islands</option>
+									<option>Greece</option>
+									<option>Greenland</option>
+									<option>Grenada</option>
+									<option>Guadeloupe</option>
+									<option>Guam</option>
+									<option>Guatemala</option>
+									<option>Guernsey</option>
+									<option>Guinea</option>
+									<option>Guinea-bissau</option>
+									<option>Guyana</option>
+									<option>Haiti</option>
+									<option>Heard Island and Mcdonald Islands</option>
+									<option>Holy See &#x28;Vatican City&#x29;</option>
+									<option>Honduras</option>
+									<option>Hong Kong</option>
+									<option>Hungary</option>
+									<option>Iceland</option>
+									<option>India</option>
+									<option>Indonesia</option>
+									<option>Iran</option>
+									<option>Iraq</option>
+									<option>Ireland</option>
+									<option>Isle of Man</option>
+									<option>Israel</option>
+									<option>Italy</option>
+									<option>Jamaica</option>
+									<option>Jan Mayen</option>
+									<option>Japan</option>
+									<option>Jersey</option>
+									<option>Jordan</option>
+									<option>Juan De Nova Island</option>
+									<option>Kazakhstan</option>
+									<option>Kenya</option>
+									<option>Kiribati</option>
+									<option>Kuwait</option>
+									<option>Kyrgyzstan</option>
+									<option>Laos</option>
+									<option>Latvia</option>
+									<option>Lebanon</option>
+									<option>Lesotho</option>
+									<option>Liberia</option>
+									<option>Libya</option>
+									<option>Liechtenstein</option>
+									<option>Lithuania</option>
+									<option>Luxembourg</option>
+									<option>Macau</option>
+									<option>Macedonia</option>
+									<option>Madagascar</option>
+									<option>Malawi</option>
+									<option>Malaysia</option>
+									<option>Maldives</option>
+									<option>Mali</option>
+									<option>Malta</option>
+									<option>Marshall Islands</option>
+									<option>Martinique</option>
+									<option>Mauritania</option>
+									<option>Mauritius</option>
+									<option>Mayotte</option>
+									<option>Mexico</option>
+									<option>Moldova</option>
+									<option>Monaco</option>
+									<option>Mongolia</option>
+									<option>Montenegro</option>
+									<option>Montserrat</option>
+									<option>Morocco</option>
+									<option>Mozambique</option>
+									<option>Myanmar</option>
+									<option>Namibia</option>
+									<option>Nauru</option>
+									<option>Navassa Island</option>
+									<option>Nepal</option>
+									<option>Netherlands</option>
+									<option>Netherlands Antilles</option>
+									<option>New Caledonia</option>
+									<option>New Zealand</option>
+									<option>Nicaragua</option>
+									<option>Niger</option>
+									<option>Nigeria</option>
+									<option>Niue</option>
+									<option>Norfolk Island</option>
+									<option>North Korea</option>
+									<option>Northern Mariana Islands</option>
+									<option>Norway</option>
+									<option>Oman</option>
+									<option>Pakistan</option>
+									<option>Palau</option>
+									<option>Palestine</option>
+									<option>Panama</option>
+									<option>Papua New Guinea</option>
+									<option>Paracel Islands</option>
+									<option>Paraguay</option>
+									<option>Peru</option>
+									<option>Philippines</option>
+									<option>Pitcairn Islands</option>
+									<option>Poland</option>
+									<option>Portugal</option>
+									<option>Puerto Rico</option>
+									<option>Qatar</option>
+									<option>Republic of the Congo</option>
+									<option>Reunion</option>
+									<option>Romania</option>
+									<option>Russia</option>
+									<option>Rwanda</option>
+									<option>Saint Barth&Atilde;&copy;lemy</option>
+									<option>Saint Helena</option>
+									<option>Saint Kitts and Nevis</option>
+									<option>Saint Lucia</option>
+									<option>Saint Martin</option>
+									<option>Saint Pierre and Miquelon</option>
+									<option>Saint Vincent and the Grenadines</option>
+									<option>Samoa</option>
+									<option>San Marino</option>
+									<option>Sao Tome and Principe</option>
+									<option>Saudi Arabia</option>
+									<option>Senegal</option>
+									<option>Serbia</option>
+									<option>Seychelles</option>
+									<option>Sierra Leone</option>
+									<option>Singapore</option>
+									<option>Sint Maarten</option>
+									<option>Slovakia</option>
+									<option>Slovenia</option>
+									<option>Solomon Islands</option>
+									<option>Somalia</option>
+									<option>South Africa</option>
+									<option>South Georgia and the South Sandwich Islands</option>
+									<option>South Korea</option>
+									<option>South Sudan</option>
+									<option>Spain</option>
+									<option>Spratly Islands</option>
+									<option>Sri Lanka</option>
+									<option>Sudan</option>
+									<option>Suriname</option>
+									<option>Svalbard</option>
+									<option>Swaziland</option>
+									<option>Sweden</option>
+									<option>Switzerland</option>
+									<option>Syria</option>
+									<option>Taiwan</option>
+									<option>Tajikistan</option>
+									<option>Tanzania</option>
+									<option>Thailand</option>
+									<option>The Bahamas</option>
+									<option>The Gambia</option>
+									<option>Timor-leste</option>
+									<option>Togo</option>
+									<option>Tokelau</option>
+									<option>Tonga</option>
+									<option>Trinidad and Tobago</option>
+									<option>Tromelin Island</option>
+									<option>Tunisia</option>
+									<option>Turkey</option>
+									<option>Turkmenistan</option>
+									<option>Turks and Caicos Islands</option>
+									<option>Tuvalu</option>
+									<option>Uganda</option>
+									<option>Ukraine</option>
+									<option>United Arab Emirates</option>
+									<option>United Kingdom</option>
+									<option>United States</option>
+									<option>Uruguay</option>
+									<option>Uzbekistan</option>
+									<option>Vanuatu</option>
+									<option>Venezuela</option>
+									<option>Vietnam</option>
+									<option>Virgin Islands</option>
+									<option>Wake Island</option>
+									<option>Wallis and Futuna</option>
+									<option>West Bank</option>
+									<option>Western Sahara</option>
+									<option>Yemen</option>
+									<option>Zambia</option>
+									<option>Zimbabwe</option>
+								</select>
+								</div>
+						    </div>
+							<!--Checkbox-->
+							<div class="contenedor-input">
+								<label>Me enteré por el siguiente medio</label>
+								<div class="enlaces-redes">
+									<div>
+										<input type="checkbox" id="Checkbox_1"  name="Checkbox" value="Facebook"/>
+										<label for="Checkbox_1">Facebook</label>
+									</div>
+									<div>
+										<input type="checkbox" id="Checkbox_2"  name="Checkbox" value="Likedin"/>
+										<label for="Checkbox_2">Likedin</label>
+									</div>
+									<div>
+										<input type="checkbox" id="Checkbox_3"  name="Checkbox" value="Amigo&#x2f;conocido"/>
+										<label for="Checkbox_3">Amigo&#x2f;conocido</label>
+									</div>
+									<div>
+										<input type="checkbox" id="Checkbox_4"  name="Checkbox" value="Google"/>
+										<label for="Checkbox_4">Google</label>
+									</div>
+								</div>
+							</div>
+							<button type="submit">Submit</button></form>
 				</div>
 				<div>
 				<h:panelGroup layout="block">
@@ -390,6 +712,6 @@
 	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/landing/animacion-espacio.js"/>
     <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/smtp.js"/>
 <!--	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/email.js"/>-->
-	<h:outputScript library="js" name="email.js"/>
+<!--	<h:outputScript library="js" name="email.js"/>-->
 </h:body>
 </html>

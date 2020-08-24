@@ -160,7 +160,7 @@
                 </ul>
             </div>
             <h:form id="formulario-descargable">
-                <h:commandButton id="boton:incrementar" style="display: none">
+                <h:commandButton id="boton-incrementar" style="display: none">
                     <f:ajax listener="#{asignarActividadControlador.incrementaDescargables}"/>
                 </h:commandButton>
             </h:form>
@@ -173,8 +173,8 @@
         <ui:define name="file-js">
 
             <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
-            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>
-            <ui:remove><h:outputScript library="js" name="/profesor/asignar-actividad.js"/></ui:remove>
+<!--            <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>-->
+           <h:outputScript library="js" name="/profesor/asignar-actividad.js"/>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
             <ui:remove><h:outputScript library="js" name="/alumno/filtro.js"/></ui:remove>
         </ui:define>
