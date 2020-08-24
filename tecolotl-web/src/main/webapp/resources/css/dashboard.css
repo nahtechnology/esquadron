@@ -400,3 +400,12 @@ input:checked + .slider:before {
 }
 
 /*boton desactivado*/
+
+
+/*tabla modulo administracion checkbox*/
+.tabla-checkbox tr{
+display: block;
+}
+.tabla-checkbox td{
+display: table-row;
+}

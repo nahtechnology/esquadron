@@ -75,7 +75,7 @@
                                 <f:ajax execute="seleccion-grupo"
                                         render="@form formulario-alumnos"
                                         listener="#{heredarAlumnoControlador.buscaAlumnosGrupo}"
-                                        onevent="function funcion(data){ if (data.status === 'success') limpiaSeleccion();}"/>
+                                        onevent="function funcion(data){ if (data.status === 'success'){limpiaSeleccion(); eventoCheckbox(); tablaCargada();} }"/>
                             </h:commandButton>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                                     </tbody>
                                 </table>
                             </ui:fragment>
-                            <h:selectManyCheckbox value="${heredarAlumnoControlador.alumnosSeleccionLista}" rendered="#{not empty heredarAlumnoControlador.alumnoModeloLista}">
+                            <h:selectManyCheckbox styleClass="tabla-checkbox" value="${heredarAlumnoControlador.alumnosSeleccionLista}" rendered="#{not empty heredarAlumnoControlador.alumnoModeloLista}">
                                 <f:selectItems value="#{heredarAlumnoControlador.alumnoModeloLista}"
                                                var="alumnoModelo"
                                                itemLabel="${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} - ${alumnoModelo.apodo}"
