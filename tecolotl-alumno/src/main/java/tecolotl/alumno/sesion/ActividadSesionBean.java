@@ -167,4 +167,25 @@ public class ActividadSesionBean implements Serializable {
         entityManager.remove(actividadEntidad);
     }
 
+    /**
+     * Busca todas las actividades con su estatus
+     * @return Colección de {@link ActividadModelo}
+     */
+    public List<ActividadModelo> buscaEstatus() {
+        TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaEstatus", ActividadEntidad.class);
+        return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Cambia el estatus de activo/inactivo de un actividad
+     * @param idVideo Identificador del video
+     * @param estatus Estatus al que se desa cambiar
+     */
+    public int estatus(@NotNull String idVideo, @NotNull Boolean estatus) {
+        Query query = entityManager.createNamedQuery("ActividadEntidad.actualizaEstatus");
+        query.setParameter("estatus", estatus);
+        query.setParameter("idVideo", idVideo);
+        return query.executeUpdate();
+    }
+
 }

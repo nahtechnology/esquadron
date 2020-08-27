@@ -17,6 +17,10 @@
             <from-outcome>catalogo-administracion</from-outcome>
             <to-view-id>/administracion/catalogo-administracion.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>actividad</from-outcome>
+            <to-view-id>/administracion/actividad.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>
@@ -140,6 +144,14 @@
                     <value>#{heredarAlumnoControlador.escuelaBaseModelo.claveCentroTrabajo}</value>
                 </redirect-param>
             </redirect>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/administracion/actividad.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>dashboard</from-outcome>
+            <to-view-id>/administracion/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 

@@ -23,6 +23,7 @@ public class ActividadModelo {
     private Integer tiempo;
     private String preguntaDetonadora;
     private String transcripcion;
+    private Boolean estatus;
 
     public ActividadModelo() {
     }
@@ -34,14 +35,17 @@ public class ActividadModelo {
     public ActividadModelo(ActividadEntidad actividadEntidad) {
         this.idVideo = actividadEntidad.getId();
         this.puntaje = actividadEntidad.getPuntaje();
-        this.nivelLenguajeModeloLista = new ArrayList<>();
-        for (NivelLenguajeEntidad nivelLenguajeEntidad : actividadEntidad.getNivelLenguajeEntidad()) {
-            this.nivelLenguajeModeloLista.add(new NivelLenguajeModelo(nivelLenguajeEntidad));
+        if (actividadEntidad.getNivelLenguajeEntidad() != null) {
+            this.nivelLenguajeModeloLista = new ArrayList<>();
+            for (NivelLenguajeEntidad nivelLenguajeEntidad : actividadEntidad.getNivelLenguajeEntidad()) {
+                this.nivelLenguajeModeloLista.add(new NivelLenguajeModelo(nivelLenguajeEntidad));
+            }
         }
-        this.tipoEstudianteModelo = new TipoEstudianteModelo(actividadEntidad.getTipoEstudianteEntidad());
-        this.temaModelo = new TemaModelo(actividadEntidad.getTemaEntidad());
+        this.tipoEstudianteModelo = actividadEntidad.getTipoEstudianteEntidad() == null ? null : new TipoEstudianteModelo(actividadEntidad.getTipoEstudianteEntidad());
+        this.temaModelo = actividadEntidad.getTemaEntidad() == null ? null : new TemaModelo(actividadEntidad.getTemaEntidad());
         this.lenguaje = actividadEntidad.getLenguaje();
         this.tiempo = actividadEntidad.getTiempo();
+        this.estatus = actividadEntidad.getEstatus();
         this.preguntaDetonadora = actividadEntidad.getPreguntaDetonadora();
         this.setTranscripcion(actividadEntidad.getTrasncripcion());
     }
@@ -134,6 +138,14 @@ public class ActividadModelo {
 
     public void setTemaModelo(TemaModelo temaModelo) {
         this.temaModelo = temaModelo;
+    }
+
+    public Boolean getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Boolean estatus) {
+        this.estatus = estatus;
     }
 
     @Override

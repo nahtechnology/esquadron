@@ -8,6 +8,8 @@ import java.util.UUID;
 public class TareaAlumnoModelo {
 
     private UUID id;
+    private Short grado;
+    private String grupo;
     private Date fechaAsignacion;
     private String idActividad;
     private String nivelLenguaje;
@@ -28,6 +30,8 @@ public class TareaAlumnoModelo {
 
     public TareaAlumnoModelo(TareaAlumnoEntidad tareaAlumnoEntidad) {
         this.id = tareaAlumnoEntidad.getId();
+        this.grado = tareaAlumnoEntidad.getGrado();
+        this.grupo = tareaAlumnoEntidad.getGrupo();
         this.fechaAsignacion = tareaAlumnoEntidad.getFechaAsignacion();
         this.idActividad = tareaAlumnoEntidad.getIdActividad();
         this.calificacionTrascirpcion = tareaAlumnoEntidad.getCalificacionTrascirpcion();
@@ -46,6 +50,22 @@ public class TareaAlumnoModelo {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    public Short getGrado() {
+        return grado;
+    }
+
+    public void setGrado(Short grado) {
+        this.grado = grado;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
     }
 
     public Short getCalificacionMapamental() {

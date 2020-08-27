@@ -1,19 +1,14 @@
 package tecolotl.web.profesor;
 
-import tecolotl.alumno.modelo.AlumnoModelo;
-import tecolotl.alumno.sesion.AlumnoSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;
 import tecolotl.profesor.modelo.TareaAlumnoModelo;
 import tecolotl.profesor.sesion.CalificaTareaMapaMentalSesionBean;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
 

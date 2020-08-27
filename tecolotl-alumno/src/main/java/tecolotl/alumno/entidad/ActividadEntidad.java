@@ -36,6 +36,14 @@ import java.util.StringJoiner;
                 query = "SELECT NEW ActividadEntidad(a.id, a.preguntaDetonadora) FROM ActividadEntidad a JOIN a.nivelLenguajeEntidad nl WHERE nl.clave = :nivelLenguaje AND a.id NOT IN " +
                         "(SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM TareaGlosarioActividadEntidad tga JOIN " +
                         "tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"
+        ),
+        @NamedQuery(
+                name = "ActividadEntidad.buscaEstatus",
+                query = "SELECT new ActividadEntidad(e.id, e.estatus) FROM ActividadEntidad e"
+        ),
+        @NamedQuery(
+                name = "ActividadEntidad.actualizaEstatus",
+                query = "UPDATE ActividadEntidad a SET a.estatus = :estatus WHERE a.id = :idVideo"
         )
 })
 public class ActividadEntidad {
@@ -48,6 +56,7 @@ public class ActividadEntidad {
     private String trasncripcion;
     private TipoEstudianteEntidad tipoEstudianteEntidad;
     private TemaEntidad temaEntidad;
+    private Boolean estatus;
     private List<NivelLenguajeEntidad> nivelLenguajeEntidad;
     private List<GlosarioActividadEntidad> glosarioActividadEntidadLista;
 
@@ -56,6 +65,11 @@ public class ActividadEntidad {
 
     public ActividadEntidad(String id) {
         this.id = id;
+    }
+
+    public ActividadEntidad(String id, Boolean estatus) {
+        this.id = id;
+        this.estatus = estatus;
     }
 
     public ActividadEntidad(String id, String preguntaDetonadora) {
@@ -136,6 +150,16 @@ public class ActividadEntidad {
 
     public void setTrasncripcion(String trasncripcion) {
         this.trasncripcion = trasncripcion;
+    }
+
+    public Boolean getEstatus() {
+        return estatus;
+    }
+
+    @Basic
+    @Column(name = "estatus")
+    public void setEstatus(Boolean estatus) {
+        this.estatus = estatus;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)

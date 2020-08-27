@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/template/administracion/dashboard.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+    <f:metadata>
+        <f:viewAction action="#{administraActividadControlador.inicio}"/>
+    </f:metadata>
+    <ui:define name="contenido">
+        <h:form id="formulario-actividad">
+            <h:inputHidden id="entrada-actividad" value="#{administraActividadControlador.actividad}"/>
+            <h:commandButton onclick="return seleccionActividad(event)" value="desactivar" action="#{administraActividadControlador.bloquea}"/>
+        </h:form>
+        <ui:repeat value="#{administraActividadControlador.actividadModeloLista}" var="actividadModelo">
+            <img src="https://i.ytimg.com/vi/${actividadModelo.idVideo}/mqdefault.jpg"/>
+            <input type="radio" id="${actividadModelo.idVideo}" name="actividad" />"
+        </ui:repeat>
+    </ui:define>
+    <ui:define name="file-js">
+        <h:outputScript library="js" name="administracion/actividad.js"/>
+    </ui:define>
+</ui:composition>
