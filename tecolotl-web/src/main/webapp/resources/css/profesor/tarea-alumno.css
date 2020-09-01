@@ -59,23 +59,25 @@
 .visibilidad-fila{
     opacity: 0;
 }
-label[for="filtro-nivel"]{
+label[for="filtro-nivel"],label[for="filtro-grupo"]{
     font-family: 'Sniglet', "Arial Black", sans-serif;
     font-weight: 800;
     margin-right: 8px;
     color: black;
     font-size: 18px;
 }
-#filtro-nivel{
+#filtro-nivel,#filtro-grupo{
     display: inline-block;
     padding: 7px 9px;
     font-family: 'Sniglet', "Arial Black", sans-serif;
     width: 142px;
     text-transform: capitalize;
 }
-#filtro-nivel:focus{
+#filtro-nivel:focus,#filtro-grupo:focus{
     outline: none;
 }
+
+
 #tareas-asignadas,#tareas-promediadas,#promedio-general{
     display: inline-block;
     font-size: 0.875rem;

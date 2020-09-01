@@ -409,3 +409,79 @@ display: block;
 .tabla-checkbox td{
 display: table-row;
 }
+
+/*-----card-activity-------------------*/
+.card-actividades-bloqueadas{
+	width: 100%;
+	padding: 8px;
+	display: inline-block;
+	box-sizing: border-box;
+	border: 1px solid #4a4a4a;
+
+}
+
+.card-adtividad-desactivado{
+	background-color: #4a4a4a;
+}
+.card-adtividad-desactivado h6{
+	color: white;
+}
+.card-actividades-bloqueadas img{
+	width: 100%;
+	height: 140px;
+}
+.card-actividades-bloqueadas-titulos{
+	padding: 2px;
+	text-align: right;
+}
+.card-actividades-bloqueadas h6{
+	margin: 10px 0 0 0;
+	font-weight: 900;
+}
+
+.contenido-actividades{
+	display: grid;
+	grid-template-columns: repeat(5,1fr);
+	gap: 8px;
+}
+
+.posicion-fila-btn-desactivar{
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+.visibilidad-actividades > div{
+	display: none;
+}
+.visibilidad-actividad{
+	display: block !important;
+}
+
+/*filtrado tabla estilos*/
+.ver-tabla tbody tr{
+	display: none;
+}
+
+.ver-tabla tbody .ver-fila{
+	display: table-row ;
+}
+.tamano-cotenedor-input{
+	width: 32.333%;
+	box-sizing: border-box;
+}
+@media screen and (max-width: 1024px ){
+	.contenido-actividades{
+		grid-template-columns: repeat(4,1fr);
+	}
+}
+@media screen and (max-width: 768px ){
+	.contenido-actividades{
+		grid-template-columns: repeat(2,1fr);
+	}
+}
+
+@media screen and (max-width: 600px){
+	.contenido-actividades{
+		grid-template-columns: 1fr;
+	}
+}

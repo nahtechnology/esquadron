@@ -1,11 +1,18 @@
 let nivelesSet = new Set();
+let gruposSet = new Set();
+let textosSet = new Set();
 let nivelActual = document.querySelector('.elimina .uk-card-header > div > div:last-child > p:last-child').innerText.split(':')[1].trim();
-
+let gradoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(1)').textContent.split(':')[1].trim();
+let grupoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(2)').textContent.split(':')[1].trim();
+let nivelSelect = `hover-${nivelActual}`;
+let grupoSelect = grupoActual.concat(gradoActual);
 document.addEventListener('DOMContentLoaded',()=>{
     let seleccionFiltro = document.querySelector('#filtro-nivel');
+    let filtroGrupo = document.getElementById('filtro-grupo');
+    let contenedorOpcionesFiltro = document.createDocumentFragment();
     let nivelesTabla = document.querySelectorAll('.tabla-alumnos td > img');
     let indiceOpcion;
-    let conteoOpcion = 0, piboteOpcion = 0;
+    let conteoOpcion = 0, piboteOpcion = 0,conteoFiltroOpcion = 0,piboteFiltroOpcion = 0;
 
     barrasValor();
     switch (nivelActual) {
@@ -37,21 +44,41 @@ document.addEventListener('DOMContentLoaded',()=>{
        }
        conteoOpcion++;
     });
+    let conteo = 0
+    gruposSet.forEach((opcion) => {
+        let elemento = document.createElement('option');
+        elemento.value = opcion;
+        elemento.textContent = Array.from(textosSet)[conteo];
+        contenedorOpcionesFiltro.appendChild(elemento);
+        if(grupoSelect === opcion){
+            piboteFiltroOpcion = conteoFiltroOpcion + 1;
+        }
+        conteo++;
+    });
+
+    filtroGrupo.appendChild(contenedorOpcionesFiltro);
 
     seleccionFiltro.addEventListener('change',(evt)=>{
-        let nivel = `hover-${evt.target.value}`;
-        console.log(nivel);
-        verFilas(nivel);
+        nivelSelect = `hover-${evt.target.value}`;
+        verFilas(nivelSelect,grupoSelect);
     });
-    console.log(piboteOpcion);
+    filtroGrupo.addEventListener('change',evt => {
+       grupoSelect = evt.target.value;
+        console.log(grupoSelect);
+        verFilas(nivelSelect,grupoSelect);
+    });
     seleccionFiltro.selectedIndex = `${piboteOpcion}`;
-    verFilas(`hover-${nivelActual}`);
+    filtroGrupo.selectedIndex = `${piboteFiltroOpcion}`;
+    verFilas(nivelSelect,grupoSelect);
 
 });
 function crearNiveles(nivelesTabla) {
     nivelesTabla.forEach(nivel => {
         let nivelActividad = nivel.dataset.nivel;
         nivelesSet.add(nivelActividad);
+        nivel.parentElement.parentElement.classList.add(nivel.dataset.grupo.concat(nivel.dataset.grado));
+        gruposSet.add(nivel.dataset.grupo.concat(nivel.dataset.grado));
+        textosSet.add(nivel.dataset.grado.concat(nivel.dataset.grupo));
         switch (nivelActividad) {
             case "A1":
                 nivel.parentElement.parentElement.classList.add('hover-A1');
@@ -74,7 +101,7 @@ function crearNiveles(nivelesTabla) {
         }
     });
 }
-function verFilas(nivel) {
+function verFilas(nivel,grupo) {
     let cuerpoTabla = document.querySelector('.tabla-alumnos');
     let filas = document.querySelectorAll('.tabla-alumnos tbody > tr');
     if (cuerpoTabla.querySelector('tbody .fila-vacia') !== null ){
@@ -82,23 +109,23 @@ function verFilas(nivel) {
         cuerpoTabla.deleteRow(numeroFila);
     }
     cuerpoTabla.classList.add('visibilidad-fila');
-    setTimeout(animacionFilas,500,filas,nivel,cuerpoTabla);
+    setTimeout(animacionFilas,500,filas,nivel,cuerpoTabla,grupo);
 }
 
-function animacionFilas(filas,nivel,tabla) {
+function animacionFilas(filas,nivel,tabla,grupo) {
     let cuenta = 0;
     let cuerpo = tabla.querySelector('tbody');
     let tablaAlumnosCuerpo = document.querySelector('.tabla-alumnos > tbody');
     let nodoAsignadas = document.querySelector('#tareas-asignadas > span');
     let nodoPromediadas = document.querySelector('#tareas-promediadas > span');
     let nodoPromedioGeneral = document.querySelector('#promedio-general > span');
-    let datosVista = new PromedioGeneralActividad(tablaAlumnosCuerpo,nodoAsignadas,nodoPromediadas,nodoPromedioGeneral,nivel);
+    let datosVista = new PromedioGeneralActividad(tablaAlumnosCuerpo,nodoAsignadas,nodoPromediadas,nodoPromedioGeneral,nivel,grupo);
     console.log(nivel);
     filas.forEach(fila => {
         if (nivel === "hover-todos"){
             cuenta = 1;
             fila.style.display="table-row"
-        }else if (!fila.classList.contains(nivel)){
+        }else if (!fila.classList.contains(nivel) && !fila.classList.contains(grupo)){
             fila.style.display="none";
          }else {
             cuenta = 1;
@@ -232,12 +259,13 @@ class PromedioGeneral {
 }
 
 class PromedioGeneralActividad {
-    constructor(tabla,tareasAsignadas,tareasPromediadas,promedioGeneral,nivel) {
+    constructor(tabla,tareasAsignadas,tareasPromediadas,promedioGeneral,nivel,grupo) {
         this.tabla = tabla;
         this.tareasAsignadas = tareasAsignadas;
         this.tareasPromediadas = tareasPromediadas;
         this.promedioGeneral = promedioGeneral;
         this.nivel = nivel;
+        this.grupo = grupo;
     }
     promedio(){
         let filas;
@@ -247,7 +275,7 @@ class PromedioGeneralActividad {
         let promedios = [],promedio = 0;
         if (this.nivel === "hover-todos"){
             filas = this.tabla.querySelectorAll("tr");
-        }else { filas = this.tabla.querySelectorAll(`tr.${this.nivel}`)}
+        }else { filas = this.tabla.querySelectorAll(`tr.${this.nivel}.${this.grupo}`)}
         filas.forEach(fila =>{
             let columnas = fila.querySelectorAll('td');
             let promedioFila = new PromedioActividad(columnas[2].dataset.transcrip,columnas[3].dataset.gramatica,columnas[4].dataset.mapaMental,columnas[5].dataset.relacionarImagen,columnas[6].dataset.completarOracion,columnas[7].dataset.ordenarOraciones,columnas[8].dataset.relacionarOraciones);

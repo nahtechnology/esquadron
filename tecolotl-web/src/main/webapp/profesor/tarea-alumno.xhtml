@@ -37,8 +37,8 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
-        <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/></ui:remove>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
+       <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
@@ -115,7 +115,11 @@
                             </div>
                             <div class="padding-0">
                                 <label for="filtro-nivel">Level:</label>
-                                <select name="" id="filtro-nivel" class="uk-margin-medium-right">
+                                <select name="" id="filtro-nivel" class="uk-margin-small-right">
+                                    <option value="todos">All</option>
+                                </select>
+                                <label for="filtro-grupo">Group:</label>
+                                <select name="" id="filtro-grupo" class="uk-margin-medium-right">
                                     <option value="todos">All</option>
                                 </select>
                                 <span id="tareas-asignadas" class="uk-margin-medium-right">#{profesor['total.filters.assigned']}<span>0</span></span>
@@ -133,7 +137,7 @@
                                                  footerClass="thPrimario uk-text-left">
                                         <h:column>
                                             <f:facet name="header"><span class="letra-tabla uk-text-bold">#{profesor['tareas.alumno.table.homework']}</span></f:facet>
-                                                <img class="img-previa uk-margin-small-right" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt="" data-nivel="#{tareaAlumno.nivelLenguaje}" data-grado="${tareaAlumno.grado}" data-grupo="${tareaAlumno.grupo}"/>
+                                                <img class="img-previa uk-margin-small-right" src="https://i.ytimg.com/vi/${tareaAlumno.idActividad}/mqdefault.jpg" alt="" data-nivel="#{tareaAlumno.nivelLenguaje}" data-grupo="${tareaAlumno.grupo}" data-grado="${tareaAlumno.grado}"/>
                                                 <h:commandLink pt:uk-toggle="target: #modal-eliminar-tarea" >
                                                     <h:outputText styleClass="uk-icon" pt:uk-icon="icon: trash" style="color: black; margin-top: 7px;"/>
                                                     <f:setPropertyActionListener value="#{tareaAlumno.id}" target="#{tareaAlumnoControlador.idTarea}"/>
