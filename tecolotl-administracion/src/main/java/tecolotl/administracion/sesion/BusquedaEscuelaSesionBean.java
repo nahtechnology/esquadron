@@ -27,13 +27,13 @@ public class BusquedaEscuelaSesionBean {
         List<Object[]> lista = (List<Object[]>)query.getResultList();
         for (Object[] objecto : lista) {
             EscuelaAlumnoModelo escuelaAlumnoModelo = new EscuelaAlumnoModelo();
-            escuelaAlumnoModelo.setNombre((String)objecto[0]);
-            escuelaAlumnoModelo.setApellidoPaterno((String)objecto[1]);
-            escuelaAlumnoModelo.setApellidoMaterno((String)objecto[2]);
-            escuelaAlumnoModelo.setProfesorApodo((String)objecto[3]);
-            escuelaAlumnoModelo.setGrado((String)objecto[4]);
-            escuelaAlumnoModelo.setGrupo((String)objecto[5]);
-            escuelaAlumnoModelo.setCicloEscolar((String)objecto[6]);
+            escuelaAlumnoModelo.setNombre((String)objecto[1]);
+            escuelaAlumnoModelo.setApellidoPaterno((String)objecto[2]);
+            escuelaAlumnoModelo.setApellidoMaterno((String)objecto[3]);
+            escuelaAlumnoModelo.setProfesorApodo((String)objecto[4]);
+            escuelaAlumnoModelo.setGrado((Short)objecto[5]);
+            escuelaAlumnoModelo.setGrupo((String)objecto[6]);
+            escuelaAlumnoModelo.setCicloEscolar((String)objecto[7]);
             escuelaAlumnoModeloLista.add(escuelaAlumnoModelo);
         }
         return escuelaAlumnoModeloLista;

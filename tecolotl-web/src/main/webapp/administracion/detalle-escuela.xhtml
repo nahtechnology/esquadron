@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="uk-card-body">
-                <h:form id="formulario-detalle" styleClass="uk-form-stacked" >
+                <h:form id="formulario-detalle" styleClass="uk-form-stacked">
                     <h:panelGroup styleClass="uk-grid"  pt:uk-grid="" >
                         <div class="uk-width-1-5@m uk-width-1-1@s ">
                             <h:outputLabel styleClass="uk-form-label uk-text-uppercase" value="#{administracion['dashboard.modal.cct']}" for="cctv" />
@@ -63,6 +63,13 @@
                             <div class="uk-form-controls">
                                 <h:inputText id="licencias" pt:placeholder="2" disabled="true" styleClass="uk-input" value="#{licenciasControlador.collectionDataModel.wrappedData.size()}"/>
                             </div>
+                        </div>
+                        <div class="uk-width-1-5@m uk-width-1-1@s">
+                            <h:outputLabel styleClass="uk-form-label uk-text-capitalize" for="contador-descarga" value="contador descarga">
+                                <div class="uk-form-controls">
+                                    <h:inputText id="contador-descarga" disabled="true" styleClass="uk-input" value="${detalleEscuelaControlador.escuelaDetalleModelo.descargables}"/>
+                                </div>
+                            </h:outputLabel>
                         </div>
                         <div class="uk-width-1-6@m uk-width-1-1@s centrado-vertical-switch">
                             <h:panelGroup styleClass="uk-form-label uk-text-capitalize">#{administracion['schooldetail.student.lock']}</h:panelGroup>

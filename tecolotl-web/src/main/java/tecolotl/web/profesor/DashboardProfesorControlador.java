@@ -72,8 +72,10 @@ public class DashboardProfesorControlador implements Serializable {
                 cicloEscolarModelo.getInicio(), cicloEscolarModelo.getFin(),
                 profesorControlador.getProfesorModelo().getEscuelaBaseModelo().getClaveCentroTrabajo(),
                 profesorControlador.getProfesorModelo().getId());
-        alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
-                grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
+        if (grupoModeloLista != null && !grupoModeloLista.isEmpty()) {
+            alumnoTareasNivelModeloLista = grupoAlumnoSesionBean.buscaAlumnoNivel(
+                    grupoModeloLista.stream().map(GrupoModelo::getId).collect(Collectors.toList()));
+        }
     }
 
     public List<CicloEscolarModelo> getCicloEscolarModeloLista() {

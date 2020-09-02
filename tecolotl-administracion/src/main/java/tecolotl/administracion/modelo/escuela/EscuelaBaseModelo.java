@@ -84,6 +84,14 @@ public class EscuelaBaseModelo implements Comparable<EscuelaBaseModelo> {
         this.galaxia = galaxia;
     }
 
+    public Integer getDescargables() {
+        return descargables;
+    }
+
+    public void setDescargables(Integer descargables) {
+        this.descargables = descargables;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

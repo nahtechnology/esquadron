@@ -2,13 +2,13 @@ package tecolotl.administracion.modelo.escuela;
 
 public class EscuelaAlumnoModelo {
 
-    String nombre;
-    String apellidoPaterno;
-    String apellidoMaterno;
-    String profesorApodo;
-    String grado;
-    String grupo;
-    String cicloEscolar;
+    private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private String profesorApodo;
+    private Short grado;
+    private String grupo;
+    private String cicloEscolar;
 
     public String getNombre() {
         return nombre;
@@ -42,11 +42,11 @@ public class EscuelaAlumnoModelo {
         this.profesorApodo = profesorApodo;
     }
 
-    public String getGrado() {
+    public Short getGrado() {
         return grado;
     }
 
-    public void setGrado(String grado) {
+    public void setGrado(Short grado) {
         this.grado = grado;
     }
 
