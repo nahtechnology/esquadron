@@ -76,9 +76,9 @@ function crearNiveles(nivelesTabla) {
     nivelesTabla.forEach(nivel => {
         let nivelActividad = nivel.dataset.nivel;
         nivelesSet.add(nivelActividad);
-        nivel.parentElement.parentElement.classList.add(nivel.dataset.grupo.concat(nivel.dataset.grado));
-        gruposSet.add(nivel.dataset.grupo.concat(nivel.dataset.grado));
-        textosSet.add(nivel.dataset.grado.concat(nivel.dataset.grupo));
+        nivel.parentElement.parentElement.classList.add(nivel.dataset.grupo.replace(/ /g, "").concat(nivel.dataset.grado));
+        gruposSet.add(nivel.dataset.grupo.replace(/ /g, "").concat(nivel.dataset.grado));
+        textosSet.add(nivel.dataset.grado.concat(nivel.dataset.grupo.replace(/ /g, "")));
         switch (nivelActividad) {
             case "A1":
                 nivel.parentElement.parentElement.classList.add('hover-A1');
@@ -302,12 +302,12 @@ class PromedioGeneralActividad {
                 promedio += pr;
             })
         }
-        console.log(dividendos);
-        console.log(puntajes);
+        // console.log(dividendos);
+        // console.log(puntajes);
         this.tareasAsignadas.innerText = filas.length;
         this.tareasPromediadas.innerText = actividades.length;
         this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedio/promedios.length) : "Nothing answered yet!";
-        console.log(promedios);
+        // console.log(promedios);
     }
 
 }
