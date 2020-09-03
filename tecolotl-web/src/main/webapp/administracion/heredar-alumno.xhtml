@@ -123,8 +123,9 @@
                         <div class="uk-card-footer uk-flex uk-flex-right">
                             <h:commandButton value="heredar"
                                              styleClass="uk-button uk-button-primary"
-                                             disabled="${empty heredarAlumnoControlador.alumnoModeloLista}"
-                                             action="#{heredarAlumnoControlador.hereda}"/>
+                                             disabled="${empty heredarAlumnoControlador.alumnoModeloLista}">
+                                <f:ajax execute="@form" listener="#{heredarAlumnoControlador.hereda}" render="@form formulario-grupo"/>
+                            </h:commandButton>
                         </div>
                     </h:form>
                 </div>

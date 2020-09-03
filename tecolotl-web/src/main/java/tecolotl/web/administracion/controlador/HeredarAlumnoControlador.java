@@ -71,9 +71,10 @@ public class HeredarAlumnoControlador implements Serializable {
         alumnoModeloLista = grupoAlumnoSesionBean.buscaAlumno(UUID.fromString(idGrupo));
     }
 
-    public String hereda() {
+    public void hereda() {
         heredaSesionBean.heresaAlumnos(grupoModelo.getId(), alumnosSeleccionLista);
-        return "detalle";
+        alumnoModeloLista = null;
+        grupoModeloLista = null;
     }
 
     public String getGrupo() {
