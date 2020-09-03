@@ -173,7 +173,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 promedioSubirNivel = sujeto.filter(level => level.personaNivel.localeCompare(nivelAlumno) === 0);
                 numeroActividades[0] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[0] >= 18){
-                    botonSubirNivel.addEventListener('click',incrementaNivel);
+                    botonSubirNivel.addEventListener('click',(evt)=>{
+                        incrementaNivel(evt.target);
+                    });
                 }else {
                     botonSubirNivel.addEventListener('click',abrirSubirNivel);
                 }
@@ -193,7 +195,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 numeroActividades[0] = 18;
                 numeroActividades[1] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[1] >= 18){
-                    botonSubirNivel.addEventListener('click',incrementaNivel);
+                    botonSubirNivel.addEventListener('click',(evt)=>{
+                        incrementaNivel(evt.target);
+                    });
                 }else {
                     botonSubirNivel.addEventListener('click',abrirSubirNivel);
                 }
@@ -211,7 +215,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 numeroActividades[1] = 18;
                 numeroActividades[2] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[2] >= 18){
-                    botonSubirNivel.addEventListener('click',incrementaNivel);
+                    botonSubirNivel.addEventListener('click',(evt)=>{
+                        incrementaNivel(evt.target);
+                    });
                 }else {
                     botonSubirNivel.addEventListener('click',abrirSubirNivel);
                 }
@@ -229,7 +235,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 numeroActividades[2] = 18;
                 numeroActividades[3] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[3] >= 18){
-                    botonSubirNivel.addEventListener('click',incrementaNivel);
+                    botonSubirNivel.addEventListener('click',(evt)=>{
+                        incrementaNivel(evt.target);
+                    });
                 }else {
                     botonSubirNivel.addEventListener('click',abrirSubirNivel);
                 }
@@ -248,7 +256,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 numeroActividades[4] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 console.log("C1:"+numeroActividades[4]+promedioSubirNivel[0]);
                 if (numeroActividades[4] >= 18){
-                    botonSubirNivel.addEventListener('click',incrementaNivel);
+                    botonSubirNivel.addEventListener('click',(evt)=>{
+                        incrementaNivel(evt.target);
+                    });
                 }else {
                     botonSubirNivel.addEventListener('click',abrirSubirNivel);
                 }
@@ -266,7 +276,9 @@ function crearGrafica(datosGrupo,claseGrupo) {
                 numeroActividades[4] = 18;
                 numeroActividades[5] = promedioSubirNivel.length === 0 ? 0 : parseInt(promedioSubirNivel[0].tareasNivel);
                 if (numeroActividades[5] >= 18){
-                    botonSubirNivel.addEventListener('click',incrementaNivel);
+                    botonSubirNivel.addEventListener('click',(evt)=>{
+                        incrementaNivel(evt.target);
+                    });
                 }else {
                     botonSubirNivel.addEventListener('click',abrirSubirNivel);
                 }
