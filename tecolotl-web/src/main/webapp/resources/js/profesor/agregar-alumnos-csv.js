@@ -418,9 +418,9 @@ function limpiar() {
 }
 
 function desactivarDescarga() {
-    UIkit.modal.alert('Ya no puedes agregar mas Alumnos');
+    UIkit.modal.alert('You can no longer add more Students');
     let boton = document.querySelector('.botones input[type=file]');
-    document.querySelector('.botones label').innerHTML = "DENEGADO";
+    document.querySelector('.botones label').innerHTML = "DENIED";
     boton.disabled = true;
     document.querySelector('.botones .agregar').disabled = true;
 }
