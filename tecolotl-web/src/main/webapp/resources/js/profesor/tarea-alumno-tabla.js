@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
     crearNiveles(nivelesTabla);
     console.log(conteoOpcion);
+    if(!nivelesSet.has(nivelActual)){
+        nivelesSet.add(nivelActual);
+    }
     nivelesSet.forEach((opcion) =>{
        let etiqueta = document.createElement('option');
        etiqueta.value=opcion;
@@ -69,7 +72,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     });
     seleccionFiltro.selectedIndex = `${piboteOpcion}`;
     filtroGrupo.selectedIndex = `${piboteFiltroOpcion}`;
-    verFilas(nivelSelect,grupoSelect);
+    puntajeGlobal();
 
 });
 function crearNiveles(nivelesTabla) {
@@ -102,6 +105,7 @@ function crearNiveles(nivelesTabla) {
     });
 }
 function verFilas(nivel,grupo) {
+    console.log(nivel,grupo);
     let cuerpoTabla = document.querySelector('.tabla-alumnos');
     let filas = document.querySelectorAll('.tabla-alumnos tbody > tr');
     if (cuerpoTabla.querySelector('tbody .fila-vacia') !== null ){
@@ -122,10 +126,10 @@ function animacionFilas(filas,nivel,tabla,grupo) {
     let datosVista = new PromedioGeneralActividad(tablaAlumnosCuerpo,nodoAsignadas,nodoPromediadas,nodoPromedioGeneral,nivel,grupo);
     console.log(nivel);
     filas.forEach(fila => {
-        if (nivel === "hover-todos"){
+        if (nivel === "hover-todos" && grupo === "todos"){
             cuenta = 1;
             fila.style.display="table-row"
-        }else if (!fila.classList.contains(nivel) && !fila.classList.contains(grupo)){
+        }else if (!(verdaderoFalsoNivel(fila,nivel) && verdaderoFalsoGrupo(fila,grupo))){
             fila.style.display="none";
          }else {
             cuenta = 1;
@@ -169,6 +173,29 @@ function renderizarBorrado(data) {
         crearNiveles(nivelesTabla);
         verFilas(nivel);
     }
+}
+
+function verdaderoFalsoNivel(fila,nivel){
+    return fila.classList.contains(nivel) || nivel === 'hover-todos';
+}
+function verdaderoFalsoGrupo(fila,grupo){
+    return fila.classList.contains(grupo) || grupo === 'todos';
+}
+
+function puntajeGlobal(){
+    let tablaAlumnosCuerpo = document.querySelector('.tabla-alumnos > tbody');
+    let nodoAsignadas = document.querySelector('#tareas-asignadas > span');
+    let nodoPromediadas = document.querySelector('#tareas-promediadas > span');
+    let nodoPromedioGeneral = document.querySelector('#promedio-general > span');
+    let datosVista = new PromedioGeneralActividad(tablaAlumnosCuerpo,nodoAsignadas,nodoPromediadas,nodoPromedioGeneral,'hover-todos','todos');
+    datosVista.promedio();
+    let totalTareas=document.querySelector('#tareas-asignadas > span').textContent;
+    let tareasCalificadas = document.querySelector('#tareas-promediadas > span').textContent;
+    let promedio = document.querySelector('#promedio-general > span').textContent;
+    document.querySelector('#puntaje-reporte span:first-child').textContent = totalTareas;
+    document.querySelector('#puntaje-reporte span:nth-child(2)').textContent = tareasCalificadas;
+   document.querySelector('#puntaje-reporte span:last-child').textContent = promedio;
+    verFilas(nivelSelect,grupoSelect);
 }
 
 class PromedioTarea {
@@ -273,41 +300,58 @@ class PromedioGeneralActividad {
         let puntajes = [0,0,0,0,0,0,0];
         let dividendos = [0,0,0,0,0,0,0];
         let promedios = [],promedio = 0;
-        if (this.nivel === "hover-todos"){
+        if (this.nivel === "hover-todos" && this.grupo === "todos"){
             filas = this.tabla.querySelectorAll("tr");
-        }else { filas = this.tabla.querySelectorAll(`tr.${this.nivel}.${this.grupo}`)}
-        filas.forEach(fila =>{
-            let columnas = fila.querySelectorAll('td');
-            let promedioFila = new PromedioActividad(columnas[2].dataset.transcrip,columnas[3].dataset.gramatica,columnas[4].dataset.mapaMental,columnas[5].dataset.relacionarImagen,columnas[6].dataset.completarOracion,columnas[7].dataset.ordenarOraciones,columnas[8].dataset.relacionarOraciones);
-            console.log(promedioFila);
-            if (promedioFila.promedio() !== false){
-                actividades.push(promedioFila.promedio());
+        }else if( this.tabla.querySelectorAll(`tr.${this.nivel}.${this.grupo}`).length > 0) {
+            filas = this.tabla.querySelectorAll(`tr.${this.nivel}.${this.grupo}`)
+        }else {
+            if (this.nivel === "hover-todos" && this.tabla.querySelectorAll(`tr.${this.grupo}`).length > 0 ){
+                filas = this.tabla.querySelectorAll(`tr.${this.grupo}`);
             }
-        });
-
-        if (actividades.length > 0){
-            actividades.forEach(actividad => {
+            if (this.grupo === "todos" && this.tabla.querySelectorAll(`tr.${this.nivel}`).length > 0 ){
+                filas = this.tabla.querySelectorAll(`tr.${this.nivel}`);
+            }
+        }
+        if (filas !== undefined){
+            filas.forEach(fila =>{
+                let columnas = fila.querySelectorAll('td');
+                let promedioFila = new PromedioActividad(columnas[2].dataset.transcrip,columnas[3].dataset.gramatica,columnas[4].dataset.mapaMental,columnas[5].dataset.relacionarImagen,columnas[6].dataset.completarOracion,columnas[7].dataset.ordenarOraciones,columnas[8].dataset.relacionarOraciones);
+                console.log(promedioFila);
+                if (promedioFila.promedio() !== false){
+                    actividades.push(promedioFila.promedio());
+                }
+            });
+            if (actividades.length > 0){
+                actividades.forEach(actividad => {
                     for (let i = 0;i<7;i++){
                         dividendos[i] += (actividad[i] === -2 ? 0 : 1);
                         puntajes[i] += (actividad[i] === -2 ? 0 : actividad[i]);
                     }
-            });
-            for (let i = 0; i < 7; i++){
-                if (dividendos[i] > 0){
-                    let dato = Math.round(puntajes[i]/dividendos[i]);
-                    promedios.push(dato)
+                });
+                for (let i = 0; i < 7; i++){
+                    if (dividendos[i] > 0){
+                        let dato = Math.round(puntajes[i]/dividendos[i]);
+                        promedios.push(dato)
+                    }
                 }
+                promedios.forEach(pr =>{
+                    promedio += pr;
+                })
             }
-            promedios.forEach(pr =>{
-                promedio += pr;
-            })
+            // console.log(dividendos);
+            // console.log(puntajes);
+            this.tareasAsignadas.innerText = filas.length;
+            this.tareasPromediadas.innerText = actividades.length;
+            this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedio/promedios.length) : "Nothing answered yet!";
+            // console.log(promedios);
+        }else {
+            this.tareasAsignadas.innerText = 0;
+            this.tareasPromediadas.innerText = 0;
+            this.promedioGeneral.innerText = "Nothing answered yet!";
         }
-        // console.log(dividendos);
-        // console.log(puntajes);
-        this.tareasAsignadas.innerText = filas.length;
-        this.tareasPromediadas.innerText = actividades.length;
-        this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedio/promedios.length) : "Nothing answered yet!";
-        // console.log(promedios);
+
+
+
     }
 
 }

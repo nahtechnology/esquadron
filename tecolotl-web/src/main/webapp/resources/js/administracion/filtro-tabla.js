@@ -14,6 +14,9 @@ class FiltradoTabla {
         let filtros = this.tabla.getAttribute("nah-filtrado").split(',');
         let cabeceras = this.tabla.querySelectorAll('th');
         let conteo = 0;
+
+        btnReseteo.setAttribute('type','button');
+        btnGlobal.setAttribute('type','button');
         btnReseteo.textContent = "RESET";
         btnGlobal.textContent = "Buscar"
         btnReseteo.id = "reseteo"
@@ -51,7 +54,7 @@ class FiltradoTabla {
             elemento.addEventListener('click', evt => {
                 this.limpiarTabla();
                 this.tabla.classList.add('ver-tabla');
-                const filtrado = Array.from(listaNodos[index]).filter(celda => celda.textContent === evt.target.previousElementSibling.value);
+                const filtrado = Array.from(listaNodos[index]).filter(celda => celda.textContent.trim() === evt.target.previousElementSibling.value.trim());
                 for (const celda of filtrado) {
                     celda.parentElement.classList.add('ver-fila');
                 }
@@ -79,7 +82,7 @@ class FiltradoTabla {
             for (const input of this.inputs) {
                 cadenaFiltrada = cadenaFiltrada.concat(input.value);
             }    
-            datosFiltrados = filtradoGlobal.filter(fila => fila.getCadenaCeldas() === cadenaFiltrada); 
+            datosFiltrados = filtradoGlobal.filter(fila => fila.getCadenaCeldas() === cadenaFiltrada.trim());
             datosFiltrados[0].getPadre().classList.add('ver-fila');
     
         });
@@ -103,6 +106,8 @@ class FiltradoTabla {
         inputBusqueda.classList.add('uk-input','uk-form-small','uk-margin-small-bottom');
         btnBusqueda.classList.add('uk-button','uk-button-primary','uk-button-small');
         ContenedorBusqueda.classList.add('tamano-cotenedor-input');
+        comentario.classList.add('uk-text-capitalize','uk-text-bold');
+        btnBusqueda.setAttribute('type','button');
 
         ContenedorBusqueda.appendChild(comentario);
         ContenedorBusqueda.appendChild(inputBusqueda);
@@ -156,7 +161,7 @@ class Fila {
     getCadenaCeldas() {
         let cadena="";
         for (const celda of this.celdas) {
-           cadena = cadena.concat(celda.textContent);
+           cadena = cadena.concat(celda.textContent.trim());
         }
         return cadena;
     }
@@ -166,8 +171,9 @@ class Fila {
     }
 }
 
-addEventListener("DOMContentLoaded", () => {
-    let elementoFiltrar = document.querySelectorAll("[nah-filtrado]");
+
+function inicioTabla(){
+    let elementoFiltrar = document.querySelectorAll("table[nah-filtrado]");
 
     for (const elemento of elementoFiltrar) {
         datos.push(new FiltradoTabla(elemento));
@@ -175,9 +181,7 @@ addEventListener("DOMContentLoaded", () => {
     for (const dato of datos) {
         dato.agregarEvento();
     }
-
-});
-
+}
 
 
 

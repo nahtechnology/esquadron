@@ -16,9 +16,10 @@
                 <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg"  styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
                     <li class="uk-active"><a><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></a></li>
+                    <li class="uk-active"><h:link outcome="actividad" ><h:outputText pt:uk-icon="video-camera" styleClass="uk-margin-small-right"/> Actividades</h:link></li>
                 </ul>
             </li>
-            <li><h:link outcome="actividad" value="actividades"/></li>
+
         </ul>
     </ui:define>
 

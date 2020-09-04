@@ -13,7 +13,7 @@ addEventListener('load',()=>{
 
 
     for (const imgActividad of imgAvtividades) {
-        if (imgActividad.naturalWidth === 120){
+        if (imgActividad.naturalWidth === 120 && imgActividad.parentElement.dataset.estatus !== 'false'){
             let option = document.createElement('option');
             option.value = imgActividad.nextElementSibling.textContent;
             option.textContent = imgActividad.nextElementSibling.textContent;

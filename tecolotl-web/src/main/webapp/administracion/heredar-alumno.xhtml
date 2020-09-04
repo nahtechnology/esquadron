@@ -6,7 +6,17 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
                 xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
-    <ui:define name="menu"></ui:define>
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+        <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
+        <li class="uk-parent uk-open">
+            <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg"  styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+            <ul class="uk-nav-sub">
+                <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+            </ul>
+        </li>
+        </ul>
+    </ui:define>
     <ui:define name="contenido">
         <f:metadata>
             <f:viewParam name="grupo" value="#{heredarAlumnoControlador.grupo}"/>
@@ -48,17 +58,23 @@
                         <h:message for="seleccion-profesor" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
                     </div>
                     <div class="uk-margin uk-flex uk-flex-right">
-                        <h:commandButton value="Buscar" styleClass="uk-button uk-button-primary">
+                        <h:commandButton value="Buscar" styleClass="uk-button uk-button-primary" onclick="cargando();">
                             <f:ajax execute="seleccion-ciclo-escolar seleccion-profesor"
                                     listener="#{heredarAlumnoControlador.buscaGrupo()}"
                                     render="@form formulario-grupo:seleccion-grupo"
-                                    onevent="function funcion(data) { if (data.status === 'success') limpiaSeleccion(); }"/>
+                                    onevent="function funcion(data) { if (data.status === 'success'){
+                                        limpiaSeleccion();
+                                        cargando();
+                                    }
+
+                                    }"/>
                         </h:commandButton>
                     </div>
                 </h:form>
                 <h:form id="formulario-grupo">
                     <div class="uk-margin">
                         <h:outputLabel value="grupo" for="seleccion-grupo" styleClass="uk-form-label uk-text-capitalize"/>
+                        <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg ver-svg cargando-grupo" width="30" height="30"/>
                         <div class="uk-form-controls">
                             <h:selectOneMenu id="seleccion-grupo" value="#{heredarAlumnoControlador.idGrupo}" styleClass="uk-select">
                                 <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
@@ -139,10 +155,15 @@
                     <h:inputText id="entrada-palabra-clave" styleClass="uk-input" value="#{buscaAlumnoControlador.palabraClave}"/>
                 </div>
             </div>
+            <h:panelGroup layout="block" styleClass="uk-text-bold" rendered="${empty buscaAlumnoControlador.escuelaAlumnoModeloLista}"><span id="no-encontrado">Alumno no encontrado</span></h:panelGroup>
             <h:commandButton id="boton-buscar" value="buscar" styleClass="uk-button uk-button-primary">
-                <f:ajax execute="entrada-palabra-clave" render="@form" listener="#{buscaAlumnoControlador.busca()}"/>
+                <f:ajax execute="entrada-palabra-clave" render="@form" listener="#{buscaAlumnoControlador.busca()}" onevent="function f(data) {
+                  if (data.status === 'success'){
+                    inicioTabla();
+                  }
+                }"/>
             </h:commandButton>
-            <h:outputText id="no-encontrado" rendered="${empty buscaAlumnoControlador.escuelaAlumnoModeloLista}" value="Alumno no encontrado"/>
+
             <h5>Filtrar</h5>
             <div  class="uk-margin-medium-bottom">
                 <div style="height: 650px" class="uk-overflow-auto uk-margin-medium-top">
@@ -150,7 +171,8 @@
                                  rendered="#{not empty buscaAlumnoControlador.escuelaAlumnoModeloLista}"
                                  value="#{buscaAlumnoControlador.escuelaAlumnoModeloLista}"
                                  var="escuelaAlumnoModelo"
-                                 styleClass="uk-table uk-table-divider uk-table-hover" pt:nah-filtrado="Grupo,Grado,Nombre,Apellido Paterno">
+                                 styleClass="uk-table uk-table-divider uk-table-hover tabla-filtrado"
+                                 pt:nah-filtrado="apellido paterno,apellido materno,apodo profesor,grupo,ciclo escolar">
                         <h:column>
                             <f:facet name="header">nombre</f:facet>${escuelaAlumnoModelo.nombre}
                         </h:column>

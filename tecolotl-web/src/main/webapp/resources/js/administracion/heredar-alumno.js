@@ -31,3 +31,9 @@ function tablaCargada(){
         console.log('se termino de cargar');
     }
 }
+
+function cargando(){
+    let spinner = document.querySelector('svg.cargando-grupo');
+    spinner.classList.toggle('ver-svg');
+    console.log('entro cargando');
+}

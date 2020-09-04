@@ -229,6 +229,11 @@
                 </h:form>
             </div>
         </h:panelGroup>
+        <div id="puntaje-reporte" style="display: none">
+            <span/>
+            <span/>
+            <span/>
+        </div>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/Chart.js"></script>
         <script type="text/javascript" >
             document.addEventListener('DOMContentLoaded',function (ev) {
@@ -238,10 +243,13 @@
                     const queryString = window.location.search;
                     const urlParams = new URLSearchParams(queryString);
                     var alumno = urlParams.get('idAlumno');
+                    let totalTareas=document.querySelector('#puntaje-reporte span:first-child').textContent;
+                    let tareasCalificadas = document.querySelector('#puntaje-reporte span:nth-child(2)').textContent;
+                    let promedio = document.querySelector('#puntaje-reporte span:last-child').textContent;
                     var hiddenElement = document.createElement('a');
                     console.log(alumno);
                     UIkit.notification("The document is being downloaded, please wait",{timeout: 15000});
-                    hiddenElement.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-calificaciones?grupo=".concat(idProfesor,"&amp;alumno=",alumno);
+                    hiddenElement.href = "http://www.reportesdesarrollo.e-squadron.com.mx/reporte-calificaciones?grupo=".concat(idProfesor,"&amp;alumno=",alumno,"&amp;totalTareas=",totalTareas,'&amp;totalCalificadas=',tareasCalificadas,"&amp;promedio=",promedio);
                     console.log("http://www.reportesdesarrollo.e-squadron.com.mx/reporte-calificaciones?grupo=".concat(idProfesor,"&amp;alumno=",alumno));
                     hiddenElement.click();
                 });

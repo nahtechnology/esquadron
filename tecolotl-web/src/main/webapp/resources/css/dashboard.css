@@ -469,6 +469,25 @@ display: table-row;
 	width: 32.333%;
 	box-sizing: border-box;
 }
+.tabla-filtrado{
+	background-color: white;
+	box-shadow: 3px 3px 12px #7a7a7a;
+}
+.tabla-filtrado thead tr{
+	background-color: #0e6dcd;
+}
+.tabla-filtrado thead > tr > th{
+	color: white;
+}
+
+/*cargando spinner */
+.cargando-grupo .contorno,.cargando-grupo .centro{
+	stroke: #0e6dcd;
+}
+
+.ver-svg{
+	display: none;
+}
 @media screen and (max-width: 1024px ){
 	.contenido-actividades{
 		grid-template-columns: repeat(4,1fr);
