@@ -484,6 +484,9 @@ display: table-row;
 .cargando-grupo .contorno,.cargando-grupo .centro{
 	stroke: #0e6dcd;
 }
+.seleccion-heredar:focus{
+	border-width: 3px;
+}
 
 .ver-svg{
 	display: none;
