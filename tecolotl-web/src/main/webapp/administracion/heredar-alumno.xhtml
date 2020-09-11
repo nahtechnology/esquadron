@@ -25,7 +25,10 @@
         </f:metadata>
         <strong>Selecciona los alumnos que desee heredar al grupo: ${param['grupo-nombre']}</strong>
         <div uk-grid="">
-            <div class="uk-width-1-3">
+            <div class="uk-width-1-3 uk-position-relative">
+                <div class="cargando-grupo ver-svg">
+                    <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg"/>
+                </div>
                 <h:outputText value="Este Grupo aun no tiene relacionado un ciclo escolar" rendered="#{empty heredarAlumnoControlador.cicloEscolarModeloLista}"/>
                 <h:form id="formulario-ciclo-escoalr" rendered="#{not empty heredarAlumnoControlador.cicloEscolarModeloLista}">
                     <div class="uk-margin">
@@ -76,7 +79,6 @@
                 <h:form id="formulario-grupo">
                     <div class="uk-margin">
                         <h:outputLabel value="grupo" for="seleccion-grupo" styleClass="uk-form-label uk-text-capitalize"/>
-                        <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg ver-svg cargando-grupo" width="30" height="30"/>
                         <div class="uk-form-controls">
                             <h:selectOneMenu id="seleccion-grupo" value="#{heredarAlumnoControlador.idGrupo}" styleClass="uk-select seleccion-heredar">
                                 <f:selectItem itemLabel="${otrosetiqueta['select']}" noSelectionOption="true" itemValue="#{null}"/>
@@ -89,7 +91,7 @@
                         </div>
                         <h:message id="mensaje-seleccion-grupo" for="seleccion-grupo" styleClass="uk-text-danger uk-display-block primera-mayuscula"/>
                         <div class="uk-margin uk-flex uk-flex-right">
-                            <h:commandButton value="buscar" styleClass="uk-button uk-button-primary">
+                            <h:commandButton id="btn-grupo" value="buscar" styleClass="uk-button uk-button-primary">
                                 <f:ajax execute="seleccion-grupo"
                                         render="@form formulario-alumnos"
                                         listener="#{heredarAlumnoControlador.buscaAlumnosGrupo}"

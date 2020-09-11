@@ -481,8 +481,22 @@ display: table-row;
 }
 
 /*cargando spinner */
+.cargando-grupo{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: white;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 .cargando-grupo .contorno,.cargando-grupo .centro{
 	stroke: #0e6dcd;
+	width: 80%;
+
 }
 .seleccion-heredar:focus{
 	border-width: 3px;
