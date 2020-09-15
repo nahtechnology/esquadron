@@ -16,6 +16,7 @@ import java.util.UUID;
 public class TareaAlumnoVistaEntidad {
 
     private UUID id;
+    private String idGrupo;
     private Date asignacion;
     private String idActividad;
     private UUID idAlumno;
@@ -30,6 +31,15 @@ public class TareaAlumnoVistaEntidad {
 
     public void setId(UUID id) {
         this.id = id;
+    }
+
+    @Column(name = "id_grupo")
+    public String getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(String idGrupo) {
+        this.idGrupo = idGrupo;
     }
 
     public Date getAsignacion() {
