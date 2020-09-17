@@ -3,7 +3,9 @@ package tecolotl.web.alumno;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.alumno.modelo.TareaActividadModelo;
+import tecolotl.alumno.modelo.vista.DetalleAlumno2Modelo;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
+import tecolotl.alumno.sesion.DetalleAlumnoSesionBean;
 import tecolotl.alumno.sesion.TareaSesionBean;
 import tecolotl.nucleo.modelo.PersonaActivaModelo;
 import tecolotl.nucleo.modelo.UsuarioSesionModelo;
@@ -34,12 +36,16 @@ public class AlumnoControlador implements Serializable {
     private TareaSesionBean tareaSesionBean;
 
     @Inject
+    private DetalleAlumnoSesionBean detalleAlumnoSesionBean;
+
+    @Inject
     private HttpServletRequest httpServletRequest;
 
     @Inject
     private SesionControlSingleton sesionControlSingleton;
 
     private AlumnoModelo alumnoModelo;
+    private List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista;
     private List<TareaActividadModelo> tareaActvidadModeloLista;
     private TareaActividadModelo tareaActividadModelo;
     private ActividadModelo actividadModeloBibliotecaLibre;
@@ -51,6 +57,7 @@ public class AlumnoControlador implements Serializable {
         Principal principal = externalContext.getUserPrincipal();
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
         personaActivaModelo = alumnoSesionBean.activo(alumnoModelo.getId());
+        detalleAlumno2ModeloLista = detalleAlumnoSesionBean.busca(alumnoModelo.getId());
         if (personaActivaModelo.isBloqueado()) {
             try {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=alumno");
@@ -128,5 +135,13 @@ public class AlumnoControlador implements Serializable {
 
     public void setPersonaActivaModelo(PersonaActivaModelo personaActivaModelo) {
         this.personaActivaModelo = personaActivaModelo;
+    }
+
+    public List<DetalleAlumno2Modelo> getDetalleAlumno2ModeloLista() {
+        return detalleAlumno2ModeloLista;
+    }
+
+    public void setDetalleAlumno2ModeloLista(List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista) {
+        this.detalleAlumno2ModeloLista = detalleAlumno2ModeloLista;
     }
 }
