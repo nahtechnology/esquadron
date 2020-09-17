@@ -47,8 +47,11 @@ import java.util.UUID;
     @NamedQuery(
         name = "GrupoEntidad.cambiaProfesor",
         query = "UPDATE GrupoEntidad g SET g.profesorEntidad.id = :idProfesor, g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :escuela, " +
-                "g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio, g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin WHERE g.id = :idGrupo"
-    )
+                "g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio, g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin WHERE g.id = :idGrupo"),
+    @NamedQuery(
+        name = "GrupoEntidad.buscaProfesorCicloEscolar",
+        query = "SELECT g FROM GrupoEntidad g JOIN FETCH g.cicloEscolarEntidad ce WHERE g.profesorEntidad.id = :idProfesor AND ce.cicloEscolarPK.inicio = :inicio AND " +
+                "ce.cicloEscolarPK.fin = :fin AND ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
 })
 public class GrupoEntidad {
 

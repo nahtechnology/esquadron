@@ -105,6 +105,12 @@
                                          <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-capitalize">#{alumno['dashboard.email']}:</span> #{alumnoControlador.alumnoModelo.correoPadreFamilia}</p>
                                          <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small "><span class="uk-text-bold uk-text-capitalize">#{alumno['dashboard.nivel']}:</span> #{alumnoControlador.alumnoModelo.nivelLenguajeModelo.valor}</p>
                                          <h:outputText styleClass="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small" rendered="${alumnoControlador.detalleAlumno2ModeloLista.size() eq 1}" value="ciclo escolar: ${alumnoControlador.detalleAlumno2ModeloLista.get(0).descripcion}"/>
+                                         <h:selectOneMenu rendered="${alumnoControlador.detalleAlumno2ModeloLista.size() gt 1}">
+                                             <f:selectItems value="${alumnoControlador.detalleAlumno2ModeloLista}"
+                                                            var="detalleAlumno2Modelo"
+                                                            itemValue="${detalleAlumno2Modelo.idGrupo}"
+                                                            itemLabel="${detalleAlumno2Modelo.grado} ${detalleAlumno2Modelo.grupo}"/>
+                                         </h:selectOneMenu>
                                      </div>
                                  </h:panelGroup>
                              </div>
