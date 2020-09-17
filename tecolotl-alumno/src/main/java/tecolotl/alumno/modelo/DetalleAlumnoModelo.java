@@ -1,7 +1,5 @@
 package tecolotl.alumno.modelo;
 
-import tecolotl.alumno.entidad.vista.TareaAlumnoVistaEntidad;
-
 import java.util.Date;
 
 public class DetalleAlumnoModelo {

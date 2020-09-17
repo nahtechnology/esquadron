@@ -84,7 +84,7 @@ public class TareaAlumnoGrupoEntidad {
         this.totalAsignadaMapaMental = totalAsignadaMapaMental;
     }
 
-    @Column(name = "calificado_mapamental")
+    @Column(name = "total_calificado_mapamental")
     public Integer getCalificadoMapaMental() {
         return calificadoMapaMental;
     }
