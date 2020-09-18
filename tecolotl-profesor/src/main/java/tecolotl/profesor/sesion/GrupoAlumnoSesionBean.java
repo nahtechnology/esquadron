@@ -15,10 +15,7 @@ import tecolotl.profesor.modelo.TareaAlumnoGrupoModelo;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaDelete;
 import javax.persistence.criteria.Root;
@@ -261,13 +258,10 @@ public class GrupoAlumnoSesionBean {
      * @return numero de modificaciones
      */
     public void reasignar(UUID grupoViejo, UUID grupoNuevo, UUID alumno) {
-        GrupoAlumnoEntidadPK grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
-        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoViejo));
-        grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(alumno));
-        entityManager.remove(entityManager.find(GrupoAlumnoEntidad.class, grupoAlumnoEntidadPK));
-        grupoAlumnoEntidadPK = new GrupoAlumnoEntidadPK();
-        grupoAlumnoEntidadPK.setGrupoEntidad(new GrupoEntidad(grupoNuevo));
-        grupoAlumnoEntidadPK.setAlumnoEntidad(new AlumnoEntidad(alumno));
-        entityManager.persist(new GrupoAlumnoEntidad(grupoAlumnoEntidadPK));
+        StoredProcedureQuery storedProcedureQuery = entityManager.createNamedStoredProcedureQuery("GrupoAlumno.heredaAlumno");
+        storedProcedureQuery.setParameter("viejoGrupo", grupoViejo);
+        storedProcedureQuery.setParameter("nuevoGrupo", grupoNuevo);
+        storedProcedureQuery.setParameter("alumno", alumno);
+        storedProcedureQuery.execute();
     }
 }

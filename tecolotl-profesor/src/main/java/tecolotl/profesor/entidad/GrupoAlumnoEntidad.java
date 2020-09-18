@@ -5,6 +5,7 @@ import tecolotl.alumno.entidad.AlumnoEntidad;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @Entity
 @Table(name = "grupo_alumno", schema = "profesor")
@@ -29,6 +30,15 @@ import java.util.StringJoiner;
         query = "SELECT count(ga.grupoAlumnoEntidadPK.alumnoEntidad.id) FROM GrupoAlumnoEntidad ga where ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"
     )
 })
+@NamedStoredProcedureQuery(
+        name = "GrupoAlumno.heredaAlumno",
+        procedureName = "administracion.reasignar_tarea",
+        parameters = {
+                @StoredProcedureParameter(name = "viejoGrupo", type = UUID.class, mode = ParameterMode.IN),
+                @StoredProcedureParameter(name = "nuevoGrupo", type = UUID.class, mode = ParameterMode.IN),
+                @StoredProcedureParameter(name = "alumno", type = UUID.class, mode = ParameterMode.IN)
+        }
+)
 public class GrupoAlumnoEntidad {
 
     private GrupoAlumnoEntidadPK grupoAlumnoEntidadPK;
