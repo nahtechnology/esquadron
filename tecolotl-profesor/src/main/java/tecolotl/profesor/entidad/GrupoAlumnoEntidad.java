@@ -23,22 +23,14 @@ import java.util.UUID;
     @NamedQuery(
         name = "GrupoAlumnoEntidad.buscaContrasenia",
         query = "SELECT ga " +
-                "FROM GrupoAlumnoEntidad ga JOIN FETCH ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"
-    ),
+                "FROM GrupoAlumnoEntidad ga JOIN FETCH ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"),
     @NamedQuery(
         name = "GrupoAlumnoEntidad.buscaTotalAlumnosPorGrupo",
-        query = "SELECT count(ga.grupoAlumnoEntidadPK.alumnoEntidad.id) FROM GrupoAlumnoEntidad ga where ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"
-    )
+        query = "SELECT count(ga.grupoAlumnoEntidadPK.alumnoEntidad.id) FROM GrupoAlumnoEntidad ga where ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"),
+    @NamedQuery(
+        name = "GrupoAlumnoEntidad.elimina",
+        query = "DELETE FROM GrupoAlumnoEntidad ga WHERE ga.grupoAlumnoEntidadPK.alumnoEntidad.id = :idAlumno AND ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo")
 })
-@NamedStoredProcedureQuery(
-        name = "GrupoAlumno.heredaAlumno",
-        procedureName = "administracion.reasignar_tarea",
-        parameters = {
-                @StoredProcedureParameter(name = "viejoGrupo", type = UUID.class, mode = ParameterMode.IN),
-                @StoredProcedureParameter(name = "nuevoGrupo", type = UUID.class, mode = ParameterMode.IN),
-                @StoredProcedureParameter(name = "alumno", type = UUID.class, mode = ParameterMode.IN)
-        }
-)
 public class GrupoAlumnoEntidad {
 
     private GrupoAlumnoEntidadPK grupoAlumnoEntidadPK;

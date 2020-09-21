@@ -34,7 +34,10 @@ import java.util.UUID;
         name = "TareaEntidad.eliminaGrupo",
         query = "DELETE FROM TareaEntidad t WHERE t.id IN (SELECT t.id FROM TareaEntidad t join t.tareaGlosarioActividadEntidadLista tga " +
                 "WHERE tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id = :idActividad) AND " +
-                "t.idGrupo = :idGrupo")
+                "t.idGrupo = :idGrupo"),
+    @NamedQuery(
+        name = "TareaEntidad.actualizaGrupo",
+        query = "UPDATE TareaEntidad t SET t.idGrupo = :nuevoGrupo WHERE t.alumnoEntidad.id = :idAlumno AND t.idGrupo = :viejoGrupo")
 })
 public class TareaEntidad {
 

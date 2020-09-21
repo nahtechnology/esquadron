@@ -5,10 +5,7 @@ import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
-import tecolotl.profesor.sesion.CicloEscolarSessionBean;
-import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
-import tecolotl.profesor.sesion.GrupoSesionBean;
-import tecolotl.profesor.sesion.ProfesorSesionBean;
+import tecolotl.profesor.sesion.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -43,6 +40,9 @@ public class GrupoControlador implements Serializable {
 
     @Inject
     private ProfesorSesionBean profesorSesionBean;
+
+    @Inject
+    private ReasignaAlumnoSesionBean reasignaAlumnoSesionBean;
 
     @Inject
     private Logger logger;
@@ -193,7 +193,7 @@ public class GrupoControlador implements Serializable {
     }
 
     public void reasignarAlumno() {
-        grupoAlumnoSesionBean.reasignar(grupoModelo.getId(), UUID.fromString(grupoIdReasignar), UUID.fromString(alumnoIdReasignar));
+        reasignaAlumnoSesionBean.reasigar(grupoModelo.getId(), UUID.fromString(grupoIdReasignar), UUID.fromString(alumnoIdReasignar));
     }
 
     public void clonaGrupo() throws CloneNotSupportedException {
