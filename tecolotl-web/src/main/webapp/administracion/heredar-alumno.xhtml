@@ -112,12 +112,15 @@
                         <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg"/>
                     </div>
                     <h:form id="formulario-alumnos">
-                        <div class="uk-card-header uk-flex uk-flex-middle">
-                            <span class="uk-display-inline-block uk-margin-small-right">Selecionar todos:</span>
-                            <label class="switch">
-                                <input type="checkbox" class="uk-checkbox"/>
-                                <span class="slider round"/>
-                            </label>
+                        <div class="uk-card-header uk-flex uk-flex-middle uk-flex-between">
+                            <span>
+                                <span class="uk-display-inline-block uk-margin-small-right">Selecionar todos:</span>
+                                <label class="switch">
+                                    <input type="checkbox" class="uk-checkbox"/>
+                                    <span class="slider round"/>
+                                </label>
+                            </span>
+                            <span>Total Alumnos: <strong>#{heredarAlumnoControlador.alumnoModeloLista.size() eq null ? "0" : heredarAlumnoControlador.alumnoModeloLista.size()}</strong></span>
                         </div>
                         <div class="uk-card-body">
                             <ui:fragment rendered="#{empty heredarAlumnoControlador.alumnoModeloLista}">
@@ -141,7 +144,7 @@
                                     </tbody>
                                 </table>
                             </ui:fragment>
-                            <h:selectManyCheckbox styleClass="tabla-checkbox" value="${heredarAlumnoControlador.alumnosSeleccionLista}" rendered="#{not empty heredarAlumnoControlador.alumnoModeloLista}">
+                            <h:selectManyCheckbox styleClass="tabla-checkbox"  value="${heredarAlumnoControlador.alumnosSeleccionLista}" rendered="#{not empty heredarAlumnoControlador.alumnoModeloLista}">
                                 <f:selectItems value="#{heredarAlumnoControlador.alumnoModeloLista}"
                                                var="alumnoModelo"
                                                itemLabel="${alumnoModelo.nombre} ${alumnoModelo.apellidoPaterno} ${alumnoModelo.apellidoMaterno} - ${alumnoModelo.apodo}"
