@@ -68,4 +68,17 @@ public class DetalleAlumno2Modelo {
         this.grupo = grupo;
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("DetalleAlumno2Modelo{");
+        sb.append("idEscuela='").append(idEscuela).append('\'');
+        sb.append(", inicio=").append(inicio);
+        sb.append(", fin=").append(fin);
+        sb.append(", descripcion='").append(descripcion).append('\'');
+        sb.append(", idGrupo='").append(idGrupo).append('\'');
+        sb.append(", grado=").append(grado);
+        sb.append(", grupo='").append(grupo).append('\'');
+        sb.append('}');
+        return sb.toString();
+    }
 }

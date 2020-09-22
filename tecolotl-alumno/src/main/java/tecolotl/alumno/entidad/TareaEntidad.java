@@ -22,6 +22,9 @@ import java.util.UUID;
         query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
             "t.alumnoEntidad.id = :IdAlumno GROUP BY t ORDER BY t.id"),
     @NamedQuery(
+        name = "TareaEntidad.buscaAlumnoGrupo",
+        query = "SELECT t FROM TareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno AND t.idGrupo = :idGrupo"),
+    @NamedQuery(
         name = "TareaEntidad.aumentaReprodecciones",
         query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"),
     @NamedQuery(

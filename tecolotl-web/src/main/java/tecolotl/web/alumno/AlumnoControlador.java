@@ -23,6 +23,7 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @SessionScoped
@@ -44,12 +45,17 @@ public class AlumnoControlador implements Serializable {
     @Inject
     private SesionControlSingleton sesionControlSingleton;
 
+    @Inject
+    private Logger logger;
+
     private AlumnoModelo alumnoModelo;
     private List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista;
     private List<TareaActividadModelo> tareaActvidadModeloLista;
     private TareaActividadModelo tareaActividadModelo;
+    private DetalleAlumno2Modelo detalleAlumno2Modelo;
     private ActividadModelo actividadModeloBibliotecaLibre;
     private PersonaActivaModelo personaActivaModelo;
+    private String idGrupoSeleccionado;
 
     @PostConstruct
     public void init() {
@@ -58,6 +64,7 @@ public class AlumnoControlador implements Serializable {
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
         personaActivaModelo = alumnoSesionBean.activo(alumnoModelo.getId());
         detalleAlumno2ModeloLista = detalleAlumnoSesionBean.busca(alumnoModelo.getId());
+        if (detalleAlumno2ModeloLista.size() > 1) { detalleAlumno2Modelo = detalleAlumno2ModeloLista.get(0); }
         if (personaActivaModelo.isBloqueado()) {
             try {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=alumno");
@@ -71,7 +78,7 @@ public class AlumnoControlador implements Serializable {
     }
 
     public void buscaTareas(Principal principal) {
-        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId());
+        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId(), detalleAlumno2Modelo.getIdGrupo());
         String datosUsuario[] = principal.getName().split(",");
         sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
                 Integer.parseInt(datosUsuario[1]),
@@ -95,6 +102,10 @@ public class AlumnoControlador implements Serializable {
     public String actividadBiliotecaLibre(String idActividad) {
         actividadModeloBibliotecaLibre = new ActividadModelo(idActividad);
         return "actividad";
+    }
+
+    public void buscaEscuela() {
+        detalleAlumno2Modelo = detalleAlumno2ModeloLista.stream().filter(detalle -> detalle.getIdGrupo().equals(idGrupoSeleccionado)).findFirst().get();
     }
 
     public AlumnoModelo getAlumnoModelo() {
@@ -143,5 +154,21 @@ public class AlumnoControlador implements Serializable {
 
     public void setDetalleAlumno2ModeloLista(List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista) {
         this.detalleAlumno2ModeloLista = detalleAlumno2ModeloLista;
+    }
+
+    public DetalleAlumno2Modelo getDetalleAlumno2Modelo() {
+        return detalleAlumno2Modelo;
+    }
+
+    public void setDetalleAlumno2Modelo(DetalleAlumno2Modelo detalleAlumno2Modelo) {
+        this.detalleAlumno2Modelo = detalleAlumno2Modelo;
+    }
+
+    public String getIdGrupoSeleccionado() {
+        return idGrupoSeleccionado;
+    }
+
+    public void setIdGrupoSeleccionado(String idGrupoSeleccionado) {
+        this.idGrupoSeleccionado = idGrupoSeleccionado;
     }
 }
