@@ -64,7 +64,7 @@ public class AlumnoControlador implements Serializable {
         alumnoModelo = alumnoSesionBean.busca(principal.getName(), true);
         personaActivaModelo = alumnoSesionBean.activo(alumnoModelo.getId());
         detalleAlumno2ModeloLista = detalleAlumnoSesionBean.busca(alumnoModelo.getId());
-        if (detalleAlumno2ModeloLista.size() > 1) { detalleAlumno2Modelo = detalleAlumno2ModeloLista.get(0); }
+        if (!detalleAlumno2ModeloLista.isEmpty()) { detalleAlumno2Modelo = detalleAlumno2ModeloLista.get(0); }
         if (personaActivaModelo.isBloqueado()) {
             try {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=alumno");
@@ -78,14 +78,16 @@ public class AlumnoControlador implements Serializable {
     }
 
     public void buscaTareas(Principal principal) {
-        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId(), detalleAlumno2Modelo.getIdGrupo());
-        String datosUsuario[] = principal.getName().split(",");
-        sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
-                Integer.parseInt(datosUsuario[1]),
-                datosUsuario[0],
-                UsuarioSesionModelo.Tipo.ALUMNO,
-                new Date(),
-                alumnoModelo.getId());
+        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId(), detalleAlumno2Modelo == null ? "" : detalleAlumno2Modelo.getIdGrupo());
+        if (principal != null) {
+            String datosUsuario[] = principal.getName().split(",");
+            sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
+                    Integer.parseInt(datosUsuario[1]),
+                    datosUsuario[0],
+                    UsuarioSesionModelo.Tipo.ALUMNO,
+                    new Date(),
+                    alumnoModelo.getId());
+        }
     }
 
     public String seleccion(TareaActividadModelo tareaActividadModelo){
@@ -106,6 +108,7 @@ public class AlumnoControlador implements Serializable {
 
     public void buscaEscuela() {
         detalleAlumno2Modelo = detalleAlumno2ModeloLista.stream().filter(detalle -> detalle.getIdGrupo().equals(idGrupoSeleccionado)).findFirst().get();
+        buscaTareas(null);
     }
 
     public AlumnoModelo getAlumnoModelo() {

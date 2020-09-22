@@ -118,15 +118,14 @@
                                                                             var="detalleAlumno2Modelo"
                                                                             itemValue="${detalleAlumno2Modelo.idGrupo}"
                                                                             itemLabel="${detalleAlumno2Modelo.grado} ${detalleAlumno2Modelo.grupo}"/>
-                                                             <f:ajax execute="seleccion-grupo" listener="#{alumnoControlador.buscaEscuela()}" render="ciclo-escolar"/>
+                                                             <f:ajax execute="seleccion-grupo" listener="#{alumnoControlador.buscaEscuela()}" render="formulario-grupo:ciclo-escolar formulario-tarea tareas tareas2 video-actividad"/>
                                                          </h:selectOneMenu>
                                                      </p>
                                                  </h:form>
                                              </c:when>
                                              <c:otherwise>
-                                                 <h:outputText styleClass="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"
-                                                               value="${alumnoControlador.detalleAlumno2Modelo.descripcion}"/>
-                                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-capitalize">${alumnoControlador.detalleAlumno2Modelo.grado} ${alumnoControlador.detalleAlumno2Modelo.grupo}</span></p>
+                                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-capitalize">ciclo escolar:</span>${alumnoControlador.detalleAlumno2Modelo.descripcion}</p>
+                                                 <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small"><span class="uk-text-bold uk-text-capitalize">grupo:</span>${alumnoControlador.detalleAlumno2Modelo.grado} ${alumnoControlador.detalleAlumno2Modelo.grupo}</p>
                                              </c:otherwise>
                                          </c:choose>
                                      </div>
@@ -161,7 +160,7 @@
                  </h:panelGroup>
                 <h1 class="lescuadron letra-titulo uk-text-center primera-mayuscula">#{empty alumnoControlador.tareaActvidadModeloLista ? alumno['dashboard.not.homework'] : alumno['dashboard.homework.done']}</h1>
                 <div>
-                    <h:form styleClass="formulario-tareas-progreso" >
+                    <h:form id="formulario-tarea" styleClass="formulario-tareas-progreso" >
                         <h:selectOneRadio value="#{tareasProgresoControlador.idTarea}">
                             <f:selectItems value="#{alumnoControlador.tareaActvidadModeloLista}" var="tareaActividad"  itemLabel="#{tareaActividad.idActividad}" itemValue="#{tareaActividad.id}"/>
                             <f:ajax event="change" listener="#{tareasProgresoControlador.buscaTareasRealizadas}" execute="@form" render="tareas tareas2 video-actividad"/>
