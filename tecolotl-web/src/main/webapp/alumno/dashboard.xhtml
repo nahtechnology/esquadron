@@ -111,9 +111,9 @@
                                                          <span class="uk-text-bold uk-text-capitalize">ciclo escolar:</span>
                                                          <h:outputText id="ciclo-escolar" value="${alumnoControlador.detalleAlumno2Modelo.descripcion}"/>
                                                      </p>
-                                                     <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small">
+                                                     <p class="uk-text-meta uk-margin-remove-bottom uk-margin-remove-top uk-text-small uk-flex uk-flex-between">
                                                          <span class="uk-text-bold uk-text-capitalize">grupo:</span>
-                                                         <h:selectOneMenu id="seleccion-grupo" value="#{alumnoControlador.idGrupoSeleccionado}">
+                                                         <h:selectOneMenu id="seleccion-grupo" style="border-color: #76448A !important; border-radius: 5px !important;" value="#{alumnoControlador.idGrupoSeleccionado}">
                                                              <f:selectItems value="${alumnoControlador.detalleAlumno2ModeloLista}"
                                                                             var="detalleAlumno2Modelo"
                                                                             itemValue="${detalleAlumno2Modelo.idGrupo}"

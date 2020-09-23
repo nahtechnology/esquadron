@@ -164,14 +164,13 @@ function barrasValor() {
     });
 }
 function renderizarBorrado(data) {
-    let seleccionFiltro = document.querySelector('#filtro-nivel');
+    // let seleccionFiltro = document.querySelector('#filtro-nivel');
     if (data.status === "success"){
         let nivelesTabla = document.querySelectorAll('.tabla-alumnos td > img');
-        let nivel = `hover-${seleccionFiltro.value}`;
-        console.log(nivel);
+        // let nivel = `hover-${seleccionFiltro.value}`;
         barrasValor();
         crearNiveles(nivelesTabla);
-        verFilas(nivel);
+        verFilas(nivelSelect,grupoSelect);
     }
 }
 
@@ -316,7 +315,7 @@ class PromedioGeneralActividad {
             filas.forEach(fila =>{
                 let columnas = fila.querySelectorAll('td');
                 let promedioFila = new PromedioActividad(columnas[2].dataset.transcrip,columnas[3].dataset.gramatica,columnas[4].dataset.mapaMental,columnas[5].dataset.relacionarImagen,columnas[6].dataset.completarOracion,columnas[7].dataset.ordenarOraciones,columnas[8].dataset.relacionarOraciones);
-                console.log(promedioFila);
+                // console.log(promedioFila);
                 if (promedioFila.promedio() !== false){
                     actividades.push(promedioFila.promedio());
                 }
