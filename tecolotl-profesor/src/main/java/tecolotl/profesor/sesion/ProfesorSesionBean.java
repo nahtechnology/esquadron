@@ -175,9 +175,9 @@ public class ProfesorSesionBean implements Serializable {
      */
     public List<ProfesorGrupoAlumnoModelo> buscaTotalGrupoAlumno(@NotNull String claveCentroTrabajo) {
         Query query = entityManager.createNativeQuery(
-                "SELECT CAST(p.id AS VARCHAR), p.nombre, p.apellido_paterno, p.apellido_materno, count(grupo.id) AS total_grupo, sum(grupo.total_alumno) AS total_alumno " +
-                        "FROM profesor.profesor p JOIN (SELECT g.id, g.id_profesor, count(ga.id_alumno) AS total_alumno FROM profesor.grupo g LEFT JOIN " +
-                        "profesor.grupo_alumno ga ON g.id = ga.id_grupo GROUP BY g.id) AS grupo ON p.id = grupo.id_profesor WHERE p.id_escuela = ? GROUP BY p.id");
+                "SELECT CAST(p.id AS VARCHAR),p.nombre, p.apellido_paterno, p.apellido_materno, count(grupo.id) AS total_grupo, sum(grupo.total_alumno) AS total_alumno " +
+                        "FROM profesor.profesor p JOIN(SELECT g.id, g.id_profesor, count(ga.id_alumno) AS total_alumno FROM profesor.grupo g JOIN profesor.ciclo_escolar ce ON g.inicio = ce.inicio and g.fin = ce.fin and g.id_escuela = ce.id_escuela JOIN " +
+                        "profesor.grupo_alumno ga ON g.id = ga.id_grupo WHERE ce.activo = TRUE GROUP BY g.id) AS grupo ON p.id = grupo.id_profesor WHERE p.id_escuela = ?GROUP BY p.id;");
         query.setParameter(1, claveCentroTrabajo);
         List<Object[]> lista = (List<Object[]>) query.getResultList();
         return lista.stream().map(objects -> {
