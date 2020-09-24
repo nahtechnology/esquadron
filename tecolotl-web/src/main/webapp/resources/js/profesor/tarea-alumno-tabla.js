@@ -5,7 +5,7 @@ let nivelActual = document.querySelector('.elimina .uk-card-header > div > div:l
 let gradoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(1)').textContent.split(':')[1].trim();
 let grupoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(2)').textContent.split(':')[1].trim();
 let nivelSelect = `hover-${nivelActual}`;
-let grupoSelect = grupoActual.concat(gradoActual);
+let grupoSelect = (grupoActual.concat(gradoActual)).replace(/ /g, "");
 document.addEventListener('DOMContentLoaded',()=>{
     let seleccionFiltro = document.querySelector('#filtro-nivel');
     let filtroGrupo = document.getElementById('filtro-grupo');
@@ -81,7 +81,7 @@ function crearNiveles(nivelesTabla) {
         nivelesSet.add(nivelActividad);
         nivel.parentElement.parentElement.classList.add(nivel.dataset.grupo.replace(/ /g, "").concat(nivel.dataset.grado));
         gruposSet.add(nivel.dataset.grupo.replace(/ /g, "").concat(nivel.dataset.grado));
-        textosSet.add(nivel.dataset.grado.concat(nivel.dataset.grupo.replace(/ /g, "")));
+        textosSet.add(nivel.dataset.grado.concat(" ",nivel.dataset.grupo));
         switch (nivelActividad) {
             case "A1":
                 nivel.parentElement.parentElement.classList.add('hover-A1');
