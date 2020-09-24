@@ -1,14 +1,21 @@
 package tecolotl.administracion.sesion;
 
+import tecolotl.administracion.modelo.AlumnoBusquedaModelo;
+import tecolotl.administracion.modelo.GrupoBusquedaModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaAlumnoModelo;
+import tecolotl.administracion.persistencia.vista.AlumnoEscuelaVista;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Stateless
 public class BusquedaEscuelaSesionBean {
@@ -37,6 +44,18 @@ public class BusquedaEscuelaSesionBean {
             escuelaAlumnoModeloLista.add(escuelaAlumnoModelo);
         }
         return escuelaAlumnoModeloLista;
+    }
+
+    /**
+     * Busca todos los alumnos de una escuela, agrupados por grupos.
+     * @param claveCentroTrabajo Clave centro de trabajo de la escuela a recuperar los alunno
+     * @return Mapa con los datos de los alumnos. como llave primaria {@link GrupoBusquedaModelo} y los datos del alumno en uan lista de objetos {@link AlumnoBusquedaModelo}
+     */
+    public Map<GrupoBusquedaModelo, List<AlumnoBusquedaModelo>> buscaAlumno(@NotNull String claveCentroTrabajo) {
+        TypedQuery<AlumnoEscuelaVista> typedQuery = entityManager.createNamedQuery("AlumnoEscuelaVista.buscaPorEscuela", AlumnoEscuelaVista.class);
+        typedQuery.setParameter("idEscuela", claveCentroTrabajo);
+        List<AlumnoEscuelaVista> alumnoEscuelaVistaLista = typedQuery.getResultList();
+        return alumnoEscuelaVistaLista.stream().collect(Collectors.groupingBy(GrupoBusquedaModelo::new, Collectors.mapping(AlumnoBusquedaModelo::new, Collectors.toList())));
     }
 
 }

@@ -1,0 +1,48 @@
+<ui:composition
+        template="/template/administracion/dashboard.xhtml"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <f:metadata>
+        <f:viewParam name="escuela" value="#{alumnosControlador.claveCentroTrabajo}"/>
+        <f:viewAction action="#{alumnosControlador.inicio()}"/>
+    </f:metadata>
+    <ui:define name="contenido">
+        <h:form>
+            <div class="uk-grid-small uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid="">
+                <ui:repeat value="#{alumnosControlador.mapa.keySet()}" var="grupoBusquedaModelo">
+                    <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
+                        <div class="uk-card-header">
+                            <span>grupo: ${grupoBusquedaModelo.grado} ${grupoBusquedaModelo.grupo}</span>
+                            <span>total: ${alumnosControlador.mapa.get(grupoBusquedaModelo).size()}</span>
+                        </div>
+                        <div class="uk-card-body">
+                            <h:dataTable value="${alumnosControlador.mapa.get(grupoBusquedaModelo)}"
+                                         var="alumnoBusquedaModelo"
+                                         styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover">
+                                <h:column>
+                                    <f:facet name="header">nombre</f:facet>${alumnoBusquedaModelo.nombre}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">apellido paterno</f:facet>${alumnoBusquedaModelo.apellidoPaterno}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">apellido materno</f:facet>${alumnoBusquedaModelo.apellidoMaterno}
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">estatus</f:facet>
+                                    <h:commandButton value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
+                                        <f:ajax listener="#{alumnosControlador.actiliza(alumnoBusquedaModelo.idAlumno, alumnoBusquedaModelo.estatus)}" render="@form"/>
+                                    </h:commandButton>
+                                </h:column>
+                            </h:dataTable>
+                        </div>
+                        <div class="uk-card-footer"></div>
+                    </div>
+                </ui:repeat>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

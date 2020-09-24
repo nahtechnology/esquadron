@@ -214,6 +214,13 @@
                                                         <f:ajax render="formulario-escuela" onevent="function cierra(data) { abreModal('modal-escuela') }"/>
                                                     </h:commandLink>
                                                 </li>
+                                                <li>
+                                                    <h:link styleClass="uk-text-primary" outcome="alumnos">
+                                                        <h:outputText pt:uk-icon="icon: users" styleClass="uk-margin-small-right uk-icon"/>
+                                                        <span class="uk-text-middle"><h:outputText value="alumnos" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:param name="escuela" value="#{escuela.claveCentroTrabajo}"/>
+                                                    </h:link>
+                                                </li>
                                                 <li class="uk-nav-divider"/>
                                                 <li>
                                                     <h:commandLink styleClass="uk-text-danger" pt:uk-toggle="target: #modal-eliminar">
