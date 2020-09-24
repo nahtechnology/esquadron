@@ -5,22 +5,27 @@ import tecolotl.administracion.modelo.GrupoBusquedaModelo;
 import tecolotl.administracion.sesion.BusquedaEscuelaSesionBean;
 import tecolotl.alumno.sesion.AlumnoSesionBean;
 
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.logging.Logger;
 
-@RequestScoped
+@ViewScoped
 @Named
-public class AlumnosControlador {
+public class AlumnosControlador implements Serializable {
 
     @Inject
     private BusquedaEscuelaSesionBean busquedaEscuelaSesionBean;
 
     @Inject
     private AlumnoSesionBean alumnoSesionBean;
+
+    @Inject
+    private Logger logger;
 
     private String claveCentroTrabajo;
     private Map<GrupoBusquedaModelo, List<AlumnoBusquedaModelo>> mapa;
@@ -31,6 +36,14 @@ public class AlumnosControlador {
 
     public void actiliza(String idAlunmo, boolean estatus) {
         alumnoSesionBean.actualiza(UUID.fromString(idAlunmo), estatus);
+        for (Map.Entry<GrupoBusquedaModelo, List<AlumnoBusquedaModelo>> entrySet : mapa.entrySet()) {
+            for (AlumnoBusquedaModelo alumnoBusquedaModelo : entrySet.getValue()) {
+                if (alumnoBusquedaModelo.getIdAlumno().equals(idAlunmo)) {
+                    alumnoBusquedaModelo.setEstatus(estatus);
+                    break;
+                }
+            }
+        }
     }
 
     public String getClaveCentroTrabajo() {

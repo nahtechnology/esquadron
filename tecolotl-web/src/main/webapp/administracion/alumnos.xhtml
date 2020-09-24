@@ -34,7 +34,8 @@
                                 <h:column>
                                     <f:facet name="header">estatus</f:facet>
                                     <h:commandButton value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
-                                        <f:ajax listener="#{alumnosControlador.actiliza(alumnoBusquedaModelo.idAlumno, alumnoBusquedaModelo.estatus)}" render="@form"/>
+                                        <f:ajax listener="#{alumnosControlador.actiliza(alumnoBusquedaModelo.idAlumno, not alumnoBusquedaModelo.estatus)}"
+                                                render="@form"/>
                                     </h:commandButton>
                                 </h:column>
                             </h:dataTable>
