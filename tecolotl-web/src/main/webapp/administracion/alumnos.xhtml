@@ -3,37 +3,49 @@
         xmlns="http://www.w3.org/1999/xhtml"
         xmlns:h="http://xmlns.jcp.org/jsf/html"
         xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
+        xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
     <f:metadata>
         <f:viewParam name="escuela" value="#{alumnosControlador.claveCentroTrabajo}"/>
         <f:viewAction action="#{alumnosControlador.inicio()}"/>
     </f:metadata>
+    <ui:define name="menu">
+        <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
+            <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
+            <li class="uk-parent uk-open">
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg"  styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <ul class="uk-nav-sub">
+                    <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
+                </ul>
+            </li>
+        </ul>
+    </ui:define>
     <ui:define name="contenido">
-        <h:form>
+        <div class="uk-margin-medium-bottom">
+            <input id="busqueda-alumnos" type="search" class="uk-search-input uk-margin-small-right" style="width: 200px" placeholder="Buscar..."/>
+            <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small uk-margin-small-right">buscar</button>
+            <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small">mostrar</button>
+        </div>
+        <h:form id="content-groups">
             <div class="uk-grid-small uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid="">
                 <ui:repeat value="#{alumnosControlador.mapa.keySet()}" var="grupoBusquedaModelo">
                     <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
-                        <div class="uk-card-header">
-                            <span>grupo: ${grupoBusquedaModelo.grado} ${grupoBusquedaModelo.grupo}</span>
-                            <span>total: ${alumnosControlador.mapa.get(grupoBusquedaModelo).size()}</span>
+                        <div class="uk-card-header uk-flex uk-flex-between">
+                            <span class="uk-text-bold uk-display-inline-block primera-mayuscula">grupo: ${grupoBusquedaModelo.grado} ${grupoBusquedaModelo.grupo}</span>
+                            <span class="uk-text-bold uk-display-inline-block primera-mayuscula">total: ${alumnosControlador.mapa.get(grupoBusquedaModelo).size()}</span>
                         </div>
-                        <div class="uk-card-body">
+                        <div class="uk-card-body" style="max-height: 400px; overflow: auto;">
                             <h:dataTable value="${alumnosControlador.mapa.get(grupoBusquedaModelo)}"
                                          var="alumnoBusquedaModelo"
-                                         styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover">
-                                <h:column>
-                                    <f:facet name="header">nombre</f:facet>${alumnoBusquedaModelo.nombre}
+                                         styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover"
+                                         columnClasses=",uk-text-center">
+                                <h:column headerClass="uk-background-primary letra-titulo">
+                                    <f:facet name="header">nombre completo</f:facet>
+                                    ${alumnoBusquedaModelo.nombre} ${alumnoBusquedaModelo.apellidoPaterno} ${alumnoBusquedaModelo.apellidoMaterno}
                                 </h:column>
-                                <h:column>
-                                    <f:facet name="header">apellido paterno</f:facet>${alumnoBusquedaModelo.apellidoPaterno}
-                                </h:column>
-                                <h:column>
-                                    <f:facet name="header">apellido materno</f:facet>${alumnoBusquedaModelo.apellidoMaterno}
-                                </h:column>
-                                <h:column>
+                                <h:column headerClass="uk-text-center uk-background-primary letra-titulo" >
                                     <f:facet name="header">estatus</f:facet>
-                                    <h:commandButton value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
+                                    <h:commandButton styleClass="uk-button uk-button-primary uk-button-small" value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
                                         <f:ajax listener="#{alumnosControlador.actiliza(alumnoBusquedaModelo.idAlumno, not alumnoBusquedaModelo.estatus)}"
                                                 render="@form"/>
                                     </h:commandButton>
@@ -45,5 +57,8 @@
                 </ui:repeat>
             </div>
         </h:form>
+    </ui:define>
+    <ui:define name="file-js">
+        <h:outputScript library="js" name="/administracion/filtrado-alumnos-bloqueo.js"/>
     </ui:define>
 </ui:composition>
