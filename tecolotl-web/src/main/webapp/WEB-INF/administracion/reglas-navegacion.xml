@@ -21,6 +21,10 @@
             <from-outcome>actividad</from-outcome>
             <to-view-id>/administracion/actividad.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>alumnos</from-outcome>
+            <to-view-id>/administracion/alumnos.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>

@@ -168,7 +168,7 @@ public class TareaSesionBeanTest {
 
     @Test
     public void buscaTareasDetalle() {
-        List<TareaActividadModelo> tareaActividadModeloLista = tareaSesionBean.buscaActividad(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"));
+        List<TareaActividadModelo> tareaActividadModeloLista = tareaSesionBean.buscaActividad(UUID.fromString("f7e4c1fe-d444-4186-a331-78cfeb04b209"), "");
         Assert.assertNotNull(tareaActividadModeloLista);
         Assert.assertFalse(tareaActividadModeloLista.isEmpty());
         tareaActividadModeloLista.forEach(tareaResuetasModelo -> {

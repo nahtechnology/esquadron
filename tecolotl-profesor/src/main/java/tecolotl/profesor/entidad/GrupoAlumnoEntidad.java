@@ -5,6 +5,7 @@ import tecolotl.alumno.entidad.AlumnoEntidad;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.StringJoiner;
+import java.util.UUID;
 
 @Entity
 @Table(name = "grupo_alumno", schema = "profesor")
@@ -22,12 +23,13 @@ import java.util.StringJoiner;
     @NamedQuery(
         name = "GrupoAlumnoEntidad.buscaContrasenia",
         query = "SELECT ga " +
-                "FROM GrupoAlumnoEntidad ga JOIN FETCH ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"
-    ),
+                "FROM GrupoAlumnoEntidad ga JOIN FETCH ga.grupoAlumnoEntidadPK.alumnoEntidad a WHERE ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"),
     @NamedQuery(
         name = "GrupoAlumnoEntidad.buscaTotalAlumnosPorGrupo",
-        query = "SELECT count(ga.grupoAlumnoEntidadPK.alumnoEntidad.id) FROM GrupoAlumnoEntidad ga where ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"
-    )
+        query = "SELECT count(ga.grupoAlumnoEntidadPK.alumnoEntidad.id) FROM GrupoAlumnoEntidad ga where ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo"),
+    @NamedQuery(
+        name = "GrupoAlumnoEntidad.elimina",
+        query = "DELETE FROM GrupoAlumnoEntidad ga WHERE ga.grupoAlumnoEntidadPK.alumnoEntidad.id = :idAlumno AND ga.grupoAlumnoEntidadPK.grupoEntidad.id = :idGrupo")
 })
 public class GrupoAlumnoEntidad {
 

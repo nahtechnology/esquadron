@@ -29,7 +29,6 @@ public class BuscaAlumnoControlador {
     public void busca() {
         escuelaAlumnoModeloLista =
                 busquedaEscuelaSesionBean.busca(heredarAlumnoControlador.getEscuelaBaseModelo().getClaveCentroTrabajo(), palabraClave);
-        logger.info("encontraod:" + escuelaAlumnoModeloLista.size());
     }
 
     public List<EscuelaAlumnoModelo> getEscuelaAlumnoModeloLista() {

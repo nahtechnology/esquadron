@@ -4,25 +4,14 @@ document.addEventListener("DOMContentLoaded",function () {
     let mensaje="";
     let form = document.getElementById('form');
     form.addEventListener('submit',(evt)=>{
-        let datosEnviar = evt.target;
-        let contenedores = datosEnviar.parentElement.querySelectorAll('form > div');
-        contenedores.forEach((content,index) => {
-            let cadena = "";
-            content.querySelectorAll('[name]').forEach(input => {
-                if (input.type === "checkbox"){
-                    if(input.checked){
-                        cadena = cadena.concat(input.value.concat(" "));
-                    }
-                }else{
-                    cadena = cadena.concat(input.value.concat(" "));
-                }
-
-            });
-            mensaje = mensaje.concat(labels[index].concat(cadena));
-
-        });
-        console.log(mensaje);
-        sendEmail();
+        evt.preventDefault();
+       let dataForm = new FormData(form);
+       let objAjax = new XMLHttpRequest();
+       objAjax.open('POST','https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit',true);
+       objAjax.addEventListener('load',(evt)=>{
+           console.log(evt.target.status);
+       });
+       objAjax.send(dataForm);
         form.reset();
     })
     // var botonEmail = document.querySelector('#seccion3 > div > div > div:last-child > div');

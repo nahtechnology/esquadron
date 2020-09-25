@@ -22,6 +22,9 @@ import java.util.UUID;
         query = "SELECT t FROM TareaEntidad t JOIN t.tareaGlosarioActividadEntidadLista tga WHERE " +
             "t.alumnoEntidad.id = :IdAlumno GROUP BY t ORDER BY t.id"),
     @NamedQuery(
+        name = "TareaEntidad.buscaAlumnoGrupo",
+        query = "SELECT t FROM TareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno AND t.idGrupo = :idGrupo"),
+    @NamedQuery(
         name = "TareaEntidad.aumentaReprodecciones",
         query = "UPDATE TareaEntidad t SET t.reproducciones = t.reproducciones + :reproducciones WHERE t.id = :idTarea"),
     @NamedQuery(
@@ -34,7 +37,10 @@ import java.util.UUID;
         name = "TareaEntidad.eliminaGrupo",
         query = "DELETE FROM TareaEntidad t WHERE t.id IN (SELECT t.id FROM TareaEntidad t join t.tareaGlosarioActividadEntidadLista tga " +
                 "WHERE tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id = :idActividad) AND " +
-                "t.idGrupo = :idGrupo")
+                "t.idGrupo = :idGrupo"),
+    @NamedQuery(
+        name = "TareaEntidad.actualizaGrupo",
+        query = "UPDATE TareaEntidad t SET t.idGrupo = :nuevoGrupo WHERE t.alumnoEntidad.id = :idAlumno AND t.idGrupo = :viejoGrupo")
 })
 public class TareaEntidad {
 

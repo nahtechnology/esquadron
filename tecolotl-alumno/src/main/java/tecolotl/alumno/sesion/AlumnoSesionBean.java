@@ -97,4 +97,16 @@ public class AlumnoSesionBean implements Serializable {
         return personaActivaModelo;
     }
 
+    /**
+     * Actualiza el estatus de un alumno, si se ecuantra activo o bloqueado
+     * @param idAlumno Identidicador del alumno a ser actualizado
+     * @param estatus Nuevo estatus que deseamos establecer
+     */
+    public void actualiza(@NotNull UUID idAlumno, boolean estatus) {
+        Query query = entityManager.createNamedQuery("AlumnoEntidad.cambiaEstatus");
+        query.setParameter("idAlumno", idAlumno);
+        query.setParameter("estatus", estatus);
+        query.executeUpdate();
+    }
+
 }

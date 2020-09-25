@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @ViewScoped
 @Named
@@ -65,6 +66,7 @@ public class HeredarAlumnoControlador implements Serializable {
         cicloEscolarModeloOptional.ifPresent(ce -> {
             grupoModeloLista = grupoSesionBean.busca(ce.getInicio(), ce.getFin(), escuelaBaseModelo.getClaveCentroTrabajo(), UUID.fromString(idProfeosor));
         });
+        grupoModeloLista = grupoModeloLista.stream().filter(grupo -> grupo.getId().compareTo(grupoModelo.getId()) != 0).collect(Collectors.toList());
     }
 
     public void buscaAlumnosGrupo(AjaxBehaviorEvent event) {

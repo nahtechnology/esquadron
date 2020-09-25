@@ -5,7 +5,7 @@ let nivelActual = document.querySelector('.elimina .uk-card-header > div > div:l
 let gradoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(1)').textContent.split(':')[1].trim();
 let grupoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(2)').textContent.split(':')[1].trim();
 let nivelSelect = `hover-${nivelActual}`;
-let grupoSelect = grupoActual.concat(gradoActual);
+let grupoSelect = (grupoActual.concat(gradoActual)).replace(/ /g, "");
 document.addEventListener('DOMContentLoaded',()=>{
     let seleccionFiltro = document.querySelector('#filtro-nivel');
     let filtroGrupo = document.getElementById('filtro-grupo');
@@ -81,7 +81,7 @@ function crearNiveles(nivelesTabla) {
         nivelesSet.add(nivelActividad);
         nivel.parentElement.parentElement.classList.add(nivel.dataset.grupo.replace(/ /g, "").concat(nivel.dataset.grado));
         gruposSet.add(nivel.dataset.grupo.replace(/ /g, "").concat(nivel.dataset.grado));
-        textosSet.add(nivel.dataset.grado.concat(nivel.dataset.grupo.replace(/ /g, "")));
+        textosSet.add(nivel.dataset.grado.concat(" ",nivel.dataset.grupo));
         switch (nivelActividad) {
             case "A1":
                 nivel.parentElement.parentElement.classList.add('hover-A1');
@@ -164,14 +164,13 @@ function barrasValor() {
     });
 }
 function renderizarBorrado(data) {
-    let seleccionFiltro = document.querySelector('#filtro-nivel');
+    // let seleccionFiltro = document.querySelector('#filtro-nivel');
     if (data.status === "success"){
         let nivelesTabla = document.querySelectorAll('.tabla-alumnos td > img');
-        let nivel = `hover-${seleccionFiltro.value}`;
-        console.log(nivel);
+        // let nivel = `hover-${seleccionFiltro.value}`;
         barrasValor();
         crearNiveles(nivelesTabla);
-        verFilas(nivel);
+        verFilas(nivelSelect,grupoSelect);
     }
 }
 
@@ -316,7 +315,7 @@ class PromedioGeneralActividad {
             filas.forEach(fila =>{
                 let columnas = fila.querySelectorAll('td');
                 let promedioFila = new PromedioActividad(columnas[2].dataset.transcrip,columnas[3].dataset.gramatica,columnas[4].dataset.mapaMental,columnas[5].dataset.relacionarImagen,columnas[6].dataset.completarOracion,columnas[7].dataset.ordenarOraciones,columnas[8].dataset.relacionarOraciones);
-                console.log(promedioFila);
+                // console.log(promedioFila);
                 if (promedioFila.promedio() !== false){
                     actividades.push(promedioFila.promedio());
                 }

@@ -374,7 +374,7 @@
                         </h:column>
                         <h:column >
                             <f:facet name="header">#{coordinador['teacher.detail.table.grup.platform.time']}</f:facet>
-                            <h:button   value="go" outcome="login" styleClass=" uk-button #{promedioAlumnoModelo.totalTareas eq 0 ? 'boton-desabilitado' : 'uk-button-primary'}  uk-button-small" >
+                            <h:button   value="go" outcome="login" styleClass=" uk-button uk-button-primary uk-button-small" >
                                 <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
                                 <f:param name="zona" value="tiempo"/>
 
@@ -420,8 +420,10 @@
             function crearPagina(){
                 let tablaAlumno = document.querySelector("table[id$='tabla-alumno']");
                 let cargando = document.querySelector("#tablas-alumnos .cargando-tabla");
-                let botones = tablaAlumno.querySelectorAll('input.boton-desabilitado');
-                if(tablaAlumno !== null ){
+                let botones;
+
+                if(tablaAlumno ){
+                    botones = tablaAlumno.querySelectorAll('input.boton-desabilitado');
                     let objetoPagina = crearPaginacionTabla(5,tablaAlumno,0);
                     objetoPagina.btnSiguiente.addEventListener('click',()=>{
                         objetoPagina.tabla.classList.add('animacion-tabla');
@@ -440,9 +442,14 @@
                         setTimeout(animacionSelectElementos,500,objetoPagina,evt);
 
                     });
-                    botones.forEach(boton => {
-                        boton.disabled = true;
-                    });
+                    console.log('entro');
+                    if (botones.length > 0){
+
+                        botones.forEach(boton => {
+                            boton.disabled = true;
+                        });
+                    }
+
                     cargando.remove();
                     cambiarEnlaceBoton();
                 }
