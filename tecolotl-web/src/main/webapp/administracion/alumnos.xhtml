@@ -21,10 +21,13 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <div class="uk-margin-medium-bottom">
-            <input id="busqueda-alumnos" type="search" class="uk-search-input uk-margin-small-right" style="width: 200px" placeholder="Buscar..."/>
-            <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small uk-margin-small-right">buscar</button>
-            <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small">mostrar</button>
+        <div class="uk-flex uk-flex-between">
+            <h2>${param["nombre"]}</h2>
+            <div class="uk-margin-medium-bottom">
+                <input id="busqueda-alumnos" type="search" class="uk-input  uk-margin-small-right" style="width: 200px" placeholder="Buscar..."/>
+                <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small uk-margin-small-right">buscar</button>
+                <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small">limpiar busqueda</button>
+            </div>
         </div>
         <h:form id="content-groups">
             <div class="uk-grid-small uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid="">
