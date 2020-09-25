@@ -28,6 +28,7 @@ public class TareasPendientesGrupoModelo {
     public TareasPendientesGrupoModelo(TareasPendientesGrupoVistaEntidad entidad) {
         id = entidad.getId();
         transcripcionTotal = entidad.getTranscripcionTotal();
+        transcripcionPendientes = entidad.getTranscripcionPendientes();
         mapamentalTotal = entidad.getMapamentalTotal();
         mapamentalPendientes = entidad.getMapamentalPendientes();
         relacionarTotal = entidad.getRelacionarTotal();
