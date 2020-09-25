@@ -505,6 +505,12 @@ display: table-row;
 .ver-svg{
 	display: none;
 }
+
+/*Modulo administrador filtrado tabla alumnos*/
+.ocultar-tablas div.uk-card{
+	display: none;
+}
+
 @media screen and (max-width: 1024px ){
 	.contenido-actividades{
 		grid-template-columns: repeat(4,1fr);

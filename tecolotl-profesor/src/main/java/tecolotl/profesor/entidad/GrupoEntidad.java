@@ -32,8 +32,8 @@ import java.util.UUID;
                 "WHERE g.profesorEntidad.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND a.apodo = :apodo "),
     @NamedQuery(
         name = "GrupoEntidad.buscaCiclioEscolarTotalAlumno",
-        query = "SELECT new GrupoEntidad(g.id, g.grado, g.grupo, COUNT(ga.grupoAlumnoEntidadPK.alumnoEntidad.id)) FROM GrupoEntidad g LEFT JOIN g.grupoAlumnoEntidad ga " +
-                "WHERE g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio AND g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin AND " +
+        query = "SELECT new GrupoEntidad(g.id, g.grado, g.grupo, COUNT(ga.grupoAlumnoEntidadPK.alumnoEntidad.id)) FROM GrupoEntidad g LEFT JOIN g.grupoAlumnoEntidad ga JOIN ga.grupoAlumnoEntidadPK.alumnoEntidad a " +
+                "WHERE g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio AND g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin AND a.estatus = TRUE AND " +
                 "g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo AND g.profesorEntidad.id = :idProfesor GROUP BY g.id, g.grado, g.grupo"),
     @NamedQuery(
         name = "GrupoEntidad.cuentaPorProfesor",
@@ -47,8 +47,11 @@ import java.util.UUID;
     @NamedQuery(
         name = "GrupoEntidad.cambiaProfesor",
         query = "UPDATE GrupoEntidad g SET g.profesorEntidad.id = :idProfesor, g.cicloEscolarEntidad.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :escuela, " +
-                "g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio, g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin WHERE g.id = :idGrupo"
-    )
+                "g.cicloEscolarEntidad.cicloEscolarPK.inicio = :inicio, g.cicloEscolarEntidad.cicloEscolarPK.fin = :fin WHERE g.id = :idGrupo"),
+    @NamedQuery(
+        name = "GrupoEntidad.buscaProfesorCicloEscolar",
+        query = "SELECT g FROM GrupoEntidad g JOIN FETCH g.cicloEscolarEntidad ce WHERE g.profesorEntidad.id = :idProfesor AND ce.cicloEscolarPK.inicio = :inicio AND " +
+                "ce.cicloEscolarPK.fin = :fin AND ce.cicloEscolarPK.escuelaEntidad.claveCentroTrabajo = :claveCentroTrabajo")
 })
 public class GrupoEntidad {
 

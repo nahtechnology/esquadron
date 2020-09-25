@@ -5,10 +5,7 @@ import tecolotl.alumno.modelo.AlumnoModelo;
 import tecolotl.profesor.modelo.CicloEscolarModelo;
 import tecolotl.profesor.modelo.GrupoModelo;
 import tecolotl.profesor.modelo.ProfesorModelo;
-import tecolotl.profesor.sesion.CicloEscolarSessionBean;
-import tecolotl.profesor.sesion.GrupoAlumnoSesionBean;
-import tecolotl.profesor.sesion.GrupoSesionBean;
-import tecolotl.profesor.sesion.ProfesorSesionBean;
+import tecolotl.profesor.sesion.*;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -43,6 +40,9 @@ public class GrupoControlador implements Serializable {
 
     @Inject
     private ProfesorSesionBean profesorSesionBean;
+
+    @Inject
+    private ReasignaAlumnoSesionBean reasignaAlumnoSesionBean;
 
     @Inject
     private Logger logger;
@@ -139,11 +139,17 @@ public class GrupoControlador implements Serializable {
 
     public void buscaProfesor() {
         if (profesorModeloLista == null || profesorModeloLista.isEmpty()) {
-            profesorModeloLista = profesorSesionBean.buscaPorEscuela(escuelaBaseModelo.getClaveCentroTrabajo()).stream()
-                    .filter(profesor -> profesor.getId().compareTo(profesorModelo.getId()) != 0).collect(Collectors.toList());
+            profesorModeloLista = profesorSesionBean.buscaPorEscuela(escuelaBaseModelo.getClaveCentroTrabajo());
         }
-        if (!profesorModeloLista.isEmpty()) {
-            grupoModeloPorProfesorLista = grupoSesionBean.busca(profesorModeloLista.get(0).getId());
+        buscaGrupo();
+    }
+
+    public void buscaGrupo() {
+        if (profesorIdReasignar == null) profesorIdReasignar = profesorModeloLista == null || profesorModeloLista.isEmpty() ? null : profesorModeloLista.get(0).getId().toString();
+        if (cicloEscolarIdReasignar == null) cicloEscolarIdReasignar = cicloEscolarModeloLista == null || cicloEscolarModeloLista.isEmpty() ? null : cicloEscolarModeloLista.get(0).hashCode();
+        if (profesorIdReasignar != null && cicloEscolarIdReasignar != null) {
+            grupoModeloPorProfesorLista = grupoSesionBean.busca(UUID.fromString(profesorIdReasignar), busca(cicloEscolarIdReasignar))
+                    .stream().filter(g -> g.getId().compareTo(grupoModelo.getId()) != 0).collect(Collectors.toList());
         }
     }
 
@@ -187,9 +193,7 @@ public class GrupoControlador implements Serializable {
     }
 
     public void reasignarAlumno() {
-        grupoAlumnoSesionBean.reasignar(grupoModelo.getId(),
-                UUID.fromString(grupoIdReasignar),
-                UUID.fromString(alumnoIdReasignar));
+        reasignaAlumnoSesionBean.reasigar(grupoModelo.getId(), UUID.fromString(grupoIdReasignar), UUID.fromString(alumnoIdReasignar));
     }
 
     public void clonaGrupo() throws CloneNotSupportedException {

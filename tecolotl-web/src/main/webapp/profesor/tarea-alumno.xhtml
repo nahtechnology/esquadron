@@ -36,7 +36,8 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
-        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
+<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>-->
+        <h:outputStylesheet library="css" name="graficas.css"/>
        <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
 <!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
 
@@ -245,7 +246,7 @@
                     var alumno = urlParams.get('idAlumno');
                     let totalTareas=document.querySelector('#puntaje-reporte span:first-child').textContent;
                     let tareasCalificadas = document.querySelector('#puntaje-reporte span:nth-child(2)').textContent;
-                    let promedio = document.querySelector('#puntaje-reporte span:last-child').textContent;
+                    let promedio = document.querySelector('#puntaje-reporte span:last-child').textContent.trim() === "Nothing answered yet!" ? -1:document.querySelector('#puntaje-reporte span:last-child').textContent.trim();
                     var hiddenElement = document.createElement('a');
                     console.log(alumno);
                     UIkit.notification("The document is being downloaded, please wait",{timeout: 15000});

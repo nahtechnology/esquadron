@@ -139,6 +139,27 @@ public class GrupoSesionBean implements Serializable {
         return grupoEntidadLista.stream().map(GrupoModelo::new).collect(Collectors.toList());
     }
 
+    /**
+     * Busca todos los grupos perteneciente a un profesor.
+     * @param cicloEscolarModelo ciclo escolar
+     * @param idProfesor profesor
+     * @return Lista de todos los Grupos.
+     */
+    public List<GrupoModelo> busca(@NotNull UUID idProfesor, @NotNull CicloEscolarModelo cicloEscolarModelo) {
+        TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaProfesorCicloEscolar", GrupoEntidad.class);
+        typedQuery.setParameter("idProfesor", idProfesor);
+        typedQuery.setParameter("inicio", cicloEscolarModelo.getInicio());
+        typedQuery.setParameter("fin", cicloEscolarModelo.getFin());
+        typedQuery.setParameter("claveCentroTrabajo", cicloEscolarModelo.getIdEscuela());
+        return typedQuery.getResultList().stream().map(GrupoModelo::new).collect(Collectors.toList());
+    }
+
+    /**
+     * Valida si esciste el alumno dentro de una escuela
+     * @param claveCentroTrabajo escuela
+     * @param apodo apodo del alumno
+     * @return
+     */
     public boolean existeAlumno(@NotNull @Size(min = 10, max = 14) String claveCentroTrabajo,
                                 @NotNull @Size(min = 4, max = 40) String apodo) {
         TypedQuery<Long> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaAlumnoApodo", Long.class);

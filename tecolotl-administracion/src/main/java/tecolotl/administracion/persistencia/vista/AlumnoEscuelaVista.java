@@ -1,0 +1,103 @@
+package tecolotl.administracion.persistencia.vista;
+
+import org.hibernate.annotations.Immutable;
+
+import javax.persistence.*;
+
+@Entity
+@Immutable
+@Table(schema = "administracion", name = "alumno_escuela")
+@NamedQuery(
+        name = "AlumnoEscuelaVista.buscaPorEscuela",
+        query = "SELECT a FROM AlumnoEscuelaVista a WHERE a.idEscuela = :idEscuela"
+)
+public class AlumnoEscuelaVista {
+
+    private String idGrupo;
+    private Short grado;
+    private String grupo;
+    private String idEscuela;
+    private String idAlumno;
+    private String nombre;
+    private String apellidPaterno;
+    private String apellidoMaterno;
+    private Boolean estatus;
+
+    @Column(name = "id_grupo")
+    public String getIdGrupo() {
+        return idGrupo;
+    }
+
+    public void setIdGrupo(String idGrupo) {
+        this.idGrupo = idGrupo;
+    }
+
+    public Short getGrado() {
+        return grado;
+    }
+
+    @Column(name = "id_escuela")
+    public String getIdEscuela() {
+        return idEscuela;
+    }
+
+    public void setIdEscuela(String idEscuela) {
+        this.idEscuela = idEscuela;
+    }
+
+    public void setGrado(Short grado) {
+        this.grado = grado;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    @Id
+    @Column(name = "id_alumno")
+    public String getIdAlumno() {
+        return idAlumno;
+    }
+
+    public void setIdAlumno(String idAlumno) {
+        this.idAlumno = idAlumno;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Column(name = "apellido_paterno")
+    public String getApellidPaterno() {
+        return apellidPaterno;
+    }
+
+    public void setApellidPaterno(String apellidPaterno) {
+        this.apellidPaterno = apellidPaterno;
+    }
+
+    @Column(name = "apellido_materno")
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public Boolean getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Boolean estatus) {
+        this.estatus = estatus;
+    }
+}

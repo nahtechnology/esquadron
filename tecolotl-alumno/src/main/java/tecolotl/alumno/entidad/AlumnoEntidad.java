@@ -24,7 +24,10 @@ import java.util.*;
         query = "SELECT count(a.id) FROM AlumnoEntidad a WHERE a.apodo = :apodo"),
     @NamedQuery(
         name = "AlumnoEntidad.buscaApodo",
-        query = "SELECT a FROM AlumnoEntidad a WHERE a.apodo = :apodo")
+        query = "SELECT a FROM AlumnoEntidad a WHERE a.apodo = :apodo"),
+    @NamedQuery(
+        name = "AlumnoEntidad.cambiaEstatus",
+        query = "UPDATE AlumnoEntidad a SET a.estatus = :estatus WHERE a.id = :idAlumno")
 })
 public class AlumnoEntidad extends PersonaEntidad {
 
@@ -32,6 +35,7 @@ public class AlumnoEntidad extends PersonaEntidad {
     private NivelLenguajeEntidad nivelLenguajeEntidad;
     private Date nacimiento;
     private String correoPadreFamilia;
+    private Boolean estatus;
     private byte[] contraseniaPadreFamilia;
 
     public AlumnoEntidad() {
@@ -104,6 +108,16 @@ public class AlumnoEntidad extends PersonaEntidad {
 
     public void setContraseniaPadreFamilia(byte[] contraseniaPadreFamilia) {
         this.contraseniaPadreFamilia = contraseniaPadreFamilia;
+    }
+
+    @Basic
+    @Column(name = "estatus", insertable = false)
+    public Boolean getEstatus() {
+        return estatus;
+    }
+
+    public void setEstatus(Boolean estatus) {
+        this.estatus = estatus;
     }
 
     @PrePersist

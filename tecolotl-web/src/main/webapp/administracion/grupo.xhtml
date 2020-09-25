@@ -36,7 +36,7 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <strong>Seleccione el ciclo escolar para el profesor: ${param['nombre']}</strong>
+        <strong>Seleccione el ciclo escolar para el profesor: ${param['nombre']} ${param['ap']} ${param['am']}</strong>
         <div uk-grid="" class="uk-margin">
             <div class="uk-width-1-3">
                 <h:outputText value="Este profesor aun no tiene relacionado un ciclo escolar" rendered="#{empty grupoControlador.cicloEscolarModeloMapa}"/>
@@ -135,6 +135,7 @@
                                                     <h:commandLink pt:uk-toggle="target: #modal-alumno" styleClass="uk-text-left uk-text-primary" action="#{grupoControlador.buscaAlumno()}">
                                                         <h:outputText pt:uk-icon="icon: forward" styleClass="uk-margin-small-right uk-icon" />
                                                         <span class="uk-text-middle"><h:outputText value="reasignar alumno" styleClass="primera-mayuscula uk-display-inline-block"/></span>
+                                                        <f:actionListener binding="#{grupoControlador.buscaCicloEscolar()}"/>
                                                         <f:setPropertyActionListener value="#{grupoModelo}" target="#{grupoControlador.grupoModelo}"/>
                                                         <f:ajax render="formulario-seleccion-alumno" onevent="function funcion(data) {if (data.status === 'success') elimina()}"/>
                                                     </h:commandLink>
@@ -317,7 +318,7 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-seleccion-alumno" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
-                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">Reasignar Alumno</p>
+                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">reasignar alumno - selección alumno</p>
                     </div>
                     <div class="uk-modal-body">
                         <h:outputFormat value="Seleccione un alumno del grupo: {0} {1}">
@@ -358,7 +359,7 @@
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-reasigna-alumno" styleClass="uk-form-stacked">
                     <div class="uk-modal-header uk-background-secondary">
-                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">#{otrosetiqueta['reassign.group']}</p>
+                        <p class="uk-h4 uk-text-center uk-text-bold primera-mayuscula letra-titulo">reasignar alumno - selección grupo</p>
                     </div>
                     <div class="uk-modal-body">
                         <h:outputFormat value="Seleccione un profesor a reasignar el grupo: {0} {1}">
@@ -373,18 +374,20 @@
                                                    var="cicloEscolar"
                                                    itemLabel="${cicloEscolar.descripcion}"
                                                    itemValue="${cicloEscolar.hashCode()}"/>
+                                    <f:ajax execute="@this" render="radio-grupo boton-reasignaralumno" listener="#{grupoControlador.buscaGrupo()}"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
                         <div class="uk-width-1-1@s">
-                            <h:outputLabel value="Profesor" for="radio-profesor"/>
+                            <h:outputText rendered="${empty grupoControlador.profesorModeloLista}" value="Este profesor en este ciclo escolar no tiene grupo"/>
+                            <h:outputLabel value="Profesor" for="radio-profesor" rendered="${not empty grupoControlador.profesorModeloLista}"/>
                             <div class="uk-form-controls">
-                                <h:selectOneMenu id="radio-profesor2" value="#{grupoControlador.profesorIdReasignar}" styleClass="uk-select">
+                                <h:selectOneMenu id="radio-profesor2" value="#{grupoControlador.profesorIdReasignar}" styleClass="uk-select" rendered="${not empty grupoControlador.profesorModeloLista}">
                                     <f:selectItems value="#{grupoControlador.profesorModeloLista}"
                                                    var="profesorModelo"
                                                    itemLabel="${profesorModelo.nombre} ${profesorModelo.apellidoPaterno} ${profesorModelo.apellidoMaterno}"
                                                    itemValue="${profesorModelo.id}"/>
-                                    <f:ajax onevent="change" render="radio-alumno boton-reasignaralumno" execute="@this" listener="#{grupoControlador.buscaAlumno}"/>
+                                    <f:ajax execute="@this" render="radio-grupo boton-reasignaralumno" listener="#{grupoControlador.buscaGrupo()}"/>
                                 </h:selectOneMenu>
                             </div>
                         </div>
@@ -402,7 +405,7 @@
                         <button type="reset" class="uk-button uk-button-default uk-margin-small-right uk-modal-close">#{otrosboton['cancel']}</button>
                         <h:commandButton id="boton-reasignaralumno" value="reasignar" styleClass="uk-button uk-button-secondary">
                             <f:ajax execute="@form"
-                                    disabled="#{empty grupoControlador.profesorModeloLista or empty grupoControlador.grupoModeloPorProfesorLista}"
+                                    disabled="${empty grupoControlador.grupoModeloPorProfesorLista}"
                                     listener="#{grupoControlador.reasignarAlumno()}"
                                     render="@from formulario-grupo"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalReasignarAlumno') }"/>

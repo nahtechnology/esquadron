@@ -12,7 +12,7 @@ import java.util.UUID;
 @NamedQuery(
         name = "TareaAlumnoVistaEntidad.buscaAlumno",
         query = "SELECT tav FROM TareaAlumnoVistaEntidad tav " +
-                "WHERE tav.idAlumno = :idAlumno ORDER BY tav.pendiente DESC, tav.asignacion DESC ")
+                "WHERE tav.idAlumno = :idAlumno AND tav.idGrupo = :idGrupo ORDER BY tav.pendiente DESC, tav.asignacion DESC ")
 public class TareaAlumnoVistaEntidad {
 
     private UUID id;

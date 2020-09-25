@@ -84,15 +84,30 @@ public class TareaSesionBean implements Serializable {
     }
 
     /**
+     * Busca las tareas de un alumno y por grupo
+     * @param idAlumno Identificador del alumno
+     * @param idGrupo Identificador del grupo
+     * @return Colección de {@link TareaModelo}
+     */
+    public List<TareaModelo> busca(@NotNull UUID idAlumno, @NotNull UUID idGrupo) {
+        TypedQuery<TareaEntidad> typedQuery = entityManager.createNamedQuery("TareaEntidad.buscaAlumnoGrupo", TareaEntidad.class);
+        typedQuery.setParameter("idAlumno", idAlumno);
+        typedQuery.setParameter("idGrupo", idGrupo);
+        return typedQuery.getResultList().stream().map(TareaModelo::new).collect(Collectors.toList());
+    }
+
+    /**
      * Busca todos los tareas asignadas de un alumno, pero tambien agrega el id de la actividad.
      * @param idAlumno Identificador del alumno.
+     * @param idGrupo Identificador del grupo.
      * @return Colección de {@link TareaActividadModelo}
      */
-    public List<TareaActividadModelo> buscaActividad(@NotNull UUID idAlumno) {
+    public List<TareaActividadModelo> buscaActividad(@NotNull UUID idAlumno, @NotNull String idGrupo) {
         logger.fine(idAlumno.toString());
         TypedQuery<TareaAlumnoVistaEntidad> typedQuery =
                 entityManager.createNamedQuery("TareaAlumnoVistaEntidad.buscaAlumno", TareaAlumnoVistaEntidad.class);
         typedQuery.setParameter("idAlumno",idAlumno);
+        typedQuery.setParameter("idGrupo", idGrupo);
         return typedQuery.getResultList().stream().map(TareaActividadModelo::new).collect(Collectors.toList());
     }
 
