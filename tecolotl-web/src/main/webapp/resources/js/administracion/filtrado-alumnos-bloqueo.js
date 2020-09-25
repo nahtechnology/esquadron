@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         contentTable.classList.add('ocultar-tablas');
         for (const alum of filter) {
             alum.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('uk-display-block');
+            alum.classList.add('uk-text-danger');
         }
     });
     btnShowTables.addEventListener("click",()=>{
@@ -16,7 +17,11 @@ document.addEventListener('DOMContentLoaded',()=>{
        let filterClass = contentTable.querySelectorAll('.uk-display-block');
        filterClass.forEach(filter =>{
           filter.classList.remove('uk-display-block');
+          filter.querySelectorAll('.uk-text-danger').forEach(text =>{
+              text.classList.remove('uk-text-danger');
+          })
        });
+        elementSearch.value = "";
     });
 
 
