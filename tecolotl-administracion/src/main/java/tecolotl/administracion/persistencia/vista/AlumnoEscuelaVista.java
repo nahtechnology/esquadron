@@ -100,4 +100,20 @@ public class AlumnoEscuelaVista {
     public void setEstatus(Boolean estatus) {
         this.estatus = estatus;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("AlumnoEscuelaVista{");
+        sb.append("idGrupo='").append(idGrupo).append('\'');
+        sb.append(", grado=").append(grado);
+        sb.append(", grupo='").append(grupo).append('\'');
+        sb.append(", idEscuela='").append(idEscuela).append('\'');
+        sb.append(", idAlumno='").append(idAlumno).append('\'');
+        sb.append(", nombre='").append(nombre).append('\'');
+        sb.append(", apellidPaterno='").append(apellidPaterno).append('\'');
+        sb.append(", apellidoMaterno='").append(apellidoMaterno).append('\'');
+        sb.append(", estatus=").append(estatus);
+        sb.append('}');
+        return sb.toString();
+    }
 }

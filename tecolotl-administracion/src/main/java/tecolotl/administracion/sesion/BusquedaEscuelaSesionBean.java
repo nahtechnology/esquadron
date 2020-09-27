@@ -6,19 +6,25 @@ import tecolotl.administracion.modelo.escuela.EscuelaAlumnoModelo;
 import tecolotl.administracion.persistencia.vista.AlumnoEscuelaVista;
 
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @Stateless
 public class BusquedaEscuelaSesionBean {
+
+    @Inject
+    private Logger logger;
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -55,7 +61,13 @@ public class BusquedaEscuelaSesionBean {
         TypedQuery<AlumnoEscuelaVista> typedQuery = entityManager.createNamedQuery("AlumnoEscuelaVista.buscaPorEscuela", AlumnoEscuelaVista.class);
         typedQuery.setParameter("idEscuela", claveCentroTrabajo);
         List<AlumnoEscuelaVista> alumnoEscuelaVistaLista = typedQuery.getResultList();
-        return alumnoEscuelaVistaLista.stream().collect(Collectors.groupingBy(GrupoBusquedaModelo::new, Collectors.mapping(AlumnoBusquedaModelo::new, Collectors.toList())));
+        logger.info(Arrays.toString(alumnoEscuelaVistaLista.toArray()));
+        return alumnoEscuelaVistaLista.stream().filter(aev -> aev != null).collect(
+                Collectors.groupingBy(
+                        GrupoBusquedaModelo::new,
+                        Collectors.mapping(aev ->  aev.getIdAlumno() == null ? null : new AlumnoBusquedaModelo(aev) , Collectors.toList())
+                )
+        );
     }
 
 }
