@@ -180,7 +180,7 @@ public class ProfesorSesionBean implements Serializable {
                         "(SELECT g.id,g.id_profesor, count(ga.id_alumno) AS total_alumno FROM profesor.grupo g JOIN " +
                         "profesor.ciclo_escolar ce ON g.inicio = ce.inicio and g.fin = ce.fin and g.id_escuela = ce.id_escuela JOIN " +
                         "profesor.grupo_alumno ga ON g.id = ga.id_grupo JOIN alumno.alumno a ON ga.id_alumno = a.id WHERE ce.activo = TRUE AND a.estatus = TRUE GROUP BY g.id " +
-                        ") AS grupo ON p.id = grupo.id_profesor WHERE p.id_escuela = '21PPR0000G' GROUP BY p.id");
+                        ") AS grupo ON p.id = grupo.id_profesor WHERE p.id_escuela = ? GROUP BY p.id");
         query.setParameter(1, claveCentroTrabajo);
         List<Object[]> lista = (List<Object[]>) query.getResultList();
         return lista.stream().map(objects -> {
