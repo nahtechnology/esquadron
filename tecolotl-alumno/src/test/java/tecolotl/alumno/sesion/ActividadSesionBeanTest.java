@@ -146,6 +146,30 @@ public class ActividadSesionBeanTest {
     }
 
     @Test
+    public void buscaPalabra() {
+        List<ActividadModelo> actividadModeloLista = actividadSesionBean.buscaLenguaje("simple");
+        assertNotNull(actividadModeloLista);
+        assertFalse(actividadModeloLista.isEmpty());
+        actividadModeloLista.forEach(actividadModelo -> {
+            assertNotNull(actividadModelo);
+            assertNotNull(actividadModelo.getIdVideo());
+            assertNotNull(actividadModelo.getLenguaje());
+            assertNotNull(actividadModelo.getPreguntaDetonadora());
+            assertNotNull(actividadModelo.getTiempo());
+            assertNotNull(actividadModelo.getPuntaje());
+            assertNotNull(actividadModelo.getTemaModelo());
+            assertNotNull(actividadModelo.getTemaModelo().getValor());
+            assertNotNull(actividadModelo.getTipoEstudianteModelo());
+            assertNotNull(actividadModelo.getTipoEstudianteModelo().getValor());
+            assertNotNull(actividadModelo.getNivelLenguajeModeloLista());
+            actividadModelo.getNivelLenguajeModeloLista().forEach(nivelLenguajeModelo -> {
+                assertNotNull(nivelLenguajeModelo);
+                assertNotNull(nivelLenguajeModelo.getValor());
+            });
+        });
+    }
+
+    @Test
     public void transcripcion() {
         String transcripcion = actividadSesionBean.transcripcion("DNHmujbuC74");
         assertNotNull(transcripcion);

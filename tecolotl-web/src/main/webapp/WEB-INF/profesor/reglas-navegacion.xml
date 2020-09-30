@@ -206,6 +206,10 @@
             <to-view-id>/profesor/dashboard.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-outcome>todas-actividades</from-outcome>
+            <to-view-id>/profesor/asignar-actividad-buscar.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>admin-alumnos</from-outcome>
             <to-view-id>/profesor/admin-alumnos.xhtml</to-view-id>
             <redirect>

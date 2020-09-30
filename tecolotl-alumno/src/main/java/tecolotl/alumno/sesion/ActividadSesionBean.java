@@ -68,6 +68,17 @@ public class ActividadSesionBean implements Serializable {
     }
 
     /**
+     * Busca actividades con palabra reservada de lenguaje o pregunta detonadora
+     * @param lenguaje Palabra con la que se va a buscar
+     * @return Colección de {@link ActividadModelo}
+     */
+    public List<ActividadModelo> buscaLenguaje(@NotNull String lenguaje) {
+        TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaLenguajePregunta", ActividadEntidad.class);
+        typedQuery.setParameter("palabra", "%".concat(lenguaje.toLowerCase()).concat("%"));
+        return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
+    }
+
+    /**
      * Busca actividades que tengan una nivel de lenguaje relacionado
      * @param nivelLenguaje Nivel de lenguaje a buscaa, por ejemplo A1
      * @return Coleción de {@link ActividadModelo}

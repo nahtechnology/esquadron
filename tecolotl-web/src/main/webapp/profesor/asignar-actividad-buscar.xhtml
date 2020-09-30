@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="/template/profesor/dashboard-profesor.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:pa="http://xmlns.jcp.org/jsf/composite/paginacion">
+    <f:metadata>
+        <f:viewParam name="grupo" value="#{asignarActividadBuscarControlador.grupo}" converter="tecolotl.web.UUIDConverter"/>
+    </f:metadata>
+    <ui:define name="contenido">
+        <h:form id="formulario-busqueda">
+            <h:inputText id="entrada-busqueda" value="#{asignarActividadBuscarControlador.busqueda}">
+                <f:validateRequired/>
+            </h:inputText>
+            <h:message for="entrada-busqueda" styleClass="uk-text-danger"/>
+            <h:commandButton value="${boton['search']}">
+                <f:ajax execute="@form" listener="#{asignarActividadBuscarControlador.busca()}" render="@form tareas"/>
+            </h:commandButton>
+        </h:form>
+        <h:panelGroup id="tareas" layout="block">
+            <ui:repeat value="#{asignarActividadBuscarControlador.actividadModeloMapa.keySet()}" var="nivel">
+                <ui:repeat value="${asignarActividadBuscarControlador.actividadModeloMapa.get(nivel)}" var="actividadModelo">
+                    ${actividadModelo.idVideo}
+                    ${actividadModelo.lenguaje}
+                    ${actividadModelo.preguntaDetonadora}
+                </ui:repeat>
+            </ui:repeat>
+        </h:panelGroup>
+    </ui:define>
+
+</ui:composition>
