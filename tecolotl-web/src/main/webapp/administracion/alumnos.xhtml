@@ -38,8 +38,28 @@
                             <span class="uk-text-bold uk-display-inline-block primera-mayuscula">total: ${alumnosControlador.mapa.get(grupoBusquedaModelo).size()}</span>
                         </div>
                         <div class="uk-card-body" style="max-height: 400px; overflow: auto;">
+                            <ui:fragment rendered="${empty alumnosControlador.mapa.get(grupoBusquedaModelo)}">
+                                <table class="uk-table uk-table-middle">
+                                    <thead class="uk-background-primary">
+                                    <tr>
+                                        <th><span class="letra-titulo">nombre completo</span></th>
+                                        <th><span class="letra-titulo">estatus</span></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td colspan="2">
+                                            <div class="uk-flex uk-flex-center">
+                                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </ui:fragment>
                             <h:dataTable value="${alumnosControlador.mapa.get(grupoBusquedaModelo)}"
                                          var="alumnoBusquedaModelo"
+                                         rendered="${not empty alumnosControlador.mapa.get(grupoBusquedaModelo)}"
                                          styleClass="uk-table uk-table-divider uk-table-middle uk-table-hover"
                                          columnClasses=",uk-text-center">
                                 <h:column headerClass="uk-background-primary letra-titulo">
@@ -48,7 +68,7 @@
                                 </h:column>
                                 <h:column headerClass="uk-text-center uk-background-primary letra-titulo" >
                                     <f:facet name="header">estatus</f:facet>
-                                    <h:commandButton styleClass="uk-button uk-button-primary uk-button-small" value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
+                                    <h:commandButton styleClass="uk-button ${alumnoBusquedaModelo.estatus ? 'uk-button-primary' : 'uk-button-danger'}  uk-button-small" value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
                                         <f:ajax listener="#{alumnosControlador.actiliza(alumnoBusquedaModelo.idAlumno, not alumnoBusquedaModelo.estatus)}"
                                                 render="@form"/>
                                     </h:commandButton>
