@@ -8,8 +8,11 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import tecolotl.administracion.modelo.AdministradorModelo;
 import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.escuela.ContactoModelo;
+import tecolotl.administracion.persistencia.entidad.EscuelaEntidad;
+import tecolotl.administracion.persistencia.vista.AlumnoEscuelaVista;
 import tecolotl.administracion.sesion.ContactoSesionBean;
 import tecolotl.administracion.validacion.direccion.ColoniaNuevaValidacion;
 import tecolotl.administracion.validacion.escuela.ContactoLlavePrimariaValidacion;
@@ -53,7 +56,9 @@ import tecolotl.profesor.validacion.GrupoProfesorValidacion;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 @RunWith(Arquillian.class)
 public class GrupoEntidadTest {
@@ -68,6 +73,9 @@ public class GrupoEntidadTest {
                 .addPackage(CoordinadorModelo.class.getPackage()).addPackage(ContactoModelo.class.getPackage())
                 .addPackage(ContactoSesionBean.class.getPackage()).addClass(ColoniaNuevaValidacion.class)
                 .addPackage(ContactoLlavePrimariaValidacion.class.getPackage())
+                .addPackage(AdministradorModelo.class.getPackage())
+                .addPackage(EscuelaEntidad.class.getPackage())
+                .addPackage(AlumnoEscuelaVista.class.getPackage())
                 //alumno
                 .addPackage(MapaMentalActividadEntidad.class.getPackage()).addPackage(ClaseGlosarioEntidad.class.getPackage())
                 .addPackage(RelacionarModelo.class.getPackage()).addPackage(TareaRelacionarActividadEntidadPK.class.getPackage())
@@ -113,6 +121,31 @@ public class GrupoEntidadTest {
             Assert.assertNotNull(grupoEntidad.getGrado());
             Assert.assertNotNull(grupoEntidad.getGrupo());
             Assert.assertNotNull(grupoEntidad.getId());
+        }
+    }
+
+    @Test
+    public void buscaCiclioEscolarTotalAlumno() {
+        TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaCiclioEscolarTotalAlumno", GrupoEntidad.class);
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.YEAR, 2019);
+        calendar.set(Calendar.MONTH, 11);
+        calendar.set(Calendar.DAY_OF_MONTH, 14);
+        typedQuery.setParameter("inicio", calendar.getTime());
+        calendar.set(Calendar.YEAR, 2020);
+        calendar.set(Calendar.MONTH, 6);
+        calendar.set(Calendar.DAY_OF_MONTH, 30);
+        typedQuery.setParameter("fin", calendar.getTime());
+        typedQuery.setParameter("claveCentroTrabajo", "21PPR0000G");
+        typedQuery.setParameter("idProfesor", UUID.fromString("b75b9a3b-6ee5-4ddc-a038-12c10d8686e7"));
+        List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
+        Assert.assertNotNull(grupoEntidadLista);
+        Assert.assertFalse(grupoEntidadLista.isEmpty());
+        for (GrupoEntidad grupoEntidad : grupoEntidadLista) {
+            Assert.assertNotNull(grupoEntidad);
+            Assert.assertNotNull(grupoEntidad.getId());
+            Assert.assertNotNull(grupoEntidad.getGrado());
+            Assert.assertNotNull(grupoEntidad.getGrupo());
         }
     }
 }

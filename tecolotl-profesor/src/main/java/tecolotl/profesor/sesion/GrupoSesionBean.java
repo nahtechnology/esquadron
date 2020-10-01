@@ -115,6 +115,7 @@ public class GrupoSesionBean implements Serializable {
      */
     public List<GrupoModelo> buscaTotalAlumno(@NotNull Date inicio, @NotNull Date fin, @NotNull String claveCentroTrabajo, @NotNull UUID idProfesor) {
         TypedQuery<GrupoEntidad> typedQuery = entityManager.createNamedQuery("GrupoEntidad.buscaCiclioEscolarTotalAlumno", GrupoEntidad.class);
+        logger.info("");
         typedQuery.setParameter("inicio", inicio).setParameter("fin", fin)
                 .setParameter("claveCentroTrabajo", claveCentroTrabajo).setParameter("idProfesor", idProfesor);
         List<GrupoEntidad> grupoEntidadLista = typedQuery.getResultList();
