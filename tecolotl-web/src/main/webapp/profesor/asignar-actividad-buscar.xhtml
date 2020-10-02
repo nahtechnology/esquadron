@@ -9,25 +9,108 @@
     <f:metadata>
         <f:viewParam name="grupo" value="#{asignarActividadBuscarControlador.grupo}" converter="tecolotl.web.UUIDConverter"/>
     </f:metadata>
+    <ui:define name="menu">
+
+        <ul class="uk-subnav nav-sub uk-visible@m" >
+            <li><h:link outcome="dashboard" value="#{etiqueta['home']}"/></li>
+            <li><span>#{profesor['assign.activity.title']}</span></li>
+        </ul>
+
+        <div>
+            <h:form><h:commandLink action="#{profesorControlador.cerrarSesion}" onclick=" limpiarSession()" value="#{etiqueta['close.sesion']}"/></h:form>
+        </div>
+        <div class="uk-navbar-left uk-hidden@m">
+            <a class="uk-navbar-toggle" uk-navbar-toggle-icon="" href="" uk-toggle="target: #menu" type="button"/>
+        </div>
+        <div id="menu" uk-offcanvas="overlay: true">
+            <div class="uk-offcanvas-bar  ">
+                <button class="uk-offcanvas-close" type="button" uk-close=""/>
+                <ul class="uk-nav  nav-sub-offcanvas ">
+                    <li ><h:link outcome="dashboard" value="Home" styleClass="letra-color-subnav"/></li>
+                </ul>
+            </div>
+        </div>
+    </ui:define>
     <ui:define name="contenido">
-        <h:form id="formulario-busqueda">
-            <h:inputText id="entrada-busqueda" value="#{asignarActividadBuscarControlador.busqueda}">
+        <h:outputStylesheet library="css" name="/profesor/actividad.css"/>
+        <h:form id="formulario-busqueda" styleClass="uk-margin-medium-bottom uk-margin-large-top">
+            <h:inputText id="entrada-busqueda" styleClass="activity-input uk-margin-small-right" value="#{asignarActividadBuscarControlador.busqueda}">
                 <f:validateRequired/>
             </h:inputText>
             <h:message for="entrada-busqueda" styleClass="uk-text-danger"/>
-            <h:commandButton value="${boton['search']}">
-                <f:ajax execute="@form" listener="#{asignarActividadBuscarControlador.busca()}" render="@form tareas"/>
+            <h:commandButton value="${boton['search']}" styleClass="boton-escuadron-base">
+                <f:ajax execute="@form" listener="#{asignarActividadBuscarControlador.busca()}" render="@form tareas" onevent="function link(data){
+                    if(data.status === 'success'){
+                        generateLinks();
+                    }
+                }"/>
             </h:commandButton>
         </h:form>
-        <h:panelGroup id="tareas" layout="block">
+        <h:panelGroup id="tareas" layout="block" styleClass="uk-grid uk-child-width-1-3@m" pt:uk-grid="">
             <ui:repeat value="#{asignarActividadBuscarControlador.actividadModeloMapa.keySet()}" var="nivel">
                 <ui:repeat value="${asignarActividadBuscarControlador.actividadModeloMapa.get(nivel)}" var="actividadModelo">
-                    ${actividadModelo.idVideo}
-                    ${actividadModelo.lenguaje}
-                    ${actividadModelo.preguntaDetonadora}
+                    <div>
+                        <div class="card-activity-#{nivel}">
+                            <div class="uk-card uk-card-default uk-card-small uk-card-hover">
+                                <div class="uk-card-header card-header">
+                                    <div>
+                                        <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
+                                        <span class="cat-txt">#{nivel}</span>
+                                    </div>
+                                    <span class="uk-text-center uk-text-bold">#{actividadModelo.lenguaje}</span>
+                                    <div class="uk-text-right">
+                                        <input type="radio" name="#{nivel}" class="uk-radio" value="#{actividadModelo.idVideo}"/>
+                                        <input class="uk-checkbox" type="checkbox"></input>
+                                    </div>
+                                </div>
+                                <h:panelGroup layout="block" styleClass="card-media" >
+                                        <img src="https://i.ytimg.com/vi/#{actividadModelo.idVideo}/mqdefault.jpg" alt=""/>
+                                </h:panelGroup>
+                                <div class="uk-card-body uk-text-center">
+                                   <span class="question-tag">#{actividadModelo.preguntaDetonadora}</span>
+                                </div>
+                                <div class="uk-card-footer" data-actividad="#{actividadModelo.idVideo}">
+                                    <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
+                                        <div class="uk-inline uk-text-center">
+                                                <span >
+                                                    <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
+                                                </span>
+                                            <div uk-dropdown="">
+                                                <span class="uk-text-capitalize">#{profesor['activity.grammar']}</span>
+                                            </div>
+                                        </div>
+                                        <div class="uk-inline uk-text-center">
+                                            <span  uk-icon="icon: file-text"/>
+                                            <div uk-dropdown="">
+                                                <span class="uk-text-capitalize">#{profesor['didactic.guide']}</span>
+                                            </div>
+                                        </div>
+                                        <div class="uk-inline uk-text-center">
+                                            <span  uk-icon="icon: commenting"/>
+                                            <div uk-dropdown="">
+                                                <span class="uk-text-capitalize">#{profesor['activity.cards']}</span>
+                                            </div>
+                                        </div>
+                                        <div class="uk-inline uk-text-center">
+                                            <button  uk-icon="icon: file-edit"/>
+                                            <div uk-dropdown="">
+                                                <ul class="uk-nav uk-dropdown-nav">
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </ui:repeat>
             </ui:repeat>
         </h:panelGroup>
     </ui:define>
-
+    <ui:define name="file-js">
+        <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
+        <h:outputScript library="js" name="/profesor/asignar-actividad-buscar.js"/>
+    </ui:define>
 </ui:composition>
