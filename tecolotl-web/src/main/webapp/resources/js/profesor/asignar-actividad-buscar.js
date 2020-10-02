@@ -39,3 +39,14 @@ function descargaDocumento(nombreArchivo, llave) {
         }
     });
 }
+
+function buscaSeleccion() {
+    let actividad = document.querySelector('input[type=radio]:checked');
+    if (actividad == null) {
+        UIkit.modal.alert('Selecciona una tarea');
+        return false;
+    }
+    document.getElementById('formulario-asignartarea:actvidad').value = actividad.value;
+    document.getElementById('formulario-asignartarea:ver-tarea').value = actividad.nextElementSibling.checked;
+    return true;
+}

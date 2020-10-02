@@ -162,6 +162,19 @@ public class GrupoAlumnoSesionBean {
         return (Integer)query.getSingleResult();
     }
 
+    /**
+     * Asigna una actividad como tarea a todo un grupo
+     * @param idGrupo Identificador del grupo a asignar
+     * @param idActividad Identificador de la actividad
+     * @param verRespuesta el alumno puede ver las respuesta
+     * @return numero de elementos modificados
+     */
+    public Integer tareaTotal(@NotNull UUID idGrupo, @NotNull @Size(min = 11, max = 11) String idActividad, Boolean verRespuesta) {
+        Query query = entityManager.createNativeQuery("SELECT * FROM profesor.crea_tarea_todo_grupo(?, ?, ?)");
+        query.setParameter(1, idGrupo).setParameter(2, idActividad).setParameter(3, verRespuesta);
+        return (Integer)query.getSingleResult();
+    }
+
     public Integer tarea(@NotNull UUID idGrupo,
                          @NotNull @Size(min = 11, max = 11) String idActividad,
                          @NotNull UUID idAlumno,
