@@ -377,6 +377,7 @@
                             <h:button   value="go" outcome="login" styleClass=" uk-button uk-button-primary uk-button-small" >
                                 <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
                                 <f:param name="zona" value="tiempo"/>
+                                <f:param value="${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}" name="usuario"/>
 
                             </h:button>
                         </h:column>

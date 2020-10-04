@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let elementSearch = document.getElementById('busqueda-alumnos');
     let btnSearch = elementSearch.nextElementSibling;
     let btnShowTables = btnSearch.nextElementSibling;
+    document.getElementById('all-students-disabled').querySelector('span').textContent =  document.querySelectorAll("table .uk-button-danger").length.toString();
     btnSearch.addEventListener('click',()=>{
         let filter = Array.from(alums).filter(cell => cell.textContent.trim().includes(elementSearch.value.trim()));
         contentTable.classList.add('ocultar-tablas');
@@ -23,6 +24,31 @@ document.addEventListener('DOMContentLoaded',()=>{
        });
         elementSearch.value = "";
     });
-
-
+    drawCount();
+    updateCount();
 })
+
+function updateCount(){
+    let containerStudents = document.querySelectorAll('table');
+
+    if(containerStudents.length > 0){
+        containerStudents.forEach(content =>{
+            content.addEventListener('click',evt=>{
+                let element = evt.target;
+                if (element.nodeName === "INPUT"){
+                    setTimeout(drawCount,500);
+                }
+            })
+        })
+    }
+
+}
+
+function drawCount(){
+    document.querySelectorAll('.uk-card').forEach(elem =>{
+        let cardHeaderText = elem.querySelector('.uk-card-header > span:last-child > span');
+        cardHeaderText.textContent ="Desactivados: ".concat(elem.querySelectorAll('.uk-card-body .uk-button-danger').length.toString());
+    });
+    document.getElementById('all-students-disabled').querySelector('span').textContent =  document.querySelectorAll("table .uk-button-danger").length.toString();
+}
+

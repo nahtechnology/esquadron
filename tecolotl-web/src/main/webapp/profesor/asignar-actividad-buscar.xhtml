@@ -43,34 +43,47 @@
                 <f:ajax execute="@form" listener="#{asignarActividadBuscarControlador.busca()}" render="@form tareas formulario-asignartarea" onevent="function link(data){
                     if(data.status === 'success'){
                         generateLinks();
+                        createContentTheme();
                     }
                 }"/>
             </h:commandButton>
         </h:form>
-        <h:form id="formulario-asignartarea">
+        <h:panelGroup layout="block"  styleClass="uk-margin-medium-bottom uk-hidden">
+            <ul uk-accordion="">
+                <li>
+                    <a class="uk-accordion-title uk-text-uppercase" href="#">scope and sequence</a>
+                    <div class="uk-accordion-content filter-activities " id="activity-theme" >
+
+                    </div>
+                </li>
+            </ul>
+        </h:panelGroup>
+
+        <h:form id="formulario-asignartarea" styleClass="uk-text-right">
             <h:inputHidden id="actvidad" value="#{asignarActividadBuscarControlador.actividad}"/>
             <h:inputHidden id="ver-tarea" value="#{asignarActividadBuscarControlador.verTarea}"/>
             <h:commandButton id="boton-asignar"
                              disabled="${empty asignarActividadBuscarControlador.actividadModeloMapa}"
                              value="#{profesor['activity.assign']}"
                              onclick="return buscaSeleccion()"
-                             action="#{asignarActividadBuscarControlador.asignar()}"/>
+                             action="#{asignarActividadBuscarControlador.asignar()}"
+                             styleClass="boton-escuadron-base uk-margin-medium-bottom uk-hidden"   />
         </h:form>
-        <h:panelGroup id="tareas" layout="block" styleClass="uk-grid uk-child-width-1-3@m" pt:uk-grid="">
+        <h:panelGroup id="tareas" layout="block" styleClass="uk-grid uk-child-width-1-3@m uk-margin-medium-bottom" pt:uk-grid="">
             <ui:repeat value="#{asignarActividadBuscarControlador.actividadModeloMapa.keySet()}" var="nivel">
                 <ui:repeat value="${asignarActividadBuscarControlador.actividadModeloMapa.get(nivel)}" var="actividadModelo">
                     <div>
-                        <div class="card-activity-#{nivel}">
+                        <div class="card-activity-#{nivel}" data-tema="#{actividadModelo.lenguaje}">
                             <div class="uk-card uk-card-default uk-card-small uk-card-hover">
                                 <div class="uk-card-header card-header">
                                     <div>
                                         <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt="3ojos" width="30" height="30" style="border-radius: 150px"/>
                                         <span class="cat-txt">#{nivel}</span>
                                     </div>
-                                    <span class="uk-text-center uk-text-bold">#{actividadModelo.lenguaje}</span>
+                                    <span class="uk-text-center uk-text-bold">#{actividadModelo.temaModelo.valor}</span>
                                     <div class="uk-text-right">
                                         <input type="radio" name="tarea" class="uk-radio" value="#{actividadModelo.idVideo}"/>
-                                        <input class="uk-checkbox" type="checkbox"></input>
+                                        <input class="uk-checkbox" type="checkbox"/>
                                     </div>
                                 </div>
                                 <h:panelGroup layout="block" styleClass="card-media" >

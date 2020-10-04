@@ -9,6 +9,10 @@ activity-C1: "C1" $level-C1,
   padding: 1.4px;
   border-radius: 8px;
 }
+%pseudo-element-uikit{
+  display: none;
+  content: none;
+}
 %card-letter{
   font-family: 'Sniglet', "Arial Black", sans-serif;
   font-weight: bold;
@@ -67,9 +71,13 @@ activity-C1: "C1" $level-C1,
 
 
 
-.uk-card-header:before{
-  content: "";
-  display: none;
+.uk-card-header{
+  &:before{
+    @extend %pseudo-element-uikit;
+  }
+  &:after{
+    @extend %pseudo-element-uikit;
+  }
 }
 .cat-txt{
   @extend %card-letter;
@@ -97,4 +105,34 @@ activity-C1: "C1" $level-C1,
     cursor: pointer;
     color: black;
   }
+}
+.filter-activities{
+  @extend %card-letter;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  background-color: $filter-background;
+  border-radius: 8px;
+  border: 2px solid var(--turquesa-primary-color);
+  padding: 8px 5px;
+  span{
+    display: inline-block;
+    text-align: center;
+    border-radius: 8px;
+    padding: 7px 3px;
+    &:hover{
+      cursor: pointer;
+      border: inherit;
+    }
+  }
+}
+.uk-accordion-content{
+   &:before{
+     @extend %pseudo-element-uikit;
+   }
+  &:after{
+    @extend %pseudo-element-uikit;
+  }
+}
+.hidden-activities > div{
+    display: none;
 }

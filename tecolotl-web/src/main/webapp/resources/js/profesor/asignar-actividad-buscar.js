@@ -40,6 +40,43 @@ function descargaDocumento(nombreArchivo, llave) {
     });
 }
 
+function createContentTheme(){
+    let themes = document.querySelectorAll('div[class^=card-activity]');
+    let btnActivity = document.getElementById('formulario-asignartarea:boton-asignar');
+    let contentActivities = document.getElementById('tareas');
+    let contentThemes = document.getElementById('activity-theme');
+    let contentFragment = document.createDocumentFragment();
+    let themesActivity = new Set();
+    for (const themesElement of themes) {
+       themesActivity.add(themesElement.dataset.tema);
+    }
+    themesActivity.forEach(theme =>{
+        let elementTagSpan = document.createElement('span');
+        elementTagSpan.textContent = theme;
+        contentFragment.appendChild(elementTagSpan);
+    });
+    contentThemes.appendChild(contentFragment);
+    contentThemes.parentElement.parentElement.parentElement.classList.remove('uk-hidden');
+    btnActivity.classList.remove('uk-hidden');
+    contentThemes.addEventListener('click',evt =>{
+        let themesFilter = contentActivities.querySelectorAll('.uk-display-block');
+        if (themesFilter.length > 0){
+            themesFilter.forEach(theme =>{
+                theme.classList.remove('uk-display-block');
+            });
+        }
+        let element = evt.target;
+        if (element.nodeName === "SPAN"){
+            contentActivities.classList.add('hidden-activities');
+            let filterActivities = Array.from(themes).filter(theme => theme.dataset.tema.trim() === element.textContent.trim());
+            for (const filterElement of filterActivities) {
+                filterElement.parentElement.classList.add('uk-display-block');
+            }
+        }
+    });
+
+}
+
 function buscaSeleccion() {
     let actividad = document.querySelector('input[type=radio]:checked');
     if (actividad == null) {
