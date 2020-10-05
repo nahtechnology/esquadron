@@ -46,9 +46,11 @@ function updateCount(){
 
 function drawCount(){
     document.querySelectorAll('.uk-card').forEach(elem =>{
+        let active = elem.querySelectorAll('.uk-card-body .uk-button-primary');
         let cardHeaderText = elem.querySelector('.uk-card-header > span:last-child > span');
-        cardHeaderText.textContent ="Desactivados: ".concat(elem.querySelectorAll('.uk-card-body .uk-button-danger').length.toString());
+        cardHeaderText.textContent ="Activados / Desactivados: ".concat(active.length.toString()," / ",elem.querySelectorAll('.uk-card-body .uk-button-danger').length.toString(),",");
     });
-    document.getElementById('all-students-disabled').querySelector('span').textContent =  document.querySelectorAll("table .uk-button-danger").length.toString();
+    let allActives = document.querySelectorAll('table .uk-button-primary');
+    document.getElementById('all-students-disabled').querySelector('span').textContent = allActives.length.toString().concat(" / ",document.querySelectorAll("table .uk-button-danger").length.toString());
 }
 

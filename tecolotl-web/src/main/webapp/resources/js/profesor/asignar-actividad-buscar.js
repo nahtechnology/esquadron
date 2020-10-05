@@ -55,6 +55,7 @@ function createContentTheme(){
         elementTagSpan.textContent = theme;
         contentFragment.appendChild(elementTagSpan);
     });
+    contentThemes.innerHTML = "";
     contentThemes.appendChild(contentFragment);
     contentThemes.parentElement.parentElement.parentElement.classList.remove('uk-hidden');
     btnActivity.classList.remove('uk-hidden');

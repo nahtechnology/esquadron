@@ -29,146 +29,112 @@
   width: 100%;
 }
 
+.activity-theme-text:after {
+  content: "";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  height: 3px;
+}
+
+.uk-card-footer svg {
+  display: block;
+  width: 43px;
+  height: 30px;
+}
+
+/*estilo card por  actividad*/
 .card-activity-A1 {
   background-color: #E80CA2;
   color: #E80CA2;
 }
 
-.card-activity-A1 .uk-radio {
-  border-color: #E80CA2;
-}
-
-.card-activity-A1 .uk-radio:checked:focus {
-  background-color: #E80CA2;
-}
-
-.card-activity-A1 .uk-checkbox {
-  border-color: #E80CA2;
-}
-
-.card-activity-A1 .uk-checkbox:checked:focus {
-  background-color: #E80CA2;
-}
-
 .card-activity-A1 .uk-card-footer svg {
-  display: block;
-  width: 43px;
-  height: 30px;
   stroke: #E80CA2;
 }
 
+.card-activity-A1 .uk-radio, .card-activity-A1 .uk-checkbox {
+  border-color: #E80CA2;
+}
+
+.card-activity-A1 .uk-radio:checked:focus, .card-activity-A1 .uk-checkbox:checked:focus, .card-activity-A1 .activity-theme-text:after {
+  background-color: #E80CA2;
+}
+
+/*---------------------------------------*/
 .card-activity-A2 {
   background-color: #D35400;
   color: #D35400;
 }
 
-.card-activity-A2 .uk-radio {
-  border-color: #D35400;
-}
-
-.card-activity-A2 .uk-radio:checked:focus {
-  background-color: #D35400;
-}
-
-.card-activity-A2 .uk-checkbox {
-  border-color: #D35400;
-}
-
-.card-activity-A2 .uk-checkbox:checked:focus {
-  background-color: #D35400;
-}
-
 .card-activity-A2 .uk-card-footer svg {
-  display: block;
-  width: 43px;
-  height: 30px;
   stroke: #D35400;
 }
 
+.card-activity-A2 .uk-radio, .card-activity-A2 .uk-checkbox {
+  border-color: #D35400;
+}
+
+.card-activity-A2 .uk-radio:checked:focus, .card-activity-A2 .uk-checkbox:checked:focus, .card-activity-A2 .activity-theme-text:after {
+  background-color: #D35400;
+}
+
+/*---------------------------------------*/
 .card-activity-B1 {
   background-color: #E89E0C;
   color: #E89E0C;
 }
 
-.card-activity-B1 .uk-radio {
-  border-color: #E89E0C;
-}
-
-.card-activity-B1 .uk-radio:checked:focus {
-  background-color: #E89E0C;
-}
-
-.card-activity-B1 .uk-checkbox {
-  border-color: #E89E0C;
-}
-
-.card-activity-B1 .uk-checkbox:checked:focus {
-  background-color: #E89E0C;
-}
-
 .card-activity-B1 .uk-card-footer svg {
-  display: block;
-  width: 43px;
-  height: 30px;
   stroke: #E89E0C;
 }
 
+.card-activity-B1 .uk-radio, .card-activity-B1 .uk-checkbox {
+  border-color: #E89E0C;
+}
+
+.card-activity-B1 .uk-radio:checked:focus, .card-activity-B1 .uk-checkbox:checked:focus, .card-activity-B1 .activity-theme-text:after {
+  background-color: #E89E0C;
+}
+
+/*---------------------------------------*/
 .card-activity-B2 {
   background-color: #650CE8;
   color: #650CE8;
 }
 
-.card-activity-B2 .uk-radio {
-  border-color: #650CE8;
-}
-
-.card-activity-B2 .uk-radio:checked:focus {
-  background-color: #650CE8;
-}
-
-.card-activity-B2 .uk-checkbox {
-  border-color: #650CE8;
-}
-
-.card-activity-B2 .uk-checkbox:checked:focus {
-  background-color: #650CE8;
-}
-
 .card-activity-B2 .uk-card-footer svg {
-  display: block;
-  width: 43px;
-  height: 30px;
   stroke: #650CE8;
 }
 
+.card-activity-B2 .uk-radio, .card-activity-B2 .uk-checkbox {
+  border-color: #650CE8;
+}
+
+.card-activity-B2 .uk-radio:checked:focus, .card-activity-B2 .uk-checkbox:checked:focus, .card-activity-B2 .activity-theme-text:after {
+  background-color: #650CE8;
+}
+
+/*---------------------------------------*/
 .card-activity-C1 {
   background-color: #00a8ec;
   color: #00a8ec;
 }
 
-.card-activity-C1 .uk-radio {
-  border-color: #00a8ec;
-}
-
-.card-activity-C1 .uk-radio:checked:focus {
-  background-color: #00a8ec;
-}
-
-.card-activity-C1 .uk-checkbox {
-  border-color: #00a8ec;
-}
-
-.card-activity-C1 .uk-checkbox:checked:focus {
-  background-color: #00a8ec;
-}
-
 .card-activity-C1 .uk-card-footer svg {
-  display: block;
-  width: 43px;
-  height: 30px;
   stroke: #00a8ec;
 }
 
+.card-activity-C1 .uk-radio, .card-activity-C1 .uk-checkbox {
+  border-color: #00a8ec;
+}
+
+.card-activity-C1 .uk-radio:checked:focus, .card-activity-C1 .uk-checkbox:checked:focus, .card-activity-C1 .activity-theme-text:after {
+  background-color: #00a8ec;
+}
+
+/*---------------------------------------*/
 .uk-card {
   background-clip: padding-box;
   border: solid 3px transparent;
