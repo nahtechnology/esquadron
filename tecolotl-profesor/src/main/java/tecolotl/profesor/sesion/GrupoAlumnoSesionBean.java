@@ -212,7 +212,7 @@ public class GrupoAlumnoSesionBean {
         logger.fine(idGrupo.toString());
         Query query = entityManager.createNativeQuery("SELECT CAST (a.id AS VARCHAR),a.apodo,a.nombre,a.apellido_paterno,a.apellido_materno,pgp_sym_decrypt_bytea(" +
                 "a.contrasenia, 'sad7f65as7df6sa87f8asd76f87ads6fa98', 'compress-algo=0, cipher-algo=aes256') AS contrasenia " +
-                "FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id WHERE ga.id_grupo = ?");
+                "FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id WHERE ga.id_grupo = ? AND a.estatus = TRUE");
         query.setParameter(1, idGrupo);
         List<AlumnoModelo> alumnoModeloLista = new ArrayList<>();
         for (Object[] objetos : (List<Object[]>)query.getResultList()) {
