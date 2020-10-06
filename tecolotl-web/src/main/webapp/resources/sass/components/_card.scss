@@ -51,13 +51,13 @@ activity-C1: "C1" $level-C1,
       color: nth($var,2);
     .uk-radio{
         @extend %border-#{$key};
-        &:checked:focus{
+        &:checked{
           @extend %background-color-#{$key};
         }
      }
     .uk-checkbox{
       @extend %border-#{$key};
-      &:checked:focus{
+      &:checked{
         @extend %background-color-#{$key};
       }
     }
@@ -75,7 +75,7 @@ activity-C1: "C1" $level-C1,
       border-color: nth($var,2);
     }
     %background-color-#{$key}{
-      background-color: nth($var,2);
+      background-color: nth($var,2)!important;
     }
     @extend %card-activity;
   }

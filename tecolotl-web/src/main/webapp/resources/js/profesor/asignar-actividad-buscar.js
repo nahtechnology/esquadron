@@ -50,6 +50,7 @@ function createContentTheme(){
     for (const themesElement of themes) {
        themesActivity.add(themesElement.dataset.tema);
     }
+    themesActivity.add("Show all activities")
     themesActivity.forEach(theme =>{
         let elementTagSpan = document.createElement('span');
         elementTagSpan.textContent = theme;
@@ -67,14 +68,28 @@ function createContentTheme(){
             });
         }
         let element = evt.target;
-        if (element.nodeName === "SPAN"){
+        if (element.nodeName === "SPAN" && element.textContent.trim() !== "Show all activities"){
             contentActivities.classList.add('hidden-activities');
             let filterActivities = Array.from(themes).filter(theme => theme.dataset.tema.trim() === element.textContent.trim());
             for (const filterElement of filterActivities) {
                 filterElement.parentElement.classList.add('uk-display-block');
             }
+        }else if (element.textContent.trim() === "Show all activities"){
+            console.log('entro');
+            contentActivities.classList.remove('hidden-activities');
         }
     });
+    contentActivities.addEventListener('change',evt =>{
+        console.log(evt.target.type);
+        if (evt.target.type === "radio" && evt.target.checked === true) {
+            evt.target.nextElementSibling.checked = true;
+        }
+        contentActivities.querySelectorAll('.uk-radio').forEach(radio => {
+            if (radio.checked === false){
+                radio.nextElementSibling.checked = false;
+            }
+        })
+    })
 
 }
 

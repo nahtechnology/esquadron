@@ -58,8 +58,8 @@
   border-color: #E80CA2;
 }
 
-.card-activity-A1 .uk-radio:checked:focus, .card-activity-A1 .uk-checkbox:checked:focus, .card-activity-A1 .activity-theme-text:after {
-  background-color: #E80CA2;
+.card-activity-A1 .uk-radio:checked, .card-activity-A1 .uk-checkbox:checked, .card-activity-A1 .activity-theme-text:after {
+  background-color: #E80CA2 !important;
 }
 
 /*---------------------------------------*/
@@ -76,8 +76,8 @@
   border-color: #D35400;
 }
 
-.card-activity-A2 .uk-radio:checked:focus, .card-activity-A2 .uk-checkbox:checked:focus, .card-activity-A2 .activity-theme-text:after {
-  background-color: #D35400;
+.card-activity-A2 .uk-radio:checked, .card-activity-A2 .uk-checkbox:checked, .card-activity-A2 .activity-theme-text:after {
+  background-color: #D35400 !important;
 }
 
 /*---------------------------------------*/
@@ -94,8 +94,8 @@
   border-color: #E89E0C;
 }
 
-.card-activity-B1 .uk-radio:checked:focus, .card-activity-B1 .uk-checkbox:checked:focus, .card-activity-B1 .activity-theme-text:after {
-  background-color: #E89E0C;
+.card-activity-B1 .uk-radio:checked, .card-activity-B1 .uk-checkbox:checked, .card-activity-B1 .activity-theme-text:after {
+  background-color: #E89E0C !important;
 }
 
 /*---------------------------------------*/
@@ -112,8 +112,8 @@
   border-color: #650CE8;
 }
 
-.card-activity-B2 .uk-radio:checked:focus, .card-activity-B2 .uk-checkbox:checked:focus, .card-activity-B2 .activity-theme-text:after {
-  background-color: #650CE8;
+.card-activity-B2 .uk-radio:checked, .card-activity-B2 .uk-checkbox:checked, .card-activity-B2 .activity-theme-text:after {
+  background-color: #650CE8 !important;
 }
 
 /*---------------------------------------*/
@@ -130,8 +130,8 @@
   border-color: #00a8ec;
 }
 
-.card-activity-C1 .uk-radio:checked:focus, .card-activity-C1 .uk-checkbox:checked:focus, .card-activity-C1 .activity-theme-text:after {
-  background-color: #00a8ec;
+.card-activity-C1 .uk-radio:checked, .card-activity-C1 .uk-checkbox:checked, .card-activity-C1 .activity-theme-text:after {
+  background-color: #00a8ec !important;
 }
 
 /*---------------------------------------*/

@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded',()=>{
     drawCount();
     updateCount();
 })
-
 function updateCount(){
     let containerStudents = document.querySelectorAll('table');
 
@@ -43,14 +42,14 @@ function updateCount(){
     }
 
 }
-
 function drawCount(){
     document.querySelectorAll('.uk-card').forEach(elem =>{
         let active = elem.querySelectorAll('.uk-card-body .uk-button-primary');
         let cardHeaderText = elem.querySelector('.uk-card-header > span:last-child > span');
-        cardHeaderText.textContent ="Activados / Desactivados: ".concat(active.length.toString()," / ",elem.querySelectorAll('.uk-card-body .uk-button-danger').length.toString(),",");
+        cardHeaderText.textContent = `Activados: ${active.length.toString()} / Desactivados: ${elem.querySelectorAll('.uk-card-body .uk-button-danger').length.toString()} /`
     });
     let allActives = document.querySelectorAll('table .uk-button-primary');
-    document.getElementById('all-students-disabled').querySelector('span').textContent = allActives.length.toString().concat(" / ",document.querySelectorAll("table .uk-button-danger").length.toString());
+    document.getElementById('all-students-disabled').querySelector('span:first-child').textContent = allActives.length.toString();
+    document.getElementById('all-students-disabled').querySelector('span:last-child').textContent = document.querySelectorAll("table .uk-button-danger").length.toString();
 }
 
