@@ -22,6 +22,7 @@ import javax.persistence.criteria.Root;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -229,18 +230,11 @@ public class GrupoAlumnoSesionBean {
     }
 
     public List<PromedioAlumnoModelo> promedioAlumno(@NotNull UUID idGrupo) {
-        Query query = entityManager.createNativeQuery("SELECT CAST(a.id AS VARCHAR),a.nombre,a.apellido_paterno,a.apellido_materno," +
-                "CASE WHEN promedio.total_tareas IS NULL THEN 0 ELSE promedio.total_tareas END AS total_tareas,CASE WHEN promedio.nivel_actual IS NULL THEN nl.valor ELSE promedio.nivel_actual END AS nivel_actual," +
-                "promedio.promedio_transcripcion,promedio.promedio_mapamental,promedio.promedio_relacionar_imagen,promedio.promedio_gramatica,promedio.promedio_completa,promedio.promdio_relacionar_oraciones," +
-                "promedio.promedio_completar FROM profesor.grupo_alumno ga LEFT JOIN alumno.alumno a ON a.id = ga.id_alumno LEFT JOIN alumno.nivel_lenguaje nl ON a.id_nivel_lenguaje = nl.clave LEFT JOIN" +
-                "(SELECT a.id AS id_alumno,CAST(count(c.id) AS INTEGER) AS total_tareas,max(c.nivel_lenguaje) AS nivel_actual,round(avg(c.calificacion_trancipcion)) AS promedio_transcripcion," +
-                "round(avg(c.calificacion_mapamental)) AS promedio_mapamental,round(avg(c.calificacion_relaciona_imagen)) AS promedio_relacionar_imagen,round(avg(c.calificacion_gramatica)) AS promedio_gramatica," +
-                "round(avg(c.calificacion_oraciones)) AS promedio_completa,round(avg(c.calificacion_relacionar_oraciones)) AS promdio_relacionar_oraciones,round(avg(c.calificacion_completar)) AS promedio_completar " +
-                "FROM alumno.alumno a JOIN alumno.calificacion c ON c.id_alumno = a.id WHERE (calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_completar ISNULL OR calificacion_completar <> 0) AND " +
-                "(calificacion_mapamental ISNULL OR calificacion_mapamental <> 0) AND (calificacion_relaciona_imagen ISNULL OR calificacion_relaciona_imagen <> 0) AND " +
-                "(calificacion_relaciona_imagen ISNULL OR calificacion_relaciona_imagen <> 0) AND (calificacion_gramatica ISNULL OR calificacion_gramatica <> 0) AND " +
-                "(calificacion_oraciones ISNULL OR calificacion_oraciones <> 0) AND (calificacion_relacionar_oraciones ISNULL OR calificacion_relacionar_oraciones <> 0) " +
-                "GROUP BY a.id, c.nivel_lenguaje HAVING c.nivel_lenguaje = max(c.nivel_lenguaje)) AS promedio ON promedio.id_alumno = ga.id_alumno WHERE id_grupo = ?");
+        Query query = entityManager.createNativeQuery("SELECT CAST(a.id AS VARCHAR),a.nombre,a.apellido_paterno,a.apellido_materno,count(cc) AS total_tareas,nl.valor AS nivel_actual," +
+                "round(avg(cc.transcripcion)) AS promedio_transcripcion,round(avg(cc.mapa_mental_promedio)) AS promedio_mapamental,round(avg(cc.relacionar_imagen_promedio)) AS promedio_relacionar_imagen," +
+                "round(avg(cc.gramatica_promedio)) AS promedio_gramatica,round(avg(cc.completar_promedio)) AS promedio_completa,round(avg(cc.relacionar_oracion_promedio)) AS promdio_relacionar_oraciones," +
+                "round(avg(cc.completar_promedio)) AS promedio_completar FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id JOIN alumno.nivel_lenguaje nl ON a.id_nivel_lenguaje = nl.clave LEFT JOIN " +
+                "profesor.calificacion_coordinador cc ON a.id = cc.id_alumno WHERE a.estatus = TRUE AND ga.id_grupo = ? GROUP BY a.id,a.nombre, a.apellido_paterno, a.apellido_materno,nl.valor");
         query.setParameter(1, idGrupo);
         List<PromedioAlumnoModelo> promedioAlumnoModeloLista = new ArrayList<>();
         for (Object[] objectos : (List<Object[]>)query.getResultList()) {
@@ -249,7 +243,7 @@ public class GrupoAlumnoSesionBean {
             promedioAlumnoModelo.setNombre((String)objectos[1]);
             promedioAlumnoModelo.setApellidoPaterno((String)objectos[2]);
             promedioAlumnoModelo.setApellidoMaterno((String)objectos[3]);
-            promedioAlumnoModelo.setTotalTareas((Integer)objectos[4]);
+            promedioAlumnoModelo.setTotalTareas(((BigInteger)objectos[4]).intValue());
             promedioAlumnoModelo.setNivelActual((String)objectos[5]);
             promedioAlumnoModelo.setPromedioTranscipcion(objectos[6] == null ? null : ((BigDecimal)objectos[6]).intValue());
             promedioAlumnoModelo.setPromedioPromedioMapamental(objectos[7] == null ? null : ((BigDecimal)objectos[7]).intValue());

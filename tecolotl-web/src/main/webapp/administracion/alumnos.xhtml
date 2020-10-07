@@ -29,13 +29,33 @@
                 <button class="uk-text-capitalize uk-button uk-button-primary uk-button-small">limpiar busqueda</button>
             </div>
         </div>
-        <h:form id="content-groups">
-            <div class="uk-grid-small uk-child-width-1-1@s uk-child-width-1-2@m" uk-grid="">
+        <h3 id="all-students-disabled">Total alumnos Activados:  <span/> / Desactivados: <span/></h3>
+        <h:form id="content-groups" >
+            <h:panelGroup layout="block" rendered="#{alumnosControlador.mapa.keySet().size() le 0}">
+                <table class="uk-table" style="border: 1px solid #4a4a4a">
+                    <thead class="uk-background-primary">
+                    <tr>
+                        <th class="letra-titulo uk-text-center">nombre</th>
+                        <th class="letra-titulo uk-text-center">status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <div class="uk-flex uk-flex-center">
+                                <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" alt="vacio" height="215" width="243"/>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </h:panelGroup>
+            <h:panelGroup layout="block" styleClass="uk-grid-small uk-child-width-1-1@s uk-child-width-1-2@m" pt:uk-grid="" rendered="#{alumnosControlador.mapa.keySet().size() gt 0}">
                 <ui:repeat value="#{alumnosControlador.mapa.keySet()}" var="grupoBusquedaModelo">
                     <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla">
                         <div class="uk-card-header uk-flex uk-flex-between">
                             <span class="uk-text-bold uk-display-inline-block primera-mayuscula">grupo: ${grupoBusquedaModelo.grado} ${grupoBusquedaModelo.grupo}</span>
-                            <span class="uk-text-bold uk-display-inline-block primera-mayuscula">total: ${alumnosControlador.mapa.get(grupoBusquedaModelo).size()}</span>
+                            <span class="uk-text-bold uk-display-inline-block uk-text-capitalize"><span/>   Total: ${alumnosControlador.mapa.get(grupoBusquedaModelo).size()}</span>
                         </div>
                         <div class="uk-card-body" style="max-height: 400px; overflow: auto;">
                             <ui:fragment rendered="${empty alumnosControlador.mapa.get(grupoBusquedaModelo)}">
@@ -70,7 +90,12 @@
                                     <f:facet name="header">estatus</f:facet>
                                     <h:commandButton styleClass="uk-button ${alumnoBusquedaModelo.estatus ? 'uk-button-primary' : 'uk-button-danger'}  uk-button-small" value="${alumnoBusquedaModelo.estatus ? 'desactivar' : 'activar'}">
                                         <f:ajax listener="#{alumnosControlador.actiliza(alumnoBusquedaModelo.idAlumno, not alumnoBusquedaModelo.estatus)}"
-                                                render="@form"/>
+                                                render="@form"
+                                                onevent="function load(data){
+                                                    if (data.status === 'success'){
+                                                        updateCount();
+                                                    }
+                                                }"/>
                                     </h:commandButton>
                                 </h:column>
                             </h:dataTable>
@@ -78,7 +103,7 @@
                         <div class="uk-card-footer"></div>
                     </div>
                 </ui:repeat>
-            </div>
+            </h:panelGroup>
         </h:form>
     </ui:define>
     <ui:define name="file-js">

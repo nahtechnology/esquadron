@@ -244,7 +244,7 @@ class PromedioActividad {
         }else{ return permitido;}
     }
     sinPromedio(tarea){
-        return !(tarea === -1 || tarea === 0);
+        return !(tarea === -3 || tarea === 4);
     }
 }
 
@@ -324,7 +324,7 @@ class PromedioGeneralActividad {
                 actividades.forEach(actividad => {
                     for (let i = 0;i<7;i++){
                         dividendos[i] += (actividad[i] === -2 ? 0 : 1);
-                        puntajes[i] += (actividad[i] === -2 ? 0 : actividad[i]);
+                        puntajes[i] += ((actividad[i] === -2 || actividad[i] === -1) ? 0 : actividad[i]);
                     }
                 });
                 for (let i = 0; i < 7; i++){
@@ -337,12 +337,12 @@ class PromedioGeneralActividad {
                     promedio += pr;
                 })
             }
-            // console.log(dividendos);
-            // console.log(puntajes);
+            console.log(dividendos);
+            console.log(puntajes);
             this.tareasAsignadas.innerText = filas.length;
             this.tareasPromediadas.innerText = actividades.length;
             this.promedioGeneral.innerText = actividades.length > 0 ? Math.round(promedio/promedios.length) : "Nothing answered yet!";
-            // console.log(promedios);
+            console.log(promedios);
         }else {
             this.tareasAsignadas.innerText = 0;
             this.tareasPromediadas.innerText = 0;
