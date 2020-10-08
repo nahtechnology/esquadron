@@ -35,16 +35,17 @@ import java.util.StringJoiner;
                 name = "ActividadEntidad.buscaNoAsigandasAlumno",
                 query = "SELECT NEW ActividadEntidad(a.id, a.preguntaDetonadora) FROM ActividadEntidad a JOIN a.nivelLenguajeEntidad nl WHERE nl.clave = :nivelLenguaje AND a.id NOT IN " +
                         "(SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM TareaGlosarioActividadEntidad tga JOIN " +
-                        "tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"
-        ),
+                        "tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"),
         @NamedQuery(
                 name = "ActividadEntidad.buscaEstatus",
-                query = "SELECT new ActividadEntidad(e.id, e.estatus) FROM ActividadEntidad e"
-        ),
+                query = "SELECT new ActividadEntidad(e.id, e.estatus) FROM ActividadEntidad e"),
         @NamedQuery(
                 name = "ActividadEntidad.actualizaEstatus",
-                query = "UPDATE ActividadEntidad a SET a.estatus = :estatus WHERE a.id = :idVideo"
-        )
+                query = "UPDATE ActividadEntidad a SET a.estatus = :estatus WHERE a.id = :idVideo"),
+        @NamedQuery(
+                name = "ActividadEntidad.buscaLenguajePregunta",
+                query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.nivelLenguajeEntidad JOIN FETCH a.temaEntidad t " +
+                        "WHERE (LOWER(a.lenguaje) LIKE :palabra OR LOWER(a.preguntaDetonadora) LIKE :palabra) AND a.estatus = TRUE ")
 })
 public class ActividadEntidad {
 

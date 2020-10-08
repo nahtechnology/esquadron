@@ -41,8 +41,6 @@
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/biblioteca-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/scroll-profesor.css"/>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/asignar-actividad.css"/>
-            <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/asignar-actividad.css']}"/></ui:remove>
-            <ui:remove><h:outputStylesheet library="css" name="modal.css"/></ui:remove>
             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/modal.css"/>
             <div class="uk-position-relative uk-margin-small-top" id="temario">
                 <div class="uk-position-absolute uk-animation-slide-top-medium">
@@ -85,6 +83,9 @@
                         </h:commandButton>
                     </h:form>
                     <h:button value="#{boton['back']}" styleClass="uk-button uk-margin-small-right boton-escuadron-base" style="background-color: var(--color-nav-primary)" outcome="dashboard"/>
+                    <h:button value="all activity" styleClass="uk-button uk-margin-small-right boton-escuadron-base" outcome="todas-actividades" rendered="${not empty param['grupo']}">
+                        <f:param name="grupo" value="${asignarActividadControlador.grupo}"/>
+                    </h:button>
                     <button class="uk-button boton-escuadron-base" onclick="buscaActividadSeleccionada(event)">#{profesor['activity.assign']}</button>
                 </div>
                 <ul  class="uk-grid js-filter uk-margin-medium-top uk-margin-large-bottom uk-child-width-1-3@m" uk-grid="">
