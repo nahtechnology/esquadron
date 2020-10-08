@@ -42,7 +42,7 @@ function completarOracionRemueve() {
     }
     // var texto = revolver(wordsPalabras);
     completarOracion.querySelectorAll('div ul:nth-child(2) > li').forEach(function (parrafo,indice) {
-      let otro = parrafo.querySelector('span[id*=oraciones]');
+      let otro = parrafo.querySelector('span[id*=oraciones]');// se seleccionan las oraciones con las respuestas que seran removidas y posteriormente colocadas en el contenedor superior
        nodosPalabras.push(otro);
        palabrasOraciones.push(otro.querySelector('span.remover').innerText);
      if (otro.dataset.resuelto === 'true'){
@@ -57,15 +57,15 @@ function completarOracionRemueve() {
         }
     });
     console.log(palabrasOraciones);
-    palabrasOraciones.forEach(word =>{
+    palabrasOraciones.forEach((word,indice) =>{
 
         for (let i = 0; i < nodosPalabras.length ; i++) {
             if (nodosPalabras[i].querySelector('span.remover').innerText === word){
-                var palabra = document.createElement('span');
+                let palabra = document.createElement('span');
                 palabra.innerText = nodosPalabras[i].querySelector('span.remover').innerText;
                 palabra.dataset.cardinalidad = nodosPalabras[i].parentNode.dataset.cardinalidad;
-                palabra.id="identificador"+i;
-                palabra.dataset.index = i;
+                palabra.id="identificador"+indice;
+                palabra.dataset.index = indice.toString();
                 palabras.appendChild(palabra);
                 i = nodosPalabras.length;
             }
