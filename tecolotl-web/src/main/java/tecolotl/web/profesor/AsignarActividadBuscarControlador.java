@@ -41,7 +41,10 @@ public class AsignarActividadBuscarControlador implements Serializable {
     }
 
     public void busca() {
-        actividadModeloMapa = actividadSesionBean.buscaLenguaje(busqueda).stream().collect(Collectors.groupingBy(actividadModelo -> actividadModelo.getNivelLenguajeModeloLista().get(0).getValor()));
+        List<ActividadModelo> actividadModeloLista = actividadSesionBean.buscaLenguaje(busqueda);
+        logger.info(actividadModeloLista.toString());
+        actividadModeloMapa = actividadModeloLista
+                .stream().collect(Collectors.groupingBy(actividadModelo -> actividadModelo.getNivelLenguajeModeloLista().get(0).getValor()));
     }
 
     public String asignar() {
