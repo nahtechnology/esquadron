@@ -4,6 +4,7 @@ import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
 import tecolotl.alumno.entidad.TemaEntidad;
 import tecolotl.alumno.entidad.TipoEstudianteEntidad;
+import tecolotl.alumno.entidad.vista.ActividadBuquedaVista;
 import tecolotl.alumno.modelo.ActividadModelo;
 import tecolotl.alumno.modelo.NivelLenguajeModelo;
 import tecolotl.alumno.modelo.TemaModelo;
@@ -73,7 +74,7 @@ public class ActividadSesionBean implements Serializable {
      * @return Colección de {@link ActividadModelo}
      */
     public List<ActividadModelo> buscaLenguaje(@NotNull String lenguaje) {
-        TypedQuery<ActividadEntidad> typedQuery = entityManager.createNamedQuery("ActividadEntidad.buscaLenguajePregunta", ActividadEntidad.class);
+        TypedQuery<ActividadBuquedaVista> typedQuery = entityManager.createNamedQuery("ActividadBuquedaVista.buscaPreguntaLenguaje", ActividadBuquedaVista.class);
         typedQuery.setParameter("palabra", "%".concat(lenguaje.toLowerCase()).concat("%"));
         return typedQuery.getResultList().stream().map(ActividadModelo::new).collect(Collectors.toList());
     }
