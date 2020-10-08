@@ -88,7 +88,6 @@ function evitarPreguntas() {
         });
     });
 }
-
 // function seleccionSiguiente() {
 //     document.querySelector('.complete-sentences form ul li.boton-falta').click();
 // }
