@@ -159,3 +159,12 @@ activity-C1: "C1" $level-C1,
 .hidden-activities > div{
     display: none;
 }
+.uk-accordion-title{
+  &:before{
+    @extend %pseudo-element-uikit;
+  }
+  &:after{
+    @extend %pseudo-element-uikit;
+  }
+
+}
