@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let btnShowTables = btnSearch.nextElementSibling;
     document.getElementById('all-students-disabled').querySelector('span').textContent =  document.querySelectorAll("table .uk-button-danger").length.toString();
     btnSearch.addEventListener('click',()=>{
-        let filter = Array.from(alums).filter(cell => cell.textContent.trim().includes(elementSearch.value.trim()));
+        let filter = Array.from(alums).filter(cell => cell.textContent.trim().toLowerCase().includes(elementSearch.value.trim().toLowerCase()));
         contentTable.classList.add('ocultar-tablas');
         for (const alum of filter) {
             alum.parentElement.parentElement.parentElement.parentElement.parentElement.classList.add('uk-display-block');

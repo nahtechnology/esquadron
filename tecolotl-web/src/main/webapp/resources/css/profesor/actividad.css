@@ -3,7 +3,7 @@
   border-radius: 8px;
 }
 
-.uk-card-header:before, .uk-card-header:after, .uk-accordion-content:before, .uk-accordion-content:after {
+.uk-card-header:before, .uk-card-header:after, .uk-accordion-content:before, .uk-accordion-content:after, .uk-accordion-title:before, .uk-accordion-title:after {
   display: none;
   content: none;
 }
