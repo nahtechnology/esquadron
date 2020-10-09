@@ -10,6 +10,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -42,9 +43,11 @@ public class AsignarActividadBuscarControlador implements Serializable {
 
     public void busca() {
         List<ActividadModelo> actividadModeloLista = actividadSesionBean.buscaLenguaje(busqueda);
-        logger.info(actividadModeloLista.toString());
         actividadModeloMapa = actividadModeloLista
                 .stream().collect(Collectors.groupingBy(actividadModelo -> actividadModelo.getNivelLenguajeModeloLista().get(0).getValor()));
+        for (Map.Entry<String, List<ActividadModelo>> entry : actividadModeloMapa.entrySet()) {
+            entry.setValue(entry.getValue().stream().distinct().collect(Collectors.toList()));
+        }
     }
 
     public String asignar() {

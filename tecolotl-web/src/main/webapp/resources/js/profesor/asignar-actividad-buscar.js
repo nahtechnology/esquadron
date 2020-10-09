@@ -6,20 +6,20 @@ const s3 = new AWS.S3({
 function generateLinks(){
     let activities = document.querySelectorAll('.uk-card-footer');
     activities.forEach(activity =>{
-        let  icons = activity.querySelectorAll('.uk-inline > div > span');
-        icons[0].addEventListener('click', function (evento) {
-            UIkit.notification("please wait .....",{timeout:7000});
-            descargaDocumento('Grammar.pdf', { Bucket: "tecolotl-multimedia", Key: "descargables/".concat(activity.dataset.actividad) });
-        });
-        icons[1].addEventListener('click', function (evento) {
-            UIkit.notification("please wait .....",{timeout:7000});
-            descargaDocumento('Lesson_Plan.pdf', { Bucket: "tecolotl-multimedia", Key: "guia/".concat(activity.dataset.actividad) });
-        });
-        icons[2].addEventListener('click', function (evento) {
-            UIkit.notification("please wait .....",{timeout:7000});
-            descargaDocumento('Disussion_cards.pdf', { Bucket: 'tecolotl-multimedia', Key: 'cartas/'.concat(activity.dataset.actividad) });
-        });
+        activity.addEventListener('click', evt => {
+            let element = evt.target;
+            if(element.dataset.link  ){
+                UIkit.notification("please wait .....",{timeout:7000});
+                descargaDocumento(element.dataset.link, { Bucket: "tecolotl-multimedia", Key: element.dataset.sourceText.concat(activity.dataset.actividad) });
+
+            }else if (element.nodeName === "LI") {
+                UIkit.notification("please wait .....",{timeout:7000});
+                descargaDocumento(element.textContent.trim().concat(".pdf"), { Bucket: "tecolotl-multimedia", Key: "plantilla/".concat(element.dataset.mapLink) });
+            }
+        })
     });
+
+
 }
 
 function descargaDocumento(nombreArchivo, llave) {
@@ -49,6 +49,16 @@ function createContentTheme(){
     let themesActivity = new Set();
     for (const themesElement of themes) {
        themesActivity.add(themesElement.dataset.tema);
+       let mapsName = themesElement.querySelector('.uk-card-footer .uk-flex > div:last-child');
+       let arrayMaps = mapsName.dataset.maps.split(',');
+       let contentMaps = document.createDocumentFragment();
+       arrayMaps.forEach((map,index) => {
+           let elementList = document.createElement('li');
+           elementList.textContent = `Think-Share And Develop_${map}`;
+           elementList.dataset.mapLink = map;
+           contentMaps.appendChild(elementList);
+       });
+       mapsName.querySelector('ul').appendChild(contentMaps);
     }
     themesActivity.add("Show all activities")
     themesActivity.forEach(theme =>{

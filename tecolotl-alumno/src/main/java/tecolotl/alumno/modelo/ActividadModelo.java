@@ -2,6 +2,7 @@ package tecolotl.alumno.modelo;
 
 import tecolotl.alumno.entidad.ActividadEntidad;
 import tecolotl.alumno.entidad.NivelLenguajeEntidad;
+import tecolotl.alumno.entidad.vista.ActividadBuquedaVista;
 import tecolotl.alumno.validacion.ActividadNuevaValidacion;
 
 import javax.validation.Valid;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringJoiner;
 
 public class ActividadModelo {
@@ -30,6 +32,16 @@ public class ActividadModelo {
 
     public ActividadModelo(String idVideo) {
         this.idVideo = idVideo;
+    }
+
+    public ActividadModelo(ActividadBuquedaVista actividadBuquedaVista) {
+        idVideo = actividadBuquedaVista.getIdVideo();
+        lenguaje = actividadBuquedaVista.getLenguaje();
+        preguntaDetonadora = actividadBuquedaVista.getPreguntaDetonadora();
+        nivelLenguajeModeloLista = new ArrayList<>();
+        nivelLenguajeModeloLista.add(new NivelLenguajeModelo((short)1, actividadBuquedaVista.getNivelLenguaje()));
+        temaModelo = new TemaModelo((short)1, actividadBuquedaVista.getTema());
+        transcripcion = actividadBuquedaVista.getMapaMental();
     }
 
     public ActividadModelo(ActividadEntidad actividadEntidad) {
@@ -161,5 +173,18 @@ public class ActividadModelo {
                 .add("lenguaje='" + lenguaje + "'")
                 .add("transcripcion='" + transcripcion + "'")
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActividadModelo that = (ActividadModelo) o;
+        return idVideo.equals(that.idVideo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idVideo);
     }
 }

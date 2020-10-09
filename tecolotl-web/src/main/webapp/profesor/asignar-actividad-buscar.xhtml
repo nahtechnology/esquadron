@@ -53,7 +53,7 @@
         <h:panelGroup layout="block"  styleClass="uk-margin-medium-bottom uk-hidden">
             <ul uk-accordion="">
                 <li>
-                    <a class="uk-accordion-title uk-text-uppercase" href="#">scope and sequence</a>
+                    <a class="uk-accordion-title boton-escuadron-base" href="#">scope and sequence</a>
                     <div class="uk-accordion-content filter-activities " id="activity-theme" >
 
                     </div>
@@ -102,22 +102,22 @@
                                                     <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
                                                 </span>
                                             <div uk-dropdown="">
-                                                <span class="uk-text-capitalize">#{profesor['activity.grammar']}</span>
+                                                <span class="uk-text-capitalize" data-link="Grammar.pdf" data-source-text="descargables/">#{profesor['activity.grammar']}</span>
                                             </div>
                                         </div>
                                         <div class="uk-inline uk-text-center">
                                             <span  uk-icon="icon: file-text"/>
                                             <div uk-dropdown="">
-                                                <span class="uk-text-capitalize">#{profesor['didactic.guide']}</span>
+                                                <span class="uk-text-capitalize" data-link="Lesson_Plan.pdf" data-source-text="guia/">#{profesor['didactic.guide']}</span>
                                             </div>
                                         </div>
                                         <div class="uk-inline uk-text-center">
                                             <span  uk-icon="icon: commenting"/>
                                             <div uk-dropdown="">
-                                                <span class="uk-text-capitalize">#{profesor['activity.cards']}</span>
+                                                <span class="uk-text-capitalize" data-link="Disussion_cards.pdf" data-source-text="cartas/">#{profesor['activity.cards']}</span>
                                             </div>
                                         </div>
-                                        <div class="uk-inline uk-text-center">
+                                        <div class="uk-inline uk-text-center" data-maps="#{actividadModelo.transcripcion}">
                                             <button  uk-icon="icon: file-edit"/>
                                             <div uk-dropdown="">
                                                 <ul class="uk-nav uk-dropdown-nav">

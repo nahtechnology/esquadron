@@ -3,7 +3,7 @@
   border-radius: 8px;
 }
 
-.uk-card-header:before, .uk-card-header:after, .uk-accordion-content:before, .uk-accordion-content:after {
+.uk-card-header:before, .uk-card-header:after, .uk-accordion-content:before, .uk-accordion-content:after, .uk-accordion-title:before, .uk-accordion-title:after {
   display: none;
   content: none;
 }
@@ -11,6 +11,11 @@
 .cat-txt, .question-tag, .activity-input, .filter-activities {
   font-family: 'Sniglet', "Arial Black", sans-serif;
   font-weight: bold;
+}
+
+.uk-dropdown span:hover, .uk-dropdown li:hover {
+  cursor: pointer;
+  color: black;
 }
 
 .card-header {
@@ -163,11 +168,6 @@
 
 .activity-input:focus {
   outline: none;
-}
-
-.uk-dropdown span:hover {
-  cursor: pointer;
-  color: black;
 }
 
 .filter-activities {
