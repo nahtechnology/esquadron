@@ -92,6 +92,7 @@ function agregaListener(ejercicios) {
         contenedorListaMapa.querySelectorAll('li').forEach(function (linkMap,index) {
           linkMap.addEventListener('click',function (evento) {
               descargaDocumento(descargableMapa.concat(cadenaMapas[index]).concat('.pdf'), { Bucket: 'tecolotl-multimedia', Key: 'plantilla/'.concat(cadenaMapas[index])});
+              console.log(cadenaMapas[index]);
           })
         })
 

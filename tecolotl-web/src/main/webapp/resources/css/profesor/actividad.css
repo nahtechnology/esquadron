@@ -13,6 +13,11 @@
   font-weight: bold;
 }
 
+.uk-dropdown span:hover, .uk-dropdown li:hover {
+  cursor: pointer;
+  color: black;
+}
+
 .card-header {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
@@ -163,11 +168,6 @@
 
 .activity-input:focus {
   outline: none;
-}
-
-.uk-dropdown span:hover {
-  cursor: pointer;
-  color: black;
 }
 
 .filter-activities {
