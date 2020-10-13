@@ -249,9 +249,9 @@ public class GrupoAlumnoSesionBean {
             promedioAlumnoModelo.setPromedioPromedioMapamental(objectos[7] == null ? null : ((BigDecimal)objectos[7]).intValue());
             promedioAlumnoModelo.setPromedioRelacionarImagen(objectos[8] == null ? null : ((BigDecimal)objectos[8]).intValue());
             promedioAlumnoModelo.setPromedioGramatica(objectos[9] == null ? null : ((BigDecimal)objectos[9]).intValue());
-            promedioAlumnoModelo.setPromedioRelacionarOracion(objectos[10] == null ? null : ((BigDecimal)objectos[10]).intValue());
-            promedioAlumnoModelo.setPromedioOraciones(objectos[11] == null ? null : ((BigDecimal)objectos[11]).intValue());
-            promedioAlumnoModelo.setPromedioCompletar(objectos[12] == null ? null : ((BigDecimal)objectos[12]).intValue());
+            promedioAlumnoModelo.setPromedioCompletar(objectos[10] == null ? null : ((BigDecimal)objectos[10]).intValue());
+            promedioAlumnoModelo.setPromedioRelacionarOracion(objectos[11] == null ? null : ((BigDecimal)objectos[11]).intValue());
+            promedioAlumnoModelo.setPromedioOraciones(objectos[12] == null ? null : ((BigDecimal)objectos[12]).intValue());
             promedioAlumnoModeloLista.add(promedioAlumnoModelo);
         }
         return promedioAlumnoModeloLista;
