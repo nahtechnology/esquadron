@@ -233,7 +233,7 @@ public class GrupoAlumnoSesionBean {
         Query query = entityManager.createNativeQuery("SELECT CAST(a.id AS VARCHAR),a.nombre,a.apellido_paterno,a.apellido_materno,count(cc) AS total_tareas,nl.valor AS nivel_actual," +
                 "round(avg(cc.transcripcion)) AS promedio_transcripcion,round(avg(cc.mapa_mental_promedio)) AS promedio_mapamental,round(avg(cc.relacionar_imagen_promedio)) AS promedio_relacionar_imagen," +
                 "round(avg(cc.gramatica_promedio)) AS promedio_gramatica,round(avg(cc.completar_promedio)) AS promedio_completa,round(avg(cc.relacionar_oracion_promedio)) AS promdio_relacionar_oraciones," +
-                "round(avg(cc.completar_promedio)) AS promedio_completar FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id JOIN alumno.nivel_lenguaje nl ON a.id_nivel_lenguaje = nl.clave LEFT JOIN " +
+                "round(avg(cc.oraciones_promedio)) AS promedio_oraciones FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id JOIN alumno.nivel_lenguaje nl ON a.id_nivel_lenguaje = nl.clave LEFT JOIN " +
                 "profesor.calificacion_coordinador cc ON a.id = cc.id_alumno WHERE a.estatus = TRUE AND ga.id_grupo = ? GROUP BY a.id,a.nombre, a.apellido_paterno, a.apellido_materno,nl.valor");
         query.setParameter(1, idGrupo);
         List<PromedioAlumnoModelo> promedioAlumnoModeloLista = new ArrayList<>();
