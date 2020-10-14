@@ -50,11 +50,13 @@ public class ControlSesionSesionBean {
         calendar.set(Calendar.HOUR_OF_DAY, 0);
         calendar.set(Calendar.MINUTE, 0);
         calendar.set(Calendar.SECOND, 0);
+        calendar.add(Calendar.HOUR, 6);
         typedQuery.setParameter("fechaInicio", calendar.getTime());
         calendar.setTime(fechaFin);
         calendar.set(Calendar.HOUR_OF_DAY, 23);
         calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 59);
+        calendar.add(Calendar.HOUR, 6);
         typedQuery.setParameter("fechaFin", calendar.getTime());
         return typedQuery.getResultList().stream().map(AlumnoControlSesionModelo::new).collect(Collectors.toList());
     }
