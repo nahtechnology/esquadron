@@ -10,9 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Stateless
@@ -42,12 +40,22 @@ public class ControlSesionSesionBean {
      * @param fechaFin Fecha fin a buscar
      * @return Colección de alumno control sesion
      */
-    public List<AlumnoControlSesionModelo> busca(UUID idAlumno, Date fechaInicio, Date fechaFin) {
+    public List<AlumnoControlSesionModelo> busca(UUID idAlumno, Date fechaInicio, Date fechaFin, TimeZone timeZone) {
         TypedQuery<AlumnoControlSesionEntidad> typedQuery =
                 entityManager.createNamedQuery("AlumnoControlSesionEntidad.buscaAlumno", AlumnoControlSesionEntidad.class);
         typedQuery.setParameter("idAlumno", idAlumno);
-        typedQuery.setParameter("fechaInicio", fechaInicio);
-        typedQuery.setParameter("fechaFin", fechaFin);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(timeZone);
+        calendar.setTime(fechaInicio);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        typedQuery.setParameter("fechaInicio", calendar.getTime());
+        calendar.setTime(fechaFin);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.SECOND, 59);
+        typedQuery.setParameter("fechaFin", calendar.getTime());
         return typedQuery.getResultList().stream().map(AlumnoControlSesionModelo::new).collect(Collectors.toList());
     }
 

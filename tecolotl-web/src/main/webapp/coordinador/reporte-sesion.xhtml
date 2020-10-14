@@ -10,6 +10,7 @@
         <f:metadata>
             <f:viewParam name="profesor" value="#{reporteSesionControlador.idProfesor}"/>
             <f:viewParam name="alumno" value="#{reporteSesionControlador.idAlumno}"/>
+            <f:viewParam name="zona" value="#{reporteSesionControlador.zona}"/>
             <f:viewAction action="#{reporteSesionControlador.inicio}"/>
         </f:metadata>
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
@@ -33,11 +34,6 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <ui:remove>
-            <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
-            <h:outputStylesheet library="css" name="datepicker.css"/>
-            <h:outputStylesheet library="css" name="/coordinador/reporte-sesion.css"/>
-        </ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/template-coordinador.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/datepicker.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/reporte-sesion.css"/>
@@ -52,19 +48,6 @@
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="${param['zona']}"/>
                     </h:inputText>
                 </div>
-                <ui:remove>
-                <h:commandButton value="${otrosboton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" >
-                    <f:ajax execute="@form"
-                            listener="#{reporteSesionControlador.actualiza}"
-                            render="contenedor-tabla tabla-alumno tabla-profesor tabla-vacia"
-                            onevent="function pintar(data) {
-                                if (data.status === 'success'){
-                                    console.log('entro satisfactorio');
-                                }
-                            }"
-                            />
-                </h:commandButton>
-                </ui:remove>
                 <h:commandButton value="${otrosboton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" onclick="return validarFecha();">
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
