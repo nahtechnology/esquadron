@@ -22,6 +22,7 @@ import javax.inject.Inject;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 import java.util.UUID;
 
 @RunWith(Arquillian.class)
@@ -64,7 +65,7 @@ public class ControlSesionSesionBeanTest {
         controlSesionSesionBean.busca(
                 UUID.fromString("008f49eb-67f2-4aa1-adbc-ac48762989c0"),
                 calendarInicio.getTime(),
-                calendarFin.getTime());
+                calendarFin.getTime(), TimeZone.getTimeZone("America/Mexico_City"));
     }
 
 }
