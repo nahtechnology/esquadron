@@ -234,8 +234,9 @@ public class GrupoAlumnoSesionBean {
                 "round(avg(cc.transcripcion)) AS promedio_transcripcion,round(avg(cc.mapa_mental_promedio)) AS promedio_mapamental,round(avg(cc.relacionar_imagen_promedio)) AS promedio_relacionar_imagen," +
                 "round(avg(cc.gramatica_promedio)) AS promedio_gramatica,round(avg(cc.completar_promedio)) AS promedio_completa,round(avg(cc.relacionar_oracion_promedio)) AS promdio_relacionar_oraciones," +
                 "round(avg(cc.oraciones_promedio)) AS promedio_oraciones FROM profesor.grupo_alumno ga JOIN alumno.alumno a ON ga.id_alumno = a.id JOIN alumno.nivel_lenguaje nl ON a.id_nivel_lenguaje = nl.clave LEFT JOIN " +
-                "profesor.calificacion_coordinador cc ON a.id = cc.id_alumno WHERE a.estatus = TRUE AND ga.id_grupo = ? GROUP BY a.id,a.nombre, a.apellido_paterno, a.apellido_materno,nl.valor");
+                "profesor.calificacion_coordinador cc ON a.id = cc.id_alumno WHERE a.estatus = TRUE AND ga.id_grupo = ? AND cc.id_grupo = ? GROUP BY a.id,a.nombre, a.apellido_paterno, a.apellido_materno,nl.valor");
         query.setParameter(1, idGrupo);
+        query.setParameter(2, idGrupo);
         List<PromedioAlumnoModelo> promedioAlumnoModeloLista = new ArrayList<>();
         for (Object[] objectos : (List<Object[]>)query.getResultList()) {
             PromedioAlumnoModelo promedioAlumnoModelo = new PromedioAlumnoModelo();
