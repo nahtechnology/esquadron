@@ -33,11 +33,6 @@
     padding: 5px;
 }
 
-.contenedor img:hover {
-    width: 70px;
-    height: 70px;
-}
-
 .contenedor img.seleccionado {
     width: 70px;
     height: 70px;
