@@ -2,8 +2,8 @@
 var rangos = [];
 var pibote = 0;
 document.addEventListener("DOMContentLoaded",()=>{
-    let pibote = document.querySelector("#contenedor-tabla");
-    if(pibote.querySelector('table').dataset.vacio === "false"){
+    let pibote1 = document.querySelector("#contenedor-tabla");
+    if(pibote1.querySelector('table').dataset.vacio === "false"){
         actualiza();
     }else {
 
@@ -76,6 +76,12 @@ class PaginacionTabla {
         this.seleccionPagina.classList.add('uk-select','uk-form-width-small','uk-margin-small-right');
         this.btnSiguiente.innerText = "next";
         this.btnAtras.innerText = "back";
+        let labelElement = document.createElement('label');
+        let labelPages = document.createElement('label');
+        labelPages.textContent = "Seleccionar página:";
+        labelElement.textContent = "Elementos por página:";
+        labelElement.classList.add("uk-margin-small-right");
+        labelPages.classList.add("uk-margin-small-right");
         for (let i = 1; i<= 5; i++){
             let opcion = document.createElement('option');
             opcion.value = `${i*5}`;
@@ -92,7 +98,9 @@ class PaginacionTabla {
 
         this.contenedor.appendChild(this.btnAtras);
         this.contenedor.appendChild(this.btnSiguiente);
+        this.contenedor.appendChild(labelPages);
         this.contenedor.appendChild(this.seleccionPagina);
+        this.contenedor.appendChild(labelElement);
         this.contenedor.appendChild(this.seleccionElementos);
     }
 
@@ -102,6 +110,7 @@ class PaginacionTabla {
             this.btnAtras.disabled = false;
             let inicio = this.elementos * numPagina;
             let fin = inicio + this.elementos;
+            console.log(inicio,fin)
             for (let i = 0; i < filas.length; i++) {
                 filas[i].classList.add('visibilidad');
             }
@@ -235,7 +244,7 @@ function animacionpaginas(obj,evento) {
 }
 function animacionSelectElementos(obj,evento) {
     obj.animacion();
-    obj.elementos = evento.target.value;
+    obj.elementos = parseInt(evento.target.value);
     console.log(evento.target.value);
     obj.inicio();
     obj.nuevaPaginacion();
