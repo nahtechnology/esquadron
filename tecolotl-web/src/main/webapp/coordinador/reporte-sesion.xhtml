@@ -66,9 +66,9 @@
                 </h:commandButton>
             </h:form>
         <span class="uk-margin-small-bottom uk-display-inline-block">
-            <label for="conexion" class="uk-form-label uk-margin-small-right">#{coordinador['report.sesion.connection.time']}</label>
+            <label for="conexion" class="uk-form-label uk-margin-small-right uk-display-inline-block primera-mayuscula">#{coordinador['report.sesion.connection.time']}</label>
             <input id="conexion" readonly="" type="text" class="uk-input uk-margin-small-right" style="width: 200px"/>
-            <label for="totalHoras" class="uk-form-label uk-margin-small-right">#{coordinador['report.sesion.total.hours']}</label>
+            <label for="totalHoras" class="uk-form-label uk-margin-small-right uk-display-inline-block primera-mayuscula">#{coordinador['report.sesion.total.hours']}</label>
             <input type="text" id="totalHoras" class="uk-input" style="width: 200px" />
         </span>
         <h:panelGroup layout="block" id="contenedor-tabla" styleClass="uk-margin-medium-bottom">
@@ -78,7 +78,7 @@
                          value="#{reporteSesionControlador.listaAlumno}"
                          var="alumnoModelo"
                          pt:data-vacio="false">
-                <h:column>
+                <h:column  pt:data-tipo-sesion="${alumnoModelo.tipo}">
                     <h:outputText value="${alumnoModelo.momento}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:outputText>
@@ -97,17 +97,16 @@
                          var="profesorModelo"
                          pt:data-vacio="false">
 
-                    <h:column>
+                    <h:column pt:data-tipo-sesion="${profesorModelo.tipo}">
                         <h:outputText value="${profesorModelo.momento}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </h:column>
                     <h:column>
-                        <h:outputText value="${profesorModelo.momento}">
+                        <h:outputText value="${profesorModelo.momento }">
                             <f:convertDateTime pattern="HH:mm:ss"/>
                         </h:outputText>
                     </h:column>
-
             </h:dataTable>
 
             <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty reporteSesionControlador.listaAlumno and empty reporteSesionControlador.listaProfesor}" >
@@ -143,11 +142,9 @@
                 window.history.back();
             }
         </script>
-        <ui:remove>
             <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
-            <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
-        </ui:remove>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/reporte-sesion.js"></script>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/tiempo-total.js"></script>
+           <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
+<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/reporte-sesion.js"></script>-->
+<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/tiempo-total.js"></script>-->
     </ui:define>
 </ui:composition>

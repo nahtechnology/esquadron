@@ -27,22 +27,21 @@ function acomodarTabla(tabla) {
            nodo.remove();
         });
     }
-    filas.forEach((fila,index) => {
-        if((index+1) % 2 === 0){
-            fila.querySelectorAll('td').forEach(celda =>{
-                celdasFila.push(celda);
-            });
+    for (let i = 0; i < filas.length; i++) {
+        let cells = filas[i].querySelectorAll("td");
+        let nextRow = filas[i+1];
+        let nextCells = nextRow.querySelectorAll("td");
+        if (cells[0].dataset.tipoSesion === "Cierre" && nextCells[0].dataset.tipoSesion === "Inicio"){
             let row = cuerpoTabla.insertRow(-1);
-            celdasFila.forEach(celda => {
-               row.appendChild(celda);
-            });
-            celdasFila = [];
-        }else {
-            fila.querySelectorAll('td').forEach(celda =>{
-               celdasFila.push(celda);
-            });
+            let rowFragment = document.createDocumentFragment();
+            rowFragment.appendChild(nextCells[0]);
+            rowFragment.appendChild(nextCells[1]);
+            rowFragment.appendChild(cells[0]);
+            rowFragment.appendChild(cells[1]);
+            row.appendChild(rowFragment);
+            i++;
         }
-    });
+    }
 
 }
 
