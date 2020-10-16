@@ -74,8 +74,8 @@ class PaginacionTabla {
         this.btnSiguiente.classList.add('uk-button','uk-button-primary','uk-margin-small-right');
         this.btnAtras.classList.add('uk-button','uk-button-primary','uk-margin-small-right');
         this.seleccionPagina.classList.add('uk-select','uk-form-width-small','uk-margin-small-right');
-        this.btnSiguiente.innerText = "next";
-        this.btnAtras.innerText = "back";
+        this.btnSiguiente.innerText = "siguiente";
+        this.btnAtras.innerText = "atrás";
         let labelElement = document.createElement('label');
         let labelPages = document.createElement('label');
         labelPages.textContent = "Seleccionar página:";
