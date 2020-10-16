@@ -36,10 +36,10 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>-->
-        <h:outputStylesheet library="css" name="graficas.css"/>
-       <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
+        <ui:remove><h:outputStylesheet library="css" name="graficas.css"/></ui:remove>
+       <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/></ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
@@ -124,7 +124,7 @@
                                     <option value="todos">All</option>
                                 </select>
                                 <span id="tareas-asignadas" class="uk-margin-medium-right">#{profesor['total.filters.assigned']}<span>0</span></span>
-                                <span id="tareas-promediadas" class="uk-margin-medium-right">#{profesor['total.filters.task']} <span>0</span></span>
+                                <span id="tareas-promediadas" class="uk-margin-medium-right uk-hidden">#{profesor['total.filters.task']} <span>0</span></span>
                                 <span id="promedio-general" class="uk-margin-medium-right">#{profesor['total.filters.average']} <span>0</span></span>
                                 <div class="uk-overflow-auto">
                                 <h:form id="formulario-tabla-actividades">
@@ -266,8 +266,8 @@
 
     </ui:define>
     <ui:define name="file-js">
-        <h:outputScript library="js" name="/profesor/tarea-alumno-tabla.js"/>
-<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno-tabla.js"></script>-->
+        <ui:remove><h:outputScript library="js" name="/profesor/tarea-alumno-tabla.js"/></ui:remove>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno-tabla.js"></script>
 
     </ui:define>
 </ui:composition>

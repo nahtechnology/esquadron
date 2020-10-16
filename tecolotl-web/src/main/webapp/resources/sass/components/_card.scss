@@ -1,0 +1,176 @@
+$map-colors:(
+activity-A1: "A1" $level-A1,
+activity-A2: "A2" $level-A2,
+activity-B1: "B1" $level-B1,
+activity-B2: "B2" $level-B2,
+activity-C1: "C1" $level-C1,
+);
+%card-activity{
+  padding: 1.4px;
+  border-radius: 8px;
+}
+%pseudo-element-uikit{
+  display: none;
+  content: none;
+}
+
+%card-letter{
+  font-family: 'Sniglet', "Arial Black", sans-serif;
+  font-weight: bold;
+}
+%hover-effect-dropdown{
+  cursor: pointer;
+  color: black;
+}
+.card-header{
+  display: grid;
+  grid-template-columns:1fr 3fr 1fr;
+  column-gap: 3px;
+  color: inherit;
+  align-items: center;
+}
+.card-media{
+  height: 200px;
+  img{
+    width: 100%;
+  }
+}
+.activity-theme-text:after{
+  content: "";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  height: 3px;
+}
+.uk-card-footer svg{
+  display: block;
+  width: 43px;
+  height: 30px;
+}
+/*estilo card por  actividad*/
+@each $key,$var in $map-colors{
+  .card-activity-#{nth($var,1)}{
+      background-color: nth($var,2);
+      color: nth($var,2);
+    .uk-radio{
+        @extend %border-#{$key};
+        &:checked{
+          @extend %background-color-#{$key};
+        }
+     }
+    .uk-checkbox{
+      @extend %border-#{$key};
+      &:checked{
+        @extend %background-color-#{$key};
+      }
+    }
+    .uk-card-footer{
+      svg{
+        stroke: nth($var,2);
+      }
+    }
+    .activity-theme-text{
+      &:after{
+        @extend %background-color-#{$key};
+      }
+    }
+    %border-#{$key}{
+      border-color: nth($var,2);
+    }
+    %background-color-#{$key}{
+      background-color: nth($var,2)!important;
+    }
+    @extend %card-activity;
+  }
+  /*---------------------------------------*/
+}
+
+.uk-card{
+  background-clip: padding-box;
+  border: solid 3px transparent;
+  color: inherit !important;
+  .uk-card-body{
+    padding: 50px 20px;
+  }
+
+  }
+
+
+
+.uk-card-header{
+  &:before{
+    @extend %pseudo-element-uikit;
+  }
+  &:after{
+    @extend %pseudo-element-uikit;
+  }
+}
+.cat-txt{
+  @extend %card-letter;
+}
+.question-tag{
+  @extend %card-letter;
+  font-size: 17px;
+  color: black;
+}
+.uk-dropdown.uk-open{
+  padding: 10px;
+}
+.activity-input{
+  display: inline-block;
+  padding: 7px 9px !important;
+  width: 142px;
+  border-style: solid;
+  @extend %card-letter;
+  &:focus{
+    outline: none;
+  }
+}
+.uk-dropdown{
+  span:hover{
+    @extend %hover-effect-dropdown;
+  }
+  li:hover{
+    @extend %hover-effect-dropdown;
+  }
+}
+.filter-activities{
+  @extend %card-letter;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px,1fr));
+  background-color: $filter-background;
+  border-radius: 8px;
+  border: 2px solid var(--turquesa-primary-color);
+  padding: 8px 5px;
+  span{
+    display: inline-block;
+    text-align: center;
+    border-radius: 8px;
+    padding: 7px 3px;
+    &:hover{
+      cursor: pointer;
+      border: inherit;
+    }
+  }
+}
+.uk-accordion-content{
+   &:before{
+     @extend %pseudo-element-uikit;
+   }
+  &:after{
+    @extend %pseudo-element-uikit;
+  }
+}
+.hidden-activities > div{
+    display: none;
+}
+.uk-accordion-title{
+  &:before{
+    @extend %pseudo-element-uikit;
+  }
+  &:after{
+    @extend %pseudo-element-uikit;
+  }
+
+}

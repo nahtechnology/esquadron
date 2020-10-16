@@ -243,4 +243,12 @@
         </navigation-case>
     </navigation-rule>
 
+    <navigation-rule>
+        <from-view-id>/profesor/asignar-actividad-buscar.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>asignar</from-outcome>
+            <to-view-id>/profesor/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
 </faces-config>

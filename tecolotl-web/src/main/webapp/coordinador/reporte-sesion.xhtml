@@ -10,6 +10,7 @@
         <f:metadata>
             <f:viewParam name="profesor" value="#{reporteSesionControlador.idProfesor}"/>
             <f:viewParam name="alumno" value="#{reporteSesionControlador.idAlumno}"/>
+            <f:viewParam name="zona" value="#{reporteSesionControlador.zona}"/>
             <f:viewAction action="#{reporteSesionControlador.inicio}"/>
         </f:metadata>
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
@@ -33,15 +34,10 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <ui:remove>
-            <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
-            <h:outputStylesheet library="css" name="datepicker.css"/>
-            <h:outputStylesheet library="css" name="/coordinador/reporte-sesion.css"/>
-        </ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/template-coordinador.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/datepicker.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/reporte-sesion.css"/>
-            <h1 class="uk-margin-medium-bottom">#{otrosboton['report']}</h1>
+            <h2 class="uk-margin-medium-bottom uk-text-capitalize">#{otrosboton['report']} <span>#{param["usuario"]}</span></h2>
             <h:form id="formulario-fechas">
                 <div id="rango-fecha">
                     <h:inputText styleClass="uk-input" value="#{reporteSesionControlador.fechaInicio}">
@@ -52,19 +48,6 @@
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="${param['zona']}"/>
                     </h:inputText>
                 </div>
-                <ui:remove>
-                <h:commandButton value="${otrosboton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" >
-                    <f:ajax execute="@form"
-                            listener="#{reporteSesionControlador.actualiza}"
-                            render="contenedor-tabla tabla-alumno tabla-profesor tabla-vacia"
-                            onevent="function pintar(data) {
-                                if (data.status === 'success'){
-                                    console.log('entro satisfactorio');
-                                }
-                            }"
-                            />
-                </h:commandButton>
-                </ui:remove>
                 <h:commandButton value="${otrosboton['update']}" styleClass="uk-button uk-button-primary uk-margin-small-top uk-margin-medium-bottom" onclick="return validarFecha();">
                     <f:ajax execute="@form"
                             listener="#{reporteSesionControlador.actualiza}"
@@ -83,9 +66,9 @@
                 </h:commandButton>
             </h:form>
         <span class="uk-margin-small-bottom uk-display-inline-block">
-            <label for="conexion" class="uk-form-label uk-margin-small-right">#{coordinador['report.sesion.connection.time']}</label>
+            <label for="conexion" class="uk-form-label uk-margin-small-right uk-display-inline-block primera-mayuscula">#{coordinador['report.sesion.connection.time']}</label>
             <input id="conexion" readonly="" type="text" class="uk-input uk-margin-small-right" style="width: 200px"/>
-            <label for="totalHoras" class="uk-form-label uk-margin-small-right">#{coordinador['report.sesion.total.hours']}</label>
+            <label for="totalHoras" class="uk-form-label uk-margin-small-right uk-display-inline-block primera-mayuscula">#{coordinador['report.sesion.total.hours']}</label>
             <input type="text" id="totalHoras" class="uk-input" style="width: 200px" />
         </span>
         <h:panelGroup layout="block" id="contenedor-tabla" styleClass="uk-margin-medium-bottom">
@@ -95,7 +78,7 @@
                          value="#{reporteSesionControlador.listaAlumno}"
                          var="alumnoModelo"
                          pt:data-vacio="false">
-                <h:column>
+                <h:column  pt:data-tipo-sesion="${alumnoModelo.tipo}">
                     <h:outputText value="${alumnoModelo.momento}">
                         <f:convertDateTime pattern="dd/MM/yyyy"/>
                     </h:outputText>
@@ -114,17 +97,16 @@
                          var="profesorModelo"
                          pt:data-vacio="false">
 
-                    <h:column>
+                    <h:column pt:data-tipo-sesion="${profesorModelo.tipo}">
                         <h:outputText value="${profesorModelo.momento}">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </h:outputText>
                     </h:column>
                     <h:column>
-                        <h:outputText value="${profesorModelo.momento}">
+                        <h:outputText value="${profesorModelo.momento }">
                             <f:convertDateTime pattern="HH:mm:ss"/>
                         </h:outputText>
                     </h:column>
-
             </h:dataTable>
 
             <h:panelGroup layout="block" id="tabla-vacia" rendered="#{empty reporteSesionControlador.listaAlumno and empty reporteSesionControlador.listaProfesor}" >

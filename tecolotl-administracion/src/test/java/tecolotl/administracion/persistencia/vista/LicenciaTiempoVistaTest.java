@@ -15,6 +15,9 @@ import tecolotl.nucleo.persistencia.entidad.CatalagoEntidad;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -35,7 +38,17 @@ public class LicenciaTiempoVistaTest {
 
     @Test
     public void busca() {
-
+        TypedQuery<AlumnoEscuelaVista> typedQuery = entityManager.createNamedQuery("AlumnoEscuelaVista.buscaPorEscuela", AlumnoEscuelaVista.class);
+        typedQuery.setParameter("idEscuela", "21PPR0000G");
+        List<AlumnoEscuelaVista> alumnoEscuelaVistaLista = typedQuery.getResultList();
+        assertNotNull(alumnoEscuelaVistaLista);
+        assertFalse(alumnoEscuelaVistaLista.isEmpty());
+        for (AlumnoEscuelaVista alumnoEscuelaVista : alumnoEscuelaVistaLista) {
+            assertNotNull(alumnoEscuelaVista);
+            assertNotNull(alumnoEscuelaVista.getIdGrupo());
+            assertNotNull(alumnoEscuelaVista.getGrado());
+            assertNotNull(alumnoEscuelaVista.getGrupo());
+        }
     }
 
 }
