@@ -15,10 +15,7 @@ import tecolotl.profesor.validacion.ProfesorNuevoValidacion;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import javax.persistence.criteria.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -230,9 +227,15 @@ public class ProfesorSesionBean implements Serializable {
                 "administracion.licencia l ON e.clave_centro_trabajo = l.id_escuela JOIN profesor.profesor p ON e.clave_centro_trabajo = p.id_escuela " +
                 "WHERE p.id = ? GROUP BY e.clave_centro_trabajo");
         query.setParameter(1, idProfesor);
-        Object[] objects = (Object[])query.getSingleResult();
-        personaActivaModelo.setBloqueado((Boolean)objects[0]);
-        personaActivaModelo.setDias(((Double)objects[1]).intValue());
+        try {
+            Object[] objects = (Object[]) query.getSingleResult();
+            personaActivaModelo.setBloqueado((Boolean) objects[0]);
+            personaActivaModelo.setDias(((Double) objects[1]).intValue());
+        } catch (NoResultException e) {
+            personaActivaModelo.setBloqueado(true);
+            personaActivaModelo.setDias(0);
+        }
         return personaActivaModelo;
+
     }
 }
