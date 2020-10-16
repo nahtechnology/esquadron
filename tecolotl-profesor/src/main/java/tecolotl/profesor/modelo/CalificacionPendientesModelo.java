@@ -11,7 +11,7 @@ public class CalificacionPendientesModelo {
     private Integer tareasAsignadas;
     private Integer pendientesMapaMental;
     private Integer pendientesGramatica;
-    private Integer promedio;
+    private Float promedio;
 
     public UUID getIdGrupo() {
         return idGrupo;
@@ -69,11 +69,11 @@ public class CalificacionPendientesModelo {
         this.pendientesGramatica = pendientesGramatica;
     }
 
-    public Integer getPromedio() {
+    public Float getPromedio() {
         return promedio;
     }
 
-    public void setPromedio(Integer promedio) {
+    public void setPromedio(Float promedio) {
         this.promedio = promedio;
     }
 }
