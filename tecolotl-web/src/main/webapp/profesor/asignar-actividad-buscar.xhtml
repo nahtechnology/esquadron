@@ -35,7 +35,8 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <h:outputStylesheet library="css" name="/profesor/actividad.css"/>
+        <ui:remove><h:outputStylesheet library="css" name="/profesor/actividad.css"/></ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/actividad.css"/>
         <h:form id="formulario-busqueda" styleClass="uk-margin-medium-bottom uk-margin-large-top">
             <h:inputText id="entrada-busqueda" styleClass="activity-input uk-margin-small-right" value="#{asignarActividadBuscarControlador.busqueda}">
                 <f:validateRequired/>
@@ -137,6 +138,7 @@
     </ui:define>
     <ui:define name="file-js">
         <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
-        <h:outputScript library="js" name="/profesor/asignar-actividad-buscar.js"/>
+        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad-buscar.js"></script>
+        <ui:remove><h:outputScript library="js" name="/profesor/asignar-actividad-buscar.js"/></ui:remove>
     </ui:define>
 </ui:composition>

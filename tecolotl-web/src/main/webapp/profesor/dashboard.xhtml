@@ -323,8 +323,8 @@
 
     <ui:define name="file-js">
         <h:outputScript library="js" name="modal.js"/>
-<!--        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>-->
-        <h:outputScript library="js" name="/profesor/grafica.js"/>
+        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>
+        <ui:remove><h:outputScript library="js" name="/profesor/grafica.js"/></ui:remove>
         <script type="application/javascript">
 
             const msj_nivel = "#{profesor['msj.nivel']}";

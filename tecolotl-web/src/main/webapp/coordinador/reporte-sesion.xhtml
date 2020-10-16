@@ -142,9 +142,11 @@
                 window.history.back();
             }
         </script>
+        <ui:remove>
             <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
-           <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
-<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/reporte-sesion.js"></script>-->
-<!--        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/tiempo-total.js"></script>-->
+            <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
+        </ui:remove>
+        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/reporte-sesion.js"></script>
+        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/tiempo-total.js"></script>
     </ui:define>
 </ui:composition>

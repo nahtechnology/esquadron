@@ -36,10 +36,10 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>-->
-        <h:outputStylesheet library="css" name="graficas.css"/>
-       <link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>-->
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/graficas.css"/>
+        <ui:remove><h:outputStylesheet library="css" name="graficas.css"/></ui:remove>
+       <ui:remove><link rel="stylesheet" href="#{resource['css/profesor/tarea-alumno.css']}"/></ui:remove>
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/tarea-alumno.css"/>
 
         <div class="uk-margin-large-top"><h1 class="uk-margin-top uk-text-capitalize lescuadron">#{profesor['tareas.alumno.title']}</h1></div>
 
@@ -266,8 +266,8 @@
 
     </ui:define>
     <ui:define name="file-js">
-        <h:outputScript library="js" name="/profesor/tarea-alumno-tabla.js"/>
-<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno-tabla.js"></script>-->
+        <ui:remove><h:outputScript library="js" name="/profesor/tarea-alumno-tabla.js"/></ui:remove>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/tarea-alumno-tabla.js"></script>
 
     </ui:define>
 </ui:composition>
