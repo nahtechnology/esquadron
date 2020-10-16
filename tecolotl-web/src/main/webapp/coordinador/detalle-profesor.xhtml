@@ -133,13 +133,15 @@
                 </h:column>
                 <h:column>
                     <f:facet name="header">promedio general grupo</f:facet>
-                    <h:outputText  value="${empty calificacionPendientesModelo.promedio ? 0 : calificacionPendientesModelo.promedio}"/>
-                    <h:outputText value="%" rendered="${not empty calificacionPendientesModelo.promedio}"/>
+                    <h:outputText rendered="${empty calificacionPendientesModelo.promedio}" styleClass="uk-icon" pt:uk-icon="icon: ban; ratio : 1.5"/>
+                    <h:outputText rendered="${not empty calificacionPendientesModelo.promedio}" value="${calificacionPendientesModelo.promedio} %"/>
                 </h:column>
                 <h:column>
                     <f:facet name="header">${coordinador['teacher.detail.title']}</f:facet>
-                    <h:commandLink styleClass="uk-button #{calificacionPendientesModelo.tareasAsignadas ne 0 ? 'uk-button-primary': 'boton-desabilitado'} uk-button-small" disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}" onclick="evt(this)">
-                        Go
+                    <h:commandLink styleClass="uk-button #{calificacionPendientesModelo.tareasAsignadas ne 0 ? 'uk-button-primary': 'boton-desabilitado'} uk-button-small"
+                                   disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}"
+                                   onclick="evt(this)">
+                        ${otrosboton['search']}
                         <f:ajax render="formulario-alumno"
                                 listener="#{detalleProfesorControlador.buscaAlumno(calificacionPendientesModelo.idGrupo)}"
                                 onevent="function f(data) {
@@ -373,7 +375,7 @@
                         </h:column>
                         <h:column >
                             <f:facet name="header">#{coordinador['teacher.detail.table.grup.platform.time']}</f:facet>
-                            <h:button   value="go" outcome="login" styleClass=" uk-button uk-button-primary uk-button-small" >
+                            <h:button   value="${otrosboton['search']}" outcome="login" styleClass=" uk-button uk-button-primary uk-button-small" >
                                 <f:param name="alumno" value="${promedioAlumnoModelo.id}"/>
                                 <f:param name="zona" value="tiempo"/>
                                 <f:param value="${promedioAlumnoModelo.nombre} ${promedioAlumnoModelo.apellidoPaterno} ${promedioAlumnoModelo.apellidoMaterno}" name="usuario"/>

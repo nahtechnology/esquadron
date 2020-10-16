@@ -196,15 +196,15 @@ public class ProfesorSesionBean implements Serializable {
     }
 
     public List<CalificacionPendientesModelo> buscaTotalCalificado(@NotNull UUID idProfesor, @NotNull Date fechaInicio, @NotNull Date fechaFinal) {
-        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR) AS id_grupo,CAST(g.id_profesor AS VARCHAR),g.grado,g.grupo,CAST(count(t.id) AS INTEGER) AS tarea_asignadas ," +
-                "sum(ctm.calificada) AS pendientes_mapamental,sum(ctg.calificada) AS pendientes_gramatica,promedio.prome FROM profesor.ciclo_escolar ce LEFT JOIN " +
-                "profesor.grupo g ON ce.inicio = g.inicio and ce.fin = g.fin and ce.id_escuela = g.id_escuela LEFT JOIN profesor.grupo_alumno ga ON g.id = ga.id_grupo LEFT JOIN " +
-                "alumno.alumno a ON ga.id_alumno = a.id LEFT JOIN alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno LEFT JOIN(SELECT id_tarea," +
-                "CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada FROM profesor.califica_tarea_mapamental GROUP BY id_tarea) AS ctm On t.id = ctm.id_tarea LEFT JOIN " +
-                "(SELECT id_tarea, CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS ctg ON ctg.id_tarea = t.id LEFT JOIN " +
-                "(SELECT id_grupo, round(avg(promedio_general), 2) AS prome FROM (SELECT cc.id_grupo,id_alumno,unnest(array [round(avg(cc.transcripcion)) ,round(avg(cc.mapa_mental_promedio)) ,round(avg(cc.relacionar_imagen_promedio)) ," +
-                "round(avg(cc.gramatica_promedio)) ,round(avg(cc.completar_promedio)) ,round(avg(cc.relacionar_oracion_promedio)) ,round(avg(cc.oraciones_promedio))]) AS promedio_general FROM profesor.calificacion_coordinador cc " +
-                "GROUP BY id_grupo, id_alumno) AS promedio GROUP BY id_grupo) AS promedio ON promedio.id_grupo = g.id WHERE id_profesor = ? AND ce.inicio = ? AND ce.fin = ? AND a.estatus = TRUE GROUP BY g.id,g.id_profesor,g.grado,g.grupo,promedio.prome ORDER BY g.grado");
+        Query query = entityManager.createNativeQuery("SELECT CAST(g.id AS VARCHAR) AS id_grupo,CAST(g.id_profesor AS VARCHAR),g.grado,g.grupo,CAST(count(t.id) AS INTEGER) AS tarea_asignadas ,sum(ctm.calificada) AS pendientes_mapamental,\n" +
+                "sum(ctg.calificada) AS pendientes_gramatica,promedio.prome FROM profesor.ciclo_escolar ce LEFT JOIN profesor.grupo g ON ce.inicio = g.inicio and ce.fin = g.fin and ce.id_escuela = g.id_escuela LEFT JOIN\n" +
+                "profesor.grupo_alumno ga ON g.id = ga.id_grupo LEFT JOIN alumno.alumno a ON ga.id_alumno = a.id LEFT JOIN alumno.tarea t ON ga.id_grupo = t.id_grupo AND ga.id_alumno = t.id_alumno LEFT JOIN(SELECT id_tarea,\n" +
+                "CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada FROM profesor.califica_tarea_mapamental GROUP BY id_tarea) AS ctm On t.id = ctm.id_tarea LEFT JOIN(SELECT id_tarea,\n" +
+                "CASE WHEN count(id_tarea) - count(puntaje) > 0 THEN 1 ELSE 0 END AS calificada FROM profesor.califica_tarea_gramatica GROUP BY id_tarea) AS ctg ON ctg.id_tarea = t.id LEFT JOIN(SELECT id_grupo,\n" +
+                "round(avg(promedio_general), 2) AS prome FROM (SELECT cc.id_grupo,id_alumno,unnest(array [round(avg(cc.transcripcion)) ,round(avg(cc.mapa_mental_promedio)) ,round(avg(cc.relacionar_imagen_promedio)) ,\n" +
+                "round(avg(cc.gramatica_promedio)) ,round(avg(cc.completar_promedio)), round(avg(cc.relacionar_oracion_promedio)),round(avg(cc.oraciones_promedio))]) AS promedio_general FROM alumno.alumno a JOIN \n" +
+                "profesor.calificacion_coordinador cc ON cc.id_alumno = a.id WHERE a.estatus = TRUE GROUP BY id_grupo, id_alumno) AS promedio GROUP BY id_grupo) AS promedio ON promedio.id_grupo = g.id WHERE\n" +
+                "id_profesor = ? AND ce.inicio = ? AND ce.fin = ? AND a.estatus = TRUE GROUP BY g.id,g.id_profesor,g.grado,g.grupo,promedio.prome ORDER BY g.grado");
         query.setParameter(1, idProfesor);
         query.setParameter(2, fechaInicio);
         query.setParameter(3, fechaFinal);
