@@ -1,0 +1,196 @@
+.card-activity-A1, .card-activity-A2, .card-activity-B1, .card-activity-B2, .card-activity-C1 {
+  padding: 1.4px;
+  border-radius: 8px;
+}
+
+.uk-card-header:before, .uk-card-header:after, .uk-accordion-content:before, .uk-accordion-content:after, .uk-accordion-title:before, .uk-accordion-title:after {
+  display: none;
+  content: none;
+}
+
+.cat-txt, .question-tag, .activity-input, .filter-activities {
+  font-family: 'Sniglet', "Arial Black", sans-serif;
+  font-weight: bold;
+}
+
+.uk-dropdown span:hover, .uk-dropdown li:hover {
+  cursor: pointer;
+  color: black;
+}
+
+.card-header {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  column-gap: 3px;
+  color: inherit;
+  align-items: center;
+}
+
+.card-media {
+  height: 200px;
+}
+
+.card-media img {
+  width: 100%;
+}
+
+.activity-theme-text:after {
+  content: "";
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 85%;
+  height: 3px;
+}
+
+.uk-card-footer svg {
+  display: block;
+  width: 43px;
+  height: 30px;
+}
+
+/*estilo card por  actividad*/
+.card-activity-A1 {
+  background-color: #E80CA2;
+  color: #E80CA2;
+}
+
+.card-activity-A1 .uk-card-footer svg {
+  stroke: #E80CA2;
+}
+
+.card-activity-A1 .uk-radio, .card-activity-A1 .uk-checkbox {
+  border-color: #E80CA2;
+}
+
+.card-activity-A1 .uk-radio:checked, .card-activity-A1 .uk-checkbox:checked, .card-activity-A1 .activity-theme-text:after {
+  background-color: #E80CA2 !important;
+}
+
+/*---------------------------------------*/
+.card-activity-A2 {
+  background-color: #D35400;
+  color: #D35400;
+}
+
+.card-activity-A2 .uk-card-footer svg {
+  stroke: #D35400;
+}
+
+.card-activity-A2 .uk-radio, .card-activity-A2 .uk-checkbox {
+  border-color: #D35400;
+}
+
+.card-activity-A2 .uk-radio:checked, .card-activity-A2 .uk-checkbox:checked, .card-activity-A2 .activity-theme-text:after {
+  background-color: #D35400 !important;
+}
+
+/*---------------------------------------*/
+.card-activity-B1 {
+  background-color: #E89E0C;
+  color: #E89E0C;
+}
+
+.card-activity-B1 .uk-card-footer svg {
+  stroke: #E89E0C;
+}
+
+.card-activity-B1 .uk-radio, .card-activity-B1 .uk-checkbox {
+  border-color: #E89E0C;
+}
+
+.card-activity-B1 .uk-radio:checked, .card-activity-B1 .uk-checkbox:checked, .card-activity-B1 .activity-theme-text:after {
+  background-color: #E89E0C !important;
+}
+
+/*---------------------------------------*/
+.card-activity-B2 {
+  background-color: #650CE8;
+  color: #650CE8;
+}
+
+.card-activity-B2 .uk-card-footer svg {
+  stroke: #650CE8;
+}
+
+.card-activity-B2 .uk-radio, .card-activity-B2 .uk-checkbox {
+  border-color: #650CE8;
+}
+
+.card-activity-B2 .uk-radio:checked, .card-activity-B2 .uk-checkbox:checked, .card-activity-B2 .activity-theme-text:after {
+  background-color: #650CE8 !important;
+}
+
+/*---------------------------------------*/
+.card-activity-C1 {
+  background-color: #00a8ec;
+  color: #00a8ec;
+}
+
+.card-activity-C1 .uk-card-footer svg {
+  stroke: #00a8ec;
+}
+
+.card-activity-C1 .uk-radio, .card-activity-C1 .uk-checkbox {
+  border-color: #00a8ec;
+}
+
+.card-activity-C1 .uk-radio:checked, .card-activity-C1 .uk-checkbox:checked, .card-activity-C1 .activity-theme-text:after {
+  background-color: #00a8ec !important;
+}
+
+/*---------------------------------------*/
+.uk-card {
+  background-clip: padding-box;
+  border: solid 3px transparent;
+  color: inherit !important;
+}
+
+.uk-card .uk-card-body {
+  padding: 50px 20px;
+}
+
+.question-tag {
+  font-size: 17px;
+  color: black;
+}
+
+.uk-dropdown.uk-open {
+  padding: 10px;
+}
+
+.activity-input {
+  display: inline-block;
+  padding: 7px 9px !important;
+  width: 142px;
+  border-style: solid;
+}
+
+.activity-input:focus {
+  outline: none;
+}
+
+.filter-activities {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  background-color: #f4f3ed;
+  border-radius: 8px;
+  border: 2px solid var(--turquesa-primary-color);
+  padding: 8px 5px;
+}
+
+.filter-activities span {
+  display: inline-block;
+  text-align: center;
+  border-radius: 8px;
+  padding: 7px 3px;
+}
+
+.filter-activities span:hover {
+  cursor: pointer;
+  border: inherit;
+}
+
+.hidden-activities > div {
+  display: none;
+}

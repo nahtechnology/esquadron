@@ -2,6 +2,7 @@ let formulario;
 let usuario;
 let galaxia;
 let validacion;
+let contentEmpty;
 
 document.addEventListener('DOMContentLoaded', function (evt) {
     formulario = document.querySelector('form');
@@ -9,12 +10,13 @@ document.addEventListener('DOMContentLoaded', function (evt) {
     galaxia = usuario.nextElementSibling.nextElementSibling;
     validacion = formulario.querySelector('.mns-input');
     loginImagen(formulario.querySelectorAll('img'));
+    contentEmpty = document.getElementById('content-empty');
 });
 
 function loginImagen(imagenes) {
     imagenes.forEach(function (imagen) {
         imagen.addEventListener("click", function (evento) {
-            imagen.classList.toggle('seleccionado');
+            imagen.classList.toggle('seleccionado')
         });
     });
 }
@@ -44,7 +46,7 @@ function cargaContrasenia() {
     }else {
         validacion.classList.remove('mensaje-error');
     }
-    formulario.querySelector('input[name=j_password').value = seleccionados.join(',');
-    formulario.querySelector('input[name=j_username').value = usuario.value.concat(',').concat(galaxia.value);
+    formulario.querySelector('input[name=j_password]').value = seleccionados.join(',');
+    formulario.querySelector('input[name=j_username]').value = usuario.value.concat(',').concat(galaxia.value);
     return true;
 }

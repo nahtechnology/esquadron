@@ -13,10 +13,7 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -27,6 +24,8 @@ public class ReporteSesionControlador implements Serializable {
     private ProfesorModelo profesorModelo;
     private String idAlumno;
     private AlumnoModelo alumnoModelo;
+    private TimeZone timeZone;
+    private String zona;
     private Date fechaInicio;
     private Date fechaFin;
     private List<AlumnoControlSesionModelo> listaAlumno;
@@ -45,18 +44,13 @@ public class ReporteSesionControlador implements Serializable {
         profesorModelo = idProfesor == null ? null : new ProfesorModelo(UUID.fromString(idProfesor));
         alumnoModelo = idAlumno == null ? null : new AlumnoModelo(UUID.fromString(idAlumno));
         Calendar calendarFin = Calendar.getInstance();
-        calendarFin.set(Calendar.HOUR_OF_DAY, 23);
-        calendarFin.set(Calendar.MINUTE, 59);
-        calendarFin.set(Calendar.SECOND, 59);
         fechaFin = calendarFin.getTime();
         Calendar calendarInicio = Calendar.getInstance();
         calendarInicio.add(Calendar.MONTH, -1);
-        calendarInicio.add(Calendar.HOUR_OF_DAY,0);
-        calendarFin.set(Calendar.MINUTE, 0);
-        calendarFin.set(Calendar.SECOND, 0);
+        timeZone = TimeZone.getTimeZone(zona);
         fechaInicio = calendarInicio.getTime();
         if (profesorModelo == null) {
-            listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin);
+            listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin, timeZone);
         } else {
             listaProfesor = profesorSesionControlSessionBean.busca(profesorModelo.getId(), fechaInicio, fechaFin);
         }
@@ -64,7 +58,7 @@ public class ReporteSesionControlador implements Serializable {
 
     public void actualiza(AjaxBehaviorEvent ajaxBehaviorEvent) {
         if (profesorModelo == null) {
-            listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin);
+            listaAlumno = controlSesionSesionBean.busca(alumnoModelo.getId(), fechaInicio, fechaFin, timeZone);
         } else {
             listaProfesor = profesorSesionControlSessionBean.busca(profesorModelo.getId(), fechaInicio, fechaFin);
         }
@@ -116,5 +110,13 @@ public class ReporteSesionControlador implements Serializable {
 
     public void setListaProfesor(List<ProfesorSesionControlModelo> listaProfesor) {
         this.listaProfesor = listaProfesor;
+    }
+
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
     }
 }

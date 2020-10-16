@@ -3,6 +3,7 @@ package tecolotl.administracion.persistencia.vista;
 import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Immutable
@@ -11,7 +12,7 @@ import javax.persistence.*;
         name = "AlumnoEscuelaVista.buscaPorEscuela",
         query = "SELECT a FROM AlumnoEscuelaVista a WHERE a.idEscuela = :idEscuela"
 )
-public class AlumnoEscuelaVista {
+public class AlumnoEscuelaVista implements Serializable {
 
     private String idGrupo;
     private Short grado;
@@ -23,6 +24,7 @@ public class AlumnoEscuelaVista {
     private String apellidoMaterno;
     private Boolean estatus;
 
+    @Id
     @Column(name = "id_grupo")
     public String getIdGrupo() {
         return idGrupo;

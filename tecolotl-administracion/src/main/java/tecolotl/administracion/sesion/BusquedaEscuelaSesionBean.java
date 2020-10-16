@@ -13,10 +13,9 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
+import java.util.Objects;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -58,16 +57,15 @@ public class BusquedaEscuelaSesionBean {
      * @return Mapa con los datos de los alumnos. como llave primaria {@link GrupoBusquedaModelo} y los datos del alumno en uan lista de objetos {@link AlumnoBusquedaModelo}
      */
     public Map<GrupoBusquedaModelo, List<AlumnoBusquedaModelo>> buscaAlumno(@NotNull String claveCentroTrabajo) {
+        Map<GrupoBusquedaModelo, List<AlumnoBusquedaModelo>> mapa;
         TypedQuery<AlumnoEscuelaVista> typedQuery = entityManager.createNamedQuery("AlumnoEscuelaVista.buscaPorEscuela", AlumnoEscuelaVista.class);
         typedQuery.setParameter("idEscuela", claveCentroTrabajo);
         List<AlumnoEscuelaVista> alumnoEscuelaVistaLista = typedQuery.getResultList();
-        logger.info(Arrays.toString(alumnoEscuelaVistaLista.toArray()));
-        return alumnoEscuelaVistaLista.stream().filter(aev -> aev != null).collect(
-                Collectors.groupingBy(
-                        GrupoBusquedaModelo::new,
-                        Collectors.mapping(aev ->  aev.getIdAlumno() == null ? null : new AlumnoBusquedaModelo(aev) , Collectors.toList())
-                )
-        );
+        mapa = alumnoEscuelaVistaLista.stream().collect(Collectors.groupingBy(GrupoBusquedaModelo::new, Collectors.mapping(aev ->  aev.getIdAlumno() == null ? null : new AlumnoBusquedaModelo(aev) , Collectors.toList())));
+        for (Map.Entry<GrupoBusquedaModelo, List<AlumnoBusquedaModelo>> entry : mapa.entrySet()) {
+            entry.getValue().removeIf(Objects::isNull);
+        }
+        return mapa;
     }
 
 }

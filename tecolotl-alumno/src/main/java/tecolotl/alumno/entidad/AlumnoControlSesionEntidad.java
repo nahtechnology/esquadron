@@ -10,11 +10,11 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "control_sesion", schema = "alumno")
-@NamedQueries(value = {
-        @NamedQuery(
+@NamedQueries( value = {
+        @NamedQuery (
                 name = "AlumnoControlSesionEntidad.buscaAlumno",
                 query = "SELECT acs FROM AlumnoControlSesionEntidad acs JOIN FETCH acs.tipoRegistroEntidad WHERE acs.alumnoEntidad.id = :idAlumno AND " +
-                        "acs.tiempo BETWEEN :fechaInicio AND :fechaFin")
+                        "acs.tiempo BETWEEN :fechaInicio AND :fechaFin ORDER BY acs.tiempo DESC")
 })
 public class AlumnoControlSesionEntidad extends ControlSesionEntidad implements Serializable {
 
