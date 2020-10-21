@@ -11,9 +11,11 @@
 <h:body>
     <h:outputStylesheet library="css" name="/error/no-encontrado.css"/>
     <h:outputStylesheet library="css" name="letra.css"/>
-    <h1 class="lescuadron">#{etiqueta['no.econtrado.title']}</h1>
-    <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
-    <div class="centrado">
+    <h1 class="lescuadron" style="margin-bottom: 20px;">#{etiqueta['no.econtrado.title']}</h1>
+    <div style="text-align: center; margin-bottom: 20px;">
+    <h:graphicImage library="img" name="/fondo/no-existe.svg" />
+    </div>
+    <div class="centrado" >
         <button class="btn-atras" onclick="goBack()">Atrás</button>
     </div>
 </h:body>

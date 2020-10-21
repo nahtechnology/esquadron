@@ -17,11 +17,10 @@ body{
 h1{
     text-align: center;
     color: #1E87F0;
-    width: 100%;
 }
 
 img{
-    transform: scale(0.8);
+   height: 500px;
 }
 
 .btn-atras{
@@ -40,4 +39,10 @@ img{
 .centrado{
     display: flex;
     justify-content: center;
+}
+
+@media screen and (max-width: 1200px){
+    img{
+        height: 400px;
+    }
 }
