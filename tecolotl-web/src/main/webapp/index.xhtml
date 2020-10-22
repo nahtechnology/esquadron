@@ -53,10 +53,10 @@
 		</ul>
 	</aside>
 	<div id="mobil-aside">
-		<p><h:link  outcome="/profesor/dashboard.xhtml" value="Teachers"/></p>
-		<p><h:link  outcome="/alumno/dashboard.xhtml" value="Students"/></p>
+		<p><h:link  outcome="/profesor/dashboard.xhtml" value="#{boton['teachers']}"/></p>
+		<p><h:link  outcome="/alumno/dashboard.xhtml" value="#{boton['students']}"/></p>
 		<ui:remove><p><h:link  outcome="/administracion/dashboard.xhtml" value="Administration"/></p></ui:remove>
-		<p><h:link outcome="/coordinador/dashboard.xhtml" value="Coordinador"/> </p>
+		<p><h:link outcome="/coordinador/dashboard.xhtml" value="#{boton['coordinator']}"/> </p>
 	</div>
 	<div id="contenido">
 		<div id="inicio">
@@ -65,12 +65,12 @@
 					<span>squadron</span>
 					<ul>
 						<li>
-							<h:link  outcome="/profesor/dashboard.xhtml" value="Teachers"/>
+							<h:link  outcome="/profesor/dashboard.xhtml" value="#{boton['teachers']}"/>
 						</li>
 						<li>
-							<h:link  outcome="/alumno/dashboard.xhtml" value="Students"/>
+							<h:link  outcome="/alumno/dashboard.xhtml" value="#{boton['students']}"/>
 						</li>
-						<li><h:link outcome="/coordinador/dashboard.xhtml" value="Coordinador"/></li>
+						<li><h:link outcome="/coordinador/dashboard.xhtml" value="#{boton['coordinator']}"/></li>
 					</ul>
 					<div>
 						<span><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg"  alt=""/>squadron</span>
