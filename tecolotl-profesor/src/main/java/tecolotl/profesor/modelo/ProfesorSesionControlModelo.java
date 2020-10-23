@@ -2,7 +2,9 @@ package tecolotl.profesor.modelo;
 
 import tecolotl.profesor.entidad.ProfesorControlSesionEntidad;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.TimeZone;
 
 public class ProfesorSesionControlModelo {
 
@@ -13,7 +15,10 @@ public class ProfesorSesionControlModelo {
     }
 
     public ProfesorSesionControlModelo(ProfesorControlSesionEntidad entidad) {
-        momento = entidad.getTiempo();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(entidad.getTiempo());
+        calendar.add(Calendar.HOUR,-6);
+        momento = calendar.getTime();
         tipo = entidad.getTipoRegistroEntidad().getValor();
     }
 
