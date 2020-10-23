@@ -80,7 +80,7 @@
                          pt:data-vacio="false">
                 <h:column  pt:data-tipo-sesion="${alumnoModelo.tipo}">
                     <h:outputText value="${alumnoModelo.momento}">
-                        <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        <f:convertDateTime pattern="dd/MM/yyyy" timeZone="${param['zona']}"/>
                     </h:outputText>
                 </h:column>
                 <h:column>
@@ -99,7 +99,7 @@
 
                     <h:column pt:data-tipo-sesion="${profesorModelo.tipo}">
                         <h:outputText value="${profesorModelo.momento}">
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            <f:convertDateTime pattern="dd/MM/yyyy" timeZone="${param['zona']}"/>
                         </h:outputText>
                     </h:column>
                     <h:column>
