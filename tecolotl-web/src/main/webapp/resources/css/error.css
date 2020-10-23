@@ -28,9 +28,11 @@ p{
     font-family: "fredoka_oneregular", "Arial Black", sans-serif;
 }
 .imagen-error{
-    width: 43vw;
     display: flex;
     justify-content: center;
+}
+img{
+    height: 400px;
 }
 input{
     background: linear-gradient(to bottom right,#31B7F5 , #AF08F3 );

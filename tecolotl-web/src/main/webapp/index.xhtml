@@ -53,10 +53,10 @@
 		</ul>
 	</aside>
 	<div id="mobil-aside">
-		<p><h:link  outcome="/profesor/dashboard.xhtml" value="Teachers"/></p>
-		<p><h:link  outcome="/alumno/dashboard.xhtml" value="Students"/></p>
+		<p><h:link  outcome="/profesor/dashboard.xhtml" value="#{boton['teachers']}"/></p>
+		<p><h:link  outcome="/alumno/dashboard.xhtml" value="#{boton['students']}"/></p>
 		<ui:remove><p><h:link  outcome="/administracion/dashboard.xhtml" value="Administration"/></p></ui:remove>
-		<p><h:link outcome="/coordinador/dashboard.xhtml" value="Coordinador"/> </p>
+		<p><h:link outcome="/coordinador/dashboard.xhtml" value="#{boton['coordinator']}"/> </p>
 	</div>
 	<div id="contenido">
 		<div id="inicio">
@@ -65,12 +65,12 @@
 					<span>squadron</span>
 					<ul>
 						<li>
-							<h:link  outcome="/profesor/dashboard.xhtml" value="Teachers"/>
+							<h:link  outcome="/profesor/dashboard.xhtml" value="#{boton['teachers']}"/>
 						</li>
 						<li>
-							<h:link  outcome="/alumno/dashboard.xhtml" value="Students"/>
+							<h:link  outcome="/alumno/dashboard.xhtml" value="#{boton['students']}"/>
 						</li>
-						<li><h:link outcome="/coordinador/dashboard.xhtml" value="Coordinador"/></li>
+						<li><h:link outcome="/coordinador/dashboard.xhtml" value="#{boton['coordinator']}"/></li>
 					</ul>
 					<div>
 						<span><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg"  alt=""/>squadron</span>
@@ -256,7 +256,7 @@
 <!--				https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit-->
 				<div>
 						<!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
-						<form  action='https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit' name='form' id='form' method='POST' accept-charset='UTF-8' enctype='multipart/form-data'>
+						<form  action='https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit' target="_blank" name='form' id='form' method='POST' accept-charset='UTF-8' enctype='multipart/form-data'>
 							<input type="hidden" name="zf_referrer_name" value=""/><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
 							<input type="hidden" name="zf_redirect_url" value=""/><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
 							<input type="hidden" name="zc_gad" value=""/><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->

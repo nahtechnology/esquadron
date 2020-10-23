@@ -507,6 +507,7 @@ aside ul > li > a > img {
     margin-left: 45px;
     margin-right: 45px;
     font-family: oswaldbold, sans-serif;
+    height: auto;
 }
 #seccion3 > div:first-child{
     padding: 15px;

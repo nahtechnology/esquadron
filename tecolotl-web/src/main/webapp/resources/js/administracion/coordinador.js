@@ -28,8 +28,8 @@ function colocarImagenesPassword() {
     let tablaCoordinador= document.querySelectorAll('[id$=tabla-coordinador] #login-tabla-coordinador');
 
     for (let i = 0; i < contenedorpassword.length; i++) {
-        let contrasena1 = contenedorpassword[i].querySelector('span').innerText.split(',');
-        let contrasena2 = tablaCoordinador[i].querySelector('span').innerText.split(',');
+        let contrasena1 = contenedorpassword[i].querySelector('span').textContent.trim().split(',');
+        let contrasena2 = tablaCoordinador[i].querySelector('span').textContent.trim().split(',');
         contenedorpassword[i].innerHTML = "";
         tablaCoordinador[i].innerHTML = "";
         contrasena1.forEach(contra1 => {
