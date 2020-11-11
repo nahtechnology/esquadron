@@ -312,7 +312,7 @@ aside ul > li >a{
 aside ul{
     background-color: var(--morado-secundario);
     padding: 5px;
-    height: 300px;
+    height: 380px;
     border-radius: 8px;
     transition: all 0.3s linear;
 }
@@ -496,7 +496,38 @@ aside ul > li > a > img {
 
 /*fin seccion 2*/
 
+/*seccion eventos logos*/
+#eventos-logos{
+    min-height: 300px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+#eventos-logos img{
+    width: 200px;
+    display: inline-block;
+}
+#eventos-logos h2{
+    font-family: oswaldmedium, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#eventos-logos h2:before{
+    content: "";
+    display: inline-block;
+    height: 8px;
+    width: 720px;
+    background-color: var(--morado-primario);
+}
 
+#eventos-logos div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/*Fin de seccion eventos logos*/
 /*seccion 3*/
 #seccion3{
     display: grid;

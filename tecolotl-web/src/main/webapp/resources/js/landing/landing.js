@@ -131,3 +131,34 @@ function reproducir() {
     document.querySelector("#botonply").classList.add('visibilidad');
     player.playVideo();
 }
+function responseJson(url,method){
+    return new Promise((resolve,reject)=>{
+        const objResponse = new XMLHttpRequest();
+        objResponse.open(method,url,true);
+        objResponse.addEventListener('load',evt => {
+            if (evt.target.status === 200){
+                resolve(JSON.parse(evt.target.responseText))
+            }
+        });
+        objResponse.send();
+    });
+}
+(async()=>{
+    let logosContent = document.getElementById('eventos-logos');
+    let contentImg = document.createDocumentFragment();
+    let containerImg = document.createElement('div');
+    let response = await responseJson("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/json/ferias-img.json","GET");
+    response.forEach((image,index) => {
+        let img = document.createElement('img');
+        img.src = `https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/feria_Libro/${image.nombre}.${image.extension}`;
+        containerImg.appendChild(img);
+        if ((index+1) % 3 === 0){
+            contentImg.appendChild(containerImg);
+            containerImg = document.createElement('div');
+        }
+    });
+    if (containerImg.hasChildNodes()){
+        contentImg.appendChild(containerImg);
+    }
+    logosContent.insertBefore(contentImg,logosContent.querySelector('h2:last-of-type'));
+})();
