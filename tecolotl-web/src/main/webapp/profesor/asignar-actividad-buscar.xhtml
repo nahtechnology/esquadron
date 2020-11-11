@@ -35,7 +35,6 @@
         </div>
     </ui:define>
     <ui:define name="contenido">
-        <ui:remove><h:outputStylesheet library="css" name="/profesor/actividad.css"/></ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/profesor/actividad.css"/>
         <h:form id="formulario-busqueda" styleClass="uk-margin-medium-bottom uk-margin-large-top">
             <h:inputText id="entrada-busqueda" styleClass="activity-input uk-margin-small-right" value="#{asignarActividadBuscarControlador.busqueda}">
@@ -100,7 +99,7 @@
                                     <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                         <div class="uk-inline uk-text-center">
                                                 <span >
-                                                    <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
+                                                    <h:graphicImage   styleClass="uk-svg" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/decarga.svg" pt:uk-svg=""/>
                                                 </span>
                                             <div uk-dropdown="">
                                                 <span class="uk-text-capitalize" data-link="Grammar.pdf" data-source-text="descargables/">#{profesor['activity.grammar']}</span>
@@ -139,6 +138,5 @@
     <ui:define name="file-js">
         <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad-buscar.js"></script>
-        <ui:remove><h:outputScript library="js" name="/profesor/asignar-actividad-buscar.js"/></ui:remove>
     </ui:define>
 </ui:composition>

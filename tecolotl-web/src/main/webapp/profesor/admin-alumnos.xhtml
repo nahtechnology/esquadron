@@ -318,10 +318,9 @@
         </script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/admin-alumnos.js"></script>
-        <ui:remove><h:outputScript library="js" name="/profesor/admin-alumnos.js"/></ui:remove>
     </ui:define>
     <ui:define name="file-js">
-        <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/contrasena.js"></script>
+        <h:outputScript library="js" name="contrasena.js"/><!--quitar este cuando se actualice -->
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
         <script type="application/javascript">
             document.querySelector('#boton').addEventListener('click',generatePDF);

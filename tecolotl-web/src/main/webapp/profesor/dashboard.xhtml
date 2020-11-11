@@ -158,7 +158,7 @@
                             <tr >
                                 <td colspan="6" class="tdPrimario">
                                     <div class="uk-flex uk-flex-center">
-                                        <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg"  height="215" width="243" alt="vacio"/>
                                     </div>
                                 </td>
                             </tr>
@@ -322,9 +322,9 @@
     </ui:define>
 
     <ui:define name="file-js">
-        <h:outputScript library="js" name="modal.js"/>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/modal.js"></script>
+
         <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/grafica.js"></script>
-        <ui:remove><h:outputScript library="js" name="/profesor/grafica.js"/></ui:remove>
         <script type="application/javascript">
 
             const msj_nivel = "#{profesor['msj.nivel']}";

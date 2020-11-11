@@ -125,8 +125,7 @@
                                         <h:panelGroup layout="block" styleClass=" uk-flex uk-flex-center">
                                             <div class="uk-inline uk-text-center">
                                                 <span >
-                                                    <h:graphicImage  styleClass="uk-svg" library="img" name="icono/decarga.svg" pt:uk-svg=""/>
-<!--                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/decarga.svg" class="uk-svg" alt=""/>-->
+                                                    <img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/decarga.svg" uk-svg="" class="uk-svg" alt=""/>
                                                 </span>
                                                 <div uk-dropdown="">
                                                     <span class="uk-text-capitalize">#{profesor['activity.grammar']}</span>
@@ -175,9 +174,7 @@
 
             <script type="text/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/asignar-actividad.js"></script>
-           <ui:remove><h:outputScript library="js" name="/profesor/asignar-actividad.js"/></ui:remove>
             <script type="text/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/filtro.js"></script>
-            <ui:remove><h:outputScript library="js" name="/alumno/filtro.js"/></ui:remove>
         </ui:define>
     </ui:composition>
 </html>
