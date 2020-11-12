@@ -6,7 +6,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-
 <div id="offcanvas-nav" data-uk-offcanvas="flip: true; overlay: true">
     <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
         <button class="uk-offcanvas-close uk-close uk-icon " type="button" data-uk-close=""></button>
@@ -29,9 +28,8 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     </div>
 </div>
-<h:outputScript library="js" name="uikit.js"/>
-<h:outputScript library="js" name="uikit-icons.js"/>
-<h:outputScript rendered="#{request.isUserInRole('coordinador')}" library="js" name="/profesor/licencia.js"/>
-<h:outputScript rendered="#{request.isUserInRole('administrador')}" library="js" name="/administracion/barras-lateral.js"/>
-
+<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit.js"/>
+<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit-icons.js"/>
+<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/licencia.js"/>
+<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/barras-lateral.js"/>
 </html>

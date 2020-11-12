@@ -16,7 +16,7 @@
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
-                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <h:panelGroup layout="block" rendered="#{reporteSesionControlador.idProfesor eq null}">
                     <ul class="uk-nav-sub">
                         <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
@@ -132,8 +132,8 @@
         </h:panelGroup>
     </ui:define>
     <ui:define name="file-js">
-        <h:outputScript library="js" name="datepicker-full.js"/>
-        <script >
+        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/datepicker-full.js"></script>
+        <script>
             let datePicker = document.querySelector('#rango-fecha');
             let rango = new DateRangePicker(datePicker,{
                 format:"dd/mm/yyyy"
@@ -142,10 +142,6 @@
                 window.history.back();
             }
         </script>
-        <ui:remove>
-            <h:outputScript library="js" name="/coordinador/reporte-sesion.js"/>
-            <h:outputScript library="js" name="/coordinador/tiempo-total.js"/>
-        </ui:remove>
         <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/reporte-sesion.js"></script>
         <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/tiempo-total.js"></script>
     </ui:define>
