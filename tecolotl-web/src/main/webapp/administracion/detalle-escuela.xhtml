@@ -24,13 +24,6 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <ui:remove>
-        <h:outputStylesheet library="css" name="tablas.css"/>
-        <h:outputStylesheet library="css" name="letra.css"/>
-        <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
-        <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
-        <h:outputStylesheet library="css" name="/administracion/date-picker.css"/>
-        </ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/scroll-esquadron.css"/>
@@ -151,7 +144,7 @@
                                         <tr>
                                             <td colspan="4">
                                                 <div class="uk-flex uk-flex-center">
-                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" height="215" width="243" alt="vacio"/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -272,7 +265,7 @@
                                         <tr>
                                             <td colspan="6">
                                                 <div class="uk-flex uk-flex-center">
-                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" height="215" width="243" alt="vacio"/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -634,8 +627,7 @@
                 }
             }
         </script>
-        <ui:remove><h:outputScript library="js" name="nah.js"/></ui:remove>
-        <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>
+        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/nah.js"></script>
     </ui:define>
 </ui:composition>
 </html>

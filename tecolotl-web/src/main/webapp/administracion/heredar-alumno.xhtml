@@ -77,7 +77,7 @@
                 <h:form id="formulario-grupo">
                     <div class="uk-margin uk-position-relative">
                         <div id="spinner-grupo" class="cargando-grupo ver-svg">
-                            <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg"/>
+                            <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg"/>
                         </div>
                         <h:outputLabel value="grupo" for="seleccion-grupo" styleClass="uk-form-label uk-text-capitalize"/>
                         <div class="uk-form-controls">
@@ -109,7 +109,7 @@
             <div class="uk-width-2-3">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover tabla uk-position-relative">
                     <div id="spinner-alumnos" class="cargando-grupo ver-svg">
-                        <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg"/>
+                        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/esquadron-animado.svg" pt:uk-svg=""  styleClass="uk-svg"/>
                     </div>
                     <h:form id="formulario-alumnos">
                         <div class="uk-card-header uk-flex uk-flex-middle uk-flex-between">
@@ -137,7 +137,7 @@
                                     <tr>
                                         <td colspan="4">
                                             <div class="uk-flex uk-flex-center">
-                                                <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/esquadron-animado.svg" height="215" width="243" alt="vacio"/>
                                             </div>
                                         </td>
                                     </tr>
@@ -215,12 +215,7 @@
         </h:form>
     </ui:define>
     <ui:define name="file-js">
-        <ui:remove>
-        <h:outputScript library="js" name="/administracion/heredar-alumno.js"/>
-        <h:outputScript library="js" name="/administracion/filtro-tabla.js"/>
-        </ui:remove>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/heredar-alumno.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/filtro-tabla.js"></script>
-
     </ui:define>
 </ui:composition>

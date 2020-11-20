@@ -16,7 +16,7 @@
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
-                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
                     <li class="uk-active"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                 </ul>
@@ -64,7 +64,7 @@
                                         <tr>
                                             <td colspan="4">
                                                 <div class="uk-flex uk-flex-center">
-                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" height="215" width="243" alt="vacio"/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -140,8 +140,8 @@
                         </h:form>
                     </div>
                     <div class="uk-card-footer" id="botones-navegacion">
-                        <button class="uk-button  uk-margin-small-left"><h:graphicImage library="img" name="/boton/anterior-deshabilitado.svg" pt:uk-svg=""/></button>
-                        <button class="uk-button uk-margin-small-left"><h:graphicImage library="img" name="/boton/siguiente-deshabilitado.svg" pt:uk-svg=""/></button>
+                        <button class="uk-button  uk-margin-small-left"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/boton/anterior-deshabilitado.svg" pt:uk-svg=""/></button>
+                        <button class="uk-button uk-margin-small-left"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/boton/siguiente-deshabilitado.svg" pt:uk-svg=""/></button>
                         <select class="uk-select uk-margin-small-left uk-form-width-medium">
                             <option value="5">5</option>
                             <option value="10">10</option>
@@ -323,7 +323,7 @@
                     <ui:repeat value="#{administracionProfesorControlador.profesorModeloLista}" var="profesorModelo">
                         <div class="tablero-licencia">
                             <div class="imagen">
-                                <h:graphicImage styleClass="uk-display-inline-block "  library="img" name="/avatar/maestro.svg"  width="60"/>
+                                <h:graphicImage styleClass="uk-display-inline-block " url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" width="60"/>
                             </div>
                             <div class="informacion">
                                 <h6>#{otrosetiqueta['teachers']}</h6>
@@ -347,16 +347,9 @@
                     <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">#{otrosboton['download.PDF']}</button>
                 </div>
         </h:panelGroup>
-
-        <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
-        <h:outputScript library="js" name="administracion/profesores.js"/>
-        <h:outputScript library="js" name="tabla-profesor.js"/>
-
-        <ui:remove>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/profesores.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/tabla-profesor.js"></script>
-        </ui:remove>
     </ui:define>
 
 </ui:composition>
