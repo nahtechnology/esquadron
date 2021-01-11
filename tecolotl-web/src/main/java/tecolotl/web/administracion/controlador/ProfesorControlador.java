@@ -56,6 +56,7 @@ public class ProfesorControlador implements Serializable {
     }
 
     public void inserta() {
+        logger.info("------");
         if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo.getApodo()) ||
                 coordinadorSesionBean.exite(profesorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
             FacesContext facesContext = FacesContext.getCurrentInstance();

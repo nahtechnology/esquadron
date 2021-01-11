@@ -153,12 +153,9 @@
             </div>
         </div>
         <div class="uk-flex uk-flex-right uk-margin-top">
-            <h:panelGroup   id="boton-password" class="uk-button  uk-margin-small-right #{not empty administracionProfesorControlador.profesorModeloLista ? 'uk-button-primary':'visibilidad'}"   pt:uk-toggle="target: #modal-password" >#{otrosboton['passwords']}</h:panelGroup>
+            <h:panelGroup id="boton-password" class="uk-button uk-margin-small-right #{not empty administracionProfesorControlador.profesorModeloLista ? 'uk-button-primary' : 'visibilidad'}" pt:uk-toggle="target: #modal-password">#{otrosboton['passwords']}</h:panelGroup>
             <h:button styleClass="uk-button uk-button-primary" value="#{otrosboton['back']}" outcome="regresar"/>
         </div>
-
-
-
         <h:panelGroup layout="block" id="modal-profesor" styleClass="uk-modal-container" pt:uk-modal="">
             <div class="uk-modal-dialog uk-margin-auto-vertical">
                 <h:form id="formulario-modal-profesor" styleClass="uk-form-stacked">
@@ -261,19 +258,18 @@
                         </div>
                     </div>
                     <div class="uk-modal-footer uk-flex uk-flex-right">
-                        <h:commandButton value="${otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right">
+                        <h:commandButton value="${otrosboton['cancel']}" styleClass="uk-button uk-button-default uk-margin-small-right" id="boton-cancelar">
                             <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}"
                                     onevent="function funciones(data) { cerrarModal(data, 'modalProfresor',0); }"
                                     render="@form"/>
                         </h:commandButton>
-
-                        <h:commandButton value="${otrosboton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}">
+                        <h:commandButton value="${otrosboton['add']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{empty administracionProfesorControlador.profesorModelo.id}" id="boton-agregar">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.inserta()}"
                                     render="@form formulario-tabla modal-password boton-password"
                                     onevent="function funcion(data) { cerrarModal(data, 'modalProfresor',1); }"/>
                         </h:commandButton>
-                        <h:commandButton value="${otrosboton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}">
+                        <h:commandButton value="${otrosboton['update']}" onclick="cargaContrasenia()" styleClass="uk-button uk-button-secondary" rendered="#{not empty administracionProfesorControlador.profesorModelo.id}" id="boton-actualizar">
                             <f:ajax execute="@form"
                                     listener="#{administracionProfesorControlador.actualiza()}"
                                     render="@form formulario-tabla modal-password"
