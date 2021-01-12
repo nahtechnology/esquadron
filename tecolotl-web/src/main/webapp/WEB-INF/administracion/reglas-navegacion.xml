@@ -117,6 +117,10 @@
                 </redirect-param>
             </redirect>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>agregar</from-outcome>
+            <to-view-id>/administracion/agregar.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
     
     <navigation-rule>
@@ -156,6 +160,20 @@
         <navigation-case>
             <from-outcome>dashboard</from-outcome>
             <to-view-id>/administracion/dashboard.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/administracion/agregar.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/administracion/profesores.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>escuela</name>
+                    <value>#{agregarControlador.escuelaBaseModelo.claveCentroTrabajo}</value>
+                </redirect-param>
+            </redirect>
         </navigation-case>
     </navigation-rule>
 
