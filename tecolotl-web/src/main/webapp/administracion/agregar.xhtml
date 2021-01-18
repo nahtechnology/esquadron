@@ -44,7 +44,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText id="apodo"
                                                      class="uk-input"
-                                                     binding="#{agregarControlador.uiInput}"
+                                                     binding="#{agregarControlador.uiInputProfesor}"
                                                      disabled="#{not empty agregarControlador.profesorModelo.id}"
                                                      value="#{agregarControlador.profesorModelo.apodo}">
                                             <f:validateRequired/>
@@ -146,7 +146,7 @@
                                     <div class="uk-form-controls">
                                         <h:inputText id="apodo-coordinadorModelo"
                                                      class="uk-input"
-                                                     binding="#{agregarControlador.uiInput}"
+                                                     binding="#{agregarControlador.uiInputCoordinador}"
                                                      disabled="#{not empty agregarControlador.profesorModelo.id}"
                                                      value="#{agregarControlador.coordinadorModelo.apodo}">
                                             <f:validateRequired/>

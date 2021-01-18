@@ -25,7 +25,8 @@ public class AgregarControlador implements Serializable {
     private EscuelaBaseModelo escuelaBaseModelo;
     private ProfesorModelo profesorModelo;
     private CoordinadorModelo coordinadorModelo;
-    private UIInput uiInput;
+    private UIInput uiInputProfesor;
+    private UIInput uiInputCoordinador;
 
     @Inject
     private ProfesorSesionBean profesorSesionBean;
@@ -57,19 +58,22 @@ public class AgregarControlador implements Serializable {
     public String agregar() {
         logger.info(profesorModelo == null ? "NULL" : profesorModelo.toString());
         logger.info(coordinadorModelo == null ? "NULL" : coordinadorModelo.toString());
-        /*
         if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo == null ? coordinadorModelo.getApodo() :  profesorModelo.getApodo()) ||
                 coordinadorSesionBean.exite(profesorModelo == null ? coordinadorModelo.getApodo() :  profesorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este apodo ya existe", null);
-            facesContext.addMessage(uiInput.getClientId(facesContext), facesMessage);
+            facesContext.addMessage(profesorModelo == null ? uiInputCoordinador.getClientId(facesContext) : uiInputProfesor.getClientId(facesContext), facesMessage );
             return null;
         } else {
-            profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
-            profesorSesionBean.inserta(profesorModelo);
+            if (profesorModelo != null) {
+                profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
+                profesorSesionBean.inserta(profesorModelo);
+            } else {
+                coordinadorModelo.setClaveCentroTrabajo(escuelaBaseModelo.getClaveCentroTrabajo());
+                coordinadorSesionBean.agreaga(coordinadorModelo);
+            }
             return "success";
-        }*/
-        return "success";
+        }
     }
 
     public String getEscuela() {
@@ -86,14 +90,6 @@ public class AgregarControlador implements Serializable {
 
     public void setProfesorModelo(ProfesorModelo profesorModelo) {
         this.profesorModelo = profesorModelo;
-    }
-
-    public UIInput getUiInput() {
-        return uiInput;
-    }
-
-    public void setUiInput(UIInput uiInput) {
-        this.uiInput = uiInput;
     }
 
     public EscuelaBaseModelo getEscuelaBaseModelo() {
@@ -118,5 +114,21 @@ public class AgregarControlador implements Serializable {
 
     public void setCoordinadorModelo(CoordinadorModelo coordinadorModelo) {
         this.coordinadorModelo = coordinadorModelo;
+    }
+
+    public UIInput getUiInputProfesor() {
+        return uiInputProfesor;
+    }
+
+    public void setUiInputProfesor(UIInput uiInputProfesor) {
+        this.uiInputProfesor = uiInputProfesor;
+    }
+
+    public UIInput getUiInputCoordinador() {
+        return uiInputCoordinador;
+    }
+
+    public void setUiInputCoordinador(UIInput uiInputCoordinador) {
+        this.uiInputCoordinador = uiInputCoordinador;
     }
 }
