@@ -8,6 +8,7 @@
 
     <f:metadata>
         <f:viewParam name="escuela" value="#{agregarControlador.escuela}"/>
+        <f:viewParam name="persona" value="#{agregarControlador.persona}"/>
         <f:viewAction action="#{agregarControlador.inicio}"/>
     </f:metadata>
     <ui:define name="contenido">
@@ -28,13 +29,11 @@
             .selected-img{
                 transform: scale(1.3);
             }
-
         </style>
-
         <div uk-grid="">
             <div class="uk-width-1-1">
                 <div class="uk-card uk-card-default uk-card-small uk-card-hover">
-                    <h:form id="formulario-agregar">
+                    <h:form id="formulario-agregar-profesor" rendered="#{agregarControlador.persona eq 'profesor'}">
                         <div class="uk-card-header">
                            <h4>Nuevo Profesor</h4>
                         </div>
@@ -133,7 +132,109 @@
                         </div>
                         <div class="uk-card-footer uk-flex uk-flex-right">
                             <h:button styleClass="uk-button uk-button-primary uk-margin-small-right" value="regresar" outcome="regresar"/>
-                            <h:commandButton styleClass="uk-button uk-button-primary"  action="#{agregarControlador.agregar}" value="agregar"/>
+                            <h:commandButton styleClass="uk-button uk-button-primary" onclick="loadPassword()" action="#{agregarControlador.agregar}" value="agregar"/>
+                        </div>
+                    </h:form>
+                    <h:form id="formulario-agregar-coordinador" rendered="#{agregarControlador.persona eq 'coordinador'}">
+                        <div class="uk-card-header">
+                            <h4>Nuevo Coordinador</h4>
+                        </div>
+                        <div class="uk-card-body">
+                            <div uk-grid="">
+                                <div class="uk-width-1-1@s uk-width-1-6@m">
+                                    <h:outputLabel styleClass="uk-text-capitalize" value="apodo" for="apodo-coordinadorModelo"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText id="apodo-coordinadorModelo"
+                                                     class="uk-input"
+                                                     binding="#{agregarControlador.uiInput}"
+                                                     disabled="#{not empty agregarControlador.profesorModelo.id}"
+                                                     value="#{agregarControlador.coordinadorModelo.apodo}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="apodo-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-4@m">
+                                    <h:outputLabel styleClass="uk-text-capitalize" value="nombre" for="nombre-coordinadorModelo"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText id="nombre-coordinadorModelo"
+                                                     class="uk-input"
+                                                     value="#{agregarControlador.coordinadorModelo.nombre}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="40"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="nombre-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-4@m">
+                                    <h:outputLabel styleClass="uk-text-capitalize" value="apellido paterno" for="apellidoPaterno-coordinadorModelo"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText id="apellidoPaterno-coordinadorModelo"
+                                                     class="uk-input"
+                                                     value="#{agregarControlador.coordinadorModelo.apellidoPaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="apellidoPaterno-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-4@m">
+                                    <h:outputLabel styleClass="uk-text-capitalize" value="apellido materno" for="apellidoMaterno-coordinadorModelo"/>
+                                    <div class="uk-form-controls">
+                                        <h:inputText id="apellidoMaterno-coordinadorModelo"
+                                                     class="uk-input"
+                                                     value="#{agregarControlador.coordinadorModelo.apellidoMaterno}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="3" maximum="50"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="apellidoMaterno-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-6@m">
+                                    <h:outputLabel styleClass="uk-text-capitalize" value="sexo" for="sexo-coordinadorModelo"/>
+                                    <div class="uk-form-controls">
+                                        <h:selectOneMenu class="uk-select"
+                                                         id="sexo-coordinadorModelo"
+                                                         value="#{agregarControlador.coordinadorModelo.sexo}">
+                                            <f:selectItem itemValue="m" itemLabel="masculino"/>
+                                            <f:selectItem itemValue="f" itemLabel="femenino"/>
+                                        </h:selectOneMenu>
+                                    </div>
+                                    <h:message for="sexo-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                                <div class="uk-width-1-1@s uk-width-1-3@m">
+                                    <h:outputLabel styleClass="uk-text-capitalize" value="correo eletronico" for="correoEletronico-coordinadorModelo"/>
+                                    <div class="uk-form-controls" >
+                                        <h:inputText id="correoEletronico-coordinadorModelo"
+                                                     styleClass="uk-input"
+                                                     value="#{agregarControlador.coordinadorModelo.correoEletronico}">
+                                            <f:validateRequired/>
+                                            <f:validateLength minimum="5" maximum="150"/>
+                                        </h:inputText>
+                                    </div>
+                                    <h:message for="correoEletronico-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                                <div class="uk-width-1-1@m login">
+                                    <div id="password-login-coordinadorModelo" class="password" >
+                                        <c:forEach begin="1" end="28" var="indice">
+                                            <h:graphicImage pt:data-number="${indice-1}" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/iconos-login/${indice}.svg" />
+                                        </c:forEach>
+                                    </div>
+                                    <h:inputHidden id="input-secret-password-coordinadorModelo"
+                                                   value="#{agregarControlador.profesorModelo.contrasenia}">
+                                        <f:validateRequired/>
+                                        <f:converter converterId="tecolotl.web.ContraseniaConvertidor"/>
+                                    </h:inputHidden>
+                                </div>
+                                <div class="uk-width-1-1@m uk-text-center">
+                                    <h:message for="input-secret-password-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="uk-card-footer uk-flex uk-flex-right">
+                            <h:button styleClass="uk-button uk-button-primary uk-margin-small-right" value="regresar" outcome="regresar"/>
+                            <h:commandButton styleClass="uk-button uk-button-primary" onclick="loadPassword()" action="#{agregarControlador.agregar}" value="agregar"/>
                         </div>
                     </h:form>
                 </div>
@@ -154,6 +255,7 @@
                 let imagesLogin = Array.from(contentImgLogin.querySelectorAll("img")).filter(image => image.classList.contains('selected-img')).map(image => image.dataset.number);
                 //Parte que agrega las contraseñas al input-secret
                 document.getElementById('formulario-agregar:input-secret-password').value = imagesLogin.length === 0 ? null : imagesLogin.join(',');
+                document.getElementById('formulario-agregar-coordinador:input-secret-password-coordinadorModelo').value = imagesLogin.length === 0 ? null : imagesLogin.join(',');
             }
         </script>
     </ui:define>

@@ -37,17 +37,9 @@
                         <div class="uk-grid uk-grid-small">
                             <div class="uk-width-1-3"><h4 class="uk-text-capitalize"><span class="uk-text-middle">#{otrosetiqueta['teachers']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
-<!--
-                                <h:form>
-                                    <h:commandLink styleClass="uk-icon-link uk-text-primary"
-                                                   pt:uk-toggle="target: #modal-profesor"
-                                                   pt:uk-tooltip="title:#{administracion['dashboard.button.add']}; pos: left; delay: 2000"
-                                                   pt:uk-icon="icon: plus-circle; ratio: 1.5">
-                                        <f:ajax listener="#{administracionProfesorControlador.limpiaModelo()}" render="formulario-modal-profesor"/>
-                                    </h:commandLink>
-                                </h:form> -->
                                 <h:button styleClass="uk-button uk-button-primary" value="${otrosboton['add']}" outcome="agregar">
                                     <f:param name="escuela" value="#{administracionProfesorControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                                    <f:param name="persona" value="profesor"/>
                                 </h:button>
                             </div>
                         </div>

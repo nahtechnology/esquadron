@@ -1,9 +1,15 @@
 package tecolotl.web.administracion.controlador;
 
+import tecolotl.administracion.modelo.coordinador.CoordinadorModelo;
 import tecolotl.administracion.modelo.escuela.EscuelaBaseModelo;
+import tecolotl.administracion.sesion.CoordinadorSesionBean;
 import tecolotl.profesor.modelo.ProfesorModelo;
+import tecolotl.profesor.sesion.GrupoSesionBean;
+import tecolotl.profesor.sesion.ProfesorSesionBean;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -15,20 +21,54 @@ import java.util.logging.Logger;
 public class AgregarControlador implements Serializable {
 
     private String escuela;
+    private String persona;
     private EscuelaBaseModelo escuelaBaseModelo;
     private ProfesorModelo profesorModelo;
+    private CoordinadorModelo coordinadorModelo;
     private UIInput uiInput;
+
+    @Inject
+    private ProfesorSesionBean profesorSesionBean;
+
+    @Inject
+    private GrupoSesionBean grupoSesionBean;
+
+    @Inject
+    private CoordinadorSesionBean coordinadorSesionBean;
 
     @Inject
     private Logger logger;
 
     public void inicio() {
         escuelaBaseModelo = new EscuelaBaseModelo(escuela);
-        profesorModelo = new ProfesorModelo();
+        switch (persona) {
+            case "profesor" :
+                profesorModelo = new ProfesorModelo();
+                break;
+            case "coordinador" :
+                coordinadorModelo = new CoordinadorModelo();
+                break;
+            default :
+                logger.severe("No existe para la persona: " + persona);
+                break;
+        }
     }
 
     public String agregar() {
-        logger.info(profesorModelo.toString());
+        logger.info(profesorModelo == null ? "NULL" : profesorModelo.toString());
+        logger.info(coordinadorModelo == null ? "NULL" : coordinadorModelo.toString());
+        /*
+        if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo == null ? coordinadorModelo.getApodo() :  profesorModelo.getApodo()) ||
+                coordinadorSesionBean.exite(profesorModelo == null ? coordinadorModelo.getApodo() :  profesorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            FacesMessage facesMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Este apodo ya existe", null);
+            facesContext.addMessage(uiInput.getClientId(facesContext), facesMessage);
+            return null;
+        } else {
+            profesorModelo.setEscuelaBaseModelo(escuelaBaseModelo);
+            profesorSesionBean.inserta(profesorModelo);
+            return "success";
+        }*/
         return "success";
     }
 
@@ -62,5 +102,21 @@ public class AgregarControlador implements Serializable {
 
     public void setEscuelaBaseModelo(EscuelaBaseModelo escuelaBaseModelo) {
         this.escuelaBaseModelo = escuelaBaseModelo;
+    }
+
+    public String getPersona() {
+        return persona;
+    }
+
+    public void setPersona(String persona) {
+        this.persona = persona;
+    }
+
+    public CoordinadorModelo getCoordinadorModelo() {
+        return coordinadorModelo;
+    }
+
+    public void setCoordinadorModelo(CoordinadorModelo coordinadorModelo) {
+        this.coordinadorModelo = coordinadorModelo;
     }
 }

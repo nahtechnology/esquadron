@@ -61,12 +61,10 @@
                         <div class="uk-grid uk-grid-small" uk-grid="">
                             <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">#{administracion['catalogocoordinador.title']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
-                                <h:form>
-                                    <h:commandLink  styleClass="uk-icon-button  uk-icon uk-text-primary" pt:uk-toggle="target: #modal-coordinador" >
-                                        <h:outputText  pt:uk-icon="icon: plus-circle; ratio: 1.5"/>
-                                        <f:ajax listener="#{coordinadorControlador.limpiaCoordinador}" render="formulario-modal-coordinador"/>
-                                    </h:commandLink>
-                                </h:form>
+                                <h:button styleClass="uk-button uk-button-primary" value="${otrosboton['add']}" outcome="agregar">
+                                    <f:param name="escuela" value="#{coordinadorControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                                    <f:param name="persona" value="coordinador"/>
+                                </h:button>
                             </div>
                         </div>
                     </div>
