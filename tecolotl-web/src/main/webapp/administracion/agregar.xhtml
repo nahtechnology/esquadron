@@ -254,8 +254,9 @@
             function loadPassword() {
                 let imagesLogin = Array.from(contentImgLogin.querySelectorAll("img")).filter(image => image.classList.contains('selected-img')).map(image => image.dataset.number);
                 //Parte que agrega las contraseñas al input-secret
-                document.getElementById('formulario-agregar:input-secret-password').value = imagesLogin.length === 0 ? null : imagesLogin.join(',');
-                document.getElementById('formulario-agregar-coordinador:input-secret-password-coordinadorModelo').value = imagesLogin.length === 0 ? null : imagesLogin.join(',');
+                let form = document.getElementById('formulario-agregar-profesor:input-secret-password') ||  document.getElementById('formulario-agregar-coordinador:input-secret-password-coordinadorModelo');
+                form.value = imagesLogin.length === 0 ? null : imagesLogin.join(',');
+                console.log(form.value)
             }
         </script>
     </ui:define>
