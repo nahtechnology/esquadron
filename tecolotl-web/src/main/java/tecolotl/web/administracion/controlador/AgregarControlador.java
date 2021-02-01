@@ -56,8 +56,6 @@ public class AgregarControlador implements Serializable {
     }
 
     public String agregar() {
-        logger.info(profesorModelo == null ? "NULL" : profesorModelo.toString());
-        logger.info(coordinadorModelo == null ? "NULL" : coordinadorModelo.toString());
         if (grupoSesionBean.existeAlumnoProfesor(escuelaBaseModelo.getClaveCentroTrabajo(), profesorModelo == null ? coordinadorModelo.getApodo() :  profesorModelo.getApodo()) ||
                 coordinadorSesionBean.exite(profesorModelo == null ? coordinadorModelo.getApodo() :  profesorModelo.getApodo(), escuelaBaseModelo.getClaveCentroTrabajo())) {
             FacesContext facesContext = FacesContext.getCurrentInstance();
