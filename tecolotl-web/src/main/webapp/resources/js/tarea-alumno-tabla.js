@@ -70,7 +70,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         console.log(grupoSelect);
         verFilas(nivelSelect,grupoSelect);
     });
+    //selecciona el nivel y grupo alctual
+    /*
     seleccionFiltro.selectedIndex = `${piboteOpcion}`;
+    filtroGrupo.selectedIndex = `${piboteFiltroOpcion}`;*/
+    seleccionFiltro.selectedIndex = "0";
     filtroGrupo.selectedIndex = `${piboteFiltroOpcion}`;
     puntajeGlobal();
 
