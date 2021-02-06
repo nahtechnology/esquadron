@@ -1,0 +1,1042 @@
+@keyframes cambio {
+    0% {margin-left: 0;}
+    20% {margin-left: 0;}
+
+    25% {margin-left: -100%;}
+    45% {margin-left: -100%;}
+
+    50% {margin-left: -200%;}
+    70% {margin-left: -200%;}
+
+    75% {margin-left: -300%;}
+    100% {margin-left: -300%;}
+}
+@keyframes opacidad {
+    0% {
+        opacity: 0;
+    }
+    50%{
+        opacity: 0.5
+    }
+    100%{
+        opacity: 1;
+    }
+
+}
+
+@keyframes cajas {
+    0%{
+        background-color: var(--morado-primario);
+        transform: scale(1,1);
+    }
+    33%{
+        background-color: var(--morado-primario);
+        color: white;
+        transform: scale(1.02,1.02);
+    }
+    66%{
+        background-color: var(--morado-primario);
+        color: white ;
+        transform: scale(1.01,1.01);
+    }
+    100%{
+        background-color: var(--morado-primario);
+        transform: scale(1,1);
+    }
+
+}
+@font-face {
+    font-family: 'oswaldbold';
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-bold-webfont.woff2") format('woff2'),
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-bold-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+
+}
+
+@font-face {
+    font-family: 'oswaldmedium';
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-medium-webfont.woff2") format('woff2'),
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-medium-webfont.woff") format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'oswald_regularregular';
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-regular-webfont.woff2") format('woff2'),
+    url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/fuentes/oswald-regular-webfont.woff");
+    font-weight: normal;
+    font-style: normal;
+
+
+}
+@font-face {
+    font-family: 'e-squadron';
+    src: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/byt.ttf");
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+:root{
+    --morado-primario: #49095C;
+    --morado-secundario : #78199B;
+    --naranja-primario: #C27432;
+    --naranja-secundario: #BC741A;
+    scroll-behavior: smooth;
+}
+body{
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/landin-gral1.svg") fixed no-repeat center/cover;
+}
+
+*,*::after,*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+p{
+    font-family: oswald_regularregular, sans-serif;
+    line-height: 1.7;
+    font-size: 18px;
+}
+#contenido{
+    width: calc(100% - 100px);
+    /*background-color: darkslategrey;*/
+    margin-left: 100px;
+}
+#inicio{
+    height: 100vh;
+    overflow: hidden;
+    /*background-color: coral;*/
+}
+
+#inicio > div{
+    height: 90%;
+    /* background-color: #BC741A; */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#inicio > div > div:first-of-type > div{
+  animation-name: opacidad;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+  animation-duration: 1s;
+}
+#inicio > div > div:first-of-type{
+    width: 60%;
+    height: 100%;
+    /* background-color: darkseagreen; */
+    display: flex;
+    justify-content: center;
+}
+#inicio > div > div:last-of-type{
+    width: 40%;
+    height: 100%;
+    padding-right: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: mediumturquoise; */
+}
+
+#inicio > div > div:first-of-type > div{
+  height: 100%;
+
+}
+#inicio > div > div:first-of-type > div:first-child{
+  display: flex;
+  justify-content: center;
+}
+#inicio > div > div:first-of-type > div:first-child > img{
+  width: 30%;
+}
+#inicio > div > div:first-of-type > div:last-child > img{
+  width: 90%;
+  height: 90%;
+}
+#inicio > div > div:last-of-type > div{
+
+  border: 3px solid var(--morado-primario);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+#inicio > div > div:last-of-type > h1{
+  width: 100%;
+  margin-bottom: 20px;
+    font-family: e-squadron, sans-serif;
+}
+#inicio > div > div:last-of-type > h1 > img{
+    width: 55px;
+}
+
+#mobil-aside{
+    width: 160px;
+    height: 100vh;
+    padding: 30px 10px;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 1000;
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-160px , 0);
+    transition: all 0.5s linear;
+}
+#mobil-aside.aparece-menu{
+    transform: translate(0 , 0);
+}
+
+#mobil-aside > p{
+    margin-bottom: 20px;
+}
+
+[id^="seccion"]{
+    height: 100vh;
+}
+
+#seccion4{
+    height: 80vh;
+}
+footer{
+    height: 20vh;
+    margin-bottom: 20px;
+    margin-left: 45px;
+    margin-right: 45px;
+    padding-top: 50px;
+}
+
+footer img{
+    width: 5%;
+}
+footer h5{
+    color: white;
+    font-family: oswald_regularregular, sans-serif;
+    margin-top: 15px;
+}
+
+ul{
+    list-style: none;
+}
+nav > span{
+    font-size: 25px;
+    display: inline-block;
+    color: white;
+    font-family: e-squadron, sans-serif;
+    margin-left: 50px;
+    margin-top: 31px;
+}
+header{
+    height: 40px;
+    padding : 45px;
+    /*display: none;*/
+}
+header nav{
+    width: 100%;
+    height: 48px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg") no-repeat 10px center/40px 40px var(--morado-primario);
+    border-radius: 8px;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+header nav > div{
+    display: none;
+}
+header ul{
+    /*background-color: mediumturquoise;*/
+    padding: 8px;
+    margin-left: 20px;
+}
+
+header ul > li{
+    display: inline-block;
+    margin-right: 20px;
+    min-width: 150px;
+    text-transform: uppercase;
+    font-family: oswaldmedium, sans-serif;
+    /*font-weight: 700;*/
+    color: white;
+    text-align: center;
+    padding: 3px;
+    letter-spacing: 1px;
+    transition: color 0.3s linear;
+}
+
+
+header ul > li::after{
+    content: "";
+    display: block;
+    width: 140px;
+    height: 14px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/ruedita-izquierda.png") no-repeat center/100% 18px;
+    /*margin-top: 2px;*/
+    /*background-color: darkgray;*/
+    transform: scale(0,1);
+    transition: transform 0.3s linear;
+    transform-origin: left;
+    /*margin-left: 6px;*/
+    position: absolute;
+}
+header ul > li:hover::after{
+    transform: scale(1,1);
+}
+header ul > li:hover{
+    color: var(--naranja-primario);
+    cursor: pointer;
+}
+
+/*menu lateral-------------*/
+aside{
+    width: 100px;
+    height: 100vh;
+    /*background-color: darkgrey;*/
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+}
+aside ul > li >a{
+  text-decoration: none;
+}
+aside ul{
+    background-color: var(--morado-secundario);
+    padding: 5px;
+    height: 380px;
+    border-radius: 8px;
+    transition: all 0.3s linear;
+}
+aside ul:hover{
+    transform: scale(1.03, 1.03);
+    background-color: var(--morado-primario);
+}
+
+aside ul > li {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 17px;
+    border: 3px solid white;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    transition: all 0.3s linear;
+}
+aside ul > li:hover {
+    border-color: var(--naranja-secundario);
+    transform: scale(1.09,1.09);
+}
+
+aside ul > li > a > img {
+    width: 50px;
+    height: 50px;
+}
+
+/*Fin menu lateral------------*/
+
+
+
+#contenido section{
+    padding-left: 45px;
+    padding-right: 45px;
+}
+#inicio section{
+    margin-top: 120px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.titulos-landing{
+    font-family: oswaldmedium, sans-serif;
+    text-transform: uppercase;
+    line-height: 34px;
+    width: 100%;
+    text-align: center;
+}
+.titulo-linea{
+    height: 30px;
+    width: 100%;
+    padding-left: 23px;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/icono-rueditas-izq.svg") no-repeat left/30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.titulo-linea > div{
+    height: 3px;
+    width: 95%;
+    background-color: gray;
+}
+
+/*carrusel de la landing*/
+
+/*.carrusel {*/
+/*    !*background-color: darkseagreen;*!*/
+/*    width: 70%;*/
+/*    height: 500px;*/
+/*    border-radius: 8px;*/
+/*    overflow: hidden;*/
+/*}*/
+/*.carrusel ul {*/
+/*    display: flex;*/
+/*    padding: 0;*/
+/*    width: 400%;*/
+/*    animation: cambio 20s infinite alternate linear;*/
+/*}*/
+/*.carrusel li{*/
+/*    width: 100%;*/
+/*    height: 500px;*/
+/*    list-style: none;*/
+/*}*/
+/*.carrusel ul > li:first-child{*/
+/*    !*background-color: #BC741A;*!*/
+/*    background: url("../img/alumno/fondo-general.svg") no-repeat center/cover,url("/img/mounstro/whom.svg");*/
+/*}*/
+/*.carrusel ul > li:nth-child(2){*/
+/*    !*background-color: sienna;*!*/
+/*    background: url("../img/landin-gral.svg") no-repeat center/cover;*/
+/*}*/
+/*.carrusel ul > li:nth-child(3){*/
+/*    background: url("../img/landing.svg") no-repeat center/cover;*/
+/*}*/
+/*.carrusel ul > li:last-child{*/
+/*    background-color: coral;*/
+/*}*/
+/*.carrusel ul > li > h3{*/
+/*    color: white;*/
+/*    text-transform: uppercase;*/
+/*    font-family: oswaldbold, sans-serif;*/
+/*    text-align: center;*/
+/*    font-size: 60px;*/
+/*    margin-top: 30px;*/
+/*}*/
+/*.carrusel ul > li:first-child > h3 > img{*/
+/*    margin-right: 5px;*/
+/*    width: 103px;*/
+/*    height: 103px;*/
+/*}*/
+
+/*.carrusel ul > li:first-child > div{*/
+/*    margin-top: 5px;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    flex-wrap: wrap;*/
+/*}*/
+/*.carrusel ul > li:first-child > div > img{*/
+/*    width: 18%;*/
+/*    margin-right: 10px;*/
+/*}*/
+
+/*fin carrusel de la landing*/
+
+
+.aparece{
+    display: none !important;
+}
+
+
+/*fin seccion 2*/
+
+
+/*seccion 2*/
+#seccion2 > div:first-child{
+    height: 50%;
+    /* background-color: rgb(62, 112, 201); */
+    display: grid;
+    grid-template-columns: 33.3% 33.3% 33.3%;
+    grid-template-rows: 100%;
+}
+#seccion2 > div:first-child > div{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+#seccion2 > div > div > div{
+  text-align: center;
+  height: 50%;
+}
+#seccion2 > div > div > div:first-child > img{
+  width: 50%;
+  height: 100%
+}
+#seccion2 > div:last-child > div > div:first-child > img{
+  width: 40%;
+  height: 70%;
+}
+
+#seccion2 > div:last-child{
+    height: 50%;
+    /* background-color: rgb(249, 169, 32); */
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+}
+
+#seccion2 > div:last-child > div{
+      align-self: center;
+    }
+
+/*seccion 2 mobile*/
+.secccion2-mobile{
+    display: none;
+}
+/*fin seccion 2 mobile*/
+
+
+/*fin seccion 2*/
+
+/*seccion eventos logos*/
+#eventos-logos{
+    min-height: 300px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+#eventos-logos img{
+    width: 200px;
+    display: inline-block;
+}
+#eventos-logos h2{
+    font-family: oswaldmedium, sans-serif;
+    text-transform: uppercase;
+    font-size: 1.8em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#eventos-logos h2:before{
+    content: "";
+    display: inline-block;
+    height: 8px;
+    width: 720px;
+    background-color: var(--morado-primario);
+}
+
+#eventos-logos div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+}
+/*Fin de seccion eventos logos*/
+/*seccion 3*/
+#seccion3{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 100%;
+    background-color: rgba(29,29,29,0.8);
+    border-radius: 8px;
+    margin-left: 45px;
+    margin-right: 45px;
+    font-family: oswaldbold, sans-serif;
+    height: auto;
+}
+#seccion3 > div:first-child{
+    padding: 15px;
+    align-self: center;
+}
+#seccion3 > div:last-child{
+    align-self: center;
+}
+#seccion3 form > div{
+    margin-bottom: 25px;
+}
+#seccion3 form > div:not(.contenedor-input){
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+#seccion3 label{
+    display:inline-block;
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+}
+.input-nombre input{
+    box-sizing: border-box;
+    width: 49%;
+}
+#seccion3 input,#seccion3 select{
+    display: inline-block;
+    padding: 5px 3px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 18px;
+}
+#seccion3 button{
+    height: 55px;
+    background-color: var(--morado-secundario);
+    width: 40%;
+    border-radius: 8px;
+    font-size: 20px;
+    font-family: inherit;
+    text-transform: uppercase;
+    border: 3px solid white;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+#seccion3 button:hover{
+    cursor: pointer;
+}
+#seccion3 > .avatar{
+    background: url(https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg) no-repeat center center/40%;
+    height: 80%;
+}
+.contenedor-input{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "label inputs";
+}
+.contenedor-input > label{
+    grid-area: label;
+}
+.contenedor-input > div{
+    grid-area: inputs;
+}
+.contenedor-input div input:not([type=checkbox]),.contenedor-input div select{
+    width: 100%;
+}
+.enlaces-redes{
+    text-align: left;
+    margin-bottom: 3px;
+}
+
+/*fin seccion 3*/
+
+/*seccion 4*/
+#seccion4{
+    display: flex;
+    /*flex-direction: colu;*/
+    flex-wrap: wrap;
+}
+#seccion4 > div{
+    width: 50%;
+    height: 100%;
+    /*background-color: mediumturquoise;*/
+    padding-top: 50px;
+    padding-bottom: 50px;
+
+}
+#seccion4 > div:first-child{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#seccion4 > div:first-child > div{
+    width: 35%;
+    height: 35%;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/semicirculo.svg") no-repeat center center/100% 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+#seccion4 > div:first-child > div > img{
+   width: 65%;
+}
+#seccion4 > div:nth-child(2){
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-items: flex-end;
+    -webkit-align-items: flex-end;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+}
+#seccion4 > div:nth-child(2) > div{
+    width: 31%;
+    height: 31%;
+    display: inline-block;
+}
+
+#seccion4 > div:nth-child(2) > div:first-child{
+    display: flex;
+    justify-content: center;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/triangulo.svg") no-repeat center/100% 100%;
+    overflow: hidden;
+}
+
+#seccion4 > div:nth-child(2) > div:nth-child(2){
+    display: flex;
+    justify-content: center;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/mancha1.svg") no-repeat center/100% 100%;
+}
+
+#seccion4 > div:nth-child(2) > div:last-child{
+    display: flex;
+    justify-content: center;
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/mancha.svg") no-repeat center/100% 100%;
+}
+#seccion4 > div:nth-child(2) > div:first-child > img{
+    width: 75%;
+}
+
+#seccion4 > div:nth-child(2) > div:nth-child(2) > img{
+    width: 75%;
+}
+
+#seccion4 > div:nth-child(2) > div:last-child > img{
+    width: 75%;
+}
+#seccion4 > div:nth-child(2) > div:nth-child(2){
+    align-self: flex-start;
+}
+ footer > div{
+    background-color: var(--morado-primario);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     height: 100%;
+}
+
+
+/*fin seccion 4*/
+
+.animacion-scalada{
+    border-radius: 8px;
+    animation-name: cajas;
+    animation-iteration-count: 1;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+}
+
+.color-titulos {
+    color: var(--morado-primario);
+}
+.animacion-scalada .color-titulos{
+    color: white;
+}
+
+#seccion3 > div > div > div:last-child > div:hover{
+    cursor: pointer;
+    color: var(--morado-secundario);
+    background-color: white;
+    border-color: var(--morado-secundario);
+}
+
+.prueba{
+    background: transparent;
+    width: 100%;
+    height: 88%;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.visibilidad{
+    display: none;
+}
+.finalVideo{
+    background: url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg") no-repeat top left/90px,url("https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg") no-repeat bottom right/90px;
+    background-color: #00002D!important;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputError{
+    border: 2px solid #E31A1A !important;
+}
+#botonply:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1281px){
+    aside ul > li {
+        width: 54px;
+        height: 54px;
+    }
+    aside ul > li > a > img {
+        width: 40px;
+        height: 40px;
+    }
+
+}
+
+@media screen and (max-width: 1000px){
+    #inicio > div > div:last-of-type > p{
+        font-size: 20px;
+    }
+    #inicio > div > div:last-of-type > h1{
+        font-size: 25px;
+    }
+    .titulos-landing{
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+}
+
+/*@media screen and (max-width: 768px){*/
+/*    */
+/*}*/
+
+@media screen and (max-width: 768px) {
+
+    #inicio > div > div:last-of-type > p{
+        font-size: 19px;
+    }
+    #inicio > div > div:last-of-type > h1{
+        font-size: 24px;
+    }
+    .titulos-landing{
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+
+    header ul > li{
+        font-size: 11px;
+        min-width: 113px;
+        margin-right: 8px;
+    }
+    #contenido{
+        width: 100%;
+        margin-left: 0;
+    }
+    #contenido section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    header{
+        padding: 0;
+    }
+    header nav{
+        border-radius: initial;
+        height: 47px;
+    }
+    header  ul{
+        display: none;
+    }
+    header > nav  > span{
+        display: none;
+    }
+    header > nav > div{
+        display: flex;
+        color: white;
+        font-size: 17px;
+        width: 100%;
+        font-family: sans-serif;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+    header > nav > div > span:first-child{
+        font-family: e-squadron, Sans-serif, serif;
+        margin-top: 12px;
+    }
+
+    header > nav > div > span:last-child{
+        display: inline-block;
+        width: 25px;
+        margin-right: 3px;
+        font-size: 0;
+    }
+
+    header > nav > div > span> span{
+        display: inline-block;
+        width: 100%;
+        height: 3px;
+        background-color: white;
+        box-sizing: border-box;
+        margin-bottom: 6px;
+    }
+
+    header > nav > div > input{
+        display: none;
+    }
+
+
+    #inicio{
+      height: auto;
+    }
+    #inicio > div{
+        height: auto;
+        /* background-color: #BC741A; */
+
+    }
+
+    #inicio > div > div:first-of-type{
+        width: 100%;
+        height: 400px;
+        /*background-color: darkseagreen;*/
+        display: flex;
+        justify-content: center;
+    }
+    #inicio > div > div:last-of-type{
+        width: 100%;
+        padding-right: 0;
+        height: auto;
+
+        /*background-color: mediumturquoise;*/
+    }
+
+    #inicio > div > div:first-of-type > div:last-child > img{
+      width: 68%;
+      height: 90%;
+    }
+    #inicio > div > div:first-of-type > div:last-child{
+      text-align: center;
+    }
+
+    #seccion2{
+        display: none;
+    }
+
+    aside{
+        display: none;
+    }
+
+    #inicio > div > div:last-of-type > p{
+        margin-top: 5px;
+        font-size: 16px;
+        text-align: center;
+        padding-right: 0;
+    }
+
+    #inicio > div > div:last-of-type > h1{
+         margin-top: 8px;
+         font-size: 20px;
+         font-family: sans-serif;
+         text-align: center;
+     }
+
+    #inicio > div > div:last-of-type{
+       display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .video-escuadron{
+      width: 100%;
+        height: 100%;
+    }
+
+
+    #seccion3{
+        height: auto;
+        grid-template-columns: 100%;
+        grid-template-rows: auto;
+        margin-left: 0;
+        margin-right: 0;
+        border-radius: initial;
+        padding-top: 20px;
+    }
+
+
+
+
+
+    #seccion4{
+        height: auto;
+    }
+    #seccion4 > div {
+         width: 100%;
+         /* height: 400px; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align:center;
+    }
+    #seccion4 > div:nth-child(2){
+       height: 200px;
+    }
+
+    footer {
+        border-radius: initial;
+        margin-bottom: 20px;
+         margin-left: 0;
+         margin-right: 0;
+        height: 20vh;
+        padding-top: 0;
+    }
+
+
+
+    .secccion2-mobile{
+         display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        justify-content: center;
+        -webkit-justify-content: center;
+        flex-direction: column;
+        -webkit-flex-direction: column;
+
+    }
+    .secccion2-mobile > div {
+        height: auto;
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: wrap;
+        -webkit-flex-wrap: wrap;
+        justify-content: center;
+        -webkit-justify-content: center;
+        align-items: center;
+        margin-bottom: 50px;
+        flex-direction: column;
+    }
+    .secccion2-mobile > div > img{
+        width: 40%;
+        height: 40%;
+
+    }
+    .secccion2-mobile > div > div{
+        text-align: center;
+    }
+
+    .titulos-landing{
+        font-size: 18px;
+    }
+
+    .secccion2-mobile p{
+        font-size: 15px;
+    }
+
+    nav p{
+        display: none;
+    }
+
+    header nav{
+        background-image: none;
+    }
+    footer img {
+        width: 12%;
+    }
+
+
+
+
+}
+
+@media screen and (max-width: 600px){
+    footer > div{
+        height:70%;
+    }
+    .input-nombre input {
+        width: 100%;
+    }
+}

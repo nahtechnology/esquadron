@@ -1,5 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+		"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html lang="en"
 	  xmlns="http://www.w3.org/1999/xhtml"
@@ -7,12 +7,13 @@
 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
 	  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
 	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" translate="no">
-      
+
 <h:head>
 	<title>Esquadron</title>
 	<meta name="google-site-verification" content="DLGw7JmFbDOC2lHAxcYSXxNJuYlID8QR6KrnicJ0oKI" />
 	<meta name="google" content="notranslate"/>
-	<link rel="shortcut icon" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/favicon.ico"/>
+	<!--	<meta property="o"-->
+	<link  rel="shortcut icon"  href="#{resource['img/favicon.ico']}"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 	<meta name="description" content="Somos la mejor videoteca digital con actividades interactivas, descargables e imprimibles. ¡Tus alumnos  aprenderán con sus videos favoritos de Youtube en un ambiente 100% académico! +1000 actividades. Recursos para Grammar. Perfecto para laboratorios o homeschool."/>
 	<meta name="keywords" content="ELT,englishworksheet,grammarworksheet,videoclass,homeschool,english,Plataforma educativa,inglés,flashcards"/>
@@ -22,7 +23,8 @@
 	<meta property="og:url" content="https://www.e-squadron.com.mx/"/>
 	<meta property="og:image" content="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vista_previa.png"/>
 
-	<link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/estilos-landing.css"/>
+	<!--	<link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/estilos-landing.css"/>-->
+	<h:outputStylesheet library="css" name="estilos-landing.css"/>
 	<!-- Facebook Pixel Code -->
 	<script>
 		!function(f,b,e,v,n,t,s)
@@ -46,6 +48,7 @@
 		<ul>
 			<li><a href="#inicio"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/verde.svg" alt=""/></a></li>
 			<li><a href="#seccion2"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/3ojos.svg" alt=""/></a></li>
+			<li><a href="#eventos-logos"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg" alt=""/></a></li>
 			<li><a href="#seccion3"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/monstruo.svg" alt=""/></a></li>
 			<li><a href="#seccion4"><img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/naranja.svg" alt=""/></a></li>
 		</ul>
@@ -91,11 +94,11 @@
 						<iframe class="video-alum" src="https://www.youtube.com/embed/2PDXH4XBP44?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="0"
 								style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
 						<div id="anti-video">
-							<h:graphicImage id="botonply"  url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/youtube.svg" width="80px" height="80px" class="visibilidad"/>
+							<h:graphicImage id="botonply" library="img" name="/icono/youtube.svg" width="80px" height="80px" class="visibilidad"/>
 						</div>
-<!--						<div class="video-alum" style="position:absolute;top:0;left:0;width:100%;height:100%;" data-video="2PDXH4XBP44"></div>-->
+						<!--						<div class="video-alum" style="position:absolute;top:0;left:0;width:100%;height:100%;" data-video="2PDXH4XBP44"></div>-->
 					</div>
-					<h1><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg" alt=""/>squadron</h1>
+					<h1><h:graphicImage library="img" name="esquadron.svg" alt=""/>squadron</h1>
 					<p>Teachers everywhere create video classes for their students.
 						So, it feels logical for us to integrate interactive activities for these classes.
 						E-squadron offers you a safe and enriched learning environment for all your students and an easy-to-use teacher dashboard
@@ -249,377 +252,37 @@
 				</div>
 			</div>
 		</section>
+		<section id="eventos-logos">
+			<h2 class="color-titulos"/>
+			<h2 class="color-titulos"/>
+		</section>
 		<div>
 			<h:panelGroup layout="block" id="seccion3">
-<!--				https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit-->
-				<div>
-						<!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
-						<form  action='https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit' target="_blank" name='form' id='form' method='POST' accept-charset='UTF-8' enctype='multipart/form-data'>
-							<input type="hidden" name="zf_referrer_name" value=""/><!-- To Track referrals , place the referrer name within the " " in the above hidden input field -->
-							<input type="hidden" name="zf_redirect_url" value=""/><!-- To redirect to a specific page after record submission , place the respective url within the " " in the above hidden input field -->
-							<input type="hidden" name="zc_gad" value=""/><!-- If GCLID is enabled in Zoho CRM Integration, click details of AdWords Ads will be pushed to Zoho CRM -->
-							<h2 style="margin-bottom: 20px; color: white;">Déjanos tus datos</h2>
-							<!--Name-->
-							<div>
-								<label>Nombre</label>
-								<div class="input-nombre">
-									<input type="text" required=""  placeholder="Nombre" maxlength="255" name="Name_First" fieldType="7" />
-									<input type="text" required="" placeholder="Apellidos" maxlength="255" name="Name_Last" fieldType="7" />
-								</div>
-							</div>
-							<!--Phone-->
-							<div>
-								<label>Whatsapp</label>
-								<input type="text" required="" placeholder="Número" compname="PhoneNumber" name="PhoneNumber_countrycode" phoneFormat="1" isCountryCodeEnabled="false" maxlength="20" value="" fieldType="11" id="international_PhoneNumber_countrycode" />
-							</div>
-							<!--Email-->
-							<div>
-								<label>E-mail</label>
-								<input type="text" maxlength="255" name="Email" value="" required="" fieldType="9" />
-							</div>
-							<!--Dropdown-->
-							<div>
-								<label>Nivel en el que enseño</label>
-								<select name="Dropdown" required=""><option selected="true" value="-Seleccionar-">-Seleccionar-</option>
-									<option value="Preescolar">Preescolar</option>
-									<option value="Primaria">Primaria</option>
-									<option value="Secundaria">Secundaria</option>
-								</select>
-							</div>
-							<!--Single Line-->
-							<div>
-								<label>Colegio</label>
-								<input  type="text" name="SingleLine"  required="" value="" fieldType="1" maxlength="255" />
-							</div>
-							<!--Website-->
-							<div>
-								<label>Website del colegio</label>
-								<input type="text" maxlength="2083" name="Website" value=""/>
-							</div>
-							<!--Address-->
-							<div class="contenedor-input">
-								<label>Direccion del colegio</label>
-								<div>
-									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Calle" name="Address_AddressLine1"/>
-									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Calle y número" name="Address_AddressLine2"/>
-									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Ciudad" name="Address_City"/>
-									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Estado" name="Address_Region"/>
-									<input style="margin-bottom: 7px" required="" type="text" maxlength="255" placeholder="Codigo postal" name="Address_ZipCode"/>
-									<select required="" name="Address_Country"><option>-Seleccionar-</option>
-									<option>&Aring;land Islands</option>
-									<option>Afghanistan</option>
-									<option>Akrotiri</option>
-									<option>Albania</option>
-									<option>Algeria</option>
-									<option>American Samoa</option>
-									<option>Andorra</option>
-									<option>Angola</option>
-									<option>Anguilla</option>
-									<option>Antarctica</option>
-									<option>Antigua and Barbuda</option>
-									<option>Argentina</option>
-									<option>Armenia</option>
-									<option>Aruba</option>
-									<option>Ashmore and Cartier Islands</option>
-									<option>Australia</option>
-									<option>Austria</option>
-									<option>Azerbaijan</option>
-									<option>Bahrain</option>
-									<option>Bangladesh</option>
-									<option>Barbados</option>
-									<option>Bassas Da India</option>
-									<option>Belarus</option>
-									<option>Belgium</option>
-									<option>Belize</option>
-									<option>Benin</option>
-									<option>Bermuda</option>
-									<option>Bhutan</option>
-									<option>Bolivia</option>
-									<option>Bosnia and Herzegovina</option>
-									<option>Botswana</option>
-									<option>Bouvet Island</option>
-									<option>Brazil</option>
-									<option>British Indian Ocean Territory</option>
-									<option>British Virgin Islands</option>
-									<option>Brunei</option>
-									<option>Bulgaria</option>
-									<option>Burkina Faso</option>
-									<option>Burma</option>
-									<option>Burundi</option>
-									<option>Cambodia</option>
-									<option>Cameroon</option>
-									<option>Canada</option>
-									<option>Cape Verde</option>
-									<option>Caribbean Netherlands</option>
-									<option>Cayman Islands</option>
-									<option>Central African Republic</option>
-									<option>Chad</option>
-									<option>Chile</option>
-									<option>China</option>
-									<option>Christmas Island</option>
-									<option>Clipperton Island</option>
-									<option>Cocos &#x28;Keeling&#x29; Islands</option>
-									<option>Colombia</option>
-									<option>Comoros</option>
-									<option>Cook Islands</option>
-									<option>Coral Sea Islands</option>
-									<option>Costa Rica</option>
-									<option>Cote D&#x27;Ivoire</option>
-									<option>Croatia</option>
-									<option>Cuba</option>
-									<option>Cura&ccedil;ao</option>
-									<option>Cyprus</option>
-									<option>Czech Republic</option>
-									<option>Democratic Republic of the Congo</option>
-									<option>Denmark</option>
-									<option>Dhekelia</option>
-									<option>Djibouti</option>
-									<option>Dominica</option>
-									<option>Dominican Republic</option>
-									<option>Ecuador</option>
-									<option>Egypt</option>
-									<option>El Salvador</option>
-									<option>Equatorial Guinea</option>
-									<option>Eritrea</option>
-									<option>Estonia</option>
-									<option>Ethiopia</option>
-									<option>Europa Island</option>
-									<option>Falkland Islands &#x28;Islas Malvinas&#x29;</option>
-									<option>Faroe Islands</option>
-									<option>Federated States of Micronesia</option>
-									<option>Fiji</option>
-									<option>Finland</option>
-									<option>France</option>
-									<option>French Guiana</option>
-									<option>French Polynesia</option>
-									<option>French Southern and Antarctic Lands</option>
-									<option>Gabon</option>
-									<option>Gaza Strip</option>
-									<option>Georgia</option>
-									<option>Germany</option>
-									<option>Ghana</option>
-									<option>Gibraltar</option>
-									<option>Glorioso Islands</option>
-									<option>Greece</option>
-									<option>Greenland</option>
-									<option>Grenada</option>
-									<option>Guadeloupe</option>
-									<option>Guam</option>
-									<option>Guatemala</option>
-									<option>Guernsey</option>
-									<option>Guinea</option>
-									<option>Guinea-bissau</option>
-									<option>Guyana</option>
-									<option>Haiti</option>
-									<option>Heard Island and Mcdonald Islands</option>
-									<option>Holy See &#x28;Vatican City&#x29;</option>
-									<option>Honduras</option>
-									<option>Hong Kong</option>
-									<option>Hungary</option>
-									<option>Iceland</option>
-									<option>India</option>
-									<option>Indonesia</option>
-									<option>Iran</option>
-									<option>Iraq</option>
-									<option>Ireland</option>
-									<option>Isle of Man</option>
-									<option>Israel</option>
-									<option>Italy</option>
-									<option>Jamaica</option>
-									<option>Jan Mayen</option>
-									<option>Japan</option>
-									<option>Jersey</option>
-									<option>Jordan</option>
-									<option>Juan De Nova Island</option>
-									<option>Kazakhstan</option>
-									<option>Kenya</option>
-									<option>Kiribati</option>
-									<option>Kuwait</option>
-									<option>Kyrgyzstan</option>
-									<option>Laos</option>
-									<option>Latvia</option>
-									<option>Lebanon</option>
-									<option>Lesotho</option>
-									<option>Liberia</option>
-									<option>Libya</option>
-									<option>Liechtenstein</option>
-									<option>Lithuania</option>
-									<option>Luxembourg</option>
-									<option>Macau</option>
-									<option>Macedonia</option>
-									<option>Madagascar</option>
-									<option>Malawi</option>
-									<option>Malaysia</option>
-									<option>Maldives</option>
-									<option>Mali</option>
-									<option>Malta</option>
-									<option>Marshall Islands</option>
-									<option>Martinique</option>
-									<option>Mauritania</option>
-									<option>Mauritius</option>
-									<option>Mayotte</option>
-									<option>Mexico</option>
-									<option>Moldova</option>
-									<option>Monaco</option>
-									<option>Mongolia</option>
-									<option>Montenegro</option>
-									<option>Montserrat</option>
-									<option>Morocco</option>
-									<option>Mozambique</option>
-									<option>Myanmar</option>
-									<option>Namibia</option>
-									<option>Nauru</option>
-									<option>Navassa Island</option>
-									<option>Nepal</option>
-									<option>Netherlands</option>
-									<option>Netherlands Antilles</option>
-									<option>New Caledonia</option>
-									<option>New Zealand</option>
-									<option>Nicaragua</option>
-									<option>Niger</option>
-									<option>Nigeria</option>
-									<option>Niue</option>
-									<option>Norfolk Island</option>
-									<option>North Korea</option>
-									<option>Northern Mariana Islands</option>
-									<option>Norway</option>
-									<option>Oman</option>
-									<option>Pakistan</option>
-									<option>Palau</option>
-									<option>Palestine</option>
-									<option>Panama</option>
-									<option>Papua New Guinea</option>
-									<option>Paracel Islands</option>
-									<option>Paraguay</option>
-									<option>Peru</option>
-									<option>Philippines</option>
-									<option>Pitcairn Islands</option>
-									<option>Poland</option>
-									<option>Portugal</option>
-									<option>Puerto Rico</option>
-									<option>Qatar</option>
-									<option>Republic of the Congo</option>
-									<option>Reunion</option>
-									<option>Romania</option>
-									<option>Russia</option>
-									<option>Rwanda</option>
-									<option>Saint Barth&Atilde;&copy;lemy</option>
-									<option>Saint Helena</option>
-									<option>Saint Kitts and Nevis</option>
-									<option>Saint Lucia</option>
-									<option>Saint Martin</option>
-									<option>Saint Pierre and Miquelon</option>
-									<option>Saint Vincent and the Grenadines</option>
-									<option>Samoa</option>
-									<option>San Marino</option>
-									<option>Sao Tome and Principe</option>
-									<option>Saudi Arabia</option>
-									<option>Senegal</option>
-									<option>Serbia</option>
-									<option>Seychelles</option>
-									<option>Sierra Leone</option>
-									<option>Singapore</option>
-									<option>Sint Maarten</option>
-									<option>Slovakia</option>
-									<option>Slovenia</option>
-									<option>Solomon Islands</option>
-									<option>Somalia</option>
-									<option>South Africa</option>
-									<option>South Georgia and the South Sandwich Islands</option>
-									<option>South Korea</option>
-									<option>South Sudan</option>
-									<option>Spain</option>
-									<option>Spratly Islands</option>
-									<option>Sri Lanka</option>
-									<option>Sudan</option>
-									<option>Suriname</option>
-									<option>Svalbard</option>
-									<option>Swaziland</option>
-									<option>Sweden</option>
-									<option>Switzerland</option>
-									<option>Syria</option>
-									<option>Taiwan</option>
-									<option>Tajikistan</option>
-									<option>Tanzania</option>
-									<option>Thailand</option>
-									<option>The Bahamas</option>
-									<option>The Gambia</option>
-									<option>Timor-leste</option>
-									<option>Togo</option>
-									<option>Tokelau</option>
-									<option>Tonga</option>
-									<option>Trinidad and Tobago</option>
-									<option>Tromelin Island</option>
-									<option>Tunisia</option>
-									<option>Turkey</option>
-									<option>Turkmenistan</option>
-									<option>Turks and Caicos Islands</option>
-									<option>Tuvalu</option>
-									<option>Uganda</option>
-									<option>Ukraine</option>
-									<option>United Arab Emirates</option>
-									<option>United Kingdom</option>
-									<option>United States</option>
-									<option>Uruguay</option>
-									<option>Uzbekistan</option>
-									<option>Vanuatu</option>
-									<option>Venezuela</option>
-									<option>Vietnam</option>
-									<option>Virgin Islands</option>
-									<option>Wake Island</option>
-									<option>Wallis and Futuna</option>
-									<option>West Bank</option>
-									<option>Western Sahara</option>
-									<option>Yemen</option>
-									<option>Zambia</option>
-									<option>Zimbabwe</option>
-								</select>
-								</div>
-						    </div>
-							<!--Checkbox-->
-							<div class="contenedor-input">
-								<label>Me enteré por el siguiente medio</label>
-								<div class="enlaces-redes">
-									<div>
-										<input type="checkbox" id="Checkbox_1"  name="Checkbox" value="Facebook"/>
-										<label for="Checkbox_1">Facebook</label>
-									</div>
-									<div>
-										<input type="checkbox" id="Checkbox_2"  name="Checkbox" value="Likedin"/>
-										<label for="Checkbox_2">Likedin</label>
-									</div>
-									<div>
-										<input type="checkbox" id="Checkbox_3"  name="Checkbox" value="Amigo&#x2f;conocido"/>
-										<label for="Checkbox_3">Amigo&#x2f;conocido</label>
-									</div>
-									<div>
-										<input type="checkbox" id="Checkbox_4"  name="Checkbox" value="Google"/>
-										<label for="Checkbox_4">Google</label>
-									</div>
-								</div>
-							</div>
-							<button type="submit">Enviar</button></form>
+				<!--				https://forms.zohopublic.com/eduspheresolutions/form/FreeTrialRequest/formperma/RZf6AOC-dNPzb0JhVwafln9HgdNqoek1HognqWVBYNg/htmlRecords/submit-->
+				<div class="avatar">
+					<!-- Change or deletion of the name attributes in the input tag will lead to empty values on record submission-->
+
 				</div>
 				<div>
-				<h:panelGroup layout="block">
 					<h:panelGroup layout="block">
-						<svg class="rocketManSVG"
-							 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600">
-							<defs>
-								<path id="rocketClip" d="M300,465.7L300,465.7c-13.8,0-25-11.3-25-25V249.4c0-13.7,11.3-25,25-25h0c13.7,0,25,11.2,25,25v191.3C325,454.5,313.8,465.7,300,465.7z" />
-								<clipPath id="rainbowClip">
-									<use xlink:href="#rocketClip" overflow="visible" />
-								</clipPath>
-							</defs>
-							<polygon class="star" opacity="0.5" fill="#ECB447" points="1.2,0 1.6,0.8 2.4,0.9 1.8,1.5 1.9,2.3 1.2,1.9 0.5,2.3 0.6,1.5 0,0.9 0.8,0.8 " />
-							<g class="starContainer"/>
-							<g class="satellite">
-								<g class="satellitePulses" stroke="white">
-									<path class="satellitePulse" fill="white" stroke-width="1.5814" stroke-linejoin="round" stroke-miterlimit="10" d="M156.3,131.8c-2.8,2.8-7.2,2.8-10,0" />
-									<path class="satellitePulse" fill="white" stroke-width="1.5814" stroke-linejoin="round" stroke-miterlimit="10" d="M158.6,134c-4,4-10.5,4-14.4,0" />
-									<path class="satellitePulse" fill="white" stroke-width="1.5814" stroke-linejoin="round" stroke-miterlimit="10" d="M160.8,136.3c-5.2,5.2-13.7,5.2-18.9,0" />
-								</g>
-								<path fill="white" d="M106.7,91.3h-8.2v-8.2h8.2V91.3z M116.8,83.1h-8.2v8.2h8.2V83.1z M126.8,83.1h-8.2v8.2h8.2V83.1z
+						<h:panelGroup layout="block">
+							<svg class="rocketManSVG"
+								 xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600">
+								<defs>
+									<path id="rocketClip" d="M300,465.7L300,465.7c-13.8,0-25-11.3-25-25V249.4c0-13.7,11.3-25,25-25h0c13.7,0,25,11.2,25,25v191.3C325,454.5,313.8,465.7,300,465.7z" />
+									<clipPath id="rainbowClip">
+										<use xlink:href="#rocketClip" overflow="visible" />
+									</clipPath>
+								</defs>
+								<polygon class="star" opacity="0.5" fill="#ECB447" points="1.2,0 1.6,0.8 2.4,0.9 1.8,1.5 1.9,2.3 1.2,1.9 0.5,2.3 0.6,1.5 0,0.9 0.8,0.8 " />
+								<g class="starContainer"/>
+								<g class="satellite">
+									<g class="satellitePulses" stroke="white">
+										<path class="satellitePulse" fill="white" stroke-width="1.5814" stroke-linejoin="round" stroke-miterlimit="10" d="M156.3,131.8c-2.8,2.8-7.2,2.8-10,0" />
+										<path class="satellitePulse" fill="white" stroke-width="1.5814" stroke-linejoin="round" stroke-miterlimit="10" d="M158.6,134c-4,4-10.5,4-14.4,0" />
+										<path class="satellitePulse" fill="white" stroke-width="1.5814" stroke-linejoin="round" stroke-miterlimit="10" d="M160.8,136.3c-5.2,5.2-13.7,5.2-18.9,0" />
+									</g>
+									<path fill="white" d="M106.7,91.3h-8.2v-8.2h8.2V91.3z M116.8,83.1h-8.2v8.2h8.2V83.1z M126.8,83.1h-8.2v8.2h8.2V83.1z
 								 M136.9,83.1h-8.2v8.2h8.2V83.1z M106.7,93.2h-8.2v8.2h8.2V93.2z M116.8,93.2h-8.2v8.2h8.2V93.2z M126.8,93.2h-8.2v8.2h8.2V93.2z
 								 M136.9,93.2h-8.2v8.2h8.2V93.2z M106.7,103.3h-8.2v8.2h8.2V103.3z M116.8,103.3h-8.2v8.2h8.2V103.3z M126.8,103.3h-8.2v8.2h8.2
 								V103.3z M136.9,103.3h-8.2v8.2h8.2V103.3z M173.7,83.1h-8.2v8.2h8.2V83.1z M183.8,83.1h-8.2v8.2h8.2V83.1z M193.8,83.1h-8.2v8.2h8.2
@@ -628,55 +291,55 @@
 								h8.2V103.3z M203.9,103.3h-8.2v8.2h8.2V103.3z M161.8,113.1V81c0-2.6-2.1-4.7-4.7-4.7h-11.7c-2.6,0-4.7,2.1-4.7,4.7v32.1
 								c0,2.6,2.1,4.7,4.7,4.7h11.7C159.7,117.8,161.8,115.7,161.8,113.1z M165.6,96.3h-28.7v2.1h28.7V96.3z M152.3,117.8h-2.2v12.1h2.2
 								V117.8z" />
-							</g>
-							<rect x="275" y="263.3" clip-path="url(#rainbowClip)" fill="#D35400" width="10" height="212.7" />
-							<rect x="285" y="263.3" clip-path="url(#rainbowClip)" fill="#F1C40F" width="10" height="212.7" />
-							<rect x="295" y="263.3" clip-path="url(#rainbowClip)" fill="#F1C40F" width="10" height="212.7" />
-							<rect x="305" y="263.3" clip-path="url(#rainbowClip)" fill="#F1C40F" width="10" height="212.7" />
-							<rect x="315" y="263.3" clip-path="url(#rainbowClip)" fill="#D35400" width="10" height="212.7" />
-							<g class="astronaut">
-								<g transform="translate(4.00000,-98.00000)" id="g1007">
-									<g id="g1043">
-										<g transform="translate(0.75738672)" id="g1030">
-											<g id="g1018">
-												<path id="path927" d="m 323.20639,307.9431 c 0.26785,17.69327 -10.50253,52.99137 -10.50253,52.99137 0,0 -11.75718,3.50951 -16.40902,3.5095 -4.74335,-10e-6 -17.01181,-3.87673 -17.01181,-3.87673 0,0 -9.63197,-36.4753 -9.63197,-52.89192 0,-34.31023 28.51821,-62.12418 28.51821,-62.12418 1.03272,0.14753 24.52942,28.85491 25.03712,62.39196 z" style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-												<circle r="10.680121" cy="293.94193" cx="297.14413" id="path930" style="opacity:1;fill:#22174c;fill-opacity:1;fill-rule:nonzero;stroke:#800000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-												<circle r="5.6162562" cy="321.70483" cx="296.81451" id="path930-3" style="opacity:1;fill:#22174c;fill-opacity:1;fill-rule:nonzero;stroke:#800000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-												<path id="path968" d="m 312.32735,266.95667 c -9.05582,3.68026 -19.14091,4.94058 -30.22409,-0.40977 5.10998,-8.45894 10.53703,-15.9667 15.80971,-23.93754 5.09694,7.99891 10.18911,15.99973 14.41438,24.34731 z" style="opacity:1;fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-												<path id="rect971" d="m 279.57741,271.10876 c 11.97117,3.50644 26.66837,2.58913 34.63391,-0.26778 l 1.61369,3.74887 c -6.25802,1.88458 -12.33552,3.52113 -18.93419,3.19635 -6.38157,-0.3141 -12.05869,-1.83751 -18.86989,-3.65348 z" style="opacity:1;fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.2321447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-												<path id="rect974" d="m 277.81828,354.67013 c 13.47809,3.80606 23.34119,3.46185 36.81928,0.13388 l -1.9337,6.13046 c -12.0193,4.41095 -19.09915,5.30064 -33.42083,-0.36723 z" style="opacity:1;fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
-												<path id="path979" d="m 283.4656,361.64395 -6.43779,-29.53808 c 0,0 -2.52906,3.32341 -3.59759,5.11236 -1.15792,1.93861 -2.14327,3.9822 -3.02955,6.0591 -0.73652,1.72597 -1.35608,3.50373 -1.89346,5.3017 -0.61372,2.05339 -1.35506,4.11126 -1.51477,6.24844 -0.21249,2.84347 0.36048,5.69696 0.75738,8.5206 0.51,3.6283 1.23158,7.22905 2.08282,10.79276 0.64051,2.68149 2.27216,7.95256 2.27216,7.95256 z" style="fill:#800000;stroke:none;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-												<path id="path979-6" d="m 307.91713,362.70165 6.43779,-29.53808 c 0,0 2.52906,3.32341 3.59759,5.11236 1.15792,1.93861 2.14327,3.9822 3.02955,6.0591 0.73652,1.72597 1.35608,3.50373 1.89346,5.3017 0.61372,2.05339 1.35506,4.11126 1.51477,6.24844 0.21249,2.84347 -0.36048,5.69696 -0.75738,8.5206 -0.51,3.6283 -1.23158,7.22905 -2.08282,10.79276 -0.64051,2.68149 -2.27216,7.95256 -2.27216,7.95256 z" style="fill:#800000;stroke:none;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
-												<path id="path996" d="m 295.22375,386.13388 c 0,0 4.75968,-23.37192 6.02498,-35.21263 0.21834,-2.04326 0.39273,-4.10777 0.26777,-6.15886 -0.099,-1.62581 -0.21041,-3.30291 -0.80333,-4.81998 -1.12648,-2.88228 -5.08775,-7.76552 -5.08775,-7.76552 0,0 -2.48861,2.92005 -3.4811,4.5522 -0.87133,1.4329 -1.67537,2.94147 -2.14221,4.55221 -0.40065,1.38237 -0.54818,2.84522 -0.53556,4.28442 0.0277,3.15566 0.89447,6.24785 1.33889,9.37218 1.47902,10.39777 4.41831,31.19598 4.41831,31.19598 z" style="fill:#800000;stroke:none;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+								</g>
+								<rect x="275" y="263.3" clip-path="url(#rainbowClip)" fill="#D35400" width="10" height="212.7" />
+								<rect x="285" y="263.3" clip-path="url(#rainbowClip)" fill="#F1C40F" width="10" height="212.7" />
+								<rect x="295" y="263.3" clip-path="url(#rainbowClip)" fill="#F1C40F" width="10" height="212.7" />
+								<rect x="305" y="263.3" clip-path="url(#rainbowClip)" fill="#F1C40F" width="10" height="212.7" />
+								<rect x="315" y="263.3" clip-path="url(#rainbowClip)" fill="#D35400" width="10" height="212.7" />
+								<g class="astronaut">
+									<g transform="translate(4.00000,-98.00000)" id="g1007">
+										<g id="g1043">
+											<g transform="translate(0.75738672)" id="g1030">
+												<g id="g1018">
+													<path id="path927" d="m 323.20639,307.9431 c 0.26785,17.69327 -10.50253,52.99137 -10.50253,52.99137 0,0 -11.75718,3.50951 -16.40902,3.5095 -4.74335,-10e-6 -17.01181,-3.87673 -17.01181,-3.87673 0,0 -9.63197,-36.4753 -9.63197,-52.89192 0,-34.31023 28.51821,-62.12418 28.51821,-62.12418 1.03272,0.14753 24.52942,28.85491 25.03712,62.39196 z" style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+													<circle r="10.680121" cy="293.94193" cx="297.14413" id="path930" style="opacity:1;fill:#22174c;fill-opacity:1;fill-rule:nonzero;stroke:#800000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+													<circle r="5.6162562" cy="321.70483" cx="296.81451" id="path930-3" style="opacity:1;fill:#22174c;fill-opacity:1;fill-rule:nonzero;stroke:#800000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+													<path id="path968" d="m 312.32735,266.95667 c -9.05582,3.68026 -19.14091,4.94058 -30.22409,-0.40977 5.10998,-8.45894 10.53703,-15.9667 15.80971,-23.93754 5.09694,7.99891 10.18911,15.99973 14.41438,24.34731 z" style="opacity:1;fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+													<path id="rect971" d="m 279.57741,271.10876 c 11.97117,3.50644 26.66837,2.58913 34.63391,-0.26778 l 1.61369,3.74887 c -6.25802,1.88458 -12.33552,3.52113 -18.93419,3.19635 -6.38157,-0.3141 -12.05869,-1.83751 -18.86989,-3.65348 z" style="opacity:1;fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.2321447;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+													<path id="rect974" d="m 277.81828,354.67013 c 13.47809,3.80606 23.34119,3.46185 36.81928,0.13388 l -1.9337,6.13046 c -12.0193,4.41095 -19.09915,5.30064 -33.42083,-0.36723 z" style="opacity:1;fill:#800000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+													<path id="path979" d="m 283.4656,361.64395 -6.43779,-29.53808 c 0,0 -2.52906,3.32341 -3.59759,5.11236 -1.15792,1.93861 -2.14327,3.9822 -3.02955,6.0591 -0.73652,1.72597 -1.35608,3.50373 -1.89346,5.3017 -0.61372,2.05339 -1.35506,4.11126 -1.51477,6.24844 -0.21249,2.84347 0.36048,5.69696 0.75738,8.5206 0.51,3.6283 1.23158,7.22905 2.08282,10.79276 0.64051,2.68149 2.27216,7.95256 2.27216,7.95256 z" style="fill:#800000;stroke:none;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+													<path id="path979-6" d="m 307.91713,362.70165 6.43779,-29.53808 c 0,0 2.52906,3.32341 3.59759,5.11236 1.15792,1.93861 2.14327,3.9822 3.02955,6.0591 0.73652,1.72597 1.35608,3.50373 1.89346,5.3017 0.61372,2.05339 1.35506,4.11126 1.51477,6.24844 0.21249,2.84347 -0.36048,5.69696 -0.75738,8.5206 -0.51,3.6283 -1.23158,7.22905 -2.08282,10.79276 -0.64051,2.68149 -2.27216,7.95256 -2.27216,7.95256 z" style="fill:#800000;stroke:none;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+													<path id="path996" d="m 295.22375,386.13388 c 0,0 4.75968,-23.37192 6.02498,-35.21263 0.21834,-2.04326 0.39273,-4.10777 0.26777,-6.15886 -0.099,-1.62581 -0.21041,-3.30291 -0.80333,-4.81998 -1.12648,-2.88228 -5.08775,-7.76552 -5.08775,-7.76552 0,0 -2.48861,2.92005 -3.4811,4.5522 -0.87133,1.4329 -1.67537,2.94147 -2.14221,4.55221 -0.40065,1.38237 -0.54818,2.84522 -0.53556,4.28442 0.0277,3.15566 0.89447,6.24785 1.33889,9.37218 1.47902,10.39777 4.41831,31.19598 4.41831,31.19598 z" style="fill:#800000;stroke:none;stroke-width:0.25;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+												</g>
 											</g>
 										</g>
 									</g>
-								</g>
-								<g class="jetBubbles">
-									<g id="greyJets" fill="#D35400">
-										<circle class="jetBubble" cx="289" cy="489" r="23" />
-										<circle class="jetBubble" cx="270" cy="470" r="20" />
-										<circle class="jetBubble" cx="319" cy="483" r="21" />
+									<g class="jetBubbles">
+										<g id="greyJets" fill="#D35400">
+											<circle class="jetBubble" cx="289" cy="489" r="23" />
+											<circle class="jetBubble" cx="270" cy="470" r="20" />
+											<circle class="jetBubble" cx="319" cy="483" r="21" />
+										</g>
+										<g id="colorJets" stroke-width="0" stroke="#3d3d3d">
+											<circle class="jetBubble" fill="#F1C40F" cx="312" cy="449" r="8" />
+											<circle class="jetBubble" fill="#F1C40F" cx="320" cy="480" r="10" />
+											<circle class="jetBubble" fill="#F1C40F" cx="290" cy="460" r="10" />
+											<circle class="jetBubble" fill="#D35400" cx="329" cy="453" r="11" />
+											<circle class="jetBubble" fill="#D35400" cx="286" cy="463" r="7" />
+											<circle class="jetBubble" fill="#D35400" cx="289" cy="469" r="24" />
+											<circle class="jetBubble" fill="#D35400" cx="260" cy="450" r="20" />
+											<circle class="jetBubble" fill="#F1C40F" cx="319" cy="463" r="10" />
+											<circle class="jetBubble" fill="#F1C40F" cx="290" cy="463" r="18" />
+											<circle class="jetBubble" fill="#F1C40F" cx="312" cy="443" r="21" />
+											<circle class="jetBubble" fill="#F1C40F" cx="275" cy="443.4" r="12" />
+										</g>
+										<use xlink:href="#badge" x="0" y="0" />
 									</g>
-									<g id="colorJets" stroke-width="0" stroke="#3d3d3d">
-										<circle class="jetBubble" fill="#F1C40F" cx="312" cy="449" r="8" />
-										<circle class="jetBubble" fill="#F1C40F" cx="320" cy="480" r="10" />
-										<circle class="jetBubble" fill="#F1C40F" cx="290" cy="460" r="10" />
-										<circle class="jetBubble" fill="#D35400" cx="329" cy="453" r="11" />
-										<circle class="jetBubble" fill="#D35400" cx="286" cy="463" r="7" />
-										<circle class="jetBubble" fill="#D35400" cx="289" cy="469" r="24" />
-										<circle class="jetBubble" fill="#D35400" cx="260" cy="450" r="20" />
-										<circle class="jetBubble" fill="#F1C40F" cx="319" cy="463" r="10" />
-										<circle class="jetBubble" fill="#F1C40F" cx="290" cy="463" r="18" />
-										<circle class="jetBubble" fill="#F1C40F" cx="312" cy="443" r="21" />
-										<circle class="jetBubble" fill="#F1C40F" cx="275" cy="443.4" r="12" />
-									</g>
-									<use xlink:href="#badge" x="0" y="0" />
 								</g>
-							</g>
-						</svg>
+							</svg>
+						</h:panelGroup>
 					</h:panelGroup>
-				</h:panelGroup>
 				</div>
 			</h:panelGroup>
 		</div>
@@ -708,19 +371,24 @@
 		</section>
 		<footer>
 			<div>
-			<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg" alt=""/>
+				<img src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/landing/squadron.svg" alt=""/>
 			</div>
+			<!--			<h5>esquadron</h5>-->
 		</footer>
 		<iframe src="" id="respuesta-form" name="respuesta-formulario" frameborder="0" style="display: none;" width="600" height="600">
+
 		</iframe>
 	</div>
-	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/landing/landing.js"/>
+	<!--	<script type="application/javascript" src="https://sdk.amazonaws.com/js/aws-sdk-2.585.0.min.js"></script>-->
+	<!--	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/landing/landing.js"/>-->
+
+	<h:outputScript library="js" name="/landing.js"/>
 	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/TweenMax.min.js"/>
 	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/landing/animacion-espacio.js"/>
 	<script type="application/javascript" >
 
 	</script>
-<!--    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/smtp.js"/>-->
-<!--	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/email.js"/>-->
+	<!--    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/smtp.js"/>-->
+	<!--	<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/email.js"/>-->
 </h:body>
 </html>
