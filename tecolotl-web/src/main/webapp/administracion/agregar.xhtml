@@ -48,7 +48,7 @@
                                                      disabled="#{not empty agregarControlador.profesorModelo.id}"
                                                      value="#{agregarControlador.profesorModelo.apodo}">
                                             <f:validateRequired/>
-                                            <f:validateLength minimum="3" maximum="40"/>
+                                            <f:validateLength minimum="4" maximum="40"/>
                                         </h:inputText>
                                     </div>
                                     <h:message for="apodo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>
@@ -150,7 +150,7 @@
                                                      disabled="#{not empty agregarControlador.profesorModelo.id}"
                                                      value="#{agregarControlador.coordinadorModelo.apodo}">
                                             <f:validateRequired/>
-                                            <f:validateLength minimum="3" maximum="40"/>
+                                            <f:validateLength minimum="4" maximum="40"/>
                                         </h:inputText>
                                     </div>
                                     <h:message for="apodo-coordinadorModelo" errorClass="uk-text-danger uk-display-block primera-mayuscula"/>

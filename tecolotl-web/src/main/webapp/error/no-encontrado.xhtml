@@ -9,16 +9,16 @@
     <title>#{etiqueta['no.encontro.title']}</title>
 </h:head>
 <h:body>
-    <h:outputStylesheet library="css" name="/error/no-encontrado.css"/>
-    <h:outputStylesheet library="css" name="letra.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/error/no-encontrado.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
     <h1 class="lescuadron" style="margin-bottom: 20px;">#{etiqueta['no.econtrado.title']}</h1>
     <div style="text-align: center; margin-bottom: 20px;">
-    <h:graphicImage library="img" name="/fondo/no-existe.svg" />
+        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/fondo/no-existe.svg" />
     </div>
     <div class="centrado" >
         <button class="btn-atras" onclick="goBack()">Atrás</button>
     </div>
 </h:body>
 
-<h:outputScript library="js" name="/profesor/no-grupo.js"/>
+<script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/profesor/no-grupo.js"/>
 </html>
