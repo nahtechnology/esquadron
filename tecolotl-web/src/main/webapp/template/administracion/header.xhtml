@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/dashboard.css"/>
     <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
     <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/estilo-general.css"/>
+    <link  rel="shortcut icon"  href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/favicon.ico"/>
+    <h:panelGroup rendered="#{request.isUserInRole('coordinador')}"><title>Coordinador</title></h:panelGroup>
+    <h:panelGroup rendered="#{request.isUserInRole('administrador')}"><title>Coordinador</title></h:panelGroup>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 </h:head>
