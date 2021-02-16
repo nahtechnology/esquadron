@@ -183,7 +183,19 @@
         </navigation-case>
         <navigation-case>
             <from-outcome>regresar</from-outcome>
+            <if>#{agregarControlador.persona eq 'profesor'}</if>
             <to-view-id>/administracion/profesores.xhtml</to-view-id>
+            <redirect>
+                <redirect-param>
+                    <name>escuela</name>
+                    <value>#{agregarControlador.escuelaBaseModelo.claveCentroTrabajo}</value>
+                </redirect-param>
+            </redirect>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <if>#{agregarControlador.persona eq 'coordinador'}</if>
+            <to-view-id>/administracion/coordinador.xhtml</to-view-id>
             <redirect>
                 <redirect-param>
                     <name>escuela</name>
