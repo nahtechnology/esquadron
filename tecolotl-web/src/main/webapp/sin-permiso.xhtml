@@ -14,16 +14,16 @@
     <p class="letras-animadas"><span>O</span><span>o</span><span>p</span><span>s</span><span>!</span></p>
     <p class="animacion-dos sin-acceso">SIN ACCESO</p>
     <div class="imagenes-vista">
-        <h:graphicImage library="img" name="/mounstro/who.svg"/>
-        <h:graphicImage library="img" name="/mounstro/whom.svg"/>
-        <h:graphicImage library="img" name="/mounstro/whose.svg"/>
+        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/who.svg"/>
+        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whom.svg"/>
+        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/whose.svg"/>
     </div>
     <p class="uk-margin-medium-top uk-text-center">
         <h:outputText rendered="#{param['tipo'] eq 'profesor' or param['tipo'] eq 'coordinador'}" value="Se vencio tu licencia comunícate con el administrador"/>
         <h:outputText rendered="#{param['tipo'] eq 'alumno'}" value="Esto no es un error, comunicate con tu profesor"/>
     </p>
     <h:button outcome="regresar" styleClass="uk-button uk-button-primary" value="#{boton['back']}"/>
-    <h:outputScript library="js" name="uikit.js"/>
+    <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/uikit.js"/>
     <script type="application/javascript">
         document.addEventListener('DOMContentLoaded',()=>{
             let letras = document.querySelector('.letras-animadas');

@@ -9,13 +9,13 @@
     <title>#{etiqueta['no.permiso.title']}</title>
 </h:head>
 <h:body>
-    <h:outputStylesheet library="css" name="/error/sin-permiso.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/error/sin-permiso.css"/>
     <p>
         <h:outputFormat value="#{etiqueta['sin.permiso.title']}">
            <f:param value="${sinPermisoControlador.rol}"/>
         </h:outputFormat>
     </p>
-    <h:graphicImage library="img" name="/fondo/no-existe.svg" uk-svg=""/>
+    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/fondo/no-existe.svg" uk-svg=""/>
     <h:form styleClass="centrado">
         <h:commandButton styleClass="btnsin-permiso" value="cerrar sesion" action="#{sinPermisoControlador.cerrarSesion}"/>
     </h:form>

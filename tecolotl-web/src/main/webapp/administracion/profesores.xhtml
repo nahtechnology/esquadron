@@ -315,7 +315,7 @@
                     <ui:repeat value="#{administracionProfesorControlador.profesorModeloLista}" var="profesorModelo">
                         <div class="tablero-licencia">
                             <div class="imagen">
-                                <h:graphicImage styleClass="uk-display-inline-block " url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" width="60"/>
+                                <h:graphicImage styleClass="uk-display-inline-block" library="img" name="maestro.svg"   width="60"/>
                             </div>
                             <div class="informacion">
                                 <h6>#{otrosetiqueta['teachers']}</h6>
@@ -342,7 +342,8 @@
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
 <!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/profesores.js"></script>-->
         <h:outputScript library="js" name="profesores.js"/>
-        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/tabla-profesor.js"></script>
+<!--        <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/tabla-profesor.js"></script>-->
+        <h:outputScript library="js" name="tabla-profesor.js" />
     </ui:define>
 
 </ui:composition>

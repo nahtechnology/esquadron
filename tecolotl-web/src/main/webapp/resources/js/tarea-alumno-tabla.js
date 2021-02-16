@@ -4,7 +4,8 @@ let textosSet = new Set();
 let nivelActual = document.querySelector('.elimina .uk-card-header > div > div:last-child > p:last-child').innerText.split(':')[1].trim();
 let gradoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(1)').textContent.split(':')[1].trim();
 let grupoActual = document.querySelector('.elimina .uk-card-body > p:nth-of-type(2)').textContent.split(':')[1].trim();
-let nivelSelect = `hover-${nivelActual}`;
+// let nivelSelect = `hover-${nivelActual}`;
+let nivelSelect = `hover-todos`;
 let grupoSelect = (grupoActual.concat(gradoActual)).replace(/ /g, "");
 document.addEventListener('DOMContentLoaded',()=>{
     let seleccionFiltro = document.querySelector('#filtro-nivel');
@@ -70,7 +71,11 @@ document.addEventListener('DOMContentLoaded',()=>{
         console.log(grupoSelect);
         verFilas(nivelSelect,grupoSelect);
     });
+    //selecciona el nivel y grupo alctual
+    /*
     seleccionFiltro.selectedIndex = `${piboteOpcion}`;
+    filtroGrupo.selectedIndex = `${piboteFiltroOpcion}`;*/
+    seleccionFiltro.selectedIndex = "0";
     filtroGrupo.selectedIndex = `${piboteFiltroOpcion}`;
     puntajeGlobal();
 

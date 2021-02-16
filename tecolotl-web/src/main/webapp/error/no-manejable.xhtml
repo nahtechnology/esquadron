@@ -7,12 +7,12 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:head>
     <title>Error Inesperado</title>
-    <h:outputStylesheet library="css" name="error.css"/>
+    <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/error.css"/>
 
 </h:head>
 <h:body>
     <div class="imagen-error">
-        <h:graphicImage library="img" name="/fondo/no-existe.svg"/>
+        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/fondo/no-existe.svg" />
     </div>
     <p>Estimado usuario, por el momento no podemos atender su petición, favor de intentar más tarde</p>
     <ui:remove><button onclick="window.history.back()">#{boton['back']}</button></ui:remove>
