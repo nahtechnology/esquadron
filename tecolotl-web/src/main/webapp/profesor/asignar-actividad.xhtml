@@ -83,7 +83,7 @@
                         </h:commandButton>
                     </h:form>
                     <h:button value="#{boton['back']}" styleClass="uk-margin-small-right boton-escuadron-base" style="background-color: var(--color-nav-primary)" outcome="dashboard"/>
-                    <h:button value="all activity" styleClass="uk-margin-small-right boton-escuadron-base" outcome="todas-actividades" rendered="${not empty param['grupo']}">
+                    <h:button value="#{boton['Allactivities']}"    styleClass="uk-margin-small-right boton-escuadron-base" outcome="todas-actividades" rendered="${not empty param['grupo']}">
                         <f:param name="grupo" value="${asignarActividadControlador.grupo}"/>
                     </h:button>
                     <button class="boton-escuadron-base" onclick="buscaActividadSeleccionada(event)">#{profesor['activity.assign']}</button>
