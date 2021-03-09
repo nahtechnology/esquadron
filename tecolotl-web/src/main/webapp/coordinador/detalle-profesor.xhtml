@@ -15,7 +15,7 @@
         <ul class="uk-nav uk-nav-default uk-nav-parent-icon" uk-nav="">
             <li class="uk-nav-header">#{otrosetiqueta['menu']}</li>
             <li class="uk-parent uk-open">
-                <a><h:graphicImage library="img" name="icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
+                <a><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/escuela.svg" styleClass="uk-icon uk-icon-image uk-margin-small-right" pt:uk-svg=""/><span class="uk-text-capitalize">#{administracion['menu.schools']}</span></a>
                 <ul class="uk-nav-sub">
                     <li class="uk-active uk-margin-small-bottom"><h:link outcome="dashboard"><h:outputText pt:uk-icon="home" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{administracion['menu.dashboard']}</span></h:link></li>
                     <li class="uk-active"><a><h:outputText pt:uk-icon="file-edit" styleClass="uk-margin-small-right"/><span class="uk-text-capitalize">#{coordinador['menu.detail']}</span></a></li>
@@ -24,11 +24,6 @@
         </ul>
     </ui:define>
     <ui:define name="contenido">
-        <ui:remove>
-            <h:outputStylesheet library="css" name="/coordinador/template-coordinador.css"/>
-            <h:outputStylesheet library="css" name="/coordinador/detalle-profesor.css"/>
-            <h:outputStylesheet library="css" name="animacion-paginacion.css"/>
-        </ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/template-coordinador.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/coordinador/detalle-profesor.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/animacion-paginacion.css"/>
@@ -74,7 +69,7 @@
                     <f:facet name="header">#{coordinador['teacher.detail.table.activities.activities']}</f:facet>
                     <h:panelGroup rendered="#{calificacionPendientesModelo.tareasAsignadas ne 0}" layout="block" styleClass="uk-inline">
                         <h:commandLink   disabled="#{calificacionPendientesModelo.tareasAsignadas eq 0}">
-                            <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                            <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/evaluar.svg" width="40px"/></span>
                             <f:ajax render="mapamental-total2 mapamental-pendiente2 relacionar-total2 relacionar-pendiente2 gramatica-pendiente2 gramatica-total2 completar-pendiete2 completar-total2
                                             relacionar-oracion-total2 relacionar-oracion-pendiete2 oraciones-pendiete2 oraciones-total2 trancipcion-pendiete2 trancipcion-total2"
                                     listener="#{detalleProfesorControlador.buscaTareasPendientes(calificacionPendientesModelo.idGrupo)}"/>
@@ -215,7 +210,7 @@
                 <h4 class="titulo-grupo">#{coordinador['teacher.detail.table.grup']}<span>#{coordinador['teacher.detail.table.unselected.title']}</span></h4>
                 <h:form id="formulario-alumno">
                     <h:panelGroup layout="block" styleClass="cargando-tabla" rendered="#{not empty detalleProfesorControlador.promedioAlumnoModeloLista}">
-                        <h:graphicImage library="img" name="/alumno/esquadron-animado.svg" pt:uk-svg=""/>
+                        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/esquadron-animado.svg" pt:uk-svg=""/>
                     </h:panelGroup>
                     <h:panelGroup layout="block"
                                   rendered="#{empty detalleProfesorControlador.promedioAlumnoModeloLista}">
@@ -258,7 +253,7 @@
                             <f:facet name="header">
                                 <h:panelGroup layout="block" styleClass="uk-inline" >
                                     <span>
-                                        #{coordinador['teacher.detail.table.grup.video']}<h:graphicImage library="img" name="/icono/information.svg" styleClass="ayuda-imagen" pt:uk-svg="" />
+                                        #{coordinador['teacher.detail.table.grup.video']}<h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/information.svg" styleClass="ayuda-imagen" pt:uk-svg="" />
                                     </span>
                                     <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click; pos: top-left" style="min-width: 120px; white-space: nowrap; color: black; padding: 10px; border: 3px solid #0e6dcd">
                                         <p style="margin: 3px">#{coordinador['teacher.detail.table.grup.footer.message']}</p>
@@ -274,7 +269,7 @@
                         <h:column>
                             <f:facet name="header">#{coordinador['teacher.detail.table.grup.average']}</f:facet>
                             <h:panelGroup layout="block" styleClass="uk-inline" rendered="#{promedioAlumnoModelo.totalTareas gt 0}">
-                                <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage library="img" name="/icono/evaluar.svg" width="40px"/></span>
+                                <span class="puntero" data-asignado="false" onclick="fondoDropdown(this)"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/evaluar.svg" width="40px"/></span>
                                 <h:panelGroup layout="block" styleClass="uk-dropdown" pt:uk-dropdown="mode: click">
                                     <table class="tabla-detalles-tareas-alumno">
                                         <thead>
@@ -415,7 +410,6 @@
             }
 
         </script>
-        <ui:remove><h:outputScript library="js" name="paginacion-tablas.js"/></ui:remove>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/paginacion-tablas.js"/>
         <script type="application/javascript">
             crearPagina();
@@ -457,7 +451,6 @@
                 }
             }
         </script>
-        <ui:remove><h:outputScript library="js" name="/coordinador/zona-horaria.js"/></ui:remove>
         <script src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/coordinador/zona-horaria.js"></script>
     </ui:define>
 </ui:composition>

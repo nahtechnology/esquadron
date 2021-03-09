@@ -30,7 +30,8 @@ import java.util.StringJoiner;
                 name = "ActividadEntidad.buscaBibliotecaLibre",
                 query = "SELECT a FROM ActividadEntidad a JOIN FETCH a.nivelLenguajeEntidad nl JOIN FETCH a.temaEntidad t WHERE a.id NOT IN " +
                         "(SELECT tga.tareaGlosarioActividadEntidadPK.glosarioActividadEntidad.glosarioActividadEntidadPK.actividadEntidad.id FROM " +
-                        "TareaGlosarioActividadEntidad tga JOIN tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno)"),
+                        "TareaGlosarioActividadEntidad tga JOIN tga.tareaGlosarioActividadEntidadPK.tareaEntidad t WHERE t.alumnoEntidad.id = :idAlumno) AND " +
+                        "a.estatus = TRUE"),
         @NamedQuery(
                 name = "ActividadEntidad.buscaNoAsigandasAlumno",
                 query = "SELECT NEW ActividadEntidad(a.id, a.preguntaDetonadora) FROM ActividadEntidad a JOIN a.nivelLenguajeEntidad nl WHERE nl.clave = :nivelLenguaje AND a.id NOT IN " +

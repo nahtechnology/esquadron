@@ -9,12 +9,12 @@
 
 
 <div class="left-logo uk-flex uk-flex-middle">
-    <h:graphicImage id="avatar" styleClass="uk-margin-small-right uk-preserve" library="img" name="esquadron.svg" width="40" height="40" alt="escuadrom" pt:uk-svg=""/>
+    <h:graphicImage id="avatar" styleClass="uk-margin-small-right uk-preserve" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/esquadron.svg" width="40" height="40" alt="escuadrom" pt:uk-svg=""/>
     <span class="titulo-blanco uk-text-capitalize">squadron</span>
 </div>
 <div class="left-content-box  content-box-dark">
-    <h:graphicImage rendered="#{request.isUserInRole('administrador')}" library="img" name="avatar/administrador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
-    <h:graphicImage rendered="#{not request.isUserInRole('administrador') }" library="img" name="avatar/coordinador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
+    <h:graphicImage rendered="#{request.isUserInRole('administrador')}" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/administrador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
+    <h:graphicImage rendered="#{not request.isUserInRole('administrador') }" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/coordinador.svg" styleClass="uk-svg uk-border-circle profile-img"/>
     <h4 class="uk-text-center uk-margin-remove-vertical text-light" style="color: white">
         <h:outputText value="#{administracionControlador.administradorModelo.nombre.concat(' ').concat(administracionControlador.administradorModelo.apellidoPaterno).concat(' ').concat(administracionControlador.administradorModelo.apellidoMaterno)}"
                       rendered="#{request.isUserInRole('administrador')}"/>
@@ -22,7 +22,6 @@
                       rendered="#{not request.isUserInRole('administrador')}"/>
     </h4>
     <div class="uk-position-relative uk-text-center uk-display-block">
-        <!--<a href="#" class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7">Administrador</a> -->
         <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{request.isUserInRole('administrador')}" value="#">Administrador</h:outputLink>
         <h:outputLink styleClass="uk-text-small uk-text-muted uk-display-block uk-text-center" pt:data-uk-icon="icon: triangle-down; ratio: 1" rendered="#{not request.isUserInRole('administrador')}" value="#">Coordinador</h:outputLink>
         <!-- user dropdown -->

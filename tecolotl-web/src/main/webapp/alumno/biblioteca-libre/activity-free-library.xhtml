@@ -71,9 +71,7 @@
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/variables-alumno.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript.css"/>
-<!--        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>-->
-            <h:outputStylesheet library="css" name="/alumno/transcript/transcript-drag.css"/>
-<!--        <script src="https://www.youtube.com/iframe_api"></script>-->
+        <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
                 <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
@@ -161,11 +159,6 @@
                         break;
                     }
                 }
-
-
-
-
-
             }
 
             function reproducir(event) {
@@ -177,17 +170,12 @@
                         logo.classList.toggle('visibilidad');
                         barra.classList.toggle('visibilidad');
                         player.playVideo();
-
-
-
             }
         </script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/activity-free-library.js" ></script>
-        <ui:remove><h:outputScript library="js" name="/alumno/activity-free-library.js"/></ui:remove>
     </ui:define>
     <ui:define name="enlaces-js">
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/drag-prueba.js"></script>
-        <ui:remove><h:outputScript library="js" name="/alumno/drag-prueba.js"/></ui:remove>
     </ui:define>
 </ui:composition>
 </html>

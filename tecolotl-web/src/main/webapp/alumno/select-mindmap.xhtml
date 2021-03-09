@@ -80,7 +80,7 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-flex uk-flex-center uk-flex-middle">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glossary"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/alumno/planetas/planeta2.svg" width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glossary"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="60" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="60" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="select-mindmap"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="60" height="" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="60" alt="" /></h:link></li>
@@ -89,7 +89,6 @@
     </ui:define>
     <ui:define name="contenido">
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/select-mindmap.css"/>
-        <ui:remove><link rel="stylesheet" href="#{resource['css/alumno/select-mindmap.css']}"/></ui:remove>
         <div class="uk-section">
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" styleClass="contiene" rendered="#{empty seleccionMapaMentalControlador.mapaMentalResueltoModeloLista}">

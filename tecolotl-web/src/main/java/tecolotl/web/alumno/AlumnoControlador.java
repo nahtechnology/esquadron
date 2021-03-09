@@ -45,9 +45,6 @@ public class AlumnoControlador implements Serializable {
     @Inject
     private SesionControlSingleton sesionControlSingleton;
 
-    @Inject
-    private Logger logger;
-
     private AlumnoModelo alumnoModelo;
     private List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista;
     private List<TareaActividadModelo> tareaActvidadModeloLista;

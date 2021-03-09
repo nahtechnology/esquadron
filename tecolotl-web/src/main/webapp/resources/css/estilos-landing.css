@@ -591,6 +591,10 @@ aside ul > li > a > img {
 #seccion3 button:hover{
     cursor: pointer;
 }
+#seccion3 > .avatar{
+    background: url(https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/astronauta-nino.svg) no-repeat center center/40%;
+    height: 80%;
+}
 .contenedor-input{
     display: grid;
     grid-template-columns: 50% 50%;

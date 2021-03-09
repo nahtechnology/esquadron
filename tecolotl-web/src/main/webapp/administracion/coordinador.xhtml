@@ -42,11 +42,11 @@
     </ui:define>
     <ui:define name="contenido">
         <ui:remove>
-            <h:outputStylesheet library="css" name="tablas.css"/>
-            <h:outputStylesheet library="css" name="administracion/scroll-esquadron.css"/>
-            <h:outputStylesheet library="css" name="administracion/dashboard.css"/>
-            <h:outputStylesheet library="css" name="administracion/coordinador.css"/>
-            <h:outputStylesheet library="css" name="/administracion/estilo-tarjeton-licencia.css"/>
+             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
+             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/scroll-esquadron.css"/>
+             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/dashboard.css"/>
+             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/coordinador.css"/>
+             <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/estilo-tarjeton-licencia.css"/>
         </ui:remove>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/tablas.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/administracion/scroll-esquadron.css"/>
@@ -61,12 +61,10 @@
                         <div class="uk-grid uk-grid-small" uk-grid="">
                             <div class="uk-width-auto"><h4><span class="uk-text-middle uk-text-capitalize">#{administracion['catalogocoordinador.title']}</span></h4></div>
                             <div class="uk-width-expand uk-text-right panel-icons">
-                                <h:form>
-                                    <h:commandLink  styleClass="uk-icon-button  uk-icon uk-text-primary" pt:uk-toggle="target: #modal-coordinador" >
-                                        <h:outputText  pt:uk-icon="icon: plus-circle; ratio: 1.5"/>
-                                        <f:ajax listener="#{coordinadorControlador.limpiaCoordinador}" render="formulario-modal-coordinador"/>
-                                    </h:commandLink>
-                                </h:form>
+                                <h:button styleClass="uk-button uk-button-primary" value="${otrosboton['add']}" outcome="agregar">
+                                    <f:param name="escuela" value="#{coordinadorControlador.escuelaBaseModelo.claveCentroTrabajo}"/>
+                                    <f:param name="persona" value="coordinador"/>
+                                </h:button>
                             </div>
                         </div>
                     </div>
@@ -87,7 +85,7 @@
                                         <tr>
                                             <td colspan="6">
                                                 <div class="uk-flex uk-flex-center">
-                                                    <h:graphicImage library="img" name="vacio.svg" height="215" width="243" alt="vacio"/>
+                                                    <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/vacio.svg" height="215" width="243" alt="vacio"/>
                                                 </div>
                                             </td>
                                         </tr>
@@ -262,7 +260,7 @@
                                 <div class="uk-inline">
                                     <h:commandLink styleClass="uk-form-icon uk-form-icon-flip">
                                         <f:ajax/>
-                                        <h:graphicImage library="img" name="icono/ojo.svg" styleClass="uk-icon-image" pt:uk-icon="" onclick="cambiareditar()"/>
+                                        <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/ojo.svg" styleClass="uk-icon-image" pt:uk-icon="" onclick="cambiareditar()"/>
                                     </h:commandLink>
                                     <h:inputSecret styleClass="uk-input"
                                                    id="input-secret-editar-password"
@@ -344,7 +342,7 @@
                 <ui:repeat value="#{coordinadorControlador.coordinadorModeloLista}" var="coordinadorModelo">
                     <div class="tablero-licencia">
                         <div class="imagen">
-                            <h:graphicImage styleClass="uk-display-inline-block" library="img" name="/avatar/maestro.svg"   width="60"/>
+                            <h:graphicImage styleClass="uk-display-inline-block" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/avatar/maestro.svg" width="60"/>
                         </div>
                         <div class="informacion">
                             <h6>Coordinator</h6>
@@ -368,13 +366,8 @@
                 <button class="uk-button uk-button-primary" onclick="generatePdf()" type="button">#{otrosboton['download.PDF']}</button>
             </div>
         </h:panelGroup>
-
-        <h:outputScript library="js" name="html2pdf.bundle.min.js"/>
-        <h:outputScript library="js" name="/administracion/coordinador.js"/>
-        <ui:remove>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/html2pdf.bundle.min.js"></script>
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/administracion/coordinador.js"></script>
-        </ui:remove>
         <script type="text/javascript">
             var contrassenia;
             var contrasseniaeditar;

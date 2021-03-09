@@ -62,21 +62,21 @@ function colocarImagenesPassword() {
     let contenedorpassword = document.querySelectorAll('.tablero-licencia #imagen-password-tablero');
     let tablaProfesor = document.querySelectorAll('[id$=table-prfesor] #login-tabla-profesor');
 
-    for (let i = 0; i < contenedorpassword.length; i++) {
+    for (let i = 0; i < tablaProfesor.length; i++) {
         let contrasena1 = contenedorpassword[i].querySelector('span').innerText.split(',');
         let contrasena2 = tablaProfesor[i].querySelector('span').innerText.split(',');
         contenedorpassword[i].innerHTML = "";
         tablaProfesor[i].innerHTML = "";
         contrasena1.forEach(contra1 => {
             let img = document.createElement('img');
-            img.src = `../resources/img/alumno/iconos-login/${parseInt(contra1) + 1}.svg`;
+            img.src = `../resources/img/iconos-login/${parseInt(contra1) + 1}.svg`;
             img.style.width = "40px";
             img.style.marginRight = "5px";
             contenedorpassword[i].appendChild(img);
         });
         contrasena2.forEach(contra2 => {
             let img = document.createElement('img');
-            img.src = `https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/iconos-login/${parseInt(contra2) + 1}.svg`;
+            img.src = `../resources/img/iconos-login/${parseInt(contra2) + 1}.svg`;
             img.style.width = "40px";
             img.style.marginRight = "5px";
             tablaProfesor[i].appendChild(img);
@@ -141,6 +141,7 @@ function iniciarCanvasPaginado() {
         }
         botones[1].disabled = false;
         botones[1].classList.remove('uk-button-default');
+        
         botones[1].classList.add('uk-button-secondary');
     });
 }
