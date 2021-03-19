@@ -24,17 +24,20 @@ public class CompletarOracionesControlador implements Serializable {
     @Inject
     private AlumnoControlador alumnoControlador;
 
+    @Inject
+    private TareaOracionesControlador tareaOracionesControlador;
+
     private List<TareaCompletarModelo> tareaCompletarModeloLista;
 
     @PostConstruct
     public void init(){
-        tareaCompletarModeloLista = completarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        tareaCompletarModeloLista = completarSesionBean.busca(tareaOracionesControlador.getTareaActividadModelo().getId());
     }
 
     public void enviarRespuesta(Integer id) {
         for (TareaCompletarModelo tareaCompletarModelo : tareaCompletarModeloLista) {
             if (tareaCompletarModelo.getId().compareTo(id) == 0) {
-                completarSesionBean.respuesta(tareaCompletarModelo, alumnoControlador.getTareaActividadModelo().getId());
+                completarSesionBean.respuesta(tareaCompletarModelo, tareaOracionesControlador.getTareaActividadModelo().getId());
                 break;
             }
         }

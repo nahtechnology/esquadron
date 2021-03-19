@@ -1,6 +1,5 @@
 package tecolotl.web.alumno;
 
-import tecolotl.alumno.entidad.vista.TareasResueltasEntidad;
 import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.TareaAlumnoModelo;
 import tecolotl.alumno.modelo.vista.TareaResuetasModelo;
@@ -10,6 +9,7 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.ws.rs.NameBinding;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Logger;
@@ -17,6 +17,9 @@ import java.util.logging.Logger;
 @RequestScoped
 @Named
 public class TareasProgresoControlador {
+
+    @Inject
+    private Logger logger;
 
     @Inject
     private TareaSesionBean tareaSesionBean;
@@ -28,7 +31,8 @@ public class TareasProgresoControlador {
     private List<TareaResuetasModelo> tareaResuetasModeloLista;
     private List<TareaAlumnoModelo> tareaAlumnoModeloLista;
 
-    public void buscaTareasRealizadas() {
+
+    public void buscaTareasRealizadas(){
         tareaResuetasModeloLista = tareaSesionBean.tareasResuelta(UUID.fromString(idTarea));
         tareaAlumnoModeloLista = tareaSesionBean.buscaCalificaciones(alumnoControlador.getAlumnoModelo().getId());
     }

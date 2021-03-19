@@ -23,7 +23,6 @@ import java.io.Serializable;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.logging.Logger;
 
 @SessionScoped
@@ -45,10 +44,11 @@ public class AlumnoControlador implements Serializable {
     @Inject
     private SesionControlSingleton sesionControlSingleton;
 
+    @Inject
+    private Logger logger;
+
     private AlumnoModelo alumnoModelo;
     private List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista;
-    private List<TareaActividadModelo> tareaActvidadModeloLista;
-    private TareaActividadModelo tareaActividadModelo;
     private DetalleAlumno2Modelo detalleAlumno2Modelo;
     private ActividadModelo actividadModeloBibliotecaLibre;
     private PersonaActivaModelo personaActivaModelo;
@@ -67,15 +67,14 @@ public class AlumnoControlador implements Serializable {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=alumno");
                 externalContext.invalidateSession();
             } catch (IOException ioException) {
-
+                logger.severe("Ocurrio un error: ".concat(ioException.getMessage()));
             }
         } else {
-            buscaTareas(principal);
+            iniciaControl(principal);
         }
     }
 
-    public void buscaTareas(Principal principal) {
-        tareaActvidadModeloLista = tareaSesionBean.buscaActividad(alumnoModelo.getId(), detalleAlumno2Modelo == null ? "" : detalleAlumno2Modelo.getIdGrupo());
+    public void iniciaControl(Principal principal) {
         if (principal != null) {
             String datosUsuario[] = principal.getName().split(",");
             sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
@@ -85,12 +84,6 @@ public class AlumnoControlador implements Serializable {
                     new Date(),
                     alumnoModelo.getId());
         }
-    }
-
-    public String seleccion(TareaActividadModelo tareaActividadModelo){
-        this.tareaActividadModelo = tareaActividadModelo;
-        tareaActividadModelo.agregarDatos(tareaSesionBean.detalles(tareaActividadModelo.getId()));
-        return "transcript";
     }
 
     public String cerrarSesion() {
@@ -105,7 +98,7 @@ public class AlumnoControlador implements Serializable {
 
     public void buscaEscuela() {
         detalleAlumno2Modelo = detalleAlumno2ModeloLista.stream().filter(detalle -> detalle.getIdGrupo().equals(idGrupoSeleccionado)).findFirst().get();
-        buscaTareas(null);
+        iniciaControl(null);
     }
 
     public AlumnoModelo getAlumnoModelo() {
@@ -116,21 +109,6 @@ public class AlumnoControlador implements Serializable {
         this.alumnoModelo = alumnoModelo;
     }
 
-    public List<TareaActividadModelo> getTareaActvidadModeloLista() {
-        return tareaActvidadModeloLista;
-    }
-
-    public void setTareaActvidadModeloLista(List<TareaActividadModelo> tareaActvidadModeloLista) {
-        this.tareaActvidadModeloLista = tareaActvidadModeloLista;
-    }
-
-    public TareaActividadModelo getTareaActividadModelo() {
-        return tareaActividadModelo;
-    }
-
-    public void setTareaActividadModelo(TareaActividadModelo tareaActividadModelo) {
-        this.tareaActividadModelo = tareaActividadModelo;
-    }
 
     public ActividadModelo getActividadModeloBibliotecaLibre() {
         return actividadModeloBibliotecaLibre;

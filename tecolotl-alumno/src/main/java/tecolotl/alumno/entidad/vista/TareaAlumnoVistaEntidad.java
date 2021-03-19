@@ -9,10 +9,18 @@ import java.util.UUID;
 @Entity
 @Immutable
 @Table(name = "tareas_alumno", schema = "alumno")
-@NamedQuery(
-        name = "TareaAlumnoVistaEntidad.buscaAlumno",
-        query = "SELECT tav FROM TareaAlumnoVistaEntidad tav " +
-                "WHERE tav.idAlumno = :idAlumno AND tav.idGrupo = :idGrupo ORDER BY tav.pendiente DESC, tav.asignacion DESC ")
+@NamedQueries({
+        @NamedQuery(
+                name = "TareaAlumnoVistaEntidad.buscaAlumno",
+                query = "SELECT tav FROM TareaAlumnoVistaEntidad tav " +
+                        "WHERE tav.idAlumno = :idAlumno AND tav.idGrupo = :idGrupo ORDER BY tav.pendiente DESC, tav.asignacion DESC "
+        ),
+        @NamedQuery(
+                name = "TareaAlumnoVistaEntidad.buscaActividad",
+                query = "SELECT tav FROM TareaAlumnoVistaEntidad tav " +
+                        "WHERE tav.id = :id AND tav.idAlumno = :idAlumno"
+        )
+})
 public class TareaAlumnoVistaEntidad {
 
     private UUID id;

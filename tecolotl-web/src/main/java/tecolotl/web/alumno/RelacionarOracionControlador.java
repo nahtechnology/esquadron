@@ -28,7 +28,7 @@ public class RelacionarOracionControlador {
     private RelacionOracionRespuestaScope relacionOracionRespuestaScope;
 
     @Inject
-    private AlumnoControlador alumnoControlador;
+    private  ActividadViewControlador actividadViewControlador;
 
     private String idRespuesta;
     private List<TareaRelacionarOracionModelo> tareaRelacionarOracionModeloLista;
@@ -36,7 +36,7 @@ public class RelacionarOracionControlador {
 
     @PostConstruct
     public void init() {
-        tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        tareaRelacionarOracionModeloLista = relacionarOracionSesionBean.busca(actividadViewControlador.getTareaActividadModelo().getId());
     }
 
     public void llenarTareaModelo(){

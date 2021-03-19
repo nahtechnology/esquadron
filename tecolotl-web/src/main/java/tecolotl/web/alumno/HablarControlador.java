@@ -19,11 +19,14 @@ public class HablarControlador {
     @Inject
     private AlumnoControlador alumnoControlador;
 
+    @Inject
+    private TareaOracionesControlador tareaOracionesControlador;
+
     private List<HablarModelo> hablarModeloLista;
 
     @PostConstruct
     public void inicio() {
-        hablarModeloLista = hablarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        hablarModeloLista = hablarSesionBean.busca(tareaOracionesControlador.getTareaActividadModelo().getId());
     }
 
     public List<HablarModelo> getHablarModeloLista() {

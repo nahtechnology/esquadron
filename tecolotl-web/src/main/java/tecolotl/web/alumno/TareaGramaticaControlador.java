@@ -24,6 +24,12 @@ public class TareaGramaticaControlador {
     private AlumnoControlador alumnoControlador;
 
     @Inject
+    private ActividadesControlador actividadesControlador;
+
+    @Inject
+    private ActividadViewControlador actividadViewControlador;
+
+    @Inject
     private TareaSesionBean tareaSesionBean;
 
     @Inject
@@ -40,14 +46,14 @@ public class TareaGramaticaControlador {
         gramaticaModelo.setRespuesta(respuesta.trim());
         logger.info(gramaticaModelo.toString());
         logger.info(idActividad);
-        gramaticaSesionBean.respuesta(gramaticaModelo, alumnoControlador.getTareaActividadModelo().getId());
+        gramaticaSesionBean.respuesta(gramaticaModelo, actividadViewControlador.getTareaActividadModelo().getId());
     }
 
     public void incrementaReporduccion(short reproducciones, UUID idTarea) {
         tareaSesionBean.reproducciones(reproducciones,idTarea);
-        for (TareaActividadModelo tareaActvidadModelo : alumnoControlador.getTareaActvidadModeloLista()) {
-            if (tareaActvidadModelo.getId().compareTo(idTarea) == 0) {
-                tareaActvidadModelo.setReproducciones((short)(tareaActvidadModelo.getReproducciones() + reproducciones));
+        for (TareaActividadModelo tareaActividadModelo : actividadesControlador.getTareaActividadModeloLista()) {
+            if (tareaActividadModelo.getId().compareTo(idTarea) == 0) {
+                tareaActividadModelo.setReproducciones((short)(tareaActividadModelo.getReproducciones() + reproducciones));
             }
         }
     }

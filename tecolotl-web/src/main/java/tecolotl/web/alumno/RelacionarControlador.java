@@ -28,21 +28,25 @@ public class RelacionarControlador implements Serializable {
     private RelacionarRespuestaScope relacionarRespuestaScope;
 
     @Inject
+    private TareaOracionesControlador tareaOracionesControlador;
+
+    @Inject
     private Logger logger;
 
     private List<RelacionarModelo> relacionarModeloLista;
     private String carpeta;
 
+
     @PostConstruct
     public void inicio() {
-        relacionarModeloLista = relacionarSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        relacionarModeloLista = relacionarSesionBean.busca(tareaOracionesControlador.getTareaActividadModelo().getId());
         carpeta = AlmacenamientoEnum.IMAGENES_GLOSARIO.name().toLowerCase();
     }
 
     public void enviaRespuesta() {
         logger.info(relacionarModeloLista.toString());
-        logger.info(alumnoControlador.getTareaActividadModelo().getId().toString());
-        relacionarRespuestaScope.respuesta(relacionarModeloLista, alumnoControlador.getTareaActividadModelo().getId());
+        logger.info(tareaOracionesControlador.getTareaActividadModelo().getId().toString());
+        relacionarRespuestaScope.respuesta(relacionarModeloLista, tareaOracionesControlador.getTareaActividadModelo().getId());
     }
 
     public List<RelacionarModelo> getRelacionarModeloLista() {

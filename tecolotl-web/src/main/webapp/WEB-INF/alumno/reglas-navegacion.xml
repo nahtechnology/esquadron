@@ -50,6 +50,10 @@
             <from-outcome>mapametal-movil</from-outcome>
             <to-view-id>/alumno/select-mindmap.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>actividad</from-outcome>
+            <to-view-id>/alumno/activity.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 
     <navigation-rule>

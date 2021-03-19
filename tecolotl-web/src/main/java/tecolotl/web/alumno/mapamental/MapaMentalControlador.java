@@ -1,8 +1,11 @@
 package tecolotl.web.alumno.mapamental;
 
+import tecolotl.alumno.modelo.TareaActividadModelo;
 import tecolotl.alumno.modelo.mapamental.TareaMapaMentalModelo;
 import tecolotl.alumno.scope.MapaMentalRespuestaScope;
 import tecolotl.alumno.sesion.MapaMentalSessionBean;
+import tecolotl.alumno.sesion.TareaSesionBean;
+import tecolotl.web.alumno.ActividadViewControlador;
 import tecolotl.web.alumno.AlumnoControlador;
 
 import javax.faces.context.FacesContext;
@@ -12,6 +15,7 @@ import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.UUID;
 import java.util.logging.Logger;
 
 @ViewScoped
@@ -28,20 +32,26 @@ public class MapaMentalControlador implements Serializable {
     private MapaMentalRespuestaScope mapaMentalRespuestaScope;
 
     @Inject
+    private TareaSesionBean tareaSesionBean;
+
+    @Inject
     private Logger logger;
 
     private List<TareaMapaMentalModelo> tareaMapaMentalModeloLista;
     private String cardinalidad;
+    private String idTarea;
+    private TareaActividadModelo tareaActividadModelo;
 
     public void llenaLista() {
-        tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(alumnoControlador.getTareaActividadModelo().getId(), Short.parseShort(cardinalidad));
+        tareaActividadModelo = tareaSesionBean.buscaActividad(UUID.fromString(idTarea), alumnoControlador.getAlumnoModelo().getId());
+        tareaMapaMentalModeloLista = mapaMentalSessionBean.busca(tareaActividadModelo.getId(), Short.parseShort(cardinalidad));
     }
 
     public String respondeMapaMental() {
         mapaMentalRespuestaScope.respuesta(
                 tareaMapaMentalModeloLista,
-                alumnoControlador.getTareaActividadModelo().getId(),
-                alumnoControlador.getTareaActividadModelo().getIdActividad());
+                tareaActividadModelo.getId(),
+                tareaActividadModelo.getIdActividad());
         return "success";
     }
 
@@ -68,4 +78,19 @@ public class MapaMentalControlador implements Serializable {
         this.cardinalidad = cardinalidad;
     }
 
+    public String getIdTarea() {
+        return idTarea;
+    }
+
+    public void setIdTarea(String idTarea) {
+        this.idTarea = idTarea;
+    }
+
+    public TareaActividadModelo getTareaActividadModelo() {
+        return tareaActividadModelo;
+    }
+
+    public void setTareaActividadModelo(TareaActividadModelo tareaActividadModelo) {
+        this.tareaActividadModelo = tareaActividadModelo;
+    }
 }

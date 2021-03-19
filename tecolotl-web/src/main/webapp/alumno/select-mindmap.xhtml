@@ -13,6 +13,11 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}" required="true"/>
+        <f:viewAction action="#{seleccionMapaMentalControlador.seleccion}"/>
+        <f:event type="postValidate" listener="#{seleccionMapaMentalControlador.validarParametro}"/>
+    </f:metadata>
     <ui:define name="hamburguesa">
         <div class="color-nav uk-hidden@m">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
@@ -70,9 +75,9 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="70" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glossary"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="70" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="70" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="select-mindmap"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="70" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glossary"><f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="70" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="70" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="select-mindmap"><f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="70" height="" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="70" alt="" /></h:link></li>
             </ul>
         </div>
@@ -80,9 +85,9 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-flex uk-flex-center uk-flex-middle">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="60" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right"><h:link outcome="activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glossary"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="60" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="select-mindmap"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="60" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glossary"><f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="60" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right" class="uk-active"><h:link outcome="select-mindmap"><f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="60" height="" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="free-library"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="60" alt="" /></h:link></li>
             </ul>
         </div>
@@ -99,6 +104,7 @@
                         <div class="uk-width-1-3@m uk-position-relative card-mapa mapa-#{mapaMental.cardinalidad}">
                             <h:link outcome="/alumno/mindmap/#{mapaMental.cardinalidad}.xhtml" styleClass="uk-display-block link-imagen-mapa">
                                 <f:param name="cardinalidad" value="#{mapaMental.cardinalidad}"/>
+                                <f:param name="idTarea" value="#{seleccionMapaMentalControlador.idTarea}"/>
                                 <h:outputText styleClass="uk-position-absolute letra-mapas" value=" " rendered="#{mapaMental.totalResueltos gt 0 and empty mapaMental.calificacion}"/>
                                 <h:panelGroup layout="block" styleClass="score uk-position-absolute " style="width: 200px; height: 200px; left: 55%; top: 50%; transform: translate(-50%, -50%);" rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}">
                                     <span style="font-size: 22px"><h:outputText rendered="#{mapaMental.totalResueltos gt 0 and not empty mapaMental.calificacion}" value="Score: #{mapaMental.calificacion}%"/></span>

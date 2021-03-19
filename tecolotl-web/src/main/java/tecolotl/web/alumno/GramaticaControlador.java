@@ -18,7 +18,7 @@ public class GramaticaControlador {
     private GramaticaSesionBean gramaticaSesionBean;
 
     @Inject
-    private AlumnoControlador alumnoControlador;
+    private ActividadViewControlador actividadViewControlador;
 
     @Inject
     private Logger logger;
@@ -27,7 +27,7 @@ public class GramaticaControlador {
 
     @PostConstruct
     public void init() {
-        gramaticaModeloLista = gramaticaSesionBean.busca(alumnoControlador.getTareaActividadModelo().getId());
+        gramaticaModeloLista = gramaticaSesionBean.busca(actividadViewControlador.getTareaActividadModelo().getId());
     }
 
     public List<GramaticaModelo> getGramaticaModeloLista() {

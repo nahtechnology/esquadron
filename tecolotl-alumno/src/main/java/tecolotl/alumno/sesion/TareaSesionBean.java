@@ -217,4 +217,18 @@ public class TareaSesionBean implements Serializable {
         return tareasGrupoVistaModeloLista;
     }
 
+    /**
+     * Busca la tarea asignada al alumno.
+     * @param id Identificador de la tarea a buscar.
+     * @param idAlumno Identificador del alumno a buscar.
+     * @return la tarea asignada al alumno.
+     */
+    public TareaActividadModelo buscaActividad(@NotNull UUID id, @NotNull UUID idAlumno){
+        TareaActividadModelo tareaActividadModelo = new TareaActividadModelo();
+        TypedQuery<TareaAlumnoVistaEntidad> typedQuery =
+                entityManager.createNamedQuery("TareaAlumnoVistaEntidad.buscaActividad", TareaAlumnoVistaEntidad.class);
+        typedQuery.setParameter("id", id);
+        typedQuery.setParameter("idAlumno", idAlumno);
+        return typedQuery.getResultList().stream().map(TareaActividadModelo::new).collect(Collectors.toList()).get(0);
+    }
 }

@@ -7,6 +7,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 <ui:composition template="/template/escolar/template-alumno.xhtml">
+    <f:metadata>
+        <f:viewParam name="idTarea" value="#{actividadViewControlador.idTarea}" required="true"/>
+        <f:viewAction action="#{actividadViewControlador.seleccion}"/>
+        <f:event type="postValidate" listener="#{actividadViewControlador.validarParametro}"/>
+    </f:metadata>
     <ui:define name="hamburguesa">
         <div class="color-nav uk-hidden@m">
             <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar="">
@@ -25,7 +30,7 @@
                         <ul class="uk-thumbnav uk-thumbnav-vertical  uk-margin-large-top">
                             <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="40" alt=""/></h:link></li>
                             <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="40" alt="" /></h:link></li>
-                            <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="40" alt="" /></h:link></li>
+                            <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:button outcome="glosario"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="40" alt="" /></h:button></li>
                             <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="40" alt="" /></h:link></li>
                             <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="40" height="" alt="" /></h:link></li>
                             <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="40" alt="" /></h:link></li>
@@ -67,9 +72,9 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-position-center uk-margin-large-top">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="70" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="70" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="70" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="70" alt="" /></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="70" height="" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><f:param name="idTarea" value="#{actividadViewControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="70" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><f:param name="idTarea" value="#{actividadViewControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg"  width="70" alt="" /></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><f:param name="idTarea" value="#{actividadViewControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="70" height="" alt="" /></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="70" alt="" /></h:link></li>
             </ul>
         </div>
@@ -77,9 +82,9 @@
             <ul class="uk-thumbnav uk-thumbnav-vertical uk-flex uk-flex-center uk-flex-middle">
                 <li uk-tooltip="title: #{alumno['for.all.views.dashboard']}; pos: right"><h:link outcome="dashboard"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/tierra.svg" width="50" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.activity']}; pos: right" class="uk-active"><h:link outcome="actividades"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta1.svg" width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg" width="50" alt=""/></h:link></li>
-                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.glossary']}; pos: right"><h:link outcome="glosario"><f:param name="idTarea" value="#{actividadViewControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta2.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.practices']}; pos: right"><h:link outcome="more-activity"><f:param name="idTarea" value="#{actividadViewControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta3.svg" width="50" alt=""/></h:link></li>
+                <li uk-tooltip="title: #{alumno['for.all.views.mind.map']}; pos: right"><h:link outcome="mapa-mental"><f:param name="idTarea" value="#{actividadViewControlador.idTarea}"/><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta4.svg" width="50" alt=""/></h:link></li>
                 <li uk-tooltip="title: #{alumno['for.all.views.library']}; pos: right"><h:link outcome="biblioteca-alumno"><h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/planetas/planeta5.svg" width="50" alt=""/></h:link></li>
             </ul>
         </div>
@@ -96,7 +101,8 @@
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" id="filtro-seleccion" pt:uk-filter="target: .js-filter">
                     <ul class="uk-subnav uk-subnav-pill uk-flex uk-flex-center "  >
-                        <li uk-filter-control=".transcrip" uk-tooltip="#{alumno['activities.bar.icon.video']}" class="uk-active uk-animation-toggle" tabindex="0" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta ? 'vacio' : 'lleno'}" data-respondiendo="#{alumnoControlador.tareaActividadModelo.resolviendoTranscript}">
+                        <!--   Revisar aquí    -->
+                        <li uk-filter-control=".transcrip" uk-tooltip="#{alumno['activities.bar.icon.video']}" class="uk-active uk-animation-toggle" tabindex="0" data-respuesta="#{empty actividadViewControlador.tareaActividadModelo.respuesta ? 'vacio' : 'lleno'}" data-respondiendo="#{actividadViewControlador.tareaActividadModelo.resolviendoTranscript}">
                             <h:graphicImage url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/mounstro/morado.svg" width="70" height="70"  alt="" styleClass="uk-border-circle uk-animation-shake"/>
                         </li>
                         <li uk-filter-control=".match" uk-tooltip="#{alumno['activities.bar.icon.match']}" class="uk-animation-toggle" tabindex="0" style="display: #{empty relacionarOracionControlador.tareaRelacionarOracionModeloLista ? 'none' : 'block'}">
@@ -116,7 +122,9 @@
                         </h:form>
                     </ul>
 
-                    <ul class="js-filter  uk-text-center" data-visibilidad-respuestas="#{alumnoControlador.tareaActividadModelo.verRespuesta}" >
+
+                    <!--   Revisar aquí    -->
+                    <ul class="js-filter  uk-text-center" data-visibilidad-respuestas="#{actividadViewControlador.tareaActividadModelo.verRespuesta}" >
                         <li class="transcrip">
                             <div class="uk-inline uk-flex uk-flex-left uk-text-bold">
                                 <a><h:graphicImage styleClass="img-ayuda" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/information.svg" pt:uk-svg=""/></a>
@@ -124,7 +132,7 @@
                             </div>
                            <h:panelGroup layout="block" styleClass="uk-grid" pt:uk-grid="">
                                <div class="uk-width-1-2@m tam-contenido uk-padding-remove-left uk-position-relative">
-                                   <div id="video1" data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
+                                   <div id="video1" data-video="#{actividadViewControlador.tareaActividadModelo.idActividad}" class="scrollFinal"></div>
                                    <div class="barra-publicidad"></div>
                                    <span id="boton1" uk-icon="icon: youtube; ratio: 4" class="visibilidad"/>
                                </div>
@@ -146,7 +154,8 @@
                                         <ui:repeat value="#{relacionarOracionControlador.tareaRelacionarOracionModeloLista}" var="relacionarOracion">
                                             <div class="pregunta-ordenar" data-respuesta="#{relacionarOracion.relacionarOracionModelo.respuesta}">
                                                 #{relacionarOracion.relacionarOracionModelo.pregunta}
-                                                <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta and alumnoControlador.tareaActividadModelo.verRespuesta eq true}" >
+                                                <!--   Revisar aquí    -->
+                                                <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta and actividadViewControlador.tareaActividadModelo.verRespuesta eq true}" >
                                                     #{relacionarOracion.relacionarOracionModelo.respuesta}
                                                 </h:panelGroup>
                                             </div>
@@ -183,7 +192,7 @@
                                             <div class="uk-position-relative">
                                                     <div class="pregunta-ordenar" data-respuesta="#{relacionarOracion.relacionarOracionModelo.respuesta}">
                                                         #{relacionarOracion.relacionarOracionModelo.pregunta}
-                                                        <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta and alumnoControlador.tareaActividadModelo.verRespuesta eq true}" >
+                                                        <h:panelGroup layout="block" styleClass="color-correcto" rendered="#{not empty relacionarOracionControlador.tareaRelacionarOracionModeloLista[0].respuesta and actividadViewControlador.tareaActividadModelo.verRespuesta eq true}" >
                                                             #{relacionarOracion.relacionarOracionModelo.respuesta}
                                                         </h:panelGroup>
                                                     </div>
@@ -273,25 +282,26 @@
                                     <a><h:graphicImage styleClass="img-ayuda" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/icono/information.svg" pt:uk-svg=""/></a>
                                     <div uk-dropdown="mode: click">#{alumno['activity.help.message.fill.in.the.blanks']}</div>
                                 </div>
+                                <!--   Revisar aquí    -->
                                 <div class="video-activity uk-position-relative">
-                                   <ui:remove><div data-video="#{alumnoControlador.tareaActividadModelo.idActividad}" class="scrollFinal" ></div></ui:remove>
-                                    <iframe  id="video2"  width="100%" height="100%" src="https://www.youtube.com/embed/#{alumnoControlador.tareaActividadModelo.idActividad}?enablejsapi=1"
+                                   <ui:remove><div data-video="#{actividadViewControlador.tareaActividadModelo.idActividad}" class="scrollFinal" ></div></ui:remove>
+                                    <iframe  id="video2"  width="100%" height="100%" src="https://www.youtube.com/embed/#{actividadViewControlador.tareaActividadModelo.idActividad}?enablejsapi=1"
                                             frameborder="0" class="scrollFinal"></iframe>
                                     <div class="barra-publicidad"></div>
                                     <span id="boton2" uk-icon="icon: youtube; ratio: 4" class="visibilidad"/>
                                 </div>
                                 <h:panelGroup layout="block" styleClass="uk-child-width-1-2@m uk-grid" pt:uk-grid="">
-                                    <h:panelGroup layout="block" styleClass="contenedor-padre-activity" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                    <h:panelGroup layout="block" styleClass="contenedor-padre-activity" rendered="#{empty actividadViewControlador.tareaActividadModelo.respuesta}">
                                         <h:panelGroup layout="block" styleClass="uk-sortable contenedor-respuesta" pt:uk-sortable="group: respuesta"/>
                                     </h:panelGroup>
-                                    <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
-                                        <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}"/>
-                                        <h:outputText value="#{alumnoControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                    <div class="trancript-contenedor arrastrar scroll-drag uk-text-justify remplazar" data-respuesta="#{empty actividadViewControlador.tareaActividadModelo.respuesta}">
+                                        <h:outputText value="#{actividadAlumnoControlador.transcripcion}" escape="false" rendered="#{empty actividadViewControlador.tareaActividadModelo.respuesta}"/>
+                                        <h:outputText value="#{actividadViewControlador.tareaActividadModelo.respuesta}" escape="false" rendered="#{not empty actividadViewControlador.tareaActividadModelo.respuesta}"/>
                                     </div>
                                     <ui:remove>
-                                        <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}"/>
+                                        <h:graphicImage styleClass="finalizado movimiento2" url="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/img/alumno/meteorito.svg" rendered="#{not empty actividadViewControlador.tareaActividadModelo.respuesta}"/>
                                     </ui:remove>
-                                    <h:panelGroup style="display: flex; justify-content: center; align-items: center"  layout="block" rendered="#{not empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                    <h:panelGroup style="display: flex; justify-content: center; align-items: center"  layout="block" rendered="#{not empty actividadViewControlador.tareaActividadModelo.respuesta}">
                                         <h:panelGroup layout="block" styleClass="score">
                                             <span style="font-weight: 900; font-size: 30px; color: white"/>
                                         </h:panelGroup>
@@ -303,7 +313,7 @@
                                 <h:commandButton styleClass="boton-enviar boton-trasladar" style="margin-top: 20px"
                                                  value="#{boton['submit']}"
                                                  onclick="return validaContenido()"
-                                                 rendered="#{empty alumnoControlador.tareaActividadModelo.respuesta}">
+                                                 rendered="#{empty actividadViewControlador.tareaActividadModelo.respuesta}">
                                     <f:ajax listener="#{transcripcionControlador.enviaRespuestas}"
                                             execute="@form"
                                             onevent="function funcion(data) { transcripcionEnvidad(data); }"

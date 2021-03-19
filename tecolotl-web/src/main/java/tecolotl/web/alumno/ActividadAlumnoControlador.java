@@ -20,13 +20,13 @@ public class ActividadAlumnoControlador {
     private ActividadSesionBean actividadSesionBean;
 
     @Inject
-    private AlumnoControlador alumnoControlador;
+    private ActividadViewControlador actividadViewControlador;
 
     private String transcripcion;
 
     @PostConstruct
     public void inicio() {
-        transcripcion = actividadSesionBean.transcripcion(alumnoControlador.getTareaActividadModelo().getIdActividad());
+        transcripcion = actividadSesionBean.transcripcion(actividadViewControlador.getTareaActividadModelo().getIdActividad());
     }
 
     public String getTranscripcion() {

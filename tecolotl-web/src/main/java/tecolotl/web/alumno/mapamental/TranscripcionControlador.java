@@ -1,6 +1,7 @@
 package tecolotl.web.alumno.mapamental;
 
 import tecolotl.alumno.sesion.TareaSesionBean;
+import tecolotl.web.alumno.ActividadViewControlador;
 import tecolotl.web.alumno.AlumnoControlador;
 
 import javax.enterprise.context.RequestScoped;
@@ -16,7 +17,7 @@ public class TranscripcionControlador {
     private TareaSesionBean tareaSesionBean;
 
     @Inject
-    private AlumnoControlador alumnoControlador;
+    private ActividadViewControlador actividadViewControlador;
 
     @Inject
     private Logger logger;
@@ -26,14 +27,14 @@ public class TranscripcionControlador {
     private Short calificacion;
 
     public  void enviaRespuestas() {
-        tareaSesionBean.respuesta(transcripcion, alumnoControlador.getTareaActividadModelo().getId(), calificacion);
-        alumnoControlador.getTareaActividadModelo().setResolviendoTranscript(false);
-        alumnoControlador.getTareaActividadModelo().setRespuesta(transcripcion);
+        tareaSesionBean.respuesta(transcripcion, actividadViewControlador.getTareaActividadModelo().getId(), calificacion);
+        actividadViewControlador.getTareaActividadModelo().setResolviendoTranscript(false);
+        actividadViewControlador.getTareaActividadModelo().setRespuesta(transcripcion);
     }
 
     public void cambiaEstatus() {
-        tareaSesionBean.estatus(alumnoControlador.getTareaActividadModelo().getId(), Boolean.parseBoolean(activo));
-        alumnoControlador.getTareaActividadModelo().setResolviendoTranscript(Boolean.parseBoolean(activo));
+        tareaSesionBean.estatus(actividadViewControlador.getTareaActividadModelo().getId(), Boolean.parseBoolean(activo));
+        actividadViewControlador.getTareaActividadModelo().setResolviendoTranscript(Boolean.parseBoolean(activo));
     }
 
     public String getTranscripcion() {
