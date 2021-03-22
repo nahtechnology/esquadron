@@ -16,7 +16,7 @@ import java.util.Date;
 import java.util.Enumeration;
 import java.util.logging.Logger;
 
-@WebListener
+
 public class ControlSesionListener implements HttpSessionListener {
 
     @Inject

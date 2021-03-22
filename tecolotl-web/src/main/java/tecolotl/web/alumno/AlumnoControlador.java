@@ -33,9 +33,6 @@ public class AlumnoControlador implements Serializable {
     private AlumnoSesionBean alumnoSesionBean;
 
     @Inject
-    private TareaSesionBean tareaSesionBean;
-
-    @Inject
     private DetalleAlumnoSesionBean detalleAlumnoSesionBean;
 
     @Inject
@@ -43,9 +40,6 @@ public class AlumnoControlador implements Serializable {
 
     @Inject
     private SesionControlSingleton sesionControlSingleton;
-
-    @Inject
-    private Logger logger;
 
     private AlumnoModelo alumnoModelo;
     private List<DetalleAlumno2Modelo> detalleAlumno2ModeloLista;
@@ -67,10 +61,9 @@ public class AlumnoControlador implements Serializable {
                 externalContext.redirect(externalContext.getRequestContextPath() + "/sin-permiso.xhtml?tipo=alumno");
                 externalContext.invalidateSession();
             } catch (IOException ioException) {
-                logger.severe("Ocurrio un error: ".concat(ioException.getMessage()));
             }
         } else {
-            iniciaControl(principal);
+            //iniciaControl(principal);
         }
     }
 
@@ -98,7 +91,7 @@ public class AlumnoControlador implements Serializable {
 
     public void buscaEscuela() {
         detalleAlumno2Modelo = detalleAlumno2ModeloLista.stream().filter(detalle -> detalle.getIdGrupo().equals(idGrupoSeleccionado)).findFirst().get();
-        iniciaControl(null);
+        //iniciaControl(null);
     }
 
     public AlumnoModelo getAlumnoModelo() {

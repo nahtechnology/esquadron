@@ -54,6 +54,7 @@ public class ProfesorControlador implements Serializable {
             }
         }
         else {
+            /*
             String cadena[] = principal.getName().split(",");
             sesionControlSingleton.inicio(httpServletRequest.getRequestedSessionId(),
                     Integer.parseInt(cadena[1]),
@@ -61,6 +62,8 @@ public class ProfesorControlador implements Serializable {
                     UsuarioSesionModelo.Tipo.PROFESOR,
                     new Date(),
                     profesorModelo.getId());
+
+             */
         }
     }
 
