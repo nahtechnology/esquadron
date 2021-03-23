@@ -88,12 +88,14 @@ public class GramaticaSesionBean implements Serializable {
      * @param gramaticaModelo el modelo de datos para agregar la nueva actividad.
      */
     public void inserta(@NotNull GramaticaModelo gramaticaModelo){
+        /*
         GramaticaEntidadPK gramaticaEntidadPK = new GramaticaEntidadPK();
         gramaticaEntidadPK.setActividadEntidad(new ActividadEntidad(gramaticaModelo.getActividadModelo().getIdVideo()));
         gramaticaEntidadPK.setCodigo(gramaticaModelo.getCodigo());
         GramaticaEntidad gramaticaEntidad = new GramaticaEntidad(gramaticaEntidadPK);
         gramaticaEntidad.setPalabra(gramaticaModelo.getPalabra());
         entityManager.persist(gramaticaEntidad);
+         */
     }
 
     private TareaGramaticaEntidadPK llavePrimaria(GramaticaModelo gramaticaModelo, UUID idTarea) {
