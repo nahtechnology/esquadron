@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 public class ActividadEntidad implements Serializable {
@@ -80,5 +81,18 @@ public class ActividadEntidad implements Serializable {
 
     public void setTotalTareas(Integer totalTareas) {
         this.totalTareas = totalTareas;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        ActividadEntidad that = (ActividadEntidad) object;
+        return idActividad.equals(that.idActividad) && nivelLenguaje.equals(that.nivelLenguaje);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idActividad, nivelLenguaje);
     }
 }

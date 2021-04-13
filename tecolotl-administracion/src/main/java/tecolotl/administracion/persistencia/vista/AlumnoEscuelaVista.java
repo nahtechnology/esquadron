@@ -4,6 +4,7 @@ import org.hibernate.annotations.Immutable;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Immutable
@@ -117,5 +118,18 @@ public class AlumnoEscuelaVista implements Serializable {
         sb.append(", estatus=").append(estatus);
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        AlumnoEscuelaVista that = (AlumnoEscuelaVista) object;
+        return idGrupo.equals(that.idGrupo) && idAlumno.equals(that.idAlumno);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idGrupo, idAlumno);
     }
 }

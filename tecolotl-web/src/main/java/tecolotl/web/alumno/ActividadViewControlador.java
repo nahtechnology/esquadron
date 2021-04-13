@@ -43,7 +43,7 @@ public class ActividadViewControlador implements Serializable {
         try{
             FacesContext facesContext = FacesContext.getCurrentInstance();
             if (!facesContext.isPostback() && facesContext.isValidationFailed()) {
-                facesContext.getExternalContext().redirect("activities.xhtml");
+                facesContext.getExternalContext().redirect("/alumno/activities.xhtml");
             }
         }catch(IOException ioe){
             logger.severe("Ocurrio un error: ".concat(ioe.getMessage()));

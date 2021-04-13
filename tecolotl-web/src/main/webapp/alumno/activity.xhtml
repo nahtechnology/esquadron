@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<ui:composition template="/template/escolar/template-alumno.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template/escolar/template-alumno.xhtml">
     <f:metadata>
         <f:viewParam name="idTarea" value="#{actividadViewControlador.idTarea}" required="true"/>
         <f:viewAction action="#{actividadViewControlador.seleccion}"/>
@@ -96,7 +94,6 @@
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/ordenar-palabra.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/alumno/transcript/transcript-drag.css"/>
         <link rel="stylesheet" href="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/css/letra.css"/>
-<!--        <script src="https://www.youtube.com/iframe_api"></script>-->
         <div class="uk-section" style="box-sizing: border-box">
             <div class="uk-container padding-contenedor">
                 <h:panelGroup layout="block" id="filtro-seleccion" pt:uk-filter="target: .js-filter">
@@ -566,5 +563,3 @@
         <script type="application/javascript" src="https://tecolotl-multimedia.nyc3.digitaloceanspaces.com/Tecolotl/resources/js/alumno/calificaciones-actividad.js"/>
     </ui:define>
 </ui:composition>
-
-</html>

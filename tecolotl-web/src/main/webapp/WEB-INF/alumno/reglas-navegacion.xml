@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
     http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-
+<!--
     <navigation-rule>
         <from-view-id>/alumno/inicio-sesion.xhtml</from-view-id>
         <navigation-case>
@@ -11,7 +11,7 @@
             <to-view-id>/alumno/dashboard.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
+    -->
     <navigation-rule>
         <from-view-id>/alumno/dashboard.xhtml</from-view-id>
         <navigation-case>
@@ -99,6 +99,10 @@
             <to-view-id>/alumno/glossary.xhtml</to-view-id>
         </navigation-case>
         <navigation-case>
+            <from-outcome>more-activity</from-outcome>
+            <to-view-id>/alumno/more-activity.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
             <from-outcome>mapa-mental</from-outcome>
             <to-view-id>/alumno/select-mindmap.xhtml</to-view-id>
         </navigation-case>
@@ -140,7 +144,6 @@
         </navigation-case>
     </navigation-rule>
 
-
     <!--    biblioteca libre    -->
     <navigation-rule>
         <from-view-id>/alumno/glossary.xhtml</from-view-id>
@@ -149,6 +152,7 @@
             <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/alumno/select-mindmap.xhtml</from-view-id>
         <navigation-case>
@@ -156,6 +160,7 @@
             <to-view-id>/alumno/biblioteca-libre/free-library.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+
     <navigation-rule>
         <from-view-id>/alumno/biblioteca-libre/free-library.xhtml</from-view-id>
         <navigation-case>
